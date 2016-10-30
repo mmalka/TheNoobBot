@@ -680,7 +680,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     try
                     {
-                        if (factions.Contains(a.Faction) && !a.IsDead && !a.Invisible && (pvp || !a.InCombat || a.InCombatWithMe))
+                        if (factions.Contains(a.Faction) && !a.IsDead && !a.IsInvisible && (pvp || !a.InCombat || a.InCombatWithMe))
                             objectReturn.Add(a);
                     }
                     catch (Exception e)
@@ -786,7 +786,7 @@ namespace nManager.Wow.ObjectManager
                 var list = new List<WoWUnit>();
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (names.Contains(a.Name) && !a.IsDead && !a.Invisible) list.Add(a);
+                    if (names.Contains(a.Name) && !a.IsDead && !a.IsInvisible) list.Add(a);
                 }
                 return list;
             }
@@ -844,7 +844,7 @@ namespace nManager.Wow.ObjectManager
                 var list = new List<WoWUnit>();
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (entrys.Contains(a.Entry) && (!isDead && !a.IsDead || isDead) && !a.Invisible) list.Add(a);
+                    if (entrys.Contains(a.Entry) && (!isDead && !a.IsDead || isDead) && !a.IsInvisible) list.Add(a);
                 }
                 return list;
             }
@@ -902,7 +902,7 @@ namespace nManager.Wow.ObjectManager
                 var list = new List<WoWUnit>();
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if ((a.QuestItem1 == lootId || a.QuestItem2 == lootId || a.QuestItem3 == lootId || a.QuestItem4 == lootId) && !a.Invisible)
+                    if ((a.QuestItem1 == lootId || a.QuestItem2 == lootId || a.QuestItem3 == lootId || a.QuestItem4 == lootId) && !a.IsInvisible)
                         list.Add(a);
                 }
                 return list;

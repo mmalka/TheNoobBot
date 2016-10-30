@@ -365,7 +365,7 @@ namespace nManager.Wow.ObjectManager
 
         public bool OnTaxi
         {
-            get { return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.TaxiFlight); }
+            get { return UnitFlags.HasFlag(UnitFlags.TaxiFlight); }
         }
 
         public uint Mana
@@ -1363,9 +1363,9 @@ namespace nManager.Wow.ObjectManager
                         if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
                         if (HaveBuff(_ghostSpells))
                             return true;
-                        return Health <= 1 || GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead);
+                        return Health <= 1 || UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
                     }
-                    return Health <= 0 || GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead);
+                    return Health <= 0 || UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
                 }
                 catch (Exception e)
                 {
@@ -1379,7 +1379,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                var unitFlags = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);
+                var unitFlags = UnitFlags;
                 if (unitFlags.HasFlag(UnitFlags.Totem) && unitFlags.HasFlag(UnitFlags.Combat) && !unitFlags.HasFlag(UnitFlags.PetInCombat) ||
                     unitFlags.HasFlag(UnitFlags.Totem) && !unitFlags.HasFlag(UnitFlags.Combat) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
                 {
@@ -1393,9 +1393,9 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public UnitQuestGiverStatus UnitQuestGiverStatus
+        public bool IsElite
         {
-            get { return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
+            get { return UnitFlags.HasFlag(UnitFlags.PlusMob); }
         }
 
         public bool IsLootable
@@ -1404,7 +1404,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Lootable);
+                    return UnitDynamicFlags.HasFlag(UnitDynamicFlags.Lootable);
                 }
                 catch (Exception e)
                 {
@@ -1420,7 +1420,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Tapped);
+                    return UnitDynamicFlags.HasFlag(UnitDynamicFlags.Tapped);
                 }
                 catch (Exception e)
                 {
@@ -1436,7 +1436,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.TappedByMe);
+                    return UnitDynamicFlags.HasFlag(UnitDynamicFlags.TappedByMe);
                 }
                 catch (Exception e)
                 {
@@ -1693,7 +1693,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Skinnable);
+                    return UnitFlags.HasFlag(UnitFlags.Skinnable);
                 }
                 catch (Exception e)
                 {
@@ -1709,7 +1709,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Silenced);
+                    return UnitFlags.HasFlag(UnitFlags.Silenced);
                 }
                 catch (Exception e)
                 {
@@ -1725,7 +1725,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Stunned);
+                    return UnitFlags.HasFlag(UnitFlags.Stunned);
                 }
                 catch (Exception e)
                 {
@@ -1741,7 +1741,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Confused);
+                    return UnitFlags.HasFlag(UnitFlags.Confused);
                 }
                 catch (Exception e)
                 {
@@ -1773,7 +1773,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SpiritHealer);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.SpiritHealer);
                 }
                 catch (Exception e)
                 {
@@ -1789,7 +1789,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SpiritHealer);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.SpiritHealer);
                 }
                 catch (Exception e)
                 {
@@ -1805,7 +1805,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanRepair);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.CanRepair);
                 }
                 catch (Exception e)
                 {
@@ -1821,7 +1821,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Taxi);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.Taxi);
                 }
                 catch (Exception e)
                 {
@@ -1837,7 +1837,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.MailInfo);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.MailInfo);
                 }
                 catch (Exception e)
                 {
@@ -1853,7 +1853,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.QuestGiver);
                 }
                 catch (Exception e)
                 {
@@ -1869,7 +1869,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Vendor);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.Vendor);
                 }
                 catch (Exception e)
                 {
@@ -1885,7 +1885,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Innkeeper);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.Innkeeper);
                 }
                 catch (Exception e)
                 {
@@ -1901,7 +1901,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Auctioneer);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.Auctioneer);
                 }
                 catch (Exception e)
                 {
@@ -1917,7 +1917,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SellsFood);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.SellsFood);
                 }
                 catch (Exception e)
                 {
@@ -1933,7 +1933,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanTrain);
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.CanTrain);
                 }
                 catch (Exception e)
                 {
@@ -1981,7 +1981,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PetInCombat);
+                    return UnitFlags.HasFlag(UnitFlags.PetInCombat);
                 }
                 catch (Exception e)
                 {
@@ -2007,7 +2007,7 @@ namespace nManager.Wow.ObjectManager
                             }
                         }
                     }
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat);
+                    return UnitFlags.HasFlag(UnitFlags.Combat);
                 }
                 catch (Exception e)
                 {
@@ -2189,7 +2189,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PvPFlagged);
+                    return UnitFlags.HasFlag(UnitFlags.PvPFlagged);
                 }
                 catch (Exception e)
                 {
@@ -2205,7 +2205,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PlayerControlled);
+                    return UnitFlags.HasFlag(UnitFlags.PlayerControlled);
                 }
                 catch (Exception e)
                 {
@@ -2246,7 +2246,7 @@ namespace nManager.Wow.ObjectManager
                             (UnitRelation.GetReaction(Faction) == Reaction.Neutral && (GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0 || Guid == ObjectManager.Me.Target && CanAttackTargetLUA)));
                     /*  GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0
                         Donne ça en plus long et plus lent:
-                        UnitFlags f = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);
+                        UnitFlags f = GetUnitFlags;
                         !f.HasFlag(UnitFlags.SelectableNotAttackable_1) && !f.HasFlag(UnitFlags.SelectableNotAttackable_2) &&
                         !f.HasFlag(UnitFlags.NotAttackable) && !f.HasFlag(UnitFlags.Flag_9_0x200) &&
                         !f.HasFlag(UnitFlags.SelectableNotAttackable_3)*/
@@ -2265,7 +2265,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.NotAttackable);
+                    return UnitFlags.HasFlag(UnitFlags.NotAttackable);
                 }
                 catch (Exception e)
                 {
@@ -2281,7 +2281,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.NotSelectable);
+                    return UnitFlags.HasFlag(UnitFlags.NotSelectable);
                 }
                 catch (Exception e)
                 {
@@ -2297,7 +2297,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PlayerControlled);
+                    return UnitFlags.HasFlag(UnitFlags.PlayerControlled);
                 }
                 catch (Exception e)
                 {
@@ -2386,7 +2386,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.TrackUnit);
+                    return UnitDynamicFlags.HasFlag(UnitDynamicFlags.TrackUnit);
                 }
                 catch (Exception e)
                 {
@@ -2422,13 +2422,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public bool Invisible
+        public bool IsInvisible
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitDynamicFlags.Invisible);
+                    return UnitDynamicFlags.HasFlag(UnitDynamicFlags.Invisible);
                 }
                 catch (Exception e)
                 {
@@ -2736,6 +2736,14 @@ namespace nManager.Wow.ObjectManager
             return timeLeft <= expireInLessThanMs;
         }
 
+        public bool AuraIsInactiveOrExpireInLessThanMs(UInt32 idBuff, uint expireInLessThanMs, bool fromMe = false)
+        {
+            int timeLeft = AuraTimeLeft(idBuff, fromMe);
+            if (timeLeft <= 0)
+                return true;
+            return timeLeft <= expireInLessThanMs;
+        }
+
         public string GetUnitId()
         {
             if (_cleanTimer.IsReady)
@@ -2761,6 +2769,26 @@ namespace nManager.Wow.ObjectManager
             var tmpClass = new UnitIdInfo {Guid = Guid, TickCount = Environment.TickCount, UnitId = unitId};
             _cachedUnitIdInfo.Add(tmpClass);
             return unitId;
+        }
+
+        public UnitFlags UnitFlags
+        {
+            get { return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags); }
+        }
+
+        public UnitDynamicFlags UnitDynamicFlags
+        {
+            get { return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags); }
+        }
+
+        public UnitNPCFlags UnitNPCFlags
+        {
+            get { return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags); }
+        }
+
+        public UnitQuestGiverStatus UnitQuestGiverStatus
+        {
+            get { return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
         }
 
         public T GetDescriptor<T>(Descriptors.UnitFields field) where T : struct
