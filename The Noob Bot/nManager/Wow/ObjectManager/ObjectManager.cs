@@ -568,7 +568,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point, bool ignoreBlackList = false)
+        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false)
         {
             try
             {
@@ -576,30 +576,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (point.DistanceTo(a.Position) < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList))
-                    {
-                        objectReturn = a;
-                        tempDistance = a.GetDistance;
-                    }
-                }
-                return objectReturn;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point): " + e);
-            }
-            return new WoWUnit(0);
-        }
-
-        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayedControlled = false)
-        {
-            try
-            {
-                var objectReturn = new WoWUnit(0);
-                float tempDistance = 9999999.0f;
-                foreach (WoWUnit a in listWoWUnit)
-                {
-                    if (a.GetDistance > tempDistance)
+                    if (point.DistanceTo(a.Position) > tempDistance)
                         continue;
                     if (nManagerSetting.IsBlackListed(a.Guid) && !ignoreBlackList)
                         continue;
@@ -607,16 +584,29 @@ namespace nManager.Wow.ObjectManager
                         continue;
                     if (a.IsTapped && (!a.IsTapped || !a.IsTappedByMe))
                         continue;
-                    if (a.PlayerControlled && !allowPlayedControlled)
+                    if (a.PlayerControlled && !allowPlayerControlled)
                         continue;
                     objectReturn = a;
-                    tempDistance = a.GetDistance;
+                    tempDistance = point.DistanceTo(a.Position);
                 }
                 return objectReturn;
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetNearestWoWUnit(List<WoWUnit> listWoWUnit): " + e);
+                Logging.WriteError("public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false): " + e);
+            }
+            return new WoWUnit(0);
+        }
+
+        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false)
+        {
+            try
+            {
+                return GetNearestWoWUnit(listWoWUnit, Me.Position, ignorenotSelectable, ignoreBlackList, allowPlayerControlled);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false): " + e);
             }
             return new WoWUnit(0);
         }

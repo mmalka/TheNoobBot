@@ -2416,8 +2416,9 @@ namespace nManager.Wow.ObjectManager
 
         public Auras.UnitAura UnitAura(List<UInt32> idBuffs, UInt128 creatorGUID)
         {
-            foreach (var aura in UnitAuras.Auras)
+            for (int i = 0; i < UnitAuras.Auras.Count; i++)
             {
+                var aura = UnitAuras.Auras[i];
                 if (idBuffs.Contains(aura.AuraSpellId) && aura.AuraCreatorGUID == creatorGUID)
                     return aura;
             }

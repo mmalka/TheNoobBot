@@ -206,6 +206,8 @@ namespace Quester.Profile
         [DefaultValue(false)] public bool CanPullUnitsAlreadyInFight = false;
         [DefaultValue(false)] public bool IgnoreQuestCompleted = false;
         [DefaultValue(false)] public bool IgnoreBlackList = false;
+        [DefaultValue(false)] public bool IgnoreNotSelectable = false;
+        [DefaultValue(false)] public bool AllowPlayerControlled = false;
 
         // Use Item
         [DefaultValue(0)] public int UseItemId = 0;
