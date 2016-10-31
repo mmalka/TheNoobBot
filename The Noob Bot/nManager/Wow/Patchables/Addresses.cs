@@ -87,7 +87,7 @@
             gameState = 0xEAB6D9, // Script_IsPlayerInWorld
             isLoading = 0xCF1758, //isLoadingFOUND
             AreaId = 0xC7DBD4, // AreaIdFOUND - AreaIdFOUNDCall
-            SubAreaId = AreaId - 8, // AreaId - 8 bytes
+            SubAreaId = AreaId + 4, // AreaId + 4 bytes
             MapTextureId = 0xC86D68, //MapTextureIdFOUND
             zoneMap = 0xEAB708, // Script_GetZoneText
             subZoneMap = 0xEAB70C, // Script_GetSubZoneText 
