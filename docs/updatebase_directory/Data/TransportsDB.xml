@@ -385,5 +385,37 @@
         <Z>140.6945</Z>
       </BOutsidePoint>
     </Transport>
+	<Transport Id="20808" Name="Ship (The Maiden's Fancy)" Faction="Neutral" AContinentId="0" BContinentId="1">
+      <APoint> <!-- Booty Bay -->
+        <X>-14277.75</X>
+        <Y>582.8661</Y>
+        <Z>0.04808363</Z>
+      </APoint>
+      <AInsidePoint>
+		<X>-14269.13</X>
+		<Y>580.8923</Y>
+		<Z>6.089296</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+		<X>-14280.41</X>
+		<Y>567.8774</Y>
+		<Z>6.65259</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Ratchet -->
+        <X>-1005.613</X>
+        <Y>-3841.647</Y>
+        <Z>-0.02899144</Z>
+      </BPoint>
+      <BInsidePoint>
+		<X>-997.475</X>
+		<Y>-3845.2</Y>
+		<Z>6.081167</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+		<X>-997.0565</X>
+		<Y>-3825.161</Y>
+		<Z>5.510755</Z>
+      </BOutsidePoint>
+    </Transport>
     </Items>
 </Transports>

@@ -984,6 +984,8 @@ namespace nManager.Wow.Helpers
 
         public static bool IsCompletedAchievement(int achievementId, bool meOnly = false)
         {
+            if (achievementId <= 0)
+                return true;
             if (AchievementsDoneCache.Contains(achievementId))
                 return true;
             if (AchievementsNotDoneCache.Contains(achievementId))

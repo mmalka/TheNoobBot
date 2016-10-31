@@ -354,7 +354,7 @@ namespace nManager.Wow.Helpers
             if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 Logging.Write("Calling travel system...");
-                Products.Products.TravelToContinentId = Usefuls.ContinentId;
+                Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
@@ -472,7 +472,7 @@ namespace nManager.Wow.Helpers
             if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 Logging.Write("Calling travel system...");
-                Products.Products.TravelToContinentId = Usefuls.ContinentId;
+                Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
@@ -650,6 +650,8 @@ namespace nManager.Wow.Helpers
 
         public static bool IsQuestFlaggedCompletedLUA(int internalQuestId)
         {
+            if (internalQuestId <= 0)
+                return true;
             string result = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(result + " = tostring(IsQuestFlaggedCompleted(" + internalQuestId + "))");
             return Lua.GetLocalizedText(result) == "true";

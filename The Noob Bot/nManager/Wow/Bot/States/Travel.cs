@@ -71,7 +71,7 @@ namespace nManager.Wow.Bot.States
                 if (_availablePortals == null)
                 {
                     _availablePortals = XmlSerializer.Deserialize<Portals>(Application.StartupPath + @"\Data\PortalsDB.xml");
-                    for (int i = _availablePortals.Items.Count - 1; i > 0; i--)
+                    for (int i = _availablePortals.Items.Count - 1; i >= 0; i--)
                     {
                         var portal = _availablePortals.Items[i];
                         if (portal.Faction == Npc.FactionType.Neutral || portal.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
@@ -87,7 +87,7 @@ namespace nManager.Wow.Bot.States
                 if (_availableTaxis == null)
                 {
                     _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
-                    for (int i = _availableTaxis.Count - 1; i > 0; i--)
+                    for (int i = _availableTaxis.Count - 1; i >= 0; i--)
                     {
                         var taxis = _availableTaxis[i];
                         if (taxis.Faction == Npc.FactionType.Neutral || taxis.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
@@ -98,7 +98,7 @@ namespace nManager.Wow.Bot.States
                 if (_availableTaxiLinks == null)
                 {
                     _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
-                    for (int i = _availableTaxiLinks.Count - 1; i > 0; i--)
+                    for (int i = _availableTaxiLinks.Count - 1; i >= 0; i--)
                     {
                         var taxiLink = _availableTaxiLinks[i];
                         if (taxiLink.PointB <= 0)
@@ -316,6 +316,7 @@ namespace nManager.Wow.Bot.States
             WoWGameObject memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
                 ObjectManager.ObjectManager.Me.Position);
             bool loop = true;
+            int i = 0;
             while (loop)
             {
                 if (Usefuls.IsFlying)
@@ -323,7 +324,12 @@ namespace nManager.Wow.Bot.States
                 if (memoryTransport.IsValid)
                 {
                     if ((selectedTransport.ArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).DistanceTo(memoryTransport.Position) < 0.2f)
-                        loop = false;
+                    {
+                        if (i > 5)
+                            loop = false;
+                        i++;
+                        Thread.Sleep(300);
+                    }
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 5)
                     {
                         GoToDepartureQuayOrPortal(selectedTransport); // wrong quay because we felt and it tryed to find a transport while in the air
@@ -693,6 +699,13 @@ namespace nManager.Wow.Bot.States
             int i2 = 0;
             while (loop)
             {
+                if (Products.Products.InAutoPause)
+                {
+                    i = 0;
+                    i2 = 0;
+                    Thread.Sleep(500);
+                    continue;
+                }
                 if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoading)
                 {
                     if (i > 5)
@@ -756,6 +769,7 @@ namespace nManager.Wow.Bot.States
                     PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                     if (success)
                     {
+                        transport.ArrivalIsA = false;
                         listTransport.Add(transport);
                     }
                 }
