@@ -43,6 +43,7 @@ namespace Quester.Tasks
             waitTimer = null;
             completed = false;
             EntryListRow = 0;
+            _travelDisabled = false; // reset travel
         }
 
         public static void SelectQuest()
@@ -1431,7 +1432,7 @@ namespace Quester.Tasks
                 if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
                 {
                     Logging.Write("Calling travel system...");
-                    Products.TravelToContinentId = Usefuls.ContinentId;
+                    Products.TravelToContinentId = Usefuls.ContinentId; // todo find a way to define continent via profile for WQ
                     Products.TravelTo = npc.Position;
                     // Pass the check for valid destination as a lambda
                     Products.TargetValidationFct = IsNearWQ;

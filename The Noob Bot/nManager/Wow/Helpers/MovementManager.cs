@@ -1270,7 +1270,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (point.X != 0 && point.Y != 0 && point.Z != 0)
+                if (point.IsValid)
                 {
                     if (_workerMoveTo == null)
                         LaunchThreadMoveTo();
