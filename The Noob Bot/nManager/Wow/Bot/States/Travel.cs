@@ -42,7 +42,7 @@ namespace nManager.Wow.Bot.States
             set { Products.Products.TravelToContinentId = value; }
         }
 
-        public System.Func<Point, bool> TargetValidationFct
+        public Func<Point, bool> TargetValidationFct
         {
             get { return Products.Products.TargetValidationFct; }
             set { Products.Products.TargetValidationFct = value; }
@@ -78,15 +78,18 @@ namespace nManager.Wow.Bot.States
                         if (portal.Faction != Npc.FactionType.Neutral && portal.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                         {
                             _availablePortals.Items.RemoveAt(i);
+                            continue;
                         }
                         if (portal.RequireQuestId > 0 && !Quest.IsQuestFlaggedCompletedLUA(portal.RequireQuestId))
                         {
                             _availablePortals.Items.RemoveAt(i);
+                            continue;
                         }
 
                         if (portal.RequireAchivementId > 0 && !Usefuls.IsCompletedAchievement(portal.RequireAchivementId, true))
                         {
                             _availablePortals.Items.RemoveAt(i);
+                            continue; // in case I add more checks, I don't want to forget about this continue.
                         }
 
                         // We never serialize portals back, so it's all fine.
@@ -762,6 +765,7 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (transport.AContinentId != travelToContinentId && transport.BContinentId != travelToContinentId)
                     continue;
+                // toDo: Break reference to transport from _availableTransports. http://stackoverflow.com/questions/31603679/how-to-stop-reference-of-other-class-object
                 if (transport.AContinentId == travelToContinentId && transport.BContinentId != travelToContinentId)
                 {
                     bool success;
