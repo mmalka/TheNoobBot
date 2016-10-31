@@ -187,9 +187,19 @@ namespace Quester.Tasks
             }
 
             // If we can check the objective in quest log, then rely on it
+
             if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CollectCount > 0))
-                return Quest.IsObjectiveCompleted(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id, questObjective.InternalIndex,
-                    questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount);
+                if (Quest.IsObjectiveCompleted(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id, questObjective.InternalIndex,
+                    questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount))
+                {
+                    // Internal Index completed;
+                    return true;
+                }
+                else
+                {
+                    // Internal Index not completed; check for script before returning false.
+                    return questObjective.ScriptConditionIsComplete != string.Empty && Script.Run(questObjective.ScriptConditionIsComplete, CurrentQuest.Id, ref questObjective);
+                }
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete, CurrentQuest.Id, ref questObjective);
@@ -457,8 +467,6 @@ namespace Quester.Tasks
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
-                    // Mounting Mount
-                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
@@ -492,8 +500,6 @@ namespace Quester.Tasks
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
-                    // Mounting Mount
-                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5f)
@@ -563,8 +569,6 @@ namespace Quester.Tasks
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
-                    // Mounting Mount
-                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5f)
@@ -602,7 +606,6 @@ namespace Quester.Tasks
 
                     if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -667,7 +670,6 @@ namespace Quester.Tasks
 
                     if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -714,7 +716,6 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -822,7 +823,6 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                 }
@@ -849,9 +849,8 @@ namespace Quester.Tasks
                         }
                     }
 
-                    if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.IsValid && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -898,8 +897,6 @@ namespace Quester.Tasks
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
-                    // Mounting Mount
-                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
@@ -962,7 +959,6 @@ namespace Quester.Tasks
                     if (questObjective.Position.Z != 0f &&
                         questObjective.Position.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.GatheringSearchRadius)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1010,7 +1006,6 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > 5.0f && questObjective.Position.Z != 0f)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1070,7 +1065,6 @@ namespace Quester.Tasks
                     }
                     if (questObjective.Position.IsValid && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1165,7 +1159,6 @@ namespace Quester.Tasks
                 {
                     if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(wowUnit.Position));
                     }
                     else
@@ -1187,8 +1180,6 @@ namespace Quester.Tasks
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
-                    // Mounting Mount
-                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
@@ -1275,7 +1266,6 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1314,7 +1304,6 @@ namespace Quester.Tasks
                 {
                     if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(wowUnit.Position));
                     }
                     else
@@ -1333,8 +1322,6 @@ namespace Quester.Tasks
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
-                    // Mounting Mount
-                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
