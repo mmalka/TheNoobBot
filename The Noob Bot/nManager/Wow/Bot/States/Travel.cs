@@ -63,9 +63,10 @@ namespace nManager.Wow.Bot.States
                     for (int i = _availableTransports.Items.Count - 1; i > 0; i--)
                     {
                         var transport = _availableTransports.Items[i];
-                        if (transport.Faction == Npc.FactionType.Neutral || transport.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
-                            continue;
-                        _availableTransports.Items.RemoveAt(i);
+                        if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                        {
+                            _availableTransports.Items.RemoveAt(i);
+                        }
                     }
                 }
                 if (_availablePortals == null)
@@ -74,13 +75,20 @@ namespace nManager.Wow.Bot.States
                     for (int i = _availablePortals.Items.Count - 1; i >= 0; i--)
                     {
                         var portal = _availablePortals.Items[i];
-                        if (portal.Faction == Npc.FactionType.Neutral || portal.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
-                            continue;
-                        if (portal.RequireQuestId <= 0 || Quest.IsQuestFlaggedCompletedLUA(portal.RequireQuestId))
-                            continue;
-                        if (portal.RequireAchivementId <= 0 || Usefuls.IsCompletedAchievement(portal.RequireAchivementId, true))
-                            continue;
-                        _availablePortals.Items.RemoveAt(i);
+                        if (portal.Faction != Npc.FactionType.Neutral && portal.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                        {
+                            _availablePortals.Items.RemoveAt(i);
+                        }
+                        if (portal.RequireQuestId > 0 && !Quest.IsQuestFlaggedCompletedLUA(portal.RequireQuestId))
+                        {
+                            _availablePortals.Items.RemoveAt(i);
+                        }
+
+                        if (portal.RequireAchivementId > 0 && !Usefuls.IsCompletedAchievement(portal.RequireAchivementId, true))
+                        {
+                            _availablePortals.Items.RemoveAt(i);
+                        }
+
                         // We never serialize portals back, so it's all fine.
                     }
                 }
@@ -90,9 +98,10 @@ namespace nManager.Wow.Bot.States
                     for (int i = _availableTaxis.Count - 1; i >= 0; i--)
                     {
                         var taxis = _availableTaxis[i];
-                        if (taxis.Faction == Npc.FactionType.Neutral || taxis.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
-                            continue;
-                        _availableTaxis.RemoveAt(i);
+                        if (taxis.Faction != Npc.FactionType.Neutral && taxis.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                        {
+                            _availableTaxis.RemoveAt(i);
+                        }
                     }
                 }
                 if (_availableTaxiLinks == null)
