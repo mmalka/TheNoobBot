@@ -1124,6 +1124,9 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static Timer MountCheckTimer = new Timer(15000); // This is only for MoveToLocation mount checks. It does not replace "UnStuck._canRemount".
+        public static Timer SwimmingMountRecentlyTimer = new Timer(0); // Did we mount a swimming mount recently ?
+
         private static bool MoveToLocation(Point position)
         {
             try
@@ -1133,29 +1136,35 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(100);
                 }
 
-                if (!ObjectManager.ObjectManager.Me.IsMounted || Usefuls.IsSwimming || (!Usefuls.IsSwimming && MountTask.OnAquaticMount()))
+                if (MountCheckTimer.IsReady &&
+                    (!ObjectManager.ObjectManager.Me.IsMounted || (Usefuls.IsSwimming && !MountTask.OnAquaticMount()) || (!SwimmingMountRecentlyTimer.IsReady && !Usefuls.IsSwimming && MountTask.OnAquaticMount())))
                 {
                     // We are not mounted, or we are swimming.
                     if (ObjectManager.ObjectManager.Me.IsAlive && _canRemount.IsReady && !Fight.InFight && !Looting.IsLooting &&
                         !ObjectManager.ObjectManager.Me.InCombat && !Usefuls.PlayerUsingVehicle && Products.Products.ProductName.ToLower() != "fisherbot" &&
-                        MountTask.GetMountCapacity() > MountCapacity.Feet && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                        position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                     {
-                        MountCapacity mountCapacity = MountTask.GetMountCapacity();
-                        // I should be able to mount here or upgrade my current mount.
-                        if (Usefuls.IsSwimming && !MountTask.OnAquaticMount() && mountCapacity == MountCapacity.Swimm)
+                        MountCapacity mountCapacity = MountTask.GetMountCapacity(); // this is costful on a level 110 characters, so call it at the very end.
+                        if (mountCapacity > MountCapacity.Feet)
                         {
-                            MountTask.MountingAquaticMount(false);
-                            // We are swimming and we have a swimming mount, but we are not using it.
-                        }
-                        else if (!ObjectManager.ObjectManager.Me.IsMounted || MountTask.OnAquaticMount() && !Usefuls.IsSwimming)
-                        {
-                            // We are not mounted, or we are on our Aquatic turtle and wanna go back to normal mount.
-                            if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && mountCapacity >= MountCapacity.Ground)
-                                MountTask.MountingGroundMount(false);
-                            else
-                                MountTask.Mount(false);
+                            // I should be able to mount here or upgrade my current mount.
+                            if (Usefuls.IsSwimming && !MountTask.OnAquaticMount() && mountCapacity == MountCapacity.Swimm)
+                            {
+                                MountTask.MountingAquaticMount(false);
+                                // We are swimming and we have a swimming mount, but we are not using it.
+                            }
+                            else if (!ObjectManager.ObjectManager.Me.IsMounted || MountTask.OnAquaticMount() && !Usefuls.IsSwimming)
+                            {
+                                // We are not mounted, or we are on our Aquatic turtle and wanna go back to normal mount.
+                                if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && mountCapacity >= MountCapacity.Ground)
+                                    MountTask.MountingGroundMount(false);
+                                else
+                                    MountTask.Mount(false);
+                            }
                         }
                     }
+                    if (_canRemount.IsReady)
+                        MountCheckTimer.Reset(); // Only reset if we did not fail because canRemount is activated as it would increase the remounting time overall.
                 }
 
                 var timer = new Timer(1*1000*1);

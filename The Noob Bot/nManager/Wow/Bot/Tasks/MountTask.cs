@@ -247,6 +247,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
+                MovementManager.SwimmingMountRecentlyTimer = new Timer(240000); // prevent move to location from checking !Swimming && OnAquaticMount
                 if (ObjectManager.ObjectManager.Me.IsMounted && !OnAquaticMount())
                     DismountMount(stopMove);
 
