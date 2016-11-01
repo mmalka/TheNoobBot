@@ -79,12 +79,16 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (DruidMountIdList.Count <= 0)
+                if (DruidMountIdList.Count > 0) return DruidMountIdList;
+                DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
+                DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Flight Form"));
+                DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Aquatic Form"));
+                DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Travel Form"));
+                for (int i = DruidMountIdList.Count - 1; i >= 0; i--)
                 {
-                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
-                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Flight Form"));
-                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Aquatic Form"));
-                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Travel Form"));
+                    var u = DruidMountIdList[i];
+                    if (u == 159456)
+                        DruidMountIdList.RemoveAt(i);
                 }
                 return DruidMountIdList;
             }
