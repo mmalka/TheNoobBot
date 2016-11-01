@@ -247,7 +247,10 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                MovementManager.SwimmingMountRecentlyTimer = new Timer(240000); // prevent move to location from checking !Swimming && OnAquaticMount
+                // don't check for druids or people always using the same mount at the cost of lower speed (turtle)
+                if (nManagerSetting.CurrentSetting.AquaticMountName != nManagerSetting.CurrentSetting.GroundMountName &&
+                    nManagerSetting.CurrentSetting.AquaticMountName != nManagerSetting.CurrentSetting.FlyingMountName)
+                    MovementManager.SwimmingMountRecentlyTimer = new Timer(120000); // prevent move to location from checking !Swimming && OnAquaticMount for 120
                 if (ObjectManager.ObjectManager.Me.IsMounted && !OnAquaticMount())
                     DismountMount(stopMove);
 
