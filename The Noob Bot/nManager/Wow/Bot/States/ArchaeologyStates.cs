@@ -200,8 +200,6 @@ namespace nManager.Wow.Bot.States
                         List<Point> points = PathFinder.FindPath(t.Position, out ValidPath, false);
                         if (!ValidPath)
                         {
-                            MountTask.Mount();
-                            Point p = new Point(t.Position);
                             points.Add(t.Position);
                         }
                         MovementManager.Go(points);
