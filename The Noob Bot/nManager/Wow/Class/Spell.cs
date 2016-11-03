@@ -74,8 +74,8 @@ namespace nManager.Wow.Class
                             MaxRangeFriend = 5.0f;
                         KnownSpell = SpellManager.KnownSpell(Id);
                         SpellHasCharges = SpellManager.SpellHasCharges(Id);
-                        Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                         Ids.Add(Id);
+                        Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                         CategoryId = WoWSpellCategories.GetSpellCategoryBySpellId(Id);
                         StartRecoveryCategoryId = WoWSpellCategories.GetSpellStartRecoverCategoryBySpellId(Id);
                         return;
@@ -530,6 +530,10 @@ namespace nManager.Wow.Class
         {
             try
             {
+                // We don't have extended check, we just need to know if we have LineOfSights in usual fight mode.
+                if (ObjectManager.ObjectManager.Target.IsValid && (unitId == null || unitId == "target") &&
+                    TraceLine.TraceLineGo(ObjectManager.ObjectManager.Target.Position, ObjectManager.ObjectManager.Me.Position, CGWorldFrameHitFlags.HitTestLOS))
+                    return;
                 Memory.WowMemory.GameFrameUnLock();
                 if (StopMove)
                 {

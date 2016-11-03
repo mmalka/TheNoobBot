@@ -417,5 +417,37 @@
 		<Z>5.510755</Z>
       </BOutsidePoint>
     </Transport>
+		<Transport Id="183177" Name="Doodad_mushroombase_elevator01" Faction="Neutral" AContinentId="530" BContinentId="530">
+      <APoint> <!-- Telredor-->
+        <X>285.7488</X>
+        <Y>5918.209</Y>
+        <Z>26.14107</Z>
+      </APoint>
+      <AInsidePoint>
+		<X>280.3204</X>
+		<Y>5922.862</Y>
+		<Z>26.16557</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+		<X>280.4388</X>
+		<Y>5935.795</Y>
+		<Z>26.57624</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Telredor -->
+        <X>283.5826</X>
+        <Y>5935.404</Y>
+        <Z>149.3924</Z>
+      </BPoint>
+      <BInsidePoint>
+	    <X>280.2572</X>
+	    <Y>5941.645</Y>
+		<Z>149.4142</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+		<X>278.5167</X>
+		<Y>5952.019</Y>
+		<Z>149.7979</Z>
+      </BOutsidePoint>
+    </Transport>
     </Items>
 </Transports>
