@@ -12,7 +12,7 @@ namespace Quester.Tasks
 {
     public class Script
     {
-        internal static Dictionary<string, IScript> CachedScripts = new Dictionary<string, IScript>();
+        public static Dictionary<string, IScript> CachedScripts = new Dictionary<string, IScript>();
 
         internal static bool Run(string script, int questId = 0)
         {

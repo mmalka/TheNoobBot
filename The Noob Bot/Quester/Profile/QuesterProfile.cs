@@ -182,6 +182,11 @@ namespace Quester.Profile
             return Entry != null && Entry.Count > 0;
         }
 
+        public bool ShouldSerializeIsObjectiveCompleted()
+        {
+            return false;
+        }
+
         [DefaultValue("NoName")] public string Name = "NoName";
         public List<uint> Factions = new List<uint>();
 
@@ -208,6 +213,7 @@ namespace Quester.Profile
         [DefaultValue(false)] public bool IgnoreBlackList = false;
         [DefaultValue(false)] public bool IgnoreNotSelectable = false;
         [DefaultValue(false)] public bool AllowPlayerControlled = false;
+        [DefaultValue(false)] public bool IgnoreItemNotUsable = false;
 
         // Use Item
         [DefaultValue(0)] public int UseItemId = 0;

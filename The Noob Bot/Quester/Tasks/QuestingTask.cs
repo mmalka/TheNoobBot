@@ -204,25 +204,6 @@ namespace Quester.Tasks
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete, CurrentQuest.Id, ref questObjective);
 
-            if (questObjective.Objective == Objective.TravelTo)
-            {
-                if (questObjective.ContinentId != Usefuls.ContinentId)
-                    return false;
-                List<WoWUnit> p = ObjectManager.GetObjectWoWUnit();
-                foreach (WoWUnit unit in p)
-                {
-                    foreach (int i in questObjective.Entry)
-                    {
-                        if (unit.Entry == i)
-                        {
-                            return true;
-                            // We use field Entry as a "IsArrivedCheck".
-                        }
-                    }
-                }
-                return false;
-            }
-
             // COLLECT ITEM || BUY ITEM
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
                 if (ItemsManager.GetItemCount(questObjective.CollectItemId) < questObjective.CollectCount)
@@ -292,7 +273,7 @@ namespace Quester.Tasks
                 questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
                 questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain || questObjective.Objective == Objective.MessageBox ||
                 questObjective.Objective == Objective.GarrisonHearthstone || questObjective.Objective == Objective.UseActionButtonOnUnit ||
-                questObjective.Objective == Objective.CSharpScript)
+                questObjective.Objective == Objective.CSharpScript || questObjective.Objective == Objective.TravelTo)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -633,8 +614,11 @@ namespace Quester.Tasks
                                 nManagerSetting.AddBlackList(unit.Guid, 30*1000);
                             }
                         }
-                        if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
+                        if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId))
                             return;
+                        if (!ItemsManager.IsItemUsable(questObjective.UseItemId) && !questObjective.IgnoreItemNotUsable)
+                            return;
+
                         ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
@@ -1386,13 +1370,22 @@ namespace Quester.Tasks
 
             if (questObjective.Objective == Objective.TravelTo)
             {
-                Products.TravelTo = questObjective.Position;
-                Products.TravelToContinentId = questObjective.ContinentId;
-                if (ObjectManager.Me.Position.DistanceTo(questObjective.Position) > 100)
+                Point me = ObjectManager.Me.Position;
+                if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
                 {
+                    Logging.Write("Calling travel system...");
+                    Products.TravelToContinentId = questObjective.ContinentId;
+                    Products.TravelTo = questObjective.Position;
+                    // Pass the check for valid destination as a lambda
+                    Products.TargetValidationFct = IsNearWQ;
+                    _travelLocation = me;
                     return;
                 }
-                questObjective.IsObjectiveCompleted = true;
+                if (_travelLocation.DistanceTo(me) <= 0.1f && questObjective.ContinentId == Usefuls.ContinentId)
+                {
+                    questObjective.IsObjectiveCompleted = true;
+                    _travelLocation = null;
+                }
             }
 
             if (questObjective.Objective == Objective.CSharpScript)
