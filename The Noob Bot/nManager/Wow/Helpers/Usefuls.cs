@@ -1098,5 +1098,10 @@ namespace nManager.Wow.Helpers
 
             return result;
         }
+
+        public static bool IsInPetBattle
+        {
+            get { return Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.PetBattle.IsInBattle) == 1; }
+        }
     }
 }

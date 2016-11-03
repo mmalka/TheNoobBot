@@ -55,7 +55,8 @@
         /// </summary>
         public enum PetBattle
         {
-            IsInBattle = 0xBA8A10, // ?// 18950  // LUA: Script_C_PetBattles_IsInBattle|Script_GetAuraInfo
+            IsInBattle = 0xC854E4, // LUA: Script_C_PetBattles_IsInBattle|Script_GetAuraInfo
+            // Findable under string IsInBattle.
         }
 
         /// <summary>
