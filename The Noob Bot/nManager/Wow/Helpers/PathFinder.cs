@@ -35,23 +35,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
-                {
-                    if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
-                        Enums.CGWorldFrameHitFlags.HitTestLiquid))
-                    {
-                        // The destination is in water
-                        if (
-                            !TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to))
-                        {
-                            Logging.WriteNavigator("Swimmming right to the destination");
-                            return new List<Point> {to};
-                        }
-                        Logging.WriteNavigator("Swimming to the destination using the PathFinder");
-                    }
-                    else
-                        Logging.WriteNavigator("Using the PathFinder to destination out of water");
-                }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to);
             }
             catch (Exception exception)
@@ -101,24 +84,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
-                {
-                    if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
-                        Enums.CGWorldFrameHitFlags.HitTestLiquid))
-                    {
-                        // The destination is in water
-                        if (
-                            !TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to))
-                        {
-                            Logging.WriteNavigator("Swimmming right to the destination");
-                            resultSuccess = true;
-                            return new List<Point> {to};
-                        }
-                        Logging.WriteNavigator("Swimming to the destination using the PathFinder");
-                    }
-                    else
-                        Logging.WriteNavigator("Using the PathFinder to destination out of water");
-                }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess, addFromAndStart, false, ShortPath);
             }
             catch (Exception exception)
@@ -163,6 +128,22 @@ namespace nManager.Wow.Helpers
         public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
             bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false)
         {
+            if (from.Type.ToLower() == "swimming")
+            {
+                if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to, Enums.CGWorldFrameHitFlags.HitTestLiquid))
+                {
+                    // The destination is in water
+                    if (!TraceLine.TraceLineGo(from, to))
+                    {
+                        Logging.WriteNavigator("Swimmming right to the destination");
+                        resultSuccess = true;
+                        return new List<Point> {to};
+                    }
+                    Logging.WriteNavigator("Swimming to the destination using the PathFinder");
+                }
+                else
+                    Logging.WriteNavigator("Using the PathFinder to destination out of water");
+            }
             List<Point> locList = new List<Point>();
             resultSuccess = true;
             try
