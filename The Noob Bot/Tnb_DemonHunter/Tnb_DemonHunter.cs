@@ -749,7 +749,6 @@ public class DemonHunterVengeance
     private bool CombatMode = true;
 
     private Timer DefensiveTimer = new Timer(0);
-    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -899,8 +898,7 @@ public class DemonHunterVengeance
             CombatMode = true;
         }
         Heal();
-        if (Defensive())
-            return;
+        Defensive();
         AggroManagement();
         BurstBuffs();
         GCDCycle();
@@ -921,7 +919,7 @@ public class DemonHunterVengeance
                 return;
             }
             //Soul Cleave
-            if (MySettings.UseSoulCleave && SoulCleave.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseSoulCleaveBelowPercentage)
+            if (MySettings.UseSoulCleave && ObjectManager.Me.HealthPercent < MySettings.UseSoulCleaveBelowPercentage && SoulCleave.IsSpellUsable)
             {
                 SoulCleave.Cast();
                 return;
@@ -933,7 +931,7 @@ public class DemonHunterVengeance
         }
     }
 
-    private bool Defensive()
+    private void Defensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -942,38 +940,39 @@ public class DemonHunterVengeance
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Defensive Cooldowns
-            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            if (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 25)
             {
                 //Mitigate Damage
-                if (DemonSpikes.IsSpellUsable && (DemonSpikes.GetSpellCharges == 2 ||
-                                                  ObjectManager.Me.HealthPercent < MySettings.UseDemonSpikesBelowPercentage))
+                if (DemonSpikes.IsSpellUsable && !DemonSpikes.HaveBuff && (DemonSpikes.GetSpellCharges == 2 ||
+                                                                           ObjectManager.Me.HealthPercent < MySettings.UseDemonSpikesBelowPercentage))
                 {
                     DemonSpikes.Cast();
                     DefensiveTimer = new Timer(1000*6);
-                    return true;
+                    return;
                 }
-                if (FieryBrand.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFieryBrandBelowPercentage)
+                if ((ObjectManager.Me.HealthPercent < MySettings.UseFieryBrandBelowPercentage ||
+                     (ObjectManager.Target.IsCast && !ObjectManager.Target.CanInterruptCurrentCast &&
+                      ObjectManager.Target.CastEndsInMs < 1500)) && FieryBrand.IsSpellUsable)
                 {
                     FieryBrand.Cast();
                     DefensiveTimer = new Timer(1000*8);
-                    return true;
+                    return;
                 }
             }
             if (ObjectManager.Me.HealthPercent < MySettings.UseMetamorphosisBelowPercentage &&
                 Metamorphosis.IsSpellUsable && Metamorphosis.IsHostileDistanceGood)
             {
                 Metamorphosis.CastAtPosition(ObjectManager.Target.Position);
-                return true;
+                return;
             }
             //Mitigate Magic Damage for Rage
-            if (EmpowerWards.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseEmpowerWardsBelowPercentage &&
-                !EmpowerWards.HaveBuff)
+            if (ObjectManager.Me.HealthPercent < MySettings.UseEmpowerWardsBelowPercentage &&
+                EmpowerWards.IsSpellUsable && !EmpowerWards.HaveBuff)
             {
                 EmpowerWards.Cast();
                 DefensiveTimer = new Timer(1000*6);
-                return true;
+                return;
             }
-            return false;
         }
         finally
         {
@@ -1015,12 +1014,18 @@ public class DemonHunterVengeance
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Growl
-            if (MySettings.UseTorment && Torment.IsSpellUsable && Torment.IsHostileDistanceGood &&
-                !ObjectManager.Target.IsTargetingMe)
+            //Torment
+            //Cast Growl when you are in a party and the target of your target is a low health player
+            if (MySettings.UseTormentBelowToTPercentage > 0 && Torment.IsSpellUsable &&
+                Torment.IsHostileDistanceGood)
             {
-                Torment.Cast();
-                return;
+                WoWObject obj = ObjectManager.GetObjectByGuid(ObjectManager.Target.Target);
+                if (obj.IsValid && obj.Type == WoWObjectType.Player &&
+                    new WoWPlayer(obj.GetBaseAddress).HealthPercent < MySettings.UseTormentBelowToTPercentage)
+                {
+                    Torment.Cast();
+                    return;
+                }
             }
         }
         finally
@@ -1087,20 +1092,22 @@ public class DemonHunterVengeance
                 }
                 if (MySettings.UseFracture && Fracture.IsSpellUsable && Fracture.IsHostileDistanceGood &&
                     //Spend Pain
-                    ObjectManager.Me.Pain >= 60)
+                    ObjectManager.Me.Pain >= 60 && ObjectManager.Me.Health > 50)
                 {
                     Fracture.Cast();
                     return;
                 }
                 if (SigilofFlameTimer.IsReady)
                 {
-                    if (MySettings.UseSigilofFlame && SigilofFlame.IsSpellUsable && SigilofFlame.IsHostileDistanceGood)
+                    if (MySettings.UseSigilofFlame && SigilofFlame.IsSpellUsable &&
+                        SigilofFlame.IsHostileDistanceGood)
                     {
                         SigilofFlame.Cast();
                         SigilofFlameTimer = new Timer(1000*8);
                         return;
                     }
-                    if (FlameCrash.HaveBuff && MySettings.UseInfernalStrike && InfernalStrike.IsSpellUsable && InfernalStrike.IsHostileDistanceGood)
+                    if (MySettings.UseInfernalStrike && InfernalStrike.IsSpellUsable &&
+                        InfernalStrike.IsHostileDistanceGood && FlameCrash.HaveBuff)
                     {
                         InfernalStrike.Cast();
                         SigilofFlameTimer = new Timer(1000*8);
@@ -1200,14 +1207,14 @@ public class DemonHunterVengeance
 
         /* Defensive Cooldowns */
         public int UseDemonSpikesBelowPercentage = 50;
-        public int UseFieryBrandBelowPercentage = 40;
+        public int UseFieryBrandBelowPercentage = 60;
         public int UseEmpowerWardsBelowPercentage = 0;
-        public int UseMetamorphosisBelowPercentage = 60;
+        public int UseMetamorphosisBelowPercentage = 25;
 
         /* Utility Spells */
         //public bool UseConsumeMagic = true;
         //public bool UseImprison = true;
-        public bool UseTorment = true;
+        public int UseTormentBelowToTPercentage = 50;
 
         /* Game Settings */
         public bool UseTrinketOne = true;
@@ -1239,7 +1246,7 @@ public class DemonHunterVengeance
             AddControlInWinForm("Use Empower Wards", "UseEmpowerWardsBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Metamorphosis", "UseMetamorphosisBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Utility Spells */
-            AddControlInWinForm("Use Torment", "UseTorment", "Utility Spells");
+            AddControlInWinForm("Use Torment", "UseTormentBelowToTPercentage", "Utility Spells", "BelowPercentage", "Target Life");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");

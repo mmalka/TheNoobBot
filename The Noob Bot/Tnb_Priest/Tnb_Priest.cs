@@ -1658,20 +1658,18 @@ public class PriestShadow
                 VoidEruption.Cast();
                 return;
             }
-            //3. Cast Shadowfiend / Mindbender when
+            //3. Cast Shadowfiend / Mindbender when you have low Voidform stacks.
             if (Mindbender.KnownSpell)
             {
                 if (MySettings.UseMindbender && Mindbender.IsSpellUsable &&
-                    //you have low Voidform stacks.
-                    Voidform.BuffStack <= 50)
+                    Voidform.BuffStack <= 50 && ObjectManager.Me.UnitAura(Voidform.Id, ObjectManager.Me.Guid).IsValid)
                 {
                     Mindbender.Cast();
                     return;
                 }
             }
             else if (MySettings.UseShadowfiend && Shadowfiend.IsSpellUsable &&
-                     //you have low Voidform stacks.
-                     Voidform.BuffStack <= 50)
+                     Voidform.BuffStack <= 50 && ObjectManager.Me.UnitAura(Voidform.Id, ObjectManager.Me.Guid).IsValid)
             {
                 Shadowfiend.Cast();
                 return;

@@ -434,7 +434,7 @@ public class WarlockAffliction
                     if (MySettings.UseSummonDoomguardAsPet && SummonDoomguard.IsSpellUsable &&
                         SummonDoomguard.IsHostileDistanceGood)
                     {
-                        SummonDoomguard.CastAtPosition(ObjectManager.Target.Position);
+                        SummonDoomguard.Cast();
                         return true;
                     }
                     //Summon Infernal
@@ -671,9 +671,10 @@ public class WarlockAffliction
                 if (ObjectManager.Me.SoulShards == 0)
                     StackUnstableAffliction = false;
                 //Summon Doomguard when you don't have the Contagion Talent
-                if (MySettings.UseSummonDoomguard && SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
+                if (MySettings.UseSummonDoomguard && ObjectManager.Me.SoulShards >= 1 &&
+                    SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
                 {
-                    SummonDoomguard.CastAtPosition(ObjectManager.Target.Position);
+                    SummonDoomguard.Cast();
                     return;
                 }
             }
@@ -791,18 +792,19 @@ public class WarlockAffliction
             {
                 ReapSouls.Cast();
             }
-            //Summon Infernal when
-            if (MySettings.UseSummonInfernal && SummonInfernal.IsSpellUsable && SummonInfernal.IsHostileDistanceGood &&
-                //you have 4 or more targets.
+            //Summon Infernal (4 Targets)
+            if (MySettings.UseSummonInfernal && ObjectManager.Me.SoulShards >= 1 &&
+                SummonInfernal.IsSpellUsable && SummonInfernal.IsHostileDistanceGood &&
                 ObjectManager.Target.GetUnitInSpellRange(10f) >= 4)
             {
                 SummonInfernal.CastAtPosition(ObjectManager.Target.Position);
                 return;
             }
             //Summon Doomguard
-            if (MySettings.UseSummonDoomguard && SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
+            if (MySettings.UseSummonDoomguard && ObjectManager.Me.SoulShards >= 1 &&
+                SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
             {
-                SummonDoomguard.CastAtPosition(ObjectManager.Target.Position);
+                SummonDoomguard.Cast();
                 return;
             }
             //Apply Grimoire of Sacrifice
@@ -814,37 +816,34 @@ public class WarlockAffliction
                     return;
                 }
             }
-                //Summon Grimoire
-            else if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
+                //Summon Grimoire of Service
+            else if (MySettings.UseGrimoireofService && GrimoireofService.HaveBuff)
             {
-                GrimoireImp.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireFelguard && GrimoireFelguard.IsSpellUsable && GrimoireFelguard.IsHostileDistanceGood)
-            {
-                GrimoireFelguard.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireFelhunter && GrimoireFelhunter.IsSpellUsable && GrimoireFelhunter.IsHostileDistanceGood)
-            {
-                GrimoireFelhunter.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireSuccubus && GrimoireSuccubus.IsSpellUsable && GrimoireSuccubus.IsHostileDistanceGood)
-            {
-                GrimoireSuccubus.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireVoidwalker && GrimoireVoidwalker.IsSpellUsable && GrimoireVoidwalker.IsHostileDistanceGood)
-            {
-                GrimoireVoidwalker.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            //Summon Grimoire of Service
-            if (MySettings.UseGrimoireofService && GrimoireofService.IsSpellUsable && GrimoireofService.IsHostileDistanceGood)
-            {
-                GrimoireofService.CastAtPosition(ObjectManager.Target.Position);
-                return;
+                if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
+                {
+                    GrimoireImp.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireFelguard && GrimoireFelguard.IsSpellUsable && GrimoireFelguard.IsHostileDistanceGood)
+                {
+                    GrimoireFelguard.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireFelhunter && GrimoireFelhunter.IsSpellUsable && GrimoireFelhunter.IsHostileDistanceGood)
+                {
+                    GrimoireFelhunter.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireSuccubus && GrimoireSuccubus.IsSpellUsable && GrimoireSuccubus.IsHostileDistanceGood)
+                {
+                    GrimoireSuccubus.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireVoidwalker && GrimoireVoidwalker.IsSpellUsable && GrimoireVoidwalker.IsHostileDistanceGood)
+                {
+                    GrimoireVoidwalker.Cast();
+                    return;
+                }
             }
 
             //5. Filler
@@ -864,7 +863,7 @@ public class WarlockAffliction
                 return;
             }
             //Channel Drain Life & Drain Soul
-            if (MySettings.UseDrainLife_Soul && DrainLife.IsSpellUsable &&
+            if (MySettings.UseDrainLife_SoulAsFiller && DrainLife.IsSpellUsable &&
                 !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
             {
                 DrainLife.Cast();
@@ -918,7 +917,7 @@ public class WarlockAffliction
         public bool UseReapSouls = true;
 
         /* Offensive Spells */
-        public bool UseDrainLife_Soul = true;
+        public bool UseDrainLife_SoulAsFiller = false;
         public bool UseHaunt = true;
         public int UseManaTapAbovePercentage = 50;
 
@@ -982,7 +981,7 @@ public class WarlockAffliction
             /* Artifact Spells */
             AddControlInWinForm("Use Reap Souls", "UseReapSouls", "Artifact Spells");
             /* Offensive Spells */
-            AddControlInWinForm("Use Drain Life & Drain Soul", "UseDrainLife_Soul", "Offensive Spells");
+            AddControlInWinForm("Use Drain Life & Drain Soul as filler", "UseDrainLife_SoulAsFiller", "Offensive Spells");
             AddControlInWinForm("Use Haunt", "UseHaunt", "Offensive Spells");
             AddControlInWinForm("Use Mana Tap", "UseManaTapAbovePercentage", "Offensive Spells", "AbovePercentage", "Mana");
             /* Offensive Cooldowns */
@@ -1259,7 +1258,7 @@ public class WarlockDemonology
                     if (MySettings.UseSummonDoomguardAsPet && SummonDoomguard.IsSpellUsable &&
                         SummonDoomguard.IsHostileDistanceGood)
                     {
-                        SummonDoomguard.CastAtPosition(ObjectManager.Target.Position);
+                        SummonDoomguard.Cast();
                         DemonicEmpowermentTimer.ForceReady();
                         return true;
                     }
@@ -1272,7 +1271,7 @@ public class WarlockDemonology
                         return true;
                     }
                 }
-                //Summon Felhunter
+                //Summon Felguard
                 if (MySettings.UseSummonFelguardAsPet && SummonFelguard.IsSpellUsable)
                 {
                     SummonFelguard.Cast();
@@ -1464,8 +1463,11 @@ public class WarlockDemonology
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Logging
-            //Logging.WriteDebug("SummonedDemons == " + SummonedDemons);
-            //Logging.WriteDebug("DemonicEmpowermentTimer.IsReady == " + DemonicEmpowermentTimer.IsReady);
+            //Logging.WriteDebug("DemonicEmpowermentTimer: " + (DemonicEmpowermentTimer.IsReady ? "ready" : DemonicEmpowermentTimer.Peek().ToString()) + ", SummonedDemons: " + SummonedDemons);
+            //for (int i = 1; i <= SummonTimers.Count;i++)
+            //{
+            //    Logging.WriteDebug(i + ". Demon: " + (SummonTimers[i-1].IsReady ? "ready" : SummonTimers[i - 1].Peek().ToString()));
+            //}
 
             //Apply Doom
             if (MySettings.UseDoom && Doom.IsSpellUsable && Doom.IsHostileDistanceGood &&
@@ -1500,11 +1502,10 @@ public class WarlockDemonology
                 return;
             }
 
-            //Summon Infernal when
-            if (MySettings.UseSummonInfernal && SummonInfernal.IsSpellUsable &&
-                SummonInfernal.IsHostileDistanceGood && !GrimoireofSupremacy.HaveBuff &&
-                //you have 4 or more targets.
-                ObjectManager.Target.GetUnitInSpellRange(10f) >= 4)
+            //Summon Infernal (4 Targets)
+            if (MySettings.UseSummonInfernal && ObjectManager.Me.SoulShards >= 1 &&
+                SummonInfernal.IsSpellUsable && SummonInfernal.IsHostileDistanceGood &&
+                !GrimoireofSupremacy.HaveBuff && ObjectManager.Target.GetUnitInSpellRange(10f) >= 4)
             {
                 SummonInfernal.CastAtPosition(ObjectManager.Target.Position);
                 DemonicEmpowermentTimer.ForceReady();
@@ -1512,10 +1513,11 @@ public class WarlockDemonology
                 return;
             }
             //Summon Doomguard
-            if (MySettings.UseSummonDoomguard && SummonDoomguard.IsSpellUsable &&
-                SummonDoomguard.IsHostileDistanceGood && !GrimoireofSupremacy.HaveBuff)
+            if (MySettings.UseSummonDoomguard && ObjectManager.Me.SoulShards >= 1 &&
+                SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood &&
+                !GrimoireofSupremacy.HaveBuff)
             {
-                SummonDoomguard.CastAtPosition(ObjectManager.Target.Position);
+                SummonDoomguard.Cast();
                 DemonicEmpowermentTimer.ForceReady();
                 SummonTimers.Add(new Timer(1000*25));
                 return;
@@ -1528,49 +1530,39 @@ public class WarlockDemonology
                 SummonTimers.Add(new Timer(1000*12));
                 return;
             }
-            //Summon Grimoire
-            if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
+                //Summon Grimoire of Service
+            else if (MySettings.UseGrimoireofService && GrimoireofService.HaveBuff)
             {
-                GrimoireImp.CastAtPosition(ObjectManager.Target.Position);
-                DemonicEmpowermentTimer.ForceReady();
-                SummonTimers.Add(new Timer(1000*25));
-                return;
-            }
-            else if (MySettings.UseGrimoireFelguard && GrimoireFelguard.IsSpellUsable && GrimoireFelguard.IsHostileDistanceGood)
-            {
-                GrimoireFelguard.CastAtPosition(ObjectManager.Target.Position);
-                DemonicEmpowermentTimer.ForceReady();
-                SummonTimers.Add(new Timer(1000*25));
-                return;
-            }
-            else if (MySettings.UseGrimoireFelhunter && GrimoireFelhunter.IsSpellUsable && GrimoireFelhunter.IsHostileDistanceGood)
-            {
-                GrimoireFelhunter.CastAtPosition(ObjectManager.Target.Position);
-                DemonicEmpowermentTimer.ForceReady();
-                SummonTimers.Add(new Timer(1000*25));
-                return;
-            }
-            else if (MySettings.UseGrimoireSuccubus && GrimoireSuccubus.IsSpellUsable && GrimoireSuccubus.IsHostileDistanceGood)
-            {
-                GrimoireSuccubus.CastAtPosition(ObjectManager.Target.Position);
-                DemonicEmpowermentTimer.ForceReady();
-                SummonTimers.Add(new Timer(1000*25));
-                return;
-            }
-            else if (MySettings.UseGrimoireVoidwalker && GrimoireVoidwalker.IsSpellUsable && GrimoireVoidwalker.IsHostileDistanceGood)
-            {
-                GrimoireVoidwalker.CastAtPosition(ObjectManager.Target.Position);
-                DemonicEmpowermentTimer.ForceReady();
-                SummonTimers.Add(new Timer(1000*25));
-                return;
-            }
-            //Summon Grimoire of Service
-            if (MySettings.UseGrimoireofService && GrimoireofService.IsSpellUsable && GrimoireofService.IsHostileDistanceGood)
-            {
-                GrimoireofService.CastAtPosition(ObjectManager.Target.Position);
-                DemonicEmpowermentTimer.ForceReady();
-                SummonTimers.Add(new Timer(1000*25));
-                return;
+                if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
+                {
+                    GrimoireImp.Cast();
+                    SummonTimers.Add(new Timer(1000*25));
+                    return;
+                }
+                else if (MySettings.UseGrimoireFelguard && GrimoireFelguard.IsSpellUsable && GrimoireFelguard.IsHostileDistanceGood)
+                {
+                    GrimoireFelguard.Cast();
+                    SummonTimers.Add(new Timer(1000*25));
+                    return;
+                }
+                else if (MySettings.UseGrimoireFelhunter && GrimoireFelhunter.IsSpellUsable && GrimoireFelhunter.IsHostileDistanceGood)
+                {
+                    GrimoireFelhunter.Cast();
+                    SummonTimers.Add(new Timer(1000*25));
+                    return;
+                }
+                else if (MySettings.UseGrimoireSuccubus && GrimoireSuccubus.IsSpellUsable && GrimoireSuccubus.IsHostileDistanceGood)
+                {
+                    GrimoireSuccubus.Cast();
+                    SummonTimers.Add(new Timer(1000*25));
+                    return;
+                }
+                else if (MySettings.UseGrimoireVoidwalker && GrimoireVoidwalker.IsSpellUsable && GrimoireVoidwalker.IsHostileDistanceGood)
+                {
+                    GrimoireVoidwalker.Cast();
+                    SummonTimers.Add(new Timer(1000*25));
+                    return;
+                }
             }
             //Summon Dreadstalkers
             if (MySettings.UseCallDreadstalkers && CallDreadstalkers.IsSpellUsable &&
@@ -1622,7 +1614,7 @@ public class WarlockDemonology
                 return;
             }
             //Channel Drain Life
-            if (MySettings.UseDrainLife && DrainLife.IsSpellUsable &&
+            if (MySettings.UseDrainLifeAsFiller && DrainLife.IsSpellUsable &&
                 !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
             {
                 DrainLife.Cast();
@@ -1693,7 +1685,7 @@ public class WarlockDemonology
         public bool UseCallDreadstalkers = true;
         public bool UseDemonicEmpowerment = true;
         public int UseDemonwrathAbovePercentage = 60;
-        public bool UseDrainLife = true;
+        public bool UseDrainLifeAsFiller = false;
         public bool UseDoom = true;
         public bool UseHandofGuldan = true;
         public bool UseImplosion = true;
@@ -1757,7 +1749,7 @@ public class WarlockDemonology
             AddControlInWinForm("Use Call Dreadstalkers", "UseCallDreadstalkers", "Offensive Spells");
             AddControlInWinForm("Use Demonic Empowerment", "UseDemonicEmpowerment", "Offensive Spells");
             AddControlInWinForm("Use Demonwrath", "UseDemonwrathAbovePercentage", "Offensive Spells", "AbovePercentage", "Mana");
-            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Offensive Spells");
+            AddControlInWinForm("Use Drain Life as filler", "UseDrainLifeAsFiller", "Offensive Spells");
             AddControlInWinForm("Use Doom", "UseDoom", "Offensive Spells");
             AddControlInWinForm("Use Hand of Guldan", "UseHandofGuldan", "Offensive Spells");
             AddControlInWinForm("Use Implosion", "UseImplosion", "Offensive Spells");
@@ -2048,7 +2040,7 @@ public class WarlockDestruction
                     if (MySettings.UseSummonDoomguardAsPet && SummonDoomguard.IsSpellUsable &&
                         SummonDoomguard.IsHostileDistanceGood)
                     {
-                        SummonDoomguard.CastAtPosition(ObjectManager.Target.Position);
+                        SummonDoomguard.Cast();
                         return true;
                     }
                     //Summon Infernal
@@ -2181,7 +2173,8 @@ public class WarlockDestruction
                 }
             }
             //Mitigate Damage in Emergency Situations
-            if (ObjectManager.Me.HealthPercent < MySettings.UseUnendingResolveBelowPercentage && UnendingResolve.IsSpellUsable)
+            if (ObjectManager.Me.HealthPercent < MySettings.UseUnendingResolveBelowPercentage &&
+                UnendingResolve.IsSpellUsable)
             {
                 UnendingResolve.Cast();
                 return true;
@@ -2238,19 +2231,20 @@ public class WarlockDestruction
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Summon Infernal when
-            if (MySettings.UseSummonInfernal && SummonInfernal.IsSpellUsable && SummonInfernal.IsHostileDistanceGood &&
-                /*(!LordofFlamesTrait.HaveBuff || !LordofFlamesBuff.HaveBuff) &&*/
-                //you have 4 or more targets.
-                ObjectManager.Target.GetUnitInSpellRange(10f) >= 4)
+            //Summon Infernal (4 Targets)
+            if (MySettings.UseSummonInfernal && ObjectManager.Me.SoulShards >= 1 &&
+                SummonInfernal.IsSpellUsable && SummonInfernal.IsHostileDistanceGood &&
+                (ObjectManager.Target.GetUnitInSpellRange(10f) >= 4 ||
+                 (!LordofFlamesTrait.HaveBuff || !LordofFlamesBuff.HaveBuff)))
             {
                 SummonInfernal.CastAtPosition(ObjectManager.Target.Position);
                 return;
             }
             //Summon Doomguard
-            if (MySettings.UseSummonDoomguard && SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
+            if (MySettings.UseSummonDoomguard && ObjectManager.Me.SoulShards >= 1 &&
+                SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
             {
-                SummonDoomguard.CastAtPosition(ObjectManager.Target.Position);
+                SummonDoomguard.Cast();
                 return;
             }
             //Apply Grimoire of Sacrifice
@@ -2262,37 +2256,34 @@ public class WarlockDestruction
                     return;
                 }
             }
-                //Summon Grimoire
-            else if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
+                //Summon Grimoire of Service
+            else if (MySettings.UseGrimoireofService && GrimoireofService.HaveBuff)
             {
-                GrimoireImp.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireFelguard && GrimoireFelguard.IsSpellUsable && GrimoireFelguard.IsHostileDistanceGood)
-            {
-                GrimoireFelguard.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireFelhunter && GrimoireFelhunter.IsSpellUsable && GrimoireFelhunter.IsHostileDistanceGood)
-            {
-                GrimoireFelhunter.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireSuccubus && GrimoireSuccubus.IsSpellUsable && GrimoireSuccubus.IsHostileDistanceGood)
-            {
-                GrimoireSuccubus.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            else if (MySettings.UseGrimoireVoidwalker && GrimoireVoidwalker.IsSpellUsable && GrimoireVoidwalker.IsHostileDistanceGood)
-            {
-                GrimoireVoidwalker.CastAtPosition(ObjectManager.Target.Position);
-                return;
-            }
-            //Summon Grimoire of Service
-            if (MySettings.UseGrimoireofService && GrimoireofService.IsSpellUsable && GrimoireofService.IsHostileDistanceGood)
-            {
-                GrimoireofService.CastAtPosition(ObjectManager.Target.Position);
-                return;
+                if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
+                {
+                    GrimoireImp.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireFelguard && GrimoireFelguard.IsSpellUsable && GrimoireFelguard.IsHostileDistanceGood)
+                {
+                    GrimoireFelguard.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireFelhunter && GrimoireFelhunter.IsSpellUsable && GrimoireFelhunter.IsHostileDistanceGood)
+                {
+                    GrimoireFelhunter.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireSuccubus && GrimoireSuccubus.IsSpellUsable && GrimoireSuccubus.IsHostileDistanceGood)
+                {
+                    GrimoireSuccubus.Cast();
+                    return;
+                }
+                else if (MySettings.UseGrimoireVoidwalker && GrimoireVoidwalker.IsSpellUsable && GrimoireVoidwalker.IsHostileDistanceGood)
+                {
+                    GrimoireVoidwalker.Cast();
+                    return;
+                }
             }
             //Maintain Immolate
             if (MySettings.UseImmolate && Immolate.IsSpellUsable &&
@@ -2391,7 +2382,7 @@ public class WarlockDestruction
                 return;
             }
             //Channel Drain Life
-            if (MySettings.UseDrainLife && DrainLife.IsSpellUsable &&
+            if (MySettings.UseDrainLifeAsFiller && DrainLife.IsSpellUsable &&
                 !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
             {
                 DrainLife.Cast();
@@ -2447,7 +2438,7 @@ public class WarlockDestruction
         public bool UseCataclysm = true;
         public bool UseChaosBolt = true;
         public bool UseConflagrate = true;
-        public bool UseDrainLife = true;
+        public bool UseDrainLifeAsFiller = false;
         public bool UseImmolate = true;
         public bool UseIncinerate = true;
         public int UseManaTapAbovePercentage = 50;
@@ -2511,7 +2502,7 @@ public class WarlockDestruction
             AddControlInWinForm("Use Cataclysm", "UseCataclysm", "Offensive Spells");
             AddControlInWinForm("Use Chaos Bolt", "UseChaosBolt", "Offensive Spells");
             AddControlInWinForm("Use Conflagrate", "UseConflagrate", "Offensive Spells");
-            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Offensive Spells");
+            AddControlInWinForm("Use Drain Life as filler", "UseDrainLifeAsFiller", "Offensive Spells");
             AddControlInWinForm("Use Immolate", "UseImmolate", "Offensive Spells");
             AddControlInWinForm("Use Incinerate", "UseIncinerate", "Offensive Spells");
             AddControlInWinForm("Use Mana Tap", "UseManaTapAbovePercentage", "Offensive Spells", "AbovePercentage", "Mana");

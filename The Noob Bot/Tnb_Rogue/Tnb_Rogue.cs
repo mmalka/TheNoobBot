@@ -588,6 +588,30 @@ public class RogueAssassination
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
+            //Apply Poisons
+            if (!AgonizingPoison.HaveBuff)
+            {
+                if (MySettings.UseAgonizingPoison && AgonizingPoison.IsSpellUsable)
+                {
+                    AgonizingPoison.CastOnSelf();
+                }
+                if (MySettings.UseDeadlyPoison && DeadlyPoison.IsSpellUsable && !DeadlyPoison.HaveBuff)
+                {
+                    DeadlyPoison.CastOnSelf();
+                }
+            }
+            if (!LeechingPoison.HaveBuff)
+            {
+                if (MySettings.UseLeechingPoison && LeechingPoison.IsSpellUsable)
+                {
+                    LeechingPoison.CastOnSelf();
+                }
+                if (MySettings.UseCripplingPoison && CripplingPoison.IsSpellUsable && !CripplingPoison.HaveBuff)
+                {
+                    CripplingPoison.CastOnSelf();
+                }
+            }
+
             if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
             {
                 ItemsManager.UseItem(_firstTrinket.Name);
@@ -781,6 +805,12 @@ public class RogueAssassination
         public int UseStoneformBelowPercentage = 50;
         public int UseWarStompBelowPercentage = 50;
 
+        /* Poisons */
+        public bool UseAgonizingPoison = true;
+        public bool UseCripplingPoison = true;
+        public bool UseDeadlyPoison = true;
+        public bool UseLeechingPoison = true;
+
         /* Artifact Spells */
         public bool UseKingsbane = true;
 
@@ -828,6 +858,11 @@ public class RogueAssassination
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Poisons */
+            AddControlInWinForm("Use Agonizing Poison", "UseAgonizingPoison", "Poisons");
+            AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Poisons");
+            AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Poisons");
+            AddControlInWinForm("Use Leeching Poison", "UseLeechingPoison", "Poisons");
             /* Artifact Spells */
             AddControlInWinForm("Use Kingsbane", "UseKingsbane", "Artifact Spells");
             /* Offensive Spells */

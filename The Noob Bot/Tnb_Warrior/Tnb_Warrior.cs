@@ -624,7 +624,7 @@ public class WarriorArms
                 //Cast Colossus Smash when
                 if (MySettings.UseColossusSmash && ColossusSmash.IsSpellUsable && ColossusSmash.IsHostileDistanceGood &&
                     //Colossus Smash Dot is absent and Shattered Defenses Buff is not active.
-                    !ColossusSmash.TargetHaveBuffFromMe && !ObjectManager.Me.UnitAura(ShatteredDefensesBuff.Ids, ObjectManager.Me.Guid).IsValid)
+                    !ColossusSmash.TargetHaveBuffFromMe && !ObjectManager.Me.UnitAura(ShatteredDefensesBuff.Id).IsValid)
                 {
                     ColossusSmash.Cast();
                     return;
@@ -632,7 +632,7 @@ public class WarriorArms
                 //Cast Warbreaker when
                 if (MySettings.UseWarbreaker && Warbreaker.IsSpellUsable && Warbreaker.IsHostileDistanceGood &&
                     //Colossus Smash Dot is absent and Shattered Defenses Buff is not active.
-                    !ColossusSmash.TargetHaveBuffFromMe && !ObjectManager.Me.UnitAura(ShatteredDefensesBuff.Ids, ObjectManager.Me.Guid).IsValid)
+                    !ColossusSmash.TargetHaveBuffFromMe && !ObjectManager.Me.UnitAura(ShatteredDefensesBuff.Id).IsValid)
                 {
                     Warbreaker.Cast();
                     return;
