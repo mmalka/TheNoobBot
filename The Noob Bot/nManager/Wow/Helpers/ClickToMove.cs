@@ -52,7 +52,7 @@ namespace nManager.Wow.Helpers
                     "push " + action,
                     "mov ecx, eax",
                     "call " +
-                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__InitializeTrackingState),
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove),
                     "@out:",
                     "retn"
                 };
