@@ -72,7 +72,7 @@ if (node.IsValid || unit.IsValid)
 	if (Others.IsFrameVisible("StaticPopup1Button1"))
 		Lua.RunMacroText("/click StaticPopup1Button1");
 	if (ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
-		return;
+		return false;
 	
 	/* Wait if necessary */
 	if(questObjective.WaitMs > 0)
