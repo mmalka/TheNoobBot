@@ -2031,9 +2031,9 @@
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
       <WorldQuestLocation>
-        <X>2785.489</X>
-        <Y>7688.426</Y>
-        <Z>42.54904</Z>
+        <X>2802.776</X>
+        <Y>7702.309</Y>
+        <Z>52.15118</Z>
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
@@ -2512,6 +2512,119 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Dreadbog</Name>
+      <Id>44298</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3346.228</X>
+        <Y>6263.79</Y>
+        <Z>193.1868</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>97517</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3346.228</X>
+              <Y>6263.79</Y>
+              <Z>193.1868</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Rage of the Owlbeasts</Name>
+      <Id>43324</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1973.759</X>
+        <Y>6350.908</Y>
+        <Z>57.93239</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>50</Count>
+          <Entry>
+            <int>108675</int>
+            <int>108327</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1982.296</X>
+              <Y>6389.444</Y>
+              <Z>57.95093</Z>
+            </Point>
+            <Point>
+              <X>1982.041</X>
+              <Y>6286.313</Y>
+              <Z>61.57013</Z>
+            </Point>
+            <Point>
+              <X>2023.533</X>
+              <Y>6253.58</Y>
+              <Z>30.69742</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Sharptalon Swarm!</Name>
+      <Id>44895</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4715.919</X>
+        <Y>6718.867</Y>
+        <Z>4.392475</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>50</Count>
+          <Entry>
+            <int>115676</int>
+            <int>115664</int>
+            <int>115682</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4691.096</X>
+              <Y>6863.057</Y>
+              <Z>68.80506</Z>
+            </Point>
+            <Point>
+              <X>4631.934</X>
+              <Y>6742.204</Y>
+              <Z>88.92092</Z>
+            </Point>
+            <Point>
+              <X>4640.51</X>
+              <Y>6564.668</Y>
+              <Z>73.82999</Z>
+            </Point>
+            <Point>
+              <X>4604.18</X>
+              <Y>6972.149</Y>
+              <Z>129.9975</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>

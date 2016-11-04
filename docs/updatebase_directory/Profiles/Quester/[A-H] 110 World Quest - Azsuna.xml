@@ -2558,19 +2558,30 @@
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <ScriptConditionIsComplete>=IsInRange.cs</ScriptConditionIsComplete>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <Position>
+            <X>-1195.219</X>
+            <Y>5808.616</Y>
+            <Z>11.56163</Z>
+          </Position>
+          <Range>5</Range>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
+          <ScriptCondition>=HasDirectMovedTo.cs</ScriptCondition>
           <InternalIndex>2</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>108137</int>
           </Entry>
-          <Hotspots>
-            <Point>
-              <X>-1246.569</X>
-              <Y>5905.662</Y>
-              <Z>0.887997</Z>
-            </Point>
-          </Hotspots>
+          <Position>
+            <X>-1209.405</X>
+            <Y>5800.414</Y>
+            <Z>19.32987</Z>
+          </Position>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
@@ -2582,9 +2593,9 @@
           </Entry>
           <Hotspots>
             <Point>
-              <X>-1205.701</X>
-              <Y>5799.835</Y>
-              <Z>18.56892</Z>
+              <X>-1246.569</X>
+              <Y>5905.662</Y>
+              <Z>0.887997</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
@@ -2771,7 +2782,7 @@
             <Y>6026.274</Y>
             <Z>79.88235</Z>
           </Position>
-          <Range>60</Range>
+          <Range>10</Range>
           <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -2796,6 +2807,46 @@
               <X>1210.638</X>
               <Y>6109.935</Y>
               <Z>98.75216</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Bloodgazer Swarm!</Name>
+      <Id>44894</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1508.766</X>
+        <Y>7395.264</Y>
+        <Z>3.159897</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>50</Count>
+          <Entry>
+            <int>115675</int>
+            <int>115681</int>
+            <int>115666</int>
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>1502.779</X>
+              <Y>7338.944</Y>
+              <Z>1.990523</Z>
+            </Point>
+            <Point> 
+              <X>1586.341</X>
+              <Y>7520.282</Y>
+              <Z>0.5462179</Z>
+            </Point>
+            <Point> 
+              <X>1393.415</X>
+              <Y>7474.409</Y>
+              <Z>0.1892342</Z>
             </Point>
           </Hotspots>
         </QuestObjective>

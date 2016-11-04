@@ -2010,6 +2010,15 @@
       <Radius>50</Radius>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
+      <!-- Required by "Mists Take You" -->
+      <Position>
+        <X>3095.116</X>
+        <Y>3913.276</Y>
+        <Z>1216.603</Z>
+      </Position>
+      <Radius>20</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
       <!-- Required by "Boilback Plague" -->
       <Position>
         <X>4815.964</X>

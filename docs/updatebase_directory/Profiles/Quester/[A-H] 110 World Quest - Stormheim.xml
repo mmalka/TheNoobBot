@@ -542,6 +542,35 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>WANTED: Isel the Hammer</Name>
+      <Id>43624</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>2809.036</X>
+        <Y>1456.795</Y>
+        <Z>23.25592</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>94413</int> <!-- Isel the Hammer -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>2822.455</X>
+              <Y>1445.586</Y>
+              <Z>24.261</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Get Vrekt</Name>
       <Id>41427</Id>
       <QuestLevel>110</QuestLevel>
@@ -1356,6 +1385,111 @@
             <Z>-1.503109</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Slab of Bacon</Name>
+      <Id>41555</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>2880.062</X>
+        <Y>1989.321</Y>
+        <Z>202.3849</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 99);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>103786</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>2880.062</X>
+              <Y>1989.321</Y>
+              <Z>202.3849</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Solid Crabshell Fragment</Name>
+      <Id>41343</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3973.084</X>
+        <Y>1394.328</Y>
+        <Z>0.7369797</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectCount>12</CollectCount>
+          <CollectItemId>134817</CollectItemId>
+          <Entry>
+            <int>107667</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4019.177</X>
+              <Y>1357.387</Y>
+              <Z>0.9155377</Z>
+            </Point>
+            <Point>
+              <X>3927.182</X>
+              <Y>1429.134</Y>
+              <Z>0.4008801</Z>
+            </Point>
+            <Point>
+              <X>3760.328</X>
+              <Y>1305.36</Y>
+              <Z>2.809548</Z>
+            </Point>
+            <Point>
+              <X>3823.873</X>
+              <Y>1137.552</Y>
+              <Z>0.4046322</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>You Have Been Challenged</Name>
+      <Id>41936</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>2538.469</X>
+        <Y>1508.59</Y>
+        <Z>23.14315</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=Resolves41936.cs</Script>
+          <Entry>
+            <int>248881</int>
+            <int>105399</int>
+            <int>105424</int>
+            <int>105432</int>
+            <int>105433</int>
+          </Entry>
+          <Position>
+            <X>2542.504</X>
+            <Y>1492.964</Y>
+            <Z>23.14304</Z>
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
