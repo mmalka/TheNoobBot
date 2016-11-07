@@ -198,7 +198,6 @@ public class RogueAssassination
     private bool CombatMode = true;
 
     private Timer DefensiveTimer = new Timer(0);
-    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -407,37 +406,38 @@ public class RogueAssassination
 
             //1. Cast Rupture when
             if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
-                //you have five or more combo points and
-                ObjectManager.Me.ComboPoint >= 5 &&
-                //you have the Nightstalker Talent
-                Nightstalker.HaveBuff)
+                //you have max combo points and you have the Nightstalker Talent
+                GetFreeComboPoints() == 0 && Nightstalker.HaveBuff)
             {
                 Rupture.Cast();
                 return;
             }
             //2. Cast Garrote when
-            if (MySettings.UseGarrote && Garrote.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 45 && Garrote.IsHostileDistanceGood &&
+            if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
                 //you have the Nightstalker or Subterfuge Talent
-                (Nightstalker.HaveBuff || Subterfuge.HaveBuff) &&
-                !Garrote.TargetHaveBuffFromMe)
+                !Garrote.TargetHaveBuffFromMe && (Nightstalker.HaveBuff || Subterfuge.HaveBuff))
             {
                 Garrote.Cast();
                 return;
             }
-            //3. Cast Cheap Shot when
-            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 40 && CheapShot.IsHostileDistanceGood &&
+            //3. Cast Mutilate.
+            if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood
+                //you have the Nightstalker
+                && Nightstalker.HaveBuff)
+            {
+                Mutilate.Cast();
+                return;
+            }
+            //4. Cast Cheap Shot when
+            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood &&
                 //the target is stunnable
                 ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
             {
                 CheapShot.Cast();
-                StunTimer = new Timer(1000*4);
                 return;
             }
-            //4. Cast Garrote
-            if (MySettings.UseGarrote && Garrote.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 45 && Garrote.IsHostileDistanceGood &&
+            //5. Cast Garrote
+            if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
                 !Garrote.TargetHaveBuffFromMe)
             {
                 Garrote.Cast();
@@ -489,7 +489,7 @@ public class RogueAssassination
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            if (!ObjectManager.Target.IsStunned && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
             {
                 //Stun
                 if (ObjectManager.Target.IsStunnable)
@@ -497,7 +497,6 @@ public class RogueAssassination
                     if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
                     {
                         WarStomp.Cast();
-                        StunTimer = new Timer(1000*2.5);
                         return true;
                     }
                 }
@@ -630,16 +629,6 @@ public class RogueAssassination
             {
                 BloodFury.Cast();
             }
-            //Cast Vanish when you aren't in stealth and
-            if (MySettings.UseVanish && Vanish.IsSpellUsable && !StealthBuff.HaveBuff &&
-                //you don't have the Nightstalker Talent or
-                (!Nightstalker.HaveBuff ||
-                 //you have max combo points
-                 GetFreeComboPoints() == 0))
-            {
-                Vanish.Cast();
-                return true;
-            }
             return false;
         }
         finally
@@ -660,25 +649,10 @@ public class RogueAssassination
             //Cast Kidney Shot when you have X combo points and
             if (ObjectManager.Me.ComboPoint > MySettings.UseKidneyShotAboveComboPoints && KidneyShot.IsSpellUsable
                 && ObjectManager.Me.Energy >= 25 && KidneyShot.IsHostileDistanceGood &&
-                //the target is stunnable and probably not stunned
-                ObjectManager.Target.IsStunnable && StunTimer.IsReady)
+                //the target is stunnable and not stunned
+                ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
             {
                 KidneyShot.Cast();
-                StunTimer = new Timer(1000*1 + ObjectManager.Me.ComboPoint);
-                return;
-            }
-            //Cast Kingsbane when
-            if (MySettings.UseKingsbane && Kingsbane.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 35 && Kingsbane.IsHostileDistanceGood &&
-                //Envenom has 5 or more seconds remaining and
-                ObjectManager.Me.UnitAura(Envenom.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs >= 5000)
-            {
-                //Cast Vendetta
-                if (MySettings.UseVendetta && Vendetta.IsSpellUsable)
-                {
-                    Vendetta.Cast();
-                }
-                Kingsbane.Cast();
                 return;
             }
             //Cast Exsanguinate when
@@ -691,11 +665,57 @@ public class RogueAssassination
                 Exsanguinate.Cast();
                 return;
             }
+            //Cast Marked for Death (when talented) when
+            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
+                //you have 5 free combo points.
+                GetFreeComboPoints() >= 5)
+            {
+                MarkedforDeath.Cast();
+                return;
+            }
 
-            //1. Apply/Refresh Garrote Dot when
-            if (MySettings.UseGarrote && Garrote.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 45 && Garrote.IsHostileDistanceGood &&
-                //it has 6 or less seconds remaining and
+            //1. Maintain Rupture when
+            if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
+                //you have 3+ combo points and Rupture isn't on the target.
+                ObjectManager.Me.ComboPoint >= 3 && !Rupture.TargetHaveBuffFromMe)
+            {
+                //it won't reset Exsanguinate
+                if (!Rupture.TargetHaveBuffFromMe || !RuptureHasExsanguinateBuff)
+                {
+                    RuptureHasExsanguinateBuff = false;
+                    Rupture.Cast();
+                    return;
+                }
+            }
+            //2. Activate Vendetta on the primary target when it is off cooldown.
+            if (MySettings.UseVendetta && Vendetta.IsSpellUsable && Vendetta.IsHostileDistanceGood)
+            {
+                Vendetta.Cast();
+            }
+            //3. Activate Vanish when you aren't in stealth and
+            if (MySettings.UseVanish && Vanish.IsSpellUsable && !StealthBuff.HaveBuff &&
+                //you have max combo points
+                GetFreeComboPoints() == 0)
+            {
+                Vanish.Cast();
+                return;
+            }
+            //1b. Maintain Rupture when
+            if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
+                //you have max combo points and it has 8 or less seconds remaining
+                GetFreeComboPoints() == 0 && ObjectManager.Target.UnitAura(Rupture.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 8000)
+            {
+                //it won't reset Exsanguinate
+                if (!Rupture.TargetHaveBuffFromMe || !RuptureHasExsanguinateBuff)
+                {
+                    RuptureHasExsanguinateBuff = false;
+                    Rupture.Cast();
+                    return;
+                }
+            }
+            //4. Maintain Garrote Dot when it is off cooldown and
+            if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
+                //it has 6 or less seconds remaining
                 ObjectManager.Target.UnitAura(Garrote.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 6000)
             {
                 //it won't reset Exsanguinate
@@ -706,76 +726,42 @@ public class RogueAssassination
                     return;
                 }
             }
-            //2. Cast Marked for Death (when talented) when
-            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
-                //you have 5 free combo points.
-                GetFreeComboPoints() >= 5)
+            //5. Cast Kingsbane when it is off cooldown.
+            if (MySettings.UseKingsbane && Kingsbane.IsSpellUsable && Kingsbane.IsHostileDistanceGood)
             {
-                MarkedforDeath.Cast();
+                Kingsbane.Cast();
                 return;
             }
-            //3. Generate combo points if they aren't capping.
-            if (GetFreeComboPoints() > 0)
+            //Cast Death from Above when
+            if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable && DeathfromAbove.IsHostileDistanceGood &&
+                //you have max combo points and Elaborate Planning isn't up and
+                GetFreeComboPoints() == 0 && !ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Id).IsValid &&
+                //Envenom isn't up
+                !Envenom.HaveBuff)
             {
-                //3a. Cast Fan of Knives when
-                if (MySettings.UseFanofKnives && FanofKnives.IsSpellUsable &&
-                    ObjectManager.Me.Energy >= 35 && FanofKnives.IsHostileDistanceGood &&
-                    //more than 2 enemies are near.
-                    ObjectManager.Me.GetUnitInSpellRange(10f) > 2)
-                {
-                    FanofKnives.Cast();
-                    return;
-                }
-                //3b. Cast Mutilate.
-                if (MySettings.UseMutilate && Mutilate.IsSpellUsable &&
-                    ObjectManager.Me.Energy >= 45 && Mutilate.IsHostileDistanceGood)
-                {
-                    Mutilate.Cast();
-                    return;
-                }
+                DeathfromAbove.Cast();
+                return;
             }
-            //4. Apply/Refresh Rupture when
-            if (MySettings.UseRupture && Rupture.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 25 && Rupture.IsHostileDistanceGood &&
-                //you have max combo points and
-                GetFreeComboPoints() == 0 &&
-                //it has 8 or less seconds remaining and
-                ObjectManager.Target.UnitAura(Rupture.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 8000)
-            {
-                //it won't reset Exsanguinate
-                if (!Rupture.TargetHaveBuffFromMe || !RuptureHasExsanguinateBuff)
-                {
-                    RuptureHasExsanguinateBuff = false;
-                    Rupture.Cast();
-                    return;
-                }
-            }
-            //3. Cast Envenom when
-            if (MySettings.UseEnvenom && Envenom.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 35 && Envenom.IsHostileDistanceGood &&
-                //you have max combo points and
-                GetFreeComboPoints() == 0 &&
-                //your energy is capping or
-                (ObjectManager.Me.EnergyPercentage == 100 ||
-                 //you have 80 or more energy and Envenom buff is not up and
-                 (ObjectManager.Me.Energy >= 80 && !Envenom.HaveBuff &&
-                  //Elaborate Planning wasn't taken or has less than 1 second remaining
-                  (!ElaboratePlanning.HaveBuff || ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000))))
+            //6. Cast Envenom when
+            if (MySettings.UseEnvenom && Envenom.IsSpellUsable && Envenom.IsHostileDistanceGood &&
+                //you have max combo points and Elaborate Planning isn't up and
+                GetFreeComboPoints() == 0 && !ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Id).IsValid &&
+                //Envenom isn't up
+                !Envenom.HaveBuff)
             {
                 Envenom.Cast();
                 return;
             }
-            //4. Cast Death from Above when
-            if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 25 && DeathfromAbove.IsHostileDistanceGood &&
-                //you have max combo points and
-                GetFreeComboPoints() == 0 &&
-                //your energy is capping or
-                (ObjectManager.Me.EnergyPercentage == 100 ||
-                 //Elaborate Planning wasn't taken or has less than 1 second remaining
-                 (!ElaboratePlanning.HaveBuff || ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)))
+            //7. Cast Fan of Knives when it hits 3+ targets 
+            if (MySettings.UseFanofKnives && FanofKnives.IsSpellUsable && ObjectManager.Me.GetUnitInSpellRange(10f) >= 3)
             {
-                DeathfromAbove.Cast();
+                FanofKnives.Cast();
+                return;
+            }
+            //8. Cast Mutilate.
+            if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood)
+            {
+                Mutilate.Cast();
                 return;
             }
         }
@@ -923,7 +909,6 @@ public class RogueOutlaw
     private bool CombatMode = true;
 
     private Timer DefensiveTimer = new Timer(0);
-    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -1155,7 +1140,7 @@ public class RogueOutlaw
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            if (!ObjectManager.Target.IsStunned && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
             {
                 //Stun
                 if (ObjectManager.Target.IsStunnable)
@@ -1163,7 +1148,6 @@ public class RogueOutlaw
                     if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
                     {
                         WarStomp.Cast();
-                        StunTimer = new Timer(1000*2.5);
                         return true;
                     }
                 }
@@ -1272,7 +1256,6 @@ public class RogueOutlaw
                 ObjectManager.Target.IsStunnable && StealthBuff.HaveBuff)
             {
                 CheapShot.Cast();
-                StunTimer = new Timer(1000*4);
                 return;
             }
             //1. Apply Roll the Bones when
@@ -1506,7 +1489,6 @@ public class RogueSubtlety
     private bool CombatMode = true;
 
     private Timer DefensiveTimer = new Timer(0);
-    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -1725,7 +1707,7 @@ public class RogueSubtlety
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            if (!ObjectManager.Target.IsStunned && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
             {
                 //Stun
                 if (ObjectManager.Target.IsStunnable)
@@ -1733,7 +1715,6 @@ public class RogueSubtlety
                     if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
                     {
                         WarStomp.Cast();
-                        StunTimer = new Timer(1000*2.5);
                         return true;
                     }
                 }
@@ -1899,10 +1880,9 @@ public class RogueSubtlety
             if (ObjectManager.Me.ComboPoint > MySettings.UseKidneyShotAboveComboPoints && KidneyShot.IsSpellUsable &&
                 ObjectManager.Me.Energy >= 25 && KidneyShot.IsHostileDistanceGood &&
                 //the target is stunnable and probably not stunned
-                ObjectManager.Target.IsStunnable && StunTimer.IsReady)
+                ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
             {
                 KidneyShot.Cast();
-                StunTimer = new Timer(1000*1 + ObjectManager.Me.ComboPoint);
                 return;
             }
             //Cast Goremaw's Bite when
