@@ -17809,6 +17809,19 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>18445</Entry>
+    <Name>Corki</Name>
+    <Position>
+      <X>-918.1429</X>
+      <Y>8663.936</Y>
+      <Z>172.4586</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>18383</Entry>
     <Name>Kurgatok</Name>
     <Position>
