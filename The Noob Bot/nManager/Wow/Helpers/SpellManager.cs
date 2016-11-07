@@ -225,12 +225,19 @@ namespace nManager.Wow.Helpers
                 return TimeLeftOnSpellCooldownLUA(spellId) > 0;
             List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
 
-            foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
+            foreach (SpellCooldownEntry spell in spellsOnCooldownList)
             {
+                var spellCooldown = spell; // bypass "readonly" status.
                 if (spellCooldown.GCDDuration > 0)
                     continue;
                 if (spellCooldown.SpellId != spellId && (spellCooldown.SpellCategoryId != categoryId || categoryId == 0))
                     continue;
+
+                if (spellCooldown.SpellId == spellId)
+                {
+                    if (spellCooldown.CategoryCooldownStartTime > 0 && spellCooldown.CategoryCooldownStartTime != spellCooldown.StartTime)
+                        spellCooldown.StartTime = spellCooldown.CategoryCooldownStartTime;
+                }
 
                 int currentWoWTime = Usefuls.GetWoWTime;
                 int elaspedTime = currentWoWTime - spellCooldown.StartTime;
@@ -858,6 +865,7 @@ namespace nManager.Wow.Helpers
             public uint Next;
             public uint SpellId;
             public uint ItemId;
+            public uint UNKNOWNPTR;
             public int StartTime;
             public int SpellOrItemCooldownDuration;
             public uint SpellCategoryId;
