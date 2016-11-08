@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 22950
+    ///   Offset and Pointer for Wow 22989
     /// </summary>
     public static class Addresses
     {
@@ -85,13 +85,13 @@
         {
             GetTime = 0xCFEF20, //FrameTime::GetCurTimeMs
             buildWoWVersionString = 0xD4F0B8, // buildWoWVersionStringFOUND
-            gameState = 0xEAC715, // Script_IsPlayerInWorld
+            gameState = 0xEAC71D, // Script_IsPlayerInWorld
             isLoading = 0xCF2760, //isLoadingFOUND
             AreaId = 0xC7EBD4, // AreaIdFOUND - AreaIdFOUNDCall
             SubAreaId = AreaId + 4, // AreaId + 4 bytes
             MapTextureId = 0xC87D68, //MapTextureIdFOUND
-            zoneMap = 0xEAC744, // Script_GetZoneText
-            subZoneMap = 0xEAC748, // Script_GetSubZoneText 
+            zoneMap = 0xEAC74C, // Script_GetZoneText
+            subZoneMap = 0xEAC750, // Script_GetSubZoneText 
             // saving
             TextBoxActivated = 0xBBE9AC, // ?// 18414
             LastHardwareAction = 0xD0E090, // ?// Script_ToggleRun
@@ -104,7 +104,7 @@
         {
             petGUID = 0xF1CF10, // petGUIDFOUND
             playerName = 0xF8BF70, // GetPlayerName 
-            RetrieveCorpseWindow = 0xEAD3E8, // RetrieveCorpseWindowFOUND
+            RetrieveCorpseWindow = 0xEAD3F0, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
             SkillValue = 0x200,
             SkillMaxValue = 0x400,
@@ -250,15 +250,15 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x81C7A,
-            FrameScript_ExecuteBuffer = 0xA6B55,
-            CGPlayer_C__ClickToMove = 0x2FFA05, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x2FA33B,
-            WowClientDB2__GetRowPointer = 0x201DD2,
-            CGWorldFrame__Intersect = 0x5EA43E,
-            Spell_C_HandleTerrainClick = 0x2B0850,
-            CGUnit_C__Interact = 0x52FB9,
-            strlen = 0x75A9C0, // ida _strlen
+            ClntObjMgrGetActivePlayerObj = 0x81C55,
+            FrameScript_ExecuteBuffer = 0xA699E,
+            CGPlayer_C__ClickToMove = 0x2FF905, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x2FA220,
+            WowClientDB2__GetRowPointer = 0x201BF7,
+            CGWorldFrame__Intersect = 0x5EA416,
+            Spell_C_HandleTerrainClick = 0x2B0616,
+            CGUnit_C__Interact = 0x52FB4,
+            strlen = 0x75ABC0, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
@@ -299,10 +299,10 @@
         /// </summary>
         public enum ActivateSettings
         {
-            AutoInteract_Activate_Pointer = 0xEAC53C, // CGUnit_C__CanAutoInteract
-            AutoDismount_Activate_Pointer = 0xEAC544, // Cvars+b7
-            AutoLoot_Activate_Pointer = 0xEAC55C, // CGGameUI__IsAutoLooting
-            AutoSelfCast_Activate_Pointer = 0xEAC568, // offset aAutoselfcast ; "autoSelfCast"
+            AutoInteract_Activate_Pointer = 0xEAC544, // CGUnit_C__CanAutoInteract
+            AutoDismount_Activate_Pointer = 0xEAC54C, // Cvars+b7
+            AutoLoot_Activate_Pointer = 0xEAC564, // CGGameUI__IsAutoLooting
+            AutoSelfCast_Activate_Pointer = 0xEAC570, // offset aAutoselfcast ; "autoSelfCast"
             Activate_Offset = 0x34,
         }
 
