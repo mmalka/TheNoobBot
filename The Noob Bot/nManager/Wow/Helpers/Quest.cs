@@ -495,6 +495,11 @@ namespace nManager.Wow.Helpers
                 int id = GetQuestID();
                 if (GetNumGossipActiveQuests() == 0 && id == questId)
                 {
+                    if (Others.IsFrameVisible("QuestFrameCompleteButton") && !Others.IsFrameVisible("QuestFrameCompleteQuestButton"))
+                    {
+                        Lua.RunMacroText("/click QuestFrameCompleteButton");
+                        Thread.Sleep(300);
+                    }
                     equip = CompleteQuest();
                     Thread.Sleep(Usefuls.Latency + 500);
                 }
@@ -522,6 +527,11 @@ namespace nManager.Wow.Helpers
                             }
                             if (id == questId)
                             {
+                                if (Others.IsFrameVisible("QuestFrameCompleteButton") && !Others.IsFrameVisible("QuestFrameCompleteQuestButton"))
+                                {
+                                    Lua.RunMacroText("/click QuestFrameCompleteButton");
+                                    Thread.Sleep(300);
+                                }
                                 equip = CompleteQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 // here it can be the next quest id presented automatically when the current one is turned in
@@ -553,6 +563,11 @@ namespace nManager.Wow.Helpers
                             id = GetQuestID();
                             if (id == questId)
                             {
+                                if (Others.IsFrameVisible("QuestFrameCompleteButton") && !Others.IsFrameVisible("QuestFrameCompleteQuestButton"))
+                                {
+                                    Lua.RunMacroText("/click QuestFrameCompleteButton");
+                                    Thread.Sleep(300);
+                                }
                                 equip = CompleteQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 CloseQuestWindow();

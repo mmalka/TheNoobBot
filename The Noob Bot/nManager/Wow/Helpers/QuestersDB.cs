@@ -224,5 +224,25 @@ namespace nManager.Wow.Helpers
             }
             return new Npc();
         }
+
+        public static Npc GetNpcNearbyByEntry(int entry)
+        {
+            try
+            {
+                Npc npcTemp = new Npc();
+                foreach (Npc npc in ListNpc)
+                {
+                    if (!(npcTemp.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)) && npcTemp.Position.IsValid)
+                        continue;
+                    npcTemp = npc;
+                }
+                return npcTemp;
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("QuestersDB > GetNpcNearbyByEntry(int entry): " + ex);
+                return new Npc();
+            }
+        }
     }
 }

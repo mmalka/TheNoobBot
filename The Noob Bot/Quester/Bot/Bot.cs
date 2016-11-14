@@ -121,7 +121,8 @@ namespace Quester.Bot
                 // Load CC:
                 CombatClass.LoadCombatClass();
 
-                const int QuesterStatePriority = 2;
+                const int questerStatePriority = 2;
+                ImportedQuesters = false;
 
                 // FSM
                 Fsm.States.Clear();
@@ -139,7 +140,7 @@ namespace Quester.Bot
                 Fsm.AddState(new MillingState {Priority = 5});
                 Fsm.AddState(new ProspectingState {Priority = 4});
                 Fsm.AddState(new Farming {Priority = 3});
-                Fsm.AddState(new QuesterState {Priority = QuesterStatePriority});
+                Fsm.AddState(new QuesterState {Priority = questerStatePriority});
                 Fsm.AddState(new MovementLoop {Priority = 1});
                 Fsm.AddState(new Idle {Priority = 0});
 
@@ -178,14 +179,16 @@ namespace Quester.Bot
             }
         }
 
+        public static bool ImportedQuesters = false;
+
         public static Npc FindQuesterById(int entry)
         {
-            foreach (Npc npc in Profile.Questers)
+            if (!ImportedQuesters)
             {
-                if (npc.Entry == entry)
-                    return npc;
+                QuestersDB.AddNpcRange(Profile.Questers);
+                ImportedQuesters = true;
             }
-            return QuestersDB.GetNpcByEntry(entry);
+            return QuestersDB.GetNpcNearbyByEntry(entry);
         }
     }
 }
