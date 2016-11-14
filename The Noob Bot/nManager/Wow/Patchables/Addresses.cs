@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 22995
+    ///   Offset and Pointer for Wow 22996
     /// </summary>
     public static class Addresses
     {
@@ -255,7 +255,7 @@
             CGPlayer_C__ClickToMove = 0x2FFA7C, // alias CGUnit_C__InitializeTrackingState
             FrameScript__GetLocalizedText = 0x2FA3B0,
             WowClientDB2__GetRowPointer = 0x201DF7,
-            CGWorldFrame__Intersect = 0x5EA495,
+            CGWorldFrame__Intersect = 0x5EA43A,
             Spell_C_HandleTerrainClick = 0x2B08BA,
             CGUnit_C__Interact = 0x52FB9,
             strlen = 0x75A9C0, // ida _strlen
