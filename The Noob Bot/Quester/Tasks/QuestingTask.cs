@@ -916,7 +916,7 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
+                    Npc Quester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
                     Quest.QuestPickUp(ref Quester, questObjective.QuestName, questObjective.QuestId);
                 }
                 if (Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.GetLogQuestIsComplete(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.QuestId))
@@ -928,7 +928,7 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
+                    Npc Quester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
                     Quest.QuestTurnIn(ref Quester, questObjective.QuestName, questObjective.QuestId);
                 }
                 if (!Quest.GetLogQuestId().Contains(questObjective.QuestId))
@@ -1330,7 +1330,7 @@ namespace Quester.Tasks
             // USE TAXI
             if (questObjective.Objective == Objective.UseFlightPath)
             {
-                Npc taxiMan = Bot.Bot.FindQuesterById(questObjective.TaxiEntry);
+                Npc taxiMan = Bot.Bot.FindNearestQuesterById(questObjective.TaxiEntry);
 
                 uint baseAddress = MovementManager.FindTarget(ref taxiMan);
                 if (MovementManager.InMovement)
@@ -1426,7 +1426,7 @@ namespace Quester.Tasks
                 return;
                 // Just go there, we don't  need to do anything when we are here, so no need for the usual "InMovement Return // baseAddress > 0" stuff.
             }
-            npc = Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
+            npc = Bot.Bot.FindNearestQuesterById(CurrentQuest.PickUp);
             int item = CurrentQuest.ItemPickUp;
             if (item != 0)
             {
@@ -1463,7 +1463,7 @@ namespace Quester.Tasks
                 }
             }
             QuestStatus = "Turn-In Quest";
-            Npc npc = Bot.Bot.FindQuesterById(CurrentQuest.TurnIn);
+            Npc npc = Bot.Bot.FindNearestQuesterById(CurrentQuest.TurnIn);
             if (npc == null)
                 return;
             Quest.QuestTurnIn(ref npc, CurrentQuest.Name, CurrentQuest.Id);

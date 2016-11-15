@@ -185,7 +185,19 @@ namespace Quester.Bot
         {
             if (!ImportedQuesters)
             {
-                QuestersDB.AddNpcRange(Profile.Questers);
+                if (Profile.Questers.Count > 0)
+                    QuestersDB.AddNpcRange(Profile.Questers);
+                ImportedQuesters = true;
+            }
+            return QuestersDB.GetNpcByEntry(entry);
+        }
+
+        public static Npc FindNearestQuesterById(int entry)
+        {
+            if (!ImportedQuesters)
+            {
+                if (Profile.Questers.Count > 0)
+                    QuestersDB.AddNpcRange(Profile.Questers);
                 ImportedQuesters = true;
             }
             return QuestersDB.GetNpcNearbyByEntry(entry);
