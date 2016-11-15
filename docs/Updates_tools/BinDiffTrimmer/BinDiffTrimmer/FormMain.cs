@@ -90,13 +90,13 @@ namespace BinDiffTrimmer
                     if (trimmed[1] != "1.00" && trimmed[1] != "0.99" && trimmed[1] != "0.98")
                         continue;
 
-                    if (!IsNumeric(trimmed[5]) || trimmed[4] == trimmed[6])
+                    if (!IsNumeric(trimmed[3]) || trimmed[4] == trimmed[6])
                         continue;
 
                     if (!trimmed[6].Contains("sub_") && !trimmed[6].Contains("__imp"))
                     {
                         if (!trimmed[6].Contains("Script_"))
-                            Logging.Write("00" + trimmed[5] + "\t" + trimmed[6]);
+                            Logging.Write(trimmed[3] + "\t" + trimmed[6]);
                     }
                 }
             }
