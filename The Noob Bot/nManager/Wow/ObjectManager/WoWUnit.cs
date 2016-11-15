@@ -2748,24 +2748,26 @@ namespace nManager.Wow.ObjectManager
         {
             if (_cleanTimer.IsReady)
             {
-                for (int i = _cachedUnitIdInfo.Count; i >= 0; i--)
-                {
-                    if (_cachedUnitIdInfo[i].TickCount > Environment.TickCount - 60000)
-                        _cachedUnitIdInfo.RemoveAt(i);
-                }
+                if (_cachedUnitIdInfo.Count > 1)
+                    for (int i = _cachedUnitIdInfo.Count; i >= 0; i--)
+                    {
+                        if (_cachedUnitIdInfo[i].TickCount > Environment.TickCount - 60000)
+                            _cachedUnitIdInfo.RemoveAt(i);
+                    }
                 _cleanTimer.Reset();
             }
-            for (int i = _cachedUnitIdInfo.Count; i >= 0; i--)
-            {
-                UnitIdInfo info = _cachedUnitIdInfo[i];
-                if (info.Guid == Guid && info.TickCount < Environment.TickCount - 60000)
-                    return info.UnitId;
-                if (info.Guid == Guid)
+            if (_cachedUnitIdInfo.Count > 1)
+                for (int i = _cachedUnitIdInfo.Count; i >= 0; i--)
                 {
-                    _cachedUnitIdInfo.RemoveAt(i);
-                    break; // More than 60 seconds elapsed, regenerate.
+                    UnitIdInfo info = _cachedUnitIdInfo[i];
+                    if (info.Guid == Guid && info.TickCount < Environment.TickCount - 60000)
+                        return info.UnitId;
+                    if (info.Guid == Guid)
+                    {
+                        _cachedUnitIdInfo.RemoveAt(i);
+                        break; // More than 60 seconds elapsed, regenerate.
+                    }
                 }
-            }
             string unitId = UnitId;
             var tmpClass = new UnitIdInfo {Guid = Guid, TickCount = Environment.TickCount, UnitId = unitId};
             _cachedUnitIdInfo.Add(tmpClass);
