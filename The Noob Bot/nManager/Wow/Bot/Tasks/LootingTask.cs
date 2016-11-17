@@ -153,27 +153,27 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if ((looted || !wowUnit.IsLootable))
                                 {
-                                    if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
+                                    if (wowUnit.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT))
                                     {
-                                        int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
+                                        int myHerbalismLevel = Skill.GetValue(SkillLine.Herbalism);
                                         if (myHerbalismLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                             continue;
                                         }
                                     }
-                                    else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT))
+                                    else if (wowUnit.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT) || wowUnit.Entry == 104895 || wowUnit.Entry == 104877)
                                     {
-                                        int myMiningLevel = Skill.GetValue(Enums.SkillLine.Mining);
+                                        int myMiningLevel = Skill.GetValue(SkillLine.Mining);
                                         if (myMiningLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                             continue;
                                         }
                                     }
-                                    else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
+                                    else if (wowUnit.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT))
                                     {
-                                        int myEngineeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
+                                        int myEngineeringLevel = Skill.GetValue(SkillLine.Engineering);
                                         if (myEngineeringLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
@@ -182,7 +182,7 @@ namespace nManager.Wow.Bot.Tasks
                                     }
                                     else
                                     {
-                                        int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
+                                        int mySkinningLevel = Skill.GetValue(SkillLine.Skinning);
                                         if (mySkinningLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
