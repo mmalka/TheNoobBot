@@ -232,9 +232,10 @@ namespace nManager.Wow.Helpers
                 Npc npcTemp = new Npc();
                 foreach (Npc npc in ListNpc)
                 {
-                    if (!(npcTemp.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)) && npcTemp.Position.IsValid)
+                    if (npc.Entry != entry)
                         continue;
-                    npcTemp = npc;
+                    if (npcTemp.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) || !npcTemp.Position.IsValid)
+                        npcTemp = npc;
                 }
                 return npcTemp;
             }
