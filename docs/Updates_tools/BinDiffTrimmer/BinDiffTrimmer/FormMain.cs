@@ -87,7 +87,7 @@ namespace BinDiffTrimmer
                             trimmed.RemoveAt(i);
                     }
 
-                    if (trimmed[1] != "1.00" && trimmed[1] != "0.99" && trimmed[1] != "0.98")
+                    if (trimmed[1] != "1.00" && trimmed[1] != "0.99" && trimmed[1] != "0.98" && trimmed[1] != "0.97" && trimmed[1] != "0.96" && trimmed[1] != "0.95" && trimmed[1] != "0.94" && trimmed[1] != "0.93")
                         continue;
 
                     if (!IsNumeric(trimmed[3]) || trimmed[4] == trimmed[6])
