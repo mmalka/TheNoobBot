@@ -104,11 +104,13 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("test eax, eax");
             fasm.AddLine("jne @execution");
 
+
+            fasm.AddLine("call " + (uint)(Wow.Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.CTMChecker));
+            fasm.AddLine("call " + (uint)(Wow.Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.CTMChecker2));
             fasm.AddLine("popfd");
             fasm.AddLine("popad");
 
             fasm.AddLine("jmp " + (JumpAddress + D3D.OriginalBytes.Length));
-
             Memory.WriteBytes(_mTrampoline, D3D.OriginalBytes);
             fasm.Inject(_mTrampoline + (uint) D3D.OriginalBytes.Length);
         }
