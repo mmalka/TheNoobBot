@@ -3928,6 +3928,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>2795</Entry>
+    <Name>Lenny "Fingers" McCoy</Name>
+    <Position>
+      <X>-8678.191</X>
+      <Y>458.157776</Y>
+      <Z>99.75386</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>2798</Entry>
     <Name>Pand Stonebinder</Name>
     <Position>
@@ -28833,6 +28845,28 @@
     </Position>
     <Type>RidingTrainer</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28760</Entry>
+    <Name>Hargus the Gimp</Name>
+    <Position>
+      <X>2346.35376</X>
+      <Y>-5720.404</Y>
+      <Z>153.922455</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28760</Entry>
+    <Name>Hargus the Gimp</Name>
+    <Position>
+      <X>2346.35376</X>
+      <Y>-5720.404</Y>
+      <Z>153.922455</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <Entry>28776</Entry>
@@ -56717,6 +56751,54 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92932</Entry>
+    <Name>Tinkmaster Overspark</Name>
+    <Position>
+      <X>4998.191</X>
+      <Y>2928.791</Y>
+      <Z>156.765961</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>TheMawofNashal</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92932</Entry>
+    <Name>Tinkmaster Overspark</Name>
+    <Position>
+      <X>4998.191</X>
+      <Y>2928.791</Y>
+      <Z>156.765961</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>TheMawofNashal</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92932</Entry>
+    <Name>Tinkmaster Overspark</Name>
+    <Position>
+      <X>5092.416</X>
+      <Y>3190.39185</Y>
+      <Z>387.030945</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>TheMawofNashal</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92932</Entry>
+    <Name>Tinkmaster Overspark</Name>
+    <Position>
+      <X>5092.416</X>
+      <Y>3190.39185</Y>
+      <Z>387.030945</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>TheMawofNashal</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92936</Entry>
     <Name>Aimee</Name>
     <Position>
@@ -57220,6 +57302,28 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>95242</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>1545.33167</X>
+      <Y>1410.28125</Y>
+      <Z>237.108521</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>ArtifactsDemonHunterOrderHall</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95242</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>1545.33167</X>
+      <Y>1410.28125</Y>
+      <Z>237.108521</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>ArtifactsDemonHunterOrderHall</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>95424</Entry>
     <Name>Traque-aube Krisek</Name>
     <Position>
@@ -57240,6 +57344,28 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95791</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>-8892.558</X>
+      <Y>1016.73792</Y>
+      <Z>124.413193</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95791</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>-8892.558</X>
+      <Y>1016.73792</Y>
+      <Z>124.413193</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>95844</Entry>
@@ -57340,6 +57466,28 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96650</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>1427.717</X>
+      <Y>1713.11462</Y>
+      <Z>54.4547348</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>legionnexus</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96650</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>1427.717</X>
+      <Y>1713.11462</Y>
+      <Z>54.4547348</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>legionnexus</ContinentId>
   </Npc>
   <Npc>
     <Entry>96778</Entry>
@@ -58070,6 +58218,28 @@
     </Position>
     <Type>Innkeeper</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97806</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>4443.453</X>
+      <Y>-395.887146</Y>
+      <Z>125.897789</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>WardenPrison</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97806</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>4443.453</X>
+      <Y>-395.887146</Y>
+      <Z>125.897789</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>WardenPrison</ContinentId>
   </Npc>
   <Npc>
     <Entry>97852</Entry>
@@ -59153,6 +59323,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>109912</Entry>
+    <Name>Captive Wyrmtongue</Name>
+    <Position>
+      <X>-8911.877</X>
+      <Y>1009.14581</Y>
+      <Z>124.281235</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>110521</Entry>
     <Name>Versorger Gerstenfuß</Name>
     <Position>
@@ -59160,8 +59341,8 @@
       <Y>2855.519</Y>
       <Z>308.8191</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
-	<Faction>Alliance</Faction>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -59172,8 +59353,8 @@
       <Y>2855.519</Y>
       <Z>308.8191</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Repair</Type>
-	<Faction>Alliance</Faction>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -59486,6 +59667,17 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>113404</Entry>
+    <Name>Illidari Darkdealer</Name>
+    <Position>
+      <X>-8905.826</X>
+      <Y>1024.73267</Y>
+      <Z>124.413193</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>113483</Entry>
@@ -60022,6 +60214,17 @@
     </Position>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>148960</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1811.80176</X>
+      <Y>-6001.63672</Y>
+      <Z>115.848129</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <Entry>152034</Entry>
@@ -61910,6 +62113,17 @@
     </Position>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>190914</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>2113.54</X>
+      <Y>-5796.0625</Y>
+      <Z>99.7134</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <Entry>191228</Entry>
@@ -66860,12 +67074,34 @@
     <Entry>241963</Entry>
     <Name>Mailbox</Name>
     <Position>
+      <X>-11060.1973</X>
+      <Y>-1990.90088</Y>
+      <Z>743.335754</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>241963</Entry>
+    <Name>Mailbox</Name>
+    <Position>
       <X>-796.268433</X>
       <Y>4497.295</Y>
       <Z>731.7591</Z>
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>241964</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-11050.55</X>
+      <Y>-2021.66785</Y>
+      <Z>746.2381</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>241964</Entry>
@@ -66882,6 +67118,17 @@
     <Entry>241965</Entry>
     <Name>Mailbox</Name>
     <Position>
+      <X>-11172.3662</X>
+      <Y>-1979.90564</Y>
+      <Z>743.7147</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>241965</Entry>
+    <Name>Mailbox</Name>
+    <Position>
       <X>-908.437134</X>
       <Y>4508.29</Y>
       <Z>732.138062</Z>
@@ -66893,12 +67140,34 @@
     <Entry>241966</Entry>
     <Name>Mailbox</Name>
     <Position>
+      <X>-11170.1387</X>
+      <Y>-2033.39441</Y>
+      <Z>747.347961</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>241966</Entry>
+    <Name>Mailbox</Name>
+    <Position>
       <X>-906.2104</X>
       <Y>4454.80127</Y>
       <Z>735.7713</Z>
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>241967</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-11115.3115</X>
+      <Y>-2101.91577</Y>
+      <Z>749.797546</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>241967</Entry>
@@ -66965,6 +67234,17 @@
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>242216</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-11112.4775</X>
+      <Y>-1929.25024</Y>
+      <Z>739.508057</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>242216</Entry>
@@ -67363,6 +67643,17 @@
     </Position>
     <Type>SmeltingForge</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>254865</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1426.52954</X>
+      <Y>1704.73608</Y>
+      <Z>54.30317</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>legionnexus</ContinentId>
   </Npc>
   <Npc>
     <Entry>255795</Entry>

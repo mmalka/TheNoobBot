@@ -1,4 +1,4 @@
-if (Skill.GetValue(SkillLine.Skinning) < 100)
+if (Skill.GetValue(SkillLine.Skinning) <= 0)
   return false;
 switch (ObjectManager.Me.WowSpecialization())
 {

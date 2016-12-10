@@ -11,9 +11,9 @@ if (questObjective.Hotspots.Count <= 0)
 if (!MovementManager.InMovement)
 {
   
-	if (questObjective.Hotspots[Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
+	if (questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
 	{
-		MovementManager.Go(PathFinder.FindPath(questObjective.Hotspots[Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)]));
+		MovementManager.Go(PathFinder.FindPath(questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)]));
 	}
 	else
 	{
@@ -24,8 +24,9 @@ if (!MovementManager.InMovement)
 /* Search for Entry */
 WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 WoWUnit unit =ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
-Point pos;
-uint baseAddress;
+Point pos = ObjectManager.Me.Position; /* Initialize or getting an error */;
+int q = QuestID; /* not used but otherwise getting warning QuestID not used */
+uint baseAddress = 0;
 
 /* If Entry found continue, otherwise continue checking around HotSpots */
 if (node.IsValid || unit.IsValid)
@@ -42,15 +43,30 @@ if (node.IsValid || unit.IsValid)
   
 	Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
 
-	if (MovementManager.InMovement)
-		return false; /* Waiting to reach Entry */
-		
+	Npc vNpc = new Npc();
+	vNpc = new Npc
+	{
+		Entry = 1337,
+		Position = pos,
+		Name = "Target",
+		ContinentIdInt = Usefuls.ContinentId,
+		Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+	};
+	
+		while(ObjectManager.Me.Position.DistanceTo(pos) >= questObjective.Range)
+	{	
+		if(ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+			return false;
+		MovementManager.FindTarget(ref vNpc, questObjective.Range);
+		Thread.Sleep(500);
+	}
+	
 	/* Entry reached, dismount */
 	MovementManager.StopMove();
 	MountTask.DismountMount();
    
 	if (questObjective.IgnoreFight)
-		Quest.GetSetIgnoreFight = true;
+		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 	
 	/* Interact With Entry */
 	Interact.InteractWith(baseAddress);
@@ -66,7 +82,7 @@ if (node.IsValid || unit.IsValid)
 	if (questObjective.GossipOptionsInteractWith != 0)
 	{
 		Thread.Sleep(250 + Usefuls.Latency);
-		Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
+		nManager.Wow.Helpers.Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
 	}
 
 	if (Others.IsFrameVisible("StaticPopup1Button1"))
@@ -79,5 +95,5 @@ if (node.IsValid || unit.IsValid)
 	Thread.Sleep(questObjective.WaitMs);
 
 	/* Interact Completed - InternalIndex and count is used to determine if obj is completed - questObjective.IsObjectiveCompleted = true; */
-	Quest.GetSetIgnoreFight = false;
+	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
 }

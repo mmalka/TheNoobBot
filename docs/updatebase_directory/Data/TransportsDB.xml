@@ -417,7 +417,7 @@
 		<Z>5.510755</Z>
       </BOutsidePoint>
     </Transport>
-		<Transport Id="183177" Name="Doodad_mushroombase_elevator01" Faction="Neutral" AContinentId="530" BContinentId="530">
+	<Transport Id="183177" Name="Doodad_mushroombase_elevator01" Faction="Neutral" AContinentId="530" BContinentId="530">
       <APoint> <!-- Telredor-->
         <X>285.7488</X>
         <Y>5918.209</Y>
@@ -447,6 +447,38 @@
 		<X>278.5167</X>
 		<Y>5952.019</Y>
 		<Z>149.7979</Z>
+      </BOutsidePoint>
+    </Transport>
+	<Transport Id="244644" Name="Warden's Ascent" Faction="Neutral" AContinentId="1468" BContinentId="1468">
+      <APoint> <!-- Warden -->
+        <X>4450.857</X>
+        <Y>-451.7679</Y>
+        <Z>118.2794</Z>
+      </APoint>
+      <AInsidePoint>
+		<X>4452.873</X>
+		<Y>-447.6285</Y>
+		<Z>118.9754</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+		<X>4454.747</X>
+		<Y>-434.7686</Y>
+		<Z>119.1848</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Warden -->
+        <X>4450.857</X>
+        <Y>-451.7679</Y>
+        <Z>253.4846</Z>
+      </BPoint>
+      <BInsidePoint>
+		<X>4452.873</X>
+		<Y>-447.6285</Y>
+		<Z>254.1807</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+		<X>4461.115</X>
+		<Y>-457.3201</Y>
+		<Z>254.2636</Z>
       </BOutsidePoint>
     </Transport>
     </Items>

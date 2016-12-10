@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 23171
+    ///   Offset and Pointer for Wow 23222
     /// </summary>
     public static class Addresses
     {
@@ -251,17 +251,18 @@
         /// </summary>
         public enum FunctionWow
         {
-            CTMChecker = 0x3126B1,
-            CTMChecker2 = 0x5CCA78,
-            ClntObjMgrGetActivePlayerObj = 0x81D12,
-            FrameScript_ExecuteBuffer = 0xA6A81,
-            CGPlayer_C__ClickToMove = 0x2FFE4C, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x2FA3B0,
-            WowClientDB2__GetRowPointer = 0x201C0B,
-            CGWorldFrame__Intersect = 0x5EA6B5,
-            Spell_C_HandleTerrainClick = 0x2B0CC0,
-            CGUnit_C__Interact = 0x53065,
-            strlen = 0x75AC60, // ida _strlen
+            WoWTextCaller = 0x06E0F77, // WoWCallingMule, "call eax, rt" address.
+            CTMChecker = 0x312163,
+            CTMChecker2 = 0x5CC817,
+            ClntObjMgrGetActivePlayerObj = 0x81D0E,
+            FrameScript_ExecuteBuffer = 0xA6AE5,
+            CGPlayer_C__ClickToMove = 0x2FF985, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x2FA2B2,
+            WowClientDB2__GetRowPointer = 0x201D88,
+            CGWorldFrame__Intersect = 0x5EA5DF,
+            Spell_C_HandleTerrainClick = 0x2B08C3,
+            CGUnit_C__Interact = 0x5307B,
+            strlen = 0x75AAA0, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,

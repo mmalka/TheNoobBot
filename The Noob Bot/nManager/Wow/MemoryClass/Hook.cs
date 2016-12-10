@@ -104,9 +104,13 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("test eax, eax");
             fasm.AddLine("jne @execution");
 
+            fasm.AddLine("mov edx, {0}", (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker));
+            fasm.AddLine("call " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.WoWTextCaller));
+            fasm.AddLine("call " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker2));
+            fasm.AddLine("push 0");
+            fasm.AddLine("add esp, 4");
 
-            fasm.AddLine("call " + (uint)(Wow.Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.CTMChecker));
-            fasm.AddLine("call " + (uint)(Wow.Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.CTMChecker2));
+
             fasm.AddLine("popfd");
             fasm.AddLine("popad");
 

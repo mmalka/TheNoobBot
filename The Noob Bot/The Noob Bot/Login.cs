@@ -167,14 +167,14 @@ namespace The_Noob_Bot
 
                 LoginButton.Enabled = false;
                 RefreshButton.Enabled = false;
-                //LoginServer.CheckServerIsOnline();
-                MessageBox.Show(@"This version is for suicidal botting, it's probably still detected, make sure to run HashChanger.exe and modify the hashes of all .exe and .dll from the directory", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
-                /*while (!LoginServer.IsOnlineserver)
+                LoginServer.CheckServerIsOnline();
+                //MessageBox.Show(@"This version is for suicidal botting, it's probably still detected, make sure to run HashChanger.exe and modify the hashes of all .exe and .dll from the directory", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
+                while (!LoginServer.IsOnlineserver)
                 {
                     Thread.Sleep(10);
                     Application.DoEvents();
                     Thread.Sleep(50);
-                }*/
+                }
                 LoginServer.CheckUpdate();
                 LoginButton.Enabled = true;
                 RefreshButton.Enabled = true;
