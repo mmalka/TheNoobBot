@@ -56,10 +56,10 @@ namespace nManager.Wow.ObjectManager
                 {
                     while (true)
                     {
-                        if (Memory.WowMemory.ThreadHooked && Memory.WowMemory.Memory.IsProcessOpen && Usefuls.InGame)
+                        if (Memory.WowMemory.ThreadHooked && Memory.WowMemory.Memory.IsProcessOpen && (Usefuls.InGame || nManagerSetting.AutoStartLoggingInfoProvided))
                         {
                             ObjectManager.Pulse();
-                            if (Usefuls.InGame && !ObjectManager.Me.IsValid)
+                            if (!nManagerSetting.AutoStartLoggingInfoProvided && Usefuls.InGame && !ObjectManager.Me.IsValid)
                             {
                                 nManager.Pulsator.Reset();
                             }

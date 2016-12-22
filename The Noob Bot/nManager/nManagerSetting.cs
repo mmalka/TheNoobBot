@@ -19,6 +19,13 @@ namespace nManager
         public static bool AutoStartProduct = false;
         public static string AutoStartProductName = "";
         public static string AutoStartProfileName = "";
+        public static string AutoStartEmail = "";
+        public static string AutoStartRealmName = "";
+        public static string AutoStartBattleNet = "";
+        public static string AutoStartCharacter = "";
+        public static string AutoStartPassword = "";
+        public static bool AutoStartLoggingInfoProvided = false;
+
 
         public static nManagerSetting CurrentSetting
         {

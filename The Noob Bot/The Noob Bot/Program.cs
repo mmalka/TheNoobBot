@@ -23,8 +23,19 @@ namespace The_Noob_Bot
             {
                 string productName = ExtractArgs(args, "product");
                 string profileName = ExtractArgs(args, "profile");
+                string battleNet = Others.DecryptString(ExtractArgs(args, "account"));
+                string wowEmail = Others.DecryptString(ExtractArgs(args, "email"));
+                string wowPassword = Others.DecryptString(ExtractArgs(args, "password"));
+                string realmName = Others.DecryptString(ExtractArgs(args, "realm"));
+                string character = Others.DecryptString(ExtractArgs(args, "character"));
+                bool loginInfoProvided = false;
                 Logging.Write("TheNoobBot started automatically. WoW Session Id = " + sId);
-                loginForm.AutoStart(sId, productName, profileName);
+                if (!string.IsNullOrEmpty(battleNet) && !string.IsNullOrEmpty(wowEmail) && !string.IsNullOrEmpty(wowPassword) && !string.IsNullOrEmpty(realmName) && !string.IsNullOrEmpty(character))
+                {
+                    Logging.Write("The game will be connected automatically with player " + character + " if not yet connected.");
+                    loginInfoProvided = true;
+                }
+                loginForm.AutoStart(sId, productName, profileName, battleNet, wowEmail, wowPassword,  realmName, character, loginInfoProvided);
             }
             /* End AutoStart code */
 

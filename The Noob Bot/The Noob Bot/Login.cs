@@ -18,6 +18,7 @@ namespace The_Noob_Bot
         private const string UpdateCheck = "573-567-555-554-606-605-593";
         private const string KeyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
         private int _autoStarted = -1;
+        private bool _loginInfoProvided = false;
 
         public Login()
         {
@@ -38,14 +39,22 @@ namespace The_Noob_Bot
             }
         }
 
-        public void AutoStart(int sessId, string productName, string profileName)
+        public void AutoStart(int sessId, string productName, string profileName, string battleNet, string wowEmail, string wowPassword, string realmName, string character, bool loginInfoProvided)
         {
             _autoStarted = sessId;
+            nManagerSetting.AutoStartLoggingInfoProvided = loginInfoProvided;
             if (string.IsNullOrEmpty(productName)) return;
             nManagerSetting.AutoStartProduct = true;
             nManagerSetting.AutoStartProductName = productName;
             if (string.IsNullOrEmpty(profileName)) return;
+            // following is facultative
             nManagerSetting.AutoStartProfileName = profileName;
+            nManagerSetting.AutoStartBattleNet = battleNet;
+            nManagerSetting.AutoStartEmail = wowEmail;
+            nManagerSetting.AutoStartPassword = wowPassword;
+            nManagerSetting.AutoStartRealmName = realmName;
+            nManagerSetting.AutoStartCharacter = character;
+
         }
 
         private void Translate()
@@ -281,14 +290,14 @@ namespace The_Noob_Bot
 
                     int idProcess = Others.ToInt32(idStringArray[0]);
 
-                    if (!Hook.IsInGame(idProcess))
+                    if (!Hook.IsInGame(idProcess) && !nManagerSetting.AutoStartLoggingInfoProvided)
                     {
                         MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_connect_to_the_game) + ".",
                             nManager.Translate.Get(nManager.Translate.Id.Stop), MessageBoxButtons.OK,
                             MessageBoxIcon.Stop);
                         return false;
                     }
-                    if (Hook.WowIsUsed(idProcess))
+                    if (Hook.WowIsUsed(idProcess) && !nManagerSetting.AutoStartLoggingInfoProvided)
                     {
                         DialogResult resulMb =
                             MessageBox.Show(
@@ -310,8 +319,14 @@ namespace The_Noob_Bot
                     Logging.Write("Select game process: " + SessionList.SelectedItem);
                     if (Pulsator.IsActive)
                     {
-                        if (Usefuls.InGame || !Usefuls.IsLoading)
+                        if (Usefuls.InGame && !Usefuls.IsLoading)
                             return true;
+                        if (nManagerSetting.AutoStartLoggingInfoProvided)
+                        {
+                            Others.LoginToWoW();
+                            if (Usefuls.InGame && !Usefuls.IsLoading)
+                                return true;
+                        }
                     }
                 }
             }

@@ -17,6 +17,7 @@ using nManager.Wow;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using nManager.Wow.Patchables;
 
 namespace nManager.Helpful
 {
@@ -1184,6 +1185,35 @@ namespace nManager.Helpful
         public static string GetClientIPAddress
         {
             get { return GetRequest(GetClientIPScriptLink, ""); } // We don't auth so we don't get "PLATINIUM" instead of the IP if Plat.
+        }
+
+        public static void LoginToWoW()
+        {
+            Login.SettingsLogin s = new Login.SettingsLogin
+            {
+                Login = nManagerSetting.AutoStartEmail,
+                Password = nManagerSetting.AutoStartPassword,
+                Realm = nManagerSetting.AutoStartRealmName,
+                Character = nManagerSetting.AutoStartCharacter,
+                BNetName = nManagerSetting.AutoStartBattleNet,
+            };
+
+            Logging.Write("Begin player logging with informations provided.");
+            Login.Pulse(s);
+            if (Usefuls.InGame && !Usefuls.IsLoading)
+            {
+                Thread.Sleep(5000);
+                if (Usefuls.InGame && !Usefuls.IsLoading)
+                {
+                    Logging.Write("Ending player logging with success.");
+                    ConfigWowForThisBot.ConfigWow();
+                    if (Products.Products.ProductName == "Damage Dealer" && !nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer)
+                        ConfigWowForThisBot.StartStopClickToMove(false);
+                    if (Products.Products.ProductName == "Heal Bot" && nManagerSetting.CurrentSetting.ActivateMovementsHealerBot)
+                        ConfigWowForThisBot.StartStopClickToMove(false);
+                    SpellManager.UpdateSpellBook();
+                }
+            }
         }
     }
 }
