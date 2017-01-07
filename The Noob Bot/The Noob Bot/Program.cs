@@ -33,6 +33,8 @@ namespace The_Noob_Bot
                 if (!string.IsNullOrEmpty(battleNet) && !string.IsNullOrEmpty(wowEmail) && !string.IsNullOrEmpty(wowPassword) && !string.IsNullOrEmpty(realmName) && !string.IsNullOrEmpty(character))
                 {
                     Logging.Write("The game will be connected automatically with player " + character + " if not yet connected.");
+
+                    ScriptOnlineManager.LoadScript();
                     loginInfoProvided = true;
                 }
                 loginForm.AutoStart(sId, productName, profileName, battleNet, wowEmail, wowPassword,  realmName, character, loginInfoProvided);

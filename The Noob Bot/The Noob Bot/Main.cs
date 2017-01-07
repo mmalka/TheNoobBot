@@ -55,7 +55,7 @@ namespace The_Noob_Bot
             }
             if (nManagerSetting.AutoStartProduct && !string.IsNullOrEmpty(nManagerSetting.AutoStartProductName) && !string.IsNullOrEmpty(nManagerSetting.AutoStartProfileName))
             {
-                if (nManagerSetting.AutoStartProductName == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim())
+                if (nManagerSetting.AutoStartProductName.ToLower() == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim().ToLower())
                 {
                     Products.ProductRemoteStart(new[] {nManagerSetting.AutoStartProfileName});
                 }
@@ -151,7 +151,7 @@ namespace The_Noob_Bot
                         if (!string.IsNullOrEmpty(nManager.Translate.Get(ret)))
                             text = text + " - " + nManager.Translate.Get(ret);
                     }
-                    if (text.Split('-')[0].Trim() == nManagerSetting.CurrentSetting.LastProductLoaded)
+                    if (text.Split('-')[0].Trim().ToLower() == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim().ToLower())
                         i2 = i;
                     ProductList.Items.Add(text);
                     i++;
