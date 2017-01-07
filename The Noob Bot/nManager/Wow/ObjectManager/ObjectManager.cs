@@ -747,7 +747,7 @@ namespace nManager.Wow.ObjectManager
                 var list = new List<WoWUnit>();
                 foreach (WoWUnit a in GetObjectWoWUnit60Yards())
                 {
-                    if (UnitRelation.GetReaction(Me.Faction, a.Faction) == Reaction.Hostile && !a.IsDead && (!a.InCombat || a.InCombatWithMe)) list.Add(a);
+                    if (UnitRelation.GetReaction(Me.Faction, a.Faction) < Reaction.Neutral && !a.IsDead && (!a.InCombat || a.InCombatWithMe)) list.Add(a);
                 }
                 return
                     list;

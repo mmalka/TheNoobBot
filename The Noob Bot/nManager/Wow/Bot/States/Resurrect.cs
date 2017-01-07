@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Management.Instrumentation;
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
@@ -101,9 +102,7 @@ namespace nManager.Wow.Bot.States
 
             Interact.Repop();
             Thread.Sleep(1000);
-            while (ObjectManager.ObjectManager.Me.PositionCorpse.X == 0 &&
-                   ObjectManager.ObjectManager.Me.PositionCorpse.Y == 0 &&
-                   ObjectManager.ObjectManager.Me.Health <= 0 && Products.Products.IsStarted && Usefuls.InGame)
+            while (!ObjectManager.ObjectManager.Me.PositionCorpse.IsValid && ObjectManager.ObjectManager.Me.Health <= 0 && Products.Products.IsStarted && Usefuls.InGame)
             {
                 Interact.Repop();
                 Thread.Sleep(1000);
@@ -144,8 +143,7 @@ namespace nManager.Wow.Bot.States
                     {
                         Interact.TeleportToSpiritHealer();
                         _battlegroundResurrect = new Timer(1000*35);
-                        Logging.Write(
-                            "The player have not been resurrected by any Battleground Spirit Healer in a reasonable time, Teleport back to the cimetary.");
+                        Logging.Write("The player have not been resurrected by any Battleground Spirit Healer in a reasonable time, Teleport back to the cimetary.");
                         Thread.Sleep(5000);
                     }
                     Thread.Sleep(1000);
@@ -161,9 +159,7 @@ namespace nManager.Wow.Bot.States
 
             #region Go To Corpse resurrection
 
-            if (ObjectManager.ObjectManager.Me.PositionCorpse.X != 0 &&
-                ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 &&
-                !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
+            if (ObjectManager.ObjectManager.Me.PositionCorpse.IsValid && !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
             {
                 while (Usefuls.IsLoading && Products.Products.IsStarted && Usefuls.InGame)
                 {
@@ -194,16 +190,11 @@ namespace nManager.Wow.Bot.States
                     if (points.Count > 1 || (points.Count <= 1 && !nManagerSetting.CurrentSetting.UseSpiritHealer))
                         MovementManager.Go(points);
                 }
-                while ((MovementManager.InMovement || LongMove.IsLongMove) &&
-                       Products.Products.IsStarted &&
-                       Usefuls.InGame && ObjectManager.ObjectManager.Me.IsDeadMe)
+                while ((MovementManager.InMovement || LongMove.IsLongMove) && Products.Products.IsStarted && Usefuls.InGame && ObjectManager.ObjectManager.Me.IsDeadMe)
                 {
                     if ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 25 && !_failed) ||
-                        (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.Player.RetrieveCorpseWindow) > 0 &&
-                         !_failed) ||
-                        ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(
-                            ObjectManager.ObjectManager.Me.Position) < 5)
+                        (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0 && !_failed) ||
+                        ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5)
                     {
                         LongMove.StopLongMove();
                         MovementManager.StopMove();
@@ -216,24 +207,44 @@ namespace nManager.Wow.Bot.States
                     Tasks.MountTask.Land();
                 }
 
-                if (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                    (uint) Addresses.Player.RetrieveCorpseWindow) <= 0)
+                if (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) <= 0)
                 {
                     _failed = true;
                 }
+                Point safeResPoint = Usefuls.GetSafeResPoint();
 
-                if (tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 26 ||
-                    Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                    (uint) Addresses.Player.RetrieveCorpseWindow) >
-                    0)
+                if (safeResPoint.IsValid && nManagerSetting.CurrentSetting.ActivateSafeResurrectionSystem)
                 {
-                    while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 27 ||
-                            Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                            (uint) Addresses.Player.RetrieveCorpseWindow) > 0) &&
-                           ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted && Usefuls.InGame)
+                    MovementManager.StopMove();
+
+                    bool success;
+                    List<Point> points = PathFinder.FindPath(safeResPoint, out success);
+                    if (!success)
+                        return;
+                    MovementManager.Go(points);
+                    while (safeResPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
+                    {
+                        Thread.Sleep(1000);
+                    }
+
+                    MovementManager.StopMove();
+                    if ((Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) && ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted &&
+                        Usefuls.InGame)
                     {
                         Interact.RetrieveCorpse();
                         Thread.Sleep(1000);
+                    }
+                }
+                else
+                {
+                    if (tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 26 || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0)
+                    {
+                        while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 27 || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) &&
+                               ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted && Usefuls.InGame)
+                        {
+                            Interact.RetrieveCorpse();
+                            Thread.Sleep(1000);
+                        }
                     }
                 }
             }
@@ -252,10 +263,7 @@ namespace nManager.Wow.Bot.States
             if (nManagerSetting.CurrentSetting.UseSpiritHealer || _forceSpiritHealer)
             {
                 Thread.Sleep(4000);
-                WoWUnit objectSpiritHealer =
-                    new WoWUnit(
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);
+                WoWUnit objectSpiritHealer = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);
                 int stuckTemps = 5;
 
                 if (!objectSpiritHealer.IsValid)
@@ -272,8 +280,7 @@ namespace nManager.Wow.Bot.States
                         Thread.Sleep(5000);
                     }
                     MovementManager.MoveTo(objectSpiritHealer.Position);
-                    while (objectSpiritHealer.GetDistance > 5 && Products.Products.IsStarted && stuckTemps >= 0 &&
-                           Usefuls.InGame)
+                    while (objectSpiritHealer.GetDistance > 5 && Products.Products.IsStarted && stuckTemps >= 0 && Usefuls.InGame)
                     {
                         Thread.Sleep(300);
                         if (!ObjectManager.ObjectManager.Me.GetMove && objectSpiritHealer.GetDistance > 5)

@@ -1103,5 +1103,44 @@ namespace nManager.Wow.Helpers
         {
             get { return Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.PetBattle.IsInBattle) == 1; }
         }
+
+        public static Point GetSafeResPoint()
+        {
+            float x = 0;
+            float y = 0;
+            Single degree = 0;
+            Point posCorpse = ObjectManager.ObjectManager.Me.PositionCorpse;
+            bool validPoint = false;
+            Point bestPoint = new Point();
+            Point rezPos = new Point(0, 0, 0);
+
+            while (degree < 360) //Search for safe rez point, if no safe point found, just rez and get killed again!
+            {
+                //Calculate position on a circle 15degrees at a time and check if we can go there
+                x = (float) (posCorpse.X + 36f*System.Math.Cos(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
+                y = (float) (posCorpse.Y + 36f*System.Math.Sin(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
+                rezPos = new Point(x, y, PathFinder.GetZPosition(x, y));
+
+                PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
+
+                if (validPoint) //Point Valid : keep only the point that is the farthest from the mobs
+                {
+                    WoWUnit mobc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), rezPos); //Closest mob from current point
+                    WoWUnit mobb = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), bestPoint); //Closest mob from best point
+
+                    if (degree == 0)
+                        bestPoint = rezPos; //First iterration
+
+                    if (bestPoint.DistanceTo(mobb.Position) < rezPos.DistanceTo(mobc.Position))
+                    {
+                        bestPoint = rezPos;
+                    }
+                }
+
+                degree += 15f;
+            }
+
+            return bestPoint;
+        }
     }
 }

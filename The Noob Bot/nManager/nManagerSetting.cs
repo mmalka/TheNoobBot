@@ -200,6 +200,8 @@ namespace nManager
             return false;
         }
 
+        // Safe Res:
+        public bool ActivateSafeResurrectionSystem = false;
         // Special DamageDealer:
         public bool ActivateAutoFacingDamageDealer = false;
         public bool ActivateMovementsDamageDealer = false;
