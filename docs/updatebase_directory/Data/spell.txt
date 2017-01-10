@@ -136,7 +136,6 @@
 674;Dual Wield
 686;Shadow Bolt
 688;Summon Imp
-689;Drain Life
 691;Summon Felhunter
 697;Summon Voidwalker
 698;Ritual of Summoning
@@ -1318,7 +1317,6 @@
 6061;Wave Beam
 6084;Summon Ghost Saber
 6114;Raptor Punch
-6117;Mage Armor
 6119;Combat Swap (DND)
 6122;Summon Vekniss Borer
 6123;Combat Swap (DND)
@@ -1777,8 +1775,6 @@
 7290;Soul Siphon
 7293;Zombie Form
 7295;Soul Drain
-7302;Frost Armor
-7321;Chilled
 7328;Redemption
 7331;Healing Aura (TEST)
 7340;Language Gnomish
@@ -3284,7 +3280,6 @@
 11922;Entangling Roots
 11923;Repair the Blade of Heroes
 11939;Summon Imp
-11958;Cold Snap
 11959;Poison Proc
 11960;Curse of the Dreadmaul
 11962;Immolate
@@ -6363,11 +6358,6 @@
 19369;Ancient Despair
 19372;Ancient Hysteria
 19380;Beast Slaying 33
-19381;Melee Specialization
-19382;Melee Specialization
-19383;Melee Specialization
-19384;Melee Specialization
-19385;Melee Specialization
 19386;Wyvern Sting
 19387;Entrapment
 19391;Fireball
@@ -11103,7 +11093,7 @@
 29525;Netherstep
 29528;Inoculate Nestlewood Owlkin
 29531;Ribbon Pole Channel
-29533;Sillithus Flag Drop (DND)
+29533;Silithyst: Flag Drop
 29534;Traces of Silithyst
 29535;Quest - Apprentice Mirveda - Test Soil
 29537;Summon Phantom Hound
@@ -11615,7 +11605,6 @@
 30478;Hemorrhage
 30479;Resist Shadow
 30481;Incendiary Shot
-30482;Molten Armor
 30485;Enrage
 30486;Super Sapper Charge
 30487;Nether Portal - Perseverence
@@ -13289,7 +13278,7 @@
 33294;Poached Bluefish
 33295;Golden Fish Sticks
 33296;Spicy Crawdad
-33297;Spell Haste Trinket
+33297;Fungal Frenzy
 33299;Coilfang Slave Pens Lvl 70 Boss3a Caster Trinket
 33316;Giselda Transform DND
 33322;Summon Vengeful Voidwalkers
@@ -13320,7 +13309,7 @@
 33359;Cooking
 33361;Master Cook
 33365;Select True Beam
-33370;Spell Haste
+33370;Fungal Frenzy
 33372;Attack Power - Feral (+0423)
 33373;Trinket Heal
 33377;Blessing of Auchindoun
@@ -21955,7 +21944,7 @@
 45348;Flame Touched
 45351;Gather Light Energy
 45353;Quest - Sunwell Daily - Ship Bombing Run Return
-45354;Item - Sunwell Dungeon Melee Trinket
+45354;Disdain
 45355;Item - T7 Melee Trinket Base
 45357;Inscription
 45358;Inscription
@@ -23850,7 +23839,6 @@
 48041;Summon the Brewmaiden
 48042;Summon the Black Brewmaiden
 48044;Orb Visual
-48045;Mind Sear
 48046;Use Camera
 48047;Iron Dwarf Snapshot Credit
 48048;Orb Channel
@@ -24835,7 +24823,6 @@
 49817;Zelig's Vision
 49818;Flower Child
 49820;Frostmourne Encased
-49821;Mind Sear
 49822;Bloated
 49823;BOTM - Bubble Brew - Summon Bubble
 49824;Arthas Calls to Spirits
@@ -53817,7 +53804,7 @@
 90896;Tendrils of Darkness
 90897;Item - Proc Spell Power
 90898;Tendrils of Darkness
-90899;Item - Proc Spell Power
+90899;Tendrils of Darkness
 90900;Focus
 90903;Gaze of the Banshee
 90905;Leaping Cleave
@@ -53869,7 +53856,7 @@
 90983;Arrival of the Naaru
 90984;The Last Relic of Argus
 90985;Dead Winds
-90986;Item - Proc Stacking Spell Power
+90986;Dead Winds
 90987;Plated Elekk Goad
 90988;Intricate Treasure Chest Key
 90989;Hymn of Power
@@ -53882,7 +53869,7 @@
 90998;Song of Sorrow
 90999;Throw
 91002;Crescendo of Suffering
-91003;Song of Sorrow
+91003;Crescendo of Suffering
 91004;Holy Fire
 91007;Dire Magic
 91008;Scramseax
@@ -53965,11 +53952,11 @@
 91137;Item - Proc Versatility On Crit
 91138;Cleansing Tears
 91139;Cleansing Tears
-91140;Item - Proc Versatility On Crit
+91140;Cleansing Tears
 91141;Anthem
 91142;Item - Proc Haste Rating
 91143;Anthem
-91144;Item - Proc Haste Rating
+91144;Anthem
 91146;Infantryman Suicide
 91147;Blessing of Isiset
 91148;Item - Proc Versatility
@@ -54108,7 +54095,7 @@
 91362;Stop
 91363;Heartened
 91364;Heartened
-91365;Item - Proc Strength
+91365;Heartened
 91366;Item - Proc Strength On Crit
 91367;Summon Phaoris
 91368;Eye of Doom
@@ -54536,10 +54523,10 @@
 92087;Herald of Doom
 92088;Item - Proc Crit Rating
 92089;Grace
-92090;Item - Proc Stacking Agility
+92090;Grace
 92091;Final Key
 92092;Lifebinder Foci - Off
-92093;Item - Proc Agility
+92093;Final Key
 92094;Eye of Vengeance
 92095;Item - Proc Agility On Crit
 92096;Eye of Vengeance
@@ -54616,7 +54603,7 @@
 92172;Great Fortitude
 92173;Shadow Breath
 92174;Hardened Shell
-92175;Item - Proc Mastery Rating
+92175;Hardened Shell
 92176;Crystal Shard
 92177;Armageddon
 92178;Calen Humanoid Transform
@@ -54626,7 +54613,7 @@
 92182;Armageddon
 92183;Detect: Quest Invis Zone 25
 92184;Lead Plating
-92185;Item - Proc Armor
+92185;Lead Plating
 92186;Amazing Fortitude
 92187;Amazing Fortitude
 92188;Master Tactician
@@ -54639,7 +54626,7 @@
 92204;Force Ride to Blackrock
 92205;Duelist
 92206;Summon - Farson Horse
-92207;Item - Proc Dodge
+92207;Duelist
 92208;Duelist
 92209;Item - Proc Dodge
 92210;Icicle Targeting
@@ -66824,6 +66811,7 @@
 114015;Anticipation
 114016;Bull Rush
 114017;Piercing Throw
+114018;Shroud of Concealment
 114019;Bull Rush
 114020;Piercing Throw
 114021;Piercing Throw
@@ -67885,8 +67873,6 @@
 115605;Miss Fanny
 115608;The Savior of Stoneplow: Eye Injury
 115609;Summon the Other Shazboodle
-115610;Temporal Shield
-115611;Temporal Ripples
 115613;Tar
 115614;Flash of Steel
 115615;Flash of Steel
@@ -68030,6 +68016,7 @@
 115831;Wrathstorm
 115832;Wrathstorm
 115833;Throw Torch
+115834;Shroud of Concealment
 115835;Rescuing Yombo
 115838;Matriarch's Prowess
 115839;Summon Yombo Companion
@@ -68043,9 +68030,11 @@
 115848;Trample
 115849;Forcecast Yombo Rescue Credit
 115850;Silverhorn Swiftness
+115851;Shroud of Concealment
 115852;Cobalt Petrification
 115853;Starling's Wrath
 115854;Yombo Yak: General Trigger to Yombo 01
+115855;Shroud of Concealment
 115856;Nullification Barrier
 115857;Pull!
 115858;Player Farm - Summon Stubborn Weed
@@ -74701,7 +74690,7 @@
 126467;Energize Mana
 126468;Price of Progress - Item - Proc Mana Energize
 126471;Oppress the Weak
-126473;Item - Spells Proc Crit
+126473;Predation
 126475;Noxious Venom
 126476;Predation
 126478;Flashfreeze
@@ -75304,7 +75293,7 @@
 127161;Heavenly Crimson Cloud Serpent
 127163;Power Orb
 127164;Heavenly Golden Cloud Serpent
-127165;Heavenly Jade Cloud Serpent
+127165;Yu'lei, Daughter of Jade
 127169;Heavenly Azure Cloud Serpent
 127170;Astral Cloud Serpent
 127171;Vicious Rend
@@ -79343,10 +79332,10 @@
 132625;Portal Effect: Vale of Eternal Blossoms
 132626;Portal: Vale of Eternal Blossoms
 132627;Teleport: Vale of Eternal Blossoms
-132629;Ring of Valor - Teleport In
+132629;Teleport In
 132631;Swarmling Anim Override
-132632;Ring of Valor - Teleport Out
-132633;Ring of Valor - In the Arena (Fight)
+132632;Teleport Out
+132633;In the Arena (Fight)
 132639;Queued for Brawl
 132640;Announcer Control Aura
 132642;Brawls - Summon Boss
@@ -79400,7 +79389,7 @@
 132731;Lightning Field
 132733;Summon Oil
 132734;Oil Toss
-132735;Ring of Valor - Boss Sends Name
+132735;Boss Sends Name
 132736;Flame Shock
 132737;Burning Oil
 132738;Throw Wrench
@@ -85188,7 +85177,6 @@
 140019;Summon Wrathion
 140020;Charged Beam (Right Hand)
 140021;Interrupt Shield
-140023;Ring of Peace
 140024;Arcane Amplifier
 140025;Overcharged
 140027;Activate All Anvils
@@ -105869,7 +105857,6 @@
 167097;Bolas
 167098;Bolas
 167099;Shadow Hunter Kajassa: 1H Melee Instakill
-167100;reuse
 167101;Shadow Hunter Kajassa: 2H Melee Instakill
 167102;Bloodmaul Kill Credit
 167103;Grabbing the Fishing Rod
@@ -111144,7 +111131,6 @@
 173369;Pet Toy - Fetch Ball - Has Ball (Rubber Duck)
 173371;Pet Toy - Fetch Ball (Rubber Duck) - Change Action Trigger
 173372;Ride Vehicle
-173373;reuse
 173374;Savage Thrash
 173375;Savage Thrash
 173376;Savage Thrash
@@ -116217,8 +116203,6 @@
 179332;Emergency Auto-Repair Ping
 179335;Throw Trident
 179336;Trident Equipped
-179337;Searing Insanity
-179338;Searing Insanity
 179340;Credit
 179341;Searching
 179343;Searching
@@ -121242,7 +121226,7 @@
 185401;Control Visual (Neutral)
 185402;Artifact Weapon Visual Copy
 185403;Stoneblood Poison Hidden
-185404;Test Proc on Jump
+185404;Test
 185405;Felstorm Gale
 185406;Felstorm Gale
 185407;Felstorm Gale
@@ -128800,7 +128784,7 @@
 194624;Send Event - Inn Greeting
 194625;Valor Medal of the First War
 194626;Now is the Time!
-194627;Now is the time!
+194627;Now is the Time!
 194628;Beam TEST
 194629;Expunge
 194630;Expunge
@@ -129348,9 +129332,7 @@
 195242;Souls Collected
 195243;Inner Peace
 195244;Light on Your Feet
-195245;Ebonbolt
 195246;Interact demon vellum, summon NPCs, kill credit
-195249;Ebonbolt
 195250;Double
 195253;Imprisoning Bubble
 195254;Swirling Scythe
@@ -129395,7 +129377,6 @@
 195294;Fortitude
 195295;Good Karma
 195296;Enter Greater Whirlpool
-195297;Ebonbolt
 195298;Spiritual Focus
 195299;Ghost State
 195300;Transfer the Power
@@ -129535,7 +129516,6 @@
 195448;Chilled to the Core
 195449;Metamorphosis
 195450;Blur
-195451;Hamlet's Wrath
 195452;Nightblade
 195453;Teleport
 195454;Summon Aethas
@@ -130108,7 +130088,6 @@
 196100;Demonic Power
 196102;Writhe in Agony
 196103;Absolute Corruption
-196104;Mana Tap
 196105;Contagion
 196107;Mrrglrr!
 196108;Mrrglrr!
@@ -130653,8 +130632,6 @@
 196719;Gift of the Mists
 196720;Keg Smash!
 196721;Light Brewing
-196722;Dizzying Kicks
-196723;Dizzying Kicks
 196724;Sacrificing Mystic's Soul
 196725;Refreshing Jade Wind
 196727;Provoke
@@ -131300,7 +131277,7 @@
 197466;Surge of the Stormgod
 197467;Bottomless Depths
 197469;Renewed Hope
-197470;Renewed Hope
+197470;Strength of Soul
 197472;Ael'yith - Intro
 197473;Summon Mist Phantasm
 197474;Ael'yith - Tyndrissen
@@ -133381,7 +133358,7 @@
 199846;Cancel Da-Nel
 199847;Grievous Wound
 199848;Massive Whomp
-199849;Void Lord
+199849;Lingering Insanity
 199850;Whirlwind
 199851;Whirlwind Off-Hand
 199852;Whirlwind
@@ -134214,7 +134191,7 @@
 200818;Twin Moonfire
 200819;Chaos Bomb
 200820;Chaos Bomb
-200821;Twin Moonfire Targeting Effect
+200821;Twin Moonfire
 200822;Rotting Earth
 200823;Nightborne Shield
 200826;Viny Grasp
@@ -135504,8 +135481,7 @@
 202266;Icky Goo
 202268;Portal Channel
 202271;Virtue's Blade
-202272;Incendiary Brew
-202273;Seal of Light
+202272;Incendiary Breath
 202274;Incendiary Brew
 202275;Holy Wrath <NYI>
 202276;Remove Calder's Aura
@@ -135773,7 +135749,7 @@
 202569;Scaling By Item Level
 202571;Scaling By Item Level
 202572;Vengeance
-202573;Vengeance: Focused Rage
+202573;Vengeance: Revenge
 202574;Vengeance: Ignore Pain
 202576;Hunt
 202577;Dome of Mist
@@ -136597,7 +136573,6 @@
 203525;Talon Strike
 203526;Neltharion's Fury
 203527;Fel Creep
-203528;Greater Blessing of Might
 203529;Disengage
 203531;Re-use Toy Conversion
 203532;Re-use Toy Conversion
@@ -138087,7 +138062,6 @@
 205180;Summon Darkglare
 205181;Shadowflame
 205182;Down to Azsuna: Teleport at End of Client-Side Scene
-205183;Secrets of the Necrolyte
 205184;Roaring Blaze
 205186;Revolt
 205187;Cripple
@@ -138129,7 +138103,6 @@
 205232;Water Spout
 205233;Execution
 205234;Healing Sphere
-205235;Arcane Assault
 205236;Powder Keg
 205237;Powder Keg
 205238;Powder Keg
@@ -138355,7 +138328,6 @@
 205485;Summon Scout
 205486;Starburst
 205487;Summon Scout
-205488;Apocalypse
 205489;See Wrath of Dargrul Corpse
 205490;Play Hub Intro Finale Scene
 205491;Army of the Dead
@@ -138573,7 +138545,6 @@
 205726;Chaos Bomb
 205727;Anti-Magic Barrier
 205728;Apply Aura
-205729;Greater Blessing of Might
 205730;PH - Can Attack During Aspect of the Turtle
 205732;Placing Jandvik Banner
 205733;Drelanim Whisperwind
@@ -138841,7 +138812,7 @@
 206330;Bonds of Fel
 206332;Call of the Wild
 206333;Taste for Blood
-206338;Uther's Guard
+206338;Chain of Thrayn
 206339;Bonds of Fel
 206340;Bonds of Fel
 206341;Corruption Meteor
@@ -138878,7 +138849,6 @@
 206383;Bonds of Fel
 206384;Empowered Bonds of Fel
 206385;Illusionary Night
-206386;PH - Reduce Cooldown of Last Stand/Shield Wall
 206387;Steal Light
 206388;Felburst
 206389;PH - Healing Touch/Regrowth Reduce Swiftmend CD
@@ -139278,7 +139248,6 @@
 206845;Void-Tainted Blade
 206846;Oozing Corruption
 206847;Parasitic Wound
-206848;Duplicate
 206850;Bonds of Fel
 206851;Ravaging Whirl
 206852;Deep Roots
@@ -139816,7 +139785,6 @@
 207437;Energy 75%
 207438;Aggramar's Stride
 207439;Void Nova
-207446;Xavaric's Magnum Opus
 207447;Bear Form
 207448;Absorbing Energy
 207449;Credit - Breach Absorbed
@@ -139916,7 +139884,7 @@
 207554;Spinning Crane Kick
 207555;An'juna's Trance
 207556;Heated Ground
-207558;Thrayn's Sacrifice
+207558;Uther's Guard
 207559;Thrayn's Sacrifice
 207560;G'Hanir, the Mother Tree
 207561;G'Hanir
@@ -140297,7 +140265,6 @@
 207998;Chill of the Twisting Nether
 207999;Shock of the Twisting Nether
 208000;Begin the Trial
-208001;PH - Arcane Power Reduced Mana Cost
 208002;Power in a Vessel
 208003;Icy Chains
 208004;Bomb!
@@ -140366,8 +140333,8 @@
 208086;Colossus Smash
 208087;Credit - Portal Taken
 208088;Shadowfrost Cleave
-208090;PH - Blink Can Be Used Again Within Short Duration
-208091;PH - Blink Can Be Used Again Within Short Duration
+208090;PH - Blink May Be Used Again Within Short Duration - Buff
+208091;Timeless Strategem
 208092;Kill Credit: Shinfel Blightsworn
 208093;Gravely Wounded
 208094;Chain Heal
@@ -140493,7 +140460,7 @@
 208229;Soulsever
 208230;Feast of Blood
 208231;Conversation: Give Elixir
-208232;Mind Sear
+208232;Mind Flay
 208233;Save Hiro Event
 208234;Save Hiro Event
 208235;Save Hiro Event
@@ -140961,7 +140928,7 @@
 208774;Dropped
 208775;Fel Protection
 208776;Elemental Rebalancers
-208777;PH - Allies in Healing Rain Receive More Healing From Your Other Healing Spells
+208777;Elemental Rebalancers
 208779;Force Equip
 208781;Moose Guardian Aura
 208782;Koltira's Newfound Will
@@ -141125,7 +141092,6 @@
 208948;General Trigger
 208949;General Trigger
 208950;General Trigger
-208951;PH - Mongoose Bite Increases Laceration Duration
 208952;Astromancer Skybox 1
 208954;Summon Controller Bunny
 208955;Astromancer Skybox 2
@@ -141474,7 +141440,7 @@
 209351;Resurrection
 209352;Boost 2.0 [Paladin+Priest] - Watch for Shield
 209353;Boost 2.0 [Paladin+Priest] - On Shield
-209354;PH - Fury Spent Reduces Metamorphosis Cooldown
+209354;Delusions of Grandeur
 209355;Large Blue Aura with Windfury Base
 209356;Pain Tolerance (Under 20)
 209357;Pain Tolerance (Over 20)
@@ -142701,7 +142667,7 @@
 210712;Aftershock
 210714;Icefury
 210715;Holy Judgment
-210716;Mana Shield
+210716;Force Barrier
 210717;Create TH Conversation
 210718;Holy Judgment
 210720;Create Conversation
@@ -144675,7 +144641,7 @@
 212871;Defensive Spikes
 212872;Electrical Storm
 212874;Temporal Orb
-212875;PH - Maim AoEs
+212875;Fiery Red Maimers
 212876;Summon Creep
 212877;Electrical Storm
 212878;Belly Slam
@@ -145178,7 +145144,6 @@
 213420;Tentacle Bash
 213421;Arcane Orb
 213422;Soul Essence
-213423;Patient Sniper
 213425;Nesingwary Camp Reaction
 213426;Sweeping Blast
 213427;Warbringer
@@ -145893,7 +145858,7 @@
 214202;Rule of Law
 214203;Spear of Light
 214204;Volatile Corruption
-214205;Holy Trine
+214205;Trinity
 214206;Atonement
 214207;Ethel Waterwise Idle Loop
 214209;Initialize - Mythic
@@ -149478,7 +149443,6 @@
 218139;Retrieve Chest 03
 218141;Violent Winds
 218142;Entomb
-218143;Apocalypse
 218144;Violent Winds
 218145;Violent Winds
 218146;Fel Spike
@@ -155265,7 +155229,6 @@
 224473;Defiant Strike
 224474;Summon Imp
 224475;Summon Lesser Demon
-224476;Xavaric's Magnum Opus
 224477;Summon Imp
 224478;Summon Imp
 224479;Summon Imp
@@ -156219,7 +156182,7 @@
 225531;Glyph of the Doe
 225532;Glyph of the Feral Chameleon
 225533;Glyph of the Forest Path
-225534;Glyph of Autmnal Bloom
+225534;Glyph of Autumnal Bloom
 225535;Glyph of Arachnophobia
 225536;Glyph of Nesingwary's Nemeses
 225537;Glyph of the Bullseye
@@ -157565,6 +157528,8 @@
 227048;Repair Portal
 227049;Suramar Portal
 227050;Repair Portal
+227051;Legionnaire Murky
+227052;Knight-Captain Murky
 227053;Emote To Player Failure
 227054;Font of Power
 227055;Font of Power
@@ -158419,7 +158384,6 @@
 228020;Examining
 228021;Mist Infusion
 228022;Val'kyr's Might
-228023;Reanimation
 228024;Valarjar's Might
 228025;Heat Wave
 228026;Heat Wave
@@ -158724,7 +158688,7 @@
 228354;Flurry
 228355;Flickering
 228357;Kill Credit
-228358;Flurry
+228358;Winter's Chill
 228359;Grab Fire
 228360;Void Eruption
 228361;Void Eruption
@@ -159063,6 +159027,8 @@
 228759;Create Conversation
 228760;Blessed Bandage
 228762;The Cleaner
+228764;Goblin Jets Kit
+228765;Goblin Jets
 228767;Tentacle Strike
 228768;Salty Spittle
 228769;Dark Discharge
@@ -159084,6 +159050,7 @@
 228792;Infernal Power
 228793;Infernal Power
 228794;Flaming Volatile Foam
+228795;Fuse
 228796;Ignite Soul
 228797;Gripping Tentacle
 228798;Teleport To Horde Stalker
@@ -159098,12 +159065,21 @@
 228809;Volatile Foam
 228810;Briney Volatile Foam
 228811;Briney Volatile Foam
+228812;Cannon Blast!
 228814;Begin the Trial
+228815;Cannon Blast!
+228816;Fuse Fire
 228817;Volatile Foam
 228818;Shadowy Volatile Foam
 228819;Shadowy Volatile Foam
+228820;Fuse
+228821;Fuse
+228822;Fuse Fire
+228823;Fuse Fire
 228824;Volatile Foam
 228825;Will of the Mountain King
+228826;Charrrrrrge!
+228827;Charrrrrrge!
 228828;Gripping Tentacle
 228829;Burning Bones
 228830;Burning Bones
@@ -159129,13 +159105,19 @@
 228852;Shared Suffering
 228853;Crashing Waves
 228854;Mist Infusion
+228855;Moose Run
+228856;Moose Run
+228857;Moose Run
 228858;Redemption of the Fallen
 228859;Redemption of the Fallen
+228860;Moose Run
 228861;Mana Generator Active
 228862;Charred Earth
 228863;Charred Earth
 228864;Charred Earth
 228865;Main Shield Active
+228866;Moose Run
+228867;It's Lit
 228868;Brackish Bolt
 228869;Crashing Waves
 228870;Spear of Light
@@ -159172,8 +159154,10 @@
 228904;Fel Eruption
 228905;Fel Eruption
 228906;The Expendables
+228907;Area Trigger Controller
 228908;Examine Beacon
 228909;Permanent Feign Death (Burned, Partial HP, Fel)
+228910;Burning Ground
 228911;Odyn's Test
 228914;Stormforged Spear
 228915;Stormforged Spear
@@ -159225,12 +159209,17 @@
 228972;Gate Siege - Cutscene
 228973;Sigil of Flame
 228974;Soul Leech
+228975;Water Orb
 228976;Coldmist Stalker Spawn
+228977;Water Orb
 228979;Arcane Channeling
 228980;Coldmist Stalker Web Spawn
+228981;Water Shield
+228982;Throw Water Orb
 228984;Bilewater Liquefaction
 228985;Web Spray
 228986;Web Spray
+228988;Burning Ground
 228989;Examine Beacon
 228990;Examine Beacon
 228991;Arcane Bolt
@@ -159247,25 +159236,59 @@
 229005;Arcane Orb
 229006;Cancel Aura
 229007;Gather Soul Essence
+229008;Transform: Siegemaster Mar'tak
 229009;Shared Health
 229010;Shared Health
 229011;Targeting - Being Fixated
+229012;Shockwave
+229013;Shockwave
+229014;Transform: Kormrok
 229015;Nightborne Boat Ride
 229016;Aargoss Talking Head
 229017;An Elven Problem Completion Conversation
+229018;Shockwave
+229020;Shockwave
+229021;Shockwave
+229022;Grasping Hand
+229023;Grasping Hand
+229024;Crush
+229025;Ember Shield
+229026;Death Throes
 229027;Activating
+229028;Death Throes
+229029;Death Throes
+229030;Death Throes
+229031;Death Throes
 229032;Activating
+229033;Transform: Kilrogg Deadeye
 229034;Warm Up Suramar Siege Scenario
+229035;Acidic Wound
+229036;Transform: Gurtogg Bloodboil
+229037;Gavel of the Tyrant
+229038;Gavel of the Tyrant
+229039;Gavel of the Tyrant
+229040;Transform: Tyrant Velhari
 229041;Imbued Silkweave Bag
+229042;Black Hole
 229043;Imbued Silkweave Bag
+229044;Black Hole
 229045;Imbued Silkweave Bag
+229046;Transform: Xhul'horac
 229047;Intro Conversation
 229048;Summon Trap Rune
 229049;Outro Conversation
 229050;Summon Ghost
+229051;Fel Imp-losion
+229054;Fel Imp-losion
+229056;Fel Blast
+229057;Transform: Mannoroth
+229058;Transform: Archimonde
 229059;Boat Ride
+229060;Shadowfel Burst
 229061;Boat Ride
 229062;Imbued Silkweave Bag
+229065;Summon Dazzle
+229066;Heal
 229067;Cancel Aura: Carry Oculeth
 229068;Intro Conversation
 229069;A Familiar Face Accept Conversation
@@ -159296,31 +159319,61 @@
 229105;Drudge Ghoul
 229106;Wicked Soul
 229107;Arcanetic Ring
+229108;Charge
 229109;Arcanetic Ring
 229110;Stardust
+229111;Revive Dazzle
 229112;Stealth
 229113;Kill Credit
 229115;Dancing Blade
 229118;BUG - Immune: Knockback causing grey cast bars
 229119;Orb of Corruption
+229120;Powershot
 229121;Fel Lightning
 229122;Fel Lightning
+229123;Powershot
+229124;Powershot
+229125;Powershot
+229126;Peck
+229127;Powershot
 229128;Gate Siege - Aftermath Scene
+229130;Slippy Slain
+229131;Summon Slippy
 229132;Medivh Interact
 229135;Recently Fixated
+229137;Volley
+229139;Volley
+229141;Slippy
+229142;Slide
+229143;Revive Dazzle
+229144;Slide
 229145;Arcane Reversal
+229146;Revive Dazzle
+229148;Slide
 229150;Arcane Prison
 229151;Disintegrate
+229152;Sit Down
 229153;Disintegrate
+229154;High Noon
 229155;Send Jailer Event
+229156;Barrier Field
 229157;Shackled
 229158;Summon Angry Withered
 229159;Chaotic Shadows
 229160;Explosive Shadows
 229161;Explosive Shadows
+229162;Crushing Darkness
+229163;Crushing Darkness
+229164;Crushing Darkness
+229165;Fel Crystal
+229166;Fel Crystal
+229167;Transform: Gorefiend
 229168;Test for Players
 229169;Test for Players
 229170;Planting Ward
+229171;Fel Crystal
+229172;Transform: Fel Lord Zakuun
+229173;Volley Clean Up
 229174;Vantus Rune: Odyn
 229175;Vantus Rune: Guarm
 229176;Vantus Rune: Helya
@@ -159357,18 +159410,23 @@
 229212;Nagrand Arena - Team Frostwolf
 229213;Throw Telemancy Orb
 229214;Initialize Tiles
+229215;Electrifying the Dance Floor
 229216;FLAME CRASH NEXT
 229217;Potion of Prolonged Power
 229218;Potion of Prolonged Power
 229219;SOULSEVER NEXT
 229220;Potion of Prolonged Power
+229221;Sound Wave
 229222;Abandon Quest - Suramar Finale Scenario
+229223;Electrifying the Dance Floor
 229224;Siege Complete
 229225;Void Dissolve Out
 229226;Nightbane Transform
+229227;Electrifying the Dance Floor
 229229;Hologram
 229230;Cosmetic - Stunned State
 229231;Soul Rend
+229232;Electrifying the Dance Floor
 229233;Identify Memory
 229234;Identify Memory
 229235;Identify Memory
@@ -159383,6 +159441,8 @@
 229248;Fel Beam
 229249;Fel Flames
 229250;Fel Flames
+229251;Lava Bomb
+229253;Lava Bomb
 229254;Arcing Storm
 229255;Arcing Storm
 229256;Arcing Storm
@@ -159396,6 +159456,7 @@
 229264;Vanish
 229265;Garrote
 229266;Presence of the First Arcanist
+229269;Lava Bomb
 229270;Rallying
 229271;Snobold Cosmetic
 229272;Snobold Cosmetic
@@ -159433,8 +159494,22 @@
 229310;Blightbreath Cosmetic
 229311;Drudge Ghoul Cosmetic
 229312;Drudge Ghoul Cosmetic
+229313;Lava Wave
 229314;Stardust Cosmetic
 229315;Stardust Cosmetic
+229316;Electrifying the Dance Floor
+229317;Electrifying the Dance Floor
+229318;Electrifying the Dance Floor
+229319;Electrifying the Dance Floor
+229320;Electrifying the Dance Floor
+229321;Electrifying the Dance Floor
+229322;Electrifying the Dance Floor
+229323;Step to This
+229324;Electrifying the Dance Floor
+229325;Horizontal Dummy
+229326;Vertical Dummy
+229327;Lava Wave
+229328;Lava Wave
 229329;Rook Move
 229330;Fel Explosion
 229331;Rook Move
@@ -159453,7 +159528,10 @@
 229348;Gained Acces
 229349;Curse of the Tampered Tome
 229350;Roaring Leap
+229351;Make Dazzle Visible
 229353;Feeding Birds
+229357;Dazzle Fixate
+229358;Burrow
 229361;Teleport: Lighthouse
 229362;Siege Scenario Wrap Up Scene
 229364;Intro Conversation
@@ -159469,11 +159547,22 @@
 229390;TEMP Vashj'ir Intro Workaround
 229391;Rando Conversation 01
 229392;Queen Move
+229393;Lava Burst
+229394;Molten Slag
+229395;Molten Slag
+229396;Lava Wave
+229398;Lava Spit
 229399;7.X - Fix boosted characters who abandon Broken Shore
 229400;Activate Beacon
 229401;Andaris Force Shield
+229402;Lava Puddle
+229405;Step to This
+229407;Avatar
 229409;[DNT] Withered Drain Andaris
 229411;Queen Move
+229413;Stormburst
+229419;Hungry Hungry
+229420;Devour
 229421;Kill Credit - Secured Breach
 229423;King  Moves
 229424;King Move
@@ -159490,14 +159579,28 @@
 229442;Chess Piece
 229444;Cancel Aura
 229446;Intro Conversation
+229447;Pandaren Slain
+229450;Player Cart Wins
+229451;Switch Seats
+229452;Enemy Cart Wins
+229454;Switch Seats
+229455;Switch Seats
+229456;Switch Seats
 229457;Sands of Time
+229460;Pull Coldbrew Rickshaw
+229464;Pull Coldbrew Rickshaw
+229465;Dance Off
 229466;Attacking
 229467;Chess Piece
 229468;Move Piece
 229469;Valarjar's Bond
 229470;Chess Piece
+229471;Lightning Crash
 229473;Andaris Teleport v2
+229475;Block Coldbrew Rickshaw
+229476;Block Coldbrew Rickshaw
 229478;Mythic: Call Add
+229479;Lightning Crash
 229480;Headlong Charge
 229482;Intro Conversation
 229483;Outro Conversation
@@ -159505,17 +159608,25 @@
 229488;Nightborne Weaponry - Staff
 229489;Royalty
 229490;King's Court
+229491;Brewmaster's Kick
+229492;Brewmaster's Kick
 229493;King's Court
 229494;Conversation
 229495;Vulnerable
 229496;Energy Explosion
+229497;Pull Coldbrew Rickshaw
 229498;Placing Trap
 229499;Midnight
 229505;Send Event
 229510;Arcane Explosion
 229511;Unleashed Power
+229513;Step to This
 229514;[DNT] Shield Link
 229516;Ring Bell
+229517;Rising Mountain Spear
+229518;Dwarven Pride
+229519;Dwarven Pride
+229522;Flying Serpent Kick
 229523;Despawn Bird Clone
 229524;Severed Soul
 229528;Backlash
@@ -159526,6 +159637,7 @@
 229536;Learn Track Mechanicals
 229537;Place Wine
 229539;Holding Grog
+229540;Boss Aura
 229542;Pouring Grog
 229543;Nightborne Weaponry - Spellbreaker
 229544;Bishop Move
@@ -159555,23 +159667,31 @@
 229570;Rook Move
 229571;Uncontrollable Energy
 229572;Move Pieces
+229573;Sweet Moves
 229574;Royal Slash
 229576;Draw Power
 229577;Draw Power
+229578;Sweet Moves
 229579;Branded
 229580;Branded
 229581;Branded
 229582;Branded
 229583;Branded
 229584;Protected
+229585;Mocking Laughter
+229586;Sweet Moves
+229587;Ogronwash
 229588;Triggered Explosion
+229589;Indecision
 229591;Demonic Portal
+229593;Fixate
 229594;Vision
 229595;Fel Mortar
 229596;Slumber
 229597;Fel Mortar
 229598;Portal Transform
 229599;Demonic Portal
+229600;Disoriented
 229601;Runic Brand
 229602;Runic Brand
 229603;Runic Brand
@@ -159596,7 +159716,23 @@
 229622;Fel Breath
 229623;Fel Breath
 229624;Summon Nightborne Rebel
+229625;Electrifying the Dance Floor
+229626;Electrifying the Dance Floor
 229627;Summon Nightfallen Rebel
+229628;Electrifying the Dance Floor
+229629;Electrifying the Dance Floor
+229630;Electrifying the Dance Floor
+229631;Electrifying the Dance Floor
+229632;Electrifying the Dance Floor
+229633;Electrifying the Dance Floor
+229634;Electrifying the Dance Floor
+229635;Electrifying the Dance Floor
+229636;Electrifying the Dance Floor
+229637;Electrifying the Dance Floor
+229638;Electrifying the Dance Floor
+229640;Electrifying the Dance Floor
+229641;Electrifying the Dance Floor
+229642;Electrifying the Dance Floor
 229643;Training Rebels
 229644;Unerring Blast
 229645;Raven Form
@@ -159604,6 +159740,7 @@
 229651;Energy Portal
 229653;Kill Credit - Big Talk Done
 229656;Odyn Achievement - Purple Tell
+229657;Hippo Power
 229658;Odyn Achievement - Red Tell
 229659;Odyn Achievement - Yellow Tell
 229660;Odyn Achievement - Blue Tell
@@ -159626,17 +159763,21 @@
 229682;Gleeful Immolation
 229683;Gleeful Immoliation
 229684;Runic Mastery
+229686;Electrifying the Dance Floor
+229687;Frayfeather Hatchling
 229688;Ping Medivh
 229692;Scratch
 229693;Poison Fang
 229696;Stampede
 229697;Stampede
 229698;Stampede
+229699;Hatching Frayfeather
 229700;Orb of Destruction
 229701;Suppressing Fire
 229704;Strike
 229705;Web
 229706;Leech Life
+229709;Extend Hatchling Duration
 229711;Arcane Blast
 229712;Follower: Moroes
 229713;Track Essence
@@ -159657,13 +159798,16 @@
 229732;Place Cheese
 229734;Place Rib Roast
 229735;Between the Pages
+229736;Sonny/Wes Slain
 229737;Solar Collapse
 229738;Cascadent Star
 229739;Cascadent Star
 229740;Cascadent Star
 229741;Cascadent Star
+229743;Summon Hippogryph
 229746;Empowering
 229747;Empowering
+229748;Channel Earth Energy
 229749;Raid Door Shield
 229750;Fortified Arcshield
 229751;Arcane Nullification
@@ -159681,6 +159825,7 @@
 229768;Flawed Programming
 229769;Flawed Programming
 229770;Flawed Programming
+229774;Volunteer City Guard
 229776;Empowering
 229778;Empowering
 229779;Empowering
@@ -159731,16 +159876,27 @@
 229839;Refugee Tracker Aura
 229840;Cancel One Refugee Tracker Aura
 229842;Moroes Intro
+229843;Whirling Kick
 229845;Anti-Aircraft Guns
 229846;Anti-Aircraft Guns
 229847;Moroes Ability Callout Coat Check
 229848;Moroes Ability Callout Coat Check
 229849;Moroes Ability Callout Ghastly Purge
 229850;Moroes Ability Callout Ghastly Purge
+229851;Whirling Kick
+229852;Storm, Earth, and Fire
+229853;Storm, Earth, Fire
+229855;Storm, Earth, Fire
+229856;Storm, Earth, Fire
 229857;Empowering
 229858;Empowering
 229859;Empowering
+229860;Storm, Earth, and Fire
+229861;Storm, Earth, and Fire
+229862;Storm, Earth, and Fire
 229863;Ensemble: Blackened Defias Armor
+229865;Moment of Zen
+229866;Moment of Zen
 229867;Oil-Stained
 229868;Oil-Stained
 229869;Drudge Fluid
@@ -159751,9 +159907,12 @@
 229874;Camera Shake Test
 229876;Multi Shot
 229877;Maximum Repair
+229878;Zen Orb
 229879;Fly to Black Rook Hold
 229881;Arcanist's Invisibility
+229882;Go Go Go
 229883;Outro Conversation
+229884;Zen Orb
 229885;Andaris Force Shield
 229886;Terminate
 229887;Terminate
@@ -159762,6 +159921,8 @@
 229890;Leaping Claw
 229891;Intro Conversation
 229892;Outro Conversation
+229893;Barrier Field
+229894;Fragment Destroyed
 229895;Warning Squawk
 229896;Intro Conversation
 229897;Outro Conversation
@@ -159779,13 +159940,18 @@
 229914;Khadgar's Here!
 229916;Rescue Refugee
 229917;Infernal  Torment
+229918;Path of Despair
 229919;Rescue Refugee
 229920;Temporal Defenses
 229921;Abandon
+229922;Lunelli Earth/Wind Channel
 229923;Talon Rend
+229926;Path of Despair
 229929;Energy Tracker
 229931;Teleport: Back to Post Siege Khadgar
 229933;Disintegrate
+229934;Burnt Tips
+229936;Rumble Card: Grief Warden
 229941;Place Sigil
 229942;The Oculeth Special
 229943;Gleeful Immoliation
@@ -159799,7 +159965,15 @@
 229952;Fel Obelisk
 229953;Fel Obelisk
 229954;Eye Sore
+229955;Rumble Card: Penguin Stampede
+229956;Rumble Card: Battle of the Brew
+229957;Rumble Card: Senya
 229958;Between Times
+229959;Rumble Card: Rumble 05
+229960;Rumble Card: Rumble 06
+229961;Disquieted Mind
+229962;Rumble Card: Rumble 07
+229963;Rumble Card: Rumble 08
 229964;Protected by Khadgar
 229967;Eye Sore
 229968;Eye Sore
@@ -159813,6 +159987,9 @@
 229989;Burning Tile
 229990;Fel Obelisk
 229992;Fel Channeling
+229993;Frag Launcher
+229994;Frag Launcher
+229998;Maniacal Laugh
 229999;Calling Mists
 230000;Call Prisoners
 230001;Fel Channeling
@@ -159827,10 +160004,19 @@
 230014;Boat Eject Prisoners
 230015;Holy Bolt
 230017;Holy Bolt
+230018;Free Zeppelin Rides
 230019;Intro Conversation
 230020;Outro Conversation
+230023;Free Drinks!
+230025;Free Potions!
+230027;Brawler's Spirit Healer
+230029;Financial Participation Incentive
 230030;Ring Servants Bell
+230033;Random Fights
+230036;Fire Strike
 230037;Arrival Conversation
+230038;Brawler's Healing Tonic
+230039;Brawler's Potion of Prolonged Power
 230040;Slide
 230041;Slide
 230042;Slide
@@ -159843,6 +160029,8 @@
 230050;Force Blade
 230051;Dummy Ping Silgryn and Kal
 230053;Check for Active Shield
+230054;Fire Strike
+230056;Fire Strike
 230057;Energy Lance
 230058;Refreshment
 230059;Falcosaur Frenzy
@@ -159864,6 +160052,7 @@
 230082;Blink
 230083;Nullification
 230084;Stabilize Rift
+230085;Fire Strike
 230086;Stabilize Rift
 230087;Reinvigorated
 230088;Intangible Presence
@@ -159889,6 +160078,7 @@
 230112;Summon Fel Crystal
 230114;Fel Pyroclast Barrage
 230115;Nullification
+230116;Ogrewatch Hero Slain
 230117;Ping Crystal
 230118;Teleport: Karazhan
 230119;Portal Activated
@@ -159954,6 +160144,7 @@
 230228;Thunder Ritual
 230229;Bilewater Breath
 230230;No Falcosaur Quest Aura
+230231;Brawler's Gold
 230233;General Trigger 1 On Falcosaur
 230234;General Trigger 2 On Falcosaur
 230235;General Trigger 3 On Falcosaur
@@ -159966,6 +160157,7 @@
 230244;Arcane Reaper
 230245;Jump Charge
 230247;Coalesce Souls
+230250;Challenger's Purse
 230251;Coalesced Soul
 230254;Coalesced Soul
 230255;Glide
@@ -159975,9 +160167,11 @@
 230261;Flame Wreath
 230262;Summon Adds
 230263;Air Dash
+230264;Create Blackrock Ruby
 230267;Orb of Corrosion
 230268;Taint of the Sea
 230271;Pause
+230272;Stranglethorn Streaker
 230275;Leyline Manipulation
 230277;Energize
 230278;Intro Conversation
@@ -159987,6 +160181,7 @@
 230282;Outro Conversation
 230283;Intro Conversation Cover
 230284;Outro Conversation Cover
+230286;Lava Skin
 230291;Stellagosa Taxi
 230292;Energy Field
 230293;Turn on Energy Fields
@@ -160031,9 +160226,16 @@
 230355;Fire RP Conversation
 230356;Fury of the Maw
 230357;Ivory Talon
+230361;Vehicle Seat Cosmetic
+230363;Dwarven Pride
+230366;Barrier Projector
 230368;Detector
+230369;Barrier Projector
 230370;Masquerade
 230371;Arcfence
+230372;Tesla Cannon
+230373;Jump Pack
+230374;Jump Pack
 230375;Rescuing
 230376;Platform
 230377;Wailing Bolt
@@ -160069,6 +160271,8 @@
 230421;Generic Mount-Pet Love Trigger
 230422;Generic Mount-Pet Love Trigger
 230423;Whirling Barrage
+230424;Mistvale Leap
+230425;Mistvale Leap
 230426;Intro Conversation
 230427;Intro Conversation
 230428;Intro Conversation Cover
@@ -160084,6 +160288,7 @@
 230438;Devastating Strike
 230440;Checkpoint
 230441;Return
+230442;Devastating Swipe
 230443;Dutiful Squire
 230444;Dutiful Gruntling
 230445;Ping Withered
@@ -160094,6 +160299,8 @@
 230456;Turn on Energy Fields
 230458;Teleport
 230464;Kvaldir Longboat
+230467;Break Down Darkspear
+230470;Forging Darkspear
 230475;Rescuing
 230477;Feather Fall
 230479;Longboat
@@ -160286,7 +160493,7 @@
 230841;Summon Hungering Withered
 230842;Round Start
 230843;Begin Experiment
-230844;Rockspine Basilisk
+230844;Brawler's Burly Basilisk
 230845;Devour Fel
 230846;Boastful Squire Trinket
 230847;Boastful Gruntling Trinket
@@ -160500,6 +160707,7 @@
 231160;Soul Steal
 231161;Leave Murky Vehicle Condition
 231162;Soul Steal
+231163;Volunteer City Guard
 231164;Soul Steal
 231166;Sky Jump
 231167;Sky Jump
@@ -160511,6 +160719,8 @@
 231181;Soul Steal
 231190;Mist of the Kvaldir
 231191;Bandage Matriarch
+231192;Summon Invader
+231193;Volunteer City Guard
 231194;Soul Steal
 231195;Conversation
 231197;Bandage Matriarch
@@ -160688,6 +160898,7 @@
 231486;Outro Conversation
 231487;Snow Volley
 231489;Compounding Horror
+231494;Class Hall - Brawlers - Fight 01 - Overmax Reward Credit
 231496;Conversation
 231499;Teleport
 231500;Teleport
@@ -160718,7 +160929,6 @@
 231548;Bestial Wrath
 231549;Disengage
 231550;Harpoon
-231551;Marked Shot
 231552;Hailshower
 231554;Marksman's Focus
 231555;Aspect of the Eagle
@@ -160747,14 +160957,17 @@
 231609;Moose Round-Up Area Trigger Entered
 231617;Slowfall Area Trigger
 231618;Slowfall
+231625;Sound Wave Trigger
 231626;Chest Armor Bonus
 231627;Storm, Earth, and Fire
-231630;Molten Armor
+231630;Critical Mass
+231631;Drop the Bass! Wave
 231632;Shadow Wrap
 231633;Essence Font
 231638;Ensemble: Vestment of the Chosen Dead
 231640;On Quest
 231642;Beacon of Light
+231643;Drop the Bass! Trigger
 231644;Judgment
 231646;Charging the Scrying Crystals
 231647;Empowering
@@ -160763,6 +160976,7 @@
 231655;[DNT] Suramar Nightborn At Attention
 231657;Judgment
 231661;Judgment
+231662;Drop the Bass!
 231663;Judgment
 231664;Design Life
 231665;Avenger's Shield
@@ -160794,9 +161008,14 @@
 231698;Summon Hologram
 231699;Ping Withered
 231700;Cosmetic Rising Souls
+231701;Bodyguard
+231702;Meatball
 231708;Searing Slice
 231709;Empowering
+231710;Sound Wave
+231711;Sound Wave Passive
 231712;Intro Conversation
+231713;Drop the Bass! Passive
 231714;Outro Conversation
 231716;Eviscerate
 231718;Shadowstrike
@@ -160818,6 +161037,7 @@
 231741;Nightwell Discharge
 231742;Nightwell Discharge
 231743;Outro Conversation
+231746;Strange Feeling
 231747;Arcane Winds
 231749;Foul Tempest
 231750;Foul Tempest
@@ -160825,6 +161045,8 @@
 231753;Foul Tempest
 231758;Remind Player
 231759;Arcane Winds
+231765;Strange Feeling
+231766;Strange Feeling
 231767;Simulated Life
 231769;Infernal Shield
 231772;Scathing Bite
@@ -160833,7 +161055,9 @@
 231776;Blackfeather Messenger Kill Credit
 231777;Blood of the Master
 231778;Demonic Rage
+231779;Meatball Hungry
 231780;Chain Heal
+231782;Meatball Hungry
 231784;Crown Co. "Kure-Everything" Tonic
 231785;Tidal Waves
 231791;Unstable Affliction
@@ -160858,7 +161082,7 @@
 231831;Fel Shield
 231832;Blade of Wrath
 231833;Cleave
-231834;Devastate
+231834;Shield Slam
 231842;Dual Wield
 231843;Blade of Wrath!
 231846;Guarm's Chew Toy
@@ -160889,6 +161113,7 @@
 231903;Mood Swings
 231905;Mood Swings
 231906;Kill Credit
+231908;Meatball Swipe
 231913;Drop the Bone
 231915;Fel Storm
 231917;Fel Storm
@@ -160919,18 +161144,24 @@
 231961;Game Complete
 231962;Game Complete
 231963;Flame Gale
+231964;7.1.5 Class Hall - Brawlers - Fight One Success - Kill Credit
 231965;Sparking
 231967;Thistle Tea
 231968;Arcfence
 231969;Arcfence
 231978;Flame Gale
+231979;Class Hall - Brawlers - Fight 02 - Overmax Reward Credit
 231983;Design Life
 231990;Arcane Bolt
+231991;Class Hall - Brawlers - Fight 03 - Overmax Reward Credit
 231996;Glyph of the Trusted Steed
 231997;Trusted Steed
+232002;Class Hall - Brawlers - Fight 04 - Overmax Reward Credit
+232004;Follower: Meatball
 232005;Cancel Design Life
 232008;Design Life
 232009;Design Life
+232010;Class Hall - Brawlers - Intro - Reward Credit
 232017;Wild Energy
 232020;Wild Energy
 232021;Wild Energy
@@ -160997,6 +161228,7 @@
 232107;7.1 Dungeon - Karazhan - Bonus Roll Prompt - Boss 09
 232108;7.1 Dungeon - Karazhan - Bonus Roll Prompt - Boss 10
 232109;7.1 Dungeon - Karazhan - Bonus Roll Prompt - Boss 11
+232110;Find Dash Target
 232112;Give Fruit
 232114;Scorching Strikes
 232115;Firelands Portal
@@ -161026,6 +161258,7 @@
 232190;_JKL - Targeting Test
 232193;Summon Small Time Elementals
 232194;Summon Small Time Elementals
+232195;Strange Ball of Energy
 232197;Berserk Trample
 232198;Blink Visual
 232199;Murky
@@ -161058,13 +161291,18 @@
 232248;Breaking Out: Illlidari Prison Explosion
 232250;Storm of Justice
 232251;Summon Bad Withered
+232252;Dino Dash
 232253;Force Summoner To Summon Bad Withered
 232255;Titan Essence
 232258;Titan Essence
 232259;Fel Magic Attack
 232260;Summon Fel Imps
+232261;Dino Dash
 232262;7.1 Suramar Chapter Quests
+232263;Find Target Behind Player
 232264;Conversation
+232266;Dash Buff
+232267;Dino Dash
 232268;Activated Gem
 232269;Activated Gem
 232270;Activated Gem
@@ -161077,14 +161315,17 @@
 232281;Teleport to Elisande
 232282;Abandon - Clear Quest
 232284;Teleport to Elisande
+232285;Dino Daze
 232286;Teleport to Chambers
 232287;Teleport to Chambers
 232288;Intro Conversation
 232289;Outro Conversation
 232291;Teleport to Gul'dan
 232292;Teleport to Gul'dan
+232293;Dino Determination
 232294;Teleport to Entrance
 232295;Teleport to Entrance
+232297;Tail Whip
 232299;View Distance
 232300;View Distance Cancel
 232301;Test of the Chosen
@@ -161099,7 +161340,11 @@
 232328;Gate Siege - Intro
 232329;Gate Siege - Intro, Clean Up
 232332;Ancient Flare
+232343;Healing Flume Totem
+232344;Warding Totem
+232345;Invigorating Totem
 232346;Rally of the Kvaldir
+232349;Totem of Ferocity
 232350;Corrupted
 232352;Decomposing Aura
 232354;Open
@@ -161118,14 +161363,19 @@
 232373;Stinging Winds
 232374;Dark Refelction
 232375;Taint of the Sea
+232377;Warding Totem
 232378;Astral Harmony
+232380;Totem of Ferocity
+232383;Healing Flume Totem
 232386;Dark Reflection
+232387;Invigorating Totem
 232388;Dark Reflection
 232389;Dark Reflection Cosmetic
 232390;Dark Reflection
 232391;Guarm's Favorite Bone
 232393;Guarm's Favorite Bone
 232394;Ryan's Test Spell 2
+232396;Healing Flume Totem
 232397;Open
 232406;Portal Effect: Karazhan
 232407;Legion Skybox
@@ -161179,10 +161429,23 @@
 232488;Dark Hatred
 232496;Orb of Corrosion
 232497;Orb of Corruption
+232502;Shadow Blast
+232503;Missile Area Trigger
+232504;Shadow Torch
+232505;Summon Shadow Torch
+232506;Shadow Torch Area Trigger
+232507;Find Shadow Torches
+232509;Missile Charge to Torch
+232510;Shadow Blast
+232511;Shadow Blast
+232512;Shadow Detonation
+232513;Shadow Detonation
+232514;Shadow Detonation
 232515;Play Scene 2
 232516;Play Scene 2
 232520;Frozen Center
 232521;Piercing Shot
+232522;Get Player Unit
 232538;Rain of Chaos
 232539;Teleport: The Nighthold
 232546;Dying Stars
@@ -161194,6 +161457,10 @@
 232564;Skyfire Deck Gun Check
 232565;Force Cast: Skyfire Deck Gun Check
 232575;Door Lock
+232576;Healing Flume Totem Channel Visual
+232577;Invigorating Totem Channel Visual
+232578;Totem of Ferocity Channel Visual
+232579;Warding Totem Channel Visual
 232580;Odyn Teleport
 232581;Odyn Teleport
 232582;Chosen Teleport
@@ -161330,7 +161597,9 @@
 232821;The Eye of Aman'thul
 232822;The Eye of Aman'thul
 232825;Jump to Fury Scenario
+232828;I Pick You!
 232830;Reset Hati Appearance
+232831;I Pick You!
 232832;Empowering
 232833;The Eye of Aman'thul
 232848;The Eye of Aman'thul
@@ -161345,6 +161614,7 @@
 232879;Yu'lon's Gift
 232881;Arcanetic Ring
 232882;Arcanetic Ring
+232887;Wall Area Trigger
 232890;Empowering
 232892;Teleport: Trial of Valor
 232893;Felblade
@@ -161352,6 +161622,8 @@
 232895;[DND] Cleanup
 232896;Dissipation
 232899;Teleport
+232900;Screen Effect - Saturated
+232901;Screen Effect - Night Vision
 232907;Snowfall Cloud
 232908;Snowfall Cloud (Large)
 232911;[DNT] Arluelle Interact
@@ -161388,6 +161660,7 @@
 232950;Accept Quest
 232951;Masquerade
 232952;Accept Quest
+232953;Set Spell Template
 232954;Accept Quest
 232955;Accept Quest
 232956;Accept Quest
@@ -161458,7 +161731,9 @@
 233097;Teleport to Target
 233098;Blazing Charge
 233112;Army of the Dead
+233117;Uncertain Reminder
 233126;Ancient Mana Crystal
+233130;Battle Pet Transform
 233131;Stoneclaw Totem Passive TEST
 233138;Archaeology Quests
 233140;Reverse Cast Copy Threat List to Target
@@ -161466,12 +161741,29 @@
 233144;Simulate Life
 233149;Archaeology Quests
 233150;Potion of the Old War
+233158;Summon Broom
+233159;Attack
+233168;Nightmare
 233169;Mage - Follower Visibility Aura
+233171;Mind Break
+233179;Bristled
+233185;Spawn of Gzzaj
+233186;Mind Break
+233187;Mind Break
 233195;Mark of Frost
+233197;Spawn of Gzzaj
+233198;Spawn of Gzzaj
+233199;Spawn of Gzzaj
 233204;Empowering
 233209;Empowering
 233210;Whip Rage
 233211;Empowering
+233212;Mind Break
+233217;Shadow Crash
+233224;Horrific Pursuit
+233225;Horrific Pursuit
+233226;Horrific Pursuit
+233227;Horrific Pursuit
 233232;Leyscale Koi
 233234;Arm Rebellious Citizen
 233239;Armed!
@@ -161480,10 +161772,31 @@
 233244;Empowering
 233245;Empowering
 233270;Spear of Light
+233271;Screen Effect - Red
 233275;Glyph of Twilight Bloom
+233276;Screen Effect - B&W
 233277;Twilight Bloom
 233278;Glyph of Twilight Bloom
+233280;REUSE
+233282;REUSE
 233288;Debug - Stealth Break Logging
+233291;Paranoia
+233292;Paranoid
+233296;Time Dilation
+233297;Time Dilation
+233298;Time Dilation
+233307;Lame Grooves
+233308;Lame Grooves
+233309;Lame Grooves
+233311;Screen Effect Cover
+233313;Strange Behemoth
+233320;Screen Effect - Pen & Ink
+233321;Screen Effect - Nether
+233322;Screen Effect - Death
+233323;Screen Effect - Yellow
+233326;Screen Effect - Purple
+233327;Screen Effect - Icy
+233328;Floating
 233346;Achivement Credit
 233348;Empowering
 233372;Revive
@@ -161491,12 +161804,19 @@
 233375;Gaze of Aman'thul
 233377;Gaze of Aman'thul
 233378;Gaze of Aman'thul
+233386;Strange Army
+233387;Strange Army
+233392;Strange Horse
+233393;Mythical Protection
 233394;Overpowered Rune Weapon
 233395;Frozen Center
 233396;Delirium
 233397;Delirium
+233398;Fury of Gull'dan
+233400;Blinding Peck
 233408;Necrotic Strike
 233409;Necrotic Wound
+233410;Blood for Blood
 233411;Blood for Blood
 233412;Last Dance
 233428;Opening Hand
@@ -161514,18 +161834,64 @@
 233487;Tidal Totem
 233490;Unstable Affliction
 233494;Contagion
+233495;Mists Timewalking Marker
 233496;Unstable Affliction
 233497;Unstable Affliction
 233498;Unstable Affliction
 233499;Unstable Affliction
 233502;Ancient Mistweaver Arts
+233507;Charge
+233508;Get Player Unit
+233511;Charge
+233522;Teleport In Visual
+233527;Let's Get Really Weird
+233536;Let's Get Really Weird
 233545;Nightwell Discharge
+233561;Summon Sleeping Clone
+233562;Clone Player
+233565;Strange Mushroom
 233567;Burst of Experience
 233577;Focused Chaos
+233578;Ensemble: Dreadful Gladiator's Chain Armor
+233580;Ensemble: Dreadful Gladiator's Dragonhide Armor
 233581;Entrenched in Flame
 233582;Entrenched in Flame
+233588;Ensemble: Dreadful Gladiator's Dreadplate Set
+233594;Dragon Head Costume
+233598;Dragon Body Costume
+233599;Dragon Tail Costume
+233602;Ensemble: Dreadful Gladiator's Felweave Armor
+233603;Ensemble: Dreadful Gladiator's Ironskin Armor
+233604;Ensemble: Dreadful Gladiator's Leather Armor
+233605;Ensemble: Dreadful Gladiator's Plate Set
+233606;Ensemble: Dreadful Gladiator's Ringmail Armor
+233607;Ensemble: Dreadful Gladiator's Satin Armor
+233608;Ensemble: Dreadful Gladiator's Scaled Set
+233609;Ensemble: Dreadful Gladiator's Silk Armor
+233610;Ensemble: Grievous Gladiator's Chain Armor
+233611;Ensemble: Grievous Gladiator's Chain Armor
+233612;Ensemble: Grievous Gladiator's Dragonhide Armor
+233613;Ensemble: Grievous Gladiator's Dreadplate Set
+233615;Ensemble: Grievous Gladiator's Felweave Armor
 233616;Item Visual - Katoom's Mask
+233617;Ensemble: Grievous Gladiator's Ironskin Armor
+233618;Ensemble: Grievous Gladiator's Leather Armor
 233620;Fel Bomb
+233624;Ensemble: Grievous Gladiator's Plate Set
+233625;Ensemble: Grievous Gladiator's Ringmail Armor
+233628;Ensemble: Grievous Gladiator's Satin Armor
+233630;Ensemble: Grievous Gladiator's Scaled Set
+233632;Ensemble: Grievous Gladiator's Silk Armor
+233651;Ensemble: Grievous Gladiator's Dragonhide Armor
+233653;Ensemble: Grievous Gladiator's Dreadplate Set
+233654;Ensemble: Grievous Gladiator's Felweave Armor
+233655;Ensemble: Grievous Gladiator's Ironskin Armor
+233656;Ensemble: Grievous Gladiator's Leather Armor
+233657;Ensemble: Grievous Gladiator's Plate Set
+233658;Ensemble: Grievous Gladiator's Ringmail Armor
+233659;Ensemble: Grievous Gladiator's Satin Armor
+233660;Ensemble: Grievous Gladiator's Scaled Set
+233662;Ensemble: Grievous Gladiator's Silk Armor
 233665;Roots of Shaladrassil
 233669;Dinner Party
 233671;Dinner Party
@@ -161541,21 +161907,45 @@
 233765;Control the Mists
 233766;Control the Mists
 233786;Vanish
+233805;Trashy
+233813;Trashy Cosmetic
+233814;Horde War Effort Credit
+233815;Trashy Cosmetic
 233816;Empowering
 233818;_JKL - Transform suppression test
+233819;Trashy Cosmetic
+233822;Cosmetic - Valentine's Heart State
+233840;Mists Timewalking Marker
 233858;Falcosaur Nest Explode
+233861;Cinnamon Hat
 233897;Protected Ground
 233902;Push Item - Pestilential Hide of Nythendra
 233954;Control the Mists
+233958;Fire Aura
 233973;Burning Determination
+233978;Kam Xi'raff
 233981;Take Keys
 233989;Summon Keys
+233997;Kam Xi'raff
+234024;Throw Abyssal Crest
+234031;Blade's Edge Arena Low Health Cooldown Aura
+234032;Blade's Edge Arena Reaction Trigger
+234033;Blade's Edge Arena Game Event
 234045;Empowering
+234046;Whirlwind
 234047;Empowering
 234048;Empowering
 234049;Empowering
 234050;Attack Ping
+234052;Whirlwind
+234055;Dazed
 234066;Meat Placed
+234072;Draining...
+234073;Draining...
+234077;Destroying
+234078;Destroying
+234079;Purifying...
+234080;Purifying...
 234081;Celestial Guardian
 234084;Eclipse
 234103;Rope Beam
@@ -161585,12 +161975,15 @@
 234170;Plea
 234171;Plea
 234172;Simulated Life
-234188;Luffa Wrappings
+234182;Twilight Cultist Robe
+234184;Twilight Cultist Cowl
+234185;Twilight Cultist Mantle
 234189;Fixate
 234199;Reanimation
 234202;_JKL - Test Visual Placer
 234204;Helya
 234205;Helya
+234213;Knockdown
 234244;Fel Mastery
 234248;Teleport from War of the Ancients (Val'sharah)
 234249;Teleport from War of the Ancients (Val'sharah)
@@ -161598,12 +161991,748 @@
 234251;Teleport from War of the Ancients (Highmountain)
 234252;Teleport from War of the Ancients (Highmountain)
 234253;Teleport from War of the Ancients (Highmountain)
+234275;Bug Mount
 234278;Fan of Knives
+234299;Fist of Justice
+234302;Temporal Flux
+234305;Grizzly Leap
+234313;Clawstrophobic
 234317;Arrogance
 234327;Burden of Power
+234361;Grizzly Leap
+234363;Get Player Unit
+234365;Grizzly Leap
+234371;Grizzly Leap
+234392;Frenzy
 234416;Summon Volatile Energy
+234449;Boating
+234450;Boating Visual
+234458;Boat Day
+234460;Boating Visual
+234489;Shotgun Roar
+234492;Shotgun Roar
+234501;Collision
+234502;Commendation of The Klaxxi
+234503;Commendation of the Shado-Pan
+234504;Commendation of the Golden Lotus
+234505;Commendation of The August Celestials
+234506;Commendation of the Sunreaver Onslaught
+234507;Commendation of the Kirin Tor Offensive
 234508;Medivh's Echo
+234509;Commendation of The Tillers
+234510;Commendation of the Order of the Cloud Serpent
+234511;Commendation of the Dominance Offensive
+234512;Commendation of Operation: Shieldwall
+234513;Commendation of the Shado-Pan Assault
+234514;Commendation of The Anglers
+234515;Commendation of Emperor Shaohao
+234524;Keep Ups Credit
+234526;Keep Ups
+234555;Infinite Hatchling
+234556;Paradox Spirit
 234575;Unbeleyvable Cleanup
+234585;Oozing Rush
+234588;Patient Sniper
+234602;Climb Rope Ladder
 234608;7.1 Tavern District Peaceful Phase
 234609;7.1 Tavern District Attack Phase
+234610;Patient Sniper
 234637;Orb of Corruption
+234638;Playtime!
+234639;Release Puppies
+234641;Adopted Puppies Despawn
+234647;Shipwrighting
+234653;Saruan's Resolve
+234683;Frag Launcher
+234689;Phyrix's Embrace
+234693;Phyrix's Embrace
+234696;Mind Flay
+234702;Mind Sear
+234710;Rammal's Ulterior Motive
+234711;Rammal's Ulterior Motive
+234720;Regatta
+234721;Regatta
+234722;Boat Party!
+234725;Fireworks
+234726;Cool Boat Trick
+234729;Ensemble: Prideful Gladiator's Chain Armor
+234730;Make a Racket
+234731;Celebratory Depth Charge
+234732;Ensemble: Prideful Gladiator's Dragonhide Armor
+234733;Ensemble: Prideful Gladiator's Dreadplate Set
+234735;Ensemble: Prideful Gladiator's Felweave Armor
+234738;Ensemble: Prideful Gladiator's Ironskin Armor
+234739;Ensemble: Prideful Gladiator's Leather Armor
+234746;Void Bolt
+234748;Ensemble: Prideful Gladiator's Plate Set
+234749;Ensemble: Prideful Gladiator's Ringmail Armor
+234750;Ensemble: Prideful Gladiator's Satin Armor
+234751;Ensemble: Prideful Gladiator's Scaled Set
+234752;Ensemble: Prideful Gladiator's Silk Armor
+234753;Ensemble: Prideful Gladiator's Chain Armor
+234754;Ensemble: Prideful Gladiator's Dragonhide Armor
+234756;Adaptation
+234757;Ensemble: Prideful Gladiator's Dreadplate Set
+234758;Massive
+234759;Ensemble: Prideful Gladiator's Felweave Armor
+234760;Ensemble: Prideful Gladiator's Ironskin Armor
+234761;Sharp Claws
+234766;Ensemble: Prideful Gladiator's Leather Armor
+234767;Ensemble: Prideful Gladiator's Plate Set
+234768;Ensemble: Prideful Gladiator's Ringmail Armor
+234769;Ensemble: Prideful Gladiator's Satin Armor
+234770;Ensemble: Prideful Gladiator's Scaled Set
+234771;Ensemble: Prideful Gladiator's Silk Armor
+234776;Lightning Speed
+234780;Destructolaser
+234781;Dino Mojo
+234786;Flow of Time
+234793;Resolute
+234797;Norgannon's Foresight
+234804;Shockwave
+234807;Wake of Destruction
+234808;Wake of Destruction
+234814;Uncertain Reminder
+234820;Medivh's Echo
+234831;Balloon Teleport
+234848;Maraad's Dying Breath
+234862;Maraad's Dying Breath
+234866;Cosmetic - Lightning Paw
+234867;Sephuz's Secret
+234876;Death's Embrace
+234877;Curse of Shadows
+234883;Ensemble: Tyrannical Gladiator's Chain Armor
+234887;Ensemble: Tyrannical Gladiator's Dragonhide Armor
+234907;Ensemble: Tyrannical Gladiator's Dreadplate Set
+234909;Ensemble: Tyrannical Gladiator's Felweave Armor
+234910;Ensemble: Tyrannical Gladiator's Satin Armor
+234911;Ensemble: Tyrannical Gladiator's Ironskin Armor
+234912;Ensemble: Tyrannical Gladiator's Leather Armor
+234918;Ensemble: Tyrannical Gladiator's Plate Set
+234919;Ensemble: Tyrannical Gladiator's Ringmail Armor
+234921;Ensemble: Tyrannical Gladiator's Scaled Set
+234923;Ensemble: Tyrannical Gladiator's Silk Armor
+234924;Ensemble: Tyrannical Gladiator's Chain Armor
+234925;Ensemble: Tyrannical Gladiator's Dragonhide Armor
+234926;Ensemble: Tyrannical Gladiator's Dreadplate Set
+234927;Ensemble: Tyrannical Gladiator's Felweave Armor
+234928;Ensemble: Tyrannical Gladiator's Ironskin Armor
+234930;Ensemble: Tyrannical Gladiator's Leather Armor
+234932;Ensemble: Tyrannical Gladiator's Plate Set
+234933;Ensemble: Tyrannical Gladiator's Ringmail Armor
+234934;Ensemble: Tyrannical Gladiator's Satin Armor
+234935;Ensemble: Tyrannical Gladiator's Scaled Set
+234936;Ensemble: Tyrannical Gladiator's Silk Armor
+234937;Summon Balloon: Uldum
+234940;Ensemble: Malevolent Gladiator's Silk Armor
+234941;Waiting for Balloon
+234942;Ensemble: Malevolent Gladiator's Scaled Set
+234943;Ensemble: Malevolent Gladiator's Plate Set
+234944;Balloon: Find Players
+234945;Ensemble: Malevolent Gladiator's Ironskin Armor
+234946;Trail of Light
+234947;Ride Balloon
+234948;Ensemble: Malevolent Gladiator's Leather Armor
+234949;Ensemble: Malevolent Gladiator's Dragonhide Armor
+234950;Ensemble: Malevolent Gladiator's Satin Armor
+234951;Ensemble: Malevolent Gladiator's Felweave Armor
+234952;Ensemble: Malevolent Gladiator's Ringmail Armor
+234953;Ensemble: Malevolent Gladiator's Dreadplate Set
+234954;Ensemble: Malevolent Gladiator's Chain Armor
+234955;Waylay
+234965;Boorish Behavior
+234985;Flag Tracking Quest
+234993;Summon Balloon: Suramar
+235003;Iron Protection
+235006;Iron Protection
+235007;Searing Words
+235008;Searing Words
+235011;Price of Progress
+235012;Price of Progress
+235015;Melon-choly
+235016;Melon-choly
+235017;Fermenting Furuncle
+235018;Fermenting Furuncle
+235019;Windswept
+235021;Windswept
+235022;Master Assassin's Initiative
+235027;Master Assassin's Initiative
+235039;X'oni's Caress
+235040;X'oni's Caress
+235053;The Emperor's Capacitor
+235054;The Emperor's Capacitor
+235098;Summon Balloon: Stormheim
+235127;Summon Balloon: Highmountain
+235129;Arsenal: Malevolent Gladiator's Weapons
+235130;Helyatosis
+235131;Summon Balloon: Azsuna
+235134;Arsenal: Tyrannical Gladiator's Weapons
+235135;Arsenal: Tyrannical Gladiator's Weapons
+235136;Summon Balloon: Crystalsong Forest
+235137;Arsenal: Prideful Gladiator's Weapons
+235141;Arsenal: Prideful Gladiator's Weapons
+235142;Arsenal: Grievous Gladiator's Weapons
+235144;Arsenal: Grievous Gladiator's Weapons
+235150;Cordana
+235151;Dantalionax
+235152;Bertrug
+235153;Sael'orn
+235155;Malefic Grasp
+235156;Empowered Life Tap
+235157;Empowered Life Tap
+235158;Summon Balloon: Nagrand
+235159;Demonsteel Armguards
+235160;Demonsteel Waistguard
+235161;Demonsteel Pauldrons
+235162;Demonsteel Greaves
+235163;Demonsteel Helm
+235164;Demonsteel Gauntlets
+235165;Demonsteel Boots
+235166;Demonsteel Breastplate
+235167;Vantus Rune: Gul'dan
+235168;Fel Crystal Fragment
+235169;Archimonde's Hatred Reborn
+235188;Archimonde's Hatred Reborn
+235189;Perseverance
+235190;Investigate the Broken Shore: Abandon
+235202;Fshoo Grow
+235206;Orb of Corrosion
+235219;Cold Snap
+235224;Frigid Winds
+235227;Ice Time
+235235;Frost Nova
+235245;Empowering
+235246;Empowering
+235247;Empowering
+235248;Empowering
+235256;Empowering
+235257;Empowering
+235258;Sporeggium
+235260;Pungent Truffle
+235264;Pungent Truffle
+235265;Fungal Lifestalk
+235266;Empowering
+235269;Rimecap
+235273;Gravity Spiral
+235275;Thrice Fortified
+235276;Drink Wine
+235292;Sack of Healing Spores
+235297;Glacial Insulation
+235299;Anvil & Stave
+235300;Anvil & Stave
+235313;Blazing Barrier
+235314;Blazing Barrier
+235315;Summon Murgly
+235322;Summon Birbit
+235323;Summon Grubster
+235324;Summon Gribbl
+235325;Summon Bubbles
+235326;Summon Bloop
+235327;Summon Flops
+235328;Summon Salty
+235329;Summon Lrmrgrmr
+235330;Summon Scales
+235331;Summon Tiny-Briny
+235332;Summon Schmurky
+235333;Summon Plunker
+235334;Summon Sploosh
+235335;Summon Loogie
+235336;Summon Li'l Gill
+235337;Summon Loco
+235338;Summon Glr-Glr
+235339;Summon Splishy
+235340;Summon Tim
+235341;Summon Steve
+235342;Summon Spike
+235343;Summon Murky Jr.
+235344;Summon Berbert
+235345;Summon Bjorrgl
+235346;Summon Ariel
+235347;Summon Lalla
+235348;Summon Coral
+235349;Summon Glrglia
+235350;Summon Shelly
+235351;Summon Dorgly
+235352;Summon Grrlgmr
+235365;Blazing Soul
+235372;Tavern Portal
+235390;Portal Visual
+235417;Curator Soul Fragment
+235418;Guest Chambers Soul Fragment
+235419;Banquet Hall Soul Fragment
+235421;Servant Quarters Soul Fragment
+235422;Opera Hall Soul Fragment
+235427;Anim Replacement - Idle -> Stun
+235429;Earth Elemental
+235430;Viking Hat
+235432;Squid Hat
+235434;Mustache
+235450;Prismatic Barrier
+235463;Mana Shield
+235470;Mana Shield
+235478;Earth Dust Cloud, Small
+235480;PH - Soul Fragments Reduce Cooldown of Empower Wards
+235484;Between the Eyes
+235524;Spirit of the Darkness Flame
+235543;Spirit of the Darkness Flame
+235551;Spirit of the Darkness Flame
+235556;Death March
+235558;Skullflower's Haemostasis
+235559;Haemostasis
+235575;7.1.5 Test Bonus Roll Prompt
+235576;7.1.5 Test Bonus Roll Loot
+235587;Miracle Worker
+235592;Chilled Heart
+235599;Chilled Heart
+235605;Consort's Cold Core
+235612;Frost Breath
+235654;Adaptation: Poisonous Skin
+235655;Adaptation: Adrenaline
+235656;Adaptation: Heavy Footed
+235658;Adaptation: Spores
+235659;Adaptation: Caustic Blood
+235660;Adaptation: Chronometric Instability
+235666;Lipophilic Alkaloid
+235667;Adrenaline
+235673;Shock Wave
+235675;Explosive Spores
+235676;Explosive Spores
+235677;Explosive Spores
+235679;Caustic Blood
+235681;Caustic Blood
+235691;MKII Gyroscopic Stabilizer
+235694;Echo
+235695;Mark of the Master
+235696;Mark of the Versatile
+235697;Mark of the Quick
+235698;Mark of the Deadly
+235699;Mark of the Master
+235700;Mark of the Versatile
+235701;Mark of the Quick
+235702;Mark of the Deadly
+235703;Mark of the Master
+235704;Mark of the Versatile
+235705;Mark of the Quick
+235706;Mark of the Deadly
+235711;Chrono Shift
+235712;Gyroscopic Stabilization
+235719;Shelter of Rin
+235721;The Mantle of Command
+235731;Boon of the Builder
+235737;Drop the Bone
+235748;Mighty Roar
+235749;Head Butt
+235750;Shelter of Rin
+235753;Tailored Skullblasters
+235754;Rugged Skullblasters
+235755;Chain Skullblasters
+235756;Heavy Skullblasters
+235757;Adaptation
+235759;Sturdy Love Fool
+235762;Lightning Arc
+235765;Artifact Knowledge Research
+235766;Lightning Nova
+235769;Summon Bubbles
+235770;Summon Bubbles
+235773;Tavern Finery
+235774;Summon Murlocs
+235775;Rechargeable Reaves Battery
+235776;Tavern Finery
+235777;Premeditation
+235779;Schematic: Rechargeable Reaves Battery
+235781;Rainfall
+235786;Gemcutting
+235794;Boon of the Zookeeper
+235795;Boon of the Zookeeper
+235796;Gemcutting
+235800;Gemcutting
+235803;Gemcutting
+235806;Gemcutting
+235809;Gemcutting
+235816;Player Cart Wins
+235857;Throw
+235866;Drowning
+235870;Alexstrasza's Fury
+235874;Lightning Nova
+235884;Rend Flesh
+235886;Call Pack
+235887;Call Pack
+235888;Call Pack
+235893;Demonic Origins
+235894;Demonic Origins
+235900;Guarm's Chew Toy
+235902;Guard Points Driver
+235903;Mana Rift
+235904;Mana Rift
+235905;Mana Rift
+235925;Tavern Finery
+235940;Pyrotex Ignition Cloth
+235941;Master and Commander
+235944;Multi-shot
+235945;Multi-shot
+235953;Sun's Fury
+235954;Sun's Fury
+235955;Sun's Fury
+235963;Entangling Roots
+235964;Sever
+235965;Inferno
+235966;Velen's Future Sight
+235967;Velen's Future Sight
+235983;Melt Armor
+235990;Fertile Toxin
+235991;Kil'jaeden's Burning Wish
+235993;Poison Volley
+235995;Poison Volley
+235996;Poison Volley
+235999;Kil'jaeden's Burning Wish
+236001;Inferno
+236002;Inferno
+236012;Malorne's Swiftness
+236013;Free VIP Room
+236014;Devoured
+236015;Devour
+236019;Tooth and Claw
+236020;Ferocious Wound
+236021;Ferocious Wound
+236023;Earthen Grasp
+236024;Abolish Corruption
+236025;Enraged Maim
+236026;Enraged Maim
+236027;Charge
+236033;Electrifying the Dance Floor
+236034;Electrifying the Dance Floor
+236035;Electrifying the Dance Floor
+236036;Electrifying the Dance Floor
+236037;Electrifying the Dance Floor
+236038;Electrifying the Dance Floor
+236039;Electrifying the Dance Floor
+236040;Electrifying the Dance Floor
+236041;Electrifying the Dance Floor
+236042;Electrifying the Dance Floor
+236054;Larva
+236055;Larva
+236057;Larva
+236058;Frenetic Speed
+236060;Frenetic Speed
+236062;Kil'jaeden's Burning Wish
+236066;Devoured
+236068;Moment of Clarity
+236070;Vile Pollen
+236071;Vile Pollen
+236073;Vile Pollen
+236074;Vile Pollen
+236077;Disarm
+236106;Ashes to Dust
+236108;Crystal Vine
+236110;Horrific Pursuit
+236111;Horrific Pursuit
+236112;Invite to Bizmo's Brawlpub [DNT]
+236113;Invite to Brawl'gar Arena [DNT]
+236114;Reap and Sow
+236119;Energize Vine
+236120;Consume Vine
+236124;Consume Vine
+236126;Summon vine
+236127;Summon vine
+236128;Energized Spores
+236129;Bloom
+236133;Bloom
+236144;Master Shapeshifter
+236145;Hooked
+236146;Stitches' Hook
+236147;Malorne's Swiftness
+236148;Roaring Speed
+236152;Aura of Rot
+236153;Raging Frenzy
+236154;Aura of Rot
+236155;Aura of Rot
+236156;Survival Instincts
+236157;Survival Instincts
+236159;Stitches' Hook
+236167;Felblade
+236170;Spawn
+236172;Spawn
+236173;Burrow
+236174;Lessons of Space-Time
+236176;Lessons of Space-Time
+236177;Storm, Earth, Fire
+236178;Storm, Earth, Fire
+236179;Storm, Earth, Fire
+236180;Den Mother
+236181;Den Mother
+236183;Fiery Breath
+236184;Cleanse the Weak
+236185;Master Shapeshifter
+236186;Cleansing Light
+236187;Master Shapeshifter
+236188;Master Shapeshifter
+236189;Demonic Infusion
+236190;Summon Worm
+236191;Summon Worm
+236192;Summon Pterodactyl
+236193;Spawn
+236197;Spew Bile
+236198;Hallowed Ground
+236199;Wakener's Loyalty
+236200;Wakener's Loyalty
+236201;Brawler's Purse - Ash'katzuum
+236202;Brawler's Purse - Beat Box
+236203;Brawler's Purse - a Seagull
+236205;Brawler's Purse - Bruce
+236206;Brawler's Purse - Goredome
+236207;Brawler's Purse - Unguloxx
+236208;Brawler's Purse - Hexos
+236210;Spew Bile
+236211;Spew Bile
+236214;Summon Triceratops
+236215;Spawn
+236217;Charge
+236220;Charge
+236226;Slam
+236230;Primal Shout
+236236;Disarm
+236237;Chaos Cleave
+236240;Protector's Shield
+236243;Teleport to Light's Hammer
+236244;Teleport to The Frozen Throne
+236254;Level Scaling
+236273;Duel
+236276;Duel
+236279;Devastator
+236282;Devastator
+236284;Portable Yak Wash
+236285;Tylarr Gronnden
+236297;Tar Pit
+236298;Chrono Shift
+236299;Chrono Shift
+236302;Increase Artifact Knowledge
+236308;Storm of Destruction
+236314;Seep
+236315;Seep
+236316;Seep
+236318;Junior Ballooner Preparedness Kit
+236320;War Banner
+236321;War Banner
+236323;Junior Ballooner Preparedness Kit
+236328;Chain of Thrayn
+236333;Eruption
+236334;Eruption
+236335;Absorb Tar
+236336;Harden Tar
+236338;Boiling Tar
+236339;Absorb Tar
+236341;Eruption
+236343;Eruption
+236346;Schnottz Has To Go
+236348;Sentinel
+236349;Schnottz Has To Go
+236358;Tar Strike
+236360;Encased in Tar
+236363;Stomp
+236364;Stomp
+236365;Charge
+236366;Charge
+236367;Swat
+236368;Swat
+236369;Impact
+236371;Schnottz Has To Go
+236373;Norgannon's Foresight
+236374;Norgannon's Foresight
+236375;Norgannon's Foresight
+236380;Norgannon's Foresight
+236391;Last Call
+236392;Last Call
+236393;Drink
+236394;Tavern Finery
+236395;Tavern Finery
+236396;Tavern Finery
+236397;Tavern Finery
+236398;Tavern Finery
+236399;Tavern Finery
+236400;Tavern Finery
+236401;Tavern Finery
+236402;Tavern Finery
+236403;Tavern Finery
+236404;Tavern Finery
+236405;Tavern Finery
+236406;Tavern Finery
+236407;Tavern Finery
+236408;Tavern Finery
+236409;Tavern Finery
+236410;Tavern Finery
+236411;Tavern Finery
+236412;Tavern Finery
+236413;Tavern Finery
+236414;Tavern Finery
+236417;Lost & Found: Hats
+236423;Sun's Fury
+236430;Norgannon's Foresight
+236431;Norgannon's Foresight
+236435;War Banner
+236437;War Banner
+236438;War Banner
+236439;War Banner
+236440;Tooth and Claw
+236441;Tooth and Claw
+236445;Shadow Crash
+236446;Butcher's Bone Apron
+236447;Butcher's Bone Apron
+236448;Feral Leap
+236452;Janitor's Revenge
+236453;Janitor's Revenge
+236457;Slipstream
+236458;Summon Broom
+236471;Soulshatter
+236472;Summon Balloon: Valley of the Four Winds
+236477;Increase Artifact Knowledge
+236478;Oakheart's Puny Quods
+236479;Oakheart's Puny Quods
+236488;Increase Artifact Knowledge
+236489;Increase Artifact Knowledge
+236490;Increase Artifact Knowledge
+236499;Ultimate Radiance
+236501;Tidebringer
+236502;Tidebringer
+236523;Mother Shahraz's Seduction
+236526;Execute
+236545;Zeks Exterminatus
+236546;Zeks Exterminatus
+236578;Demon Soul Detection
+236594;Screeching Howl
+236605;Anvil & Stave
+236606;Death's Embrace
+236607;Death's Embrace
+236615;Curse of Shadows
+236628;Amplification
+236641;Aimed Shot
+236643;Abolish Corruption
+236645;Shimmer
+236662;Blizzard
+236665;Raging Frenzy
+236696;Thorns
+236698;Guerrilla Tactics
+236699;Super Sticky Tar
+236716;Enraged Maul
+236718;Kill Credit: "The Fox and the Hound, Part 3, Calm the Fox"
+236741;Mind Spike
+236744;Blade's Edge Arena King VO Cooldown Aura
+236746;Control of Lava
+236747;Eat
+236748;Intimidating Roar
+236751;Grasping Hand
+236752;Ghostly Aura
+236757;Fiery Red Maimers
+236763;Sephuz's Secret
+236768;Conjure Refreshment
+236769;Dome of Light
+236771;Mental Strength
+236775;Hi-Explosive Trap
+236776;Hi-Explosive Trap
+236777;Hi-Explosive Trap
+236781;Cake Explosion 01
+236782;Cake Explosion 02
+236784;Meat Explosion 01
+236786;Meat Explosion 02
+236788;Dampened Magic
+236790;Shadow Crash
+236792;Shadow Crash
+236793;Toxic Crash
+236794;Toxic Crash
+236795;Inferno Crash
+236796;Toxic Crash
+236798;Furious Crash
+236799;Furious Crash
+236800;Casting Circle
+236801;Casting Circle
+236806;Shadow Crash
+236807;Shadow Crash
+236808;Toxic Crash
+236809;Toxic Crash
+236817;Drink
+236818;Standard Alcohol
+236819;Drink
+236820;Drink
+236821;Sargeras Sangria
+236822;Drink
+236823;Drink
+236824;Drink
+236825;Drink
+236826;Drink
+236827;Drink
+236879;Drink
+237076;Mystic Vitality
+237128;Research Available
+237133;Research Available
+237235;Infernal Alchemist Stone
+237249;Demonic Circle
+237255;Artifact Knowledge Research
+237256;Artifact Knowledge Research
+237257;Artifact Knowledge Research
+237258;Artifact Knowledge Research
+237259;Artifact Knowledge Research
+237260;Shadowblink
+237261;Duel
+237262;Artifact Knowledge Research
+237263;Artifact Knowledge Research
+237264;Artifact Knowledge Research
+237265;Artifact Knowledge Research
+237266;Artifact Knowledge Research
+237267;Artifact Knowledge Research
+237268;Artifact Knowledge Research
+237284;Melee Override [DNT]
+237293;Boon of the Builder
+237310;Complete Artifact Research (Do not Localize)
+237311;Complete Artifact Research (Do not Localize)
+237313;Complete Artifact Research (Do not Localize)
+237314;Complete Artifact Research (Do not Localize)
+237315;Complete Artifact Research (Do not Localize)
+237316;Complete Artifact Research (Do not Localize)
+237317;Complete Artifact Research (Do not Localize)
+237318;Complete Artifact Research (Do not Localize)
+237319;Complete Artifact Research (Do not Localize)
+237321;Complete Artifact Research (Do not Localize)
+237322;Complete Artifact Research (Do not Localize)
+237323;Complete Artifact Research (Do not Localize)
+237327;Flanking Strike
+237329;Create Artifact Knowledge Shipment - Hunter (Do Not Localize)
+237338;Explosive Trap
+237356;Frayfeather Hatchling
+237358;Create Artifact Knowledge Shipment - Death Knight (Do Not Localize)
+237359;Frayfeather Hatchling
+237360;Create Artifact Knowledge Shipment - Demon Hunter (Do Not Localize)
+237361;Create Artifact Knowledge Shipment - Druid (Do Not Localize)
+237362;Create Artifact Knowledge Shipment - Mage (Do Not Localize)
+237363;Create Artifact Knowledge Shipment - Monk  (Do Not Localize)
+237364;Create Artifact Knowledge Shipment - Paladin (Do Not Localize)
+237365;Create Artifact Knowledge Shipment - Priest (Do Not Localize)
+237366;Create Artifact Knowledge Shipment - Rogue (Do Not Localize)
+237367;Create Artifact Knowledge Shipment - Shaman (Do Not Localize)
+237368;Create Artifact Knowledge Shipment - Warlock (Do Not Localize)
+237369;Create Artifact Knowledge Shipment - Warrior (Do Not Localize)
+237371;Ring of Peace
+237373;The Twins' Painful Touch
+237374;Complete Artifact Knowledge Shipments - Master (Do Not Localize)
+237387;Research Available
+237388;Mind Flay
+237389;Research Available
+237399;Teleport
+237403;Prayer of Mending
+237605;Teleport to Skybag
+237607;Cannon
+237618;Rushing Jade Wind
+237625;Template Spell
+237659;resuse
+237665;Kil'jaeden's Burning Wish
+237680;Howling Blast
+237693;Gobbo
+237744;Warbringer
+237747;Reset
+237838;Avoidance
+237844;Gloom
+237867;Shattered Souls
+237868;Shattered Souls
+237869;Shattered Souls
+238548;Artifact Research Note Looted
+238558;Misery
+238559;Bursting Shot
+238562;Artifact Knowledge
