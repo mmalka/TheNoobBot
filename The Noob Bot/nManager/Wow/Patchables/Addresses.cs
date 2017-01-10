@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 23222
+    ///   Offset and Pointer for Wow 23360
     /// </summary>
     public static class Addresses
     {
@@ -330,11 +330,11 @@
         /// </summary>
         public enum UnitBaseGetUnitAura
         {
-            AuraTable1 = 0x1158,
-            AuraTable2 = 0x580,
-            AuraSize = 0x58,
+            AuraTable1 = 0x1160,
+            AuraTable2 = 0x800,
+            AuraSize = 0x80,
 
-            AuraStructCreatorGuid = 0x20, // ?// read 16 bytes (GUID)
+            AuraStructCreatorGuid = 0x48, // ?// read 16 bytes (GUID)
             AuraStructSpellId = AuraStructCreatorGuid + 16, // ?// read 4 bytes (UINT)
             AuraStructFlag = AuraStructSpellId + 4, // ?// read 1 byte
             AuraStructMask = AuraStructFlag + 1, // ?// read 4 bytes

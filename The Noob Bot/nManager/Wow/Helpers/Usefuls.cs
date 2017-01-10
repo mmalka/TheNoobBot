@@ -1121,19 +1121,22 @@ namespace nManager.Wow.Helpers
                 y = (float) (posCorpse.Y + 36f*System.Math.Sin(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
                 rezPos = new Point(x, y, PathFinder.GetZPosition(x, y));
 
-                PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
-
-                if (validPoint) //Point Valid : keep only the point that is the farthest from the mobs
+                if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) <= 40)
                 {
-                    WoWUnit mobc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), rezPos); //Closest mob from current point
-                    WoWUnit mobb = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), bestPoint); //Closest mob from best point
+                    PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
 
-                    if (degree == 0)
-                        bestPoint = rezPos; //First iterration
-
-                    if (bestPoint.DistanceTo(mobb.Position) < rezPos.DistanceTo(mobc.Position))
+                    if (validPoint) //Point Valid : keep only the point that is the farthest from the mobs
                     {
-                        bestPoint = rezPos;
+                        WoWUnit mobc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), rezPos); //Closest mob from current point
+                        WoWUnit mobb = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), bestPoint); //Closest mob from best point
+
+                        if (degree == 0)
+                            bestPoint = rezPos; //First iterration
+
+                        if (bestPoint.DistanceTo(mobb.Position) < rezPos.DistanceTo(mobc.Position))
+                        {
+                            bestPoint = rezPos;
+                        }
                     }
                 }
 
