@@ -106,7 +106,10 @@ namespace nManager.Wow.MemoryClass
 
             fasm.AddLine("mov edx, {0}", (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker));
             fasm.AddLine("call " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.WoWTextCaller));
-            fasm.AddLine("call " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker2));
+            fasm.AddLine("push happilyeverafter");
+            fasm.AddLine("push " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.RetFromFunctionBelow));
+            fasm.AddLine("jmp " + (uint)(Wow.Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.CTMChecker2));
+            fasm.AddLine("happilyeverafter:");
             fasm.AddLine("push 0");
             fasm.AddLine("add esp, 4");
 
