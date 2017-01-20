@@ -65,13 +65,21 @@ namespace nManager.Products
         public static bool InAutoPause
         {
             get { return _inAutoPause; }
-            set { _inAutoPause = value; }
+            set
+            {
+                _inAutoPause = value;
+                Logging.WriteFileOnly("Paused from: " + Wow.MemoryClass.Hook.CurrentCallStack);
+            }
         }
 
         public static bool InManualPause
         {
             get { return _inManualPause; }
-            set { _inManualPause = value; }
+            set
+            {
+                _inManualPause = value;
+                Logging.WriteFileOnly("Paused from: " + Wow.MemoryClass.Hook.CurrentCallStack);
+            }
         }
 
         public static Point TravelTo { get; set; }

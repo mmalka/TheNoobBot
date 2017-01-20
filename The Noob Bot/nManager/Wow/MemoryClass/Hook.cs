@@ -150,22 +150,29 @@ namespace nManager.Wow.MemoryClass
 
                 if (injectTimer.IsReady)
                 {
-                    string myStack = "";
-                    for (int i = 10; i >= 1; i--)
-                    {
-                        var stackFrame = new StackFrame(i);
-                        if (stackFrame.GetMethod() != null)
-                            myStack = myStack + stackFrame.GetMethod().Name + " => ";
-                    }
-                    myStack = myStack.Substring(0, myStack.Length - 4);
-
-                    Logging.WriteError("Injection have been aborted, execution too long from " + myStack);
+                    Logging.WriteError("Injection have been aborted, execution too long from " + CurrentCallStack);
                     return 0;
                 }
                 Memory.WriteBytes(_mInjectionCode, _mZeroBytesInjectionCodes);
 
                 uint returnValue = Memory.ReadUInt(_mResult);
                 return returnValue;
+            }
+        }
+
+        public static string CurrentCallStack
+        {
+            get
+            {
+                string myStack = "";
+                for (int i = 10; i >= 1; i--)
+                {
+                    var stackFrame = new StackFrame(i);
+                    if (stackFrame.GetMethod() != null)
+                        myStack = myStack + stackFrame.GetMethod().Name + " => ";
+                }
+                myStack = myStack.Substring(0, myStack.Length - 4);
+                return myStack;
             }
         }
 
