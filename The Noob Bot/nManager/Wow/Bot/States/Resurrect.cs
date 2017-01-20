@@ -228,8 +228,8 @@ namespace nManager.Wow.Bot.States
                     }
 
                     MovementManager.StopMove();
-                    if ((Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) && ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted &&
-                        Usefuls.InGame)
+                    while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 39.0f || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) &&
+                           ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted && Usefuls.InGame)
                     {
                         Interact.RetrieveCorpse();
                         Thread.Sleep(1000);
@@ -237,10 +237,11 @@ namespace nManager.Wow.Bot.States
                 }
                 else
                 {
-                    if (tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 26 || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0)
+                    if (tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 30.0f || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0)
                     {
-                        while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 27 || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) &&
-                               ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted && Usefuls.InGame)
+                        while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 30.0f ||
+                                Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) && ObjectManager.ObjectManager.Me.IsDeadMe &&
+                               Products.Products.IsStarted && Usefuls.InGame)
                         {
                             Interact.RetrieveCorpse();
                             Thread.Sleep(1000);

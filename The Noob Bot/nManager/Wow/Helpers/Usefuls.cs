@@ -1117,11 +1117,11 @@ namespace nManager.Wow.Helpers
             while (degree < 360) //Search for safe rez point, if no safe point found, just rez and get killed again!
             {
                 //Calculate position on a circle 15degrees at a time and check if we can go there
-                x = (float) (posCorpse.X + 36f*System.Math.Cos(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
-                y = (float) (posCorpse.Y + 36f*System.Math.Sin(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
+                x = (float) (posCorpse.X + 30f*System.Math.Cos(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
+                y = (float) (posCorpse.Y + 30f*System.Math.Sin(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
                 rezPos = new Point(x, y, PathFinder.GetZPosition(x, y));
 
-                if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) <= 40)
+                if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) < 36.0f && !nManagerSetting.IsBlackListedZone(rezPos))
                 {
                     PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
 
