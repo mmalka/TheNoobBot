@@ -136,13 +136,13 @@
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
-            CastingSpellID = 0x106C, // Script_UnitCastingInfo
-            CastingSpellStartTime = 0x1090,
-            CastingSpellEndTime = 0x1094,
-            ChannelSpellID = 0x1098, // Script_UnitChannelInfo
-            ChannelSpellStartTime = 0x109C,
-            ChannelSpellEndTime = 0x10A0,
-            CanInterrupt = 0xFCC, // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
+            CastingSpellID = 0x1074, // Script_UnitCastingInfo
+            CastingSpellStartTime = 0x1098,
+            CastingSpellEndTime = 0x109C,
+            ChannelSpellID = 0x10A0, // Script_UnitChannelInfo
+            ChannelSpellStartTime = 0x10A4,
+            ChannelSpellEndTime = 0x10A8,
+            CanInterrupt = 0xFD4, // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
 
             // SpellCanBeInterrupted changed too much, not sure if CanInterrupt even work.
             CanInterruptOffset = 0xE02EA0, // SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
@@ -150,7 +150,7 @@
             CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
 
             TransportGUID = 0xAE8, // ?// CGUnit_C__HasVehicleTransport // ??
-            DBCacheRow = 3200, // ?// CGUnit_C__GetUnitName ???
+            DBCacheRow = 0xC88, // ?// CGUnit_C__GetUnitName ???
             CachedSubName = 0x0, // ?// beginning of DBCacheRow pointer = CachedSubName
             CachedName = 0x80, // end of CGUnit_C::GetCreatureRank
             CachedTypeFlag = 0x24, // ?// check or update
