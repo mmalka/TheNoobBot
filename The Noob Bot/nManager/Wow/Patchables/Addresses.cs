@@ -334,16 +334,16 @@
             AuraTable2 = 0x800,
             AuraSize = 0x80,
 
-            AuraStructCreatorGuid = 0x48, // ?// read 16 bytes (GUID)
-            AuraStructSpellId = AuraStructCreatorGuid + 16, // ?// read 4 bytes (UINT)
-            AuraStructFlag = AuraStructSpellId + 4, // ?// read 1 byte
-            AuraStructMask = AuraStructFlag + 1, // ?// read 4 bytes
-            AuraStructCount = AuraStructMask + 4, // ?// read 1 byte
-            AuraStructCasterLevel = AuraStructCount + 1, // ?// read 1 byte
-            AuraStructUnk1 = AuraStructCasterLevel + 1, // ?// read 1 byte, // ?what is this ?
-            AuraStructDuration = AuraStructUnk1 + 1, // ?// read 4 bytes
-            AuraStructSpellEndTime = AuraStructDuration + 4, // ?// read 4 bytes
-            AuraStructUnk2 = AuraStructSpellEndTime + 4, // ?// read 4 byte
+            AuraStructCreatorGuid = 0x48, // read 16 bytes (GUID)
+            AuraStructSpellId = AuraStructCreatorGuid + 16, // read 4 bytes (UINT)
+            AuraStructFlag = AuraStructSpellId + 4, // read 1 byte
+            AuraStructMask = AuraStructFlag + 1, // read 4 bytes
+            AuraStructCount = AuraStructMask + 4, // read 1 byte
+            AuraStructCasterLevel = AuraStructCount + 1, // read 1 byte
+            AuraStructUnk1 = AuraStructCasterLevel + 1, // read 1 byte, what is this ?
+            AuraStructDuration = AuraStructUnk1 + 1, // read 4 bytes
+            AuraStructSpellEndTime = AuraStructDuration + 4, // read 4 bytes
+            AuraStructUnk2 = AuraStructSpellEndTime + 4, // read 4 byte
         }
 
         /// <summary>

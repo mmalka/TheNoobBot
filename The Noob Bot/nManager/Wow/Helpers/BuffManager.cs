@@ -74,31 +74,12 @@ namespace nManager.Wow.Helpers
 
                     if (currentAuraPtr > 0)
                     {
-                        UInt128 auraCreatorGuid = Memory.WowMemory.Memory.ReadUInt128(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCreatorGuid);
                         uint auraSpellId = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId);
-                        byte auraFlags = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructFlag);
-                        byte auraStackCount = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCount);
-                        byte auraCasterLevel = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCasterLevel);
-                        byte auraUnk1 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk1);
-                        int auraDuration = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructDuration);
-                        int auraSpellEndTime = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime);
-                        uint auraUnk2 = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk2);
-                        uint auraMask = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructMask);
                         var currUnitAura = new Auras.UnitAura
                         {
-                            AuraCreatorGUID = auraCreatorGuid,
+                            BaseAddress = currentAuraPtr,
                             AuraSpellId = auraSpellId,
-                            AuraFlag = auraFlags,
-                            AuraCount = auraStackCount,
-                            AuraCasterLevel = auraCasterLevel,
-                            AuraMask = auraMask,
-                            AuraUnk1 = auraUnk1,
-                            AuraDuration = auraDuration,
-                            AuraSpellEndTime = auraSpellEndTime,
-                            AuraUnk2 = auraUnk2
                         };
-                        /*Console.WriteLine("Pointer = " + currentAuraPtr);
-                            Console.WriteLine(currUnitAura);*/
                         unitAuras.Auras.Add(currUnitAura);
                     }
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
+using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Class
 {
@@ -10,22 +11,60 @@ namespace nManager.Wow.Class
     {
         public class UnitAura
         {
-            public UInt128 AuraCreatorGUID { get; set; }
+            public uint BaseAddress { get; set; }
 
             public bool IsValid
             {
-                get { return (AuraCount != -1 && AuraCreatorGUID > 0); }
+                get { return BaseAddress > 0 && (AuraCount != -1 && AuraCreatorGUID > 0); }
+            }
+
+
+            public UInt128 AuraCreatorGUID
+            {
+                get { return Memory.WowMemory.Memory.ReadUInt128(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCreatorGuid); }
             }
 
             public uint AuraSpellId { get; set; }
-            public int AuraCount { get; set; }
-            public byte AuraCasterLevel { get; set; }
-            public byte AuraFlag { get; set; }
-            public uint AuraMask { get; set; }
-            public byte AuraUnk1 { get; set; }
-            public int AuraDuration { get; set; }
-            public int AuraSpellEndTime { get; set; }
-            public uint AuraUnk2 { get; set; }
+
+            public int AuraCount
+            {
+                get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCount); }
+            }
+
+            public byte AuraCasterLevel
+            {
+                get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCasterLevel); }
+            }
+
+            public byte AuraFlag
+            {
+                get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructFlag); }
+            }
+
+            public uint AuraMask
+            {
+                get { return Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructMask); }
+            }
+
+            public byte AuraUnk1
+            {
+                get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk1); }
+            }
+
+            public int AuraDuration
+            {
+                get { return Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructDuration); }
+            }
+
+            public int AuraSpellEndTime
+            {
+                get { return Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime); }
+            }
+
+            public uint AuraUnk2
+            {
+                get { return Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk2); }
+            }
 
             public int AuraTimeLeftInMs
             {
