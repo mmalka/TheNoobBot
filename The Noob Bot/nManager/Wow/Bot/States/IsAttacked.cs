@@ -28,11 +28,11 @@ namespace nManager.Wow.Bot.States
         {
             while (Products.Products.IsStarted)
             {
+                if (Fight.InFight)
+                    continue;
                 if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid)
                     continue;
                 if ((ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) || !Products.Products.IsStarted)
-                    continue;
-                if (Fight.InFight)
                     continue;
                 _unitToPull = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
