@@ -96,7 +96,7 @@ namespace BinDiffTrimmer
 
                     if (!trimmed[6].Contains("sub_") && !trimmed[6].Contains("__imp"))
                     {
-                        if (!trimmed[6].Contains("Script_"))
+                        if (!trimmed[6].Contains("Script_") || trimmed[6].Contains("FrameScript_"))
                             Logging.Write(trimmed[3] + "\t" + trimmed[6]);
                     }
                 }
