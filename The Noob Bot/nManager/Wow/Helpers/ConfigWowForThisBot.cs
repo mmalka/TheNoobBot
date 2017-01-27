@@ -88,6 +88,7 @@ namespace nManager.Wow.Helpers
                     Lua.LuaDoString("ConsoleExec(\"maxfpsbk 60\")");
                     Lua.LuaDoString("ConsoleExec(\"MaxFPS 60\")");
                 }
+                Lua.LuaDoString("ConsoleExec(\"AllowDangerousScripts 1\")");
             }
             catch (Exception exception)
             {
