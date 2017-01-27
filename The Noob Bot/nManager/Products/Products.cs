@@ -185,6 +185,16 @@ namespace nManager.Products
 
         public static void ToggleCinematic(bool started = true)
         {
+            if (started)
+            {
+                Lua.LuaDoString("StopCinematic()");
+                Thread.Sleep(1000);
+                string randomString = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomString + " = InCinematic()");
+                string ret = Lua.GetLocalizedText(randomString);
+                if (ret != "1")
+                    return; // leave if not InCinematic.
+            }
             _inAutoPause = started;
         }
 
