@@ -270,6 +270,7 @@ public class WarlockAffliction
     private readonly Spell GrimoireofSacrifice = new Spell("Grimoire of Sacrifice");
     private readonly Spell Haunt = new Spell("Haunt");
     private readonly Spell ManaTap = new Spell("Mana Tap");
+    private readonly Spell ShadowBolt = new Spell("Shadow Bolt");
 
     #endregion
 
@@ -875,6 +876,11 @@ public class WarlockAffliction
                 LifeTap.IsSpellUsable)
             {
                 LifeTap.Cast();
+                return;
+            }
+            if (MySettings.UseUnstableAffliction && !UnstableAffliction.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood)
+            {
+                ShadowBolt.Cast();
                 return;
             }
         }
