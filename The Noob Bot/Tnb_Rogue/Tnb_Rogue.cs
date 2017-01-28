@@ -249,6 +249,7 @@ public class RogueAssassination
     private readonly Spell FanofKnives = new Spell("Fan of Knives");
     private readonly Spell Garrote = new Spell("Garrote");
     private readonly Spell Mutilate = new Spell("Mutilate");
+    private readonly Spell SinisterStrike = new Spell("Sinister Strike");
     private readonly Spell Hemorrhage = new Spell("Hemorrhage");
     private readonly Spell Rupture = new Spell("Rupture");
 
@@ -762,6 +763,11 @@ public class RogueAssassination
             if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood)
             {
                 Mutilate.Cast();
+                return;
+            }
+            if (MySettings.UseMutilate && !Mutilate.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood)
+            {
+                SinisterStrike.Cast();
                 return;
             }
         }
