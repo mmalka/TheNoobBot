@@ -252,6 +252,7 @@ public class RogueAssassination
     private readonly Spell SinisterStrike = new Spell("Sinister Strike");
     private readonly Spell Hemorrhage = new Spell("Hemorrhage");
     private readonly Spell Rupture = new Spell("Rupture");
+    private readonly Spell Eviscerate = new Spell("Eviscerate");
 
     #endregion
 
@@ -714,6 +715,7 @@ public class RogueAssassination
                     return;
                 }
             }
+
             //4. Maintain Garrote Dot when it is off cooldown and
             if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
                 //it has 6 or less seconds remaining
@@ -765,6 +767,16 @@ public class RogueAssassination
                 Mutilate.Cast();
                 return;
             }
+
+            //Cast Eviscerate FOR LOW LEVELS
+            if (MySettings.UseRupture && !Rupture.KnownSpell && Eviscerate.IsSpellUsable &&
+                Eviscerate.IsHostileDistanceGood && GetFreeComboPoints() == 0)
+            {
+                Eviscerate.Cast();
+                return;
+            }
+
+            //Cast Sinister Strike FOR LOW LEVELS
             if (MySettings.UseMutilate && !Mutilate.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood)
             {
                 SinisterStrike.Cast();
