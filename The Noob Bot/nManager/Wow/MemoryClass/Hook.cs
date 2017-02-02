@@ -33,7 +33,7 @@ namespace nManager.Wow.MemoryClass
 
         private uint _mExecuteRequested;
         private uint _mInjectionCode;
-        private uint _mLockRequested;
+        private uint _mSavedAntiban;
         private uint _mLocked;
         private uint _mResult;
         private uint _mTrampoline;
@@ -83,10 +83,16 @@ namespace nManager.Wow.MemoryClass
 
             fasm.SetMemorySize(0x1000);
             fasm.SetPassLimit(100);
-
             fasm.AddLine("pushad");
             fasm.AddLine("pushfd");
 
+            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            fasm.AddLine("mov eax, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff1 + "]");
+            fasm.AddLine("mov esi, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "]");
+            fasm.AddLine("mov [" + _mSavedAntiban + "], esi");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], eax");
+
+            fasm.AddLine("mov eax, [{0}]", _mLocked);
             fasm.AddLine("@execution:");
 
             fasm.AddLine("mov eax, [{0}]", _mExecuteRequested);
@@ -108,11 +114,14 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("call " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.WoWTextCaller));
             fasm.AddLine("push happilyeverafter");
             fasm.AddLine("push " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.RetFromFunctionBelow));
-            fasm.AddLine("jmp " + (uint)(Wow.Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.CTMChecker2));
+            fasm.AddLine("jmp " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker2));
             fasm.AddLine("happilyeverafter:");
             fasm.AddLine("push 0");
             fasm.AddLine("add esp, 4");
 
+            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            fasm.AddLine("mov esi, [" + _mSavedAntiban + "]");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], esi");
 
             fasm.AddLine("popfd");
             fasm.AddLine("popad");
@@ -309,6 +318,7 @@ namespace nManager.Wow.MemoryClass
                             //_mLockRequested = Memory.AllocateMemory(0x4);
                             _mLocked = Memory.AllocateMemory(0x4);
                             _mResult = Memory.AllocateMemory(0x4);
+                            _mSavedAntiban = Memory.AllocateMemory(0x4);
                             _mExecuteRequested = Memory.AllocateMemory(0x4);
 
                             _mZeroBytesInjectionCodes = new byte[0x1000];

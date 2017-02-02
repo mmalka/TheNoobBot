@@ -255,6 +255,12 @@
             CTMChecker = 0x313238,
             CTMChecker2 = 0x5CE78D,
             RetFromFunctionBelow = 0x18CB18,
+            // mov [D16250+E48], [D16250+E44]
+            SpellChecker = 0xD16250, // Script_IsStereoVideoAvailable
+            SpellCheckerOff1 = 0xE44,
+            SpellCheckerOff2 = 0xE48,
+            SpellFixer = 0x10E2C3,
+
             ClntObjMgrGetActivePlayerObj = 0x81E2D,
             FrameScript_ExecuteBuffer = 0xA6D50,
             CGPlayer_C__ClickToMove = 0x300970, // alias CGUnit_C__InitializeTrackingState
