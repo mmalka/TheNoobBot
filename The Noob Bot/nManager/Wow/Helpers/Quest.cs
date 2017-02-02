@@ -638,24 +638,31 @@ namespace nManager.Wow.Helpers
 
         public static void AutoCompleteQuest(List<int> autoComplete)
         {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(randomString + " = GetNumAutoQuestPopUps();");
-            int num = Others.ToInt32(Lua.GetLocalizedText(randomString));
-            for (int i = 1; i <= num; i++)
+            for (int i = 1; i < 100; i++)
             {
                 string questIdRet = Others.GetRandomString(Others.Random(4, 10));
                 string questStatusRet = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(questIdRet + ", " + questStatusRet + " = GetAutoQuestPopUp(" + i + ");");
                 string questStatus = Lua.GetLocalizedText(questStatusRet);
+                int questId = Others.ToInt32(Lua.GetLocalizedText(questIdRet));
+                if (questId == 0 && string.IsNullOrEmpty(questStatus) && i > 10)
+                    return;
+                if (questId == 0 && string.IsNullOrEmpty(questStatus))
+                    continue;
                 if (questStatus == "COMPLETE")
                 {
-                    int questId = Others.ToInt32(Lua.GetLocalizedText(questIdRet));
                     if (autoComplete.Contains(questId))
                     {
                         string questLogEntry = Others.GetRandomString(Others.Random(4, 10));
-                        string luaString = questLogEntry + " = GetQuestLogIndexByID(" + questId + ") ";
-                        luaString += "ShowQuestComplete(" + questLogEntry + ")";
+                        string luaString = questLogEntry + " = GetQuestLogIndexByID(" + questId + "); ";
+                        luaString += "ShowQuestComplete(" + questLogEntry + ");";
                         Lua.LuaDoString(luaString);
+                        Thread.Sleep(300);
+                        if (Others.IsFrameVisible("QuestFrameCompleteButton") && !Others.IsFrameVisible("QuestFrameCompleteQuestButton"))
+                        {
+                            Lua.RunMacroText("/click QuestFrameCompleteButton");
+                            Thread.Sleep(300);
+                        }
                         CompleteQuest();
                         Thread.Sleep(500);
                     }
