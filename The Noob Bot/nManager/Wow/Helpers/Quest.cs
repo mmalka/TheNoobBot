@@ -351,7 +351,10 @@ namespace nManager.Wow.Helpers
             AbandonnedId = 0;
 
             Point me = ObjectManager.ObjectManager.Me.Position;
-            if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
+            bool bypassTravel = false;
+            if (me.DistanceTo(npc.Position) <= 40f)
+                PathFinder.FindPath(npc.Position, out bypassTravel);
+            if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 Logging.Write("Calling travel system...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
@@ -361,7 +364,7 @@ namespace nManager.Wow.Helpers
                 _travelLocation = me;
                 return;
             }
-            if (_travelLocation.DistanceTo(me) <= 0.1f)
+            if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
@@ -468,8 +471,17 @@ namespace nManager.Wow.Helpers
 
         public static void QuestTurnIn(ref Npc npc, string questName, int questId)
         {
+            if (IsQuestFailed(questId))
+            {
+                Logging.Write("Quest " + questName + "(" + questId + ") has failed, abandonning it.");
+                AbandonQuest(questId);
+                return;
+            }
             Point me = ObjectManager.ObjectManager.Me.Position;
-            if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
+            bool bypassTravel = false;
+            if (me.DistanceTo(npc.Position) <= 40f)
+                PathFinder.FindPath(npc.Position, out bypassTravel);
+            if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 Logging.Write("Calling travel system...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
@@ -632,6 +644,23 @@ namespace nManager.Wow.Helpers
                             typeof (PlayerQuest));
                 if (playerQuest.ID == questId)
                     return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] >= count;
+            }
+            return false;
+        }
+
+        public static bool IsQuestFailed(int questId)
+        {
+            uint descriptorsArray =
+                Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                 Descriptors.StartDescriptors);
+            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
+            for (int index = 0; index < 50; ++index)
+            {
+                var playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject((uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)), typeof (PlayerQuest));
+                if (playerQuest.ID == questId)
+                {
+                    return playerQuest.State == PlayerQuest.StateFlag.Failed;
+                }
             }
             return false;
         }
