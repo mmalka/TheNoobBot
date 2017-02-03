@@ -127,12 +127,10 @@ namespace Quester.Profile
 
         public int CompareTo(object obj)
         {
-            if (obj == null)
-                return 1;
+            if (!(obj is Quest))
+                return -1;
 
             Quest otherQuest = obj as Quest;
-            if (otherQuest == null)
-                return -1;
             if (otherQuest.ItemPickUp != 0)
                 return ItemPickUp != 0 ? 0 : 1;
             if (ItemPickUp != 0)
@@ -160,8 +158,21 @@ namespace Quester.Profile
             }
 
             if (otherQuestLocation != null && otherQuestLocation.IsValid)
+            {
+                // We have a valid quest location, return which one is closer.
                 return currentQuestLocation.DistanceTo(ObjectManager.Me.Position).CompareTo(otherQuestLocation.DistanceTo(ObjectManager.Me.Position));
-            throw new ArgumentException("Object is not a Quest");
+            }
+            if (otherQuestLocation == null)
+            {
+                Logging.WriteDebug("Quest " + otherQuest.Name + " (" + otherQuest.Id + ") doesn't have a valid PickUp and cannot be compared to.");
+                return -1;
+            }
+            if (currentQuestLocation == null)
+            {
+                Logging.WriteDebug("Quest " + Name + " (" + Id + ") doesn't have a valid PickUp and cannot be compared to.");
+                return 1;
+            }
+            return 0;
         }
     }
 
