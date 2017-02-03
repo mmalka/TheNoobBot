@@ -98,6 +98,14 @@
             LastHardwareAction = 0xD0E090, // ?// Script_ToggleRun
         }
 
+        public enum TargetSystem
+        {
+            PtrToVMT = 0xC8B094, // Script_TargetNearest or any target related script
+            Focus = 0x80, // to find manually
+            Target = 0x28,
+            //TargetTarget = 0x0,
+        }
+
         /// <summary>
         ///   Player Offset
         /// </summary>

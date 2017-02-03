@@ -16,6 +16,7 @@ namespace nManager.Wow.ObjectManager
     {
         private static readonly object Locker = new object();
         private static uint _lastTargetBase;
+        private static uint _lastFocusBase;
         // All Objects except Units are in _objectList
         private static List<WoWObject> _objectList;
         // Players, Units and Gameobjects are in separate lists
@@ -111,6 +112,39 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("WoWUnit Pet: " + e);
                     return new WoWUnit(0);
                 }
+            }
+        }
+
+        public static WoWUnit Focus
+        {
+            get
+            {
+                try
+                {
+                    if (Me.IsValid)
+                    {
+                        if (Me.Focus > 0)
+                        {
+                            if (_lastFocusBase > 0)
+                                if (new WoWUnit(_lastFocusBase).Guid == Me.Focus)
+                                {
+                                    return new WoWUnit(_lastFocusBase);
+                                }
+                                else
+                                {
+                                    _lastFocusBase = 0;
+                                }
+                            var t = new WoWUnit(GetObjectByGuid(Me.Focus).GetBaseAddress);
+                            _lastFocusBase = t.GetBaseAddress;
+                            return t;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("Focus: " + e);
+                }
+                return new WoWUnit(0);
             }
         }
 

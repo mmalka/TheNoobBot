@@ -466,7 +466,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint Focus
+        public uint PowerTypeFocus
         {
             get
             {
@@ -482,7 +482,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint MaxFocus
+        public uint PowerTypeMaxFocus
         {
             get
             {
@@ -492,23 +492,23 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > MaxFocus: " + e);
+                    Logging.WriteError("WoWUnit > PowerTypeMaxFocus: " + e);
                     return 0;
                 }
             }
         }
 
-        public uint FocusPercentage
+        public uint PowerTypeFocusPercentage
         {
             get
             {
                 try
                 {
-                    return Focus*100/MaxFocus;
+                    return PowerTypeFocus * 100 / PowerTypeMaxFocus;
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWPlayer > FocusPercentage: " + e);
+                    Logging.WriteError("WoWPlayer > PowerTypeFocusPercentage: " + e);
                     return 0;
                 }
             }
@@ -1470,7 +1470,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UInt128>(Descriptors.UnitFields.Target);
+                    return Memory.WowMemory.Memory.ReadUInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Target));
                 }
                 catch (Exception e)
                 {
@@ -1482,13 +1482,37 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    Memory.WowMemory.Memory.WriteInt128(
-                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors) +
-                        (uint) Descriptors.UnitFields.Target*Descriptors.Multiplicator, value);
+                    Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Target), value);
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > Target set: " + e);
+                }
+            }
+        }
+        public UInt128 Focus
+        {
+            get
+            {
+                try
+                {
+                    return Memory.WowMemory.Memory.ReadUInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Focus));
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > : Focus get" + e);
+                    return 0;
+                }
+            }
+            set
+            {
+                try
+                {
+                    Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Focus), value);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Focus set: " + e);
                 }
             }
         }
