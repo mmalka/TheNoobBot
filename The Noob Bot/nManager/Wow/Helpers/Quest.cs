@@ -397,14 +397,22 @@ namespace nManager.Wow.Helpers
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
-            var unitTest = new WoWUnit(baseAddress);
-            if (unitTest.IsValid && !unitTest.HasQuests)
+            if (baseAddress > 0)
             {
-                _travelDisabled = false; // reset travel
-                nManagerSetting.AddBlackList(unitTest.Guid, 60000);
-                Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
-                cancelPickUp = true;
-                return;
+                var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(npc.Guid);
+                if (tmpNpc is WoWUnit)
+                {
+                    var unitTest = tmpNpc as WoWUnit;
+                    if (unitTest.IsValid && !unitTest.HasQuests)
+                    {
+                        _travelDisabled = false; // reset travel
+                        nManagerSetting.AddBlackList(unitTest.Guid, 60000);
+                        Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance +
+                                      ") does not have any available quest for the moment. Blacklisting it one minute.");
+                        cancelPickUp = true;
+                        return;
+                    }
+                }
             }
             if (MovementManager.InMovement)
                 return;
@@ -525,14 +533,22 @@ namespace nManager.Wow.Helpers
             if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
-            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f);
-            var unitTest = new WoWUnit(baseAddress);
-            if (unitTest.IsValid && !unitTest.CanTurnIn)
+            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true);
+            if (baseAddress > 0)
             {
-                _travelDisabled = false; // reset travel
-                nManagerSetting.AddBlackList(unitTest.Guid, 60000);
-                Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
-                return;
+                var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(npc.Guid);
+                if (tmpNpc is WoWUnit)
+                {
+                    var unitTest = tmpNpc as WoWUnit;
+                    if (unitTest.IsValid && !unitTest.CanTurnIn)
+                    {
+                        _travelDisabled = false; // reset travel
+                        nManagerSetting.AddBlackList(unitTest.Guid, 60000);
+                        Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance +
+                                      ") cannot TurnIn any quest right now. Blacklisting it one minute.");
+                        return;
+                    }
+                }
             }
             if (MovementManager.InMovement)
                 return;
