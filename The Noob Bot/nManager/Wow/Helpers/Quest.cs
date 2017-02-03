@@ -5,6 +5,7 @@ using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.MemoryClass;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 
@@ -78,11 +79,33 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString("SelectGossipAvailableQuest(" + GossipOption + ")");
         }
 
-        public static void CloseQuestWindow()
+        public static void CloseWindow()
         {
-            Lua.LuaDoString("CloseQuest()");
-            Lua.LuaDoString("CloseGossip()");
-            Thread.Sleep(150);
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                Lua.LuaDoString("CloseQuest()");
+                Lua.LuaDoString("CloseGossip()");
+                Lua.LuaDoString("CloseBankFrame()");
+                Lua.LuaDoString("CloseMail()");
+                Lua.LuaDoString("CloseMerchant()");
+                Lua.LuaDoString("ClosePetStables()");
+                Lua.LuaDoString("CloseTaxiMap()");
+                Lua.LuaDoString("CloseTrainer()");
+                Lua.LuaDoString("CloseAuctionHouse()");
+                Lua.LuaDoString("CloseGuildBankFrame()");
+                Lua.RunMacroText("/Click QuestFrameCloseButton");
+                Lua.LuaDoString("ClearTarget()");
+                Thread.Sleep(150);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("public static void CloseWindow(): " + e);
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
         }
 
         public static void AcceptQuest()
@@ -95,9 +118,10 @@ namespace nManager.Wow.Helpers
 
         public static int GetQuestID()
         {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Quests.QuestId);
+            /*string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetQuestID()");
-            return Others.ToInt32(Lua.GetLocalizedText(randomString));
+            return Others.ToInt32(Lua.GetLocalizedText(randomString));*/
         }
 
         public static bool GetGossipAvailableQuestsWorks()
@@ -349,8 +373,13 @@ namespace nManager.Wow.Helpers
                 AbandonQuest(AbandonnedId);
             }
             AbandonnedId = 0;
-
             Point me = ObjectManager.ObjectManager.Me.Position;
+            WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry), false, false, true);
+            // We have the NPC in memory and he is closer than the QuesterDB entry. (some Npc moves)
+            if (mNpc.HasQuests)
+                npc.Position = mNpc.Position;
+            else if (mNpc.IsValid)
+                nManagerSetting.AddBlackList(npc.Guid, 60*1000);
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 40f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
@@ -369,18 +398,14 @@ namespace nManager.Wow.Helpers
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
             var unitTest = new WoWUnit(baseAddress);
-            if (unitTest.IsValid)
-                if (unitTest.UnitQuestGiverStatus != UnitQuestGiverStatus.Available &&
-                    unitTest.UnitQuestGiverStatus != UnitQuestGiverStatus.AvailableRepeatable &&
-                    unitTest.UnitQuestGiverStatus != UnitQuestGiverStatus.LowLevelAvailable &&
-                    unitTest.UnitQuestGiverStatus != UnitQuestGiverStatus.LowLevelAvailableRepeatable)
-                {
-                    _travelDisabled = false; // reset travel
-                    nManagerSetting.AddBlackList(unitTest.Guid, 60000);
-                    Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
-                    cancelPickUp = true;
-                    return;
-                }
+            if (unitTest.IsValid && !unitTest.HasQuests)
+            {
+                _travelDisabled = false; // reset travel
+                nManagerSetting.AddBlackList(unitTest.Guid, 60000);
+                Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
+                cancelPickUp = true;
+                return;
+            }
             if (MovementManager.InMovement)
                 return;
             _travelDisabled = false; // reset travel
@@ -402,7 +427,7 @@ namespace nManager.Wow.Helpers
                 }
                 if (GetLogQuestId().Contains(questId))
                 {
-                    CloseQuestWindow();
+                    CloseWindow();
                 }
                 else
                 {
@@ -424,12 +449,12 @@ namespace nManager.Wow.Helpers
                                 AcceptQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 id = GetQuestID();
-                                CloseQuestWindow();
+                                CloseWindow();
                                 if (id != questId)
                                     AbandonQuest(id);
                                 break;
                             }
-                            CloseQuestWindow();
+                            CloseWindow();
                             Thread.Sleep(Usefuls.Latency + 500);
                             AbandonQuest(id);
                             Interact.InteractWith(baseAddress);
@@ -449,12 +474,12 @@ namespace nManager.Wow.Helpers
                                 AcceptQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 id = GetQuestID();
-                                CloseQuestWindow();
+                                CloseWindow();
                                 if (id != questId)
                                     AbandonQuest(id);
                                 break;
                             }
-                            CloseQuestWindow();
+                            CloseWindow();
                             Thread.Sleep(Usefuls.Latency + 500);
                             AbandonQuest(id);
                             Interact.InteractWith(baseAddress);
@@ -466,7 +491,7 @@ namespace nManager.Wow.Helpers
                 KilledMobsToCount.Clear();
                 Thread.Sleep(Usefuls.Latency);
             }
-            Lua.LuaDoString("ClearTarget()");
+            CloseWindow();
         }
 
         public static void QuestTurnIn(ref Npc npc, string questName, int questId)
@@ -478,6 +503,12 @@ namespace nManager.Wow.Helpers
                 return;
             }
             Point me = ObjectManager.ObjectManager.Me.Position;
+            WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry), false, false, true);
+            if (mNpc.CanTurnIn)
+                npc.Position = mNpc.Position;
+            else if (mNpc.IsValid)
+                nManagerSetting.AddBlackList(npc.Guid, 60*1000);
+
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 40f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
@@ -491,10 +522,18 @@ namespace nManager.Wow.Helpers
                 _travelLocation = me;
                 return;
             }
-            if (_travelLocation.DistanceTo(me) <= 0.1f)
+            if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f);
+            var unitTest = new WoWUnit(baseAddress);
+            if (unitTest.IsValid && !unitTest.CanTurnIn)
+            {
+                _travelDisabled = false; // reset travel
+                nManagerSetting.AddBlackList(unitTest.Guid, 60000);
+                Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
+                return;
+            }
             if (MovementManager.InMovement)
                 return;
             _travelDisabled = false; // reset travel
@@ -519,7 +558,7 @@ namespace nManager.Wow.Helpers
                 {
                     id = GetQuestID();
                     FinishedQuestSet.Add(questId);
-                    CloseQuestWindow();
+                    CloseWindow();
                     AbandonnedId = id;
                 }
                 else
@@ -548,7 +587,7 @@ namespace nManager.Wow.Helpers
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 // here it can be the next quest id presented automatically when the current one is turned in
                                 id = GetQuestID();
-                                CloseQuestWindow();
+                                CloseWindow();
                                 if (GetLogQuestId().Contains(questId))
                                 {
                                     equip = null;
@@ -559,7 +598,7 @@ namespace nManager.Wow.Helpers
                                 AbandonnedId = id;
                                 break;
                             }
-                            CloseQuestWindow();
+                            CloseWindow();
                             Thread.Sleep(Usefuls.Latency + 500);
                             Interact.InteractWith(baseAddress);
                             Thread.Sleep(Usefuls.Latency + 500);
@@ -582,7 +621,7 @@ namespace nManager.Wow.Helpers
                                 }
                                 equip = CompleteQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
-                                CloseQuestWindow();
+                                CloseWindow();
                                 if (GetLogQuestId().Contains(questId))
                                 {
                                     equip = null;
@@ -592,7 +631,7 @@ namespace nManager.Wow.Helpers
                                 FinishedQuestSet.Add(questId);
                                 break;
                             }
-                            CloseQuestWindow();
+                            CloseWindow();
                             Thread.Sleep(Usefuls.Latency + 500);
                             Interact.InteractWith(baseAddress);
                             Thread.Sleep(Usefuls.Latency + 500);
@@ -607,7 +646,7 @@ namespace nManager.Wow.Helpers
                 ItemSelection.EquipItem(equip);
                 Thread.Sleep(Usefuls.Latency + 500);
             }
-            Lua.LuaDoString("ClearTarget()");
+            CloseWindow();
         }
 
         public static void DumpInternalIndexForQuestId(int questId)
