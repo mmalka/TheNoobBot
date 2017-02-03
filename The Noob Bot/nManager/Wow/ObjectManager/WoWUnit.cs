@@ -504,7 +504,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return PowerTypeFocus * 100 / PowerTypeMaxFocus;
+                    return PowerTypeFocus*100/PowerTypeMaxFocus;
                 }
                 catch (Exception e)
                 {
@@ -1470,7 +1470,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadUInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Target));
+                    if (Guid == ObjectManager.Me.Guid)
+                        return Memory.WowMemory.Memory.ReadUInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.TargetSystem.PtrToVMT) + (uint) Addresses.TargetSystem.Target);
+                    return GetDescriptor<UInt128>(Descriptors.UnitFields.Target);
                 }
                 catch (Exception e)
                 {
@@ -1482,7 +1484,10 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Target), value);
+                    if (Guid == ObjectManager.Me.Guid)
+                        Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.TargetSystem.PtrToVMT) + (uint) Addresses.TargetSystem.Target, value);
+                    else
+                        Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors) + (uint) Descriptors.UnitFields.Target*Descriptors.Multiplicator, value);
                 }
                 catch (Exception e)
                 {
@@ -1490,13 +1495,17 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public UInt128 Focus
         {
             get
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadUInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Focus));
+                    if (Guid == ObjectManager.Me.Guid)
+                        return Memory.WowMemory.Memory.ReadUInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.TargetSystem.PtrToVMT) + (uint) Addresses.TargetSystem.Focus);
+                    Logging.Write("You can only read the focus of Me.Focus.");
+                    return 0;
                 }
                 catch (Exception e)
                 {
@@ -1508,7 +1517,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint)Addresses.TargetSystem.PtrToVMT) + (uint)Addresses.TargetSystem.Focus), value);
+                    if (Guid == ObjectManager.Me.Guid)
+                        Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.TargetSystem.PtrToVMT) + (uint) Addresses.TargetSystem.Focus, value);
+                    else Logging.Write("You can only set the focus of Me.Focus.");
                 }
                 catch (Exception e)
                 {
