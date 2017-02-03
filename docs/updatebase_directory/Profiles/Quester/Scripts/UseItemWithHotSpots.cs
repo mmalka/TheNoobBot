@@ -54,7 +54,7 @@ if (unit.IsValid || node.IsValid)
 		Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
 	};
 	
-	while(ObjectManager.Me.Position.DistanceTo(pos) >= questObjective.Range)
+	while((node.IsValid && ObjectManager.Me.Position.DistanceTo(node.Position) >= questObjective.Range) || (unit.IsValid && ObjectManager.Me.Position.DistanceTo(unit.Position) >= questObjective.Range))
 	{	
 		if(ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
 			return false;
@@ -73,19 +73,38 @@ if (unit.IsValid || node.IsValid)
 	{
 		MovementManager.Face(node);
 		Interact.InteractWith(node.GetBaseAddress);
-		nManagerSetting.AddBlackList(node.Guid, 30*1000);
 	}
 	else if (unit.IsValid)
 	{
 		MovementManager.Face(unit);
 		Interact.InteractWith(unit.GetBaseAddress);
-		nManagerSetting.AddBlackList(unit.Guid, 30*1000);
 	}
 
 	if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
 		return false;
 	
+	MovementManager.StopMove();
+	MountTask.DismountMount();
+	
 	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+	
+	Thread.Sleep(Usefuls.Latency +1500);
+	
+	/* Wait for the Use Item cast to be finished, if any */
+	while (ObjectManager.Me.IsCast)
+	{
+		Thread.Sleep(Usefuls.Latency);
+	}
+	
+	if (node.IsValid)
+	{
+		nManagerSetting.AddBlackList(node.Guid, 30*1000);
+	}
+	else if (unit.IsValid)
+	{
+		nManagerSetting.AddBlackList(unit.Guid, 30*1000);
+	}
+	
 	Thread.Sleep(questObjective.WaitMs);
 	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
 	

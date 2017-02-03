@@ -1,3 +1,9 @@
+/*
+Interact With Hotspots
+Modified version to check for a buff needed to complete the quest
+
+*/
+
 /* Check if there is HotSpots in the objective */
 if (questObjective.Hotspots.Count <= 0)
 {
@@ -5,6 +11,39 @@ if (questObjective.Hotspots.Count <= 0)
 	Logging.Write("InteractWithHotSpots requires valid 'HotSpots'.");
 	questObjective.IsObjectiveCompleted = true;
 	return false;
+}
+
+
+
+if(!ObjectManager.Me.HaveBuff(83839))
+{
+
+		Logging.Write("Sea Pup Buff Lost, Lets go take it back!");
+        uint baseAddress2 = 0;
+        Point admiralHatchetpos = new Point(1068.75f,1601.3f,28.00147f);
+        Npc AdmiralHatchet = new Npc();
+        AdmiralHatchet = new Npc
+        {
+            Entry = 44916,
+            Position = admiralHatchetpos,
+            Name = "Admiral Hatchet",
+            ContinentIdInt = Usefuls.ContinentId,
+            Faction = nManager.Wow.ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+        };
+
+        while (nManager.Wow.ObjectManager.ObjectManager.Me.Position.DistanceTo(admiralHatchetpos) >= 5)
+        {
+			if(ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+				return false;
+			
+            baseAddress2 = MovementManager.FindTarget(ref AdmiralHatchet, 5);
+            Thread.Sleep(500);
+        }
+        MovementManager.StopMove();
+        Interact.InteractWith(baseAddress2);
+		Thread.Sleep(2000);
+		nManager.Wow.Helpers.Quest.SelectGossipOption(1);
+
 }
 
 /* Move to Zone/Hotspot */
@@ -40,7 +79,7 @@ if (node.IsValid || unit.IsValid)
 	else if (node.IsValid) 
 	{
 		baseAddress = MovementManager.FindTarget(node); /* Move toward node */
-		pos =new Point(node.Position);
+		pos = new Point(node.Position);
 	}
   
 	Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
@@ -55,7 +94,7 @@ if (node.IsValid || unit.IsValid)
 		Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
 	};
 	
-		while(ObjectManager.Me.Position.DistanceTo(pos) >= questObjective.Range)
+	while(ObjectManager.Me.Position.DistanceTo(pos) >= questObjective.Range)
 	{	
 		if(ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
 			return false;
@@ -83,7 +122,7 @@ if (node.IsValid || unit.IsValid)
 		Interact.InteractWith(unit.GetBaseAddress);
 		nManagerSetting.AddBlackList(unit.Guid, 30*1000);
 	}
-		
+	
 	Thread.Sleep(Usefuls.Latency); 
 
 	/* Wait for the interact cast to be finished, if any */
