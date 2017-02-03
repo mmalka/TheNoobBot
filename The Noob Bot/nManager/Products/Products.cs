@@ -190,9 +190,9 @@ namespace nManager.Products
                 Lua.LuaDoString("StopCinematic()");
                 Thread.Sleep(1000);
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + " = InCinematic()");
+                Lua.LuaDoString(randomString + " = tostring(InCinematic())");
                 string ret = Lua.GetLocalizedText(randomString);
-                if (ret != "1")
+                if (ret == "false")
                     return; // leave if not InCinematic.
             }
             _inAutoPause = started;
