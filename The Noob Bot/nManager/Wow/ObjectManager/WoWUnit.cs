@@ -2131,24 +2131,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public bool CanTurnIn
-        {
-            get
-            {
-                try
-                {
-                    var questGiverStatus = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
-                    return questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnIn) || questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInInvisible) ||
-                           questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInRepeatable) || questGiverStatus.HasFlag(UnitQuestGiverStatus.LowLevelTurnInRepeatable);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > CanTurnIn: " + e);
-                    return false;
-                }
-            }
-        }
-
         public bool IsMounted
         {
             get
@@ -2792,6 +2774,42 @@ namespace nManager.Wow.ObjectManager
         public UnitQuestGiverStatus UnitQuestGiverStatus
         {
             get { return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
+        }
+
+        public bool CanTurnIn
+        {
+            get
+            {
+                try
+                {
+                    return IsValid && IsNpcQuestGiver &&
+                           (UnitQuestGiverStatus == UnitQuestGiverStatus.TurnIn || UnitQuestGiverStatus == UnitQuestGiverStatus.TurnInInvisible
+                            || UnitQuestGiverStatus == UnitQuestGiverStatus.TurnInRepeatable || UnitQuestGiverStatus == UnitQuestGiverStatus.LowLevelTurnInRepeatable);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > CanTurnIn: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool HasQuests
+        {
+            get
+            {
+                try
+                {
+                    return IsValid && IsNpcQuestGiver &&
+                           (UnitQuestGiverStatus == UnitQuestGiverStatus.Available || UnitQuestGiverStatus == UnitQuestGiverStatus.AvailableRepeatable
+                            || UnitQuestGiverStatus == UnitQuestGiverStatus.LowLevelAvailable || UnitQuestGiverStatus == UnitQuestGiverStatus.LowLevelAvailableRepeatable);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > HasQuests: " + e);
+                    return false;
+                }
+            }
         }
 
         public T GetDescriptor<T>(Descriptors.UnitFields field) where T : struct
