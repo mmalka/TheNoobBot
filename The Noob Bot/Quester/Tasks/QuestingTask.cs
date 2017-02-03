@@ -916,8 +916,10 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    Npc Quester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
-                    Quest.QuestPickUp(ref Quester, questObjective.QuestName, questObjective.QuestId);
+                    Npc npcQuester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
+                    if (questObjective.Position.IsValid)
+                        npcQuester.Position = questObjective.Position;
+                    Quest.QuestPickUp(ref npcQuester, questObjective.QuestName, questObjective.QuestId);
                 }
                 if (Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.GetLogQuestIsComplete(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.QuestId))
                     questObjective.IsObjectiveCompleted = true;
@@ -928,8 +930,10 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    Npc Quester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
-                    Quest.QuestTurnIn(ref Quester, questObjective.QuestName, questObjective.QuestId);
+                    Npc npcQuester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
+                    if (questObjective.Position.IsValid)
+                        npcQuester.Position = questObjective.Position;
+                    Quest.QuestTurnIn(ref npcQuester, questObjective.QuestName, questObjective.QuestId);
                 }
                 if (!Quest.GetLogQuestId().Contains(questObjective.QuestId))
                     questObjective.IsObjectiveCompleted = true;
