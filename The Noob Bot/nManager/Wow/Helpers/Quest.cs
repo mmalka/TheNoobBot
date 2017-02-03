@@ -743,6 +743,11 @@ namespace nManager.Wow.Helpers
                         luaString += "ShowQuestOffer(" + questLogEntry + ");";
                         Lua.LuaDoString(luaString);
                         Thread.Sleep(300);
+                        if (Others.IsFrameVisible("QuestFrameAcceptButton") && !Others.IsFrameVisible("QuestFrameAcceptQuestButton"))
+                        {
+                            Lua.RunMacroText("/click QuestFrameAcceptButton");
+                            Thread.Sleep(300);
+                        }
                         AcceptQuest();
                         Thread.Sleep(500);
                     }
