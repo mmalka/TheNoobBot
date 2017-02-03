@@ -704,22 +704,24 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static void AutoCompleteQuest(List<int> autoComplete)
+        private static object _threadLock = new object();
+
+        public static void AutoCompleteQuest()
         {
-            for (int i = 1; i < 100; i++)
+            lock (_threadLock)
             {
-                string questIdRet = Others.GetRandomString(Others.Random(4, 10));
-                string questStatusRet = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(questIdRet + ", " + questStatusRet + " = GetAutoQuestPopUp(" + i + ");");
-                string questStatus = Lua.GetLocalizedText(questStatusRet);
-                int questId = Others.ToInt32(Lua.GetLocalizedText(questIdRet));
-                if (questId == 0 && string.IsNullOrEmpty(questStatus) && i > 10)
-                    return;
-                if (questId == 0 && string.IsNullOrEmpty(questStatus))
-                    continue;
-                if (questStatus == "COMPLETE")
+                for (int i = 1; i < 20; i++)
                 {
-                    if (autoComplete.Contains(questId))
+                    string questIdRet = Others.GetRandomString(Others.Random(4, 10));
+                    string questStatusRet = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(questIdRet + ", " + questStatusRet + " = GetAutoQuestPopUp(" + i + ");");
+                    string questStatus = Lua.GetLocalizedText(questStatusRet);
+                    int questId = Others.ToInt32(Lua.GetLocalizedText(questIdRet));
+                    if (questId == 0 && string.IsNullOrEmpty(questStatus) && i > 10)
+                        return;
+                    if (questId == 0 && string.IsNullOrEmpty(questStatus))
+                        continue;
+                    if (questStatus == "COMPLETE")
                     {
                         string questLogEntry = Others.GetRandomString(Others.Random(4, 10));
                         string luaString = questLogEntry + " = GetQuestLogIndexByID(" + questId + "); ";
@@ -732,6 +734,16 @@ namespace nManager.Wow.Helpers
                             Thread.Sleep(300);
                         }
                         CompleteQuest();
+                        Thread.Sleep(500);
+                    }
+                    else if (questStatus == "OFFER")
+                    {
+                        string questLogEntry = Others.GetRandomString(Others.Random(4, 10));
+                        string luaString = questLogEntry + " = GetQuestLogIndexByID(" + questId + "); ";
+                        luaString += "ShowQuestOffer(" + questLogEntry + ");";
+                        Lua.LuaDoString(luaString);
+                        Thread.Sleep(300);
+                        AcceptQuest();
                         Thread.Sleep(500);
                     }
                 }

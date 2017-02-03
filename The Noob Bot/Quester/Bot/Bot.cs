@@ -9,6 +9,7 @@ using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 using nManager.Wow.Class;
+using Quest = nManager.Wow.Helpers.Quest;
 
 namespace Quester.Bot
 {
@@ -104,8 +105,8 @@ namespace Quester.Bot
 
                     Tasks.QuestingTask.completed = false;
 
-                    nManager.Wow.Helpers.Quest.ConsumeQuestsCompletedRequest();
-                    Logging.Write("received " + nManager.Wow.Helpers.Quest.FinishedQuestSet.Count + " quests.");
+                    Quest.ConsumeQuestsCompletedRequest();
+                    Logging.Write("received " + Quest.FinishedQuestSet.Count + " quests.");
                 }
                 else
                     return false;
@@ -146,6 +147,8 @@ namespace Quester.Bot
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(10, "FSM Quester");
+                EventsListener.HookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_LOG_UPDATE, callback => Quest.AutoCompleteQuest());
+                EventsListener.HookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest());
 
                 return true;
             }
@@ -172,6 +175,8 @@ namespace Quester.Bot
                 MovementManager.StopMove();
                 Profile = null;
                 Tasks.QuestingTask.Cleanup();
+                EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_LOG_UPDATE, callback => Quest.AutoCompleteQuest());
+                EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest());
             }
             catch (Exception e)
             {

@@ -1471,10 +1471,9 @@ namespace Quester.Tasks
             if (npc == null)
                 return;
             Quest.QuestTurnIn(ref npc, CurrentQuest.Name, CurrentQuest.Id);
-            if (CurrentQuest.AutoComplete != null && QuestingTask.CurrentQuest.AutoComplete.Count > 0)
+            if (CurrentQuest.AutoComplete != null && CurrentQuest.AutoComplete.Count > 0)
             {
-                EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest(CurrentQuest.AutoComplete), false);
-                Quest.AutoCompleteQuest(CurrentQuest.AutoComplete); // make sure to recall it as long as the quest is not yet completed in case it failed the first time.
+                Quest.AutoCompleteQuest(); // make sure to recall it as long as the quest is not yet completed in case it failed the first time.
             }
         }
 

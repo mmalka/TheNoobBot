@@ -83,11 +83,6 @@ namespace Quester.Bot
                 return;
             }
 
-            if (QuestingTask.CurrentQuest.AutoComplete != null && QuestingTask.CurrentQuest.AutoComplete.Count > 0)
-            {
-                EventsListener.HookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest(QuestingTask.CurrentQuest.AutoComplete), false, true);
-            }
-
             if (QuestingTask.CurrentQuest.Id != -1 && !Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id))
                 // PickUp
             {
