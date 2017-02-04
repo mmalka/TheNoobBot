@@ -118,6 +118,8 @@ namespace nManager.Wow.Bot.States
                             _availableCustomPaths.Items.RemoveAt(i);
                             continue; // in case I add more checks, I don't want to forget about this continue.
                         }
+                        XmlSerializer.Serialize(Application.StartupPath + @"\Data\CustomPathsDB.xml", _availableCustomPaths);
+
 
                         // We never serialize CustomPath back, so it's all fine.
                     }
@@ -144,7 +146,7 @@ namespace nManager.Wow.Bot.States
                             _availableTaxiLinks.RemoveAt(i);
                     }
                 }
-                if (_availableTransports == null || _availablePortals == null || _availableTaxis == null || _availableTaxiLinks == null)
+                if (_availableTransports == null || _availablePortals == null || _availableCustomPaths == null || _availableTaxis == null || _availableTaxiLinks == null)
                     return false;
                 if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InInevitableCombat || !NeedToTravel)
                     return false;
@@ -186,7 +188,7 @@ namespace nManager.Wow.Bot.States
                 {
                     bool success;
                     List<Point> way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
-                    if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last())))
+                    if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last()) && !(oneWayTravel.Key is CustomPath)))
                     {
                         if (oneWayTravel.Value > Math.DistanceListPoint(way))
                         {
@@ -468,11 +470,11 @@ namespace nManager.Wow.Bot.States
                         return;
                     }
                     // We are at the beginning of the path.
-                    List<Point> path = customPath.Path;
+                    List<Point> path = customPath.Points;
                     if (customPath.ArrivalIsA)
                     {
                         List<Point> reversedPath = new List<Point>();
-                        reversedPath.AddRange(customPath.Path);
+                        reversedPath.AddRange(customPath.Points);
                         reversedPath.Reverse(); // we don't want to mess up with the saved original path.
                         path = reversedPath;
                     }
@@ -994,27 +996,26 @@ namespace nManager.Wow.Bot.States
             var listCustomPath = new List<CustomPath>();
             foreach (CustomPath customPath in _availableCustomPaths.Items)
             {
-                if (customPath.ArrivalIsA)
+                if (customPath.Faction != Npc.FactionType.Neutral && customPath.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    continue;
+                if (customPath.AContinentId != travelToContinentId && customPath.BContinentId != travelToContinentId)
+                    continue;
+                if (customPath.AContinentId == travelToContinentId && customPath.BContinentId != travelToContinentId)
+                    continue;
+                if (customPath.BContinentId == travelToContinentId && customPath.AContinentId != travelToContinentId)
+                    continue;
+                bool success;
+                PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                if (success && customPath.Journey == JourneyType.RoundTrip)
                 {
-                    if (customPath.AContinentId != travelToContinentId)
-                        continue;
-                    bool success;
-                    PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                    if (success || customPath.APoint.DistanceTo(travelTo) < 5f)
-                    {
-                        listCustomPath.Add(customPath);
-                    }
+                    customPath.ArrivalIsA = true;
+                    listCustomPath.Add(customPath);
                 }
-                else
+                PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                if (success)
                 {
-                    if (customPath.BContinentId != travelToContinentId)
-                        continue;
-                    bool success;
-                    PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                    if (success || customPath.BPoint.DistanceTo(travelTo) < 5f)
-                    {
-                        listCustomPath.Add(customPath);
-                    }
+                    customPath.ArrivalIsA = false;
+                    listCustomPath.Add(customPath);
                 }
             }
             return listCustomPath;

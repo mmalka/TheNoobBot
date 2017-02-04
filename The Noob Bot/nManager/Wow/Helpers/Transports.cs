@@ -27,5 +27,25 @@ namespace nManager.Wow.Helpers
         [XmlAttribute(AttributeName = "Id")] public uint Id;
         [XmlAttribute(AttributeName = "Name")] public string Name;
         [XmlIgnore] public bool ArrivalIsA = false;
+
+        public bool ShouldSerializeAInsidePoint()
+        {
+            return AInsidePoint.IsValid;
+        }
+
+        public bool ShouldSerializeBInsidePoint()
+        {
+            return AOutsidePoint.IsValid;
+        }
+
+        public bool ShouldSerializeAOutsidePoint()
+        {
+            return AOutsidePoint.IsValid;
+        }
+
+        public bool ShouldSerializeBOutsidePoint()
+        {
+            return BOutsidePoint.IsValid;
+        }
     }
 }

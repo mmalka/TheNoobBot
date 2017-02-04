@@ -24,7 +24,7 @@ namespace nManager.Wow.Helpers
         [XmlAttribute(AttributeName = "Name")] public new string Name;
         [DefaultValue(0)] [XmlAttribute(AttributeName = "RequireAchievementId")] public int RequireAchivementId;
         [DefaultValue(0)] [XmlAttribute(AttributeName = "RequireQuestId")] public int RequireQuestId;
-        [XmlAttribute(AttributeName = "Path")] public List<Point> Path; // The path should work both ways.
+        public List<Point> Points; // The path should work both ways.
         [DefaultValue(JourneyType.RoundTrip)] [XmlAttribute(AttributeName = "Journey")] public JourneyType Journey;
     }
 
