@@ -17,22 +17,30 @@ namespace nManager.Wow.Bot.States
     {
         private WoWUnit _unit;
         private WoWUnit _unitToPull;
-        private Thread _StrikeBackThread;
+        private Thread _strikeFirstThread;
+        private Spell _stealthSpell;
+        private Spell _prowlSpell;
 
         public override string DisplayName
         {
             get { return "IsAttacked"; }
         }
 
-        public void StrikeBack()
+        public void StrikeFirst()
         {
+            if (_stealthSpell == null)
+                _stealthSpell = new Spell("Stealth");
+            if (_prowlSpell == null)
+                _prowlSpell = new Spell("Prowl");
             while (Products.Products.IsStarted)
             {
                 if (Fight.InFight)
                     continue;
-                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid)
+                if (!Products.Products.IsStarted || !Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid)
                     continue;
-                if ((ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) || !Products.Products.IsStarted)
+                if (ObjectManager.ObjectManager.Me.IsDeadMe || (ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)))
+                    continue;
+                if (_stealthSpell.HaveBuff || _prowlSpell.HaveBuff)
                     continue;
                 _unitToPull = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
@@ -110,10 +118,10 @@ namespace nManager.Wow.Bot.States
 
                 if (!nManagerSetting.CurrentSetting.DontPullMonsters)
                 {
-                    if (_StrikeBackThread == null || !_StrikeBackThread.IsAlive)
+                    if (_strikeFirstThread == null || !_strikeFirstThread.IsAlive)
                     {
-                        _StrikeBackThread = new Thread(StrikeBack);
-                        _StrikeBackThread.Start();
+                        _strikeFirstThread = new Thread(StrikeFirst);
+                        _strikeFirstThread.Start();
                     }
                     _unit = _unitToPull;
                     if (_unit != null)
