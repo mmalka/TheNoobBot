@@ -739,6 +739,8 @@ namespace nManager.Wow.Helpers
                         continue;
                     if (questStatus == "COMPLETE")
                     {
+                        if (!GetLogQuestId().Contains(questId))
+                            continue;
                         string questLogEntry = Others.GetRandomString(Others.Random(4, 10));
                         string luaString = questLogEntry + " = GetQuestLogIndexByID(" + questId + "); ";
                         luaString += "ShowQuestComplete(" + questLogEntry + ");";
@@ -754,6 +756,8 @@ namespace nManager.Wow.Helpers
                     }
                     else if (questStatus == "OFFER")
                     {
+                        if (GetLogQuestId().Contains(questId) || GetLogQuestIsComplete(questId) || IsQuestFlaggedCompletedLUA(questId))
+                            continue;
                         string questLogEntry = Others.GetRandomString(Others.Random(4, 10));
                         string luaString = questLogEntry + " = GetQuestLogIndexByID(" + questId + "); ";
                         luaString += "ShowQuestOffer(" + questLogEntry + ");";

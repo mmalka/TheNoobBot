@@ -83,11 +83,14 @@ namespace Quester.Bot
                 return;
             }
 
-            if (QuestingTask.CurrentQuest.Id != -1 && !Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id))
-                // PickUp
+            if (QuestingTask.CurrentQuest.Id != -1)
             {
-                QuestingTask.PickUpQuest();
-                return;
+                // PickUp
+                if (!Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id) && !Quest.GetLogQuestIsComplete(QuestingTask.CurrentQuest.Id) && !Quest.IsQuestFlaggedCompletedLUA(QuestingTask.CurrentQuest.Id))
+                {
+                    QuestingTask.PickUpQuest();
+                    return;
+                }
             }
 
             QuestingTask._travelDisabled = false; // reset travel after PickUp worked. (code exclusive for WQ)
