@@ -33,8 +33,10 @@ namespace Quester.Tasks
                 if (CachedScripts.ContainsKey(originalScript) && CachedScripts[originalScript] != null)
                     return CachedScripts[originalScript].Script(ref qObjective);
 
+                string scriptName = script; // Either the full script if it's a single line script, or the file name.
                 if (script[0] == '=')
                 {
+                    scriptName = script.Replace("=", "");
                     script = Others.ReadFile(Application.StartupPath + "\\Profiles\\Quester\\Scripts\\" + script.Replace("=", ""), true);
                     // this is for loading a file that will be added inside a method.
                 }
@@ -89,7 +91,7 @@ namespace Quester.Tasks
                 if (cr.Errors.HasErrors)
                 {
                     String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n", (current, err) => current + (err + "\n"));
-                    Logging.Write(text);
+                    Logging.Write("Script: " + scriptName + " " + text);
                     return true;
                 }
 
