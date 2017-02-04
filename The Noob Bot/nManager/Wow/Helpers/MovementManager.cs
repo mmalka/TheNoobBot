@@ -1551,7 +1551,7 @@ namespace nManager.Wow.Helpers
         public static uint UpdateTarget(ref Npc Target, out bool asMoved, bool isDead = false)
         {
             List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry, isDead);
-            WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, Target.Position);
+            WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, Target.Position, false, false, true);
             asMoved = false;
             if (TargetIsNPC.IsValid)
             {
