@@ -42,6 +42,8 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (_stealthSpell.HaveBuff || _prowlSpell.HaveBuff)
                     continue;
+                if (ObjectManager.ObjectManager.Me.HealthPercent <= 40)
+                    continue;
                 _unitToPull = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
             }
