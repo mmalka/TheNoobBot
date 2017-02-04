@@ -145,6 +145,8 @@ namespace nManager.Helpful.Forms
             this.ActivateMonsterLootingLabel = new System.Windows.Forms.Label();
             this.ActivateMonsterLooting = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.NPCsRepairSellBuyPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.DontSellReagentsLabel = new System.Windows.Forms.Label();
+            this.DontSellReagents = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.SellPurple = new System.Windows.Forms.CheckBox();
             this.SellBlue = new System.Windows.Forms.CheckBox();
             this.SellGreen = new System.Windows.Forms.CheckBox();
@@ -270,8 +272,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.DontSellReagentsLabel = new System.Windows.Forms.Label();
-            this.DontSellReagents = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.UseSafeResurrectionPointLabel = new System.Windows.Forms.Label();
+            this.UseSafeResurrectionPoint = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -379,6 +381,8 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SpellManagementSystemPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.SpellManagementSystemPanelName.ContentSize = new System.Drawing.Size(556, 225);
+            this.SpellManagementSystemPanelName.Controls.Add(this.UseSafeResurrectionPointLabel);
+            this.SpellManagementSystemPanelName.Controls.Add(this.UseSafeResurrectionPoint);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel);
@@ -511,7 +515,7 @@ namespace nManager.Helpful.Forms
             // 
             this.TrainMountingCapacityLabel.BackColor = System.Drawing.Color.Transparent;
             this.TrainMountingCapacityLabel.ForeColor = System.Drawing.Color.Black;
-            this.TrainMountingCapacityLabel.Location = new System.Drawing.Point(300, 207);
+            this.TrainMountingCapacityLabel.Location = new System.Drawing.Point(11, 266);
             this.TrainMountingCapacityLabel.Name = "TrainMountingCapacityLabel";
             this.TrainMountingCapacityLabel.Size = new System.Drawing.Size(154, 22);
             this.TrainMountingCapacityLabel.TabIndex = 39;
@@ -520,7 +524,7 @@ namespace nManager.Helpful.Forms
             // TrainMountingCapacity
             // 
             this.TrainMountingCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.TrainMountingCapacity.Location = new System.Drawing.Point(459, 207);
+            this.TrainMountingCapacity.Location = new System.Drawing.Point(170, 266);
             this.TrainMountingCapacity.MaximumSize = new System.Drawing.Size(60, 20);
             this.TrainMountingCapacity.MinimumSize = new System.Drawing.Size(60, 20);
             this.TrainMountingCapacity.Name = "TrainMountingCapacity";
@@ -557,7 +561,7 @@ namespace nManager.Helpful.Forms
             // 
             this.OnlyTrainCurrentlyUsedSkillsLabel.BackColor = System.Drawing.Color.Transparent;
             this.OnlyTrainCurrentlyUsedSkillsLabel.ForeColor = System.Drawing.Color.Black;
-            this.OnlyTrainCurrentlyUsedSkillsLabel.Location = new System.Drawing.Point(300, 179);
+            this.OnlyTrainCurrentlyUsedSkillsLabel.Location = new System.Drawing.Point(300, 207);
             this.OnlyTrainCurrentlyUsedSkillsLabel.Name = "OnlyTrainCurrentlyUsedSkillsLabel";
             this.OnlyTrainCurrentlyUsedSkillsLabel.Size = new System.Drawing.Size(154, 22);
             this.OnlyTrainCurrentlyUsedSkillsLabel.TabIndex = 35;
@@ -566,7 +570,7 @@ namespace nManager.Helpful.Forms
             // OnlyTrainCurrentlyUsedSkills
             // 
             this.OnlyTrainCurrentlyUsedSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.OnlyTrainCurrentlyUsedSkills.Location = new System.Drawing.Point(459, 179);
+            this.OnlyTrainCurrentlyUsedSkills.Location = new System.Drawing.Point(459, 207);
             this.OnlyTrainCurrentlyUsedSkills.MaximumSize = new System.Drawing.Size(60, 20);
             this.OnlyTrainCurrentlyUsedSkills.MinimumSize = new System.Drawing.Size(60, 20);
             this.OnlyTrainCurrentlyUsedSkills.Name = "OnlyTrainCurrentlyUsedSkills";
@@ -681,7 +685,7 @@ namespace nManager.Helpful.Forms
             // 
             this.DontPullMonstersLabel.BackColor = System.Drawing.Color.Transparent;
             this.DontPullMonstersLabel.ForeColor = System.Drawing.Color.Black;
-            this.DontPullMonstersLabel.Location = new System.Drawing.Point(300, 151);
+            this.DontPullMonstersLabel.Location = new System.Drawing.Point(300, 179);
             this.DontPullMonstersLabel.Name = "DontPullMonstersLabel";
             this.DontPullMonstersLabel.Size = new System.Drawing.Size(154, 22);
             this.DontPullMonstersLabel.TabIndex = 9;
@@ -690,7 +694,7 @@ namespace nManager.Helpful.Forms
             // DontPullMonsters
             // 
             this.DontPullMonsters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.DontPullMonsters.Location = new System.Drawing.Point(459, 151);
+            this.DontPullMonsters.Location = new System.Drawing.Point(459, 179);
             this.DontPullMonsters.MaximumSize = new System.Drawing.Size(60, 20);
             this.DontPullMonsters.MinimumSize = new System.Drawing.Size(60, 20);
             this.DontPullMonsters.Name = "DontPullMonsters";
@@ -704,7 +708,7 @@ namespace nManager.Helpful.Forms
             // 
             this.CanPullUnitsAlreadyInFightLabel.BackColor = System.Drawing.Color.Transparent;
             this.CanPullUnitsAlreadyInFightLabel.ForeColor = System.Drawing.Color.Black;
-            this.CanPullUnitsAlreadyInFightLabel.Location = new System.Drawing.Point(300, 123);
+            this.CanPullUnitsAlreadyInFightLabel.Location = new System.Drawing.Point(300, 151);
             this.CanPullUnitsAlreadyInFightLabel.Name = "CanPullUnitsAlreadyInFightLabel";
             this.CanPullUnitsAlreadyInFightLabel.Size = new System.Drawing.Size(154, 22);
             this.CanPullUnitsAlreadyInFightLabel.TabIndex = 7;
@@ -713,7 +717,7 @@ namespace nManager.Helpful.Forms
             // CanPullUnitsAlreadyInFight
             // 
             this.CanPullUnitsAlreadyInFight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(459, 123);
+            this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(459, 151);
             this.CanPullUnitsAlreadyInFight.MaximumSize = new System.Drawing.Size(60, 20);
             this.CanPullUnitsAlreadyInFight.MinimumSize = new System.Drawing.Size(60, 20);
             this.CanPullUnitsAlreadyInFight.Name = "CanPullUnitsAlreadyInFight";
@@ -1872,6 +1876,29 @@ namespace nManager.Helpful.Forms
             this.NPCsRepairSellBuyPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.NPCsRepairSellBuyPanelName.TitleText = "NPCs Management - Repairer, Vendor (Selling or Buying)";
             this.NPCsRepairSellBuyPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("NPCsRepairSellBuyPanelName.UnfolderImage")));
+            // 
+            // DontSellReagentsLabel
+            // 
+            this.DontSellReagentsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontSellReagentsLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontSellReagentsLabel.Location = new System.Drawing.Point(280, 137);
+            this.DontSellReagentsLabel.Name = "DontSellReagentsLabel";
+            this.DontSellReagentsLabel.Size = new System.Drawing.Size(154, 22);
+            this.DontSellReagentsLabel.TabIndex = 45;
+            this.DontSellReagentsLabel.Text = "Dont sell crafting reagents";
+            // 
+            // DontSellReagents
+            // 
+            this.DontSellReagents.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.DontSellReagents.Location = new System.Drawing.Point(469, 137);
+            this.DontSellReagents.MaximumSize = new System.Drawing.Size(60, 20);
+            this.DontSellReagents.MinimumSize = new System.Drawing.Size(60, 20);
+            this.DontSellReagents.Name = "DontSellReagents";
+            this.DontSellReagents.OffText = "OFF";
+            this.DontSellReagents.OnText = "ON";
+            this.DontSellReagents.Size = new System.Drawing.Size(60, 20);
+            this.DontSellReagents.TabIndex = 46;
+            this.DontSellReagents.Value = true;
             // 
             // SellPurple
             // 
@@ -3518,28 +3545,28 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
             // 
-            // DontSellReagentsLabel
+            // UseSafeResurrectionPointLabel
             // 
-            this.DontSellReagentsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.DontSellReagentsLabel.ForeColor = System.Drawing.Color.Black;
-            this.DontSellReagentsLabel.Location = new System.Drawing.Point(280, 137);
-            this.DontSellReagentsLabel.Name = "DontSellReagentsLabel";
-            this.DontSellReagentsLabel.Size = new System.Drawing.Size(154, 22);
-            this.DontSellReagentsLabel.TabIndex = 45;
-            this.DontSellReagentsLabel.Text = "Dont sell crafting reagents";
+            this.UseSafeResurrectionPointLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseSafeResurrectionPointLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseSafeResurrectionPointLabel.Location = new System.Drawing.Point(300, 123);
+            this.UseSafeResurrectionPointLabel.Name = "UseSafeResurrectionPointLabel";
+            this.UseSafeResurrectionPointLabel.Size = new System.Drawing.Size(154, 22);
+            this.UseSafeResurrectionPointLabel.TabIndex = 55;
+            this.UseSafeResurrectionPointLabel.Text = "Ressurect in SafeSpot";
             // 
-            // DontSellReagents
+            // UseSafeResurrectionPoint
             // 
-            this.DontSellReagents.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.DontSellReagents.Location = new System.Drawing.Point(469, 137);
-            this.DontSellReagents.MaximumSize = new System.Drawing.Size(60, 20);
-            this.DontSellReagents.MinimumSize = new System.Drawing.Size(60, 20);
-            this.DontSellReagents.Name = "DontSellReagents";
-            this.DontSellReagents.OffText = "OFF";
-            this.DontSellReagents.OnText = "ON";
-            this.DontSellReagents.Size = new System.Drawing.Size(60, 20);
-            this.DontSellReagents.TabIndex = 46;
-            this.DontSellReagents.Value = true;
+            this.UseSafeResurrectionPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UseSafeResurrectionPoint.Location = new System.Drawing.Point(459, 123);
+            this.UseSafeResurrectionPoint.MaximumSize = new System.Drawing.Size(60, 20);
+            this.UseSafeResurrectionPoint.MinimumSize = new System.Drawing.Size(60, 20);
+            this.UseSafeResurrectionPoint.Name = "UseSafeResurrectionPoint";
+            this.UseSafeResurrectionPoint.OffText = "OFF";
+            this.UseSafeResurrectionPoint.OnText = "ON";
+            this.UseSafeResurrectionPoint.Size = new System.Drawing.Size(60, 20);
+            this.UseSafeResurrectionPoint.TabIndex = 56;
+            this.UseSafeResurrectionPoint.Value = false;
             // 
             // GeneralSettings
             // 
@@ -3841,5 +3868,7 @@ namespace nManager.Helpful.Forms
         private TnbSwitchButton HideCharacterNameFromTitle;
         private Label DontSellReagentsLabel;
         private TnbSwitchButton DontSellReagents;
+        private Label UseSafeResurrectionPointLabel;
+        private TnbSwitchButton UseSafeResurrectionPoint;
     }
 }

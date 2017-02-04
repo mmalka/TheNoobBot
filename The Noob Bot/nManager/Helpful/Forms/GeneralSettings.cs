@@ -564,6 +564,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActivatedPluginsList.Clear();
                 nManagerSetting.CurrentSetting.UseFrameLock = UseFrameLock.Value;
                 nManagerSetting.CurrentSetting.DontSellReagents = DontSellReagents.Value;
+                nManagerSetting.CurrentSetting.ActivateSafeResurrectionSystem = UseSafeResurrectionPoint.Value;
                 foreach (string s in ActivatedPluginsList.Items)
                 {
                     nManagerSetting.CurrentSetting.ActivatedPluginsList.Add(s);
@@ -695,6 +696,7 @@ namespace nManager.Helpful.Forms
                 HideSDKFiles.Value = managerSetting.HideSdkFiles;
                 UseLootARange.Value = managerSetting.UseLootARange;
                 HideCharacterNameFromTitle.Value = managerSetting.HideCharacterNameFromTitle;
+                UseSafeResurrectionPoint.Value = managerSetting.ActivateSafeResurrectionSystem;
                 ActivatedPluginsList.Items.Clear();
                 UseFrameLock.Value = managerSetting.UseFrameLock;
                 foreach (string s in managerSetting.ActivatedPluginsList)
