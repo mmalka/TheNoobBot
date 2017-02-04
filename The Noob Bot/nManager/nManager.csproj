@@ -211,6 +211,7 @@
     <Compile Include="Wow\Enums\WoWSpecialization.cs" />
     <Compile Include="Wow\Enums\WoWStatistic.cs" />
     <Compile Include="Wow\Enums\UnitFlags.cs" />
+    <Compile Include="Wow\Helpers\CustomPath.cs" />
     <Compile Include="Wow\Helpers\DB2.cs" />
     <Compile Include="Wow\Helpers\Db2Caller.cs" />
     <Compile Include="Wow\Helpers\DB5Reader.cs" />

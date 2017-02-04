@@ -17,6 +17,7 @@ namespace nManager.Wow.Bot.States
     {
         private Portals _availablePortals;
         private Transports _availableTransports;
+        private CustomPaths _availableCustomPaths;
         private List<Taxi> _availableTaxis;
         private List<TaxiLink> _availableTaxiLinks;
         private List<Taxi> _unknownTaxis = new List<Taxi>();
@@ -95,6 +96,32 @@ namespace nManager.Wow.Bot.States
                         // We never serialize portals back, so it's all fine.
                     }
                 }
+                if (_availableCustomPaths == null)
+                {
+                    _availableCustomPaths = XmlSerializer.Deserialize<CustomPaths>(Application.StartupPath + @"\Data\CustomPathsDB.xml");
+                    for (int i = _availableCustomPaths.Items.Count - 1; i >= 0; i--)
+                    {
+                        var customPath = _availableCustomPaths.Items[i];
+                        if (customPath.Faction != Npc.FactionType.Neutral && customPath.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                        {
+                            _availableCustomPaths.Items.RemoveAt(i);
+                            continue;
+                        }
+                        if (customPath.RequireQuestId > 0 && !Quest.IsQuestFlaggedCompletedLUA(customPath.RequireQuestId))
+                        {
+                            _availableCustomPaths.Items.RemoveAt(i);
+                            continue;
+                        }
+
+                        if (customPath.RequireAchivementId > 0 && !Usefuls.IsCompletedAchievement(customPath.RequireAchivementId, true))
+                        {
+                            _availableCustomPaths.Items.RemoveAt(i);
+                            continue; // in case I add more checks, I don't want to forget about this continue.
+                        }
+
+                        // We never serialize CustomPath back, so it's all fine.
+                    }
+                }
                 if (_availableTaxis == null)
                 {
                     _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
@@ -121,7 +148,7 @@ namespace nManager.Wow.Bot.States
                     return false;
                 if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InInevitableCombat || !NeedToTravel)
                     return false;
-                _generatedRoutePath = GenerateRoutePath; // Automatically cancel TravelTo if no founds.
+                _generatedRoutePath = GenerateRoutePath; // Automatically cancel TravelTo if not founds.
                 return _generatedRoutePath.Count > 0;
             }
         }
@@ -213,7 +240,7 @@ namespace nManager.Wow.Bot.States
                 GoToDepartureQuayOrPortal(transport);
                 if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
-                if (!(transport is Portal) && !(transport is Taxi))
+                if (!(transport is Portal) && !(transport is Taxi) && !(transport is CustomPath))
                 {
                     WaitForTransport(transport);
                     if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
@@ -226,7 +253,7 @@ namespace nManager.Wow.Bot.States
                 {
                     TravelPatientlybyTaxiOrPortal();
                 }
-                else if (!(transport is Portal))
+                else if (!(transport is Portal) && !(transport is CustomPath))
                 {
                     TravelPatiently(transport);
                     if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
@@ -251,9 +278,26 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
-                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 2.0f)
+                        loop = false;
+                    Thread.Sleep(100);
+                }
+                MovementManager.StopMove();
+            }
+            else if (selectedTransport is CustomPath)
+            {
+                var customPath = selectedTransport as CustomPath;
+                Logging.Write("Going to CustomPath " + customPath.Name + " (" + customPath.Id + ") to travel.");
+                List<Point> pathToPortal = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint);
+                MovementManager.Go(pathToPortal);
+                bool loop = true;
+                while (loop)
+                {
+                    if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        return;
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint) < 2.0f)
                         loop = false;
                     Thread.Sleep(100);
                 }
@@ -276,10 +320,10 @@ namespace nManager.Wow.Bot.States
                         while (ObjectManager.ObjectManager.Me.IsCasting)
                         {
                             Thread.Sleep(250);
-                            if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                            if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                                 return;
                         }
-                        if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                             return;
                         Thread.Sleep(10000);
                         TravelToContinentId = 9999999;
@@ -294,7 +338,7 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
-                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(taxi.APoint) < 4.0f)
                         loop = false;
@@ -310,7 +354,7 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
-                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 2.0f)
                         loop = false;
@@ -406,6 +450,42 @@ namespace nManager.Wow.Bot.States
                         }
                         memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id), ObjectManager.ObjectManager.Me.Position);
                     }
+                }
+            }
+            else if (selectedTransport is CustomPath)
+            {
+                var customPath = selectedTransport as CustomPath;
+                bool loop = true;
+                while (loop)
+                {
+                    if (Usefuls.IsFlying)
+                        MountTask.DismountMount();
+
+                    if (customPath.ArrivalIsA ? customPath.BPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f : customPath.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
+                    {
+                        GoToDepartureQuayOrPortal(selectedTransport);
+                        EnterTransportOrTakePortal(selectedTransport);
+                        return;
+                    }
+                    // We are at the beginning of the path.
+                    List<Point> path = customPath.Path;
+                    if (customPath.ArrivalIsA)
+                    {
+                        List<Point> reversedPath = new List<Point>();
+                        reversedPath.AddRange(customPath.Path);
+                        reversedPath.Reverse(); // we don't want to mess up with the saved original path.
+                        path = reversedPath;
+                    }
+                    MountTask.DismountMount();
+                    Thread.Sleep(500);
+                    MovementManager.Go(path);
+                    while (MovementManager.InMovement)
+                    {
+                        if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                            return;
+                        Thread.Sleep(150);
+                    }
+                    loop = false;
                 }
             }
             else if (selectedTransport is Taxi)
@@ -747,9 +827,11 @@ namespace nManager.Wow.Bot.States
         {
             var allTransports = new List<Transport>();
             List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
+            List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId);
             List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
             Taxi taxi = GetTaxiThatGoesToDestination(travelTo, travelToContinentId);
             allTransports.AddRange(transports);
+            allTransports.AddRange(customPaths);
             allTransports.AddRange(portals);
             if (taxi != null)
                 allTransports.Add(taxi);
@@ -907,6 +989,69 @@ namespace nManager.Wow.Bot.States
             return listPortal;
         }
 
+        private List<CustomPath> GetCustomPathsThatGoesToDestination(Point travelTo, int travelToContinentId)
+        {
+            var listCustomPath = new List<CustomPath>();
+            foreach (CustomPath customPath in _availableCustomPaths.Items)
+            {
+                if (customPath.ArrivalIsA)
+                {
+                    if (customPath.AContinentId != travelToContinentId)
+                        continue;
+                    bool success;
+                    PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success || customPath.APoint.DistanceTo(travelTo) < 5f)
+                    {
+                        listCustomPath.Add(customPath);
+                    }
+                }
+                else
+                {
+                    if (customPath.BContinentId != travelToContinentId)
+                        continue;
+                    bool success;
+                    PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success || customPath.BPoint.DistanceTo(travelTo) < 5f)
+                    {
+                        listCustomPath.Add(customPath);
+                    }
+                }
+            }
+            return listCustomPath;
+        }
+
+        private List<CustomPath> GetCustomPathsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
+        {
+            var listCustomPath = new List<CustomPath>();
+            List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId);
+            foreach (CustomPath customPath in customPaths)
+            {
+                if (customPath.ArrivalIsA)
+                {
+                    if (customPath.BContinentId != travelFromContinentId)
+                        continue;
+                    bool success;
+                    PathFinder.FindPath(customPath.BPoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                    if (success)
+                    {
+                        listCustomPath.Add(customPath);
+                    }
+                }
+                else
+                {
+                    if (customPath.AContinentId != travelFromContinentId)
+                        continue;
+                    bool success;
+                    PathFinder.FindPath(customPath.APoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                    if (success)
+                    {
+                        listCustomPath.Add(customPath);
+                    }
+                }
+            }
+            return listCustomPath;
+        }
+
         private List<Transport> GetTransportsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
         {
             var listTransport = new List<Transport>();
@@ -944,8 +1089,10 @@ namespace nManager.Wow.Bot.States
             var allTransports = new List<Transport>();
             List<Transport> transports = GetTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             List<Portal> portals = GetPortalsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
+            List<CustomPath> customPaths = GetCustomPathsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             Taxi taxi = GetTaxisThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             allTransports.AddRange(transports);
+            allTransports.AddRange(customPaths);
             allTransports.AddRange(portals);
             if (taxi != null)
                 allTransports.Add(taxi);
@@ -959,7 +1106,7 @@ namespace nManager.Wow.Bot.States
             List<Transport> allTransports = GetAllTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             foreach (Transport transport in allTransports)
             {
-                float currentTransportDistance;
+                float currentTransportDistance = 0f;
                 uint currentId = 0;
                 if (transport is Portal)
                 {
@@ -968,6 +1115,27 @@ namespace nManager.Wow.Bot.States
                     List<Point> wayOff = PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
                     currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
                     currentId = portal.Id;
+                }
+                else if (transport is CustomPath)
+                {
+                    var customPath = transport as CustomPath;
+                    if (customPath.ArrivalIsA)
+                    {
+                        if (customPath.Journey == JourneyType.RoundTrip)
+                        {
+                            List<Point> wayIn = PathFinder.FindPath(travelFrom, customPath.BPoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                            List<Point> wayOff = PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                            currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
+                            currentId = customPath.Id;
+                        }
+                    }
+                    else
+                    {
+                        List<Point> wayIn = PathFinder.FindPath(travelFrom, customPath.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                        List<Point> wayOff = PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
+                        currentId = customPath.Id;
+                    }
                 }
                 else if (transport is Taxi)
                 {
@@ -1026,6 +1194,41 @@ namespace nManager.Wow.Bot.States
                     {
                         bestTransports = new List<Transport> {currentToIntermediate.Key, transport};
                         bestTransportDistance = currentTransportDistance;
+                    }
+                }
+                else if (transport is CustomPath)
+                {
+                    var customPath = transport as CustomPath;
+                    if (customPath.ArrivalIsA)
+                    {
+                        if (customPath.Journey == JourneyType.RoundTrip)
+                        {
+                            if (customPath.BContinentId != travelFromContinentId)
+                                continue;
+                            KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, customPath.BOutsidePoint, travelFromContinentId, customPath.AContinentId);
+                            List<Point> way = PathFinder.FindPath(customPath.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                            currentTransportDistance = currentToIntermediate.Value + Math.DistanceListPoint(way);
+
+                            if (currentTransportDistance < bestTransportDistance)
+                            {
+                                bestTransports = new List<Transport> {currentToIntermediate.Key, customPath};
+                                bestTransportDistance = currentTransportDistance;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (transport.AContinentId != travelFromContinentId)
+                            continue;
+                        KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, customPath.AOutsidePoint, travelFromContinentId, customPath.BContinentId);
+                        List<Point> way = PathFinder.FindPath(customPath.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        currentTransportDistance = currentToIntermediate.Value + Math.DistanceListPoint(way);
+
+                        if (currentTransportDistance < bestTransportDistance)
+                        {
+                            bestTransports = new List<Transport> {currentToIntermediate.Key, transport};
+                            bestTransportDistance = currentTransportDistance;
+                        }
                     }
                 }
                 else if (transport is Taxi)
