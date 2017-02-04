@@ -205,7 +205,7 @@ namespace nManager.Wow.Bot.Tasks
                         }
                     }
                     if (timer.IsReady)
-                        nManagerSetting.AddBlackList(node.Guid);
+                        nManagerSetting.AddBlackList(node.Guid, 60*1000);
                     MovementManager.StopMove();
                     if (!_wasLooted)
                         Logging.Write("Farm failed #1");
@@ -339,7 +339,7 @@ namespace nManager.Wow.Bot.Tasks
                         return;
                     }
                     MovementManager.StopMove();
-                    nManagerSetting.AddBlackList(inode.Guid);
+                    nManagerSetting.AddBlackList(inode.Guid, 2*60*1000);
                     Logging.Write("Current node not valid, blacklist.");
                 }
             }
@@ -371,9 +371,9 @@ namespace nManager.Wow.Bot.Tasks
                 // We had a valid LOOT_READY anyway, with our force loot function, that would have taken < 1 sec to loot anyway.
                 // So let's blacklist node/unit !
                 if (NodeOrUnit && _curNode != null && _curNode.IsValid)
-                    nManagerSetting.AddBlackList(_curNode.Guid);
+                    nManagerSetting.AddBlackList(_curNode.Guid, 60*1000);
                 if (!NodeOrUnit && CurUnit != null && CurUnit.IsValid)
-                    nManagerSetting.AddBlackList(CurUnit.Guid);
+                    nManagerSetting.AddBlackList(CurUnit.Guid, 60*1000);
                 _curNode = null;
                 CurUnit = null;
                 if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && ObjectManager.ObjectManager.Me.InCombat)

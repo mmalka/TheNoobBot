@@ -1703,9 +1703,9 @@ namespace nManager.Wow.Helpers
                             Target.Position);
                         WoWUnit TargetIsUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
                         if (TargetIsUnit.IsValid)
-                            nManagerSetting.AddBlackList(TargetIsUnit.Guid);
+                            nManagerSetting.AddBlackList(TargetIsUnit.Guid, 60000);
                         else if (TargetIsGameObject.IsValid)
-                            nManagerSetting.AddBlackList(TargetIsGameObject.Guid);
+                            nManagerSetting.AddBlackList(TargetIsGameObject.Guid, 60000);
                         StopMove();
                     }
                 }
