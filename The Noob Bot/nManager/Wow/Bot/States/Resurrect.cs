@@ -222,8 +222,13 @@ namespace nManager.Wow.Bot.States
                     if (!success)
                         return;
                     MovementManager.Go(points);
+                    Timer distanceTimer = null;
                     while (safeResPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                     {
+                        if (distanceTimer == null && tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 39.0f)
+                            distanceTimer = new Timer(10000); // start a 10sec timer when we are in range of our corpse.
+                        if (distanceTimer != null && distanceTimer.IsReady)
+                            break; // Sometimes we cannot join the desired destination because of a wall, or water level.
                         Thread.Sleep(1000);
                     }
 
