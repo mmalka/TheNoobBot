@@ -427,6 +427,7 @@ namespace nManager.Wow.Bot.States
                         }
                         Interact.InteractWith(baseAddress);
                         Thread.Sleep(500);
+                        MovementManager.StopMove();
                         if (target.SelectGossipOption != 0)
                         {
                             Lua.LuaDoString("SelectGossipOption(" + target.SelectGossipOption + ")");
