@@ -64,19 +64,23 @@ namespace nManager.Wow.Helpers
             if (nbGossip == 0) // There is no gossip, so let's assume we have the correct window open
                 return true;
 
-            string luaResultStr = Others.GetRandomString(Others.Random(4, 10));
-            string luaTable = Others.GetRandomString(Others.Random(4, 10));
-            string luaVarId = Others.GetRandomString(Others.Random(4, 10));
-            string luaVarValue = Others.GetRandomString(Others.Random(4, 10));
-            string luaCode = "local " + luaTable + " = { GetGossipOptions() } ";
-            luaCode += luaResultStr + " = 0 ";
-            luaCode += "for " + luaVarId + "," + luaVarValue + " in pairs(" + luaTable + ") do ";
-            luaCode += "if string.lower(" + luaVarValue + ") == \"" + option.Value.ToLower() + "\" then " + luaResultStr + " = " + luaVarId + "/2 ";
-            luaCode += "end end";
+            int optionNumber = nbGossip;
+            if (nbGossip > 1)
+            {
+                string luaResultStr = Others.GetRandomString(Others.Random(4, 10));
+                string luaTable = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarId = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarValue = Others.GetRandomString(Others.Random(4, 10));
+                string luaCode = "local " + luaTable + " = { GetGossipOptions() } ";
+                luaCode += luaResultStr + " = 0 ";
+                luaCode += "for " + luaVarId + "," + luaVarValue + " in pairs(" + luaTable + ") do ";
+                luaCode += "if string.lower(" + luaVarValue + ") == \"" + option.Value.ToLower() + "\" then " + luaResultStr + " = " + luaVarId + "/2 ";
+                luaCode += "end end";
 
-            Lua.LuaDoString(luaCode);
-            string strOptionNumber = Lua.GetLocalizedText(luaResultStr);
-            int optionNumber = Others.ToInt32(strOptionNumber);
+                Lua.LuaDoString(luaCode);
+                string strOptionNumber = Lua.GetLocalizedText(luaResultStr);
+                optionNumber = Others.ToInt32(strOptionNumber);
+            }
             if (optionNumber == 0)
             {
                 Logging.WriteError("No gossip option " + option + " available for this NPC");
