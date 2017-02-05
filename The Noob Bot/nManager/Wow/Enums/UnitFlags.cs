@@ -132,6 +132,13 @@ namespace nManager.Wow.Enums
         TurnInInvisible = 0x9, // '?' hidden on the MiniMap.
         TurnIn = 0xA,
     }
+    [Flags]
+    public enum UnitFlightMasterStatus
+    {
+        None = 0x0,
+        FlightAvailable = 0x1,
+        FlightUndiscovered = 0x2,
+    }
 
     [Flags]
     public enum BagType

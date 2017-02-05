@@ -129,12 +129,13 @@ namespace Quester.Bot
                 Fsm.States.Clear();
 
                 Fsm.AddState(new Pause {Priority = 100});
-                Fsm.AddState(new Resurrect {Priority = 14});
-                Fsm.AddState(new IsAttacked {Priority = 13});
-                Fsm.AddState(new Regeneration {Priority = 12});
-                Fsm.AddState(new ToTown {Priority = 11});
-                Fsm.AddState(new Looting {Priority = 10});
+                Fsm.AddState(new Resurrect {Priority = 15});
+                Fsm.AddState(new IsAttacked {Priority = 14});
+                Fsm.AddState(new Regeneration {Priority = 13});
+                Fsm.AddState(new ToTown {Priority = 12});
                 Fsm.AddState(new Travel {Priority = 11});
+                Fsm.AddState(new FlightMasterDiscovery {Priority = 10});
+                Fsm.AddState(new Looting {Priority = 9});
                 Fsm.AddState(new SpecializationCheck {Priority = 8});
                 Fsm.AddState(new LevelupCheck {Priority = 7});
                 Fsm.AddState(new Trainers {Priority = 6});

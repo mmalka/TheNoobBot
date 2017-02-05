@@ -331,6 +331,7 @@
         public enum Quests
         {
             QuestGiverStatus = 0xEC, //overlooked with cheat engine with baseaddress of 3 NPCs.
+            FlightMasterStatus = 0xF0, 
             QuestId = 0xF4007C, // Script_GetQuestID
             // TODO Retrieve unknown Quests offsets
             /*ActiveQuests = 0x0,
