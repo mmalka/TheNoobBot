@@ -356,6 +356,14 @@ namespace nManager.Helpful.Forms
                 InformationArea.Text = "";
                 if (ObjectManager.Target.IsValid)
                 {
+                    string flightStatusText = "";
+                    if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Taxi))
+                    {
+                        if (ObjectManager.Target.UnitFlightMasteStatus != UnitFlightMasterStatus.None)
+                        {
+                            flightStatusText = "Flight Master Status: " + ObjectManager.Target.UnitFlightMasteStatus + Environment.NewLine;
+                        }
+                    }
                     string questStatusText = "";
                     if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver))
                     {
@@ -363,7 +371,7 @@ namespace nManager.Helpful.Forms
                             (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                         if (questStatusFlag > 0x0)
                         {
-                            questStatusText = "QuestGiverStatus: " + questStatusFlag + Environment.NewLine;
+                            questStatusText = "Quest Giver Status: " + questStatusFlag + Environment.NewLine;
                         }
                     }
                     InformationArea.Text =
@@ -380,7 +388,7 @@ namespace nManager.Helpful.Forms
                         "UnitFlag3: " + ObjectManager.Target.GetDescriptor<UnitFlags3>(Descriptors.UnitFields.Flags3) + Environment.NewLine +
                         "StateAnimID: " + ObjectManager.Target.GetDescriptor<StateAnimID>(Descriptors.UnitFields.StateAnimID) + Environment.NewLine +
                         "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags) + Environment.NewLine +
-                        questStatusText +
+                        questStatusText + flightStatusText +
                         "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
                     if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Taxi))
                     {

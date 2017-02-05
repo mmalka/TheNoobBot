@@ -183,6 +183,7 @@
     <Compile Include="Wow\Bot\States\FightHostileTarget.cs" />
     <Compile Include="Wow\Bot\States\Farming.cs" />
     <Compile Include="Wow\Bot\States\FightHostileTargetDamageDealerOnly.cs" />
+    <Compile Include="Wow\Bot\States\FlightMasterDiscovery.cs" />
     <Compile Include="Wow\Bot\States\GarrisonState.cs" />
     <Compile Include="Wow\Bot\States\Grinding.cs" />
     <Compile Include="Wow\Bot\States\HealFriendlyTarget.cs" />
