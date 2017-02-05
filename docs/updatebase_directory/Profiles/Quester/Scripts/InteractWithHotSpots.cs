@@ -57,7 +57,7 @@ if (node.IsValid || unit.IsValid)
 	
 		while(ObjectManager.Me.Position.DistanceTo(pos) >= questObjective.Range)
 	{	
-		if(ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+		if((ObjectManager.Me.InCombat && !questObjective.IgnoreFight) || ObjectManager.Me.IsDeadMe)
 			return false;
 		baseAddress = MovementManager.FindTarget(ref vNpc, questObjective.Range);
 		Thread.Sleep(500);

@@ -270,19 +270,7 @@
     <Position>
       <X>-10128.7</X>
       <Y>1055.21</Y>
-      <Z>36.2503929</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>258</Entry>
-    <Name>Joshua Maclure</Name>
-    <Position>
-      <X>-10008.2939</X>
-      <Y>65.2117</Y>
-      <Z>34.84169</Z>
+      <Z>36.25082</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -354,7 +342,7 @@
     <Position>
       <X>-9455.365</X>
       <Y>-1385.32727</Y>
-      <Z>47.1273842</Z>
+      <Z>47.1262665</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -390,7 +378,7 @@
     <Position>
       <X>-10500.6016</X>
       <Y>1021.59137</Y>
-      <Z>60.5277061</Z>
+      <Z>60.5277519</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -592,21 +580,9 @@
     <Entry>844</Entry>
     <Name>Antonio Perelli</Name>
     <Position>
-      <X>-9811.736</X>
-      <Y>847.13324</Y>
-      <Z>28.36893</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>894</Entry>
-    <Name>Homer Stonefield</Name>
-    <Position>
-      <X>-9858.46</X>
-      <Y>365.9721</Y>
-      <Z>36.25389</Z>
+      <X>-9615.0625</X>
+      <Y>-1071.88647</Y>
+      <Z>39.513443</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -738,18 +714,6 @@
       <X>-9541.133</X>
       <Y>-716.4657</Y>
       <Z>99.2121048</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>959</Entry>
-    <Name>Morley Eberlein</Name>
-    <Position>
-      <X>-9548.453</X>
-      <Y>-709.983</Y>
-      <Z>90.42789</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -1013,7 +977,7 @@
     <Position>
       <X>-9469.282</X>
       <Y>-1355.24182</Y>
-      <Z>47.2048531</Z>
+      <Z>47.20493</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -1037,7 +1001,7 @@
     <Position>
       <X>-8898.231</X>
       <Y>-119.837891</Y>
-      <Z>81.83277</Z>
+      <Z>81.83279</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -1241,7 +1205,7 @@
     <Position>
       <X>-9483.098</X>
       <Y>-1356.247</Y>
-      <Z>46.95809</Z>
+      <Z>46.957695</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -2712,18 +2676,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>1650</Entry>
-    <Name>Terry Palin</Name>
-    <Position>
-      <X>-9404.846</X>
-      <Y>-1343.51892</Y>
-      <Z>50.02787</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>1651</Entry>
     <Name>Lee Brown</Name>
     <Position>
@@ -2778,18 +2730,6 @@
       <X>-10660.0107</X>
       <Y>1003.11462</Y>
       <Z>32.8710976</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>1670</Entry>
-    <Name>Mike Miller</Name>
-    <Position>
-      <X>-10506.8193</X>
-      <Y>1045.63367</Y>
-      <Z>60.5197067</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -3248,7 +3188,6 @@
       <Y>-2228.62085</Y>
       <Z>63.766758</Z>
     </Position>
-    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -3602,9 +3541,9 @@
     <Entry>2397</Entry>
     <Name>Derak Nightfall</Name>
     <Position>
-      <X>14.6943493</X>
-      <Y>-955.6187</Y>
-      <Z>56.3868332</Z>
+      <X>15.8661366</X>
+      <Y>-955.433167</Y>
+      <Z>56.40036</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -6961,17 +6900,6 @@
     <Entry>3537</Entry>
     <Name>Zixil</Name>
     <Position>
-      <X>-682.8604</X>
-      <Y>-548.2092</Y>
-      <Z>28.4984112</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3537</Entry>
-    <Name>Zixil</Name>
-    <Position>
       <X>-672.5478</X>
       <Y>-553.1944</Y>
       <Z>26.8121758</Z>
@@ -7032,6 +6960,17 @@
       <Z>59.2092056</Z>
     </Position>
     <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3537</Entry>
+    <Name>Zixil</Name>
+    <Position>
+      <X>-23.5721035</X>
+      <Y>-875.986633</Y>
+      <Z>59.2091942</Z>
+    </Position>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -7140,18 +7079,6 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>LeatherworkingTrainer</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3550</Entry>
-    <Name>Martine Tramblay</Name>
-    <Position>
-      <X>2040.91467</X>
-      <Y>57.4618073</Y>
-      <Z>33.8695831</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9033,7 +8960,7 @@
     <Position>
       <X>1564.75781</X>
       <Y>209.6008</Y>
-      <Z>-43.10218</Z>
+      <Z>-43.1023521</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -9192,18 +9119,6 @@
       <Z>-62.1502342</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4569</Entry>
-    <Name>Charles Seaton</Name>
-    <Position>
-      <X>1561.75</X>
-      <Y>133.745</Y>
-      <Z>-62.1502342</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -9216,43 +9131,7 @@
       <Z>-62.1571465</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4570</Entry>
-    <Name>Sydney Upton</Name>
-    <Position>
-      <X>1702.30737</X>
-      <Y>206.812286</Y>
-      <Z>-62.1571465</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4571</Entry>
-    <Name>Morley Bates</Name>
-    <Position>
-      <X>1672.1344</X>
-      <Y>163.388382</Y>
-      <Z>-62.1476669</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4571</Entry>
-    <Name>Morley Bates</Name>
-    <Position>
-      <X>1695.56262</X>
-      <Y>84.1711</Y>
-      <Z>-62.28918</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9268,30 +9147,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4574</Entry>
-    <Name>Lizbeth Cromwell</Name>
-    <Position>
-      <X>1681.1</X>
-      <Y>95.7271</Y>
-      <Z>-62.1691551</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4575</Entry>
-    <Name>Hannah Akeley</Name>
-    <Position>
-      <X>1776.6</X>
-      <Y>79.0493</Y>
-      <Z>-59.3364677</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>4576</Entry>
     <Name>Josef Gregorian</Name>
     <Position>
@@ -9301,18 +9156,6 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>TailoringTrainer</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4577</Entry>
-    <Name>Millie Gregorian</Name>
-    <Position>
-      <X>1684.99</X>
-      <Y>196.001</Y>
-      <Z>-62.17704</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9336,43 +9179,7 @@
       <Z>-62.17356</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4580</Entry>
-    <Name>Lucille Castleton</Name>
-    <Position>
-      <X>1688.55</X>
-      <Y>190.278</Y>
-      <Z>-62.17356</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4581</Entry>
-    <Name>Salazar Bloch</Name>
-    <Position>
-      <X>1626.63</X>
-      <Y>130.468</Y>
-      <Z>-62.1604271</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4585</Entry>
-    <Name>Ezekiel Graves</Name>
-    <Position>
-      <X>1550.34</X>
-      <Y>151.732</Y>
-      <Z>-62.1755676</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9381,7 +9188,7 @@
     <Position>
       <X>1402.05786</X>
       <Y>149.050125</Y>
-      <Z>-62.4538651</Z>
+      <Z>-62.4539146</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -9400,30 +9207,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4589</Entry>
-    <Name>Joseph Moore</Name>
-    <Position>
-      <X>1503.83521</X>
-      <Y>201.000763</Y>
-      <Z>-62.13879</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4590</Entry>
-    <Name>Jonathan Chambers</Name>
-    <Position>
-      <X>1486.12268</X>
-      <Y>208.881134</Y>
-      <Z>-62.15714</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>4591</Entry>
     <Name>Mary Edras</Name>
     <Position>
@@ -9433,18 +9216,6 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>FirstAidTrainer</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4592</Entry>
-    <Name>Nathaniel Steenwick</Name>
-    <Position>
-      <X>1560.27</X>
-      <Y>129.819</Y>
-      <Z>-62.1545448</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9469,18 +9240,6 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>BlacksmithingTrainer</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4597</Entry>
-    <Name>Samuel Van Brunt</Name>
-    <Position>
-      <X>1685.39</X>
-      <Y>284.042</Y>
-      <Z>-62.1426659</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9528,31 +9287,7 @@
       <Z>-62.1528549</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4600</Entry>
-    <Name>Geoffrey Hartwell</Name>
-    <Position>
-      <X>1666.31</X>
-      <Y>310.363</Y>
-      <Z>-62.1528549</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4601</Entry>
-    <Name>Francis Eliot</Name>
-    <Position>
-      <X>1669.39</X>
-      <Y>307.177</Y>
-      <Z>-62.1471939</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9576,31 +9311,7 @@
       <Z>-62.1505623</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4602</Entry>
-    <Name>Benijah Fenner</Name>
-    <Position>
-      <X>1667.85</X>
-      <Y>308.892</Y>
-      <Z>-62.1505623</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4603</Entry>
-    <Name>Nicholas Atwood</Name>
-    <Position>
-      <X>1706.63391</X>
-      <Y>271.475647</Y>
-      <Z>-62.15961</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9621,7 +9332,7 @@
     <Position>
       <X>1629.87</X>
       <Y>348.382</Y>
-      <Z>-62.1519966</Z>
+      <Z>-62.1519737</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -9697,18 +9408,6 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>EnchantingTrainer</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4617</Entry>
-    <Name>Thaddeus Webb</Name>
-    <Position>
-      <X>1487.59229</X>
-      <Y>274.7276</Y>
-      <Z>-62.1520576</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11517,18 +11216,6 @@
       <Z>-62.1588669</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>5754</Entry>
-    <Name>Zane Bradford</Name>
-    <Position>
-      <X>1705.50378</X>
-      <Y>205.856888</Y>
-      <Z>-62.1588669</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -11637,18 +11324,6 @@
       <Z>-62.1406631</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>5819</Entry>
-    <Name>Mirelle Tremayne</Name>
-    <Position>
-      <X>1692.65</X>
-      <Y>281.799</Y>
-      <Z>-62.1406631</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -11661,31 +11336,7 @@
       <Z>-62.14266</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>5820</Entry>
-    <Name>Gillian Moore</Name>
-    <Position>
-      <X>1505.25366</X>
-      <Y>198.393875</Y>
-      <Z>-62.14266</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>5821</Entry>
-    <Name>Sheldon Von Croy</Name>
-    <Position>
-      <X>1692.84021</X>
-      <Y>198.143173</Y>
-      <Z>-62.173893</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -12089,6 +11740,94 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1346.96118</X>
+      <Y>-2046.03516</Y>
+      <Z>71.38631</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1346.96118</X>
+      <Y>-2046.03516</Y>
+      <Z>71.38631</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1226.29</X>
+      <Y>414.889</Y>
+      <Z>3.56687331</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1226.29</X>
+      <Y>414.889</Y>
+      <Z>3.56687331</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-905.74</X>
+      <Y>1623.03</Y>
+      <Z>68.3634338</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-905.74</X>
+      <Y>1623.03</Y>
+      <Z>68.3634338</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-722.3084</X>
+      <Y>-589.772034</Y>
+      <Z>25.0115166</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-722.3084</X>
+      <Y>-589.772034</Y>
+      <Z>25.0115166</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -14865,7 +14604,7 @@
     <Position>
       <X>475.345</X>
       <Y>1515.57</Y>
-      <Z>135.752487</Z>
+      <Z>135.7525</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -14991,18 +14730,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>10045</Entry>
-    <Name>Kirk Maxwell</Name>
-    <Position>
-      <X>-10509.9639</X>
-      <Y>1040.74829</Y>
-      <Z>60.51868</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>10046</Entry>
     <Name>Bethaine Flinthammer</Name>
     <Position>
@@ -15092,7 +14819,7 @@
     <Position>
       <X>1637.35266</X>
       <Y>226.356552</Y>
-      <Z>-43.1031</Z>
+      <Z>-43.10317</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -16274,18 +16001,6 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>12943</Entry>
-    <Name>Werg Thickblade</Name>
-    <Position>
-      <X>1745.63</X>
-      <Y>-731.786</Y>
-      <Z>60.0661354</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -25098,39 +24813,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>24934</Entry>
-    <Name>Snack-O-Matic IV</Name>
-    <Position>
-      <X>2018.53259</X>
-      <Y>324.1203</Y>
-      <Z>100.016418</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>24934</Entry>
-    <Name>Snack-O-Matic IV</Name>
-    <Position>
-      <X>2061.08716</X>
-      <Y>232.152115</Y>
-      <Z>93.9801</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>24934</Entry>
-    <Name>Snack-O-Matic IV</Name>
-    <Position>
-      <X>2123.90381</X>
-      <Y>299.086884</Y>
-      <Z>93.03842</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>24935</Entry>
     <Name>Vend-O-Tron D-Luxe</Name>
     <Position>
@@ -25303,17 +24985,6 @@
       <Y>322.95993</Y>
       <Z>100.017227</Z>
     </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>24935</Entry>
-    <Name>Vend-O-Tron D-Luxe</Name>
-    <Position>
-      <X>2019.99023</X>
-      <Y>322.95993</Y>
-      <Z>100.017227</Z>
-    </Position>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -25325,29 +24996,7 @@
       <Y>224.009521</Y>
       <Z>93.97661</Z>
     </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>24935</Entry>
-    <Name>Vend-O-Tron D-Luxe</Name>
-    <Position>
-      <X>2059.48071</X>
-      <Y>224.009521</Y>
-      <Z>93.97661</Z>
-    </Position>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>24935</Entry>
-    <Name>Vend-O-Tron D-Luxe</Name>
-    <Position>
-      <X>2125.76685</X>
-      <Y>299.098541</Y>
-      <Z>93.03923</Z>
-    </Position>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31220,18 +30869,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>30729</Entry>
-    <Name>Ickabod Pimlen</Name>
-    <Position>
-      <X>1509.66</X>
-      <Y>279.824</Y>
-      <Z>-62.17166</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>30730</Entry>
     <Name>Stanly McCormick</Name>
     <Position>
@@ -34076,7 +33713,7 @@
     <Position>
       <X>2801.54858</X>
       <Y>249.5</Y>
-      <Z>31.7723751</Z>
+      <Z>31.772377</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -34996,17 +34633,6 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>42497</Entry>
-    <Name>Mama Celeste</Name>
-    <Position>
-      <X>-9846.435</X>
-      <Y>1282.74658</Y>
-      <Z>41.88716</Z>
-    </Position>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36916,18 +36542,6 @@
       <X>2234.77</X>
       <Y>1021.9</Y>
       <Z>36.4493752</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>44040</Entry>
-    <Name>Kramlod Farsight</Name>
-    <Position>
-      <X>1740.21</X>
-      <Y>-731.88</Y>
-      <Z>60.0654335</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -38872,6 +38486,30 @@
       <Y>-4322.88</Y>
       <Z>131.821381</Z>
     </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45484</Entry>
+    <Name>Provisioner Angelus</Name>
+    <Position>
+      <X>-947.821</X>
+      <Y>1624.81</Y>
+      <Z>68.42323</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45484</Entry>
+    <Name>Provisioner Angelus</Name>
+    <Position>
+      <X>-947.821</X>
+      <Y>1624.81</Y>
+      <Z>68.42323</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -43888,7 +43526,7 @@
     <Position>
       <X>1642.02429</X>
       <Y>329.118073</Y>
-      <Z>-62.18506</Z>
+      <Z>-62.1850739</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -56206,18 +55844,6 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
-    <Entry>90866</Entry>
-    <Name>Tinkmaster Overspark</Name>
-    <Position>
-      <X>3395.593</X>
-      <Y>3077.83154</Y>
-      <Z>526.328</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Troll Raid</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>90894</Entry>
     <Name>Alexi Hackercam</Name>
     <Position>
@@ -59365,8 +58991,8 @@
       <Y>3086.96973</Y>
       <Z>440.212219</Z>
     </Position>
-    <Type>Vendor</Type>
     <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -59377,8 +59003,8 @@
       <Y>3086.96973</Y>
       <Z>440.212219</Z>
     </Position>
-    <Type>Repair</Type>
     <Faction>Alliance</Faction>
+    <Type>Repair</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>

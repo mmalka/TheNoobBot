@@ -31,34 +31,17 @@ uint baseAddress;
 if (unit.IsValid || node.IsValid)
 {
 	/* Entry found, GoTo */
-	if(unit.IsValid)
-	{
-		baseAddress = MovementManager.FindTarget(unit); /* Move toward unit */
-		pos =new Point(unit.Position);
-	}
-	else if (node.IsValid) 
-	{
-		baseAddress = MovementManager.FindTarget(node); /* Move toward node */
-		pos = new Point(node.Position);
-	}
-	
+
 	Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
-	
-	Npc vNpc = new Npc();
-	vNpc = new Npc
-	{
-		Entry = 1337,
-		Position = pos,
-		Name = "Target",
-		ContinentIdInt = Usefuls.ContinentId,
-		Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
-	};
 	
 	while((node.IsValid && ObjectManager.Me.Position.DistanceTo(node.Position) >= questObjective.Range) || (unit.IsValid && ObjectManager.Me.Position.DistanceTo(unit.Position) >= questObjective.Range))
 	{	
-		if(ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+		if((ObjectManager.Me.InCombat && !questObjective.IgnoreFight) || ObjectManager.Me.IsDeadMe)
 			return false;
-		MovementManager.FindTarget(ref vNpc, questObjective.Range);
+		if(node.IsValid)
+			baseAddress = MovementManager.FindTarget(node, questObjective.Range);
+		if(unit.IsValid)
+			baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
 		Thread.Sleep(500);
 	}
 	
@@ -79,13 +62,13 @@ if (unit.IsValid || node.IsValid)
 		MovementManager.Face(unit);
 		Interact.InteractWith(unit.GetBaseAddress);
 	}
-
-	if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
-		return false;
 	
 	MovementManager.StopMove();
 	MountTask.DismountMount();
 	
+	if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
+		return false;
+
 	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
 	
 	Thread.Sleep(Usefuls.Latency +1500);

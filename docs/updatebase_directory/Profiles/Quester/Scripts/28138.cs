@@ -25,26 +25,40 @@ if (!MovementManager.InMovement)
 
 nManager.Wow.ObjectManager.WoWUnit unit = nManager.Wow.ObjectManager.ObjectManager.GetNearestWoWUnit(nManager.Wow.ObjectManager.ObjectManager.GetWoWUnitByEntry(entries));
 
+nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
+
 while(ObjectManager.Me.Position.DistanceTo(unit.Position) >= 5)
 {
+	if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
+	{
+		return false;
+	}
 	MovementManager.FindTarget(unit, 5);
 
 }
 
 _worker2 = new System.Threading.Thread(() => nManager.Wow.Helpers.Fight.StartFight(unit.Guid));
+Thread.Sleep(500);
 
-//fightInProcess = true;
 _worker2.Start();
-while (unit.HealthPercent >= 35)
-	Thread.Sleep(50);
-	Logging.Write("HP");
-	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
-	Thread.Sleep(500);
-	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
-	
-	nManager.Wow.Helpers.Fight.InFight= false;
-nManager.Wow.Helpers.Fight.StopFight();
 
+Thread.Sleep(500);
+
+while (unit.HealthPercent >= 35)
+{
+	if(!ObjectManager.Me.InCombat)
+	{
+		return false;
+	}
+	Thread.Sleep(50);
+}
+
+ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+Thread.Sleep(500);
+ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
+nManager.Wow.Helpers.Fight.InFight= false;
+nManager.Wow.Helpers.Fight.StopFight();
 
 _worker2 = null;
 Thread.Sleep(200);
