@@ -118,8 +118,6 @@ namespace nManager.Wow.Bot.States
                             _availableCustomPaths.Items.RemoveAt(i);
                             continue; // in case I add more checks, I don't want to forget about this continue.
                         }
-                        XmlSerializer.Serialize(Application.StartupPath + @"\Data\CustomPathsDB.xml", _availableCustomPaths);
-
 
                         // We never serialize CustomPath back, so it's all fine.
                     }
@@ -1006,7 +1004,7 @@ namespace nManager.Wow.Bot.States
                     continue;
                 bool success;
                 PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                if (success && customPath.Journey == JourneyType.RoundTrip)
+                if (success && customPath.RoundTrip)
                 {
                     customPath.ArrivalIsA = true;
                     listCustomPath.Add(customPath);
@@ -1122,7 +1120,7 @@ namespace nManager.Wow.Bot.States
                     var customPath = transport as CustomPath;
                     if (customPath.ArrivalIsA)
                     {
-                        if (customPath.Journey == JourneyType.RoundTrip)
+                        if (customPath.RoundTrip)
                         {
                             List<Point> wayIn = PathFinder.FindPath(travelFrom, customPath.BPoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
                             List<Point> wayOff = PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
@@ -1202,7 +1200,7 @@ namespace nManager.Wow.Bot.States
                     var customPath = transport as CustomPath;
                     if (customPath.ArrivalIsA)
                     {
-                        if (customPath.Journey == JourneyType.RoundTrip)
+                        if (customPath.RoundTrip)
                         {
                             if (customPath.BContinentId != travelFromContinentId)
                                 continue;
