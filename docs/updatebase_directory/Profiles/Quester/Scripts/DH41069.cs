@@ -1,0 +1,1 @@
+Lua.LuaDoString("OrderHallMissionFrame.Tab3:Click(); C_AdventureMap.StartQuest(39735)");

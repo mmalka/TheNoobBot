@@ -702,6 +702,7 @@
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -720,6 +721,7 @@
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -738,6 +740,7 @@
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>

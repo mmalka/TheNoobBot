@@ -403,6 +403,7 @@
             <Z>24.33389</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <Range>10</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -446,7 +447,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <ScriptConditionIsComplete>=nManager.Wow.Helpers.Quest.GetQuestCompleted(27094);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27094) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27094)) { return true;}</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>1441.18</X>

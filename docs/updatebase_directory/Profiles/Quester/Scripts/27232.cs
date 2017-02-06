@@ -1,12 +1,13 @@
    nManager.Wow.ObjectManager.WoWUnit Worgen = nManager.Wow.ObjectManager.ObjectManager.GetNearestWoWUnit(nManager.Wow.ObjectManager.ObjectManager.GetWoWUnitByEntry(45270));
-
+		
         if (Worgen.IsValid && Worgen.Position.DistanceTo(ObjectManager.Me.Position) <= 150)
         {
             var listP = new System.Collections.Generic.List<Point>();
             listP.Add(Worgen.Position);
 
-            
+           
             nManager.Wow.Helpers.MovementManager.Go(listP);
+		
             Interact.InteractWith(Worgen.GetBaseAddress);
 
             float angle = Worgen.Position.Z - ObjectManager.Me.Position.Z;
@@ -23,6 +24,6 @@
             {
                 Lua.LuaDoString("VehicleAimDecrement(" + (currentAngle - angle) + ");");
             }
-
+			
             Lua.RunMacroText("/click OverrideActionBarButton1");
         }
