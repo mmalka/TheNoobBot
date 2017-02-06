@@ -385,7 +385,8 @@ namespace nManager.Wow.Helpers
                 PathFinder.FindPath(npc.Position, out bypassTravel);
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
-                Logging.Write("Calling travel system...");
+                MovementManager.StopMove();
+                Logging.Write("Calling travel system for Quest PickUp...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 // Pass the check for valid destination as a lambda
@@ -522,7 +523,8 @@ namespace nManager.Wow.Helpers
                 PathFinder.FindPath(npc.Position, out bypassTravel);
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
-                Logging.Write("Calling travel system...");
+                MovementManager.StopMove();
+                Logging.Write("Calling travel system for Quest TurnIn...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 // Pass the check for valid destination as a lambda
@@ -753,6 +755,10 @@ namespace nManager.Wow.Helpers
                         }
                         CompleteQuest();
                         Thread.Sleep(500);
+                        if (!GetLogQuestId().Contains(questId)) // It's no more in the quest log, then we did turn in it sucessfuly
+                        {
+                            FinishedQuestSet.Add(questId);
+                        }
                     }
                     else if (questStatus == "OFFER")
                     {
