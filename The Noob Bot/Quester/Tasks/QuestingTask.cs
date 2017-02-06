@@ -176,7 +176,14 @@ namespace Quester.Tasks
             Quest.GetSetIgnoreFight = false;
             if (questObjective == null)
                 return true;
-
+            var currentObjectiveQuestId = questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id;
+            if (Quest.IsQuestFailed(currentObjectiveQuestId))
+            {
+                Logging.Write("Quest " + currentObjectiveQuestId + " has failed, abandonning it.");
+                Quest.AbandonQuest(currentObjectiveQuestId);
+                ResetQuestObjective();
+                return false;
+            }
             // shortcut since we do objective one by one, for kill it can be completed before we do them all
             if (!questObjective.IgnoreQuestCompleted && Quest.GetLogQuestIsComplete(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id))
                 return true;
@@ -190,7 +197,8 @@ namespace Quester.Tasks
                         return false; // Force the bot to go on zone to check about the current status of the objective as the quest has not been completed.
                     }
                 }
-                Thread.Sleep(5000); // Big possibility that there is an incomming AutoAccepted quest.
+                if (questObjective.CurrentCount < questObjective.Count)
+                    Thread.Sleep(2000); // Big possibility that there is an incomming AutoAccepted quest.
                 if (IsQuestInQuestLog(questObjective.InternalQuestId))
                     return false; // fail-safe for recently taken quests.
                 return true; // We don't have this nested quest anymore. The first check is "just in case", but a PickUpQuest objective shouldn't contains InternalQuestId anyway.
@@ -199,7 +207,7 @@ namespace Quester.Tasks
             // If we can check the objective in quest log, then rely on it
 
             if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CollectCount > 0))
-                if (Quest.IsObjectiveCompleted(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id, questObjective.InternalIndex,
+                if (Quest.IsObjectiveCompleted(currentObjectiveQuestId, questObjective.InternalIndex,
                     questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount))
                 {
                     // Internal Index completed;
@@ -318,6 +326,14 @@ namespace Quester.Tasks
 
         public static void CurrentQuestObjectiveExecute()
         {
+            var currentObjectiveQuestId = CurrentQuestObjective.InternalQuestId != 0 ? CurrentQuestObjective.InternalQuestId : CurrentQuest.Id;
+            if (Quest.IsQuestFailed(currentObjectiveQuestId))
+            {
+                Logging.Write("Quest " + currentObjectiveQuestId + " has failed, abandonning it.");
+                Quest.AbandonQuest(currentObjectiveQuestId);
+                ResetQuestObjective();
+                return;
+            }
             QuestObjectiveExecute(ref CurrentQuestObjective);
         }
 

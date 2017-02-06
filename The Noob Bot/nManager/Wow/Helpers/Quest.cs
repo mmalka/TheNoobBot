@@ -505,12 +505,6 @@ namespace nManager.Wow.Helpers
 
         public static void QuestTurnIn(ref Npc npc, string questName, int questId)
         {
-            if (IsQuestFailed(questId))
-            {
-                Logging.Write("Quest " + questName + "(" + questId + ") has failed, abandonning it.");
-                AbandonQuest(questId);
-                return;
-            }
             Point me = ObjectManager.ObjectManager.Me.Position;
             WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry), false, false, true);
             if (mNpc.CanTurnIn)
