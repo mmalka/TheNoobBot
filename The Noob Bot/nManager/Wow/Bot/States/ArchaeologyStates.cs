@@ -295,7 +295,8 @@ namespace nManager.Wow.Bot.States
                             Point me = ObjectManager.ObjectManager.Me.Position;
                             if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
                             {
-                                Logging.Write("Calling travel system...");
+                                MovementManager.StopMove();
+                                Logging.Write("Calling travel system to go to digsite...");
                                 Products.Products.TravelToContinentId = Usefuls.ContinentId;
                                 Products.Products.TravelTo = qPOI.Center;
                                 // Pass the check for valid destination as a lambda

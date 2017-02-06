@@ -225,6 +225,7 @@ namespace Quester.Profile
         [DefaultValue(false)] public bool IgnoreNotSelectable = false;
         [DefaultValue(false)] public bool AllowPlayerControlled = false;
         [DefaultValue(false)] public bool IgnoreItemNotUsable = false;
+        [DefaultValue(false)] public bool ForceTravelToQuestZone = false;
 
         // Use Item
         [DefaultValue(0)] public int UseItemId = 0;
@@ -280,7 +281,7 @@ namespace Quester.Profile
         [DefaultValue(0)] public int QuestId = 0;
 
         // TravelTo
-        [DefaultValue(0)] public int ContinentId = 0;
+        [DefaultValue(-1)] public int ContinentId = -1;
 
         // MessageBox
         [DefaultValue("")] public string Message = "";

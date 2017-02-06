@@ -42,7 +42,7 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (!_timerCheck.IsReady)
+                if (!_timerCheck.IsReady && !_enRoute)
                     return false;
                 _timerCheck.Reset();
                 WoWUnit flightMaster = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitFlightMaster());
@@ -59,7 +59,10 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             if (!_enRoute)
+            {
+                MovementManager.StopMove();
                 Logging.Write("Nearby Flight Master " + _flightMaster.Name + " (" + _flightMaster.Entry + ") is not yet discovered.");
+            }
             _enRoute = true;
             Npc target = new Npc
             {
@@ -71,6 +74,8 @@ namespace nManager.Wow.Bot.States
             };
             uint baseAddress = MovementManager.FindTarget(ref target, 5.0f);
             if (MovementManager.InMovement)
+                return;
+            if (_flightMaster.GetDistance > 5)
                 return;
             if (baseAddress > 0)
             {
