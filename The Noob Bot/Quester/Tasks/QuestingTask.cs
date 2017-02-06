@@ -136,6 +136,7 @@ namespace Quester.Tasks
                         // Script condition
                     {
                         CurrentQuestObjective = CurrentQuest.Objectives[_currentQuestObjectiveId];
+                        CurrentQuestObjective.TravelToQuestZone = true;
                         break;
                     }
                 }
@@ -153,6 +154,7 @@ namespace Quester.Tasks
             {
                 obj.CurrentCount = 0;
                 obj.IsObjectiveCompleted = false;
+                obj.TravelToQuestZone = true;
             }
             SelectNextQuestObjective();
         }
@@ -358,10 +360,13 @@ namespace Quester.Tasks
                 doTravel = true;
             if (ObjectManager.Me.Position.DistanceTo(destination) > 200)
                 doTravel = true;
+            if (!CurrentQuestObjective.TravelToQuestZone)
+                doTravel = false;
             if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
                 Logging.Write("Calling travel system for TravelToQuestZone...");
+                CurrentQuestObjective.TravelToQuestZone = false;
                 Products.TravelToContinentId = continentId;
                 Products.TravelTo = destination;
                 // Pass the check for valid destination as a lambda
