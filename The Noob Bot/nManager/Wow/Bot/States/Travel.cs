@@ -269,6 +269,7 @@ namespace nManager.Wow.Bot.States
 
         private void GoToDepartureQuayOrPortal(Transport selectedTransport)
         {
+            MovementManager.StopMove();
             if (selectedTransport is Portal)
             {
                 var portal = selectedTransport as Portal;
