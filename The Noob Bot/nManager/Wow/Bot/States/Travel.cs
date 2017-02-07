@@ -282,6 +282,8 @@ namespace nManager.Wow.Bot.States
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 2.0f)
                         loop = false;
+                    if (!MovementManager.InMoveTo && !MovementManager.InMovement)
+                        loop = false;
                     Thread.Sleep(100);
                 }
                 MovementManager.StopMove();
@@ -298,6 +300,8 @@ namespace nManager.Wow.Bot.States
                     if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint) < 2.0f)
+                        loop = false;
+                    if (!MovementManager.InMoveTo && !MovementManager.InMovement)
                         loop = false;
                     Thread.Sleep(100);
                 }
@@ -341,6 +345,8 @@ namespace nManager.Wow.Bot.States
                     if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(taxi.APoint) < 4.0f)
+                        loop = false;
+                    if (!MovementManager.InMoveTo && !MovementManager.InMovement)
                         loop = false;
                     Thread.Sleep(100);
                 }
