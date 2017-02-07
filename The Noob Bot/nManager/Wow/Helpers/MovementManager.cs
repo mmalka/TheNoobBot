@@ -29,8 +29,6 @@ namespace nManager.Wow.Helpers
         private static bool _chasing;
         private static List<Point> _points = new List<Point>();
 
-        private static Point _travelLocation = null;
-        private static bool _travelDisabled = false;
         private static bool _first;
         private static int _lastNbStuck;
         private static bool _farm;
@@ -1623,15 +1621,8 @@ namespace nManager.Wow.Helpers
             return FindTarget(ref _trakedTarget, SpecialRange, doMount);
         }
 
-        public static Npc CurrentNpc = new Npc();
-
         public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0)
         {
-            if (Target.Entry != CurrentNpc.Entry || Target.Position != CurrentNpc.Position)
-            {
-                _travelDisabled = false;
-                CurrentNpc = Target;
-            }
             if (doMount && !InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount();
@@ -1652,19 +1643,6 @@ namespace nManager.Wow.Helpers
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                 if (!patherResult && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 300 || points.Count < 2))
                 {
-                    if ((_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
-                    {
-                        StopMove(); // cancel eventual goloop.
-                        Logging.Write("Calling travel system for FindTarget...");
-                        Products.Products.TravelToContinentId = Usefuls.ContinentId;
-                        Products.Products.TravelTo = Target.Position;
-                        // Pass the check for valid destination as a lambda
-                        Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
-                        _travelLocation = ObjectManager.ObjectManager.Me.Position;
-                        return 0;
-                    }
-                    if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 0.1f)
-                        _travelDisabled = true; // release travel once arrived.
                     // Give a chance to the bot to come closer if it's far away, unless the path is really short or innexistant.
                     // PathFinder cannot always generate very long path.
                     Logging.Write("No path found for " + Target.Name + ", abort FindTarget.");
@@ -1679,10 +1657,8 @@ namespace nManager.Wow.Helpers
                 _updatePathSpecialTimer = new Timer(2000);
                 _maxTimerForStuckDetection = new Timer((int) (groundDistance/3*1000) + 4000);
                 Go(points);
-                _travelDisabled = true;
                 return baseAddress;
             }
-            _travelDisabled = true;
             // We are in movement and want to update the path if necessary
             if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InInevitableCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
