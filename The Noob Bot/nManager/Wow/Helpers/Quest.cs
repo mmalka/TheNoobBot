@@ -118,10 +118,12 @@ namespace nManager.Wow.Helpers
 
         public static int GetQuestID()
         {
-            return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Quests.QuestId);
-            /*string randomString = Others.GetRandomString(Others.Random(4, 10));
+            int questId = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Quests.QuestId);
+            if (questId > 0)
+                return questId;
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetQuestID()");
-            return Others.ToInt32(Lua.GetLocalizedText(randomString));*/
+            return Others.ToInt32(Lua.GetLocalizedText(randomString));
         }
 
         public static bool GetGossipAvailableQuestsWorks()
