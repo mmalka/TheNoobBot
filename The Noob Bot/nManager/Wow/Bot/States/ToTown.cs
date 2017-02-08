@@ -185,7 +185,7 @@ namespace nManager.Wow.Bot.States
                 nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
                 nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
             {
-                if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground && Skill.GetValue(SkillLine.Riding) > 0)
                 {
                     if (_travelersTundraMammoth.HaveBuff || _travelersTundraMammoth.IsSpellUsable)
                     {
@@ -237,7 +237,7 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
-                else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground && Skill.GetValue(SkillLine.Riding) > 0)
                 {
                     if (_grandExpeditionYak.HaveBuff || _grandExpeditionYak.IsSpellUsable)
                     {
@@ -298,7 +298,7 @@ namespace nManager.Wow.Bot.States
                 Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
                 nManagerSetting.CurrentSetting.ActivateAutoSellingFeature && !_suspendSelling)
             {
-                if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground && Skill.GetValue(SkillLine.Riding) > 0)
                 {
                     if (_travelersTundraMammoth.HaveBuff || _travelersTundraMammoth.IsSpellUsable)
                     {
@@ -350,7 +350,7 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
-                else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground && Skill.GetValue(SkillLine.Riding) > 0)
                 {
                     if (_grandExpeditionYak.HaveBuff || _grandExpeditionYak.IsSpellUsable)
                     {
