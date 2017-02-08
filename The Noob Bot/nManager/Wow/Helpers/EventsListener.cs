@@ -210,6 +210,9 @@ namespace nManager.Wow.Helpers
                         // when looting multiple items, fire multiples times, we want to make sure to jump to the latest eventFireCount.
                         Thread.Sleep(2000); // Allow some times to the bot to mount up etc before slowing down because of the ObjectList stuff.
                         break;
+                    case Enums.WoWEventsType.QUEST_AUTOCOMPLETE:
+                        Thread.Sleep(2000);
+                        break; // Allow some time for the latency to catch up.
                 }
                 if (SendsFireCount)
                     _callBack(GetEventFireCount(EventType));
