@@ -497,10 +497,6 @@
           <QuestId>26310</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>MessageBox</Objective>
-          <Message>Vesper! ForceTravel Couille</Message>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>8</Count>
