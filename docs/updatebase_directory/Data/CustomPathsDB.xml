@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CustomPaths xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Items>
-    <CustomPath Faction="Neutral" Id="1" Name="Brill - Apothecary Society Building">
+    <CustomPath Faction="Neutral" Id="1" Name="Brill - Apothecary Society Building" AContinentId="0" BContinentId="0">
       <APoint>
         <X>2228.631</X>
         <Y>329.2897</Y>
@@ -68,6 +68,124 @@
           <Y>330.4578</Y>
           <Z>41.0624</Z>
         </Point>
+      </Points>
+    </CustomPath>
+	<CustomPath Faction="Neutral" Id="2" Name="The Hinterlands - Temple" AContinentId="0" BContinentId="0">
+      <APoint>
+          <X>-297.7462</X>
+		  <Y>-4139.372</Y>
+		  <Z>136.5279</Z>
+      </APoint>
+      <BPoint>
+          <X>-228.8508</X>
+		  <Y>-4134.957</Y>
+		  <Z>118.3195</Z>
+      </BPoint>
+      <Points>
+		<Point>
+		  <X>-297.7462</X>
+		  <Y>-4139.372</Y>
+		  <Z>136.5279</Z>
+		</Point>
+		<Point>
+		  <X>-291.2898</X>
+		  <Y>-4130.906</Y>
+		  <Z>136.4375</Z>
+		</Point>
+		<Point>
+		  <X>-285.1433</X>
+		  <Y>-4122.847</Y>
+		  <Z>136.4695</Z>
+		</Point>
+		<Point>
+		  <X>-276.8176</X>
+		  <Y>-4123.323</Y>
+		  <Z>137.0185</Z>
+		</Point>
+		<Point>
+		  <X>-258.5122</X>
+		  <Y>-4123.834</Y>
+		  <Z>128.7112</Z>
+		</Point>
+		<Point>
+		  <X>-245.2943</X>
+		  <Y>-4124.203</Y>
+		  <Z>119.1898</Z>
+		</Point>
+		<Point>
+		  <X>-237.4994</X>
+		  <Y>-4124.421</Y>
+		  <Z>118.0581</Z>
+		</Point>
+		<Point>
+		  <X>-228.8508</X>
+		  <Y>-4134.957</Y>
+		  <Z>118.3195</Z>
+		</Point>
+      </Points>
+    </CustomPath>
+	<CustomPath Faction="Neutral" Id="3" Name="Hillsbrad Foothills - Crater" AContinentId="0" BContinentId="0">
+      <APoint>
+          <X>380.4337</X>
+          <Y>226.1621</Y>
+          <Z>42.62772</Z>
+      </APoint>
+      <BPoint>
+          <X>316.9259</X>
+          <Y>367.6194</Y>
+          <Z>-66.14417</Z>
+      </BPoint>
+      <Points>
+	     <Point>
+              <X>380.4337</X>
+              <Y>226.1621</Y>
+              <Z>42.62772</Z>
+            </Point>
+            <Point>
+              <X>373.4341</X>
+              <Y>245.1541</Y>
+              <Z>35.14643</Z>
+            </Point>
+            <Point>
+              <X>368.4961</X>
+              <Y>254.3906</Y>
+              <Z>28.23765</Z>
+            </Point>
+            <Point>
+              <X>365.4971</X>
+              <Y>270.2744</Y>
+              <Z>16.23392</Z>
+            </Point>
+            <Point>
+              <X>345.9128</X>
+              <Y>298.6357</Y>
+              <Z>-10.32575</Z>
+            </Point>
+            <Point>
+              <X>352.9119</X>
+              <Y>309.5999</Y>
+              <Z>-10.92957</Z>
+            </Point>
+            <Point>
+              <X>363.3894</X>
+              <Y>321.6665</Y>
+              <Z>-19.72194</Z>
+            </Point>
+            <Point>
+              <X>364.6275</X>
+              <Y>339.1959</Y>
+              <Z>-36.30174</Z>
+            </Point>
+            <Point>
+              <X>350.5274</X>
+              <Y>353.1404</Y>
+              <Z>-53.71917</Z>
+            </Point>
+            <Point>
+              <X>316.9259</X>
+              <Y>367.6194</Y>
+              <Z>-66.14417</Z>
+            </Point>
       </Points>
     </CustomPath>
   </Items>

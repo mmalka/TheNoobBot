@@ -469,6 +469,9 @@
       <QuestLevel>33</QuestLevel>
       <MinLevel>30</MinLevel>
       <MaxLevel>42</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26432</int>
+      </NeedQuestCompletedId>
       <PickUp>42624</PickUp>
       <TurnIn>42624</TurnIn>
       <Objectives>
@@ -494,6 +497,10 @@
           <QuestId>26310</QuestId>
         </QuestObjective>
         <QuestObjective>
+          <Objective>MessageBox</Objective>
+          <Message>Vesper! ForceTravel Couille</Message>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>8</Count>
@@ -514,6 +521,7 @@
           </Hotspots>
           <Script>=UseItemWithHotSpots.cs</Script>
           <IgnoreNotSelectable>true</IgnoreNotSelectable>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <UseItemId>58209</UseItemId>
           <Position>
             <X>-289.5242</X>
@@ -661,6 +669,9 @@
       <QuestLevel>33</QuestLevel>
       <MinLevel>30</MinLevel>
       <MaxLevel>42</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26357</int>
+      </NeedQuestCompletedId>
       <PickUp>42622</PickUp>
       <TurnIn>42622</TurnIn>
       <Objectives>
@@ -766,6 +777,9 @@
       <QuestLevel>33</QuestLevel>
       <MinLevel>30</MinLevel>
       <MaxLevel>42</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26309</int>
+      </NeedQuestCompletedId>
       <PickUp>42642</PickUp>
       <TurnIn>42642</TurnIn>
       <Objectives>
@@ -894,6 +908,7 @@
           <Entry>
             <int>204002</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-259.3266</X>
             <Y>-3827.5</Y>
@@ -903,32 +918,241 @@
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
-          <Objective>CSharpScript</Objective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42622</NpcEntry>
+          <QuestName>Venomous Secrets</QuestName>
+          <QuestId>26368</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42642</NpcEntry>
+          <QuestName>Ongo'longo's Revenge</QuestName>
+          <QuestId>26367</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42642</NpcEntry>
+          <QuestName>It's Ours Now</QuestName>
+          <QuestId>26308</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Summit of Fate</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26363</Id>
+      <QuestLevel>33</QuestLevel>
+      <MinLevel>30</MinLevel>
+      <MaxLevel>42</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26308</int>
+      </NeedQuestCompletedId>
+      <PickUp>42642</PickUp>
+      <TurnIn>42642</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>42624</int>
+          </Entry>
+          <Position>
+            <X>-233.2735</X>
+            <Y>-4181.741</Y>
+            <Z>121.3606</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>8</Count>
           <Entry>
-            <int>42704</int>
+            <int>42857</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>-289.5242</X>
-              <Y>-4128.374</Y>
-              <Z>136.4378</Z>
-            </Point>
-            <Point>
-              <X>-302.711</X>
-              <Y>-4086.371</Y>
-              <Z>152.0718</Z>
+              <X>-545.7367</X>
+              <Y>-3861.521</Y>
+              <Z>230.5652</Z>
             </Point>
           </Hotspots>
-          <Script>=UseItemWithHotSpots.cs</Script>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>204002</int>
+          </Entry>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IgnoreNotSelectable>true</IgnoreNotSelectable>
-          <UseItemId>58209</UseItemId>
           <Position>
-            <X>-289.5242</X>
-            <Y>-4128.374</Y>
-            <Z>136.4378</Z>
+            <X>-259.049</X>
+            <Y>-3827.603</Y>
+            <Z>238.3514</Z>
           </Position>
+          <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42642</NpcEntry>
+          <QuestName>Summit of Fate</QuestName>
+          <QuestId>26363</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Hunt the Keeper</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26369</Id>
+      <QuestLevel>33</QuestLevel>
+      <MinLevel>30</MinLevel>
+      <MaxLevel>42</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26363</int>
+      </NeedQuestCompletedId>
+      <PickUp>42642</PickUp>
+      <TurnIn>42642</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>42624</int>
+          </Entry>
+          <Position>
+            <X>-236.5722</X>
+            <Y>-4183.844</Y>
+            <Z>121.5469</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>42877</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>-739.5668</X>
+              <Y>-3770.758</Y>
+              <Z>231.7337</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>204002</int>
+          </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-259.049</X>
+            <Y>-3827.603</Y>
+            <Z>238.3514</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Darkcleric Marnal</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26384</Id>
+      <QuestLevel>34</QuestLevel>
+      <MinLevel>31</MinLevel>
+      <MaxLevel>43</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26369</int>
+      </NeedQuestCompletedId>
+      <PickUp>42622</PickUp>
+      <TurnIn>42898</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>The Eye of Shadra</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26381</Id>
+      <QuestLevel>34</QuestLevel>
+      <MinLevel>31</MinLevel>
+      <MaxLevel>43</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26384</int>
+      </NeedQuestCompletedId>
+      <PickUp>42898</PickUp>
+      <TurnIn>42898</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42896</NpcEntry>
+          <QuestName>Can't Make An Omelette Without...</QuestName>
+          <QuestId>26382</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26382</InternalQuestId>
+          <Entry>
+            <int>204102</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>5</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>361.2588</X>
+              <Y>-3276.955</Y>
+              <Z>121.703</Z>
+            </Point>
+            <Point>
+              <X>463.8535</X>
+              <Y>-3330.458</Y>
+              <Z>119.976</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>204133</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>463.8535</X>
+              <Y>-3330.458</Y>
+              <Z>119.976</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42896</NpcEntry>
+          <QuestName>Can't Make An Omelette Without...</QuestName>
+          <QuestId>26382</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42898</NpcEntry>
+          <QuestName>The Eye of Shadra</QuestName>
+          <QuestId>26381</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>

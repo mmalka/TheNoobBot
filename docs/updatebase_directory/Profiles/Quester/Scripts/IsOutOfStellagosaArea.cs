@@ -5,7 +5,9 @@ if (ObjectManager.Me.Position.Z < entrance.Z && ObjectManager.Me.Position.Distan
 {
   MovementManager.Go(PathFinder.FindPath(entrance));
   while(MovementManager.InMovement)
+  {
     Thread.Sleep(100);
+  }
 }
 
 return true;

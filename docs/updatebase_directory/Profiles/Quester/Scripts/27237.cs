@@ -11,14 +11,13 @@ if (questObjective.Hotspots.Count <= 0)
 /* Move to Zone/Hotspot */
 if (!MovementManager.InMovement)
 {
-  
 	if (questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
 	{
+		nManager.Wow.Helpers.Quest.TravelToQuestZone(questObjective.Hotspots[Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)], ref questObjective.TravelToQuestZone, questObjective.ContinentId,questObjective.ForceTravelToQuestZone);
 		MovementManager.Go(PathFinder.FindPath(questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)]));
 	}
 	else
 	{
-		Logging.Write("LOOP");
 		MovementManager.GoLoop(questObjective.Hotspots);
 	}
 }

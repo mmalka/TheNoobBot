@@ -76,7 +76,7 @@ if (!nManagerSetting.IsBlackListedZone(wowUnit1.Position) &&
 
 	if(wowUnit2.IsValid)
 	{
-	Fight.StartFight(wowUnit2.Guid);
+		Fight.StartFight(wowUnit2.Guid);
 	}
 }
 else /*Move To Quest Spot*/

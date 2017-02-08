@@ -351,33 +351,6 @@ namespace Quester.Tasks
             return false;
         }
 
-        public static void TravelToQuestZone(Point destination, int continentId = -1, bool forceTravel = false)
-        {
-            bool doTravel = forceTravel;
-            if (continentId == -1)
-                continentId = Usefuls.ContinentId;
-            if (continentId != Usefuls.ContinentId)
-                doTravel = true;
-            if (ObjectManager.Me.Position.DistanceTo(destination) > 200)
-                doTravel = true;
-            if (!CurrentQuestObjective.TravelToQuestZone)
-                doTravel = false;
-            if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
-            {
-                MovementManager.StopMove();
-                Logging.Write("Calling travel system for TravelToQuestZone...");
-                CurrentQuestObjective.TravelToQuestZone = false;
-                Products.TravelToContinentId = continentId;
-                Products.TravelTo = destination;
-                // Pass the check for valid destination as a lambda
-                Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
-                _travelLocation = ObjectManager.Me.Position;
-                return;
-            }
-            if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.Me.Position) <= 0.1f)
-                _travelDisabled = true; // release travel once arrived.
-        }
-
         public static void QuestObjectiveExecute(ref QuestObjective questObjective)
         {
             if (questObjective == null)
@@ -506,7 +479,7 @@ namespace Quester.Tasks
                     // Need GoTo Zone:
                     if (questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
-                        TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], questObjective.ContinentId,
+                        Quest.TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId,
                             questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
@@ -542,7 +515,7 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5f)
                     {
-                        TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], questObjective.ContinentId,
+                        Quest.TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId,
                             questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
@@ -613,7 +586,7 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5f)
                     {
-                        TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], questObjective.ContinentId,
+                        Quest.TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId,
                             questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
@@ -648,7 +621,7 @@ namespace Quester.Tasks
 
                     if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -696,7 +669,7 @@ namespace Quester.Tasks
             // Lua Macro
             if (questObjective.Objective == Objective.UseLuaMacro)
             {
-                TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                 if (!MovementManager.InMovement ||
                     ObjectManager.Me.Position.DistanceTo(questObjective.Position) < questObjective.Range)
                 {
@@ -763,7 +736,7 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -871,7 +844,7 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                 }
@@ -950,7 +923,7 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
-                        TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], questObjective.ContinentId,
+                        Quest.TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId,
                             questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
@@ -1007,7 +980,7 @@ namespace Quester.Tasks
                     if (questObjective.Position.Z != 0f &&
                         questObjective.Position.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.GatheringSearchRadius)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1055,7 +1028,7 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > 5.0f && questObjective.Position.Z != 0f)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1115,7 +1088,7 @@ namespace Quester.Tasks
                     }
                     if (questObjective.Position.IsValid && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1135,7 +1108,7 @@ namespace Quester.Tasks
             // USE ITEM AOE
             if (questObjective.Objective == Objective.UseItemAOE)
             {
-                TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                 uint baseAddress = 0;
                 Npc target = new Npc();
                 int localEntry = GetEntryListRow(questObjective);
@@ -1211,7 +1184,7 @@ namespace Quester.Tasks
                 {
                     if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(wowUnit.Position));
                     }
                     else
@@ -1237,7 +1210,7 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
-                        TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], questObjective.ContinentId,
+                        Quest.TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId,
                             questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
@@ -1263,7 +1236,7 @@ namespace Quester.Tasks
                     Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
                     SelectGossipOption = questObjective.GossipOptionsInteractWith
                 };
-                TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                 uint baseAddress = MovementManager.FindTarget(ref target);
                 if (MovementManager.InMovement)
                     return;
@@ -1315,7 +1288,7 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1354,7 +1327,7 @@ namespace Quester.Tasks
                 {
                     if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        TravelToQuestZone(questObjective.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                        Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(wowUnit.Position));
                     }
                     else
@@ -1376,7 +1349,7 @@ namespace Quester.Tasks
                     // Need GoTo Zone:
                     if (questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
-                        TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], questObjective.ContinentId,
+                        Quest.TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId,
                             questObjective.ForceTravelToQuestZone);
                         MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
@@ -1393,7 +1366,7 @@ namespace Quester.Tasks
             {
                 Npc taxiMan = Bot.Bot.FindNearestQuesterById(questObjective.TaxiEntry);
 
-                TravelToQuestZone(taxiMan.Position, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
+                Quest.TravelToQuestZone(taxiMan.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
                 uint baseAddress = MovementManager.FindTarget(ref taxiMan);
                 if (MovementManager.InMovement)
                     return;
@@ -1432,7 +1405,7 @@ namespace Quester.Tasks
 
             if (questObjective.Objective == Objective.TravelTo)
             {
-                TravelToQuestZone(questObjective.Position, questObjective.ContinentId, true);
+                Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, true);
             }
 
             if (questObjective.Objective == Objective.CSharpScript)

@@ -801,5 +801,32 @@ namespace nManager.Wow.Helpers
                 Failed = 2,
             }
         }
+
+        public static void TravelToQuestZone(Point destination, ref bool travelToQuestZone, int continentId = -1, bool forceTravel = false)
+        {
+            bool doTravel = forceTravel;
+            if (continentId == -1)
+                continentId = Usefuls.ContinentId;
+            if (continentId != Usefuls.ContinentId)
+                doTravel = true;
+            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(destination) > 200)
+                doTravel = true;
+            if (!travelToQuestZone)
+                doTravel = false;
+            if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
+            {
+                MovementManager.StopMove();
+                Logging.Write("Calling travel system for TravelToQuestZone...");
+                travelToQuestZone = false;
+                Products.Products.TravelToContinentId = continentId;
+                Products.Products.TravelTo = destination;
+                // Pass the check for valid destination as a lambda
+                Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
+                _travelLocation = ObjectManager.ObjectManager.Me.Position;
+                return;
+            }
+            if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 0.1f)
+                _travelDisabled = true; // release travel once arrived.
+        }
     }
 }

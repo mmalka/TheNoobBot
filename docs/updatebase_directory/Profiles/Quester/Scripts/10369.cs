@@ -17,18 +17,19 @@ if(wowUnit.IsValid)
 		
 	if(!wowUnit.IsTrivial)
 	{
-	MovementManager.Face(wowUnit);
-	Thread.Sleep(500);
-	Interact.InteractWith(wowUnit.GetBaseAddress);
-	Thread.Sleep(500);
-	Logging.Write("Use ITem");
-	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
-	questObjective.IsObjectiveCompleted = true;
+		MovementManager.Face(wowUnit);
+		Thread.Sleep(500);
+		Interact.InteractWith(wowUnit.GetBaseAddress);
+		Thread.Sleep(500);
+		Logging.Write("Use ITem");
+		ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+		questObjective.IsObjectiveCompleted = true;
 	}
 	else
 	{
 		questObjective.IsObjectiveCompleted = true;
 	}
+	
 	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
 }
 else if (!MovementManager.InMovement && questObjective.Hotspots.Count > 0)
@@ -38,6 +39,7 @@ else if (!MovementManager.InMovement && questObjective.Hotspots.Count > 0)
 	// Need GoTo Zone:
 	if (questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
 	{
+		nManager.Wow.Helpers.Quest.TravelToQuestZone(questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)], ref questObjective.TravelToQuestZone, questObjective.ContinentId,questObjective.ForceTravelToQuestZone);
 		MovementManager.Go(PathFinder.FindPath(questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)]));
 	}
 	else
