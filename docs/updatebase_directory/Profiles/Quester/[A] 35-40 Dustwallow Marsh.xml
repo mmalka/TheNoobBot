@@ -43,11 +43,16 @@
       <QuestLevel>35</QuestLevel>
       <MinLevel>32</MinLevel>
       <MaxLevel>45</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26596</int>
+      </NeedQuestCompletedId>
       <PickUp>3391</PickUp>
       <TurnIn>23566</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>16227</int>
           </Entry>
@@ -57,7 +62,7 @@
             <Y>-3768.003</Y>
             <Z>11.6603</Z>
           </Position>
-          <WaitMs>1000</WaitMs>
+          <WaitMs>120000</WaitMs>
           <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
@@ -76,9 +81,29 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26702</int>
+      </NeedQuestCompletedId>
       <PickUp>23835</PickUp>
       <TurnIn>23892</TurnIn>
-      <Objectives />
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=ClickToMove.cs</Script>
+          <Position>
+            <X>-3669.105</X>
+            <Y>-4729.289</Y>
+            <Z>0.9067252</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>23892</NpcEntry>
+          <QuestName>This Old Lighthouse</QuestName>
+          <QuestId>27216</QuestId>
+        </QuestObjective>
+      </Objectives>
     </Quest>
     <Quest>
       <Name>Thresher Oil</Name>
@@ -87,11 +112,15 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27216</int>
+      </NeedQuestCompletedId>
       <PickUp>23892</PickUp>
       <TurnIn>23892</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>4388</int>
           </Entry>
@@ -115,7 +144,25 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-3740.791</X>
+            <Y>-4641.203</Y>
+            <Z>11.29148</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=ClickToMove.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-3669.105</X>
+            <Y>-4729.289</Y>
+            <Z>0.9067252</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -133,9 +180,32 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27217</int>
+      </NeedQuestCompletedId>
       <PickUp>23892</PickUp>
       <TurnIn>23896</TurnIn>
-      <Objectives />
+      <Objectives>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-3669.123</X>
+            <Y>-4729.592</Y>
+            <Z>0.8695584</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=ClickToMove.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-3700.713</X>
+            <Y>-4623.986</Y>
+            <Z>4.837334</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
     </Quest>
     <Quest>
       <Name>Is it Real?</Name>
@@ -144,6 +214,9 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27218</int>
+      </NeedQuestCompletedId>
       <PickUp>23896</PickUp>
       <TurnIn>12919</TurnIn>
       <Objectives />
@@ -155,13 +228,16 @@
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27219</int>
+      </NeedQuestCompletedId>
       <PickUp>12919</PickUp>
       <TurnIn>12919</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
+          <InternalIndex>2</InternalIndex>
           <Count>1</Count>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>33166</UseItemId>
           <Position>
             <X>-4142.575</X>
@@ -179,6 +255,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>23928</int>
@@ -191,7 +268,6 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -204,20 +280,28 @@
     </Quest>
     <Quest>
       <Name>Oh, It's Real</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27221</Id>
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27220</int>
+      </NeedQuestCompletedId>
       <PickUp>12919</PickUp>
       <TurnIn>23905</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
       <Name>Take Down Tethyr!</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27222</Id>
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27221</int>
+      </NeedQuestCompletedId>
       <PickUp>23905</PickUp>
       <TurnIn>23905</TurnIn>
       <Objectives>
@@ -232,7 +316,7 @@
             <Y>-4636.492</Y>
             <Z>9.043034</Z>
           </Position>
-          <WaitMs>1000</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -245,7 +329,7 @@
             <Y>-4630.473</Y>
             <Z>8.741462</Z>
           </Position>
-          <WaitMs>1000</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -258,7 +342,7 @@
             <Y>-4693.551</Y>
             <Z>9.013432</Z>
           </Position>
-          <WaitMs>1000</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -271,7 +355,7 @@
             <Y>-4636.492</Y>
             <Z>9.043034</Z>
           </Position>
-          <WaitMs>1000</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -284,7 +368,7 @@
             <Y>-4630.473</Y>
             <Z>8.741462</Z>
           </Position>
-          <WaitMs>1000</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -297,14 +381,7 @@
             <Y>-4693.551</Y>
             <Z>9.013432</Z>
           </Position>
-          <WaitMs>1000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23905</NpcEntry>
-          <QuestName>Take Down Tethyr!</QuestName>
-          <QuestId>27222</QuestId>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -315,11 +392,15 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27222</int>
+      </NeedQuestCompletedId>
       <PickUp>4794</PickUp>
       <TurnIn>4794</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>4397</int>
           </Entry>
@@ -331,16 +412,19 @@
               <Y>-4375.508</Y>
               <Z>0.663207</Z>
             </Point>
+            <Point>
+              <X>-3339.398</X>
+              <Y>-4295.309</Y>
+              <Z>0.6246909</Z>
+            </Point>
+            <Point>
+              <X>-3225.137</X>
+              <Y>-4269.546</Y>
+              <Z>1.050434</Z>
+            </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4921</NpcEntry>
-          <QuestName>They Call Him Smiling Jim</QuestName>
-          <QuestId>27251</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -349,14 +433,21 @@
           <QuestName>Mudrock Soup and Bugs</QuestName>
           <QuestId>1204</QuestId>
         </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4944</NpcEntry>
-          <QuestName>They Call Him Smiling Jim</QuestName>
-          <QuestId>27251</QuestId>
-        </QuestObjective>
       </Objectives>
+    </Quest>
+    <Quest>
+      <Name>They Call Him Smiling Jim</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>27251</Id>
+      <QuestLevel>37</QuestLevel>
+      <MinLevel>34</MinLevel>
+      <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>1204</int>
+      </NeedQuestCompletedId>
+      <PickUp>4921</PickUp>
+      <TurnIn>4944</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>... and Bugs</Name>
@@ -365,11 +456,15 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27251</int>
+      </NeedQuestCompletedId>
       <PickUp>4794</PickUp>
       <TurnIn>4794</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>44390</int>
           </Entry>
@@ -400,43 +495,18 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Inspecting the Ruins</Name>
-      <Id>27249</Id>
-      <QuestLevel>37</QuestLevel>
+      <Name>A Disturbing Development</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>27214</Id>
+      <QuestLevel>36</QuestLevel>
       <MinLevel>34</MinLevel>
-      <MaxLevel>47</MaxLevel>
-      <PickUp>4944</PickUp>
-      <TurnIn>4944</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4921</NpcEntry>
-          <QuestName>Tabetha's Farm</QuestName>
-          <QuestId>11212</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23951</NpcEntry>
-          <QuestName>A Disturbing Development</QuestName>
-          <QuestId>27214</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23951</NpcEntry>
-          <QuestName>Mission to Mudsprocket</QuestName>
-          <QuestId>27248</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>5086</NpcEntry>
-          <QuestName>A Disturbing Development</QuestName>
-          <QuestId>27214</QuestId>
-        </QuestObjective>
-      </Objectives>
+      <MaxLevel>44</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>1258</int>
+      </NeedQuestCompletedId>
+      <PickUp>23951</PickUp>
+      <TurnIn>5086</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Defias in Dustwallow?</Name>
@@ -445,11 +515,15 @@
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27214</int>
+      </NeedQuestCompletedId>
       <PickUp>5086</PickUp>
       <TurnIn>5086</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>23679</int>
           </Entry>
@@ -476,10 +550,14 @@
     </Quest>
     <Quest>
       <Name>Renn McGill</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27235</Id>
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27234</int>
+      </NeedQuestCompletedId>
       <PickUp>5086</PickUp>
       <TurnIn>23569</TurnIn>
       <Objectives />
@@ -491,11 +569,15 @@
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27235</int>
+      </NeedQuestCompletedId>
       <PickUp>23569</PickUp>
       <TurnIn>23569</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
           <Entry>
             <int>186272</int>
           </Entry>
@@ -503,21 +585,27 @@
           <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
-              <X>-2678.253</X>
-              <Y>-4311.172</Y>
-              <Z>21.24826</Z>
+              <X>-2682.385</X>
+              <Y>-4273.266</Y>
+              <Z>3.806626</Z>
             </Point>
           </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>186273</int>
           </Entry>
           <CollectItemId>1</CollectItemId>
           <CollectCount>1</CollectCount>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Hotspots>
+            <Point>
+              <X>-2682.385</X>
+              <Y>-4273.266</Y>
+              <Z>3.806626</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -535,56 +623,55 @@
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27236</int>
+      </NeedQuestCompletedId>
       <PickUp>23569</PickUp>
       <TurnIn>23569</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
+          <IgnoreItemNotUsable>true</IgnoreItemNotUsable>
           <UseItemId>33045</UseItemId>
           <Position>
-            <X>-2635.601</X>
-            <Y>-4314.623</Y>
-            <Z>-0.6596655</Z>
+            <X>-2631.936</X>
+            <Y>-4318.937</Y>
+            <Z>-2.043483</Z>
           </Position>
+          <WaitMs>1000</WaitMs>
+          <Range>10</Range>
         </QuestObjective>
         <QuestObjective>
-          <Objective>UseItem</Objective>
+          <Objective>EquipItem</Objective>
+          <EquipItemId>33040</EquipItemId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
-          <UseItemId>33040</UseItemId>
-          <Position>
-            <X>-2639.059</X>
-            <Y>-4314.954</Y>
-            <Z>-0.4069415</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>-2613.848</X>
-            <Y>-4409.839</Y>
-            <Z>-1.639315</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
+          <Entry>
+            <int>186283</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-2514.145</X>
+              <Y>-4478.824</Y>
+              <Z>0.1425667</Z>
+            </Point>
+            <Point>
+              <X>-2515.093</X>
+              <Y>-4362.527</Y>
+              <Z>-2.208405</Z>
+            </Point>
+            <Point>
+              <X>-2548.331</X>
+              <Y>-4500.437</Y>
+              <Z>-2.321631</Z>
+            </Point>
+          </Hotspots>
+          <Script>=27237.cs</Script>
           <UseItemId>33044</UseItemId>
-          <Position>
-            <X>-2613.848</X>
-            <Y>-4409.839</Y>
-            <Z>-1.639315</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <UseItemId>33044</UseItemId>
-          <Position>
-            <X>-2551.231</X>
-            <Y>-4405.912</Y>
-            <Z>-1.586451</Z>
-          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -597,25 +684,34 @@
     </Quest>
     <Quest>
       <Name>Jaina Must Know</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27238</Id>
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27237</int>
+      </NeedQuestCompletedId>
       <PickUp>23569</PickUp>
       <TurnIn>4968</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
       <Name>Survey Alcaz Island</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27239</Id>
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27238</int>
+      </NeedQuestCompletedId>
       <PickUp>4968</PickUp>
       <TurnIn>4968</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>23704</int>
           </Entry>
@@ -638,10 +734,14 @@
     </Quest>
     <Quest>
       <Name>The Hermit of Swamplight Manor</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27215</Id>
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27239</int>
+      </NeedQuestCompletedId>
       <PickUp>23835</PickUp>
       <TurnIn>23835</TurnIn>
       <Objectives>
@@ -653,17 +753,21 @@
           <QuestId>27240</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>InteractWith</Objective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
           <InternalQuestId>27240</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>4968</int>
           </Entry>
+          <Hotspots>
+            <Point>
+              <X>-3751.456</X>
+              <Y>-4454.093</Y>
+              <Z>64.94824</Z>
+            </Point>
+          </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3750.429</X>
-            <Y>-4452.803</Y>
-            <Z>64.93707</Z>
-          </Position>
           <WaitMs>1000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
@@ -682,18 +786,22 @@
           <QuestId>27241</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>InteractWith</Objective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
           <InternalQuestId>27241</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>2708</int>
           </Entry>
+          <Hotspots>
+            <Point>
+              <X>-9004.53</X>
+              <Y>837.4564</Y>
+              <Z>106.104</Z>
+            </Point>
+          </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-9005.203</X>
-            <Y>846.2842</Y>
-            <Z>106.0418</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
+          <WaitMs>2000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
@@ -719,6 +827,9 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27215</int>
+      </NeedQuestCompletedId>
       <PickUp>4792</PickUp>
       <TurnIn>4792</TurnIn>
       <Objectives>
@@ -731,6 +842,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>23979</int>
           </Entry>
@@ -787,25 +899,29 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4792</NpcEntry>
-          <QuestName>Marsh Frog Legs</QuestName>
-          <QuestId>27183</QuestId>
+          <NpcEntry>23843</NpcEntry>
+          <QuestName>What's Haunting Witch Hill?</QuestName>
+          <QuestId>27188</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23843</NpcEntry>
-          <QuestName>What's Haunting Witch Hill?</QuestName>
-          <QuestId>27188</QuestId>
+          <NpcEntry>4792</NpcEntry>
+          <QuestName>Marsh Frog Legs</QuestName>
+          <QuestId>27183</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Witch's Bane</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27189</Id>
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27183</int>
+      </NeedQuestCompletedId>
       <PickUp>23843</PickUp>
       <TurnIn>23843</TurnIn>
       <Objectives>
@@ -818,6 +934,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>186423</int>
           </Entry>
@@ -891,10 +1008,14 @@
     </Quest>
     <Quest>
       <Name>Cleansing Witch Hill</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27190</Id>
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27189</int>
+      </NeedQuestCompletedId>
       <PickUp>23843</PickUp>
       <TurnIn>23843</TurnIn>
       <Objectives>
@@ -912,10 +1033,11 @@
         <QuestObjective>
           <Objective>Wait</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>15000</WaitMs>
+          <WaitMs>45000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>23864</int>
@@ -941,10 +1063,14 @@
     </Quest>
     <Quest>
       <Name>Hungry as an Ogre!</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27191</Id>
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27190</int>
+      </NeedQuestCompletedId>
       <PickUp>4792</PickUp>
       <TurnIn>4792</TurnIn>
       <Objectives>
@@ -976,6 +1102,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>4362</int>
             <int>4359</int>
@@ -1001,15 +1128,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>4792</NpcEntry>
-          <QuestName>Hungry as an Ogre!</QuestName>
-          <QuestId>27191</QuestId>
+          <QuestName>Jarl Needs a Blade</QuestName>
+          <QuestId>27186</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>4792</NpcEntry>
-          <QuestName>Jarl Needs a Blade</QuestName>
-          <QuestId>27186</QuestId>
+          <QuestName>Hungry as an Ogre!</QuestName>
+          <QuestId>27191</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1020,16 +1147,23 @@
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
-      <PickUp>4792</PickUp>
+      <NeedQuestCompletedId>
+        <int>27191</int>
+      </NeedQuestCompletedId>
+      <PickUp>20985</PickUp>
       <TurnIn>23951</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
       <Name>Captain Vimes</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27247</Id>
       <QuestLevel>36</QuestLevel>
       <MinLevel>33</MinLevel>
       <MaxLevel>46</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27246</int>
+      </NeedQuestCompletedId>
       <PickUp>23951</PickUp>
       <TurnIn>4944</TurnIn>
       <Objectives>
@@ -1040,29 +1174,37 @@
           <QuestName>Captain Vimes</QuestName>
           <QuestId>27247</QuestId>
         </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23567</NpcEntry>
-          <QuestName>Inspecting the Ruins</QuestName>
-          <QuestId>27249</QuestId>
-        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
+      <Name>Inspecting the Ruins</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>27249</Id>
+      <QuestLevel>37</QuestLevel>
+      <MinLevel>34</MinLevel>
+      <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27247</int>
+      </NeedQuestCompletedId>
+      <PickUp>4944</PickUp>
+      <TurnIn>23567</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
       <Name>Lieutenant Paval Reethe</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27263</Id>
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
-      <ItemPickUp>21042</ItemPickUp>
+      <NeedQuestCompletedId>
+        <int>27249</int>
+      </NeedQuestCompletedId>
+      <PickUp>21042</PickUp>
       <TurnIn>4944</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <Entry>
-            <int>187273</int>
-          </Entry>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>187273</NpcEntry>
           <QuestName>Suspicious Hoofprints</QuestName>
@@ -1070,10 +1212,22 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <Entry>
-            <int>20992</int>
-          </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>20992</NpcEntry>
+          <QuestName>The Black Shield</QuestName>
+          <QuestId>27252</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>4944</NpcEntry>
+          <QuestName>Suspicious Hoofprints</QuestName>
+          <QuestId>27262</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>4944</NpcEntry>
           <QuestName>The Black Shield</QuestName>
           <QuestId>27252</QuestId>
         </QuestObjective>
@@ -1084,28 +1238,18 @@
           <QuestName>Lieutenant Paval Reethe</QuestName>
           <QuestId>27263</QuestId>
         </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4944</NpcEntry>
-          <QuestName>Suspicious Hoofprints</QuestName>
-          <QuestId>27262</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4944</NpcEntry>
-          <QuestName>The Black Shield</QuestName>
-          <QuestId>27252</QuestId>
-        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Black Shield</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27284</Id>
       <QuestLevel>37</QuestLevel>
       <MinLevel>34</MinLevel>
       <MaxLevel>47</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27263</int>
+      </NeedQuestCompletedId>
       <PickUp>4944</PickUp>
       <TurnIn>4944</TurnIn>
       <Objectives>
@@ -1145,35 +1289,22 @@
           <QuestId>27287</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4941</NpcEntry>
-          <QuestName>The Black Shield</QuestName>
-          <QuestId>27284</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4941</NpcEntry>
-          <QuestName>The Black Shield</QuestName>
-          <QuestId>27285</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4944</NpcEntry>
-          <QuestName>The Black Shield</QuestName>
-          <QuestId>27285</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <InternalQuestId>27287</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>5089</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-3926.419</X>
+              <Y>-2864.39</Y>
+              <Z>46.4497</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3917.808</X>
-            <Y>-2866.119</Y>
-            <Z>46.44786</Z>
-          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1197,20 +1328,41 @@
           <QuestId>27288</QuestId>
         </QuestObjective>
         <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>4941</NpcEntry>
+          <QuestName>The Black Shield</QuestName>
+          <QuestId>27284</QuestId>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>4944</NpcEntry>
-          <QuestName>A Grim Connection</QuestName>
-          <QuestId>27425</QuestId>
+          <NpcEntry>4941</NpcEntry>
+          <QuestName>The Black Shield</QuestName>
+          <QuestId>27285</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23568</NpcEntry>
-          <QuestName>A Grim Connection</QuestName>
-          <QuestId>27425</QuestId>
+          <NpcEntry>4944</NpcEntry>
+          <QuestName>The Black Shield</QuestName>
+          <QuestId>27285</QuestId>
         </QuestObjective>
       </Objectives>
+    </Quest>
+    <Quest>
+      <Name>A Grim Connection</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>27425</Id>
+      <QuestLevel>38</QuestLevel>
+      <MinLevel>35</MinLevel>
+      <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27284</int>
+      </NeedQuestCompletedId>
+      <PickUp>4944</PickUp>
+      <TurnIn>23568</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Confirming the Suspicion</Name>
@@ -1219,6 +1371,9 @@
       <QuestLevel>38</QuestLevel>
       <MinLevel>35</MinLevel>
       <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27425</int>
+      </NeedQuestCompletedId>
       <PickUp>23568</PickUp>
       <TurnIn>23568</TurnIn>
       <Objectives>
@@ -1278,15 +1433,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>23568</NpcEntry>
-          <QuestName>Confirming the Suspicion</QuestName>
-          <QuestId>27426</QuestId>
+          <QuestName>Arms of the Grimtotems</QuestName>
+          <QuestId>27427</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>23568</NpcEntry>
-          <QuestName>Arms of the Grimtotems</QuestName>
-          <QuestId>27427</QuestId>
+          <QuestName>Confirming the Suspicion</QuestName>
+          <QuestId>27426</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1297,6 +1452,9 @@
       <QuestLevel>38</QuestLevel>
       <MinLevel>35</MinLevel>
       <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27426</int>
+      </NeedQuestCompletedId>
       <PickUp>23568</PickUp>
       <TurnIn>6546</TurnIn>
       <Objectives>
@@ -1318,10 +1476,14 @@
     </Quest>
     <Quest>
       <Name>Raze Direhorn Post!</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27429</Id>
       <QuestLevel>38</QuestLevel>
       <MinLevel>35</MinLevel>
       <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27428</int>
+      </NeedQuestCompletedId>
       <PickUp>6546</PickUp>
       <TurnIn>6546</TurnIn>
       <Objectives>
@@ -1426,6 +1588,9 @@
       <QuestLevel>38</QuestLevel>
       <MinLevel>35</MinLevel>
       <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27429</int>
+      </NeedQuestCompletedId>
       <PickUp>23600</PickUp>
       <TurnIn>23600</TurnIn>
       <Objectives>
@@ -1468,6 +1633,9 @@
       <QuestLevel>38</QuestLevel>
       <MinLevel>35</MinLevel>
       <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27340</int>
+      </NeedQuestCompletedId>
       <PickUp>23600</PickUp>
       <TurnIn>23797</TurnIn>
       <Objectives />
@@ -1479,6 +1647,9 @@
       <QuestLevel>38</QuestLevel>
       <MinLevel>35</MinLevel>
       <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27346</int>
+      </NeedQuestCompletedId>
       <PickUp>23797</PickUp>
       <TurnIn>23797</TurnIn>
       <Objectives>
@@ -1525,6 +1696,9 @@
       <QuestLevel>39</QuestLevel>
       <MinLevel>36</MinLevel>
       <MaxLevel>49</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27348</int>
+      </NeedQuestCompletedId>
       <PickUp>23797</PickUp>
       <TurnIn>23572</TurnIn>
       <Objectives>
@@ -1567,10 +1741,14 @@
     </Quest>
     <Quest>
       <Name>Catch a Dragon by the Tail</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>27413</Id>
       <QuestLevel>39</QuestLevel>
       <MinLevel>36</MinLevel>
       <MaxLevel>49</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>11208</int>
+      </NeedQuestCompletedId>
       <PickUp>23570</PickUp>
       <TurnIn>23570</TurnIn>
       <Objectives>
@@ -1656,6 +1834,9 @@
       <QuestLevel>39</QuestLevel>
       <MinLevel>36</MinLevel>
       <MaxLevel>49</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27413</int>
+      </NeedQuestCompletedId>
       <PickUp>4944</PickUp>
       <TurnIn>4944</TurnIn>
       <Objectives>
@@ -1681,6 +1862,56 @@
           <NpcEntry>4944</NpcEntry>
           <QuestName>Peace at Last</QuestName>
           <QuestId>27291</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Bloodfen Feathers</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>27407</Id>
+      <QuestLevel>39</QuestLevel>
+      <MinLevel>36</MinLevel>
+      <MaxLevel>49</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27291</int>
+      </NeedQuestCompletedId>
+      <PickUp>23579</PickUp>
+      <TurnIn>23579</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>4357</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>5</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>-4442.356</X>
+              <Y>-2906.715</Y>
+              <Z>41.244</Z>
+            </Point>
+            <Point>
+              <X>-4403.623</X>
+              <Y>-2791.159</Y>
+              <Z>35.09524</Z>
+            </Point>
+            <Point>
+              <X>-4510.125</X>
+              <Y>-2787.311</Y>
+              <Z>33.37729</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>23579</NpcEntry>
+          <QuestName>Bloodfen Feathers</QuestName>
+          <QuestId>27407</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
