@@ -98,6 +98,7 @@
       </BOutsidePoint>
     </Transport>
     <Transport Id="164871" Name="Zeppelin (The Thundercaller)" Faction="Horde" AContinentId="1" BContinentId="0">
+      <ALift>206609</ALift>
       <APoint> <!-- Orgrimmar -->
         <X>1833.509</X>
         <Y>-4391.543</Y>
@@ -130,6 +131,7 @@
       </BOutsidePoint>
     </Transport>
     <Transport Id="175080" Name="Zeppelin (The Iron Eagle)" Faction="Horde" AContinentId="1" BContinentId="0">
+      <ALift>206609</ALift>
       <APoint> <!-- Orgrimmar -->
         <X>1880.818</X>
         <Y>-4435.269</Y>
@@ -194,6 +196,7 @@
       </BOutsidePoint>
     </Transport>
     <Transport Id="186238" Name="Zeppelin, Horde (The Mighty Wind)" Faction="Horde" AContinentId="1" BContinentId="571">
+      <ALift>206609</ALift>
       <APoint> <!-- Orgrimmar -->
         <X>1775.066</X>
         <Y>-4299.745</Y>
@@ -226,6 +229,7 @@
       </BOutsidePoint>
     </Transport>
     <Transport Id="190549" Name="The Zephyr" Faction="Horde" AContinentId="1" BContinentId="1">
+      <ALift>206609</ALift>
       <APoint> <!-- Orgrimmar -->
         <X>1735.905</X>
         <Y>-4257.915</Y>
@@ -241,6 +245,7 @@
         <Y>-4257.915</Y>
         <Z>133.1062</Z>
       </AOutsidePoint>
+      <BLift>4170</BLift>
       <BPoint> <!-- Thunder Bluff -->
         <X>-1026.856</X>
         <Y>375.7847</Y>

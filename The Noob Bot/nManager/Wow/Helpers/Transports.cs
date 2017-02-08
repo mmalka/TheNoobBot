@@ -19,10 +19,14 @@ namespace nManager.Wow.Helpers
         public Point AInsidePoint = new Point();
         public Point AOutsidePoint = new Point();
         public Point APoint = new Point();
+        [DefaultValue(0)] public uint ALift = 0;
+        [XmlIgnore] public bool UseALift = false;
         [XmlAttribute(AttributeName = "BContinentId"), DefaultValue(0)] public int BContinentId;
         public Point BInsidePoint = new Point();
         public Point BOutsidePoint = new Point();
         public Point BPoint = new Point();
+        [DefaultValue(0)] public uint BLift = 0;
+        [XmlIgnore] public bool UseBLift = false;
         [XmlAttribute(AttributeName = "Faction")] public Npc.FactionType Faction;
         [XmlAttribute(AttributeName = "Id")] public uint Id;
         [XmlAttribute(AttributeName = "Name")] public string Name;
