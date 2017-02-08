@@ -212,7 +212,7 @@
             <Y>1210.426</Y>
             <Z>58.50788</Z>
           </Position>
-          <WaitMs>30000</WaitMs>
+          <WaitMs>60000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1123,6 +1123,7 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1158,6 +1159,11 @@
             <Z>20.75014</Z>
           </Position>
           <WaitMs>20000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>25000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1428,55 +1434,6 @@
           <WaitMs>1500</WaitMs>
         </QuestObjective>
         <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Count>1</Count>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>218.6013</X>
-            <Y>409.2817</Y>
-            <Z>-41.92802</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <Count>1</Count>
-          <Hotspots>
-            <Point>
-              <X>218.6013</X>
-              <Y>409.2817</Y>
-              <Z>-41.92802</Z>
-            </Point>
-            <Point>
-              <X>190.1988</X>
-              <Y>434.3223</Y>
-              <Z>-12.91345</Z>
-            </Point>
-            <Point>
-              <X>171.3504</X>
-              <Y>457.7435</Y>
-              <Z>12.00473</Z>
-            </Point>
-            <Point>
-              <X>171.8202</X>
-              <Y>485.7094</Y>
-              <Z>32.0973</Z>
-            </Point>
-            <Point>
-              <X>170.257</X>
-              <Y>522.1207</Y>
-              <Z>42.39758</Z>
-            </Point>
-          </Hotspots>
-          <Script>=ClickToMoveHotSpots.cs</Script>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>218.6013</X>
-            <Y>409.2817</Y>
-            <Z>-41.92802</Z>
-          </Position>
-          <Range>0</Range>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Entry>
@@ -1573,6 +1530,7 @@
             <int>45732</int>
           </Entry>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <Position>
             <X>294.7967</X>
             <Y>374.08</Y>
