@@ -185,7 +185,7 @@ namespace Quester.Profile
         [DefaultValue(false)] public bool IsBonusObjective;
         [DefaultValue(0)] public int Count = 0;
         internal int CurrentCount = 0;
-        internal List<Point> PathHotspots = null;
+        [XmlIgnore]public List<Point> PathHotspots = null;
         public List<int> Entry = new List<int>();
 
         public bool ShouldSerializeEntry()
