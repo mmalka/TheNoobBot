@@ -128,6 +128,11 @@ namespace nManager.Wow.Helpers
         public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
             bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false)
         {
+            if (from.DistanceTo(to) <= 1f)
+            {
+                resultSuccess = true;
+                return new List<Point> {from, to};
+            }
             if (from.Type.ToLower() == "swimming")
             {
                 if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to, Enums.CGWorldFrameHitFlags.HitTestLiquid))
