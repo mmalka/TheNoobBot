@@ -19,6 +19,8 @@ using Information = Microsoft.VisualBasic.Information;
 using Keybindings = nManager.Wow.Enums.Keybindings;
 using Math = System.Math;
 using Point = nManager.Wow.Class.Point;
+using Quester.Profile;
+using Quest = Quester.Profile.Quest;
 
 namespace Quester.Profile
 {
@@ -51,6 +53,7 @@ namespace Quester.Profile
             _questParentNode = new TreeNode("Quests");
             LoadNodes(profile);
 
+            
             if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 TopMost = true;
         }
@@ -262,7 +265,7 @@ namespace Quester.Profile
                             //TODO ENTRY + NAME + POSITION
                             objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
-
+                            objective.Count = Others.ToInt32(TBObjCount.Text);
                             objective.UseSpellId = Others.ToInt32(TBObjUseSpellId.Text);
                             objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
 
@@ -283,11 +286,12 @@ namespace Quester.Profile
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
                             objective.GossipOptionsInteractWith = (Information.IsNumeric(TBObjGossipOption.Text) ? Others.ToInt32(TBObjGossipOption.Text) : 0);
                             objective.WaitMs = (Information.IsNumeric(TBObjWaitMs.Text) ? Others.ToInt32(TBObjWaitMs.Text) : 0);
-
+                            objective.Count = Others.ToInt32(TBObjCount.Text);
                             break;
                         case "MoveTo":
                             objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            objective.Count = Others.ToInt32(TBObjCount.Text);
                             break;
 
                         case "Wait":
@@ -335,7 +339,6 @@ namespace Quester.Profile
                             break;
                         case "PressKey":
                             objective.Keys = (Keybindings) CBObjPressKeys.SelectedValue;
-
                             objective.Count = Others.ToInt32(TBObjCount.Text);
                             objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
@@ -345,7 +348,27 @@ namespace Quester.Profile
                         case "CSharpScript":
                             objective.Count = Others.ToInt32(TBObjCount.Text);
                             objective.Script = TBObjMessage.Text;
-
+                            objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            objective.GossipOptionsInteractWith = (Microsoft.VisualBasic.Information.IsNumeric(TBObjGossipOption.Text)) ? Int32.Parse(TBObjGossipOption.Text): 0;
+                            objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            objective.NpcEntry = Others.ToInt32(TBObjNPCId.Text);
+                            objective.QuestId = Others.ToInt32(TBObjQuestID.Text);
+						    objective.QuestName = TBObjQuestName.Text;
+                            objective.UseSpellId = Others.ToInt32(TBObjUseSpellId.Text);
+                            objective.Range = Others.ToInt32(TBObjRange.Text);
+                            objective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            objective.ScriptConditionIsComplete = TBObjCompletedScript.Text;
+                            objective.CollectCount = Others.ToInt32(TBObjCollectCount.Text);
+                            objective.CollectItemId = Others.ToInt32(TBObjCollectItemID.Text);
+                            //objective.Keys = (Keybindings)CBObjPressKeys.SelectedValue;
+                            break;
+                        case "TravelTo":
+                            objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            objective.ContinentId = Usefuls.ContinentId;
+                            break;
+                        case "EquipItem":
+                            objective.EquipItemId = Others.ToInt32(TBObjUseItemID.Text);
                             break;
                     }
 
@@ -368,17 +391,17 @@ namespace Quester.Profile
 
                     objective.IgnoreQuestCompleted = CBObjIgnoreQuestCompleted.Checked;
 
-                    if (objective.Objective.ToString() != "UseVehicle")
+                   // if (objective.Objective.ToString() != "UseVehicle") //Modified by Vesper, Entry is used for vehicule now. Remove later...in case..
+                   // {
+                    objective.Entry.Clear();
+                    foreach (String st in TBObjEntry.Lines)
                     {
-                        objective.Entry.Clear();
-                        foreach (String st in TBObjEntry.Lines)
+                        if (st != "")
                         {
-                            if (st != "")
-                            {
-                                objective.Entry.Add(Convert.ToInt32(st));
-                            }
+                            objective.Entry.Add(Convert.ToInt32(st));
                         }
                     }
+                   // }
 
                     objective.Hotspots.Clear();
                     foreach (Point point in LBObjHotspots.Items)
@@ -390,6 +413,11 @@ namespace Quester.Profile
                     }
 
                     objective.IsDead = CBObjIsDead.Checked;
+                    objective.ScriptConditionIsComplete = TBObjCompletedScript.Text;
+                    objective.AllowPlayerControlled = CBObjAllowPlayerControlled.Checked;
+                    objective.IgnoreBlackList = CBObjIgnoreBlackList.Checked;
+                    objective.IgnoreNotSelectable = CBObjIgnoreNotSelectable.Checked;
+                    objective.ForceTravelToQuestZone = CBObjForceTravelToQuestZone.Checked;
 
                     if (_displayXml)
                     {
@@ -461,7 +489,7 @@ namespace Quester.Profile
                             break;
                         case "UseSpell":
                             //TODO ENTRY + NAME + POSITION
-
+                            newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             newObjective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
                             newObjective.UseSpellId = Others.ToInt32(TBObjUseSpellId.Text);
@@ -482,11 +510,12 @@ namespace Quester.Profile
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
                             newObjective.GossipOptionsInteractWith = (Information.IsNumeric(TBObjGossipOption.Text) ? Others.ToInt32(TBObjGossipOption.Text) : 0);
                             newObjective.WaitMs = (Information.IsNumeric(TBObjWaitMs.Text) ? Others.ToInt32(TBObjWaitMs.Text) : 0);
-
+                            newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             break;
                         case "MoveTo":
                             newObjective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             break;
 
                         case "Wait":
@@ -543,9 +572,30 @@ namespace Quester.Profile
                         case "CSharpScript":
                             newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             newObjective.Script = TBObjMessage.Text;
-
+                            newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            newObjective.GossipOptionsInteractWith = (Microsoft.VisualBasic.Information.IsNumeric(TBObjGossipOption.Text)) ? Int32.Parse(TBObjGossipOption.Text) : 0;
+                            newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            newObjective.NpcEntry = Others.ToInt32(TBObjNPCId.Text);
+                            newObjective.QuestId = Others.ToInt32(TBObjQuestID.Text);
+                            newObjective.QuestName = TBObjQuestName.Text;
+                            newObjective.UseSpellId = Others.ToInt32(TBObjUseSpellId.Text);
+                            newObjective.Range = Others.ToInt32(TBObjRange.Text);
+                            newObjective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            newObjective.ScriptConditionIsComplete = TBObjCompletedScript.Text;
+                            newObjective.CollectCount = Others.ToInt32(TBObjCollectCount.Text);
+                            newObjective.CollectItemId = Others.ToInt32(TBObjCollectItemID.Text);
+                            //newObjective.Keys = (Keybindings)CBObjPressKeys.SelectedValue;
+                            break;
+                        case "TravelTo":
+                            newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            newObjective.ContinentId = Usefuls.ContinentId;
+                            break;
+                        case "EquipItem":
+                            newObjective.EquipItemId = Others.ToInt32(TBObjUseItemID.Text);
                             break;
                     }
+
                     newObjective.Entry.Clear();
                     foreach (String st in TBObjEntry.Lines)
                     {
@@ -576,6 +626,11 @@ namespace Quester.Profile
                     newObjective.IgnoreQuestCompleted = CBObjIgnoreQuestCompleted.Checked;
 
                     newObjective.IsDead = CBObjIsDead.Checked;
+                    newObjective.ScriptConditionIsComplete = TBObjCompletedScript.Text;
+                    newObjective.AllowPlayerControlled = CBObjAllowPlayerControlled.Checked;
+                    newObjective.IgnoreBlackList = CBObjIgnoreBlackList.Checked;
+                    newObjective.IgnoreNotSelectable = CBObjIgnoreNotSelectable.Checked;
+                    newObjective.ForceTravelToQuestZone = CBObjForceTravelToQuestZone.Checked;
 
                     Quest lastSelQuestx = _profile.Quests[_lastSelectedQuest.Index];
 
@@ -648,10 +703,9 @@ namespace Quester.Profile
 
                     foreach (string qInt in TBQuestAutoAcceptIDs.Lines)
                     {
-                        if (qInt != string.Empty && Information.IsNumeric(qInt))
-                        {
-                            quest.AutoAccept.Add(Others.ToInt32(qInt));
-                        }
+                        int qId = Others.ToInt32(qInt);
+                        if (qId > 0)
+                            quest.AutoAccept.Add(qId);
                     }
 
                     quest.AutoComplete.Clear();
@@ -660,15 +714,16 @@ namespace Quester.Profile
                     {
                         int qId = Others.ToInt32(qInt);
                         if (qId > 0)
-                            quest.AutoComplete.Add(Others.ToInt32(qInt));
+                            quest.AutoComplete.Add(qId);
                     }
+
                     quest.NeedQuestCompletedId.Clear();
 
                     foreach (string qInt in TBQuestNeedQuestCompId.Lines)
                     {
                         int qId = Others.ToInt32(qInt);
                         if (qId > 0)
-                            quest.NeedQuestCompletedId.Add(Others.ToInt32(qInt));
+                            quest.NeedQuestCompletedId.Add(qId);
                     }
 
                     quest.NeedQuestNotCompletedId.Clear();
@@ -677,7 +732,7 @@ namespace Quester.Profile
                     {
                         int qId = Others.ToInt32(qInt);
                         if (qId > 0)
-                            quest.NeedQuestNotCompletedId.Add(Others.ToInt32(qInt));
+                            quest.NeedQuestNotCompletedId.Add(qId);
                     }
 
 
@@ -690,17 +745,22 @@ namespace Quester.Profile
                         if (CheckBoxItemPickUp.Checked)
                         {
                             quest.ItemPickUp = (Information.IsNumeric(TBQuestPickUpID.Text) ? Others.ToInt32(TBQuestPickUpID.Text) : 0);
+                            quest.PickUp = 0;
                         }
                         else
                         {
                             quest.PickUp = (Information.IsNumeric(TBQuestPickUpID.Text) ? Others.ToInt32(TBQuestPickUpID.Text) : 0);
+                            quest.ItemPickUp = 0;
                         }
 
                         quest.TurnIn = (Information.IsNumeric(TBQuestTurnInID.Text) ? Others.ToInt32(TBQuestTurnInID.Text) : 0);
                     }
+
                     if (_displayXml)
                         DisplayXMLs(quest);
+
                     TreeView.SelectedNode.Text = TBQuestQuestName.Text + " (" + quest.Id + ")";
+
                 }
                 else
                 {
@@ -708,7 +768,6 @@ namespace Quester.Profile
                     try
                     {
                         var newQuest = new Quest {Name = TBQuestQuestName.Text, Id = (Information.IsNumeric(TBQuestID.Text) ? Others.ToInt32(TBQuestID.Text) : 0)};
-
 
                         int raceMask = 0;
                         foreach (ComboBoxValue item in CLBQuestRaceMask.CheckedItems)
@@ -737,40 +796,37 @@ namespace Quester.Profile
 
                         foreach (String qInt in TBQuestNeedQuestCompId.Lines)
                         {
-                            if (qInt != string.Empty && Information.IsNumeric(qInt))
-                            {
-                                newQuest.NeedQuestCompletedId.Add(Others.ToInt32(qInt));
-                            }
+
+                            int qId = Others.ToInt32(qInt);
+                            if (qId > 0)
+                                newQuest.NeedQuestCompletedId.Add(qId);
                         }
 
                         newQuest.NeedQuestNotCompletedId.Clear();
 
                         foreach (String qInt in TBQuestNeedQuestNotCompId.Lines)
                         {
-                            if (qInt != string.Empty && Information.IsNumeric(qInt))
-                            {
-                                newQuest.NeedQuestNotCompletedId.Add(Others.ToInt32(qInt));
-                            }
+                            int qId = Others.ToInt32(qInt);
+                            if (qId > 0)
+                                newQuest.NeedQuestNotCompletedId.Add(qId);
                         }
 
                         newQuest.AutoAccept.Clear();
 
                         foreach (string qInt in TBQuestAutoAcceptIDs.Lines)
                         {
-                            if (qInt != string.Empty && Information.IsNumeric(qInt))
-                            {
-                                newQuest.AutoAccept.Add(Others.ToInt32(qInt));
-                            }
+                            int qId = Others.ToInt32(qInt);
+                            if (qId > 0)
+                                newQuest.AutoAccept.Add(qId);
                         }
 
                         newQuest.AutoComplete.Clear();
 
                         foreach (string qInt in TBQuestAutoCompleteIDs.Lines)
                         {
-                            if (qInt != string.Empty && Information.IsNumeric(qInt))
-                            {
+                            int qId = Others.ToInt32(qInt);
+                            if (qId > 0)
                                 newQuest.AutoComplete.Add(Others.ToInt32(qInt));
-                            }
                         }
 
                         if (CBQuestWQ.Checked)
@@ -782,10 +838,12 @@ namespace Quester.Profile
                             if (CheckBoxItemPickUp.Checked)
                             {
                                 newQuest.ItemPickUp = (Information.IsNumeric(TBQuestPickUpID.Text) ? Others.ToInt32(TBQuestPickUpID.Text) : 0);
+                                newQuest.PickUp = 0;
                             }
                             else
                             {
                                 newQuest.PickUp = (Information.IsNumeric(TBQuestPickUpID.Text) ? Others.ToInt32(TBQuestPickUpID.Text) : 0);
+                                newQuest.ItemPickUp = 0;
                             }
 
                             newQuest.TurnIn = (Information.IsNumeric(TBQuestTurnInID.Text) ? Others.ToInt32(TBQuestTurnInID.Text) : 0);
@@ -885,6 +943,19 @@ namespace Quester.Profile
                 }
 
                 _questParentNode.Expand();
+
+                //Load Blacklist
+                if (_profile.Blackspots.Count > 0)
+                {
+                    List<string> intList = new List<string>();
+                    foreach (Quester.Profile.QuesterBlacklistRadius blr in _profile.Blackspots)
+                    {
+                        intList.Add(blr.Position.X.ToString() + ";" + blr.Position.Y.ToString() + ";" + blr.Position.Z.ToString() + ";" + blr.Radius);
+                    }
+
+                    TBBlackList.Lines = intList.ToArray();
+                }
+
             }
             catch (Exception ex)
             {
@@ -1070,6 +1141,10 @@ namespace Quester.Profile
             CBInternalObj.Checked = false;
             CBInternalObj.CheckedChanged += CBInternalObj_CheckedChanged;
             CBObjIsDead.Checked = false;
+            CBObjAllowPlayerControlled.Checked = false;
+            CBObjIgnoreBlackList.Checked = false;
+            CBObjIgnoreNotSelectable.Checked = false;
+            CBObjForceTravelToQuestZone.Checked = false;
             TBObjMessage.Enabled = false;
             CBObjPressKeys.Enabled = false;
 
@@ -1100,11 +1175,7 @@ namespace Quester.Profile
             LBObjHotspots.Items.Clear();
             TBObjMessage.Text = string.Empty;
             CBObjPressKeys.Text = string.Empty;
-        }
-
-
-        public void ClearObjectiveForm()
-        {
+            TBObjCompletedScript.Text = string.Empty;
         }
 
         public void ClearQuestForm()
@@ -1129,6 +1200,8 @@ namespace Quester.Profile
             TBQuestWQ.Enabled = false;
             TBQuestAutoAcceptIDs.Text = string.Empty;
             TBQuestAutoCompleteIDs.Text = string.Empty;
+            TBBlackListRadius.Text = string.Empty;
+            TBBlackList.Text = string.Empty;
         }
 
         public void ClearNPCForm()
@@ -1231,7 +1304,9 @@ namespace Quester.Profile
                     TBObjUseSpellId.Enabled = true;
                     TBObjPosition.Enabled = true;
                     TBObjWaitMs.Enabled = true;
+                    TBObjCount.Enabled = true;
 
+                    TBObjCount.Text = qObjective.Count.ToString();
                     TBObjPosition.Text = qObjective.Position.ToString();
                     TBObjUseSpellId.Text = qObjective.UseSpellId.ToString(CultureInfo.InvariantCulture);
                     TBObjWaitMs.Text = qObjective.WaitMs.ToString(CultureInfo.InvariantCulture);
@@ -1254,15 +1329,19 @@ namespace Quester.Profile
                     TBObjPosition.Enabled = true;
                     TBObjWaitMs.Enabled = true;
                     TBObjGossipOption.Enabled = true;
+                    TBObjCount.Enabled = true;
 
                     TBObjPosition.Text = qObjective.Position.ToString();
                     TBObjWaitMs.Text = qObjective.WaitMs.ToString(CultureInfo.InvariantCulture);
                     TBObjGossipOption.Text = qObjective.GossipOptionsInteractWith.ToString(CultureInfo.InvariantCulture);
+                    TBObjCount.Text = qObjective.Count.ToString();
                     break;
                 case "MoveTo":
                     TBObjPosition.Enabled = true;
-
+                    TBObjCount.Enabled = true;
+                    
                     TBObjPosition.Text = qObjective.Position.ToString();
+                    TBObjCount.Text = qObjective.Count.ToString();
                     break;
                 case "Wait":
                     TBObjWaitMs.Enabled = true;
@@ -1319,6 +1398,7 @@ namespace Quester.Profile
                 case "UseVehicle":
                     TBObjPosition.Enabled = true;
                     TBObjEntry.Enabled = true;
+
                     TBObjPosition.Text = qObjective.Position.ToString();
                     break;
                 case "ClickOnTerrain":
@@ -1337,6 +1417,7 @@ namespace Quester.Profile
                     TBObjCount.Text = qObjective.Count.ToString(CultureInfo.InvariantCulture);
                     TBObjWaitMs.Text = qObjective.WaitMs.ToString(CultureInfo.InvariantCulture);
                     TBObjPosition.Text = qObjective.Position.ToString();
+
                     CBObjPressKeys.Enabled = true;
                     TBObjCount.Enabled = true;
                     TBObjWaitMs.Enabled = true;
@@ -1347,7 +1428,42 @@ namespace Quester.Profile
                     TBObjCount.Enabled = true;
                     TBObjMessage.Text = qObjective.Script;
                     TBObjMessage.Enabled = true;
+                    TBObjPosition.Enabled = true;
+                    TBObjPosition.Text = qObjective.Position.ToString();
+                    //CBObjPressKeys.SelectedValue = (int) qObjective.Keys;
+                    TBObjUseItemID.Text = qObjective.UseItemId.ToString();
+                    TBObjCollectItemID.Text = qObjective.CollectItemId.ToString();
+                    TBObjWaitMs.Text = qObjective.WaitMs.ToString();
+                    TBObjRange.Text = qObjective.Range.ToString();
+                    TBObjCollectCount.Text = qObjective.CollectCount.ToString();
+                    TBObjUseSpellId.Text = qObjective.UseSpellId.ToString();
+                    TBObjGossipOption.Text = qObjective.GossipOptionsInteractWith.ToString();
+                    TBObjNPCId.Text = qObjective.NpcEntry.ToString();
+                    TBObjQuestID.Text = qObjective.QuestId.ToString();
+                    TBObjQuestName.Text = qObjective.QuestName.ToString();
+                    TBObjCompletedScript.Text = qObjective.ScriptConditionIsComplete;
 
+                    TBObjQuestName.Enabled = true;
+                    TBObjCollectCount.Enabled = true;
+                    TBObjUseItemID.Enabled = true;
+                    TBObjCollectItemID.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjRange.Enabled = true;
+                    TBObjUseSpellId.Enabled = true;
+                    TBObjGossipOption.Enabled = true;
+                    TBObjNPCId.Enabled = true;
+                    TBObjQuestID.Enabled = true;
+                    TBObjMessage.Enabled = true;
+                    TBObjCompletedScript.Enabled = true;
+                    TBObjEntry.Enabled = true;
+                    break;
+                case "TravelTo":
+                    TBObjPosition.Text = qObjective.Position.ToString();
+                    TBObjPosition.Enabled = true;
+                    break;
+                case "EquipItem":
+                    TBObjUseItemID.Text = qObjective.EquipItemId.ToString();
+                    TBObjUseItemID.Enabled = true;
                     break;
             }
 
@@ -1365,6 +1481,10 @@ namespace Quester.Profile
 
             CBObjIgnoreQuestCompleted.Checked = qObjective.IgnoreQuestCompleted;
             CBObjIsDead.Checked = qObjective.IsDead;
+            CBObjAllowPlayerControlled.Checked = qObjective.AllowPlayerControlled;
+            CBObjIgnoreBlackList.Checked = qObjective.IgnoreBlackList;
+            CBObjIgnoreNotSelectable.Checked = qObjective.IgnoreNotSelectable;
+            CBObjForceTravelToQuestZone.Checked = qObjective.ForceTravelToQuestZone;
 
             CBObjType.SelectedValueChanged -= CBObjType_SelectedValueChanged;
             CBObjType.SelectedValue = cbSelectValue;
@@ -1390,7 +1510,7 @@ namespace Quester.Profile
             }
 
             //Fill Entry
-            if (qObjective.Entry.Count > 0 && qObjective.Objective.ToString() != "UseVehicle")
+            if (qObjective.Entry.Count > 0) // && qObjective.Objective.ToString() != "UseVehicle")
             {
                 var intList = new List<string>();
                 foreach (int ent in qObjective.Entry)
@@ -1422,7 +1542,9 @@ namespace Quester.Profile
 
                 CBObjInternalQuestID.ValueMember = "Value";
                 CBObjInternalQuestID.DisplayMember = "Name";
+
                 ComboBoxValue var1 = listQuest.Find(x => x.Value == qObjective.InternalQuestId);
+
                 if (var1 != null)
                 {
                     CBObjInternalQuestID.SelectedValue = qObjective.InternalQuestId;
@@ -1432,6 +1554,12 @@ namespace Quester.Profile
                     CBObjInternalQuestID.Text = qObjective.InternalQuestId.ToString(CultureInfo.InvariantCulture);
                     CBObjInternalQuestIdManual.Checked = true;
                 }
+               
+            }
+
+            if (qObjective.ScriptConditionIsComplete != "")
+            {
+                TBObjCompletedScript.Text = qObjective.ScriptConditionIsComplete;
             }
         }
 
@@ -1569,6 +1697,17 @@ namespace Quester.Profile
                 Name = "CSharpScript",
                 Value = 27
             });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Travel To",
+                Value = 22
+            });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Equip Item",
+                Value = 4
+            });
+
             CBObjType.DataSource = cbObjTypeList;
 
             CBObjType.ValueMember = "Value";
@@ -1693,6 +1832,7 @@ namespace Quester.Profile
         private void CBObjType_SelectedValueChanged(object sender, EventArgs e)
         {
             DisableObjForm();
+
             if (TreeView.SelectedNode != null && (string) TreeView.SelectedNode.Tag != "NewObjective")
             {
                 TreeView.SelectedNode = null;
@@ -1751,7 +1891,7 @@ namespace Quester.Profile
                     TBObjUseSpellId.Enabled = true;
                     TBObjPosition.Enabled = true;
                     TBObjWaitMs.Enabled = true;
-
+                    TBObjCount.Enabled = true;
                     break;
 
                 case "UseSpellAOE":
@@ -1768,10 +1908,11 @@ namespace Quester.Profile
                     TBObjPosition.Enabled = true;
                     TBObjWaitMs.Enabled = true;
                     TBObjGossipOption.Enabled = true;
+                    TBObjCount.Enabled = true;
                     break;
                 case "MoveTo":
                     TBObjPosition.Enabled = true;
-
+                    TBObjCount.Enabled = true;
                     break;
                 case "Wait":
                     TBObjWaitMs.Enabled = true;
@@ -1824,6 +1965,26 @@ namespace Quester.Profile
                 case "CSharpScript":
                     TBObjCount.Enabled = true;
                     TBObjMessage.Enabled = true;
+                    TBObjPosition.Enabled = true;
+                    //CBObjPressKeys.Enabled = true;
+                    TBObjUseItemID.Enabled = true;
+                    TBObjEntry.Enabled = true;
+                    TBObjCollectItemID.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjRange.Enabled = true;
+                    TBObjUseSpellId.Enabled = true;
+                    TBObjGossipOption.Enabled = true;
+                    TBObjNPCId.Enabled = true;
+                    TBObjQuestID.Enabled = true;
+                    TBObjMessage.Enabled = true;
+                    TBObjCompletedScript.Enabled = true;
+                    TBObjEntry.Enabled = true;
+                    break;
+                case "TravelTo":
+                    TBObjPosition.Enabled = true;
+                    break;
+                case "EquipItem":
+                    TBObjUseItemID.Enabled = true;
                     break;
             }
 
@@ -1849,7 +2010,7 @@ namespace Quester.Profile
                 TBObjEntry.Enabled = true;
                 TBObjCollectCount.Enabled = true;
                 TBObjCollectItemID.Enabled = true;
-                TBObjCollectItemID.Text = @"1";
+                //TBObjCollectItemID.Text = @"1";
                 TBObjCount.Enabled = false;
             }
             else
@@ -1899,7 +2060,7 @@ namespace Quester.Profile
                     CBObjInternalQuestID.DataSource = null;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Catch Form Load triggering this Sub....and crashing
             }
@@ -1938,7 +2099,6 @@ namespace Quester.Profile
                 {
                     case "PickUpQuest":
                     case "TurnInQuest":
-
                         TBObjNPCId.Text = ObjectManager.Target.Entry.ToString(CultureInfo.InvariantCulture);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         TBObjQuestID.Text = Lua.LuaDoString(randomString + " = GetQuestID()", randomString);
@@ -2037,18 +2197,12 @@ namespace Quester.Profile
             }
         }
 
-        public void TODOs()
-        {
-            //TODO Add quest required ID from prev quest ID
-        }
-
         private void ButtonQuestImportFromGame_Click(object sender, EventArgs e)
         {
             if (Others.IsFrameVisible("QuestFrameDetailPanel"))
             {
                 if (ObjectManager.Target.IsValid && QuestersDB.GetNpcByEntry(ObjectManager.Target.Entry) == null)
                 {
-                    //TODO Check if NPC in the profile
                     if (MessageBox.Show(@"This Quest Giver isnt in the DB. Do you want to Add it?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ButtonNewNPC.PerformClick();
@@ -2082,7 +2236,9 @@ namespace Quester.Profile
                 TBQuestQuestName.Text = Lua.LuaDoString(randomString + " = GetTitleText()", randomString);
 
                 nManager.Wow.Helpers.Quest.AcceptQuest();
+
                 Thread.Sleep(1000);
+
                 int questLogIdx = Others.ToInt32(Lua.LuaDoString(randomString + " = GetQuestLogIndexByID(" + TBQuestID.Text + ")", randomString));
 
                 int questl = Others.ToInt32(Lua.LuaDoString("_, " + randomString + " = GetQuestLogTitle(" + questLogIdx + ")", randomString));
@@ -2181,7 +2337,6 @@ namespace Quester.Profile
             CLBQuestClassMask.ClearSelected();
         }
 
-
         public void SaveQuestMask()
         {
         }
@@ -2248,6 +2403,43 @@ namespace Quester.Profile
             }
         }
 
+        private void ButtonBlackListSave_Click(object sender, EventArgs e)
+        {
+            if (_profile != null)
+            {
+                _profile.Blackspots.Clear();
+                foreach (String st in TBBlackList.Lines)
+                {
+                    if (st != "")
+                    {
+                        Quester.Profile.QuesterBlacklistRadius blr = new Quester.Profile.QuesterBlacklistRadius();
+                        blr.Position = new nManager.Wow.Class.Point(float.Parse(st.Split(';')[0]), float.Parse(st.Split(';')[1]), float.Parse(st.Split(';')[2]));
+                        blr.Radius = float.Parse(st.Split(';')[3]);
+                        _profile.Blackspots.Add(blr);
+
+                    }
+                }
+
+                //Save Blackspot to file
+                SaveSimpleProfile_Click(null, null);
+            }
+        }
+
+        private void ButtonBlackListAdd_Click(object sender, EventArgs e)
+        {
+            string pos = ObjectManager.Me.Position.X.ToString() + ";" + ObjectManager.Me.Position.Y.ToString() + ";" + ObjectManager.Me.Position.Z.ToString() + ";" + (string.IsNullOrEmpty(TBBlackListRadius.Text) ? 5f : Others.ToSingle(TBBlackListRadius.Text));
+            //if (TBObjHotSpots.Lines.Count > 0) {
+            TBBlackList.AppendText(pos + Environment.NewLine);
+
+        }
+
+        private void LBObjHotspots_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (LBObjHotspots.SelectedIndex >= 0 && e.KeyCode == Keys.Delete)
+            {
+                LBObjHotspots.Items.RemoveAt(LBObjHotspots.SelectedIndex);
+            }
+        }
         #region "EVENTS - Optional"
 
         private bool _displayXml;
@@ -2533,6 +2725,8 @@ namespace Quester.Profile
         }
 
         #endregion
+
+      
     }
 
     public class ComboBoxValueString
