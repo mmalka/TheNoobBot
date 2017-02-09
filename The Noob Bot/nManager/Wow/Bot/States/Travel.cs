@@ -1303,6 +1303,7 @@ namespace nManager.Wow.Bot.States
 
         private KeyValuePair<Transport, float> GetBestDirectWayTransport(Point travelFrom, Point travelTo, int travelFromContinentId, int travelToContinentId)
         {
+            bool success;
             var bestTransport = new Transport();
             float bestTransportDistance = float.MaxValue;
             List<Transport> allTransports = GetAllTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
@@ -1358,44 +1359,62 @@ namespace nManager.Wow.Bot.States
                     if (transport.ArrivalIsA)
                     {
                         if (!transport.UseALift)
-                            wayIn = PathFinder.FindPath(travelFrom, transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                        {
+                            wayIn = PathFinder.FindPath(travelFrom, transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            if (!success)
+                                continue;
+                        }
                         else
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
-                            bool success;
                             Transport aLift = GetTransportByTransportId(transport.ALift);
                             wayIn = PathFinder.FindPath(travelFrom, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                             if (success)
                             {
                                 // aLift IsArrivalIsA=true
-                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             else
                             {
                                 // aLift IsArrivalIsA=false
-                                wayIn = PathFinder.FindPath(travelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
-                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                                wayIn = PathFinder.FindPath(travelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                if (!success)
+                                    continue;
+                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             // we already did the check prior to that, so let's assume it's correct.
                         }
                         if (!transport.UseBLift)
-                            wayOff = PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        {
+                            wayOff = PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            if (!success)
+                                continue;
+                        }
                         else
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
-                            bool success;
                             Transport bLift = GetTransportByTransportId(transport.BLift);
                             wayOff = PathFinder.FindPath(travelTo, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                             if (success)
                             {
                                 // bLift IsArrivalIsA=true
-                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             else
                             {
                                 // bLift IsArrivalIsA=false
-                                wayOff = PathFinder.FindPath(travelTo, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                                wayOff = PathFinder.FindPath(travelTo, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
+                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             // we already did the check prior to that, so let's assume it's correct.
                         }
@@ -1403,44 +1422,62 @@ namespace nManager.Wow.Bot.States
                     else
                     {
                         if (!transport.UseALift)
-                            wayIn = PathFinder.FindPath(travelFrom, transport.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                        {
+                            wayIn = PathFinder.FindPath(travelFrom, transport.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            if (!success)
+                                continue;
+                        }
                         else
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
-                            bool success;
                             Transport aLift = GetTransportByTransportId(transport.ALift);
                             wayIn = PathFinder.FindPath(travelFrom, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                             if (success)
                             {
                                 // aLift IsArrivalIsA=true
-                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             else
                             {
                                 // aLift IsArrivalIsA=false
-                                wayIn = PathFinder.FindPath(travelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
-                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                                wayIn = PathFinder.FindPath(travelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                if (!success)
+                                    continue;
+                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             // we already did the check prior to that, so let's assume it's correct.
                         }
                         if (!transport.UseBLift)
-                            wayOff = PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        {
+                            wayOff = PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            if (!success)
+                                continue;
+                        }
                         else
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
-                            bool success;
                             Transport bLift = GetTransportByTransportId(transport.BLift);
                             wayOff = PathFinder.FindPath(travelTo, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                             if (success)
                             {
                                 // bLift IsArrivalIsA=true
-                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             else
                             {
                                 // bLift IsArrivalIsA=false
-                                wayOff = PathFinder.FindPath(travelTo, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                                wayOff = PathFinder.FindPath(travelTo, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
+                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
                             }
                             // we already did the check prior to that, so let's assume it's correct.
                         }
