@@ -1168,6 +1168,8 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (customPath.BContinentId == travelToContinentId && customPath.AContinentId != travelToContinentId)
                     continue;
+                if (travelTo.DistanceTo(customPath.APoint) > 2000)
+                    continue; // Don't allow CustomPath too far away.
                 bool success;
                 PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                 if (success && customPath.RoundTrip)
