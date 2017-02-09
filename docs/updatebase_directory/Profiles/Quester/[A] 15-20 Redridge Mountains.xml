@@ -298,7 +298,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>170000</WaitMs>
           <TaxiEntry>523</TaxiEntry>
@@ -307,7 +306,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
           <QuestName>Hero's Call: Redridge Mountains!</QuestName>
@@ -330,7 +328,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
           <QuestName>Still Assessing the Threat</QuestName>
@@ -352,7 +349,6 @@
               <Z>82.90894</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -371,7 +367,6 @@
               <Z>96.25467</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -390,7 +385,6 @@
               <Z>59.76247</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -409,11 +403,9 @@
               <Z>79.43018</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
           <QuestName>Still Assessing the Threat</QuestName>
@@ -421,7 +413,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
           <QuestName>Wanted: Redridge Gnolls</QuestName>
@@ -447,7 +438,6 @@
           <Entry>
             <int>931</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9435.215</X>
@@ -458,7 +448,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>344</NpcEntry>
           <QuestName>Parker's Report</QuestName>
@@ -481,7 +470,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <NpcEntry>344</NpcEntry>
           <QuestName>We Must Prepare!</QuestName>
           <QuestId>26510</QuestId>
@@ -502,7 +490,6 @@
               <Z>56.04829</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -520,11 +507,9 @@
               <Z>56.66605</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>344</NpcEntry>
           <QuestName>We Must Prepare!</QuestName>
@@ -532,7 +517,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>900</NpcEntry>
           <QuestName>Lake Everstill Clean Up</QuestName>
@@ -555,7 +539,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-9189.014</X>
             <Y>-2309.52</Y>
@@ -585,7 +568,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>382</NpcEntry>
           <QuestName>Like a Fart in the Wind</QuestName>
@@ -612,7 +594,6 @@
               <Z>133.7598</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -637,11 +618,9 @@
               <Z>133.761</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>382</NpcEntry>
           <QuestName>Like a Fart in the Wind</QuestName>
@@ -649,7 +628,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>344</NpcEntry>
           <QuestName>Canyon Romp</QuestName>
@@ -685,7 +663,6 @@
               <Z>132.979</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -717,7 +694,6 @@
               <Z>132.467</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -747,7 +723,6 @@
               <Z>132.979</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -784,7 +759,6 @@
               <Z>50.30059</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -844,7 +818,6 @@
               <Z>92.47486</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -861,11 +834,9 @@
               <Z>92.47486</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9228.79</X>
@@ -875,7 +846,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43221</NpcEntry>
           <QuestName>Weapons of War</QuestName>
@@ -911,7 +881,6 @@
               <Z>156.4315</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -928,7 +897,6 @@
               <Z>156.4315</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -961,16 +929,73 @@
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <Count>1</Count>
           <Position>
-            <X>-9155.272</X>
-            <Y>-2693.189</Y>
-            <Z>88.7272</Z>
+            <X>-9174.059</X>
+            <Y>-2677.676</Y>
+            <Z>93.4773</Z>
           </Position>
+        </QuestObjective>
+      
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Entry>
+            <int>43341</int>
+          </Entry>
+          <Script>=26587.cs</Script>
+          <Position>
+            <X>-9209.699</X>
+            <Y>-2770.077</Y>
+            <Z>90.38326</Z>
+          </Position>
+          <Range>0</Range>
+        </QuestObjective>
+		  <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>-9160.113</X>
+              <Y>-2694.671</Y>
+              <Z>88.72752</Z>
+            </Point>
+            <Point>
+              <X>-9153.662</X>
+              <Y>-2715.412</Y>
+              <Z>88.72752</Z>
+            </Point>
+            <Point>
+              <X>-9164.38</X>
+              <Y>-2741.091</Y>
+              <Z>88.71474</Z>
+            </Point>
+          </Hotspots>
+          <Script>=FollowPath.cs</Script>
+          <Position>
+            <X>-9164.38</X>
+            <Y>-2741.091</Y>
+            <Z>88.71474</Z>
+          </Position>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>204389</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>-9184</X>
+              <Y>-2728.491</Y>
+              <Z>90.20651</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43270</NpcEntry>
           <QuestName>Breaking Out is Hard to Do</QuestName>
@@ -993,7 +1018,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-9084.72</X>
             <Y>-2537.702</Y>
@@ -1014,7 +1038,6 @@
               <Z>142.5545</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1044,7 +1067,6 @@
               <Z>158.401</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1074,14 +1096,12 @@
               <Z>142.0757</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <Entry>
             <int>204403</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-8821.83</X>
@@ -1093,7 +1113,6 @@
           <Objective>CSharpScript</Objective>
           <Count>1</Count>
           <Script>=ClickToMove.cs</Script>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-8804.989</X>
@@ -1103,7 +1122,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43275</NpcEntry>
           <QuestName>And Last But Not Least... Danforth</QuestName>
@@ -1128,7 +1146,6 @@
           <Objective>CSharpScript</Objective>
           <Count>1</Count>
           <Script>=ClickToMove.cs</Script>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-8825.373</X>
@@ -1138,7 +1155,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43221</NpcEntry>
           <QuestName>Return of the Bravo Company</QuestName>
@@ -1178,7 +1194,6 @@
           <Entry>
             <int>43443</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-9300.98</X>
             <Y>-2363.68</Y>
@@ -1187,7 +1202,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>None</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1206,7 +1220,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43461</NpcEntry>
           <QuestName>Bravo Company Field Kit: Camouflage</QuestName>
@@ -1214,7 +1227,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43458</NpcEntry>
           <QuestName>Point of Contact: Brubaker</QuestName>
@@ -1236,7 +1248,6 @@
               <Z>57.58617</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -1255,7 +1266,6 @@
               <Z>57.58617</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -1282,11 +1292,9 @@
               <Z>58.2957</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43508</NpcEntry>
           <QuestName>Point of Contact: Brubaker</QuestName>
@@ -1294,7 +1302,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43508</NpcEntry>
           <QuestName>Unspeakable Atrocities</QuestName>
@@ -1302,7 +1309,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43458</NpcEntry>
           <QuestName>Unspeakable Atrocities</QuestName>
@@ -1313,7 +1319,6 @@
           <Entry>
             <int>43371</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9450.27</X>
@@ -1324,7 +1329,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43461</NpcEntry>
           <QuestName>Bravo Company Field Kit: Camouflage</QuestName>
@@ -1332,7 +1336,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43462</NpcEntry>
           <QuestName>Hunting the Hunters</QuestName>
@@ -1367,7 +1370,6 @@
               <Z>75.35896</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1404,7 +1406,6 @@
               <Z>155.5802</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>

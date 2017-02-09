@@ -1,150 +1,163 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questers>
     <Npc>
-      <Name>Marshal McBride</Name>
       <Entry>197</Entry>
+      <Name>Marshal McBride</Name>
       <Position>
         <X>-8913.087</X>
         <Y>-137.4986</Y>
         <Z>80.85626</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Khelden Bremen</Name>
       <Entry>198</Entry>
+      <Name>Khelden Bremen</Name>
       <Position>
         <X>-8851.673</X>
         <Y>-188.2821</Y>
         <Z>89.31502</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ashley Blank</Name>
       <Entry>43278</Entry>
+      <Name>Ashley Blank</Name>
       <Position>
         <X>-8924.773</X>
         <Y>-149.8822</Y>
         <Z>81.36666</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Brother Sammuel</Name>
       <Entry>925</Entry>
+      <Name>Brother Sammuel</Name>
       <Position>
         <X>-8914.645</X>
         <Y>-215.0427</Y>
         <Z>82.11885</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Priestess Anetta</Name>
       <Entry>375</Entry>
+      <Name>Priestess Anetta</Name>
       <Position>
         <X>-8853.5</X>
         <Y>-193.4498</Y>
         <Z>81.93213</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jorik Kerridan</Name>
       <Entry>915</Entry>
+      <Name>Jorik Kerridan</Name>
       <Position>
         <X>-8863.427</X>
         <Y>-211.0484</Y>
         <Z>80.5799</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Drusilla La Salle</Name>
       <Entry>459</Entry>
+      <Name>Drusilla La Salle</Name>
       <Position>
         <X>-8926.925</X>
         <Y>-195.6243</Y>
         <Z>80.58209</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Llane Beshere</Name>
       <Entry>911</Entry>
+      <Name>Llane Beshere</Name>
       <Position>
         <X>-8918.371</X>
         <Y>-208.3983</Y>
         <Z>82.1265</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Sergeant Willem</Name>
       <Entry>823</Entry>
+      <Name>Sergeant Willem</Name>
       <Position>
         <X>-8827.983</X>
         <Y>-158.608</Y>
         <Z>79.84843</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Marshal Dughan</Name>
       <Entry>240</Entry>
+      <Name>Marshal Dughan</Name>
       <Position>
         <X>-9465.521</X>
         <Y>74.00694</Y>
         <Z>56.59602</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Brother Paxton</Name>
       <Entry>951</Entry>
+      <Name>Brother Paxton</Name>
       <Position>
         <X>-8819.465</X>
         <Y>-149.8123</Y>
         <Z>81.20303</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Milly Osworth</Name>
       <Entry>9296</Entry>
+      <Name>Milly Osworth</Name>
       <Position>
         <X>-8923.88</X>
         <Y>-135.8889</Y>
         <Z>81.02888</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Falkhaan Isenstrider</Name>
       <Entry>6774</Entry>
+      <Name>Falkhaan Isenstrider</Name>
       <Position>
         <X>-9044.558</X>
         <Y>-45.98166</Y>
         <Z>88.3374</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Innkeeper Farley</Name>
       <Entry>295</Entry>
+      <Name>Innkeeper Farley</Name>
       <Position>
         <X>-9462.663</X>
         <Y>16.19151</Y>
         <Z>56.96306</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Bao</Name>
       <Entry>63258</Entry>
+      <Name>Bao</Name>
       <Position>
         <X>-8907.551</X>
         <Y>-212.017365</Y>
         <Z>82.1136246</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
   </Questers>
   <Quests>
-    <!-- Quest 1 -->
-    <!--Beating Them Back! (Mage)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28757</Id>
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -153,7 +166,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -167,14 +180,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Mage)-->
-
-    <!--Beating Them Back! (Paladin)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28762</Id>
-      <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -183,7 +193,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -197,14 +207,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Paladin)-->
-
-    <!--Beating Them Back! (Priest)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28763</Id>
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -213,7 +220,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -227,14 +234,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Priest)-->
-
-    <!--Beating Them Back! (Rogue)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28764</Id>
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -243,7 +247,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -257,14 +261,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Rogue)-->
-
-    <!--Beating Them Back! (Warlock)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28765</Id>
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -273,7 +274,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -287,14 +288,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Warlock)-->
-
-    <!--Beating Them Back! (Warrior)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28766</Id>
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -303,7 +301,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -317,14 +315,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Warrior)-->
-
-    <!--Beating Them Back! (Hunter)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28767</Id>
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -333,7 +328,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -347,14 +342,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Hunter)-->
-
-    <!--Beating Them Back! (Monk)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <ClassMask>512</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>31139</Id>
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -363,7 +355,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -377,14 +369,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Monk)-->
-
-    <!--Beating Them Back! (Alliance but not Human)-->
     <Quest>
       <Name>Beating Them Back!</Name>
+      <RaceMask>18875466</RaceMask>
       <Id>29078</Id>
-      <!-- ClassMask></ClassMask> No class mask, it's for all classes not human -->
-      <RaceMask>18875466</RaceMask> <!-- Alliance but not Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -393,7 +381,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>49871</int>
           </Entry>
@@ -407,16 +395,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Beating Them Back! (Alliance but not Human)-->
-
-    <!-- Quest 2 -->
-
-    <!--Lions for Lambs (Mage)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28769</Id>
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -428,7 +411,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -442,14 +425,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Mage)-->
-
-    <!--Lions for Lambs (Paladin)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28770</Id>
-      <ClassMask>2 </ClassMask> <!-- Paladin -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -461,7 +441,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -475,14 +455,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Paladin)-->
-
-    <!--Lions for Lambs (Priest)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28771</Id>
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -494,7 +471,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -508,14 +485,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Priest)-->
-
-    <!--Lions for Lambs (Rogue)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28772</Id>
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -527,7 +501,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -541,14 +515,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Rogue)-->
-
-    <!--Lions for Lambs (Warlock)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28773</Id>
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -560,7 +531,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -574,14 +545,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Warlock)-->
-
-    <!--Lions for Lambs (Warrior)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28774</Id>
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -593,7 +561,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -607,14 +575,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Warrior)-->
-
-    <!--Lions for Lambs (Hunter)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28759</Id>
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -626,7 +591,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -640,14 +605,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Hunter)-->
-
-    <!--Lions for Lambs (Monk)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <ClassMask>512</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>31140</Id>
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -659,7 +621,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -673,14 +635,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Hunter)-->
-
-    <!--Lions for Lambs (Alliance but not Human)-->
     <Quest>
       <Name>Lions for Lambs</Name>
+      <RaceMask>18875466</RaceMask>
       <Id>29079</Id>
-      <!-- ClassMask></ClassMask> No class mask, it's for all classes not human -->
-      <RaceMask>18875466</RaceMask> <!-- Alliance but not Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -692,7 +650,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>49874</int>
           </Entry>
@@ -706,16 +664,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Lions for Lambs (Alliance but not Human)-->
-
-    <!-- Quest 3 -->
-
-    <!--Glyphic Letter (Mage)-->
     <Quest>
       <Name>Glyphic Letter</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>3104</Id>
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -724,17 +677,13 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>198</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--Glyphic Letter (Mage)-->
-
-    <!--Consecrated Letter (Paladin)-->
     <Quest>
       <Name>Consecrated Letter</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>3101</Id>
-      <ClassMask>2 </ClassMask> <!-- Paladin -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -743,17 +692,13 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>925</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--Consecrated Letter (Paladin)-->
-
-    <!--Hallowed Letter (Priest)-->
     <Quest>
       <Name>Hallowed Letter</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>3103</Id>
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -762,17 +707,13 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>375</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--Hallowed Letter (Priest)-->
-
-    <!--Encrypted Letter (Rogue)-->
     <Quest>
       <Name>Encrypted Letter</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>3102</Id>
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -781,17 +722,13 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>915</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--Encrypted Letter (Rogue)-->
-
-    <!--Tainted Letter (Warlock)-->
     <Quest>
       <Name>Tainted Letter</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>3105</Id>
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -800,17 +737,13 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>459</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--Tainted Letter (Warlock)-->
-
-    <!--Simple Letter (Warrior)-->
     <Quest>
       <Name>Simple Letter</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>3100</Id>
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -819,17 +752,13 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>911</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--Simple Letter (Warrior)-->
-
-    <!--Calligraphed Letter (Monk)-->
     <Quest>
       <Name>Calligraphed Letter</Name>
+      <ClassMask>512</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>31141</Id>
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -838,21 +767,13 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>63258</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--Calligraphed Letter (Monk)-->
-
-    <!-- No Quest 3 for Alliance but not Human -->
-
-    <!-- Quest 4 -->
-
-    <!-- Mastering the Arcane (Mage)-->
     <Quest>
       <Name>Mastering the Arcane</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>26916</Id>
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -864,27 +785,24 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpellAOE</Objective>
+          <Count>2</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <UseSpellId>122</UseSpellId>
-          <Count>2</Count>
           <Position>
             <X>-8967.869</X>
             <Y>-153.1475</Y>
             <Z>81.50401</Z>
           </Position>
+          <UseSpellId>122</UseSpellId>
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- Mastering the Arcane (Mage)-->
-
-    <!-- The Power of the Light (Paladin)-->
     <Quest>
       <Name>The Power of the Light</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>26918</Id>
-      <ClassMask>2 </ClassMask> <!-- Paladin -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -894,17 +812,17 @@
       <PickUp>925</PickUp>
       <TurnIn>925</TurnIn>
       <Objectives>
-        <QuestObjective> <!-- Use Seal of Command on self -->
+        <QuestObjective>
           <Objective>UseSpell</Objective>
-          <UseSpellId>105361</UseSpellId> <!-- 20154-->
           <Count>1</Count>
+          <UseSpellId>105361</UseSpellId>
         </QuestObjective>
-        <QuestObjective> <!-- Damage the Target Dummy -->
+        <QuestObjective>
           <Objective>KillMob</Objective>
+          <Count>1</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <Count>1</Count>
           <Hotspots>
             <Point>
               <X>-8967.869</X>
@@ -915,14 +833,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- The Power of the Light (Paladin)-->
-
-    <!-- Learning the Word (Priest)-->
     <Quest>
       <Name>Learning the Word</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>26919</Id>
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -932,32 +847,27 @@
       <PickUp>375</PickUp>
       <TurnIn>375</TurnIn>
       <Objectives>
-        <QuestObjective> <!-- Cast Shadow Word: Pain on Trainees -->
+        <QuestObjective>
           <Objective>UseSpell</Objective>
+          <Count>5</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <UseSpellId>589</UseSpellId>
-          <Count>5</Count>
-          <WaitMs>2000</WaitMs>
           <Position>
-            <!--Point-->
-              <X>-8967.869</X>
-              <Y>-153.1475</Y>
-              <Z>81.50401</Z>
-            <!--/Point-->
+            <X>-8967.869</X>
+            <Y>-153.1475</Y>
+            <Z>81.50401</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
+          <UseSpellId>589</UseSpellId>
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- Healing the Wounded (Priest)-->
-
-    <!-- The Deepest Cut (Rogue)-->
     <Quest>
       <Name>The Deepest Cut</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>26915</Id>
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -967,13 +877,12 @@
       <PickUp>915</PickUp>
       <TurnIn>915</TurnIn>
       <Objectives>
-        <QuestObjective> <!-- Cast Eviscerate on Training Dummy  But we need to rely on combat class here because of combo points required -->
+        <QuestObjective>
           <Objective>KillMob</Objective>
+          <Count>-1</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <!--UseSpellId>2098</UseSpellId-->
-          <Count>-1</Count>
           <Hotspots>
             <Point>
               <X>-8967.869</X>
@@ -984,14 +893,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- The Deepest Cut (Rogue)-->
-
-    <!-- Corruption (Warlock)-->
     <Quest>
       <Name>Immolation</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>26914</Id>
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1001,13 +907,12 @@
       <PickUp>459</PickUp>
       <TurnIn>459</TurnIn>
       <Objectives>
-        <QuestObjective> <!-- Cast Corruption on Training Dummy -->
+        <QuestObjective>
           <Objective>UseSpell</Objective>
+          <Count>5</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <UseSpellId>172</UseSpellId>
-          <Count>5</Count>
           <Hotspots>
             <Point>
               <X>-8967.869</X>
@@ -1015,17 +920,15 @@
               <Z>81.50401</Z>
             </Point>
           </Hotspots>
+          <UseSpellId>172</UseSpellId>
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- Corruption (Warlock)-->
-
-    <!-- Charging into Battle (Warrior)-->
     <Quest>
       <Name>Charging into Battle</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>26913</Id>
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1035,13 +938,12 @@
       <PickUp>911</PickUp>
       <TurnIn>911</TurnIn>
       <Objectives>
-        <QuestObjective> <!-- Cast Charge on Training Dummy -->
+        <QuestObjective>
           <Objective>UseSpell</Objective>
+          <Count>1</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <UseSpellId>100</UseSpellId>
-          <Count>1</Count>
           <Hotspots>
             <Point>
               <X>-8967.869</X>
@@ -1049,18 +951,16 @@
               <Z>81.50401</Z>
             </Point>
           </Hotspots>
+          <UseSpellId>100</UseSpellId>
           <Range>15</Range>
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- Charging into Battle (Warrior)-->
-
-    <!-- The Hunter's Path (Hunter)-->
     <Quest>
       <Name>The Hunter's Path</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>26917</Id>
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1070,13 +970,12 @@
       <PickUp>43278</PickUp>
       <TurnIn>43278</TurnIn>
       <Objectives>
-        <QuestObjective> <!-- Cast Steady Shot on Training Dummy -->
+        <QuestObjective>
           <Objective>UseSpell</Objective>
+          <Count>5</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <UseSpellId>56641</UseSpellId>
-          <Count>5</Count>
           <Hotspots>
             <Point>
               <X>-8967.869</X>
@@ -1084,17 +983,15 @@
               <Z>81.50401</Z>
             </Point>
           </Hotspots>
+          <UseSpellId>56641</UseSpellId>
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- The Hunter's Path (Hunter)-->
-
-    <!-- Palm of the Tiger (Monk)-->
     <Quest>
       <Name>Palm of the Tiger</Name>
+      <ClassMask>512</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>31142</Id>
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1104,13 +1001,12 @@
       <PickUp>63258</PickUp>
       <TurnIn>63258</TurnIn>
       <Objectives>
-        <QuestObjective> <!-- Cast Jab on Training Dummy to gain one Chi then Tiger Palm -->
+        <QuestObjective>
           <Objective>KillMob</Objective>
+          <Count>-1</Count>
           <Entry>
             <int>44548</int>
           </Entry>
-          <!--UseSpellId>100787</UseSpellId-->
-          <Count>-1</Count>
           <Hotspots>
             <Point>
               <X>-8967.869</X>
@@ -1121,18 +1017,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!-- Palm of the Tiger (Monk)-->
-
-    <!-- No quest 4 for Alliance but not Human -->
-
-    <!-- Quest 5 -->
-
-    <!-- Join the Battle! (Mage)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28784</Id>
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1141,17 +1030,13 @@
       </NeedQuestCompletedId>
       <PickUp>198</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Mage)-->
-
-    <!-- Join the Battle! (Paladin)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28785</Id>
-      <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1160,17 +1045,13 @@
       </NeedQuestCompletedId>
       <PickUp>925</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Paladin)-->
-
-    <!-- Join the Battle! (Priest)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28786</Id>
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1179,17 +1060,13 @@
       </NeedQuestCompletedId>
       <PickUp>375</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Priest)-->
-
-    <!-- Join the Battle! (Rogue)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28787</Id>
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1198,17 +1075,13 @@
       </NeedQuestCompletedId>
       <PickUp>915</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Rogue)-->
-
-    <!-- Join the Battle! (Warlock)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28788</Id>
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1217,17 +1090,13 @@
       </NeedQuestCompletedId>
       <PickUp>459</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Warlock)-->
-
-    <!-- Join the Battle! (Warrior)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28789</Id>
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1236,17 +1105,13 @@
       </NeedQuestCompletedId>
       <PickUp>911</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Warrior)-->
-
-    <!-- Join the Battle! (Hunter)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28780</Id>
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1255,17 +1120,13 @@
       </NeedQuestCompletedId>
       <PickUp>43278</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Hunter)-->
-
-    <!-- Join the Battle! (Monk)-->
     <Quest>
       <Name>Join the Battle!</Name>
+      <ClassMask>512</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>31143</Id>
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1274,16 +1135,12 @@
       </NeedQuestCompletedId>
       <PickUp>63258</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Monk)-->
-
-    <!-- Join the Battle! (Alliance but not Human)-->
     <Quest>
       <Name>Join the Battle!</Name>
-      <Id>29080</Id>
       <RaceMask>18875466</RaceMask>
+      <Id>29080</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1292,31 +1149,25 @@
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>823</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!-- Join the Battle! (Alliance but not Human)-->
-
-    <!-- Quest 6 : They Sent Assassins - Kill 8 Goblin Assassins. (50039) -->
-
-    <!-- They Sent Assassins (Mage)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28792</Id>
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28808</int> <!-- Forced to Paxton quest instead of 28784 -->
+        <int>28808</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1330,25 +1181,23 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Paladin)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28793</Id>
-      <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28809</int> <!-- Forced to Paxton quest instead of 28785 -->
+        <int>28809</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1362,25 +1211,23 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Priest)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28794</Id>
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28810</int> <!-- Forced to Paxton quest instead of 28787 -->
+        <int>28810</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1394,25 +1241,23 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Rogue)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28795</Id>
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28811</int> <!-- Forced to Paxton quest instead of 28787 -->
+        <int>28811</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1426,25 +1271,23 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Warlock)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28796</Id>
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28812</int> <!-- Forced to Paxton quest instead of 28788 -->
+        <int>28812</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1458,25 +1301,23 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Warrior)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28797</Id>
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28813</int> <!-- Forced to Paxton quest instead of 28789 -->
+        <int>28813</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1490,25 +1331,23 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Hunter)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28791</Id>
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28806</int> <!-- Forced to Paxton quest instead of 28780 -->
+        <int>28806</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1522,25 +1361,23 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Monk)-->
     <Quest>
       <Name>They Sent Assassins</Name>
+      <ClassMask>512</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>31144</Id>
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>31143</int> <!-- "Fear no Evil" quest seams to not exist for Monk!!! -->
+        <int>31143</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1554,25 +1391,22 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- They Sent Assassins (Alliance but not Human) -->
-
     <Quest>
       <Name>They Sent Assassins</Name>
-      <Id>29081</Id>
       <RaceMask>18875466</RaceMask>
+      <Id>29081</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>29082</int> <!-- Forced to Paxton quest Alliance -->
+        <int>29082</int>
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 8 -->
+          <Count>-1</Count>
           <Entry>
             <int>50039</int>
           </Entry>
@@ -1586,15 +1420,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Quest 7 : The Rear is Clear - Report to Marshal McBride. (197) -->
-
-    <!-- The Rear is Clear (Mage)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28818</Id>
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1603,16 +1433,13 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Paladin)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28819</Id>
-      <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1621,16 +1448,13 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Priest)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28820</Id>
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1639,16 +1463,13 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Rogue)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28821</Id>
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1657,16 +1478,13 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Warlock)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28822</Id>
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1675,16 +1493,13 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Warrior)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28823</Id>
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1693,16 +1508,13 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Hunter)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28817</Id>
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1711,16 +1523,13 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Monk)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <ClassMask>512</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>31145</Id>
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <RaceMask>1</RaceMask> <!-- Human -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1729,15 +1538,12 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- The Rear is Clear (Alliance but not Human)-->
     <Quest>
       <Name>The Rear is Clear</Name>
+      <RaceMask>18875466</RaceMask>
       <Id>29083</Id>
-      <RaceMask>18875466</RaceMask> <!-- Alliance -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1746,15 +1552,12 @@
       </NeedQuestCompletedId>
       <PickUp>823</PickUp>
       <TurnIn>197</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <!-- Quest 8 : Blackrock Invasion - Recover 8 Blackrock Orc Weapons (item 58361 kill Blackrock Invader (42937)) -->
     <Quest>
       <Name>Blackrock Invasion</Name>
+      <RaceMask>16778317</RaceMask>
       <Id>26389</Id>
-      <RaceMask>16778317</RaceMask> <!-- Alliance -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1774,11 +1577,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>58361</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>42937</int>
           </Entry>
+          <CollectItemId>58361</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-9093.773</X>
@@ -1794,12 +1597,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Quest 9 : Ending the Invasion! - Kill Kurtok the Slayer (42938) -->
     <Quest>
       <Name>Ending the Invasion!</Name>
+      <RaceMask>16778317</RaceMask>
       <Id>26390</Id>
-      <RaceMask>16778317</RaceMask> <!-- Alliance -->
       <QuestLevel>5</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>10</MaxLevel>
@@ -1825,12 +1626,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Quest 10 : Report to Goldshire - Go to Marshal Dughan (240) -->
     <Quest>
       <Name>Report to Goldshire</Name>
+      <RaceMask>16778317</RaceMask>
       <Id>54</Id>
-      <RaceMask>16778317</RaceMask> <!-- Alliance -->
       <QuestLevel>5</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>10</MaxLevel>
@@ -1844,8 +1643,8 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>6774</NpcEntry>
-          <QuestId>37112</QuestId>
           <QuestName>Rest and Relaxation</QuestName>
+          <QuestId>37112</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1869,269 +1668,250 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>295</NpcEntry>
-          <QuestId>37112</QuestId>
           <QuestName>Rest and Relaxation</QuestName>
+          <QuestId>37112</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Other Quests -->
-
-    <!-- Fear No Evil (Mage)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28808</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <ClassMask>128</ClassMask> <!-- Mage -->
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28784</int> <!-- join the battle mage -->
+        <int>28784</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Fear No Evil (Paladin)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28809</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <ClassMask>2</ClassMask> <!-- Paladin -->
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28785</int> <!-- join the battle paladin -->
+        <int>28785</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Fear No Evil (Priest)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28810</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <ClassMask>16</ClassMask> <!-- Priest -->
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28786</int> <!-- join the battle Priest -->
+        <int>28786</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Fear No Evil (Rogue)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28811</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <ClassMask>8</ClassMask> <!-- Rogue -->
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28787</int> <!-- join the battle Rogue -->
+        <int>28787</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Fear No Evil (Warlock)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28812</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <ClassMask>256</ClassMask> <!-- Warlock -->
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28788</int> <!-- join the battle Warlock -->
+        <int>28788</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Fear No Evil (Warrior)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28813</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <ClassMask>1</ClassMask> <!-- Warrior -->
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28789</int> <!-- join the battle Warrior -->
+        <int>28789</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Fear No Evil (Hunter)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
       <Id>28806</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <ClassMask>4</ClassMask> <!-- Hunter -->
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>28780</int> <!-- join the battle Hunter -->
+        <int>28780</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Fear No Evil (Alliance but not Human)-->
     <Quest>
       <Name>Fear No Evil</Name>
+      <RaceMask>18875466</RaceMask>
       <Id>29082</Id>
       <QuestLevel>3</QuestLevel>
-      <RaceMask>18875466</RaceMask>
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>29080</int> <!-- join the battle Alliance -->
+        <int>29080</int>
       </NeedQuestCompletedId>
       <PickUp>951</PickUp>
       <TurnIn>951</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>65733</UseItemId>
+          <Count>4</Count>
           <Entry>
             <int>50047</int>
           </Entry>
-          <Count>4</Count>
-          <WaitMs>2000</WaitMs>
+          <UseItemId>65733</UseItemId>
           <Position>
             <X>-8751.833</X>
             <Y>-154.1666</Y>
             <Z>83.59311</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Extinguishing Hope</Name>
       <Id>26391</Id>
@@ -2153,50 +1933,30 @@
       <TurnIn>9296</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseItem</Objective>
-          <UseItemId>58362</UseItemId>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>8</Count>
           <Entry>
             <int>42940</int>
-          </Entry> <!-- Northshire Vineyards Fire Trigger  -->
-          <Count>-1</Count> <!-- it's 8 but because of bugged Vineyards Fire Triggers, with -1 the bot will do this objectif until the quest is completed -->
-          <WaitMs>6000</WaitMs>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-9093.332</X>
+              <Y>-330.8363</Y>
+              <Z>73.45008</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <IgnoreNotSelectable>true</IgnoreNotSelectable>
+          <UseItemId>58362</UseItemId>
           <Position>
-            <X>-9093.773</X>
-            <Y>-335.1914</Y>
-            <Z>73.45333</Z>
+            <X>-9093.332</X>
+            <Y>-330.8363</Y>
+            <Z>73.45008</Z>
           </Position>
+          <WaitMs>1000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!--Quest>
-      <Name>Rest and Relaxation</Name>
-      <Id>37112</Id> old id: 2158
-      <QuestLevel>5</QuestLevel>
-      <MinLevel>1</MinLevel>
-      <MaxLevel>10</MaxLevel>
-      <PickUp>6774</PickUp>
-      <TurnIn>295</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>-9188.98</X>
-            <Y>-120.2488</Y>
-            <Z>71.22906</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>-9353.46</X>
-            <Y>-42.33495</Y>
-            <Z>64.84639</Z>
-          </Position>
-        </QuestObjective>
-      </Objectives>
-    </Quest-->
-
   </Quests>
-  <Blackspots />
 </QuesterProfile>

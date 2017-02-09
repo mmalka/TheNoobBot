@@ -166,6 +166,16 @@
   </Npc>
   <Npc>
     <Entry>61</Entry>
+    <Name>The Weathered Grave</Name>
+    <Position>
+      <X>-10240.82</X>
+      <Y>356.6033</Y>
+      <Z>50.45659</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>61</Entry>
     <Name>A Weathered Grave</Name>
     <Position>
       <X>-10240.0557</X>
@@ -672,6 +682,26 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>263</Entry>
+    <Name>Lord Ello Ebonlocke</Name>
+    <Position>
+      <X>-10552.57</X>
+      <Y>-1108.681</Y>
+      <Z>31.42893</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>264</Entry>
+    <Name>Commander Althea Ebonlocke </Name>
+    <Position>
+      <X>-10561.29</X>
+      <Y>-1151.804</Y>
+      <Z>28.01503</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>264</Entry>
     <Name>Commander Althea Ebonlocke</Name>
     <Position>
@@ -696,6 +726,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>265</Entry>
+    <Name>Madame Eva</Name>
+    <Position>
+      <X>-10531.75</X>
+      <Y>-1213.396</Y>
+      <Z>28.1176</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>266</Entry>
     <Name>Wiley the Black</Name>
     <Position>
@@ -705,6 +745,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>267</Entry>
+    <Name>Clerk Daltry</Name>
+    <Position>
+      <X>-10561.06</X>
+      <Y>-1122.741</Y>
+      <Z>30.06945</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -729,6 +779,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>268</Entry>
+    <Name>Sirra Von'Indi</Name>
+    <Position>
+      <X>-10576.36</X>
+      <Y>-1126.984</Y>
+      <Z>29.16798</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -759,6 +819,16 @@
     <Entry>272</Entry>
     <Name>Chef Grual</Name>
     <Position>
+      <X>-10499.35</X>
+      <Y>-1157.982</Y>
+      <Z>28.08667</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>272</Entry>
+    <Name>Chef Grual</Name>
+    <Position>
       <X>-10499.3467</X>
       <Y>-1157.98181</Y>
       <Z>28.08667</Z>
@@ -777,6 +847,26 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>273</Entry>
+    <Name>Tavernkeep Smitts</Name>
+    <Position>
+      <X>-10517.46</X>
+      <Y>-1158.649</Y>
+      <Z>28.09952</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>276</Entry>
+    <Name>Viktori Prism'Antras</Name>
+    <Position>
+      <X>-10571.2</X>
+      <Y>-1314.08</Y>
+      <Z>48.92543</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -831,10 +921,30 @@
     <Position>
       <X>-10767.1</X>
       <Y>330.665</Y>
+      <Z>37.52517</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>288</Entry>
+    <Name>Jitters</Name>
+    <Position>
+      <X>-10767.1</X>
+      <Y>330.665</Y>
       <Z>37.5247078</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>289</Entry>
+    <Name>Abercrombie</Name>
+    <Position>
+      <X>-10350.5</X>
+      <Y>-1527.36</Y>
+      <Z>92.64155</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -893,6 +1003,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>302</Entry>
+    <Name>Blind Mary</Name>
+    <Position>
+      <X>-10784.4</X>
+      <Y>-1381.21</Y>
+      <Z>39.71891</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1312,6 +1432,16 @@
     <Entry>469</Entry>
     <Name>Lieutenant Doren</Name>
     <Position>
+      <X>-11296.86</X>
+      <Y>-206.6889</Y>
+      <Z>75.89813</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>469</Entry>
+    <Name>Lieutenant Doren</Name>
+    <Position>
       <X>-11296.8555</X>
       <Y>-206.688919</Y>
       <Z>75.8982239</Z>
@@ -1392,6 +1522,16 @@
     <Entry>576</Entry>
     <Name>Watcher Ladimore</Name>
     <Position>
+      <X>-10560.83</X>
+      <Y>-1178.881</Y>
+      <Z>27.94899</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>576</Entry>
+    <Name>Watcher Ladimore</Name>
+    <Position>
       <X>-10550.3418</X>
       <Y>-1199.53943</Y>
       <Z>27.5104446</Z>
@@ -1430,10 +1570,30 @@
     <Position>
       <X>-10598.7</X>
       <Y>-1202.16</Y>
+      <Z>28.4985</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>661</Entry>
+    <Name>Jonathan Carevin</Name>
+    <Position>
+      <X>-10598.7</X>
+      <Y>-1202.16</Y>
       <Z>28.4985161</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>663</Entry>
+    <Name>Calor</Name>
+    <Position>
+      <X>-10580.9</X>
+      <Y>-1200.49</Y>
+      <Z>27.60525</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1472,6 +1632,26 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>715</Entry>
+    <Name>Hemet Nesingwary Jr.</Name>
+    <Position>
+      <X>-11646.52</X>
+      <Y>-66.84008</Y>
+      <Z>16.23865</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>716</Entry>
+    <Name>Barnil Steinkrug</Name>
+    <Position>
+      <X>-11621.53</X>
+      <Y>-70.29166</Y>
+      <Z>16.23964</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>716</Entry>
     <Name>Barnil Stonepot</Name>
     <Position>
@@ -1480,6 +1660,16 @@
       <Z>16.24108</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>717</Entry>
+    <Name>Ajeck Rouack</Name>
+    <Position>
+      <X>-11636.22</X>
+      <Y>-80.82813</Y>
+      <Z>16.23964</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1495,6 +1685,16 @@
   </Npc>
   <Npc>
     <Entry>718</Entry>
+    <Name>Sire S. J. Erlgadin</Name>
+    <Position>
+      <X>-11625.49</X>
+      <Y>-48.63889</Y>
+      <Z>16.23934</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>718</Entry>
     <Name>Sir S. J. Erlgadin</Name>
     <Position>
       <X>-11625.4863</X>
@@ -1502,6 +1702,16 @@
       <Z>16.2398663</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>733</Entry>
+    <Name>Sergeant Yohwa</Name>
+    <Position>
+      <X>-11310.41</X>
+      <Y>-205.1148</Y>
+      <Z>75.17924</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1529,6 +1739,26 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>739</Entry>
+    <Name>Brother Nimetz</Name>
+    <Position>
+      <X>-11320.17</X>
+      <Y>-193.3374</Y>
+      <Z>76.14473</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>770</Entry>
+    <Name>Corporal Kaleb</Name>
+    <Position>
+      <X>-11309.14</X>
+      <Y>-187.4311</Y>
+      <Z>75.46924</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>770</Entry>
     <Name>Corporal Kaleb</Name>
     <Position>
@@ -1538,6 +1768,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>773</Entry>
+    <Name>Krazek</Name>
+    <Position>
+      <X>-11649</X>
+      <Y>-43.9358</Y>
+      <Z>16.23899</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1699,6 +1939,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>888</Entry>
+    <Name>Watcher Dodds</Name>
+    <Position>
+      <X>-10923.2</X>
+      <Y>-384.9283</Y>
+      <Z>39.251</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2734,6 +2984,16 @@
     <Entry>1422</Entry>
     <Name>Corporal Sethman</Name>
     <Position>
+      <X>-11312.99</X>
+      <Y>-182.6012</Y>
+      <Z>75.23149</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1422</Entry>
+    <Name>Corporal Sethman</Name>
+    <Position>
       <X>-11312.9893</X>
       <Y>-182.601181</Y>
       <Z>75.23084</Z>
@@ -3581,6 +3841,16 @@
   </Npc>
   <Npc>
     <Entry>2083</Entry>
+    <Name>Blutsegelkorrespondenz</Name>
+    <Position>
+      <X>-14126.2</X>
+      <Y>480.146</Y>
+      <Z>2.43849</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2083</Entry>
     <Name>Syral Bladeleaf</Name>
     <Position>
       <X>-14126.2</X>
@@ -4106,6 +4376,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>2409</Entry>
+    <Name>Felicia Maline</Name>
+    <Position>
+      <X>-10513.82</X>
+      <Y>-1258.79</Y>
+      <Z>41.43153</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>2410</Entry>
     <Name>Magus Wordeen Voidglare</Name>
     <Position>
@@ -4214,6 +4494,16 @@
   </Npc>
   <Npc>
     <Entry>2487</Entry>
+    <Name>Flottenmeister Seehorn</Name>
+    <Position>
+      <X>-14444.77</X>
+      <Y>486.8108</Y>
+      <Z>28.72227</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2487</Entry>
     <Name>Fleet Master Seahorn</Name>
     <Position>
       <X>-14444.6953</X>
@@ -4232,6 +4522,16 @@
       <Z>26.2747478</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2490</Entry>
+    <Name>Erster Maat Krazz</Name>
+    <Position>
+      <X>-14411.1</X>
+      <Y>427.967</Y>
+      <Z>8.86894</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4265,6 +4565,26 @@
       <Z>16.2401638</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2495</Entry>
+    <Name>Drizzlik</Name>
+    <Position>
+      <X>-11656.77</X>
+      <Y>-46.35352</Y>
+      <Z>16.2379</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2496</Entry>
+    <Name>Baron Revilgaz</Name>
+    <Position>
+      <X>-14439</X>
+      <Y>483.483</Y>
+      <Z>28.84415</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4303,6 +4623,16 @@
   </Npc>
   <Npc>
     <Entry>2500</Entry>
+    <Name>Kapitän Hecklebury Smotts</Name>
+    <Position>
+      <X>-14300.4</X>
+      <Y>517.43</Y>
+      <Z>8.700215</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2500</Entry>
     <Name>Captain Hecklebury Smotts</Name>
     <Position>
       <X>-14300.4</X>
@@ -4314,6 +4644,16 @@
   </Npc>
   <Npc>
     <Entry>2501</Entry>
+    <Name>Seewolf MacKinley</Name>
+    <Position>
+      <X>-14447.4</X>
+      <Y>448.002</Y>
+      <Z>15.63581</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2501</Entry>
     <Name>"Sea Wolf" MacKinley</Name>
     <Position>
       <X>-14447.4</X>
@@ -4321,6 +4661,16 @@
       <Z>15.6340647</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2502</Entry>
+    <Name>Zitterhand Phillipe</Name>
+    <Position>
+      <X>-14297.77</X>
+      <Y>508.8956</Y>
+      <Z>8.964228</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4418,6 +4768,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>2548</Entry>
+    <Name>Käpt'n Kielhol</Name>
+    <Position>
+      <X>-14923.15</X>
+      <Y>357.066</Y>
+      <Z>7.541321</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>2549</Entry>
     <Name>Garr Salthoof</Name>
     <Position>
@@ -4495,6 +4855,16 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2634</Entry>
+    <Name>Prinzessin Poobah</Name>
+    <Position>
+      <X>-14596.72</X>
+      <Y>-237.9673</Y>
+      <Z>24.79353</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>2652</Entry>
@@ -4795,6 +5165,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2859</Entry>
+    <Name>Gyll</Name>
+    <Position>
+      <X>-14477.9</X>
+      <Y>464.101</Y>
+      <Z>36.38107</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -7452,6 +7832,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>4083</Entry>
+    <Name>Linzi Hackschlag</Name>
+    <Position>
+      <X>-13626.7</X>
+      <Y>-77.9288</Y>
+      <Z>35.24041</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>4087</Entry>
     <Name>Arias'ta Bladesinger</Name>
     <Position>
@@ -8494,6 +8884,17 @@
       <Z>35.03882</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5089</Entry>
+    <Name>Balos Jacken</Name>
+    <Position>
+      <X>-3934.26</X>
+      <Y>-2869.76</Y>
+      <Z>51.22113</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -13332,18 +13733,6 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
       <Z>-31.1677113</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -13356,7 +13745,31 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-166.801468</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>103.496796</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13381,18 +13794,6 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>-333.8926</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -15493,11 +15894,93 @@
     <Position>
       <X>8700.384</X>
       <Y>-6638.356</Y>
+      <Z>72.74538</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15397</Entry>
+    <Name>Marniel Amberlight</Name>
+    <Position>
+      <X>8700.384</X>
+      <Y>-6638.356</Y>
       <Z>72.74638</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15398</Entry>
+    <Name>Larianna Riverwind</Name>
+    <Position>
+      <X>8414.192</X>
+      <Y>-6165.001</Y>
+      <Z>61.3132</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15399</Entry>
+    <Name>Lieutenant Dawnrunner</Name>
+    <Position>
+      <X>8980.838</X>
+      <Y>-7458.359</Y>
+      <Z>86.68749</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15400</Entry>
+    <Name>Arathel Sunforge</Name>
+    <Position>
+      <X>8986.426</X>
+      <Y>-7419.066</Y>
+      <Z>89.40356</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15401</Entry>
+    <Name>Ley-Keeper Velania</Name>
+    <Position>
+      <X>9155.777</X>
+      <Y>-6294.84</Y>
+      <Z>21.04746</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15401</Entry>
+    <Name>Ley-Keeper Velania</Name>
+    <Position>
+      <X>9155.777</X>
+      <Y>-6294.84</Y>
+      <Z>21.0471745</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15402</Entry>
+    <Name>Apprentice Mirveda</Name>
+    <Position>
+      <X>8711.104</X>
+      <Y>-7160.939</Y>
+      <Z>43.43666</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15403</Entry>
+    <Name>Aeldon Sunbrand</Name>
+    <Position>
+      <X>9531.329</X>
+      <Y>-6859.755</Y>
+      <Z>18.69419</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>15403</Entry>
@@ -15510,6 +15993,58 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15404</Entry>
+    <Name>Velendris Whitemorn</Name>
+    <Position>
+      <X>8849.254</X>
+      <Y>-6278.24</Y>
+      <Z>7.93905</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15405</Entry>
+    <Name>Ley-Keeper Caidanis</Name>
+    <Position>
+      <X>9297.129</X>
+      <Y>-6685.434</Y>
+      <Z>22.44735</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15405</Entry>
+    <Name>Ley-Keeper Caidanis</Name>
+    <Position>
+      <X>9297.129</X>
+      <Y>-6685.434</Y>
+      <Z>22.4473114</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15406</Entry>
+    <Name>Ven'jashi</Name>
+    <Position>
+      <X>8666.612</X>
+      <Y>-7960.889</Y>
+      <Z>151.793</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15416</Entry>
+    <Name>Ranger Jaela</Name>
+    <Position>
+      <X>9374.839</X>
+      <Y>-6966.576</Y>
+      <Z>18.07898</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>15416</Entry>
@@ -15529,6 +16064,16 @@
     <Position>
       <X>8755.612</X>
       <Y>-6690.053</Y>
+      <Z>69.60408</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15417</Entry>
+    <Name>Velan Brightoak</Name>
+    <Position>
+      <X>8755.612</X>
+      <Y>-6690.053</Y>
       <Z>69.60472</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -15541,11 +16086,31 @@
     <Position>
       <X>9521.166</X>
       <Y>-6814.851</Y>
+      <Z>16.49381</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15418</Entry>
+    <Name>Magister Jaronis</Name>
+    <Position>
+      <X>9521.166</X>
+      <Y>-6814.851</Y>
       <Z>16.4933929</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15433</Entry>
+    <Name>Innkeeper Delaniel</Name>
+    <Position>
+      <X>9476.913</X>
+      <Y>-6859.21</Y>
+      <Z>17.34336</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>15433</Entry>
@@ -15730,6 +16295,36 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>15920</Entry>
+    <Name>Hathvelion Sungaze</Name>
+    <Position>
+      <X>9126.176</X>
+      <Y>-5978.244</Y>
+      <Z>33.78593</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15921</Entry>
+    <Name>Captain Kelisendra</Name>
+    <Position>
+      <X>8854.16</X>
+      <Y>-6278.027</Y>
+      <Z>7.790288</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15924</Entry>
+    <Name>Apprentice Loralthalis</Name>
+    <Position>
+      <X>9185.402</X>
+      <Y>-7827.135</Y>
+      <Z>98.36075</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>15924</Entry>
     <Name>Apprentice Loralthalis</Name>
     <Position>
@@ -15746,12 +16341,42 @@
     <Name>Ranger Degolien</Name>
     <Position>
       <X>8716.27</X>
+      <Y>-6622.223</Y>
+      <Z>80.6827</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15939</Entry>
+    <Name>Ranger Degolien</Name>
+    <Position>
+      <X>8716.27</X>
       <Y>-6622.22266</Y>
       <Z>80.68095</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15941</Entry>
+    <Name>Apprentice Ralen</Name>
+    <Position>
+      <X>9188.763</X>
+      <Y>-6712.909</Y>
+      <Z>25.91426</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15942</Entry>
+    <Name>Ranger Sareyn</Name>
+    <Position>
+      <X>8684.63</X>
+      <Y>-6798.709</Y>
+      <Z>94.01613</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>15942</Entry>
@@ -15766,6 +16391,36 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>15945</Entry>
+    <Name>Apprentice Meledor</Name>
+    <Position>
+      <X>9037.787</X>
+      <Y>-6697.619</Y>
+      <Z>12.56303</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15951</Entry>
+    <Name>Magister Duskwither</Name>
+    <Position>
+      <X>9026.355</X>
+      <Y>-7458.026</Y>
+      <Z>103.2739</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15969</Entry>
+    <Name>Groundskeeper Wyllithen</Name>
+    <Position>
+      <X>9500.106</X>
+      <Y>-7871.476</Y>
+      <Z>16.12427</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>15969</Entry>
     <Name>Groundskeeper Wyllithen</Name>
     <Position>
@@ -15776,6 +16431,16 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15970</Entry>
+    <Name>Instructor Antheol</Name>
+    <Position>
+      <X>9251.979</X>
+      <Y>-7230.74</Y>
+      <Z>16.39206</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>15970</Entry>
@@ -15902,6 +16567,26 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>16144</Entry>
+    <Name>Lord Saltheril</Name>
+    <Position>
+      <X>8626.605</X>
+      <Y>-6366.057</Y>
+      <Z>55.39391</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16183</Entry>
+    <Name>Courier Dawnstrider</Name>
+    <Position>
+      <X>8119.714</X>
+      <Y>-6899.624</Y>
+      <Z>70.759</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>16183</Entry>
     <Name>Courier Dawnstrider</Name>
     <Position>
@@ -15936,6 +16621,26 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16191</Entry>
+    <Name>Sathren Azuredawn</Name>
+    <Position>
+      <X>9580.713</X>
+      <Y>-7054.052</Y>
+      <Z>18.64527</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16192</Entry>
+    <Name>Skymistress Gloaming</Name>
+    <Position>
+      <X>9376.08</X>
+      <Y>-7165.447</Y>
+      <Z>8.966657</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>16192</Entry>
@@ -16056,6 +16761,16 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16210</Entry>
+    <Name>Magistrix Landra Dawnstrider</Name>
+    <Position>
+      <X>8718.337</X>
+      <Y>-6655.903</Y>
+      <Z>72.7548</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>16210</Entry>
@@ -16194,6 +16909,16 @@
     <Position>
       <X>8692.212</X>
       <Y>-6639.568</Y>
+      <Z>72.74641</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16261</Entry>
+    <Name>Sathiel</Name>
+    <Position>
+      <X>8692.212</X>
+      <Y>-6639.568</Y>
       <Z>72.74537</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -16308,6 +17033,16 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>16362</Entry>
+    <Name>Runewarden Deryan</Name>
+    <Position>
+      <X>8235.502</X>
+      <Y>-6664.062</Y>
+      <Z>84.47708</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>16365</Entry>
     <Name>Master Craftsman Omarion</Name>
     <Position>
@@ -16327,6 +17062,16 @@
       <Z>81.86624</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16397</Entry>
+    <Name>Ardeyn Riverwind</Name>
+    <Position>
+      <X>8703.898</X>
+      <Y>-6633.561</Y>
+      <Z>72.74507</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -17052,6 +17797,16 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16924</Entry>
+    <Name>Sergeant Kan'ren</Name>
+    <Position>
+      <X>9512.21</X>
+      <Y>-6840.163</Y>
+      <Z>16.49344</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>16924</Entry>
@@ -17984,6 +18739,16 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>17849</Entry>
+    <Name>Slain Outrunner</Name>
+    <Position>
+      <X>9870.997</X>
+      <Y>-6557.191</Y>
+      <Z>10.29913</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>17849</Entry>
@@ -19906,6 +20671,16 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>19456</Entry>
+    <Name>Whitebark's Spirit</Name>
+    <Position>
+      <X>8203.438</X>
+      <Y>-6327.629</Y>
+      <Z>64.50932</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>19466</Entry>
     <Name>Exarch Orelis</Name>
     <Position>
@@ -21738,18 +22513,6 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>-123.336624</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-4243.21338</X>
-      <Y>323.120758</Y>
       <Z>27.8561249</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -21763,6 +22526,18 @@
       <X>-4243.21338</X>
       <Y>323.120758</Y>
       <Z>106.571053</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21060</Entry>
+    <Name>Esprit de l'air enragé</Name>
+    <Position>
+      <X>-4243.21338</X>
+      <Y>323.120758</Y>
+      <Z>-123.336624</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21798,7 +22573,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21810,7 +22585,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -39267,6 +40042,26 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>42736</Entry>
+    <Name>Lashtail Hatchling</Name>
+    <Position>
+      <X>-11313.22</X>
+      <Y>-197.1888</Y>
+      <Z>76.30916</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>42790</Entry>
+    <Name>Bloodlord Mandokir</Name>
+    <Position>
+      <X>-11307.7</X>
+      <Y>-191.165</Y>
+      <Z>75.47125</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>42811</Entry>
     <Name>Surkhan</Name>
     <Position>
@@ -39476,6 +40271,36 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43042</Entry>
+    <Name>Robert Rhodes</Name>
+    <Position>
+      <X>-12823.31</X>
+      <Y>-414.4375</Y>
+      <Z>12.9671</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43043</Entry>
+    <Name>Colin Flinkhammer</Name>
+    <Position>
+      <X>-13601.3</X>
+      <Y>-91.0451</Y>
+      <Z>38.68172</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43045</Entry>
+    <Name>Jakob Windstill</Name>
+    <Position>
+      <X>-11340.74</X>
+      <Y>-218.7031</Y>
+      <Z>75.21392</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>43062</Entry>
@@ -39984,6 +40809,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>43453</Entry>
+    <Name>Tobias Mistmantle</Name>
+    <Position>
+      <X>-10511.84</X>
+      <Y>-1301.943</Y>
+      <Z>41.29002</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>43454</Entry>
     <Name>"Good-Boy" Bruce</Name>
     <Position>
@@ -40064,6 +40899,16 @@
     <Position>
       <X>-14004.5</X>
       <Y>378.8</Y>
+      <Z>30.86202</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43504</Entry>
+    <Name>Yancey Grillsen</Name>
+    <Position>
+      <X>-14004.5</X>
+      <Y>378.8</Y>
       <Z>30.8609142</Z>
     </Position>
     <Type>QuestGiver</Type>
@@ -40127,6 +40972,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>43697</Entry>
+    <Name>John Shelby</Name>
+    <Position>
+      <X>-10732.7</X>
+      <Y>264.283</Y>
+      <Z>42.37257</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>43701</Entry>
     <Name>Brolan Galebeard</Name>
     <Position>
@@ -40136,6 +40991,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43730</Entry>
+    <Name>Oliver Harris</Name>
+    <Position>
+      <X>-10754.7</X>
+      <Y>338.823</Y>
+      <Z>37.2576</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40156,10 +41021,30 @@
     <Position>
       <X>-10757.5</X>
       <Y>292.533</Y>
+      <Z>39.54087</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43731</Entry>
+    <Name>Sister Elsington</Name>
+    <Position>
+      <X>-10757.5</X>
+      <Y>292.533</Y>
       <Z>39.5402565</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43738</Entry>
+    <Name>Apprentice Fess</Name>
+    <Position>
+      <X>-10930.3</X>
+      <Y>-379.55</Y>
+      <Z>39.53949</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40252,6 +41137,16 @@
     <Position>
       <X>-11305.2</X>
       <Y>-188.778</Y>
+      <Z>75.5318</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43884</Entry>
+    <Name>Osborn Obnoticus</Name>
+    <Position>
+      <X>-11305.2</X>
+      <Y>-188.778</Y>
       <Z>75.53174</Z>
     </Position>
     <Faction>Alliance</Faction>
@@ -40266,8 +41161,28 @@
       <Y>-210.722</Y>
       <Z>76.14243</Z>
     </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43885</Entry>
+    <Name>Emerine Junis</Name>
+    <Position>
+      <X>-11299.2</X>
+      <Y>-210.722</Y>
+      <Z>76.14243</Z>
+    </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43886</Entry>
+    <Name>Berrin Burnquill</Name>
+    <Position>
+      <X>-11345</X>
+      <Y>-223.418</Y>
+      <Z>75.65723</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40340,6 +41255,16 @@
   </Npc>
   <Npc>
     <Entry>44017</Entry>
+    <Name>Priesterin Thaalia</Name>
+    <Position>
+      <X>-12841.1</X>
+      <Y>-447.958</Y>
+      <Z>12.9662</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44017</Entry>
     <Name>Priestess Thaalia</Name>
     <Position>
       <X>-12841.1</X>
@@ -40356,10 +41281,30 @@
     <Position>
       <X>-12828.8</X>
       <Y>-444.807</Y>
+      <Z>12.96725</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44018</Entry>
+    <Name>Wulfred Harrys</Name>
+    <Position>
+      <X>-12828.8</X>
+      <Y>-444.807</Y>
       <Z>12.9672232</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44019</Entry>
+    <Name>Livingston Marschall</Name>
+    <Position>
+      <X>-12846.1</X>
+      <Y>-437.988</Y>
+      <Z>12.96758</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40372,6 +41317,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44021</Entry>
+    <Name>Ghaliri</Name>
+    <Position>
+      <X>-12843</X>
+      <Y>-415.333</Y>
+      <Z>12.96867</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40393,9 +41348,29 @@
       <Y>-6651.69</Y>
       <Z>70.21613</Z>
     </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44036</Entry>
+    <Name>Skymaster Brightdawn</Name>
+    <Position>
+      <X>8743.85</X>
+      <Y>-6651.69</Y>
+      <Z>70.21613</Z>
+    </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44043</Entry>
+    <Name>Kinnel</Name>
+    <Position>
+      <X>-12828.25</X>
+      <Y>-436.6487</Y>
+      <Z>12.96671</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>44043</Entry>
@@ -40419,6 +41394,16 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44082</Entry>
+    <Name>Bronwyn Hackschlag</Name>
+    <Position>
+      <X>-13634.6</X>
+      <Y>-71.5122</Y>
+      <Z>35.24102</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>44082</Entry>
@@ -40450,9 +41435,29 @@
     <Position>
       <X>-13627.5</X>
       <Y>-86.5521</Y>
+      <Z>35.23944</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44084</Entry>
+    <Name>Maywiki</Name>
+    <Position>
+      <X>-13627.5</X>
+      <Y>-86.5521</Y>
       <Z>35.2394371</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44099</Entry>
+    <Name>Dask "Der Kolben" Fusselmaul</Name>
+    <Position>
+      <X>-13619.7</X>
+      <Y>-74.0313</Y>
+      <Z>35.23997</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40465,6 +41470,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44100</Entry>
+    <Name>Goris</Name>
+    <Position>
+      <X>-13632.4</X>
+      <Y>-52.1181</Y>
+      <Z>35.23846</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40489,6 +41504,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44112</Entry>
+    <Name>Airwyn Bantamflax</Name>
+    <Position>
+      <X>-14442.82</X>
+      <Y>433.4705</Y>
+      <Z>16.82097</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -41612,6 +42637,17 @@
     <Entry>45400</Entry>
     <Name>Fiona's Caravan</Name>
     <Position>
+      <X>1842.14929</X>
+      <Y>-3698.72925</Y>
+      <Z>158.68248</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45400</Entry>
+    <Name>Fiona's Caravan</Name>
+    <Position>
       <X>1915.03</X>
       <Y>-2641.71</Y>
       <Z>59.6371574</Z>
@@ -41626,6 +42662,17 @@
       <X>3164.34</X>
       <Y>-4326.89</Y>
       <Z>132.768677</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45417</Entry>
+    <Name>Fiona</Name>
+    <Position>
+      <X>1845.88</X>
+      <Y>-3692.61</Y>
+      <Z>158.710556</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -41681,6 +42728,28 @@
       <X>1692.83</X>
       <Y>-3027.97</Y>
       <Z>77.35799</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45429</Entry>
+    <Name>Tarenar Sunstrike</Name>
+    <Position>
+      <X>1853.47</X>
+      <Y>-3708.96</Y>
+      <Z>160.585556</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45431</Entry>
+    <Name>Gidwin Goldbraids</Name>
+    <Position>
+      <X>1863.45825</X>
+      <Y>-3697.856</Y>
+      <Z>158.398621</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -41842,6 +42911,17 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>45574</Entry>
+    <Name>Vex'tul</Name>
+    <Position>
+      <X>2324</X>
+      <Y>-4414.97</Y>
+      <Z>95.85381</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>45575</Entry>
     <Name>Frederick Calston</Name>
     <Position>
@@ -41920,6 +43000,29 @@
       <Z>126.792305</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45729</Entry>
+    <Name>Tarenar Sunstrike</Name>
+    <Position>
+      <X>3169.657</X>
+      <Y>-4324.435</Y>
+      <Z>133.098</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45730</Entry>
+    <Name>Gidwin Goldbraids</Name>
+    <Position>
+      <X>3008.11</X>
+      <Y>-3434.52</Y>
+      <Z>151.1581</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -51287,7 +52390,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>706.5976</Z>
+      <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -51298,7 +52401,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>593.3703</Z>
+      <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -68309,6 +69412,17 @@
     <Name>King Anduin Wrynn</Name>
     <Position>
       <X>-8363.292</X>
+      <Y>232.5469</Y>
+      <Z>156.9912</Z>
+    </Position>
+    <Type>FlightMaster</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107574</Entry>
+    <Name>King Anduin Wrynn</Name>
+    <Position>
+      <X>-8363.292</X>
       <Y>232.546875</Y>
       <Z>157.0733</Z>
     </Position>
@@ -70195,6 +71309,16 @@
     <Name>Wanted: Thaelis the Hungerer</Name>
     <Position>
       <X>9521.192</X>
+      <Y>-6860.127</Y>
+      <Z>18.72193</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>180918</Entry>
+    <Name>Wanted: Thaelis the Hungerer</Name>
+    <Position>
+      <X>9521.192</X>
       <Y>-6860.12744</Y>
       <Z>18.7219276</Z>
     </Position>
@@ -70213,6 +71337,16 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>181011</Entry>
+    <Name>Magister Duskwither's Journal</Name>
+    <Position>
+      <X>9331.203</X>
+      <Y>-7896.826</Y>
+      <Z>158.4441</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>181095</Entry>
@@ -72179,6 +73313,16 @@
       <Z>0.163271</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>204406</Entry>
+    <Name>Halb vergrabene Flasche</Name>
+    <Position>
+      <X>-14237.89</X>
+      <Y>-31.45903</Y>
+      <Z>2.844468</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>

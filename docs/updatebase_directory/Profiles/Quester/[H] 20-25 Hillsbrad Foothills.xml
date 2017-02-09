@@ -1263,7 +1263,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
-          <WaitMs>50000</WaitMs>
+          <WaitMs>60000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
