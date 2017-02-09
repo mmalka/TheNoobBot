@@ -128,6 +128,8 @@ dtNode* dtNodePool::getNode(dtPolyRef id, unsigned char state)
 		if (m_nodes[i].id == id && m_nodes[i].state == state)
 			return &m_nodes[i];
 		i = m_next[i];
+		if (i == m_next[i])
+			break;
 	}
 	
 	if (m_nodeCount >= m_maxNodes)
