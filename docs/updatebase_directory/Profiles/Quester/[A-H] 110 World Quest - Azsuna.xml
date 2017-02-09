@@ -2852,6 +2852,90 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>WANTED: Brogozog</Name>
+      <Id>43607</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-232.756</X>
+        <Y>5929.077</Y>
+        <Z>165.9512</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Entry>
+            <int>91097</int> <!-- Tehd Shoemaker -->
+          </Entry> 
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          <Position>
+            <X>-232.756</X>
+            <Y>5929.077</Y>
+            <Z>165.9512</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>91100</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-232.756</X>
+              <Y>5929.077</Y>
+              <Z>165.9512</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Brogozog</Name>
+      <Id>43426</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-232.756</X>
+        <Y>5929.077</Y>
+        <Z>165.9512</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Entry>
+            <int>91097</int> <!-- Tehd Shoemaker -->
+          </Entry> 
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          <Position>
+            <X>-232.756</X>
+            <Y>5929.077</Y>
+            <Z>165.9512</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>91100</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-232.756</X>
+              <Y>5929.077</Y>
+              <Z>165.9512</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
   <Blackspots>
     <QuesterBlacklistRadius>
