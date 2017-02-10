@@ -1472,6 +1472,10 @@ namespace nManager.Wow.Bot.States
                             }
                             // we already did the check prior to that, so let's assume it's correct.
                         }
+                        float currentTransportMidDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayInLift);
+                        if (currentTransportMidDistance > bestTransportDistance)
+                            continue; // Do not waste time on parsing wayOff if wayIn is already longer.
+
                         if (!transport.UseBLift)
                         {
                             wayOff = PathFinder.FindPath(travelTo, transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
