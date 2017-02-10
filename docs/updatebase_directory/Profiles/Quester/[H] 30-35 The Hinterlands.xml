@@ -516,6 +516,7 @@
             </Point>
           </Hotspots>
           <Script>=UseItemWithHotSpots.cs</Script>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <IgnoreNotSelectable>true</IgnoreNotSelectable>
           <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <UseItemId>58209</UseItemId>
@@ -695,6 +696,7 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -718,6 +720,7 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -749,6 +752,7 @@
               <Z>195.1989</Z>
             </Point>
           </Hotspots>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -797,6 +801,7 @@
           <Entry>
             <int>42624</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-233.8118</X>
             <Y>-4183.007</Y>
@@ -829,6 +834,7 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -855,6 +861,7 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -955,6 +962,7 @@
           <Entry>
             <int>42624</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-233.2735</X>
             <Y>-4181.741</Y>
@@ -977,6 +985,7 @@
               <Z>230.5652</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1021,6 +1030,7 @@
           <Entry>
             <int>42624</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-236.5722</X>
             <Y>-4183.844</Y>
@@ -1045,6 +1055,7 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1160,15 +1171,6 @@
         <Y>-4175.535</Y>
         <Z>139.7303</Z>
       </Position>
-      <Radius>25</Radius>
-    </QuesterBlacklistRadius>
-    <QuesterBlacklistRadius>
-      <Position>
-        <X>-255.9045</X>
-        <Y>-4091.342</Y>
-        <Z>154.6799</Z>
-      </Position>
-      <Radius>25</Radius>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

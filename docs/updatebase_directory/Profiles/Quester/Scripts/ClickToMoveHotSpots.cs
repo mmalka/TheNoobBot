@@ -4,7 +4,7 @@ if(!MovementManager.InMovement)
 	//Logging.Write(questObjective.Hotspots[listP.Count-1].DistanceTo(ObjectManager.Me.Position).ToString());
 	if (questObjective.Position.IsValid && questObjective.Hotspots[questObjective.Hotspots.Count-1].DistanceTo(ObjectManager.Me.Position) > 5f)
 	{ 
-		Logging.Write("enter objectif 1");
+		Logging.Write("Moving with ClickToMove");
 		MountTask.Mount();
 		System.Threading.Thread.Sleep(2000);
 		var listP = new List<Point>();
@@ -19,7 +19,7 @@ if(!MovementManager.InMovement)
 	}
 	if (questObjective.Hotspots[questObjective.Hotspots.Count-1].DistanceTo(ObjectManager.Me.Position) <= 5f)
 	{
-		Logging.Write("Completed");
+		Logging.Write("Position Reached");
         questObjective.IsObjectiveCompleted = true; 
 		return true;
     }

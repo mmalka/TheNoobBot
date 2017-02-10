@@ -1,207 +1,224 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questers>
     <Npc>
-      <Name>Marshal Dughan</Name>
       <Entry>240</Entry>
+      <Name>Marshal Dughan</Name>
       <Position>
         <X>-9465.521</X>
         <Y>74.00694</Y>
         <Z>56.59651</Z>
       </Position>
       <Faction>Alliance</Faction>
-      <Type>None</Type>
       <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Lieutenant Horatio Laine</Name>
       <Entry>42308</Entry>
+      <Name>Lieutenant Horatio Laine</Name>
       <Position>
         <X>-9849.801</X>
         <Y>915.1215</Y>
         <Z>30.28275</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Two-Shoed Lou</Name>
       <Entry>42405</Entry>
+      <Name>Two-Shoed Lou</Name>
       <Position>
         <X>-9852.321</X>
         <Y>1278.76</Y>
         <Z>40.91484</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jimb "Candles" McHannigan</Name>
       <Entry>42498</Entry>
+      <Name>Jimb "Candles" McHannigan</Name>
       <Position>
         <X>-9857.424</X>
         <Y>1281.175</Y>
         <Z>41.00282</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Lieutenant Horatio Laine</Name>
       <Entry>42558</Entry>
+      <Name>Lieutenant Horatio Laine</Name>
       <Position>
         <X>-9855.285</X>
         <Y>1275.561</Y>
         <Z>40.89561</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Farmer Saldean</Name>
       <Entry>233</Entry>
+      <Name>Farmer Saldean</Name>
       <Position>
         <X>-10128.7</X>
         <Y>1055.21</Y>
         <Z>36.25076</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Mama Celeste</Name>
       <Entry>42497</Entry>
+      <Name>Mama Celeste</Name>
       <Position>
         <X>-9846.435</X>
         <Y>1282.747</Y>
         <Z>41.88733</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Salma Saldean</Name>
       <Entry>235</Entry>
+      <Name>Salma Saldean</Name>
       <Position>
         <X>-10112.16</X>
         <Y>1042.099</Y>
         <Z>37.47038</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Hope Saldean</Name>
       <Entry>42575</Entry>
+      <Name>Hope Saldean</Name>
       <Position>
         <X>-10499.07</X>
         <Y>1022.682</Y>
         <Z>60.52831</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Captain Danuvin</Name>
       <Entry>821</Entry>
+      <Name>Captain Danuvin</Name>
       <Position>
         <X>-10509.97</X>
         <Y>1040.674</Y>
         <Z>60.51789</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Marshal Gryan Stoutmantle </Name>
       <Entry>234</Entry>
+      <Name>Marshal Gryan Stoutmantle </Name>
       <Position>
         <X>-10508.79</X>
         <Y>1045.233</Y>
         <Z>60.51798</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Agent Kearnen</Name>
       <Entry>7024</Entry>
+      <Name>Agent Kearnen</Name>
       <Position>
         <X>-11042.13</X>
         <Y>625.1042</Y>
         <Z>36.90501</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Captain Alpert</Name>
       <Entry>42425</Entry>
+      <Name>Captain Alpert</Name>
       <Position>
         <X>-10896.19</X>
         <Y>1543.047</Y>
         <Z>54.64977</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Thoralius the Wise</Name>
       <Entry>42651</Entry>
+      <Name>Thoralius the Wise</Name>
       <Position>
         <X>-10917.14</X>
         <Y>1512.413</Y>
         <Z>50.74065</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Captain Grayson</Name>
       <Entry>392</Entry>
+      <Name>Captain Grayson</Name>
       <Position>
         <X>-11397.82</X>
         <Y>1949.042</Y>
         <Z>10.01396</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Scout Galiaan</Name>
       <Entry>878</Entry>
+      <Name>Scout Galiaan</Name>
       <Position>
         <X>-10504.72</X>
         <Y>1042.872</Y>
         <Z>60.51788</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Captain's Footlocker</Name>
       <Entry>35</Entry>
+      <Name>Captain's Footlocker</Name>
       <Position>
         <X>-10514.25</X>
         <Y>2109.988</Y>
         <Z>2.688241</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Broken Barrel</Name>
       <Entry>36</Entry>
+      <Name>Broken Barrel</Name>
       <Position>
         <X>-10515.17</X>
         <Y>1598.615</Y>
         <Z>27.6535</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Old Jug</Name>
       <Entry>34</Entry>
+      <Name>Old Jug</Name>
       <Position>
         <X>-9797.295</X>
         <Y>1594.66</Y>
         <Z>39.69501</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Locked Chest</Name>
       <Entry>33</Entry>
+      <Name>Locked Chest</Name>
       <Position>
         <X>-9794.486</X>
         <Y>2107.637</Y>
         <Z>12.30399</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
   </Questers>
   <Quests>
     <Quest>
       <Name>Hero's Call: Westfall!</Name>
-      <Id>26378</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26378</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>15</MaxLevel>
       <PickUp>240</PickUp>
       <TurnIn>42308</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Murder Was The Case That They Gave Me</Name>
-      <Id>26209</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26209</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -217,20 +234,20 @@
             <int>42386</int>
             <int>42391</int>
             <int>42383</int>
-          </Entry> 
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          </Entry>
           <Position>
             <X>-9821.678</X>
             <Y>974.4767</Y>
             <Z>29.12967</Z>
           </Position>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Hot On the Trail: The Riverpaw Clan</Name>
-      <Id>26213</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26213</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -244,19 +261,18 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42308</NpcEntry>
-          <QuestId>26214</QuestId>
           <QuestName>Hot On the Trail: Murlocs</QuestName>
+          <QuestId>26214</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26214</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>57756</CollectItemId>
-          <CollectCount>1</CollectCount>
+          <InternalQuestId>26214</InternalQuestId>
           <Entry>
             <int>515</int>
           </Entry>
+          <CollectItemId>57756</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9627.975</X>
@@ -264,16 +280,17 @@
               <Z>3.516864</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>57755</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>500</int>
             <int>117</int>
           </Entry>
+          <CollectItemId>57755</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9717.012</X>
@@ -286,22 +303,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42308</NpcEntry>
-          <QuestId>26214</QuestId>
           <QuestName>Hot On the Trail: Murlocs</QuestName>
+          <QuestId>26214</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42308</NpcEntry>
-          <QuestId>26213</QuestId>
           <QuestName>Hot On the Trail: The Riverpaw Clan</QuestName>
+          <QuestId>26213</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Meet Two-Shoed Lou</Name>
-      <Id>26215</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26215</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -313,10 +330,10 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>42406</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9836.031</X>
             <Y>1273.859</Y>
@@ -328,15 +345,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42405</NpcEntry>
-          <QuestId>26215</QuestId>
           <QuestName>Meet Two-Shoed Lou</QuestName>
+          <QuestId>26215</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>"I TAKE Candle!"</Name>
-      <Id>26229</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26229</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -351,7 +368,7 @@
           <Count>13</Count>
           <Entry>
             <int>1236</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-9993.396</X>
@@ -364,8 +381,8 @@
     </Quest>
     <Quest>
       <Name>Livin' the Life</Name>
-      <Id>26228</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26228</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -377,25 +394,25 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57761</UseItemId>
           <Count>1</Count>
+          <UseItemId>57761</UseItemId>
           <Position>
             <X>-9847.546</X>
             <Y>1401.29</Y>
             <Z>37.15257</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
-        <QuestObjective>
-          <Wait>
-            <WaitMs>90000</WaitMs>
-          </Wait>
+		<QuestObjective>
+          <Objective>Wait</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>90000</WaitMs>
         </QuestObjective>
-      </Objectives>      
+      </Objectives>
     </Quest>
     <Quest>
       <Name>Lou's Parting Thoughts</Name>
-      <Id>26232</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26232</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -413,17 +430,17 @@
             <Z>41.90318</Z>
           </Position>
         </QuestObjective>
-        <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+         <QuestObjective>
+          <Objective>Wait</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>30000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Feast or Famine</Name>
-      <Id>26230</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26230</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -436,11 +453,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>57787</CollectItemId>
-          <CollectCount>6</CollectCount>
           <Entry>
             <int>834</int>
           </Entry>
+          <CollectItemId>57787</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>-9978.982</X>
@@ -469,13 +486,13 @@
               <Z>42.19168</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>      
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Shakedown at the Saldean's</Name>
-      <Id>26236</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26236</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -484,13 +501,12 @@
       </NeedQuestCompletedId>
       <PickUp>42558</PickUp>
       <TurnIn>233</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Times are Tough</Name>
-      <Id>26237</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26237</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -505,7 +521,7 @@
           <Count>11</Count>
           <Entry>
             <int>114</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10157.06</X>
@@ -518,8 +534,8 @@
     </Quest>
     <Quest>
       <Name>Westfall Stew</Name>
-      <Id>26241</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26241</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -532,11 +548,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>2</InternalIndex>
-          <CollectItemId>57788</CollectItemId>
-          <CollectCount>6</CollectCount>
           <Entry>
             <int>157</int>
           </Entry>
+          <CollectItemId>57788</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>-10111.7</X>
@@ -553,11 +569,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>3</InternalIndex>
-          <CollectItemId>57786</CollectItemId>
-          <CollectCount>6</CollectCount>
           <Entry>
             <int>199</int>
           </Entry>
+          <CollectItemId>57786</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>-10127.29</X>
@@ -591,13 +607,13 @@
               <Z>36.53385</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Heart of the Watcher</Name>
-      <Id>26252</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26252</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -606,13 +622,12 @@
       </NeedQuestCompletedId>
       <ItemPickUp>57935</ItemPickUp>
       <TurnIn>233</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>You Have Our Thanks</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>26270</Id>
-      <RaceMask>2098253</RaceMask>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -621,13 +636,12 @@
       </NeedQuestCompletedId>
       <PickUp>233</PickUp>
       <TurnIn>235</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Hope for the People</Name>
-      <Id>26266</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26266</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -636,13 +650,12 @@
       </NeedQuestCompletedId>
       <PickUp>235</PickUp>
       <TurnIn>42575</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Feeding the Hungry and the Hopeless</Name>
-      <Id>26271</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26271</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -654,153 +667,153 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10336.23</X>
             <Y>958.2831</Y>
             <Z>32.54342</Z>
-          </Position> 
-          <WaitMs>8000</WaitMs>           
+          </Position>
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10332.05</X>
             <Y>969.3795</Y>
             <Z>32.11203</Z>
           </Position>
-          <WaitMs>8000</WaitMs>              
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10329.13</X>
             <Y>987.7315</Y>
             <Z>32.38435</Z>
-          </Position> 
-          <WaitMs>8000</WaitMs>             
+          </Position>
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10330.02</X>
             <Y>1003.224</Y>
             <Z>32.16319</Z>
           </Position>
-          <WaitMs>8000</WaitMs>              
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10372.4</X>
             <Y>1050.038</Y>
             <Z>31.54327</Z>
           </Position>
-          <WaitMs>8000</WaitMs>              
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10380.87</X>
             <Y>1060.365</Y>
             <Z>32.30742</Z>
           </Position>
-          <WaitMs>8000</WaitMs>              
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10408.07</X>
             <Y>1090.954</Y>
             <Z>32.78183</Z>
-          </Position> 
-          <WaitMs>8000</WaitMs>              
+          </Position>
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10448.17</X>
             <Y>1146.876</Y>
             <Z>31.78437</Z>
-          </Position> 
-          <WaitMs>8000</WaitMs>                
+          </Position>
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10492.88</X>
             <Y>1191.142</Y>
             <Z>32.51653</Z>
           </Position>
-          <WaitMs>8000</WaitMs>                         
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10510.45</X>
             <Y>1204.691</Y>
             <Z>33.65634</Z>
           </Position>
-          <WaitMs>8000</WaitMs>            
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10549.86</X>
             <Y>1222.583</Y>
             <Z>33.16272</Z>
           </Position>
-          <WaitMs>8000</WaitMs>            
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10566.38</X>
             <Y>1227.003</Y>
             <Z>33.34126</Z>
           </Position>
-          <WaitMs>8000</WaitMs>            
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>57991</UseItemId>
           <Count>1</Count>
+          <UseItemId>57991</UseItemId>
           <Position>
             <X>-10585.84</X>
             <Y>1234.715</Y>
             <Z>32.0074</Z>
           </Position>
-          <WaitMs>8000</WaitMs>              
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
-      </Objectives>      
+      </Objectives>
     </Quest>
     <Quest>
       <Name>In Defense of Westfall</Name>
-      <Id>26286</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26286</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -814,21 +827,19 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>821</NpcEntry>
-          <QuestId>26287</QuestId>
           <QuestName>The Westfall Brigade</QuestName>
+          <QuestId>26287</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26287</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26287</InternalQuestId>
           <Count>12</Count>
           <Entry>
             <int>54373</int>
             <int>54371</int>
             <int>54372</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10564.53</X>
@@ -846,18 +857,19 @@
               <Z>35.96925</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>58111</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>54373</int>
             <int>54371</int>
             <int>54372</int>
-          </Entry>     
+          </Entry>
+          <CollectItemId>58111</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-10564.53</X>
@@ -870,27 +882,28 @@
               <Z>32.9213</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>821</NpcEntry>
-          <QuestId>26287</QuestId>
           <QuestName>The Westfall Brigade</QuestName>
+          <QuestId>26287</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>234</NpcEntry>
-          <QuestId>26286</QuestId>
           <QuestName>In Defense of Westfall</QuestName>
+          <QuestId>26286</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Jango Spothide</Name>
-      <Id>26288</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26288</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -906,7 +919,7 @@
           <Count>5</Count>
           <Entry>
             <int>98</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11116.07</X>
@@ -921,7 +934,7 @@
           <Count>5</Count>
           <Entry>
             <int>453</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11116.07</X>
@@ -936,7 +949,7 @@
           <Count>1</Count>
           <Entry>
             <int>42653</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11183.77</X>
@@ -949,8 +962,8 @@
     </Quest>
     <Quest>
       <Name>Find Agent Kearnen</Name>
-      <Id>26289</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26289</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -962,10 +975,10 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>523</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-10553.62</X>
             <Y>1034.418</Y>
@@ -977,15 +990,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>7024</NpcEntry>
-          <QuestId>26289</QuestId>
           <QuestName>Find Agent Kearnen</QuestName>
+          <QuestId>26289</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Secrets of the Tower</Name>
-      <Id>26290</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26290</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -997,13 +1010,13 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>58112</UseItemId>
           <Count>2</Count>
+          <UseItemId>58112</UseItemId>
           <Position>
             <X>-11135.41</X>
             <Y>556.8768</Y>
             <Z>35.96072</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1013,17 +1026,17 @@
             <Z>70.38566</Z>
           </Position>
         </QuestObjective>
-        <QuestObjective>
-          <Wait>
-            <WaitMs>60000</WaitMs>
-          </Wait>
+         <QuestObjective>
+          <Objective>Wait</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>60000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Big Trouble in Moonbrook</Name>
-      <Id>26291</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26291</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1032,13 +1045,12 @@
       </NeedQuestCompletedId>
       <PickUp>7024</PickUp>
       <TurnIn>234</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Legend of Captain Grayson</Name>
-      <Id>26371</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26371</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1052,29 +1064,29 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>234</NpcEntry>
-          <QuestId>26292</QuestId>
           <QuestName>To Moonbrook!</QuestName>
+          <QuestId>26292</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42425</NpcEntry>
-          <QuestId>26292</QuestId>
           <QuestName>To Moonbrook!</QuestName>
+          <QuestId>26292</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>392</NpcEntry>
-          <QuestId>26371</QuestId>
           <QuestName>The Legend of Captain Grayson</QuestName>
+          <QuestId>26371</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Coast Isn't Clear</Name>
-      <Id>26348</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26348</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1088,14 +1100,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>392</NpcEntry>
-          <QuestId>26349</QuestId>
           <QuestName>The Coastal Menace</QuestName>
+          <QuestId>26349</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26349</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26349</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>391</int>
@@ -1107,6 +1118,7 @@
               <Z>4.301175</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1114,7 +1126,7 @@
           <Count>7</Count>
           <Entry>
             <int>127</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11370.38</X>
@@ -1134,7 +1146,7 @@
           <Count>7</Count>
           <Entry>
             <int>517</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11370.38</X>
@@ -1152,22 +1164,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>392</NpcEntry>
-          <QuestId>26349</QuestId>
           <QuestName>The Coastal Menace</QuestName>
+          <QuestId>26349</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>392</NpcEntry>
-          <QuestId>26348</QuestId>
           <QuestName>The Coast Isn't Clear</QuestName>
+          <QuestId>26348</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Captain Sanders' Hidden Treasure</Name>
-      <Id>26353</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26353</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1176,13 +1188,12 @@
       </NeedQuestCompletedId>
       <ItemPickUp>1357</ItemPickUp>
       <TurnIn>35</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Captain Sanders' Hidden Treasure</Name>
-      <Id>26354</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26354</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1191,13 +1202,12 @@
       </NeedQuestCompletedId>
       <PickUp>35</PickUp>
       <TurnIn>36</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Captain Sanders' Hidden Treasure</Name>
-      <Id>26355</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26355</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1206,13 +1216,12 @@
       </NeedQuestCompletedId>
       <PickUp>36</PickUp>
       <TurnIn>34</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Captain Sanders' Hidden Treasure</Name>
-      <Id>26356</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26356</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1221,13 +1230,12 @@
       </NeedQuestCompletedId>
       <PickUp>34</PickUp>
       <TurnIn>33</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Propaganda</Name>
-      <Id>26295</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26295</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1300,13 +1308,13 @@
               <Z>45.61837</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>      
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Dawning of a New Day</Name>
-      <Id>26297</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26297</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1325,16 +1333,16 @@
           </Position>
         </QuestObjective>
         <QuestObjective>
-          <Wait>
-            <WaitMs>60000</WaitMs>
-          </Wait>
+          <Objective>Wait</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>60000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Secrets Revealed</Name>
-      <Id>26319</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26319</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1346,10 +1354,10 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>42426</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-10876.53</X>
             <Y>1543.658</Y>
@@ -1361,15 +1369,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42651</NpcEntry>
-          <QuestId>26319</QuestId>
           <QuestName>Secrets Revealed</QuestName>
+          <QuestId>26319</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Evidence Collection</Name>
-      <Id>26296</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26296</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1381,11 +1389,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>58118</CollectItemId>
-          <CollectCount>6</CollectCount>
           <Entry>
             <int>42677</int>
           </Entry>
+          <CollectItemId>58118</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>-11015.77</X>
@@ -1395,6 +1403,6 @@
           </Hotspots>
         </QuestObjective>
       </Objectives>
-    </Quest> 
+    </Quest>
   </Quests>
 </QuesterProfile>
