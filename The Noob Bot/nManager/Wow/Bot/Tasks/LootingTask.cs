@@ -53,11 +53,22 @@ namespace nManager.Wow.Bot.Tasks
                             if (!CombatClass.InMeleeRange(wowUnit) && (!nManagerSetting.CurrentSetting.UseLootARange || LootARangeId == 0 ||
                                                                        ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 40f || !ItemsManager.IsItemUsable(LootARangeId)))
                             {
-                                List<Point> points = PathFinder.FindPath(wowUnit.Position);
+                                bool success;
+                                List<Point> points = PathFinder.FindPath(wowUnit.Position, out success);
                                 if (points.Count <= 0)
                                 {
                                     points.Add(ObjectManager.ObjectManager.Me.Position);
                                     points.Add(wowUnit.Position);
+                                }
+                                if (!success)
+                                {
+                                    if ((points.Count == 2 && wowUnit.GetDistance > 6) || points.Count != 2)
+                                    {
+                                        // we didn't find a valid path and the target is not that close, blacklisting.
+                                        // Straightline wont help anyway.
+                                        Logging.Write("No path to " + wowUnit.Name + ", blacklisting.");
+                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                    }
                                 }
                                 MovementManager.Go(points);
                                 Timer timer = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 3000);
