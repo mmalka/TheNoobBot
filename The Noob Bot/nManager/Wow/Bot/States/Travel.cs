@@ -1007,26 +1007,23 @@ namespace nManager.Wow.Bot.States
                     {
                         listTransport.Add(transport);
                     }
-                    else
+                    else if (transport.ALift > 0)
                     {
-                        if (transport.ALift > 0)
+                        var aLift = GetTransportByTransportId(transport.ALift);
+                        if (aLift.Id > 0)
                         {
-                            var aLift = GetTransportByTransportId(transport.ALift);
-                            if (aLift.Id > 0)
+                            transport.UseALift = true;
+                            PathFinder.FindPath(aLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            if (success)
                             {
-                                transport.UseALift = true;
-                                PathFinder.FindPath(aLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                listTransport.Add(transport);
+                            }
+                            else
+                            {
+                                PathFinder.FindPath(aLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (success)
                                 {
                                     listTransport.Add(transport);
-                                }
-                                else
-                                {
-                                    PathFinder.FindPath(aLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                                    if (success)
-                                    {
-                                        listTransport.Add(transport);
-                                    }
                                 }
                             }
                         }
@@ -1038,26 +1035,23 @@ namespace nManager.Wow.Bot.States
                     {
                         listTransport.Add(transport);
                     }
-                    else
+                    else if (transport.BLift > 0)
                     {
-                        if (transport.BLift > 0)
+                        var bLift = GetTransportByTransportId(transport.BLift);
+                        if (bLift.Id > 0)
                         {
-                            var bLift = GetTransportByTransportId(transport.BLift);
-                            if (bLift.Id > 0)
+                            transport.UseBLift = true;
+                            PathFinder.FindPath(bLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            if (success)
                             {
-                                transport.UseBLift = true;
-                                PathFinder.FindPath(bLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                listTransport.Add(transport);
+                            }
+                            else
+                            {
+                                PathFinder.FindPath(bLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (success)
                                 {
                                     listTransport.Add(transport);
-                                }
-                                else
-                                {
-                                    PathFinder.FindPath(bLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                                    if (success)
-                                    {
-                                        listTransport.Add(transport);
-                                    }
                                 }
                             }
                         }
@@ -1253,17 +1247,23 @@ namespace nManager.Wow.Bot.States
                     {
                         transport.UseBLift = true;
                         Transport bLift = GetTransportByTransportId(transport.BLift);
-                        PathFinder.FindPath(bLift.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                        if (success)
+                        if (bLift.AContinentId == travelFromContinentId)
                         {
-                            listTransport.Add(transport);
-                            continue;
+                            PathFinder.FindPath(bLift.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            if (success)
+                            {
+                                listTransport.Add(transport);
+                                continue;
+                            }
                         }
-                        PathFinder.FindPath(bLift.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                        if (success)
+                        else if (bLift.BContinentId == travelFromContinentId)
                         {
-                            listTransport.Add(transport);
-                            continue;
+                            PathFinder.FindPath(bLift.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            if (success)
+                            {
+                                listTransport.Add(transport);
+                                continue;
+                            }
                         }
                     }
                 }
@@ -1276,22 +1276,29 @@ namespace nManager.Wow.Bot.States
                     if (success)
                     {
                         listTransport.Add(transport);
+                        continue;
                     }
                     if (transport.ALift > 0)
                     {
                         transport.UseALift = true;
                         Transport aLift = GetTransportByTransportId(transport.ALift);
-                        PathFinder.FindPath(aLift.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                        if (success)
+                        if (aLift.AContinentId == travelFromContinentId)
                         {
-                            listTransport.Add(transport);
-                            continue;
+                            PathFinder.FindPath(aLift.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            if (success)
+                            {
+                                listTransport.Add(transport);
+                                continue;
+                            }
                         }
-                        PathFinder.FindPath(aLift.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                        if (success)
+                        else if (aLift.BContinentId == travelFromContinentId)
                         {
-                            listTransport.Add(transport);
-                            continue;
+                            PathFinder.FindPath(aLift.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            if (success)
+                            {
+                                listTransport.Add(transport);
+                                continue;
+                            }
                         }
                     }
                 }
@@ -1371,7 +1378,7 @@ namespace nManager.Wow.Bot.States
                     var wayOffLift = new List<Point>();
                     if (transport.ArrivalIsA)
                     {
-                        if (!transport.UseALift)
+                        if (!transport.UseBLift)
                         {
                             wayIn = PathFinder.FindPath(travelFrom, transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                             if (!success)
@@ -1380,52 +1387,52 @@ namespace nManager.Wow.Bot.States
                         else
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
-                            Transport aLift = GetTransportByTransportId(transport.ALift);
-                            wayIn = PathFinder.FindPath(travelFrom, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                            if (success)
-                            {
-                                // aLift IsArrivalIsA=true
-                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                                if (!success)
-                                    continue;
-                            }
-                            else
-                            {
-                                // aLift IsArrivalIsA=false
-                                wayIn = PathFinder.FindPath(travelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                                if (!success)
-                                    continue;
-                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                                if (!success)
-                                    continue;
-                            }
-                            // we already did the check prior to that, so let's assume it's correct.
-                        }
-                        if (!transport.UseBLift)
-                        {
-                            wayOff = PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                            if (!success)
-                                continue;
-                        }
-                        else
-                        {
-                            // we need to find the right "ArrivalIsA" for that elevator.
                             Transport bLift = GetTransportByTransportId(transport.BLift);
-                            wayOff = PathFinder.FindPath(travelTo, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            wayIn = PathFinder.FindPath(travelFrom, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                             if (success)
                             {
                                 // bLift IsArrivalIsA=true
-                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                                 if (!success)
                                     continue;
                             }
                             else
                             {
                                 // bLift IsArrivalIsA=false
-                                wayOff = PathFinder.FindPath(travelTo, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                wayIn = PathFinder.FindPath(travelFrom, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                                 if (!success)
                                     continue;
-                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                if (!success)
+                                    continue;
+                            }
+                            // we already did the check prior to that, so let's assume it's correct.
+                        }
+                        if (!transport.UseALift)
+                        {
+                            wayOff = PathFinder.FindPath(travelTo, transport.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            if (!success)
+                                continue;
+                        }
+                        else
+                        {
+                            // we need to find the right "ArrivalIsA" for that elevator.
+                            Transport aLift = GetTransportByTransportId(transport.ALift);
+                            wayOff = PathFinder.FindPath(travelTo, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            if (success)
+                            {
+                                // aLift IsArrivalIsA=true
+                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
+                            }
+                            else
+                            {
+                                // aLift IsArrivalIsA=false
+                                wayOff = PathFinder.FindPath(travelTo, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                if (!success)
+                                    continue;
+                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1434,6 +1441,7 @@ namespace nManager.Wow.Bot.States
                     }
                     else
                     {
+                        // transport.IsArrivalIsA = false.
                         if (!transport.UseALift)
                         {
                             wayIn = PathFinder.FindPath(travelFrom, transport.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
@@ -1466,7 +1474,7 @@ namespace nManager.Wow.Bot.States
                         }
                         if (!transport.UseBLift)
                         {
-                            wayOff = PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            wayOff = PathFinder.FindPath(travelTo, transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                             if (!success)
                                 continue;
                         }
