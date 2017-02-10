@@ -418,6 +418,7 @@ namespace Quester.Profile
                     objective.IgnoreBlackList = CBObjIgnoreBlackList.Checked;
                     objective.IgnoreNotSelectable = CBObjIgnoreNotSelectable.Checked;
                     objective.ForceTravelToQuestZone = CBObjForceTravelToQuestZone.Checked;
+                    objective.IgnoreFight = CBObjIgnoreFight.Checked;
 
                     if (_displayXml)
                     {
@@ -631,6 +632,7 @@ namespace Quester.Profile
                     newObjective.IgnoreBlackList = CBObjIgnoreBlackList.Checked;
                     newObjective.IgnoreNotSelectable = CBObjIgnoreNotSelectable.Checked;
                     newObjective.ForceTravelToQuestZone = CBObjForceTravelToQuestZone.Checked;
+                    newObjective.IgnoreFight = CBObjIgnoreFight.Checked;
 
                     Quest lastSelQuestx = _profile.Quests[_lastSelectedQuest.Index];
 
@@ -1143,6 +1145,7 @@ namespace Quester.Profile
             CBObjIsDead.Checked = false;
             CBObjAllowPlayerControlled.Checked = false;
             CBObjIgnoreBlackList.Checked = false;
+            CBObjIgnoreFight.Checked = false;
             CBObjIgnoreNotSelectable.Checked = false;
             CBObjForceTravelToQuestZone.Checked = false;
             TBObjMessage.Enabled = false;
@@ -1483,6 +1486,7 @@ namespace Quester.Profile
             CBObjIsDead.Checked = qObjective.IsDead;
             CBObjAllowPlayerControlled.Checked = qObjective.AllowPlayerControlled;
             CBObjIgnoreBlackList.Checked = qObjective.IgnoreBlackList;
+            CBObjIgnoreFight.Checked = qObjective.IgnoreFight;
             CBObjIgnoreNotSelectable.Checked = qObjective.IgnoreNotSelectable;
             CBObjForceTravelToQuestZone.Checked = qObjective.ForceTravelToQuestZone;
 
@@ -2725,6 +2729,28 @@ namespace Quester.Profile
         }
 
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            
+            foreach (TreeNode tr in _questParentNode.Nodes)
+            {
+                if (tr.Tag == "Quest")
+                {
+                    int questId = _profile.Quests[_questParentNode.Nodes.IndexOf(tr)].Id;
+                   
+                    if (nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId))
+                    {
+                        tr.BackColor = Color.Green;
+                    }
+                    else
+                        tr.BackColor = Color.Red;
+                }
+            }
+        }
+
+       
 
       
     }
