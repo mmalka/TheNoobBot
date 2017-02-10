@@ -329,13 +329,14 @@ namespace nManager.Wow.Bot.States
             Logging.Write("Travel is terminated, waiting for product to take the control back.");
         }
 
-        private void GoToDepartureQuayOrPortal(Transport selectedTransport)
+        private void GoToDepartureQuayOrPortal(Transport selectedTransport, bool failed = false)
         {
             MovementManager.StopMove();
             if (selectedTransport is Portal)
             {
                 var portal = selectedTransport as Portal;
-                Logging.Write("Going to portal " + portal.Name + " (" + portal.Id + ") to travel.");
+                if (!failed)
+                    Logging.Write("Going to portal " + portal.Name + " (" + portal.Id + ") to travel.");
                 List<Point> pathToPortal = PathFinder.FindPath(portal.APoint);
                 MovementManager.Go(pathToPortal);
                 bool loop = true;
@@ -350,11 +351,14 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(100);
                 }
                 MovementManager.StopMove();
+                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) >= 2.0f)
+                    GoToDepartureQuayOrPortal(selectedTransport, true);
             }
             else if (selectedTransport is CustomPath)
             {
                 var customPath = selectedTransport as CustomPath;
-                Logging.Write("Going to CustomPath " + customPath.Name + " (" + customPath.Id + ") to travel.");
+                if (!failed)
+                    Logging.Write("Going to CustomPath " + customPath.Name + " (" + customPath.Id + ") to travel.");
                 List<Point> pathToPortal = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint);
                 MovementManager.Go(pathToPortal);
                 bool loop = true;
@@ -369,11 +373,14 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(100);
                 }
                 MovementManager.StopMove();
+                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint) >= 2.0f)
+                    GoToDepartureQuayOrPortal(selectedTransport, true);
             }
             else if (selectedTransport is Taxi)
             {
                 var taxi = selectedTransport as Taxi;
-                Logging.Write("Going to taxi " + taxi.Name + " to travel.");
+                if (!failed)
+                    Logging.Write("Going to taxi " + taxi.Name + " to travel.");
                 // 141605
                 if (Usefuls.ContinentId == 1220 && Usefuls.AreaId != 7502 && Usefuls.IsOutdoors && taxi.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100f)
                 {
@@ -414,12 +421,15 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(100);
                 }
                 MovementManager.StopMove();
+                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(taxi.APoint) >= 4.0f)
+                    GoToDepartureQuayOrPortal(selectedTransport, true);
             }
             else
             {
                 List<Point> pathToDepartureQuay = selectedTransport.ArrivalIsA ? PathFinder.FindPath(selectedTransport.BOutsidePoint) : PathFinder.FindPath(selectedTransport.AOutsidePoint);
                 MovementManager.Go(pathToDepartureQuay);
-                Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ") to travel.");
+                if (!failed)
+                    Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ") to travel.");
                 bool loop = true;
                 while (loop)
                 {
@@ -432,7 +442,10 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(100);
                 }
                 MovementManager.StopMove();
-                Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
+                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 2.0f)
+                    Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
+                else
+                    GoToDepartureQuayOrPortal(selectedTransport, true);
             }
         }
 
