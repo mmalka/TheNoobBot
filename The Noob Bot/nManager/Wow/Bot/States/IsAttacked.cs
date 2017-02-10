@@ -34,6 +34,7 @@ namespace nManager.Wow.Bot.States
                 _prowlSpell = new Spell("Prowl");
             while (Products.Products.IsStarted)
             {
+                Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
                 if (Fight.InFight)
                     continue;
                 if (!Products.Products.IsStarted || !Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid)
@@ -44,8 +45,10 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (ObjectManager.ObjectManager.Me.HealthPercent <= 40)
                     continue;
-                _unitToPull = ObjectManager.ObjectManager.GetUnitInAggroRange();
-                Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
+                WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
+                if (unit == null || !unit.IsValid || unit.IsDead || TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
+                    continue;
+                _unitToPull = unit;
             }
         }
 
@@ -128,8 +131,12 @@ namespace nManager.Wow.Bot.States
                     _unit = _unitToPull;
                     if (_unit != null)
                     {
-                        Logging.Write("Pulling " + _unit.Name);
-                        return true;
+                        if (_unit.IsValid && _unit.IsAlive)
+                        {
+                            Logging.Write("Pulling " + _unit.Name);
+                            return true;
+                        }
+                        _unitToPull = null;
                     }
                 }
                 return false;
