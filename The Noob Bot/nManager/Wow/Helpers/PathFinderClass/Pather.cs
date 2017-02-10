@@ -77,6 +77,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
     internal class Pather
     {
+        private static object _threadLocker = new object();
         private const int Division = 2;
 
         public delegate bool ConnectionHandlerDelegate(ConnectionData data);
@@ -151,112 +152,124 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public int ReportDanger(IEnumerable<Danger> dangers)
         {
-            try
+            lock (_threadLocker)
             {
-                float[] extents = new[] {2.5f, 2.5f, 2.5f};
-                return (from danger in dangers
-                    let loc = danger.Location.ToRecast().ToFloatArray()
-                    let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
-                    where polyRef != 0
-                    select Query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger)).Sum();
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("ReportDanger(IEnumerable<Danger> dangers): " + exception);
-                return 0;
+                try
+                {
+                    float[] extents = new[] {2.5f, 2.5f, 2.5f};
+                    return (from danger in dangers
+                        let loc = danger.Location.ToRecast().ToFloatArray()
+                        let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
+                        where polyRef != 0
+                        select Query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger)).Sum();
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("ReportDanger(IEnumerable<Danger> dangers): " + exception);
+                    return 0;
+                }
             }
         }
 
         public string GetTilePath(int x, int y)
         {
-            try
+            lock (_threadLocker)
             {
-                return _meshPath + "\\" + GetTileName(x, y);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetTilePath(int x, int y): " + exception);
-                return "";
+                try
+                {
+                    return _meshPath + "\\" + GetTileName(x, y);
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("GetTilePath(int x, int y): " + exception);
+                    return "";
+                }
             }
         }
 
         public string GetTileName(int x, int y, bool onlyName = false)
         {
-            try
+            lock (_threadLocker)
             {
-                string cont = Continent;
-                int baseX = (int) (x/Division);
-                int baseY = (int) (y/Division);
-                if (Continent == "Draenor")
+                try
                 {
-                    if (baseX == 23 && baseY == 21 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
+                    string cont = Continent;
+                    int baseX = (int) (x/Division);
+                    int baseY = (int) (y/Division);
+                    if (Continent == "Draenor")
                     {
-                        switch (Garrison.GetGarrisonLevel())
+                        if (baseX == 23 && baseY == 21 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
-                            case 1:
-                                cont = "FWHordeGarrisonLevel1";
-                                break;
-                            case 2:
-                                cont = "FWHordeGarrisonLeve2new";
-                                break;
-                            case 3:
-                                cont = "FWHordeGarrisonLevel2";
-                                break;
+                            switch (Garrison.GetGarrisonLevel())
+                            {
+                                case 1:
+                                    cont = "FWHordeGarrisonLevel1";
+                                    break;
+                                case 2:
+                                    cont = "FWHordeGarrisonLeve2new";
+                                    break;
+                                case 3:
+                                    cont = "FWHordeGarrisonLevel2";
+                                    break;
+                            }
+                        }
+                        else if (baseX == 31 && baseY == 28 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
+                        {
+                            switch (Garrison.GetGarrisonLevel())
+                            {
+                                case 1:
+                                    cont = "SMVAllianceGarrisonLevel1";
+                                    break;
+                                case 2:
+                                    cont = "SMVAllianceGarrisonLevel2new";
+                                    break;
+                                case 3:
+                                    cont = "SMVAllianceGarrisonLevel2";
+                                    break;
+                            }
                         }
                     }
-                    else if (baseX == 31 && baseY == 28 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
-                    {
-                        switch (Garrison.GetGarrisonLevel())
-                        {
-                            case 1:
-                                cont = "SMVAllianceGarrisonLevel1";
-                                break;
-                            case 2:
-                                cont = "SMVAllianceGarrisonLevel2new";
-                                break;
-                            case 3:
-                                cont = "SMVAllianceGarrisonLevel2";
-                                break;
-                        }
-                    }
-                }
 #pragma warning disable 162
-                if (Division == 1)
-                    return (onlyName ? "" : cont + "\\") + cont + "_" + x + "_" + y + ".tile";
-                else
-                {
-                    float offsetI = (x*(Utility.TileSize/Division)) - (baseX*Utility.TileSize);
-                    float offsetJ = (y*(Utility.TileSize/Division)) - (baseY*Utility.TileSize);
-                    int i = (int) Math.Round(offsetI/(Utility.TileSize/Division));
-                    int j = (int) Math.Round(offsetJ/(Utility.TileSize/Division));
-                    return (onlyName ? "" : cont + "\\") + cont + "_" + baseX + "_" + baseY + "_" + i + j + ".tile";
-                }
+                    if (Division == 1)
+                        return (onlyName ? "" : cont + "\\") + cont + "_" + x + "_" + y + ".tile";
+                    else
+                    {
+                        float offsetI = (x*(Utility.TileSize/Division)) - (baseX*Utility.TileSize);
+                        float offsetJ = (y*(Utility.TileSize/Division)) - (baseY*Utility.TileSize);
+                        int i = (int) Math.Round(offsetI/(Utility.TileSize/Division));
+                        int j = (int) Math.Round(offsetJ/(Utility.TileSize/Division));
+                        return (onlyName ? "" : cont + "\\") + cont + "_" + baseX + "_" + baseY + "_" + i + j + ".tile";
+                    }
 #pragma warning restore 162
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetTileName(int x, int y, bool onlyName): " + exception);
-                return "";
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("GetTileName(int x, int y, bool onlyName): " + exception);
+                    return "";
+                }
             }
         }
 
         public void GetTileByLocation(Point loc, out float x, out float y)
         {
-            try
+            lock (_threadLocker)
             {
-                CheckDungeon();
+                try
+                {
+                    CheckDungeon();
 
-                float[] input = loc.ToRecast().ToFloatArray();
-                float fx, fy;
-                GetTileByLocation(input, out fx, out fy);
-                x = fx;
-                y = fy;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetTileByLocation(Point loc, out int x, out int y): " + exception);
-                x = 0;
-                y = 0;
+                    float[] input = loc.ToRecast().ToFloatArray();
+                    float fx, fy;
+                    GetTileByLocation(input, out fx, out fy);
+                    x = fx;
+                    y = fy;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("GetTileByLocation(Point loc, out int x, out int y): " + exception);
+                    x = 0;
+                    y = 0;
+                }
             }
         }
 
@@ -274,118 +287,132 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public void LoadAllTiles()
         {
-            try
+            lock (_threadLocker)
             {
-                for (int y = 0; y < 64*Division; y++)
+                try
                 {
-                    for (int x = 0; x < 64*Division; x++)
+                    for (int y = 0; y < 64*Division; y++)
                     {
-                        downloadTile(GetTileName(x, y));
+                        for (int x = 0; x < 64*Division; x++)
+                        {
+                            downloadTile(GetTileName(x, y));
 
-                        if (!File.Exists(GetTilePath(x, y)))
-                            continue;
+                            if (!File.Exists(GetTilePath(x, y)))
+                                continue;
 
-                        LoadTile(x, y);
+                            LoadTile(x, y);
+                        }
                     }
                 }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("LoadAllTiles(): " + exception);
+                catch (Exception exception)
+                {
+                    Logging.WriteError("LoadAllTiles(): " + exception);
+                }
             }
         }
 
         public void LoadAround(Point loc)
         {
-            try
+            lock (_threadLocker)
             {
-                if (CheckDungeon())
-                    return;
+                try
+                {
+                    if (CheckDungeon())
+                        return;
 
-                float tx, ty;
-                GetTileByLocation(loc, out tx, out ty);
-                int x = (int) Math.Floor(tx);
-                int y = (int) Math.Floor(ty);
+                    float tx, ty;
+                    GetTileByLocation(loc, out tx, out ty);
+                    int x = (int) Math.Floor(tx);
+                    int y = (int) Math.Floor(ty);
 
 #pragma warning disable 162
-                if (Division == 1)
-                {
-                    int thirdx, thirdy;
-                    LoadTile(x, y);
-                    if (tx < x + 0.5f)
-                        thirdx = x - 1;
+                    if (Division == 1)
+                    {
+                        int thirdx, thirdy;
+                        LoadTile(x, y);
+                        if (tx < x + 0.5f)
+                            thirdx = x - 1;
+                        else
+                            thirdx = x + 1;
+                        if (
+                            ty < y + 0.5f)
+                            thirdy = y - 1;
+                        else
+                            thirdy = y + 1;
+                        LoadTile(thirdx, y);
+                        LoadTile(x, thirdy);
+                        LoadTile(thirdx, thirdy);
+                    }
                     else
-                        thirdx = x + 1;
-                    if (
-                        ty < y + 0.5f)
-                        thirdy = y - 1;
-                    else
-                        thirdy = y + 1;
-                    LoadTile(thirdx, y);
-                    LoadTile(x, thirdy);
-                    LoadTile(thirdx, thirdy);
-                }
-                else
-                {
-                    for (int i = -1; i < 2; i++)
-                        for (int j = -1; j < 2; j++)
-                            LoadTile(x + i, y + j);
-                }
+                    {
+                        for (int i = -1; i < 2; i++)
+                            for (int j = -1; j < 2; j++)
+                                LoadTile(x + i, y + j);
+                    }
 #pragma warning restore 162
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("LoadAround(Point loc): " + exception);
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("LoadAround(Point loc): " + exception);
+                }
             }
         }
 
         public bool LoadTile(byte[] data)
         {
-            try
+            lock (_threadLocker)
             {
-                if (CheckDungeon())
-                    return false;
+                try
+                {
+                    if (CheckDungeon())
+                        return false;
 
-                MeshTile tile;
-                DetourStatus ret = _mesh.AddTile(data, out tile);
-                if (ret.IsWrongVersion())
+                    MeshTile tile;
+                    DetourStatus ret = _mesh.AddTile(data, out tile);
+                    if (ret.IsWrongVersion())
+                    {
+                        Logging.WriteNavigator("This mesh tile is outdated.");
+                        return false;
+                    }
+                    if (ret.HasFailed())
+                    {
+                        Logging.WriteNavigator("This mesh tile is corrupted.");
+                        return false;
+                    }
+                    AddMemoryPressure(data.Length);
+                    // HandleConnections(tile);
+                    return true;
+                }
+                catch (Exception exception)
                 {
-                    Logging.WriteNavigator("This mesh tile is outdated.");
+                    Logging.WriteError("LoadTile(byte[] data): " + exception);
                     return false;
                 }
-                if (ret.HasFailed())
-                {
-                    Logging.WriteNavigator("This mesh tile is corrupted.");
-                    return false;
-                }
-                AddMemoryPressure(data.Length);
-                // HandleConnections(tile);
-                return true;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("LoadTile(byte[] data): " + exception);
-                return false;
             }
         }
 
         private bool CheckDungeon()
         {
-            try
+            lock (_threadLocker)
             {
-                if (IsDungeon)
-                    Logging.WriteError("Dungeon mesh doesn't support tiles");
-                return IsDungeon;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("CheckDungeon(): " + exception);
-                return false;
+                try
+                {
+                    if (IsDungeon)
+                        Logging.WriteError("Dungeon mesh doesn't support tiles");
+                    return IsDungeon;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("CheckDungeon(): " + exception);
+                    return false;
+                }
             }
         }
 
         public bool LoadTile(int x, int y)
         {
+            lock (_threadLocker)
+            {
             try
             {
                 if (CheckDungeon())
@@ -426,7 +453,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         return false;
                     }
                 }
-                _loadedTiles.Add(coords, Others.TimesSec);
+                if (!_loadedTiles.ContainsKey(coords)) // multi thread on the same path can cause a duplicate here
+                    _loadedTiles.Add(coords, Others.TimesSec);
                 return true;
             }
             catch (Exception exception)
@@ -435,98 +463,115 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 return false;
             }
         }
+    }
 
         private static readonly List<string> blackListMaptitle = new List<string>();
 
         private bool downloadTile(string fileName)
         {
-            if (blackListMaptitle.Contains(fileName))
-                return true;
+            lock (_threadLocker)
+            {
+                if (blackListMaptitle.Contains(fileName))
+                    return true;
 
-            blackListMaptitle.Add(fileName);
-            return forceDownloadTile(fileName);
+                blackListMaptitle.Add(fileName);
+                return forceDownloadTile(fileName);
+            }
         }
 
         private bool forceDownloadTile(string fileName)
         {
-            try
+            lock (_threadLocker)
             {
-                const string stringHttpMapBaseAddress = "http://meshes.thenoobbot.com/";
-
-                string stringHttpMap = stringHttpMapBaseAddress + Utility.GetDetourSupportedVersion() + "/";
-                var continentDir = fileName.Split('\\');
-                Directory.CreateDirectory(_meshPath + "\\" + continentDir[0] + "\\");
-
-                if (!Others.ExistFile(_meshPath + "\\" + fileName))
+                try
                 {
-                    Logging.Write("Downloading \"" + fileName + "\"...");
-                    if (!Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
-                        _meshPath + "\\" + fileName + ".gz"))
+                    const string stringHttpMapBaseAddress = "http://meshes.thenoobbot.com/";
+
+                    string stringHttpMap = stringHttpMapBaseAddress + Utility.GetDetourSupportedVersion() + "/";
+                    var continentDir = fileName.Split('\\');
+                    Directory.CreateDirectory(_meshPath + "\\" + continentDir[0] + "\\");
+
+                    if (!Others.ExistFile(_meshPath + "\\" + fileName))
+                    {
+                        Logging.Write("Downloading \"" + fileName + "\"...");
+                        if (!Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
+                            _meshPath + "\\" + fileName + ".gz"))
+                            return false;
+                        if (!GZip.Decompress(_meshPath + "\\" + fileName + ".gz"))
+                            return false;
+                        if (Others.ExistFile(_meshPath + "\\" + fileName + ".gz"))
+                            File.Delete(_meshPath + "\\" + fileName + ".gz");
+                        if (Others.ExistFile(_meshPath + "\\" + fileName))
+                            return true;
                         return false;
-                    if (!GZip.Decompress(_meshPath + "\\" + fileName + ".gz"))
-                        return false;
-                    if (Others.ExistFile(_meshPath + "\\" + fileName + ".gz"))
-                        File.Delete(_meshPath + "\\" + fileName + ".gz");
-                    if (Others.ExistFile(_meshPath + "\\" + fileName))
-                        return true;
+                    }
+
+                    return true;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("forceDownloadTile(string fileName): " + exception);
                     return false;
                 }
-
-                return true;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("forceDownloadTile(string fileName): " + exception);
-                return false;
             }
         }
 
         private void checkTilesAgeAndUnload()
         {
-            List<Tuple<int, int>> toRemove = new List<Tuple<int, int>>();
-            foreach (KeyValuePair<Tuple<int, int>, int> entry in _loadedTiles)
+            lock (_threadLocker)
             {
-                //Logging.Write("Found " + entry.Key.Item1 + "," + entry.Key.Item2 + " time " + entry.Value);
-                if (entry.Value < Others.TimesSec - (15*60)) // 15 * 60 = 15 mins
+                List<Tuple<int, int>> toRemove = new List<Tuple<int, int>>();
+                foreach (KeyValuePair<Tuple<int, int>, int> entry in _loadedTiles)
                 {
-                    RemoveTile(entry.Key.Item1, entry.Key.Item2);
-                    Logging.WriteNavigator("Unloading old tile (" + GetTileName(entry.Key.Item1, entry.Key.Item2, true) + ")");
-                    toRemove.Add(entry.Key);
+                    //Logging.Write("Found " + entry.Key.Item1 + "," + entry.Key.Item2 + " time " + entry.Value);
+                    if (entry.Value < Others.TimesSec - (15*60)) // 15 * 60 = 15 mins
+                    {
+                        RemoveTile(entry.Key.Item1, entry.Key.Item2);
+                        Logging.WriteNavigator("Unloading old tile (" + GetTileName(entry.Key.Item1, entry.Key.Item2, true) + ")");
+                        toRemove.Add(entry.Key);
+                    }
                 }
+                foreach (Tuple<int, int> entry in toRemove)
+                    _loadedTiles.Remove(entry);
             }
-            foreach (Tuple<int, int> entry in toRemove)
-                _loadedTiles.Remove(entry);
         }
 
         public bool RemoveTile(int x, int y, out byte[] tileData)
         {
-            try
+            lock (_threadLocker)
             {
-                return _mesh.RemoveTileAt(x, y, out tileData).HasSucceeded();
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("RemoveTile(int x, int y, out byte[] tileData): " + exception);
-                tileData = new byte[0];
-                return false;
+                try
+                {
+                    return _mesh.RemoveTileAt(x, y, out tileData).HasSucceeded();
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("RemoveTile(int x, int y, out byte[] tileData): " + exception);
+                    tileData = new byte[0];
+                    return false;
+                }
             }
         }
 
         public bool RemoveTile(int x, int y)
         {
-            try
+            lock (_threadLocker)
             {
-                return _mesh.RemoveTileAt(x, y).HasSucceeded();
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("RemoveTile(int x, int y): " + exception);
-                return false;
+                try
+                {
+                    return _mesh.RemoveTileAt(x, y).HasSucceeded();
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("RemoveTile(int x, int y): " + exception);
+                    return false;
+                }
             }
         }
 
         public List<Point> FindLocalPath(Point startVec, Point endVec)
         {
+            lock (_threadLocker)
             {
                 try
                 {
@@ -543,177 +588,192 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public List<Point> FindPath(Point startVec, Point endVec)
         {
-            try
+            lock (_threadLocker)
             {
-                bool b;
-                return FindPath(startVec, endVec, out b);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("FindPath(Point startVec, Point endVec): " + exception);
-                return new List<Point>();
+                try
+                {
+                    bool b;
+                    return FindPath(startVec, endVec, out b);
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("FindPath(Point startVec, Point endVec): " + exception);
+                    return new List<Point>();
+                }
             }
         }
 
         public List<Point> FindPath(Point startVec, Point endVec, out bool resultSuccess)
         {
-            List<Point> path = FindPathSimple(startVec, endVec, out resultSuccess);
-            if (path.Count < 2)
+            lock (_threadLocker)
             {
-                resultSuccess = false;
-                return new List<Point>();
-            }
-            if ((endVec - startVec).Magnitude < 3000) // 5000 is about the distance from Ironforge to Lockmodan Flying
-                return path; // The path finder is able to find this kind of path easiely in one run, so if < 3000, then no need to search more, we won't find better
-            float diff = (endVec - path[path.Count - 1]).Magnitude;
-            float ndiff = 5f;
-            while (ndiff < diff)
-            {
-                int limit = (int) (path.Count*0.80f);
-                List<Point> path2;
-                path2 = FindPathSimple(path[limit], endVec, out resultSuccess);
-
-                ndiff = (endVec - path2[path2.Count - 1]).Magnitude;
-                if (ndiff < diff)
+                List<Point> path = FindPathSimple(startVec, endVec, out resultSuccess);
+                if (path.Count < 2)
                 {
-                    for (int j = path.Count - 1; j > limit; j--)
-                    {
-                        path.RemoveAt(j);
-                    }
-                    foreach (Point p in path2)
-                        path.Add(p);
-                    diff = ndiff;
-                    ndiff = 5f;
+                    resultSuccess = false;
+                    return new List<Point>();
                 }
+                if ((endVec - startVec).Magnitude < 3000) // 5000 is about the distance from Ironforge to Lockmodan Flying
+                    return path; // The path finder is able to find this kind of path easiely in one run, so if < 3000, then no need to search more, we won't find better
+                float diff = (endVec - path[path.Count - 1]).Magnitude;
+                float ndiff = 5f;
+                while (ndiff < diff)
+                {
+                    int limit = (int) (path.Count*0.80f);
+                    List<Point> path2;
+                    path2 = FindPathSimple(path[limit], endVec, out resultSuccess);
+
+                    ndiff = (endVec - path2[path2.Count - 1]).Magnitude;
+                    if (ndiff < diff)
+                    {
+                        for (int j = path.Count - 1; j > limit; j--)
+                        {
+                            path.RemoveAt(j);
+                        }
+                        foreach (Point p in path2)
+                            path.Add(p);
+                        diff = ndiff;
+                        ndiff = 5f;
+                    }
+                }
+                return path;
             }
-            return path;
         }
 
         public List<Point> FindPathSimple(Point startVec, Point endVec, out bool resultSuccess, bool ShortPath = false)
         {
-            try
+            lock (_threadLocker)
             {
-                resultSuccess = true;
-                float[] extents = new Point(4.5f, 200.0f, 4.5f).ToFloatArray();
-                float[] start = startVec.ToRecast().ToFloatArray();
-                float[] end = endVec.ToRecast().ToFloatArray();
-
-                if (!IsDungeon)
+                try
                 {
-                    LoadAround(startVec);
-                    LoadAround(endVec);
-                }
+                    resultSuccess = true;
+                    float[] extents = new Point(4.5f, 200.0f, 4.5f).ToFloatArray();
+                    float[] start = startVec.ToRecast().ToFloatArray();
+                    float[] end = endVec.ToRecast().ToFloatArray();
 
-                dtPolyRef startRef = _query.FindNearestPolygon(start, extents, Filter);
-                if (startRef == 0)
-                    Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
-
-                dtPolyRef endRef = _query.FindNearestPolygon(end, extents, Filter);
-                if (endRef == 0)
-                    Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for end (" + endVec + ")");
-
-                if (startRef == 0 || endRef == 0)
-                    return new List<Point>();
-
-                dtPolyRef[] pathCorridor;
-                DetourStatus status;
-                if (ShortPath)
-                    status = _query.FindLocalPath(startRef, endRef, start, end, Filter, out pathCorridor);
-                else
-                    status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
-                if (status.HasFailed() || pathCorridor == null)
-                {
-                    Logging.WriteNavigator(status + " FindPath failed, start: " + startRef + " end: " + endRef);
-                    return new List<Point>();
-                }
-
-                if (status.HasFlag(DetourStatus.PartialResult))
-                {
-                    Logging.WriteNavigator("Warning, partial result: " + status);
-                    resultSuccess = false;
-                }
-
-                float[] finalPath;
-                StraightPathFlag[] pathFlags;
-                dtPolyRef[] pathRefs;
-                status = _query.FindStraightPath(start, end, pathCorridor, out finalPath, out pathFlags, out pathRefs);
-                if (status.HasFailed() || (finalPath == null || pathFlags == null || pathRefs == null))
-                    Logging.WriteNavigator(status + "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
-
-                if (finalPath != null)
-                {
-                    List<Point> resultPath = new List<Point>(finalPath.Length/3);
-                    for (int i = 0; i < (finalPath.Length/3); i++)
+                    if (!IsDungeon)
                     {
-                        resultPath.Add(
-                            new Point(finalPath[(i*3) + 0], finalPath[(i*3) + 1], finalPath[(i*3) + 2]).ToWoW());
+                        LoadAround(startVec);
+                        LoadAround(endVec);
                     }
 
-                    return resultPath;
+                    dtPolyRef startRef = _query.FindNearestPolygon(start, extents, Filter);
+                    if (startRef == 0)
+                        Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
+
+                    dtPolyRef endRef = _query.FindNearestPolygon(end, extents, Filter);
+                    if (endRef == 0)
+                        Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for end (" + endVec + ")");
+
+                    if (startRef == 0 || endRef == 0)
+                        return new List<Point>();
+
+                    dtPolyRef[] pathCorridor;
+                    DetourStatus status;
+                    if (ShortPath)
+                        status = _query.FindLocalPath(startRef, endRef, start, end, Filter, out pathCorridor);
+                    else
+                        status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
+                    if (status.HasFailed() || pathCorridor == null)
+                    {
+                        Logging.WriteNavigator(status + " FindPath failed, start: " + startRef + " end: " + endRef);
+                        return new List<Point>();
+                    }
+
+                    if (status.HasFlag(DetourStatus.PartialResult))
+                    {
+                        Logging.WriteNavigator("Warning, partial result: " + status);
+                        resultSuccess = false;
+                    }
+
+                    float[] finalPath;
+                    StraightPathFlag[] pathFlags;
+                    dtPolyRef[] pathRefs;
+                    status = _query.FindStraightPath(start, end, pathCorridor, out finalPath, out pathFlags, out pathRefs);
+                    if (status.HasFailed() || (finalPath == null || pathFlags == null || pathRefs == null))
+                        Logging.WriteNavigator(status + "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
+
+                    if (finalPath != null)
+                    {
+                        List<Point> resultPath = new List<Point>(finalPath.Length/3);
+                        for (int i = 0; i < (finalPath.Length/3); i++)
+                        {
+                            resultPath.Add(
+                                new Point(finalPath[(i*3) + 0], finalPath[(i*3) + 1], finalPath[(i*3) + 2]).ToWoW());
+                        }
+
+                        return resultPath;
+                    }
                 }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("FindPath(Point startVec, Point endVec, out bool resultSuccess): " + exception);
+                    resultSuccess = false;
+                }
+                return new List<Point>();
             }
-            catch (Exception exception)
-            {
-                Logging.WriteError("FindPath(Point startVec, Point endVec, out bool resultSuccess): " + exception);
-                resultSuccess = false;
-            }
-            return new List<Point>();
         }
 
         public Point GetClosestPointOnTile(Point position, out bool success)
         {
-            float[] extents = new Point(20.0f, 2000.0f, 20.0f).ToFloatArray();
-            float[] center = position.ToRecast().ToFloatArray();
-
-            float tx, ty;
-            GetTileByLocation(position, out tx, out ty);
-            int x = (int) Math.Floor(tx);
-            int y = (int) Math.Floor(ty);
-            LoadTile(x, y);
-
-            dtPolyRef startRef = _query.FindNearestPolygon(center, extents, Filter);
-            if (startRef == 0)
+            lock (_threadLocker)
             {
-                success = false;
-                return new Point();
+                float[] extents = new Point(20.0f, 2000.0f, 20.0f).ToFloatArray();
+                float[] center = position.ToRecast().ToFloatArray();
+
+                float tx, ty;
+                GetTileByLocation(position, out tx, out ty);
+                int x = (int) Math.Floor(tx);
+                int y = (int) Math.Floor(ty);
+                LoadTile(x, y);
+
+                dtPolyRef startRef = _query.FindNearestPolygon(center, extents, Filter);
+                if (startRef == 0)
+                {
+                    success = false;
+                    return new Point();
+                }
+                float[] result;
+                DetourStatus status = _query.closestPointOnPolyBoundary(startRef, center, out result);
+                if (status.HasFailed())
+                {
+                    success = false;
+                    return new Point();
+                }
+                success = true;
+                return new Point(result.ToWoW());
             }
-            float[] result;
-            DetourStatus status = _query.closestPointOnPolyBoundary(startRef, center, out result);
-            if (status.HasFailed())
-            {
-                success = false;
-                return new Point();
-            }
-            success = true;
-            return new Point(result.ToWoW());
         }
 
         public float GetZ(Point position, bool strict = false)
         {
-            float[] extents = strict ? new Point(0.5f, 2000.0f, 0.5f).ToFloatArray() : new Point(1.5f, 2000.0f, 1.5f).ToFloatArray();
-            float[] center = position.ToRecast().ToFloatArray();
-
-            float tx, ty;
-            GetTileByLocation(position, out tx, out ty);
-            int x = (int) Math.Floor(tx);
-            int y = (int) Math.Floor(ty);
-            LoadTile(x, y);
-
-            dtPolyRef startRef = _query.FindNearestPolygon(center, extents, Filter);
-            if (startRef == 0)
+            lock (_threadLocker)
             {
-                Logging.WriteDebug("There is no polygon in this location (Tile " + x + "," + y + "), coord: X:" +
-                                   position.X + ", Y:" + position.Y);
-                return 0;
+                float[] extents = strict ? new Point(0.5f, 2000.0f, 0.5f).ToFloatArray() : new Point(1.5f, 2000.0f, 1.5f).ToFloatArray();
+                float[] center = position.ToRecast().ToFloatArray();
+
+                float tx, ty;
+                GetTileByLocation(position, out tx, out ty);
+                int x = (int) Math.Floor(tx);
+                int y = (int) Math.Floor(ty);
+                LoadTile(x, y);
+
+                dtPolyRef startRef = _query.FindNearestPolygon(center, extents, Filter);
+                if (startRef == 0)
+                {
+                    Logging.WriteDebug("There is no polygon in this location (Tile " + x + "," + y + "), coord: X:" +
+                                       position.X + ", Y:" + position.Y);
+                    return 0;
+                }
+                float z = _query.GetPolyHeight(startRef, center);
+                if (z == 0 && !strict) // it failed but we are not strict, then search around
+                {
+                    float[] result;
+                    DetourStatus status = _query.closestPointOnPolyBoundary(startRef, center, out result);
+                    z = status.HasFailed() ? 0 : result[1];
+                }
+                return z;
             }
-            float z = _query.GetPolyHeight(startRef, center);
-            if (z == 0 && !strict) // it failed but we are not strict, then search around
-            {
-                float[] result;
-                DetourStatus status = _query.closestPointOnPolyBoundary(startRef, center, out result);
-                z = status.HasFailed() ? 0 : result[1];
-            }
-            return z;
         }
 
         private string GetDungeonPath()
@@ -736,56 +796,60 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public Pather(string continent, ConnectionHandlerDelegate connectionHandler)
         {
-            try
+            lock (_threadLocker)
             {
-                ConnectionHandler = connectionHandler;
-
-                Continent = continent.Substring(continent.LastIndexOf('\\') + 1);
-
-                string dir = Application.StartupPath;
-                _meshPath = dir + "\\Meshes"; // + continent;
-
-
-                if (!Directory.Exists(_meshPath))
-                    Logging.WriteNavigator(DetourStatus.Failure + " No mesh for " + continent + " (Path: " + _meshPath +
-                                           ")");
-
-                _mesh = new NavMesh();
-                _loadedTiles = new Dictionary<Tuple<int, int>, int>();
-                if (_loadTileCheck == null)
-                    _loadTileCheck = new Helpful.Timer(60*1000); // 1 min
-                DetourStatus status;
-
-                // check if this is a dungeon and initialize our mesh accordingly
-                WoWMap map = WoWMap.FromMPQName(continent);
-                if (map.Record.MapType == WoWMap.MapType.WDTOnlyType)
+                try
                 {
-                    string dungeonPath = GetDungeonPath();
-                    if (!File.Exists(_meshPath + "\\" + dungeonPath))
-                        downloadTile(dungeonPath);
-                    byte[] data = File.ReadAllBytes(_meshPath + "\\" + dungeonPath);
-                    status = _mesh.Initialize(data);
-                    AddMemoryPressure(data.Length);
-                    IsDungeon = true;
+                    ConnectionHandler = connectionHandler;
+
+                    Continent = continent.Substring(continent.LastIndexOf('\\') + 1);
+
+                    string dir = Application.StartupPath;
+                    _meshPath = dir + "\\Meshes"; // + continent;
+
+
+                    if (!Directory.Exists(_meshPath))
+                        Logging.WriteNavigator(DetourStatus.Failure + " No mesh for " + continent + " (Path: " + _meshPath +
+                                               ")");
+
+                    _mesh = new NavMesh();
+                    _loadedTiles = new Dictionary<Tuple<int, int>, int>();
+                    if (_loadTileCheck == null)
+                        _loadTileCheck = new Helpful.Timer(60*1000); // 1 min
+                    DetourStatus status;
+
+                    // check if this is a dungeon and initialize our mesh accordingly
+                    WoWMap map = WoWMap.FromMPQName(continent);
+                    if (map.Record.MapType == WoWMap.MapType.WDTOnlyType)
+                    {
+                        string dungeonPath = GetDungeonPath();
+                        if (!File.Exists(_meshPath + "\\" + dungeonPath))
+                            downloadTile(dungeonPath);
+                        byte[] data = File.ReadAllBytes(_meshPath + "\\" + dungeonPath);
+                        status = _mesh.Initialize(data);
+                        AddMemoryPressure(data.Length);
+                        IsDungeon = true;
+                    }
+                    else //                       20bits 28bits
+                        status = _mesh.Initialize(150000, 512*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
+
+                    if (status.HasFailed())
+                        Logging.WriteNavigator(status + " Failed to initialize the mesh");
+
+                    _query = new NavMeshQuery(new PatherCallback(this));
+                    DetourStatus t = _query.Initialize(_mesh, 65536);
+                    Logging.Write("Mesh initialized with status: " + t.ToString());
+                    Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
+                    // Add the costs
+                    Filter.SetAreaCost((int) PolyArea.Water, 4);
+                    Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+                    Filter.SetAreaCost((int) PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
+                    Filter.SetAreaCost((int) PolyArea.Danger, 20);
                 }
-                else //                       20bits 28bits
-                    status = _mesh.Initialize(150000, 512*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
-
-                if (status.HasFailed())
-                    Logging.WriteNavigator(status + " Failed to initialize the mesh");
-
-                _query = new NavMeshQuery(new PatherCallback(this));
-                _query.Initialize(_mesh, 65536); // If only we could use a larger number...
-                Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
-                // Add the costs
-                Filter.SetAreaCost((int) PolyArea.Water, 4);
-                Filter.SetAreaCost((int) PolyArea.Terrain, 1);
-                Filter.SetAreaCost((int) PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
-                Filter.SetAreaCost((int) PolyArea.Danger, 20);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("Pather(string continent, ConnectionHandlerDelegate connectionHandler): " + exception);
+                catch (Exception exception)
+                {
+                    Logging.WriteError("Pather(string continent, ConnectionHandlerDelegate connectionHandler): " + exception);
+                }
             }
         }
 
@@ -806,31 +870,36 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private static void DisableConnection(MeshTile tile, int index)
 // ReSharper restore UnusedMember.Local
         {
-            try
+            lock (_threadLocker)
             {
-                Poly poly = tile.GetPolygon((ushort) (index + tile.Header.OffMeshBase));
-                if (poly == null)
-                    return;
-                poly.Disable();
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("DisableConnection(MeshTile tile, int index): " + exception);
+                try
+                {
+                    Poly poly = tile.GetPolygon((ushort) (index + tile.Header.OffMeshBase));
+                    if (poly == null)
+                        return;
+                    poly.Disable();
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("DisableConnection(MeshTile tile, int index): " + exception);
+                }
             }
         }
 
         private void HandlePathfinderUpdate(float[] best)
         {
-            try
+            lock (_threadLocker)
             {
-                // no dynamic tile loading with dungeon mesh
-                if (IsDungeon)
-                    return;
+                try
+                {
+                    // no dynamic tile loading with dungeon mesh
+                    if (IsDungeon)
+                        return;
 
-                float[] point = best.ToWoW();
-                LoadAround(new Point(point[0], point[1], point[2]));
+                    float[] point = best.ToWoW();
+                    LoadAround(new Point(point[0], point[1], point[2]));
 
-                /*float tx, ty;
+                    /*float tx, ty;
                 GetTileByLocation(best, out tx, out ty);
                 var currentX = (int) Math.Floor(tx);
                 var currentY = (int) Math.Floor(ty);
@@ -859,10 +928,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     LoadDynamic(currentX, currentY + addY);
                     LoadDynamic(currentX + addX, currentY + addY);
                 }*/
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("HandlePathfinderUpdate(float[] best): " + exception);
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("HandlePathfinderUpdate(float[] best): " + exception);
+                }
             }
         }
 
@@ -870,17 +940,20 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private void LoadDynamic(int x, int y)
 // ReSharper restore UnusedMember.Local
         {
-            try
+            lock (_threadLocker)
             {
-                if (!_mesh.HasTileAt(x, y))
+                try
                 {
-                    if (LoadTile(x, y))
-                        Logging.WriteNavigator("Load dynamically: " + x + " " + y);
+                    if (!_mesh.HasTileAt(x, y))
+                    {
+                        if (LoadTile(x, y))
+                            Logging.WriteNavigator("Load dynamically: " + x + " " + y);
+                    }
                 }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("LoadDynamic(int x, int y): " + exception);
+                catch (Exception exception)
+                {
+                    Logging.WriteError("LoadDynamic(int x, int y): " + exception);
+                }
             }
         }
 
