@@ -1716,6 +1716,13 @@
           </Entry>
           <CollectItemId>1</CollectItemId>
           <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>3439.25</X>
+              <Y>-4980.96</Y>
+              <Z>195.728</Z>
+            </Point>
+          </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
@@ -1735,6 +1742,11 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>2556.982</X>
+            <Y>-4765.61</Y>
+            <Z>105.973</Z>
+          </Position>
           <NpcEntry>45417</NpcEntry>
           <QuestName>Ix'lar the Underlord</QuestName>
           <QuestId>27487</QuestId>

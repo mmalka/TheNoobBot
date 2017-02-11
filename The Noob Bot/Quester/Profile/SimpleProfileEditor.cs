@@ -302,13 +302,15 @@ namespace Quester.Profile
                             objective.NpcEntry = Others.ToInt32(TBObjNPCId.Text);
                             objective.QuestId = Others.ToInt32(TBObjQuestID.Text);
                             objective.QuestName = TBObjQuestName.Text;
-
+                            if (TBObjPosition.Text.Trim() != string.Empty)
+                                objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
                             break;
                         case "TurnInQuest":
                             objective.NpcEntry = Others.ToInt32(TBObjNPCId.Text);
                             objective.QuestId = Others.ToInt32(TBObjQuestID.Text);
                             objective.QuestName = TBObjQuestName.Text;
-
+                            if (TBObjPosition.Text.Trim() != string.Empty)
+                                objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
                             break;
                         case "UseFlightPath":
                             objective.TaxiEntry = Others.ToInt32(TBObjTaxiEntryId.Text);
@@ -527,6 +529,8 @@ namespace Quester.Profile
                             newObjective.NpcEntry = Others.ToInt32(TBObjNPCId.Text);
                             newObjective.QuestId = Others.ToInt32(TBObjQuestID.Text);
                             newObjective.QuestName = TBObjQuestName.Text;
+                            if (TBObjPosition.Text.Trim() != string.Empty)
+                                newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
 
                             break;
 
@@ -534,6 +538,8 @@ namespace Quester.Profile
                             newObjective.NpcEntry = Others.ToInt32(TBObjNPCId.Text);
                             newObjective.QuestId = Others.ToInt32(TBObjQuestID.Text);
                             newObjective.QuestName = TBObjQuestName.Text;
+                            if (TBObjPosition.Text.Trim() != string.Empty)
+                                newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
 
                             break;
                         case "UseFlightPath":
@@ -1358,7 +1364,9 @@ namespace Quester.Profile
                     TBObjQuestName.Enabled = true;
                     CBObjIgnoreQuestCompleted.Enabled = true;
                     CBInternalObj.Enabled = false;
+                    TBObjPosition.Enabled = true;
 
+                    TBObjPosition.Text = qObjective.Position.ToString();
                     TBObjNPCId.Text = qObjective.NpcEntry.ToString(CultureInfo.InvariantCulture);
                     TBObjQuestID.Text = qObjective.QuestId.ToString(CultureInfo.InvariantCulture);
                     TBObjQuestName.Text = qObjective.QuestName;
@@ -1370,7 +1378,9 @@ namespace Quester.Profile
                     TBObjQuestName.Enabled = true;
                     CBObjIgnoreQuestCompleted.Enabled = true;
                     CBInternalObj.Enabled = false;
+                    TBObjPosition.Enabled = true;
 
+                    TBObjPosition.Text = qObjective.Position.ToString();
                     TBObjNPCId.Text = qObjective.NpcEntry.ToString(CultureInfo.InvariantCulture);
                     TBObjQuestID.Text = qObjective.QuestId.ToString(CultureInfo.InvariantCulture);
                     TBObjQuestName.Text = qObjective.QuestName;
@@ -1926,13 +1936,13 @@ namespace Quester.Profile
                     TBObjNPCId.Enabled = true;
                     TBObjQuestID.Enabled = true;
                     TBObjQuestName.Enabled = true;
-
+                    TBObjPosition.Enabled = true;
                     break;
                 case "TurnInQuest":
                     TBObjNPCId.Enabled = true;
                     TBObjQuestID.Enabled = true;
                     TBObjQuestName.Enabled = true;
-
+                    TBObjPosition.Enabled = true;
                     break;
                 case "UseFlightPath":
                     TBObjTaxiEntryId.Enabled = true;
