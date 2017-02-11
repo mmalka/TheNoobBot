@@ -1123,9 +1123,9 @@ namespace nManager.Wow.Helpers
 
                 if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) < 36.0f && !nManagerSetting.IsBlackListedZone(rezPos))
                 {
-                    PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
+                    List<Point>  path = PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
 
-                    if (validPoint) //Point Valid : keep only the point that is the farthest from the mobs
+                    if (validPoint && Helpful.Math.DistanceListPoint(path) <= 40f) //Point Valid : keep only the point that is the farthest from the mobs
                     {
                         WoWUnit mobc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), rezPos); //Closest mob from current point
                         WoWUnit mobb = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), bestPoint); //Closest mob from best point
