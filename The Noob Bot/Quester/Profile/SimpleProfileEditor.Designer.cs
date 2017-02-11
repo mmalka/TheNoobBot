@@ -114,6 +114,7 @@ namespace Quester.Profile
             this.TBObjInternalIndex = new System.Windows.Forms.TextBox();
             this.ButtonObjDumpIndex = new System.Windows.Forms.Button();
             this.PanelObjAll = new System.Windows.Forms.Panel();
+            this.CBObjIgnoreFight = new System.Windows.Forms.CheckBox();
             this.CBObjForceTravelToQuestZone = new System.Windows.Forms.CheckBox();
             this.CBObjIgnoreNotSelectable = new System.Windows.Forms.CheckBox();
             this.CBObjAllowPlayerControlled = new System.Windows.Forms.CheckBox();
@@ -181,7 +182,6 @@ namespace Quester.Profile
             this.CBMainDisplayXML = new System.Windows.Forms.CheckBox();
             this.ButtonSaveXML = new System.Windows.Forms.Button();
             this.TNBControlMenu = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.CBObjIgnoreFight = new System.Windows.Forms.CheckBox();
             this.ContextMenuStrip.SuspendLayout();
             this.PanelNPC.SuspendLayout();
             this.PanelSimpleQuest.SuspendLayout();
@@ -1097,6 +1097,17 @@ namespace Quester.Profile
             this.PanelObjAll.TabIndex = 14;
             this.PanelObjAll.Visible = false;
             // 
+            // CBObjIgnoreFight
+            // 
+            this.CBObjIgnoreFight.AutoSize = true;
+            this.CBObjIgnoreFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBObjIgnoreFight.Location = new System.Drawing.Point(84, 364);
+            this.CBObjIgnoreFight.Name = "CBObjIgnoreFight";
+            this.CBObjIgnoreFight.Size = new System.Drawing.Size(82, 17);
+            this.CBObjIgnoreFight.TabIndex = 87;
+            this.CBObjIgnoreFight.Text = "Ignore Fight";
+            this.CBObjIgnoreFight.UseVisualStyleBackColor = true;
+            // 
             // CBObjForceTravelToQuestZone
             // 
             this.CBObjForceTravelToQuestZone.AutoSize = true;
@@ -1773,21 +1784,11 @@ namespace Quester.Profile
             this.TNBControlMenu.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
             this.TNBControlMenu.TitleText = "TheNoobBot";
             // 
-            // CBObjIgnoreFight
-            // 
-            this.CBObjIgnoreFight.AutoSize = true;
-            this.CBObjIgnoreFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreFight.Location = new System.Drawing.Point(84, 364);
-            this.CBObjIgnoreFight.Name = "CBObjIgnoreFight";
-            this.CBObjIgnoreFight.Size = new System.Drawing.Size(82, 17);
-            this.CBObjIgnoreFight.TabIndex = 87;
-            this.CBObjIgnoreFight.Text = "Ignore Fight";
-            this.CBObjIgnoreFight.UseVisualStyleBackColor = true;
-            // 
             // SimpleProfileEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(663, 577);
             this.ControlBox = false;
             this.Controls.Add(this.TNBControlMenu);
