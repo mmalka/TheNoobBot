@@ -838,7 +838,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                     _query = new NavMeshQuery(new PatherCallback(this));
                     DetourStatus t = _query.Initialize(_mesh, 262140); // old 65535
-                    Logging.WriteDebug("NavMeshQuery initialized with status: " + t);
+                    //Logging.WriteDebug("NavMeshQuery initialized with status: " + t);
                     Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
                     // Add the costs
                     Filter.SetAreaCost((int) PolyArea.Water, 4);
