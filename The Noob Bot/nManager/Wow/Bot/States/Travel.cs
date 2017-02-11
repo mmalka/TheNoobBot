@@ -59,68 +59,59 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (_availableTransports == null)
+                if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InInevitableCombat || !NeedToTravel)
+                    return false;
+                _availableTransports = XmlSerializer.Deserialize<Transports>(Application.StartupPath + @"\Data\TransportsDB.xml");
+                for (int i = _availableTransports.Items.Count - 1; i > 0; i--)
                 {
-                    _availableTransports = XmlSerializer.Deserialize<Transports>(Application.StartupPath + @"\Data\TransportsDB.xml");
-                    for (int i = _availableTransports.Items.Count - 1; i > 0; i--)
+                    var transport = _availableTransports.Items[i];
+                    if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                     {
-                        var transport = _availableTransports.Items[i];
-                        if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
-                        {
-                            _availableTransports.Items.RemoveAt(i);
-                        }
+                        _availableTransports.Items.RemoveAt(i);
                     }
                 }
-                if (_availablePortals == null)
+                _availablePortals = XmlSerializer.Deserialize<Portals>(Application.StartupPath + @"\Data\PortalsDB.xml");
+                for (int i = _availablePortals.Items.Count - 1; i >= 0; i--)
                 {
-                    _availablePortals = XmlSerializer.Deserialize<Portals>(Application.StartupPath + @"\Data\PortalsDB.xml");
-                    for (int i = _availablePortals.Items.Count - 1; i >= 0; i--)
+                    var portal = _availablePortals.Items[i];
+                    if (portal.Faction != Npc.FactionType.Neutral && portal.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                     {
-                        var portal = _availablePortals.Items[i];
-                        if (portal.Faction != Npc.FactionType.Neutral && portal.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
-                        {
-                            _availablePortals.Items.RemoveAt(i);
-                            continue;
-                        }
-                        if (portal.RequireQuestId > 0 && !Quest.IsQuestFlaggedCompletedLUA(portal.RequireQuestId))
-                        {
-                            _availablePortals.Items.RemoveAt(i);
-                            continue;
-                        }
-
-                        if (portal.RequireAchivementId > 0 && !Usefuls.IsCompletedAchievement(portal.RequireAchivementId, true))
-                        {
-                            _availablePortals.Items.RemoveAt(i);
-                            continue; // in case I add more checks, I don't want to forget about this continue.
-                        }
-
-                        // We never serialize portals back, so it's all fine.
+                        _availablePortals.Items.RemoveAt(i);
+                        continue;
                     }
-                }
-                if (_availableCustomPaths == null)
-                {
-                    _availableCustomPaths = XmlSerializer.Deserialize<CustomPaths>(Application.StartupPath + @"\Data\CustomPathsDB.xml");
-                    for (int i = _availableCustomPaths.Items.Count - 1; i >= 0; i--)
+                    if (portal.RequireQuestId > 0 && !Quest.IsQuestFlaggedCompletedLUA(portal.RequireQuestId))
                     {
-                        var customPath = _availableCustomPaths.Items[i];
-                        if (customPath.Faction != Npc.FactionType.Neutral && customPath.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
-                        {
-                            _availableCustomPaths.Items.RemoveAt(i);
-                            continue;
-                        }
-                        if (customPath.RequireQuestId > 0 && !Quest.IsQuestFlaggedCompletedLUA(customPath.RequireQuestId))
-                        {
-                            _availableCustomPaths.Items.RemoveAt(i);
-                            continue;
-                        }
+                        _availablePortals.Items.RemoveAt(i);
+                        continue;
+                    }
 
-                        if (customPath.RequireAchivementId > 0 && !Usefuls.IsCompletedAchievement(customPath.RequireAchivementId, true))
-                        {
-                            _availableCustomPaths.Items.RemoveAt(i);
-                            continue; // in case I add more checks, I don't want to forget about this continue.
-                        }
+                    if (portal.RequireAchivementId > 0 && !Usefuls.IsCompletedAchievement(portal.RequireAchivementId, true))
+                    {
+                        _availablePortals.Items.RemoveAt(i);
+                        continue; // in case I add more checks, I don't want to forget about this continue.
+                    }
 
-                        // We never serialize CustomPath back, so it's all fine.
+                    // We never serialize portals back, so it's all fine.
+                }
+                _availableCustomPaths = XmlSerializer.Deserialize<CustomPaths>(Application.StartupPath + @"\Data\CustomPathsDB.xml");
+                for (int i = _availableCustomPaths.Items.Count - 1; i >= 0; i--)
+                {
+                    var customPath = _availableCustomPaths.Items[i];
+                    if (customPath.Faction != Npc.FactionType.Neutral && customPath.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    {
+                        _availableCustomPaths.Items.RemoveAt(i);
+                        continue;
+                    }
+                    if (customPath.RequireQuestId > 0 && !Quest.IsQuestFlaggedCompletedLUA(customPath.RequireQuestId))
+                    {
+                        _availableCustomPaths.Items.RemoveAt(i);
+                        continue;
+                    }
+
+                    if (customPath.RequireAchivementId > 0 && !Usefuls.IsCompletedAchievement(customPath.RequireAchivementId, true))
+                    {
+                        _availableCustomPaths.Items.RemoveAt(i);
+                        continue; // in case I add more checks, I don't want to forget about this continue.
                     }
                 }
                 if (_availableTaxis == null)
@@ -146,8 +137,6 @@ namespace nManager.Wow.Bot.States
                     }
                 }
                 if (_availableTransports == null || _availablePortals == null || _availableCustomPaths == null || _availableTaxis == null || _availableTaxiLinks == null)
-                    return false;
-                if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InInevitableCombat || !NeedToTravel)
                     return false;
                 _generatedRoutePath = GenerateRoutePath; // Automatically cancel TravelTo if not founds.
                 return _generatedRoutePath.Count > 0;
@@ -228,16 +217,115 @@ namespace nManager.Wow.Bot.States
                 int travelToContinentId = TravelToContinentId;
                 int currentContinentId = Usefuls.ContinentId;
                 Point currentPosition = ObjectManager.ObjectManager.Me.Position;
+                bool succes;
 
+                if (travelToContinentId == currentContinentId)
+                {
+                    bool success;
+                    var way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
+                    if (success && Math.DistanceListPoint(way) <= 400f)
+                    {
+                        TravelToContinentId = 9999999;
+                        TravelTo = new Point();
+                        TargetValidationFct = null;
+                        Logging.Write("Travel: We are close enough and we have a valid path. Cancelling Travel.");
+                        return new List<Transport>();
+                    }
+                }
                 KeyValuePair<Transport, float> oneWayTravel = GetBestDirectWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
+                List<Transport> travelPlan = new List<Transport>();
+                float travelCost = 0f;
 
-                if (currentContinentId == travelToContinentId)
+                if (oneWayTravel.Key.Id != 0)
+                {
+                    Logging.Write("Travel: Found direct way travel.");
+                    bool useTaxi = false;
+                    float distWithoutTaxi = 0f;
+                    var departureLift = GetDepartureLift(oneWayTravel.Key);
+
+                    KeyValuePair<Transport, float> taxiToTravel = new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+                    bool taxiGoToLift = false;
+                    if (!(oneWayTravel.Key is Taxi))
+                    {
+                        Point from = ObjectManager.ObjectManager.Me.Position;
+                        int fromContinentId = Usefuls.ContinentId;
+                        Point liftEntrance = (departureLift is Portal || departureLift is CustomPath)
+                            ? departureLift.ArrivalIsA ? departureLift.BPoint : departureLift.APoint
+                            : departureLift.ArrivalIsA ? departureLift.BOutsidePoint : departureLift.AOutsidePoint;
+                        Point transportEntrance = (oneWayTravel.Key is Portal || oneWayTravel.Key is CustomPath)
+                            ? oneWayTravel.Key.ArrivalIsA ? oneWayTravel.Key.BPoint : oneWayTravel.Key.APoint
+                            : oneWayTravel.Key.ArrivalIsA ? oneWayTravel.Key.BOutsidePoint : oneWayTravel.Key.AOutsidePoint;
+                        int liftEntranceContinentId = departureLift.ArrivalIsA ? departureLift.BContinentId : departureLift.AContinentId;
+                        int transportEntranceContinentId = oneWayTravel.Key.ArrivalIsA ? oneWayTravel.Key.BContinentId : oneWayTravel.Key.AContinentId;
+                        KeyValuePair<Transport, float> taxiToTransport = GetBestDirectWayTaxi(from, transportEntrance, fromContinentId, transportEntranceContinentId);
+                        KeyValuePair<Transport, float> taxiToLift = new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+                        if (departureLift.Id > 0)
+                        {
+                            taxiToLift = GetBestDirectWayTaxi(from, liftEntrance, fromContinentId, liftEntranceContinentId);
+                        }
+                        List<Point> wayToEntrance = PathFinder.FindPath(currentPosition, liftEntrance.IsValid ? liftEntrance : transportEntrance, Usefuls.ContinentNameMpq, out succes);
+                        if (succes)
+                        {
+                            distWithoutTaxi = Math.DistanceListPoint(wayToEntrance);
+                            if (!(distWithoutTaxi < taxiToLift.Value) || !(distWithoutTaxi < taxiToTransport.Value))
+                                useTaxi = true;
+                        }
+                        else
+                            useTaxi = true;
+                        if (taxiToLift.Key.Id != 0 && taxiToTransport.Key.Id != 0)
+                        {
+                            taxiToTravel = (taxiToLift.Value > taxiToTransport.Value) ? taxiToTransport : taxiToLift;
+                            taxiGoToLift = !(taxiToLift.Value > taxiToTransport.Value);
+                        }
+                        else if (taxiToLift.Key.Id != 0)
+                        {
+                            taxiToTravel = taxiToLift;
+                            taxiGoToLift = true;
+                        }
+                        else if (taxiToTransport.Key.Id != 0)
+                        {
+                            taxiToTravel = taxiToTransport;
+                        }
+                    }
+
+                    if (useTaxi)
+                    {
+                        if (departureLift.Id > 0 && (taxiToTravel.Key.Id == 0 || taxiGoToLift))
+                        {
+                            if (taxiToTravel.Key.Id != 0 && taxiGoToLift)
+                            {
+                                travelPlan.Add(taxiToTravel.Key);
+                                travelCost -= distWithoutTaxi;
+                                travelCost += taxiToTravel.Value;
+                            }
+                            travelPlan.Add(departureLift);
+                        }
+                        else if (taxiToTravel.Key.Id != 0 && !taxiGoToLift)
+                        {
+                            travelPlan.Add(taxiToTravel.Key);
+                            travelCost -= distWithoutTaxi;
+                            travelCost += taxiToTravel.Value;
+                        }
+                    }
+                    else if (departureLift.Id > 0)
+                    {
+                        travelPlan.Add(departureLift);
+                    }
+
+                    travelPlan.Add(oneWayTravel.Key);
+                    travelCost += oneWayTravel.Value; // already contains the sum of both lift.
+
+                    var arrivalLift = GetArrivalLift(oneWayTravel.Key);
+                    if (arrivalLift.Id > 0)
+                        travelPlan.Add(arrivalLift);
+                }
+                if (currentContinentId == travelToContinentId && travelPlan.Count > 0)
                 {
                     bool success;
                     List<Point> way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
                     if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last()) && !(oneWayTravel.Key is CustomPath)))
                     {
-                        if (oneWayTravel.Value > Math.DistanceListPoint(way))
+                        if (travelCost > Math.DistanceListPoint(way))
                         {
                             TravelToContinentId = 9999999;
                             TravelTo = new Point();
@@ -247,22 +335,8 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
-                if (oneWayTravel.Key.Id != 0)
-                {
-                    List<Transport> travelPlan = new List<Transport>();
-                    Logging.Write("Travel: Found direct way travel.");
-                    var departureLift = GetDepartureLift(oneWayTravel.Key);
-                    if (departureLift.Id > 0)
-                        travelPlan.Add(departureLift);
-
-                    travelPlan.Add(oneWayTravel.Key);
-
-                    var arrivalLift = GetArrivalLift(oneWayTravel.Key);
-                    if (arrivalLift.Id > 0)
-                        travelPlan.Add(arrivalLift);
+                if (travelPlan.Count > 0)
                     return travelPlan;
-                }
-
 
                 /*KeyValuePair<List<Transport>, float> twoWayTravel = GetBestTwoWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
 
@@ -276,10 +350,7 @@ namespace nManager.Wow.Bot.States
                     Logging.Write("Travel: Found a 2-way travel that is faster than a direct way travel.");
                     return twoWayTravel.Key;
                 }*/
-                //KeyValuePair<List<Transport>, float> threeWayTravel = GetBestThreeWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
-                //KeyValuePair<List<Transport>, float> threeWayTravel = GetBestFourthWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
-                //KeyValuePair<List<Transport>, float> threeWayTravel = GetBestFifthWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
-                // todo: support up to 5 way travel and check the fastest every 2 ways. (1-2, 2-3, 3-4, 4-5)
+                // todo: allow to take taxi in case there is no lift and we have no path to the transport.
                 TravelToContinentId = 9999999;
                 TravelTo = new Point();
                 TargetValidationFct = null;
@@ -1351,6 +1422,24 @@ namespace nManager.Wow.Bot.States
             if (taxi != null)
                 allTransports.Add(taxi);
             return allTransports;
+        }
+
+        private KeyValuePair<Transport, float> GetBestDirectWayTaxi(Point travelFrom, Point travelTo, int travelFromContinentId, int travelToContinentId)
+        {
+            bool success;
+            Taxi taxi = GetTaxisThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
+            if (taxi == null)
+                return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+            List<Point> wayIn = PathFinder.FindPath(travelFrom, taxi.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+            if (!success) return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+            List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+            if (!success) return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+            float bestTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
+            if (travelFromContinentId == travelToContinentId)
+                bestTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/2.5f);
+            Transport bestTransport = taxi;
+            bestTransport.Id = taxi.Id;
+            return bestTransport.Id != 0 ? new KeyValuePair<Transport, float>(bestTransport, bestTransportDistance) : new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
         }
 
         private KeyValuePair<Transport, float> GetBestDirectWayTransport(Point travelFrom, Point travelTo, int travelFromContinentId, int travelToContinentId)
