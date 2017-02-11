@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
@@ -43,6 +44,10 @@ namespace Quester.Profile
                 GroupedProfilesList.Items.Clear();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\", "*.xml"))
                 {
+                    if (f.Contains("[H]") && nManager.Wow.ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
+                        continue;
+                    if (f.Contains("[A]") && nManager.Wow.ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
+                        continue;
                     GroupedProfilesList.Items.Add(f);
                     if (load && !QuesterSettings.CurrentSettings.LastProfileSimple && QuesterSettings.CurrentSettings.LastProfile == f)
                         currentSelection = GroupedProfilesList.Items.Count - 1;
@@ -68,6 +73,10 @@ namespace Quester.Profile
                 SimpleProfilesList.Items.Clear();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Quester\\", "*.xml"))
                 {
+                    if (f.Contains("[H]") && nManager.Wow.ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
+                        continue;
+                    if (f.Contains("[A]") && nManager.Wow.ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
+                        continue;
                     SimpleProfilesList.Items.Add(f);
                     if (load && QuesterSettings.CurrentSettings.LastProfileSimple && QuesterSettings.CurrentSettings.LastProfile == f)
                         currentSelection = SimpleProfilesList.Items.Count - 1;
