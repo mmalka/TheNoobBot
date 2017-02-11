@@ -3373,39 +3373,6 @@
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
-      <Npc>
-      <Entry>38704</Entry>
-      <Name>Kelsey Steelspark</Name>
-      <Position>
-        <X>-7945.066</X>
-        <Y>-5270.217</Y>
-        <Z>0.7689236</Z>
-      </Position>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>208177</Entry>
-      <Name>Candy Bucket</Name>
-      <Position>
-        <X>-8702.172</X>
-        <Y>-4080.111</Y>
-        <Z>40.45698</Z>
-      </Position>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>39059</Entry>
-      <Name>Kelsey Steelspark</Name>
-      <Position>
-        <X>-9757.29</X>
-        <Y>-3669.866</Y>
-        <Z>10.86723</Z>
-      </Position>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
   <Npc>
     <Entry>1627</Entry>
     <Name>Dalaran Crate</Name>
@@ -13778,19 +13745,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-333.8926</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-417.438171</Z>
+      <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13814,6 +13769,18 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-333.8926</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -13826,7 +13793,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-166.801468</Z>
+      <Z>-417.438171</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22672,7 +22639,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22684,7 +22651,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -36554,6 +36521,17 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>38704</Entry>
+    <Name>Kelsey Steelspark</Name>
+    <Position>
+      <X>-7945.066</X>
+      <Y>-5270.217</Y>
+      <Z>0.7689236</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>38706</Entry>
     <Name>Zeke Bootscuff</Name>
     <Position>
@@ -36773,6 +36751,17 @@
       <X>-7119.90625</X>
       <Y>-3797.74658</Y>
       <Z>8.700182</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>39059</Entry>
+    <Name>Kelsey Steelspark</Name>
+    <Position>
+      <X>-9757.29</X>
+      <Y>-3669.866</Y>
+      <Z>10.86723</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -37862,7 +37851,7 @@
     <Position>
       <X>-6938.05029</X>
       <Y>-3127.23779</Y>
-      <Z>8.989094</Z>
+      <Z>8.989084</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -42898,12 +42887,34 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>45429</Entry>
+    <Name>Tarenar Sunstrike</Name>
+    <Position>
+      <X>2270.54</X>
+      <Y>-5278.44</Y>
+      <Z>81.44763</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>45431</Entry>
     <Name>Gidwin Goldbraids</Name>
     <Position>
       <X>1863.45825</X>
       <Y>-3697.856</Y>
       <Z>158.398621</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45431</Entry>
+    <Name>Gidwin Goldbraids</Name>
+    <Position>
+      <X>2271.01</X>
+      <Y>-5285.15</Y>
+      <Z>82.08415</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -52654,7 +52665,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>513.6742</Z>
+      <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -52676,7 +52687,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>706.5976</Z>
+      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -74141,6 +74152,17 @@
       <X>3820.84717</X>
       <Y>-3439.58154</Y>
       <Z>1023.34052</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>208177</Entry>
+    <Name>Candy Bucket</Name>
+    <Position>
+      <X>-8702.172</X>
+      <Y>-4080.111</Y>
+      <Z>40.45698</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
