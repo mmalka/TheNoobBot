@@ -1128,6 +1128,7 @@
       <MaxLevel>49</MaxLevel>
       <NeedQuestCompletedId>
         <int>27424</int>
+        <int>27414</int>
       </NeedQuestCompletedId>
       <PickUp>4501</PickUp>
       <TurnIn>4500</TurnIn>
