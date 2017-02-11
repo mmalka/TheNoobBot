@@ -2,489 +2,489 @@
 <Transports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Items>
     <Transport Id="206608" Name="Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
-      <APoint> <!-- Orgrimmar -->
-        <X>1704.782</X>
-        <Y>-4265.96</Y>
-        <Z>34.88368</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>1704.175</X>
-        <Y>-4266.78</Y>
-        <Z>35.2795</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>1696.46</X>
         <Y>-4275.312</Y>
         <Z>35.43055</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Orgrimmar -->
-        <X>1704.782</X>
-        <Y>-4265.96</Y>
-        <Z>101.3377</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>1704.175</X>
-        <Y>-4266.78</Y>
-        <Z>101.7335</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>1710.954</X>
         <Y>-4272.131</Y>
         <Z>101.7238</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>1704.175</X>
+        <Y>-4266.78</Y>
+        <Z>35.2795</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>1704.175</X>
+        <Y>-4266.78</Y>
+        <Z>101.7335</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>1704.782</X>
+        <Y>-4265.96</Y>
+        <Z>34.88368</Z>
+      </APoint>
+      <BPoint>
+        <X>1704.782</X>
+        <Y>-4265.96</Y>
+        <Z>101.3377</Z>
+      </BPoint>
     </Transport>
     <Transport Id="206609" Name="Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
-      <APoint> <!-- Orgrimmar -->
-        <X>1902.046</X>
-        <Y>-4373.103</Y>
-        <Z>43.99677</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>1902.246</X>
-        <Y>-4373.362</Y>
-        <Z>44.31897</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>1900.212</X>
         <Y>-4362.356</Y>
         <Z>43.24344</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Orgrimmar -->
-        <X>1902.046</X>
-        <Y>-4373.103</Y>
-        <Z>105.2947</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>1902.246</X>
-        <Y>-4373.362</Y>
-        <Z>105.6169</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>1900.393</X>
         <Y>-4364.769</Y>
         <Z>105.6628</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>1902.246</X>
+        <Y>-4373.362</Y>
+        <Z>44.31897</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>1902.246</X>
+        <Y>-4373.362</Y>
+        <Z>105.6169</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>1902.046</X>
+        <Y>-4373.103</Y>
+        <Z>43.99677</Z>
+      </APoint>
+      <BPoint>
+        <X>1902.046</X>
+        <Y>-4373.103</Y>
+        <Z>105.2947</Z>
+      </BPoint>
     </Transport>
     <Transport Id="206610" Name="Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
-      <APoint> <!-- Orgrimmar -->
-        <X>1755.314</X>
-        <Y>-4396.597</Y>
-        <Z>42.01785</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>1755.578</X>
-        <Y>-4396.279</Y>
-        <Z>42.74361</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>1748.91</X>
         <Y>-4387.619</Y>
         <Z>42.50715</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Orgrimmar -->
-        <X>1755.314</X>
-        <Y>-4396.597</Y>
-        <Z>109.2562</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>1755.578</X>
-        <Y>-4396.279</Y>
-        <Z>109.652</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>1760.518</X>
         <Y>-4404.893</Y>
         <Z>109.6096</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>1755.578</X>
+        <Y>-4396.279</Y>
+        <Z>42.74361</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>1755.578</X>
+        <Y>-4396.279</Y>
+        <Z>109.652</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>1755.314</X>
+        <Y>-4396.597</Y>
+        <Z>42.01785</Z>
+      </APoint>
+      <BPoint>
+        <X>1755.314</X>
+        <Y>-4396.597</Y>
+        <Z>109.2562</Z>
+      </BPoint>
     </Transport>
     <Transport Id="164871" Name="Zeppelin (The Thundercaller)" Faction="Horde" AContinentId="1" BContinentId="0">
-      <ALift>206609</ALift>
-      <APoint> <!-- Orgrimmar -->
-        <X>1833.509</X>
-        <Y>-4391.543</Y>
-        <Z>152.7679</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>1835.274</X>
-        <Y>-4386.606</Y>
-        <Z>134.9868</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>1840.144</X>
         <Y>-4390.544</Y>
         <Z>135.233</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Brill -->
-        <X>2062.376</X>
-        <Y>292.998</Y>
-        <Z>114.973</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>2067.696</X>
-        <Y>294.0893</Y>
-        <Z>97.20584</Z>
-      </BInsidePoint>
+      <ALift>206609</ALift>
       <BOutsidePoint>
         <X>2067</X>
         <Y>286.6465</Y>
         <Z>97.03135</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>1835.274</X>
+        <Y>-4386.606</Y>
+        <Z>134.9868</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>2067.696</X>
+        <Y>294.0893</Y>
+        <Z>97.20584</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>1833.509</X>
+        <Y>-4391.543</Y>
+        <Z>152.7679</Z>
+      </APoint>
+      <BPoint>
+        <X>2062.376</X>
+        <Y>292.998</Y>
+        <Z>114.973</Z>
+      </BPoint>
     </Transport>
     <Transport Id="175080" Name="Zeppelin (The Iron Eagle)" Faction="Horde" AContinentId="1" BContinentId="0">
-      <ALift>206609</ALift>
-      <APoint> <!-- Orgrimmar -->
-        <X>1880.818</X>
-        <Y>-4435.269</Y>
-        <Z>152.8608</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>1873.087</X>
-        <Y>-4422.177</Y>
-        <Z>135.0856</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>1869.893</X>
         <Y>-4419.349</Y>
         <Z>135.2331</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Stranglethorn -->
-        <X>-12464.34</X>
-        <Y>233.1597</Y>
-        <Z>49.53437</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>-12455.44</X>
-        <Y>222.5413</Y>
-        <Z>31.76521</Z>
-      </BInsidePoint>
+      <ALift>206609</ALift>
       <BOutsidePoint>
         <X>-12449.04</X>
         <Y>217.8848</Y>
         <Z>31.58852</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>1873.087</X>
+        <Y>-4422.177</Y>
+        <Z>135.0856</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-12455.44</X>
+        <Y>222.5413</Y>
+        <Z>31.76521</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>1880.818</X>
+        <Y>-4435.269</Y>
+        <Z>152.8608</Z>
+      </APoint>
+      <BPoint>
+        <X>-12464.34</X>
+        <Y>233.1597</Y>
+        <Z>49.53437</Z>
+      </BPoint>
     </Transport>
     <Transport Id="176495" Name="Zeppelin (The Purple Princess)" Faction="Horde" AContinentId="0" BContinentId="0">
-      <APoint> <!-- Brill -->
-        <X>2062.599</X>
-        <Y>235.2645</Y>
-        <Z>117.7336</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>2056.846</X>
-        <Y>234.4035</Y>
-        <Z>100.0097</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>2059.47</X>
         <Y>240.4673</Y>
         <Z>99.76746</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Stranglethorn -->
-        <X>-12406.89</X>
-        <Y>211.8377</Y>
-        <Z>49.69844</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>-12404.79</X>
-        <Y>207.4982</Y>
-        <Z>31.88968</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>-12412.09</X>
         <Y>207.5038</Y>
         <Z>31.55647</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>2056.846</X>
+        <Y>234.4035</Y>
+        <Z>100.0097</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-12404.79</X>
+        <Y>207.4982</Y>
+        <Z>31.88968</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>2062.599</X>
+        <Y>235.2645</Y>
+        <Z>117.7336</Z>
+      </APoint>
+      <BPoint>
+        <X>-12406.89</X>
+        <Y>211.8377</Y>
+        <Z>49.69844</Z>
+      </BPoint>
     </Transport>
     <Transport Id="186238" Name="Zeppelin, Horde (The Mighty Wind)" Faction="Horde" AContinentId="1" BContinentId="571">
-      <ALift>206609</ALift>
-      <APoint> <!-- Orgrimmar -->
-        <X>1775.066</X>
-        <Y>-4299.745</Y>
-        <Z>151.0326</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>1768.496</X>
-        <Y>-4290.86</Y>
-        <Z>133.1679</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>1761.582</X>
         <Y>-4282.285</Y>
         <Z>133.1059</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Warsong Hold -->
-        <X>2837.908</X>
-        <Y>6187.443</Y>
-        <Z>140.1648</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>2841.076</X>
-        <Y>6188.348</Y>
-        <Z>122.3181</Z>
-      </BInsidePoint>
+      <ALift>206609</ALift>
       <BOutsidePoint>
         <X>2836.484</X>
         <Y>6184.007</Y>
         <Z>121.914</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>1768.496</X>
+        <Y>-4290.86</Y>
+        <Z>133.1679</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>2841.076</X>
+        <Y>6188.348</Y>
+        <Z>122.3181</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>1775.066</X>
+        <Y>-4299.745</Y>
+        <Z>151.0326</Z>
+      </APoint>
+      <BPoint>
+        <X>2837.908</X>
+        <Y>6187.443</Y>
+        <Z>140.1648</Z>
+      </BPoint>
     </Transport>
     <Transport Id="190549" Name="The Zephyr" Faction="Horde" AContinentId="1" BContinentId="1">
-      <ALift>206609</ALift>
-      <APoint> <!-- Orgrimmar -->
-        <X>1735.905</X>
-        <Y>-4257.915</Y>
-        <Z>133.1062</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>1729.719</X>
-        <Y>-4251.378</Y>
-        <Z>133.5041</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>1735.905</X>
         <Y>-4257.915</Y>
         <Z>133.1062</Z>
       </AOutsidePoint>
-      <BLift>4170</BLift>
-      <BPoint> <!-- Thunder Bluff -->
-        <X>-1026.856</X>
-        <Y>375.7847</Y>
-        <Z>150.4127</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>-1029.726</X>
-        <Y>361.7018</Y>
-        <Z>132.6236</Z>
-      </BInsidePoint>
+      <ALift>206609</ALift>
       <BOutsidePoint>
         <X>-1028.312</X>
         <Y>354.372</Y>
         <Z>133.1059</Z>
       </BOutsidePoint>
+      <BLift>4170</BLift>
+      <AInsidePoint>
+        <X>1729.719</X>
+        <Y>-4251.378</Y>
+        <Z>133.5041</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-1029.726</X>
+        <Y>361.7018</Y>
+        <Z>132.6236</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>1735.905</X>
+        <Y>-4257.915</Y>
+        <Z>133.1062</Z>
+      </APoint>
+      <BPoint>
+        <X>-1026.856</X>
+        <Y>375.7847</Y>
+        <Z>150.4127</Z>
+      </BPoint>
     </Transport>
     <Transport Id="4170" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
-      <APoint> <!-- Thunder Bluff -->
-        <X>-1286.237</X>
-        <Y>189.7202</Y>
-        <Z>68.83578</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>-1286.002</X>
-        <Y>189.0783</Y>
-        <Z>68.86822</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>-1280.53</X>
         <Y>195.9089</Y>
         <Z>68.55211</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Thunder Bluff -->
-        <X>-1286.237</X>
-        <Y>189.7202</Y>
-        <Z>130.0801</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>-1286.002 </X>
-        <Y>189.0783</Y>
-        <Z>130.1125</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>-1285.157</X>
         <Y>180.0962</Y>
         <Z>129.9943</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>-1286.002</X>
+        <Y>189.0783</Y>
+        <Z>68.86822</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-1286.002</X>
+        <Y>189.0783</Y>
+        <Z>130.1125</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>-1286.237</X>
+        <Y>189.7202</Y>
+        <Z>68.83578</Z>
+      </APoint>
+      <BPoint>
+        <X>-1286.237</X>
+        <Y>189.7202</Y>
+        <Z>130.0801</Z>
+      </BPoint>
     </Transport>
     <Transport Id="4171" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
-      <APoint> <!-- Thunder Bluff -->
-        <X>-1308.373</X>
-        <Y>185.2901</Y>
-        <Z>68.58609</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>-1310.283</X>
-        <Y>183.8775</Y>
-        <Z>68.62607</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>-1315.915</X>
         <Y>182.2547</Y>
         <Z>68.55236</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Thunder Bluff -->
-        <X>-1308.373</X>
-        <Y>185.2901</Y>
-        <Z>130.0842</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>-1310.283</X>
-        <Y>183.8775</Y>
-        <Z>130.1242</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>-1307.566</X>
         <Y>177.4111</Y>
         <Z>129.9942</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>-1310.283</X>
+        <Y>183.8775</Y>
+        <Z>68.62607</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-1310.283</X>
+        <Y>183.8775</Y>
+        <Z>130.1242</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>-1308.373</X>
+        <Y>185.2901</Y>
+        <Z>68.58609</Z>
+      </APoint>
+      <BPoint>
+        <X>-1308.373</X>
+        <Y>185.2901</Y>
+        <Z>130.0842</Z>
+      </BPoint>
     </Transport>
     <Transport Id="47296" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
-      <APoint> <!-- Thunder Bluff -->
-        <X>-1028.043</X>
-        <Y>-28.35677</Y>
-        <Z>69.02259</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>-1027.458</X>
-        <Y>-27.8707</Y>
-        <Z>69.06262</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>-1020.247</X>
         <Y>-23.26678</Y>
         <Z>69.25317</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Thunder Bluff -->
-        <X>-1028.043</X>
-        <Y>-28.35677</Y>
-        <Z>140.4988</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>-1027.458</X>
-        <Y>-27.8707</Y>
-        <Z>140.5388</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>-1036.728</X>
         <Y>-23.77681</Y>
         <Z>140.6944</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>-1027.458</X>
+        <Y>-27.8707</Y>
+        <Z>69.06262</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-1027.458</X>
+        <Y>-27.8707</Y>
+        <Z>140.5388</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>-1028.043</X>
+        <Y>-28.35677</Y>
+        <Z>69.02259</Z>
+      </APoint>
+      <BPoint>
+        <X>-1028.043</X>
+        <Y>-28.35677</Y>
+        <Z>140.4988</Z>
+      </BPoint>
     </Transport>
     <Transport Id="47297" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
-      <APoint> <!-- Thunder Bluff -->
-        <X>-1037.266</X>
-        <Y>-49.23546</Y>
-        <Z>69.27228</Z>
-      </APoint>
-      <AInsidePoint>
-        <X>-1037.849</X>
-        <Y>-49.04472</Y>
-        <Z>69.31224</Z>
-      </AInsidePoint>
       <AOutsidePoint>
         <X>-1034.359</X>
         <Y>-58.38702</Y>
         <Z>69.25309</Z>
       </AOutsidePoint>
-      <BPoint> <!-- Thunder Bluff -->
-        <X>-1037.266</X>
-        <Y>-49.23546</Y>
-        <Z>140.4947</Z>
-      </BPoint>
-      <BInsidePoint>
-        <X>-1037.849</X>
-        <Y>-49.04472</Y>
-        <Z>140.5346</Z>
-      </BInsidePoint>
       <BOutsidePoint>
         <X>-1046.347</X>
         <Y>-43.78959</Y>
         <Z>140.6945</Z>
       </BOutsidePoint>
+      <AInsidePoint>
+        <X>-1037.849</X>
+        <Y>-49.04472</Y>
+        <Z>69.31224</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-1037.849</X>
+        <Y>-49.04472</Y>
+        <Z>140.5346</Z>
+      </BInsidePoint>
+      <APoint>
+        <X>-1037.266</X>
+        <Y>-49.23546</Y>
+        <Z>69.27228</Z>
+      </APoint>
+      <BPoint>
+        <X>-1037.266</X>
+        <Y>-49.23546</Y>
+        <Z>140.4947</Z>
+      </BPoint>
     </Transport>
-	<Transport Id="20808" Name="Ship (The Maiden's Fancy)" Faction="Neutral" AContinentId="0" BContinentId="1">
-      <APoint> <!-- Booty Bay -->
+    <Transport Id="20808" Name="Ship (The Maiden's Fancy)" Faction="Neutral" AContinentId="0" BContinentId="1">
+      <AOutsidePoint>
+        <X>-14280.41</X>
+        <Y>567.8774</Y>
+        <Z>6.65259</Z>
+      </AOutsidePoint>
+      <BOutsidePoint>
+        <X>-997.0565</X>
+        <Y>-3825.161</Y>
+        <Z>5.510755</Z>
+      </BOutsidePoint>
+      <AInsidePoint>
+        <X>-14269.13</X>
+        <Y>580.8923</Y>
+        <Z>6.089296</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>-997.475</X>
+        <Y>-3845.2</Y>
+        <Z>6.081167</Z>
+      </BInsidePoint>
+      <APoint>
         <X>-14277.75</X>
         <Y>582.8661</Y>
         <Z>0.04808363</Z>
       </APoint>
-      <AInsidePoint>
-		<X>-14269.13</X>
-		<Y>580.8923</Y>
-		<Z>6.089296</Z>
-      </AInsidePoint>
-      <AOutsidePoint>
-		<X>-14280.41</X>
-		<Y>567.8774</Y>
-		<Z>6.65259</Z>
-      </AOutsidePoint>
-      <BPoint> <!-- Ratchet -->
+      <BPoint>
         <X>-1005.613</X>
         <Y>-3841.647</Y>
         <Z>-0.02899144</Z>
       </BPoint>
-      <BInsidePoint>
-		<X>-997.475</X>
-		<Y>-3845.2</Y>
-		<Z>6.081167</Z>
-      </BInsidePoint>
-      <BOutsidePoint>
-		<X>-997.0565</X>
-		<Y>-3825.161</Y>
-		<Z>5.510755</Z>
-      </BOutsidePoint>
     </Transport>
-	<Transport Id="183177" Name="Doodad_mushroombase_elevator01" Faction="Neutral" AContinentId="530" BContinentId="530">
-      <APoint> <!-- Telredor-->
+    <Transport Id="183177" Name="Doodad_mushroombase_elevator01" Faction="Neutral" AContinentId="530" BContinentId="530">
+      <AOutsidePoint>
+        <X>280.4388</X>
+        <Y>5935.795</Y>
+        <Z>26.57624</Z>
+      </AOutsidePoint>
+      <BOutsidePoint>
+        <X>278.5167</X>
+        <Y>5952.019</Y>
+        <Z>149.7979</Z>
+      </BOutsidePoint>
+      <AInsidePoint>
+        <X>280.3204</X>
+        <Y>5922.862</Y>
+        <Z>26.16557</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>280.2572</X>
+        <Y>5941.645</Y>
+        <Z>149.4142</Z>
+      </BInsidePoint>
+      <APoint>
         <X>285.7488</X>
         <Y>5918.209</Y>
         <Z>26.14107</Z>
       </APoint>
-      <AInsidePoint>
-		<X>280.3204</X>
-		<Y>5922.862</Y>
-		<Z>26.16557</Z>
-      </AInsidePoint>
-      <AOutsidePoint>
-		<X>280.4388</X>
-		<Y>5935.795</Y>
-		<Z>26.57624</Z>
-      </AOutsidePoint>
-      <BPoint> <!-- Telredor -->
+      <BPoint>
         <X>283.5826</X>
         <Y>5935.404</Y>
         <Z>149.3924</Z>
       </BPoint>
-      <BInsidePoint>
-	    <X>280.2572</X>
-	    <Y>5941.645</Y>
-		<Z>149.4142</Z>
-      </BInsidePoint>
-      <BOutsidePoint>
-		<X>278.5167</X>
-		<Y>5952.019</Y>
-		<Z>149.7979</Z>
-      </BOutsidePoint>
     </Transport>
-	<Transport Id="244644" Name="Warden's Ascent" Faction="Neutral" AContinentId="1468" BContinentId="1468">
-      <APoint> <!-- Warden -->
+    <Transport Id="244644" Name="Warden's Ascent" Faction="Neutral" AContinentId="1468" BContinentId="1468">
+      <AOutsidePoint>
+        <X>4454.747</X>
+        <Y>-434.7686</Y>
+        <Z>119.1848</Z>
+      </AOutsidePoint>
+      <BOutsidePoint>
+        <X>4461.115</X>
+        <Y>-457.3201</Y>
+        <Z>254.2636</Z>
+      </BOutsidePoint>
+      <AInsidePoint>
+        <X>4452.873</X>
+        <Y>-447.6285</Y>
+        <Z>118.9754</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+        <X>4452.873</X>
+        <Y>-447.6285</Y>
+        <Z>254.1807</Z>
+      </BInsidePoint>
+      <APoint>
         <X>4450.857</X>
         <Y>-451.7679</Y>
         <Z>118.2794</Z>
       </APoint>
-      <AInsidePoint>
-		<X>4452.873</X>
-		<Y>-447.6285</Y>
-		<Z>118.9754</Z>
-      </AInsidePoint>
-      <AOutsidePoint>
-		<X>4454.747</X>
-		<Y>-434.7686</Y>
-		<Z>119.1848</Z>
-      </AOutsidePoint>
-      <BPoint> <!-- Warden -->
+      <BPoint>
         <X>4450.857</X>
         <Y>-451.7679</Y>
         <Z>253.4846</Z>
       </BPoint>
-      <BInsidePoint>
-		<X>4452.873</X>
-		<Y>-447.6285</Y>
-		<Z>254.1807</Z>
-      </BInsidePoint>
-      <BOutsidePoint>
-		<X>4461.115</X>
-		<Y>-457.3201</Y>
-		<Z>254.2636</Z>
-      </BOutsidePoint>
     </Transport>
-    </Items>
+  </Items>
 </Transports>
