@@ -699,6 +699,7 @@
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>27451</InternalQuestId>
           <Count>1</Count>
+          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27451) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27451)) { return true;} else {return false;} </ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>15454</UseItemId>
         </QuestObjective>
@@ -819,6 +820,7 @@
           <Entry>
             <int>205485</int>
           </Entry>
+          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27454) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27454)) { return true;} else {return false;} </ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>1643.086</X>
