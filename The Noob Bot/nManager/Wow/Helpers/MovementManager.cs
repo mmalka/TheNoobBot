@@ -301,7 +301,7 @@ namespace nManager.Wow.Helpers
 
                         if (_loop || Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                         {
-                            if (nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                            if (nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground && MountTask.GetMountCapacity() != MountCapacity.Swimm)
                                 MountTask.MountingGroundMount(false);
                             else
                                 MountTask.Mount(false);
