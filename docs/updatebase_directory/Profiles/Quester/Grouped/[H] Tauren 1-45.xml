@@ -2,13 +2,10 @@
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Includes>
     <Include>
-      <PathFile>[H] 1-5 Sunstrider Isle - Blood Elf Starting Zone.xml</PathFile>
+      <PathFile>[H] 1-10 Mulgore - Tauren Starting Zone.xml</PathFile>
     </Include>
     <Include>
-      <PathFile>[H] 5-12 Eversong Woods.xml</PathFile>
-    </Include>
-    <Include>
-      <PathFile>[H] 10-20 Silverpine.xml</PathFile>
+      <PathFile>[H] 10-20 Northern Barrens.xml</PathFile>
     </Include>
     <Include>
       <PathFile>[H] 20-25 Hillsbrad Foothills.xml</PathFile>
@@ -21,6 +18,9 @@
     </Include>
     <Include>
       <PathFile>[H] 35-40 Dustwallow Marsh.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 40-45 Eastern PlagueLands.xml</PathFile>
     </Include>
   </Includes>
   <Questers />

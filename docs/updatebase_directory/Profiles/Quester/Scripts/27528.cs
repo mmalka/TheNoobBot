@@ -36,8 +36,10 @@ if (unit.IsValid || node.IsValid)
 	
 	while((node.IsValid && ObjectManager.Me.Position.DistanceTo(node.Position) >= questObjective.Range) || (unit.IsValid && ObjectManager.Me.Position.DistanceTo(unit.Position) >= questObjective.Range))
 	{	
-		//if((ObjectManager.Me.InCombat && !questObjective.IgnoreFight) || ObjectManager.Me.IsDeadMe)
-		//	return false;
+		var listEntry = new List<int>(); //Cant use questObjective.Entry in the predicate
+		listEntry = questObjective.Entry;
+		if((ObjectManager.Me.InCombat && !questObjective.IgnoreFight && nManager.Wow.ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer().FindAll(x=> !listEntry.Contains(x.Entry)).Count > 0) || ObjectManager.Me.IsDeadMe)
+			return false;
 		if(node.IsValid)
 		{
 			baseAddress = MovementManager.FindTarget(node, questObjective.Range);
@@ -59,6 +61,7 @@ if (unit.IsValid || node.IsValid)
 	if (questObjective.IgnoreFight)
 		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 
+	//Ignore blacklist to True since we want to get the mob that was killed
 	WoWUnit unitDead = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, true), questObjective.IgnoreNotSelectable, true, questObjective.AllowPlayerControlled);
 
 	if (node.IsValid)

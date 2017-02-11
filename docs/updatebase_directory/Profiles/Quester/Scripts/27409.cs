@@ -11,16 +11,14 @@ if (questObjective.Hotspots.Count <= 0)
 /* Move to Zone/Hotspot */
 if (!MovementManager.InMovement)
 {
-	if (questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
+	if (questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
 	{
-		//nManager.Wow.Helpers.Quest.TravelToQuestZone(Point destination, ref questObjective.TravelToQuestZone, int continentId = -1, bool forceTravel = false) //For me :)
-		//nManager.Wow.Helpers.Quest.TravelToQuestZone(questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)]);
-		nManager.Wow.Helpers.Quest.TravelToQuestZone(questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)], ref questObjective.TravelToQuestZone, questObjective.ContinentId,questObjective.ForceTravelToQuestZone);
-		MovementManager.Go(PathFinder.FindPath(questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)]));
+		nManager.Wow.Helpers.Quest.TravelToQuestZone(questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref questObjective.TravelToQuestZone, questObjective.ContinentId,questObjective.ForceTravelToQuestZone);
+		MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
 	}
 	else
 	{
-		MovementManager.GoLoop(questObjective.Hotspots);
+		MovementManager.GoLoop(questObjective.PathHotspots);
 	}
 }
   
@@ -38,8 +36,10 @@ if (unit.IsValid || node.IsValid)
 	
 	while((node.IsValid && ObjectManager.Me.Position.DistanceTo(node.Position) >= questObjective.Range) || (unit.IsValid && ObjectManager.Me.Position.DistanceTo(unit.Position) >= questObjective.Range))
 	{	
-		//if((ObjectManager.Me.InCombat && !questObjective.IgnoreFight) || ObjectManager.Me.IsDeadMe)
-		//	return false;
+		var listEntry = new List<int>(); //Cant use questObjective.Entry in the predicate
+		listEntry = questObjective.Entry;
+		if((ObjectManager.Me.InCombat && !questObjective.IgnoreFight && nManager.Wow.ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer().FindAll(x=> !listEntry.Contains(x.Entry)).Count > 0) || ObjectManager.Me.IsDeadMe)
+			return false;
 		if(node.IsValid)
 		{
 			baseAddress = MovementManager.FindTarget(node, questObjective.Range);
@@ -61,15 +61,19 @@ if (unit.IsValid || node.IsValid)
 	if (questObjective.IgnoreFight)
 		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 
+	//Ignore blacklist to True since we want to get the mob that was killed
+	WoWUnit unitDead = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, true), questObjective.IgnoreNotSelectable, true, questObjective.AllowPlayerControlled);
+
+	
 	if (node.IsValid)
 	{
 		MovementManager.Face(node);
 		Interact.InteractWith(node.GetBaseAddress);
 	}
-	else if (unit.IsValid)
+	else if (unitDead.IsValid)
 	{
-		MovementManager.Face(unit);
-		Interact.InteractWith(unit.GetBaseAddress);
+		MovementManager.Face(unitDead);
+		Interact.InteractWith(unitDead.GetBaseAddress);
 	}
 	
 	MovementManager.StopMove();
@@ -94,7 +98,7 @@ if (unit.IsValid || node.IsValid)
 	}
 	else if (unit.IsValid)
 	{
-		nManagerSetting.AddBlackList(unit.Guid, 30*1000);
+		nManagerSetting.AddBlackList(unitDead.Guid, 30*1000);
 	}
 	
 	Thread.Sleep(questObjective.WaitMs);

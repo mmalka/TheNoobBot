@@ -11820,6 +11820,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>-1316.25977</X>
+      <Y>-3183.63623</Y>
+      <Z>37.30811</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1316.25977</X>
+      <Y>-3183.63623</Y>
+      <Z>37.30811</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>-1226.29</X>
       <Y>414.889</Y>
       <Z>3.56687331</Z>
@@ -11947,6 +11969,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-188.332</X>
+      <Y>-4344.28</Y>
+      <Z>113.268333</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-188.332</X>
+      <Y>-4344.28</Y>
+      <Z>113.268333</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -12299,6 +12343,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2051.49</X>
+      <Y>-5023.28</Y>
+      <Z>75.20994</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2051.49</X>
+      <Y>-5023.28</Y>
+      <Z>75.20994</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -14629,7 +14695,7 @@
     <Position>
       <X>-933.8503</X>
       <Y>-3477.46948</Y>
-      <Z>51.3042145</Z>
+      <Z>51.30418</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -14641,7 +14707,7 @@
     <Position>
       <X>-933.8503</X>
       <Y>-3477.46948</Y>
-      <Z>51.3042145</Z>
+      <Z>51.30418</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
@@ -15267,9 +15333,9 @@
     <Entry>11038</Entry>
     <Name>Caretaker Alen</Name>
     <Position>
-      <X>2146.205</X>
-      <Y>-5264.06641</Y>
-      <Z>80.36403</Z>
+      <X>2146.995</X>
+      <Y>-5262.97</Y>
+      <Z>80.07695</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -15932,6 +15998,17 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>12384</Entry>
+    <Name>Augustus the Touched</Name>
+    <Position>
+      <X>2935.735</X>
+      <Y>-2744.6355</Y>
+      <Z>109.6079</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>12781</Entry>
     <Name>Master Sergeant Biggins</Name>
     <Position>
@@ -16503,7 +16580,7 @@
     <Position>
       <X>-845.5123</X>
       <Y>-3507.93359</Y>
-      <Z>73.61405</Z>
+      <Z>73.61413</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -38604,6 +38681,50 @@
     <Entry>45417</Entry>
     <Name>Fiona</Name>
     <Position>
+      <X>2278.03</X>
+      <Y>-4420.79</Y>
+      <Z>111.749535</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45417</Entry>
+    <Name>Fiona</Name>
+    <Position>
+      <X>2304.17</X>
+      <Y>-5258.89</Y>
+      <Z>82.081604</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45417</Entry>
+    <Name>Fiona</Name>
+    <Position>
+      <X>2556.82</X>
+      <Y>-4765.68</Y>
+      <Z>105.972382</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45417</Entry>
+    <Name>Fiona</Name>
+    <Position>
+      <X>3008.54</X>
+      <Y>-3438.77</Y>
+      <Z>149.708542</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45417</Entry>
+    <Name>Fiona</Name>
+    <Position>
       <X>3162.27</X>
       <Y>-4325.08</Y>
       <Z>132.407288</Z>
@@ -38631,6 +38752,105 @@
       <Z>195.679871</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>2262.87</X>
+      <Y>-4463.15</Y>
+      <Z>114.299568</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>2262.87</X>
+      <Y>-4463.15</Y>
+      <Z>114.299568</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>2316.1</X>
+      <Y>-5269.07</Y>
+      <Z>82.25228</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>2316.1</X>
+      <Y>-5269.07</Y>
+      <Z>82.25228</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>2558.56</X>
+      <Y>-4796.26</Y>
+      <Z>143.914</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>2558.56</X>
+      <Y>-4796.26</Y>
+      <Z>143.914</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>3010.16</X>
+      <Y>-3428.6</Y>
+      <Z>149.709686</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>3010.16</X>
+      <Y>-3428.6</Y>
+      <Z>149.709686</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45451</Entry>
+    <Name>Argus Highbeacon</Name>
+    <Position>
+      <X>3160.69</X>
+      <Y>-4322.88</Y>
+      <Z>131.82103</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -39690,9 +39910,9 @@
     <Entry>47286</Entry>
     <Name>Vincent Randolph</Name>
     <Position>
-      <X>2256.98</X>
-      <Y>-5292.6</Y>
-      <Z>82.13768</Z>
+      <X>2266.66</X>
+      <Y>-5285.23</Y>
+      <Z>83.05599</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -59994,6 +60214,17 @@
       <X>-10120.5469</X>
       <Y>-3821.17188</Y>
       <Z>17.291193</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>148960</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1548.69922</X>
+      <Y>-5387.10938</Y>
+      <Z>78.2245</Z>
     </Position>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>

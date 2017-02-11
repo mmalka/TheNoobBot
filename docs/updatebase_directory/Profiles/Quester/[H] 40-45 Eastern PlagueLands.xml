@@ -246,24 +246,23 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>45400</int>
           </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ScriptConditionIsComplete>return ObjectManager.Me.InTransport || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(27373);</ScriptConditionIsComplete>
           <Position>
             <X>1912.228</X>
             <Y>-2642.641</Y>
             <Z>59.88774</Z>
           </Position>
-          <WaitMs>150000</WaitMs>
+          <WaitMs>10000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>45417</NpcEntry>
-          <QuestName>Onward, to Light's Hope Chapel</QuestName>
-          <QuestId>27373</QuestId>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return !ObjectManager.Me.InTransport || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(27373);</ScriptConditionIsComplete>
+          <WaitMs>5000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2153,6 +2152,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27526) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27526)) { return true;} else {return false;} </ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>2999.488</X>
@@ -2162,8 +2162,9 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27526) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27526)) { return true;} else {return false;} </ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>35000</WaitMs>
+          <WaitMs>60000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -2239,17 +2240,27 @@
           <QuestId>27539</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>MoveTo</Objective>
+          <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>3006.129</X>
-            <Y>-3439.542</Y>
-            <Z>149.7081</Z>
-          </Position>
+          <NpcEntry>45831</NpcEntry>
+          <QuestName>Defenders of Darrowshire</QuestName>
+          <QuestId>27529</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>45831</NpcEntry>
+          <QuestName>Scourged Mass</QuestName>
+          <QuestId>27528</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>3006.008</X>
+            <Y>-3438.957</Y>
+            <Z>149.709</Z>
+          </Position>
           <NpcEntry>45729</NpcEntry>
           <QuestName>Guardians of Stratholme</QuestName>
           <QuestId>27525</QuestId>
@@ -2295,6 +2306,7 @@
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -2362,18 +2374,25 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>A Fate Worse Than Butchery</Name>
+      <Name>Journey's End</Name>
       <RaceMask>33555378</RaceMask>
-      <Id>27533</Id>
+      <Id>27527</Id>
       <QuestLevel>44</QuestLevel>
       <MinLevel>41</MinLevel>
       <MaxLevel>54</MaxLevel>
       <NeedQuestCompletedId>
         <int>27531</int>
       </NeedQuestCompletedId>
-      <PickUp>12384</PickUp>
-      <TurnIn>12384</TurnIn>
+      <PickUp>45730</PickUp>
+      <TurnIn>45417</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>12384</NpcEntry>
+          <QuestName>A Fate Worse Than Butchery</QuestName>
+          <QuestId>27533</QuestId>
+        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -2402,6 +2421,7 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>27533</InternalQuestId>
           <Count>9</Count>
           <Entry>
             <int>16117</int>
