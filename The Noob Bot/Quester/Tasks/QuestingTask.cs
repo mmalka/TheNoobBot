@@ -1412,6 +1412,8 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.TravelTo)
             {
                 Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, true);
+                if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                    questObjective.IsObjectiveCompleted = true;
             }
 
             if (questObjective.Objective == Objective.CSharpScript)
