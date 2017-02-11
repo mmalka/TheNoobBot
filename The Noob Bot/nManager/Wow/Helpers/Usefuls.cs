@@ -1123,7 +1123,7 @@ namespace nManager.Wow.Helpers
 
                 if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) < 36.0f && !nManagerSetting.IsBlackListedZone(rezPos))
                 {
-                    List<Point>  path = PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
+                    List<Point> path = PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
 
                     if (validPoint && Helpful.Math.DistanceListPoint(path) <= 40f) //Point Valid : keep only the point that is the farthest from the mobs
                     {

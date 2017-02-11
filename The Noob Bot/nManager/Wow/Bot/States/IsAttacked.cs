@@ -26,12 +26,27 @@ namespace nManager.Wow.Bot.States
             get { return "IsAttacked"; }
         }
 
+        public static List<int> IgnoreStrikeBackCreatureList = new List<int>();
+
         public void StrikeFirst()
         {
             if (_stealthSpell == null)
                 _stealthSpell = new Spell("Stealth");
             if (_prowlSpell == null)
                 _prowlSpell = new Spell("Prowl");
+            if (IgnoreStrikeBackCreatureList.Count <= 0)
+            {
+                Logging.Write("Loading IgnoreStrikeBackCreatureList...");
+                string[] forceLootCreatureList = Others.ReadFileAllLines(Application.StartupPath + "\\Data\\IgnoreStrikeBackCreatureList.txt");
+                for (int i = 0; i <= forceLootCreatureList.Length - 1; i++)
+                {
+                    int creatureId = Others.ToInt32(forceLootCreatureList[i]);
+                    if (creatureId > 0 && !IgnoreStrikeBackCreatureList.Contains(creatureId))
+                        IgnoreStrikeBackCreatureList.Add(creatureId);
+                }
+                if (IgnoreStrikeBackCreatureList.Count > 0)
+                    Logging.Write("Loaded " + IgnoreStrikeBackCreatureList.Count + " creatures to ignore in Strike Back system.");
+            }
             while (Products.Products.IsStarted)
             {
                 Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
@@ -46,9 +61,10 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.HealthPercent <= 40)
                     continue;
                 WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
-                if (unit == null || !unit.IsValid || unit.IsDead || TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
+                if (unit == null || !unit.IsValid || unit.IsDead || IgnoreStrikeBackCreatureList.Contains(unit.Entry) || TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
                     continue;
-                _unitToPull = unit;
+                if (unit.GetMove)
+                    _unitToPull = unit;
             }
         }
 
