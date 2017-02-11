@@ -297,6 +297,30 @@ namespace nManager.Wow.Bot.States
                           Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ".");
             MovementManager.StopMove();
 
+            string s = "";
+            string number = "one";
+            if (_generatedRoutePath.Count == 2)
+                number = "two";
+            else if (_generatedRoutePath.Count == 3)
+                number = "three";
+            if (number != "one")
+                s = "s";
+            Logging.Write("Travel: Our travel plan consists of " + number + " transport" + s + " for today's journey.");
+            foreach (Transport transport in _generatedRoutePath)
+            {
+                if (transport is Taxi)
+                    continue;
+                if (transport.ArrivalIsA)
+                    Logging.Write("Travel: " + transport.Name + "(" + transport.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(transport.BContinentId) + " (" +
+                                  (!(transport is Portal) && !(transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint) + ") to " +
+                                  Usefuls.ContinentNameMpqByContinentId(transport.AContinentId) + " (" + (!(transport is Portal) && !(transport is CustomPath) ? transport.APoint : transport.AOutsidePoint) + ")");
+                else
+                    Logging.Write("Travel: " + transport.Name + "(" + transport.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(transport.AContinentId) + " (" +
+                                  (!(transport is Portal) && !(transport is CustomPath) ? transport.APoint : transport.AOutsidePoint) + ") to " +
+                                  Usefuls.ContinentNameMpqByContinentId(transport.BContinentId) + " (" + (!(transport is Portal) && !(transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint) + ")");
+            }
+            if (_generatedRoutePath.Count > 1)
+                Logging.Write("Travel: We will recalculate travel path once arrived to make sure we are always on the fastest path.");
             foreach (Transport transport in _generatedRoutePath)
             {
                 GoToDepartureQuayOrPortal(transport);
@@ -322,6 +346,14 @@ namespace nManager.Wow.Bot.States
                         return;
                     LeaveTransport(transport);
                 }
+                break;
+                // We didn't finish our travel plan, but we can generate the same route and this time perhaps includes a 
+                // faster transport that became available. (a taxi that is only accessible before the elevator ?
+
+                // This is based on the example: Brill to Somewhere on Kalimdor
+                // We generate a road to Zeppelin + Elevator (to have a correct path to final destination)
+                // But, when we arrive at Orgrimmar Zeppelin dock, we figure out that it would be wiser to use the taxi instead of going down.
+                // If we take the elevator down, the Orgrimmar taxi wont be visible though travel as there is no direct path.
             }
             TravelToContinentId = 9999999;
             TravelTo = new Point();
