@@ -1272,18 +1272,14 @@ namespace nManager.Wow.ObjectManager
                 {
                     bool bResult = false;
 
-                    _lastPosMove = ObjectManager.Me.Position;
+                    _lastPosMove = new Point {X = Position.X, Y = Position.Y, Z = Position.Z};
                     Thread.Sleep(50);
-                    if (Math.Round(_lastPosMove.X, 1) != Math.Round(ObjectManager.Me.Position.X, 1) ||
-                        Math.Round(_lastPosMove.Z, 1) != Math.Round(ObjectManager.Me.Position.Z, 1) ||
-                        Math.Round(_lastPosMove.Y, 1) != Math.Round(ObjectManager.Me.Position.Y, 1))
+                    if (_lastPosMove != Position)
                         bResult = true;
                     if (!bResult)
                     {
                         Thread.Sleep(30);
-                        if (Math.Round(_lastPosMove.X, 1) != Math.Round(ObjectManager.Me.Position.X, 1) ||
-                            Math.Round(_lastPosMove.Z, 1) != Math.Round(ObjectManager.Me.Position.Z, 1) ||
-                            Math.Round(_lastPosMove.Y, 1) != Math.Round(ObjectManager.Me.Position.Y, 1))
+                        if (_lastPosMove != Position)
                             bResult = true;
                     }
                     return bResult;
@@ -2808,12 +2804,12 @@ namespace nManager.Wow.ObjectManager
 
         public UnitQuestGiverStatus UnitQuestGiverStatus
         {
-            get { return (UnitQuestGiverStatus)Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint)Addresses.Quests.QuestGiverStatus); }
+            get { return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
         }
 
         public UnitFlightMasterStatus UnitFlightMasteStatus
         {
-            get { return (UnitFlightMasterStatus)Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint)Addresses.Quests.FlightMasterStatus); }
+            get { return (UnitFlightMasterStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.FlightMasterStatus); }
         }
 
         public bool CanTurnIn
