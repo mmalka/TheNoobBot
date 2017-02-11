@@ -1,6 +1,6 @@
 /* Use Item With HotSpots
-   Check if there is HotSpots in the objective */
-   
+Check if there is HotSpots in the objective */
+
 try
 {
 	if (questObjective.Hotspots.Count <= 0)
@@ -11,31 +11,31 @@ try
 		return false;
 	}
 
-	if (questObjective.IgnoreFight)
-		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
-	  
 	WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-	WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList, questObjective.AllowPlayerControlled);
+	WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
+		questObjective.AllowPlayerControlled);
 	Point pos = ObjectManager.Me.Position; /* Initialize or getting an error */
 	int q = QuestID; /* not used but otherwise getting warning QuestID not used */
-	uint baseAddress=0;
+	uint baseAddress = 0;
 
 	/* If Entry found continue, otherwise continue checking around HotSpots */
-	if ((unit.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid)) || (node.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid)))
-	{	
-
+	if ((unit.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid)) ||
+		(node.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid)))
+	{
+		if (questObjective.IgnoreFight)
+			nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 		/* Entry found, GoTo */
-		if(node.IsValid)
+		if (node.IsValid)
 		{
 			baseAddress = MovementManager.FindTarget(node, questObjective.Range);
 		}
-		if(unit.IsValid)
+		if (unit.IsValid)
 		{
 			baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
 		}
 		Thread.Sleep(500);
-		
-		if (MovementManager.InMovement)  
+
+		if (MovementManager.InMovement)
 			return false;
 		if (questObjective.IgnoreNotSelectable)
 		{
@@ -44,14 +44,14 @@ try
 		}
 		else
 		{
-			if(baseAddress <= 0)	
+			if (baseAddress <= 0)
 				return false;
 			if (baseAddress > 0 && ((node.IsValid && node.GetDistance > questObjective.Range) || (unit.IsValid && unit.GetDistance > questObjective.Range)))
 				return false;
 		}
 
 		Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
-			
+
 		/* Target Reached */
 		MovementManager.StopMove();
 		MountTask.DismountMount();
@@ -69,22 +69,20 @@ try
 
 		MovementManager.StopMove();
 		MountTask.DismountMount();
-		
+
 		if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
 			return false;
 
 		ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
-		
+
 		Thread.Sleep(Usefuls.Latency + 150);
-		
+
 		/* Wait for the Use Item cast to be finished, if any */
 		while (ObjectManager.Me.IsCast)
 		{
 			Thread.Sleep(Usefuls.Latency);
 		}
-		
-		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
-		
+
 		if (node.IsValid)
 		{
 			nManagerSetting.AddBlackList(node.Guid, 30*1000);
@@ -93,19 +91,21 @@ try
 		{
 			nManagerSetting.AddBlackList(unit.Guid, 30*1000);
 		}
-		
+
 		/* Wait if necessary */
-		if(questObjective.WaitMs > 0)
+		if (questObjective.WaitMs > 0)
 			Thread.Sleep(questObjective.WaitMs);
 
-		
+		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
 	}
-	/* Move to Zone/Hotspot */
+		/* Move to Zone/Hotspot */
 	else if (!MovementManager.InMovement)
 	{
+		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
 		if (questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
 		{
-			nManager.Wow.Helpers.Quest.TravelToQuestZone(questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref questObjective.TravelToQuestZone, questObjective.ContinentId,questObjective.ForceTravelToQuestZone);
+			nManager.Wow.Helpers.Quest.TravelToQuestZone(questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)],
+				ref questObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
 			MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
 		}
 		else
@@ -113,7 +113,6 @@ try
 			MovementManager.GoLoop(questObjective.PathHotspots);
 		}
 	}
-
 }
 catch (Exception ex)
 {
@@ -121,5 +120,5 @@ catch (Exception ex)
 }
 finally
 {
-	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
+	/*nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;*/
 }
