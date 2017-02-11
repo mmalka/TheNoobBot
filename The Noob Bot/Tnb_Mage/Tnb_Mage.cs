@@ -1378,6 +1378,7 @@ public class MageFrost
     private readonly Spell MirrorImage = new Spell("Mirror Image");
     private readonly Spell RayofFrost = new Spell("Ray of Frost");
     private readonly Spell TimeWarp = new Spell("Time Warp"); //No GCD
+    private readonly Spell ColdSnap = new Spell("Cold Snap"); //No GCD //has to be implemented
 
     #endregion
 
@@ -1625,6 +1626,16 @@ public class MageFrost
             {
                 MirrorImage.Cast();
             }
+            //Cast Cold Snap
+            int spellsOnCD = 0;
+            spellsOnCD += SpellManager.IsSpellOnCooldown(FrostNova.Ids, FrostNova.CategoryId, FrostNova.StartRecoveryCategoryId) ? 1 : 0;
+            //spellsOnCD += SpellManager.IsSpellOnCooldown(ConeofCold.Ids, ConeofCold.CategoryId, ConeofCold.StartRecoveryCategoryId) ? 1 : 0;
+            spellsOnCD += SpellManager.IsSpellOnCooldown(IceBarrier.Ids, IceBarrier.CategoryId, IceBarrier.StartRecoveryCategoryId) ? 1 : 0;
+            spellsOnCD += SpellManager.IsSpellOnCooldown(IceBlock.Ids, IceBlock.CategoryId, IceBlock.StartRecoveryCategoryId) ? 1 : 0;
+            if (spellsOnCD >= MySettings.UseColdSnapWhenSpellsOnCD && ColdSnap.IsSpellUsable)
+            {
+                ColdSnap.Cast();
+            }
             return false;
         }
         finally
@@ -1847,6 +1858,7 @@ public class MageFrost
         public bool UseRuneofPower = true;
 
         /* Offensive Cooldowns */
+        public int UseColdSnapWhenSpellsOnCD = 2;
         public bool UseFrozenOrb = true;
         public bool UseIcyVeins = true;
         public bool UseMirrorImage = true;
@@ -1882,6 +1894,7 @@ public class MageFrost
             AddControlInWinForm("Use Ebonbolt", "UseEbonbolt", "Artifact Spells");
             /* Offensive Spells */
             AddControlInWinForm("Use Blizzard", "UseBlizzard", "Offensive Spells");
+            AddControlInWinForm("Use Cold Snap when this many cooldowns will be reseted", "UseColdSnapWhenSpellsOnCD", "Offensive Spells");
             AddControlInWinForm("Use Flurry", "UseFlurry", "Offensive Spells");
             AddControlInWinForm("Use Freeze", "UseFreeze", "Offensive Spells");
             AddControlInWinForm("Use Frostbolt", "UseFrostbolt", "Offensive Spells");

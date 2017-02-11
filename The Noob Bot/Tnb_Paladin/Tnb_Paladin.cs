@@ -1244,7 +1244,6 @@ public class PaladinRetribution
     #region Paladin Seals & Buffs
 
     public readonly Spell GreaterBlessingOfKings = new Spell("Greater Blessing of Kings");
-    public readonly Spell GreaterBlessingOfMight = new Spell("Greater Blessing of Might");
     public readonly Spell GreaterBlessingOfWisdom = new Spell("Greater Blessing of Wisdom");
 
     #endregion
@@ -1424,12 +1423,6 @@ public class PaladinRetribution
         if (MySettings.UseGreaterBlessingOfKings && GreaterBlessingOfKings.KnownSpell && !GreaterBlessingOfKings.HaveBuff && GreaterBlessingOfKings.IsSpellUsable)
         {
             GreaterBlessingOfKings.Cast();
-            return;
-        }
-        if (MySettings.UseGreaterBlessingOfMight && GreaterBlessingOfMight.KnownSpell && !GreaterBlessingOfMight.HaveBuff && GreaterBlessingOfMight.IsSpellUsable)
-        {
-            Logging.Write("If for raiding reasons you need to bless certains party member, disable Greater Blessings in settings and do it manually.");
-            GreaterBlessingOfMight.Cast();
             return;
         }
         if (MySettings.UseGreaterBlessingOfWisdom && GreaterBlessingOfWisdom.KnownSpell && !GreaterBlessingOfWisdom.HaveBuff && GreaterBlessingOfWisdom.IsSpellUsable)
@@ -1660,7 +1653,6 @@ public class PaladinRetribution
         public bool UseAvengingWrath = true;
         public bool UseBerserking = true;
         public bool UseGreaterBlessingOfKings = true;
-        public bool UseGreaterBlessingOfMight = true;
         public bool UseGreaterBlessingOfWisdom = true;
         public bool UseCombatPotion = false;
         public bool UseCrusaderStrike = true;
@@ -1710,7 +1702,6 @@ public class PaladinRetribution
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             /* Paladin Seals & Buffs */
-            AddControlInWinForm("Use Greater Blessing of Might", "UseGreaterBlessingOfMight", "Paladin Blessings");
             AddControlInWinForm("Use Greater Blessing of Kings", "UseGreaterBlessingOfKings", "Paladin Blessings");
             AddControlInWinForm("Use Greater Blessing of Wisdom", "UseGreaterBlessingOfWisdom", "Paladin Blessings");
             /* Offensive Spell */

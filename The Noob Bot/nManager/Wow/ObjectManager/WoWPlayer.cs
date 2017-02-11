@@ -187,7 +187,11 @@ namespace nManager.Wow.ObjectManager
 
         public bool InInevitableCombat
         {
-            get { return ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) && !CustomProfile.GetSetIgnoreFight && !Quest.GetSetIgnoreFight; }
+            get
+            {
+                return ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) && !CustomProfile.GetSetIgnoreFight &&
+                       !Quest.GetSetIgnoreFight;
+            }
         }
 
         public new bool InCombat

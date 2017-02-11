@@ -54,7 +54,6 @@ namespace The_Noob_Bot
             nManagerSetting.AutoStartPassword = wowPassword;
             nManagerSetting.AutoStartRealmName = realmName;
             nManagerSetting.AutoStartCharacter = character;
-
         }
 
         private void Translate()
@@ -570,7 +569,6 @@ namespace The_Noob_Bot
 
         private void EasterEgg_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -769,6 +769,7 @@ public class DemonHunterVengeance
     #region DemonHunter Seals & Buffs
 
     private readonly Spell BladeTurningBuff = new Spell(207709 /*"Blade Turning"*/);
+    private readonly Spell SoulFragments = new Spell(203981 /*"Soul Fragments"*/);
 
     #endregion
 
@@ -1078,8 +1079,8 @@ public class DemonHunterVengeance
                     FelEruption.Cast();
                     return;
                 }
-                if (MySettings.UseSpiritBomb && SpiritBomb.IsSpellUsable && SpiritBomb.IsHostileDistanceGood &&
-                    !Frailty.TargetHaveBuff)
+                if (MySettings.UseSpiritBomb && SpiritBomb.IsSpellUsable && SoulFragments.BuffStack >= 1 &&
+                    SpiritBomb.IsHostileDistanceGood && !Frailty.TargetHaveBuff)
                 {
                     SpiritBomb.Cast();
                     return;
@@ -1123,8 +1124,8 @@ public class DemonHunterVengeance
                 //Multiple Target
             else
             {
-                if (MySettings.UseSpiritBomb && SpiritBomb.IsSpellUsable && SpiritBomb.IsHostileDistanceGood &&
-                    !Frailty.TargetHaveBuff)
+                if (MySettings.UseSpiritBomb && SpiritBomb.IsSpellUsable && SoulFragments.BuffStack >= 1 &&
+                    SpiritBomb.IsHostileDistanceGood && !Frailty.TargetHaveBuff)
                 {
                     SpiritBomb.Cast();
                     return;

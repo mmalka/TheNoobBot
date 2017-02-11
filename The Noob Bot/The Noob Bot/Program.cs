@@ -37,7 +37,7 @@ namespace The_Noob_Bot
                     ScriptOnlineManager.LoadScript();
                     loginInfoProvided = true;
                 }
-                loginForm.AutoStart(sId, productName, profileName, battleNet, wowEmail, wowPassword,  realmName, character, loginInfoProvided);
+                loginForm.AutoStart(sId, productName, profileName, battleNet, wowEmail, wowPassword, realmName, character, loginInfoProvided);
             }
             /* End AutoStart code */
 

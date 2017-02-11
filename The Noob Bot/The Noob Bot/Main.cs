@@ -55,7 +55,8 @@ namespace The_Noob_Bot
             }
             if (nManagerSetting.AutoStartProduct && !string.IsNullOrEmpty(nManagerSetting.AutoStartProductName) && !string.IsNullOrEmpty(nManagerSetting.AutoStartProfileName))
             {
-                if (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.LastProductLoaded) && nManagerSetting.AutoStartProductName.ToLower() == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim().ToLower())
+                if (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.LastProductLoaded) &&
+                    nManagerSetting.AutoStartProductName.ToLower() == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim().ToLower())
                 {
                     Products.ProductRemoteStart(new[] {nManagerSetting.AutoStartProfileName});
                 }
@@ -151,7 +152,8 @@ namespace The_Noob_Bot
                         if (!string.IsNullOrEmpty(nManager.Translate.Get(ret)))
                             text = text + " - " + nManager.Translate.Get(ret);
                     }
-                    if (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.LastProductLoaded) && text.Split('-')[0].Trim().ToLower() == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim().ToLower())
+                    if (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.LastProductLoaded) &&
+                        text.Split('-')[0].Trim().ToLower() == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim().ToLower())
                         i2 = i;
                     ProductList.Items.Add(text);
                     i++;

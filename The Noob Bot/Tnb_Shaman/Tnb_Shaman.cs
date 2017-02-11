@@ -27,7 +27,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 0.5f;
+    internal static float Version = 0.6f;
 
     #region ICombatClass Members
 
@@ -205,13 +205,14 @@ public class ShamanEnhancement
 
     #region Talents
 
-    private readonly Spell CrashingStorm = new Spell("Crashing Storm");
-    private readonly Spell Hailstorm = new Spell("Hailstorm");
-    private readonly Spell HotHand = new Spell("Hot Hand");
-    //private readonly Spell EmpoweredStormlash = new Spell("Empowered Stormlash");
-    private readonly Spell Landslide = new Spell("Landslide");
-    private readonly Spell Overcharge = new Spell("Overcharge");
-    //private readonly Spell Tempest = new Spell("Tempest");
+    //private readonly Spell CrashingStorm = new Spell(192246);
+    private readonly Spell Hailstorm = new Spell(210853);
+    private readonly Spell HotHand = new Spell(201900);
+    //private readonly Spell Stormbringer = new Spell(201845);
+    //private readonly Spell EmpoweredStormlash = new Spell(210731);
+    private readonly Spell Landslide = new Spell(197992);
+    private readonly Spell Overcharge = new Spell(210727);
+    //private readonly Spell Tempest = new Spell(192234);
 
     #endregion
 
@@ -229,9 +230,11 @@ public class ShamanEnhancement
 
     #region Buffs
 
-    private readonly Spell FuryofAirBuff = new Spell(197385);
-    private readonly Spell HotHandBuff = new Spell(215785);
+    private readonly Spell FuryofAirBuff = new Spell(197211);
+    private readonly Spell FuryofAirDot = new Spell(197385);
+    private readonly Spell HotHandProc = new Spell(215785);
     private readonly Spell LandslideBuff = new Spell(202004);
+    private readonly Spell StormbringerProc = new Spell(201846);
 
     #endregion
 
@@ -336,6 +339,13 @@ public class ShamanEnhancement
         {
             Logging.WriteFight("Patrolling:");
             CombatMode = false;
+        }
+
+        // End Fury of Air if it is present.
+        if (MySettings.UseFuryofAir && FuryofAir.IsSpellUsable && FuryofAirBuff.HaveBuff)
+        {
+            FuryofAir.Cast();
+            return;
         }
 
         if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
@@ -573,7 +583,8 @@ public class ShamanEnhancement
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (!LandslideBuff.HaveBuff)
+            // Cast Rockbiter to generate Maelstrom and maintain Landslide.
+            if (MySettings.UseLandslideBuff && Landslide.HaveBuff && !LandslideBuff.HaveBuff)
             {
                 if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood)
                 {
@@ -586,124 +597,184 @@ public class ShamanEnhancement
                     return;
                 }
             }
-            if (MySettings.UseFrostbrand && Frostbrand.IsSpellUsable && Frostbrand.IsHostileDistanceGood &&
-                !Frostbrand.HaveBuff && Hailstorm.HaveBuff)
-            {
-                Frostbrand.Cast();
-                return;
-            }
-            if (MySettings.UseFlametongue && Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood &&
-                !Flametongue.HaveBuff)
-            {
-                Flametongue.Cast();
-                return;
-            }
-            if (MySettings.UseWindsong && Windsong.IsSpellUsable && Windsong.IsHostileDistanceGood)
-            {
-                Windsong.Cast();
-                return;
-            }
-            if (MySettings.UseDoomWinds && DoomWinds.IsSpellUsable &&
-                (!Hailstorm.HaveBuff || Frostbrand.HaveBuff) && Flametongue.HaveBuff)
-            {
-                DoomWinds.Cast();
-                return;
-            }
-            if (MySettings.UseFeralSpirit && FeralSpirit.IsSpellUsable)
-            {
-                FeralSpirit.Cast();
-                return;
-            }
-            if (MySettings.UseFuryofAir && FuryofAir.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, 8) &&
-                !FuryofAirBuff.HaveBuff)
-            {
-                FuryofAir.Cast();
-                return;
-            }
-            if (MySettings.UseCrashLightning && CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
-                ObjectManager.Me.GetUnitInSpellRange(5f) >= 3)
-            {
-                CrashLightning.Cast();
-                return;
-            }
-            if (MySettings.UseStormstrike && Stormstrike.IsSpellUsable && Stormstrike.IsHostileDistanceGood)
-            {
-                Stormstrike.Cast();
-                return;
-            }
+
+            //Cast Boulderfist to generate Maelstrom when you have 2 charges.
             if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood &&
                 Boulderfist.GetSpellCharges == 2)
             {
                 Boulderfist.Cast();
                 return;
             }
+
+            // Cast Fury of Air if it is not present.
+            if (MySettings.UseFuryofAir && FuryofAir.IsSpellUsable && !FuryofAirBuff.HaveBuff &&
+                CombatClass.InSpellRange(ObjectManager.Target, 0, 8))
+            {
+                FuryofAir.Cast();
+                return;
+            }
+
+            // Cast Feral Spirit on cooldown. 
+            if (MySettings.UseFeralSpirit && FeralSpirit.IsSpellUsable)
+            {
+                FeralSpirit.Cast();
+                return;
+            }
+
+            // Cast Crash Lightning to activate Alpha Wolf.
+            if (MySettings.UseCrashLightning && CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
+                FeralSpirit.CreatedBySpell)
+            {
+                CrashLightning.Cast();
+                return;
+            }
+
+            // Cast Crash Lightning if 3+ targets are in range and the buff is not present.
+            if (MySettings.UseCrashLightning && CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
+                ObjectManager.Me.GetUnitInSpellRange(5f) >= 3 && !CrashLightning.HaveBuff)
+            {
+                CrashLightning.Cast();
+                return;
+            }
+
+            // Maintain the Frostbrand buff with Hailstorm.
+            if (MySettings.UseFrostbrand && Frostbrand.IsSpellUsable && Frostbrand.IsHostileDistanceGood &&
+                !Frostbrand.HaveBuff && Hailstorm.HaveBuff)
+            {
+                Frostbrand.Cast();
+                return;
+            }
+
+            // Maintain the Flametongue buff.
+            if (MySettings.UseFlametongue && Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood &&
+                !Flametongue.HaveBuff)
+            {
+                Flametongue.Cast();
+                return;
+            }
+
+            // Cast Crash Lightning if 2+ targets are in range and the buff is not present.
+            if (MySettings.UseCrashLightning && CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
+                ObjectManager.Me.GetUnitInSpellRange(5f) >= 2 && !CrashLightning.HaveBuff)
+            {
+                CrashLightning.Cast();
+                return;
+            }
+
+            // Cast Lightning Bolt if above 50 Maelstrom with Overcharge.
+            if (MySettings.UseLightningBolt && LightningBolt.IsSpellUsable && LightningBolt.IsHostileDistanceGood &&
+                ObjectManager.Me.Maelstrom > 50 && Overcharge.HaveBuff)
+            {
+                LightningBolt.Cast();
+                return;
+            }
+
+            // Cast Stormstrike with Stormbringer active.
+            if (MySettings.UseStormstrike && Stormstrike.IsSpellUsable && Stormstrike.IsHostileDistanceGood &&
+                StormbringerProc.HaveBuff)
+            {
+                Stormstrike.Cast();
+                return;
+            }
+
+            // Cast Windsong on cooldown.
+            if (MySettings.UseWindsong && Windsong.IsSpellUsable && Windsong.IsHostileDistanceGood)
+            {
+                Windsong.Cast();
+                return;
+            }
+
+            // Activate Doom Winds whenever available, try to have Stormstrike available with this.
+            if (MySettings.UseDoomWinds && DoomWinds.IsSpellUsable && Stormstrike.IsSpellUsable)
+            {
+                DoomWinds.Cast();
+                return;
+            }
+
+            // Cast Earthen Spike on cooldown.
+            if (MySettings.UseEarthenSpike && EarthenSpike.IsSpellUsable && EarthenSpike.IsHostileDistanceGood)
+            {
+                EarthenSpike.Cast();
+                return;
+            }
+
+            // Cast Sundering on cooldown.
+            if (MySettings.UseSundering && Sundering.IsSpellUsable && Sundering.IsHostileDistanceGood)
+            {
+                Sundering.Cast();
+                return;
+            }
+
+            // Cast Lava Lash with Hot Hand procs.
+            if (MySettings.UseLavaLash && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood &&
+                (!HotHand.HaveBuff || HotHandProc.HaveBuff))
+            {
+                LavaLash.Cast();
+                return;
+            }
+
+            // Cast Stormstrike on cooldown.
+            if (MySettings.UseStormstrike && Stormstrike.IsSpellUsable && Stormstrike.IsHostileDistanceGood)
+            {
+                Stormstrike.Cast();
+                return;
+            }
+
+            // Maintain the Frostbrand buff in Pandemic window with Hailstorm.
             if (MySettings.UseFrostbrand && Frostbrand.IsSpellUsable && Frostbrand.IsHostileDistanceGood &&
                 ObjectManager.Me.UnitAura(Frostbrand.Ids).AuraTimeLeftInMs < 45000 && Hailstorm.HaveBuff)
             {
                 Frostbrand.Cast();
                 return;
             }
+
+            // Maintain the Flametongue buff in Pandemic window.
             if (MySettings.UseFlametongue && Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood &&
                 ObjectManager.Me.UnitAura(Flametongue.Ids).AuraTimeLeftInMs < 48000)
             {
                 Flametongue.Cast();
                 return;
             }
-            if (MySettings.UseLightningBolt && LightningBolt.IsSpellUsable && LightningBolt.IsHostileDistanceGood &&
-                ObjectManager.Me.Maelstrom > 90 && Overcharge.HaveBuff)
-            {
-                LightningBolt.Cast();
-                return;
-            }
-            if (MySettings.UseLavaLash && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood &&
-                (!HotHand.HaveBuff || HotHandBuff.HaveBuff))
-            {
-                LavaLash.Cast();
-                return;
-            }
-            if (MySettings.UseEarthenSpike && EarthenSpike.IsSpellUsable && EarthenSpike.IsHostileDistanceGood)
-            {
-                EarthenSpike.Cast();
-                return;
-            }
+
+            // Cast Crash Lightning if 2+ targets are in range.
             if (MySettings.UseCrashLightning && CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
-                ObjectManager.Me.Maelstrom > 80 && CrashingStorm.HaveBuff)
+                ObjectManager.Me.GetUnitInSpellRange(5f) >= 2)
             {
                 CrashLightning.Cast();
                 return;
             }
-            if (MySettings.UseSundering && Sundering.IsSpellUsable && Sundering.IsHostileDistanceGood &&
-                ObjectManager.Me.Maelstrom > 110)
+
+            // Cast Rockbiter if under 120 Maelstrom to build a resource buffer.
+            if (ObjectManager.Me.Maelstrom < 120)
             {
-                Sundering.Cast();
-                return;
+                if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood)
+                {
+                    Boulderfist.Cast();
+                    return;
+                }
+                else if (MySettings.UseRockbiter && Rockbiter.IsSpellUsable && Rockbiter.IsHostileDistanceGood)
+                {
+                    Rockbiter.Cast();
+                    return;
+                }
             }
+
+            // Cast Lava Lash when you have more than 120 Maelstrom.
             if (MySettings.UseLavaLash && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood &&
-                ObjectManager.Me.Maelstrom > 90)
+                ObjectManager.Me.Maelstrom > 120)
             {
                 LavaLash.Cast();
                 return;
             }
-            if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood)
-            {
-                Boulderfist.Cast();
-                return;
-            }
-            else if (MySettings.UseRockbiter && Rockbiter.IsSpellUsable && Rockbiter.IsHostileDistanceGood)
-            {
-                Rockbiter.Cast();
-                return;
-            }
-            if (MySettings.UseFlametongue && Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood)
-            {
-                Flametongue.Cast();
-                return;
-            }
+
+            // Cast Feral Lunge to close distance.
             if (MySettings.UseFeralLunge && FeralLunge.IsSpellUsable && FeralLunge.IsHostileDistanceGood)
             {
                 FeralLunge.Cast();
                 return;
             }
+
+            // Cast Lightning Bolt when not in melee range.
             if (MySettings.UseLightningBolt && LightningBolt.IsSpellUsable &&
                 CombatClass.InSpellRange(ObjectManager.Target, 5f, LightningBolt.MaxRangeHostile))
             {

@@ -132,6 +132,7 @@ namespace nManager.Wow.Enums
         TurnInInvisible = 0x9, // '?' hidden on the MiniMap.
         TurnIn = 0xA,
     }
+
     [Flags]
     public enum UnitFlightMasterStatus
     {

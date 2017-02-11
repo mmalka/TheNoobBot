@@ -249,10 +249,9 @@ public class RogueAssassination
     private readonly Spell FanofKnives = new Spell("Fan of Knives");
     private readonly Spell Garrote = new Spell("Garrote");
     private readonly Spell Mutilate = new Spell("Mutilate");
-    private readonly Spell SinisterStrike = new Spell("Sinister Strike");
     private readonly Spell Hemorrhage = new Spell("Hemorrhage");
     private readonly Spell Rupture = new Spell("Rupture");
-    private readonly Spell Eviscerate = new Spell("Eviscerate");
+    private readonly Spell SinisterStrike = new Spell("Sinister Strike");
 
     #endregion
 
@@ -387,13 +386,15 @@ public class RogueAssassination
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
+
         if (StealthBuff.HaveBuff)
             Stealth();
         else
         {
             Healing();
-            if (Defensive() || AggroManagement() || Offensive())
-                return;
+            Defensive();
+            AggroManagement();
+            Offensive();
             Rotation();
         }
     }
@@ -569,7 +570,7 @@ public class RogueAssassination
                         tank = currentPlayer;
                 }
                 //the Tank has more than 20% Health
-                if (tank.HealthPercent > 20)
+                if (tank.HealthPercent > 20 && CombatClass.InSpellRange(tank, TricksoftheTrade.MinRangeFriend, TricksoftheTrade.MaxRangeFriend))
                     TricksoftheTrade.Cast(false, true, false, tank.GetUnitId());
             }
             return false;
@@ -697,7 +698,7 @@ public class RogueAssassination
             //3. Activate Vanish when you aren't in stealth and
             if (MySettings.UseVanish && Vanish.IsSpellUsable && !StealthBuff.HaveBuff &&
                 //you have max combo points
-                GetFreeComboPoints() == 0)
+                GetFreeComboPoints() == 0) // && !SpellManager.GetAllSpellsOnCooldown.Exists(entry => entry.SpellId == 1856))
             {
                 Vanish.Cast();
                 return;
@@ -715,7 +716,6 @@ public class RogueAssassination
                     return;
                 }
             }
-
             //4. Maintain Garrote Dot when it is off cooldown and
             if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
                 //it has 6 or less seconds remaining
@@ -767,16 +767,7 @@ public class RogueAssassination
                 Mutilate.Cast();
                 return;
             }
-
-            //Cast Eviscerate FOR LOW LEVELS
-            if (MySettings.UseRupture && !Rupture.KnownSpell && Eviscerate.IsSpellUsable &&
-                Eviscerate.IsHostileDistanceGood && GetFreeComboPoints() == 0)
-            {
-                Eviscerate.Cast();
-                return;
-            }
-
-            //Cast Sinister Strike FOR LOW LEVELS
+            //9. Cast Sinister Strike.
             if (MySettings.UseMutilate && !Mutilate.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood)
             {
                 SinisterStrike.Cast();
@@ -1681,8 +1672,9 @@ public class RogueSubtlety
             CombatMode = true;
         }
         Healing();
-        if (Defensive() || AggroManagement() || Offensive())
-            return;
+        Defensive();
+        AggroManagement();
+        Offensive();
         Rotation();
     }
 
@@ -1803,7 +1795,7 @@ public class RogueSubtlety
                         tank = currentPlayer;
                 }
                 //the Tank has more than 20% Health
-                if (tank.HealthPercent > 20)
+                if (tank.HealthPercent > 20 && CombatClass.InSpellRange(tank, TricksoftheTrade.MinRangeFriend, TricksoftheTrade.MaxRangeFriend))
                     TricksoftheTrade.Cast(false, true, false, tank.GetUnitId());
             }
             return false;

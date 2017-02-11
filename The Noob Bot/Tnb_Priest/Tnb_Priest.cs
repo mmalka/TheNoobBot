@@ -1301,7 +1301,6 @@ public class PriestShadow
     private readonly Spell MindBlast = new Spell("Mind Blast");
     private readonly Spell MindFlay = new Spell("Mind Flay");
     private readonly Spell MindSear = new Spell("Mind Sear");
-    private readonly Spell MindSpike = new Spell("Mind Spike");
     private readonly Spell ShadowCrash = new Spell("Shadow Crash");
     private readonly Spell ShadowWordDeath = new Spell("Shadow Word: Death");
     private readonly Spell ShadowWordPain = new Spell("Shadow Word: Pain");
@@ -1750,7 +1749,7 @@ public class PriestShadow
                 MindSear.Cast();
                 return;
             }
-            //12. Cast Mind Flay / Mind Spike
+            //12. Cast Mind Flay
             if (MySettings.UseMindFlay_Spike && MindFlay.IsSpellUsable && MindFlay.IsHostileDistanceGood)
             {
                 MindFlay.Cast();

@@ -28,7 +28,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 1.01f;
+    internal static float Version = 1.02f;
 
     #region ICombatClass Members
 
@@ -254,7 +254,6 @@ public class WarlockAffliction
     private readonly Spell SiphonLifeDot = new Spell(63106);
     private readonly Spell UnstableAffliction = new Spell("Unstable Affliction");
     private readonly Spell UnstableAfflictionDot = new Spell(30108);
-    private bool StackUnstableAffliction = true;
 
     #endregion
 
@@ -266,10 +265,9 @@ public class WarlockAffliction
 
     #region Offensive Spells
 
-    private readonly Spell DrainLife = new Spell("Drain Life");
+    private readonly Spell DrainSoul = new Spell(198590);
     private readonly Spell GrimoireofSacrifice = new Spell("Grimoire of Sacrifice");
     private readonly Spell Haunt = new Spell("Haunt");
-    private readonly Spell ManaTap = new Spell("Mana Tap");
     private readonly Spell ShadowBolt = new Spell("Shadow Bolt");
 
     #endregion
@@ -518,11 +516,11 @@ public class WarlockAffliction
                 HealthstoneTimer = new Timer(1000*60);
                 return true;
             }
-            //Channel Drain Life & Drain Soul
-            if (ObjectManager.Me.HealthPercent < MySettings.UseDrainLife_SoulBelowPercentage && DrainLife.IsSpellUsable &&
-                !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
+            //Channel Drain Soul
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDrainSoulBelowPercentage && DrainSoul.IsSpellUsable &&
+                !ObjectManager.Me.GetMove && DrainSoul.IsHostileDistanceGood)
             {
-                DrainLife.Cast();
+                DrainSoul.Cast();
                 return true;
             }
             return false;
@@ -625,62 +623,19 @@ public class WarlockAffliction
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Start depends on Contagion Talent
-            if (Contagion.HaveBuff)
-            {
-                //Maintain Unstable Affliction when you have the Contagion Talent
-                if (MySettings.UseUnstableAffliction && UnstableAffliction.IsSpellUsable &&
-                    !ObjectManager.Me.GetMove && UnstableAffliction.IsHostileDistanceGood &&
-                    ObjectManager.Target.AuraTimeLeft(UnstableAfflictionDot.Id, true) <= 1000*8/3)
-                {
-                    UnstableAffliction.Cast();
-                    return;
-                }
-            }
-            else
-            {
-                //Stack Unstable Affliction when you have the Contagion Talent
-                if (MySettings.UseUnstableAffliction && UnstableAffliction.IsSpellUsable &&
-                    !ObjectManager.Me.GetMove && UnstableAffliction.IsHostileDistanceGood &&
-                    //you are capping Soul Shards or want to continue stacking
-                    (ObjectManager.Me.SoulShards == ObjectManager.Me.MaxSoulShards || StackUnstableAffliction))
-                {
-                    //Apply Mana Tap
-                    if (ObjectManager.Me.ManaPercentage >= MySettings.UseManaTapAbovePercentage && ManaTap.IsSpellUsable)
-                    {
-                        ManaTap.Cast();
-                        return;
-                    }
-                    //Apply Reap Souls when
-                    if (MySettings.UseReapSouls && ReapSouls.IsSpellUsable && !ReapSouls.HaveBuff &&
-                        //you start to stack Unstable Affliction and you have 2 or more Tormented Souls
-                        !StackUnstableAffliction && TormentedSouls.BuffStack >= 2)
-                    {
-                        ReapSouls.Cast();
-                    }
-                    //Apply Soul Harvest
-                    if (MySettings.UseSoulHarvest && SoulHarvest.IsSpellUsable)
-                    {
-                        SoulHarvest.Cast();
-                    }
+            // Drain Soul Sniping (needs a more consistent way to target the low health enemy)
+            //if (MySettings.UseDrainSoulSniping && DrainSoul.IsSpellUsable && !ObjectManager.Me.GetMove)
+            //{
+            //    WoWUnit unit = NearUnitHasLowHealth(DrainSoul.MaxRangeHostile, MySettings.UseDrainSoulSnipingHealthThreshold);
+            //    if (unit.IsValid && unit.IsAlive)
+            //    {
+            //        DrainSoul.Cast(true, true, false, unit.GetUnitId());
+            //        return;
+            //    }
+            //}
 
-                    StackUnstableAffliction = true;
 
-                    UnstableAffliction.Cast();
-                    return;
-                }
-                if (ObjectManager.Me.SoulShards == 0)
-                    StackUnstableAffliction = false;
-                //Summon Doomguard when you don't have the Contagion Talent
-                if (MySettings.UseSummonDoomguard && ObjectManager.Me.SoulShards >= 1 &&
-                    SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
-                {
-                    SummonDoomguard.Cast();
-                    return;
-                }
-            }
-
-            //2. Dots on Target
+            //1. Dots on Target
             //Apply Phantom Singularity when
             if (MySettings.UsePhantomSingularity && PhantomSingularity.IsSpellUsable && PhantomSingularity.IsHostileDistanceGood &&
                 //you have 3 or more targets
@@ -721,7 +676,7 @@ public class WarlockAffliction
                 return;
             }
 
-            //3. Use Soul Effigy
+            //2.a Use Soul Effigy
             if (MySettings.UseSoulEffigy && SoulEffigy.IsSpellUsable)
             {
                 //Summon Soul Effigy
@@ -747,6 +702,50 @@ public class WarlockAffliction
                     Lua.RunMacroText("/targetlasttarget");
                     return;
                 }
+            }
+
+            //3. Unstable Affliction
+            if (Contagion.HaveBuff)
+            {
+                //Maintain Unstable Affliction when you have the Contagion Talent
+                if (MySettings.UseUnstableAffliction && UnstableAffliction.IsSpellUsable &&
+                    !ObjectManager.Me.GetMove && UnstableAffliction.IsHostileDistanceGood &&
+                    ObjectManager.Target.AuraTimeLeft(UnstableAfflictionDot.Id, true) <= 1000*8/3)
+                {
+                    UnstableAffliction.Cast();
+                    return;
+                }
+            }
+            else
+            {
+                //Stack Unstable Affliction when you don't have the Contagion Talent
+                if (MySettings.UseUnstableAffliction && UnstableAffliction.IsSpellUsable &&
+                    !ObjectManager.Me.GetMove && UnstableAffliction.IsHostileDistanceGood &&
+                    //you are capping Soul Shards or want to continue stacking or can use Reap Souls effectively
+                    (ObjectManager.Me.SoulShards == ObjectManager.Me.MaxSoulShards || UnstableAfflictionDot.TargetHaveBuff ||
+                     (ObjectManager.Me.SoulShards >= 4 && ReapSouls.IsSpellUsable && TormentedSouls.BuffStack >= 2)))
+                {
+                    //Apply Reap Souls when
+                    if (MySettings.UseReapSouls && ReapSouls.IsSpellUsable && !ReapSouls.HaveBuff &&
+                        //you stacked 2 or more Unstable Afflictions and you have 2 or more Tormented Souls
+                        UnstableAfflictionDot.TargetBuffStack >= 2 && TormentedSouls.BuffStack >= 2)
+                    {
+                        ReapSouls.Cast();
+                    }
+                    //Apply Soul Harvest
+                    if (MySettings.UseSoulHarvest && SoulHarvest.IsSpellUsable)
+                    {
+                        SoulHarvest.Cast();
+                    }
+
+                    UnstableAffliction.Cast();
+                    return;
+                }
+            }
+
+            //2.b Use Soul Effigy
+            if (MySettings.UseSoulEffigy && SoulEffigy.IsSpellUsable)
+            {
                 //Maintain Corruption
                 if (MySettings.UseCorruption && Corruption.IsSpellUsable &&
                     SoulEffigy.CreatedBySpellInRange((uint) Corruption.MaxRangeHostile) &&
@@ -773,14 +772,7 @@ public class WarlockAffliction
             //when you have the Contagion Talent
             if (Contagion.HaveBuff)
             {
-                //7. Apply Mana Tap
-                if (ObjectManager.Me.ManaPercentage >= MySettings.UseManaTapAbovePercentage &&
-                    ManaTap.IsSpellUsable && !ManaTap.HaveBuff)
-                {
-                    ManaTap.Cast();
-                    return;
-                }
-                //7. Apply Soul Harvest 
+                //Apply Soul Harvest 
                 if (MySettings.UseSoulHarvest && SoulHarvest.IsSpellUsable)
                 {
                     SoulHarvest.Cast();
@@ -854,20 +846,11 @@ public class WarlockAffliction
                 Haunt.Cast();
                 return;
             }
-            //Cast Unstable Affliction when
-            if (MySettings.UseUnstableAffliction && UnstableAffliction.IsSpellUsable &&
-                !ObjectManager.Me.GetMove && UnstableAffliction.IsHostileDistanceGood &&
-                //you have the Contagion Talent
-                Contagion.HaveBuff)
+            //Channel Drain Soul
+            if (MySettings.UseDrainSoulAsFiller && DrainSoul.IsSpellUsable &&
+                !ObjectManager.Me.GetMove && DrainSoul.IsHostileDistanceGood)
             {
-                UnstableAffliction.Cast();
-                return;
-            }
-            //Channel Drain Life & Drain Soul
-            if (MySettings.UseDrainLife_SoulAsFiller && DrainLife.IsSpellUsable &&
-                !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
-            {
-                DrainLife.Cast();
+                DrainSoul.Cast();
                 return;
             }
             //Cast Life Tap
@@ -878,6 +861,7 @@ public class WarlockAffliction
                 LifeTap.Cast();
                 return;
             }
+            //Cast Shadow Bolt
             if (MySettings.UseUnstableAffliction && !UnstableAffliction.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood)
             {
                 ShadowBolt.Cast();
@@ -888,6 +872,11 @@ public class WarlockAffliction
         {
             Memory.WowMemory.GameFrameUnLock();
         }
+    }
+
+    private bool NearUnitHasLowHealth(float range, uint healthThreshold)
+    {
+        return ObjectManager.GetObjectWoWUnit().Exists(unit => unit.IsHostile && unit.GetDistance < range && unit.Health <= healthThreshold);
     }
 
     #region Nested type: WarlockAfflictionSettings
@@ -923,9 +912,8 @@ public class WarlockAffliction
         public bool UseReapSouls = true;
 
         /* Offensive Spells */
-        public bool UseDrainLife_SoulAsFiller = false;
+        public bool UseDrainSoulAsFiller = false;
         public bool UseHaunt = true;
-        public int UseManaTapAbovePercentage = 50;
 
         /* Offensive Cooldowns */
         public bool UseGrimoireImp = false;
@@ -947,7 +935,7 @@ public class WarlockAffliction
         /* Healing Spells */
         public bool UseCreateHealthstone = true;
         public int UseHealthstoneBelowPercentage = 25;
-        public int UseDrainLife_SoulBelowPercentage = 25;
+        public int UseDrainSoulBelowPercentage = 25;
 
         /* Utility Spells */
         public int StartBurningRushAbovePercentage = 99;
@@ -987,9 +975,8 @@ public class WarlockAffliction
             /* Artifact Spells */
             AddControlInWinForm("Use Reap Souls", "UseReapSouls", "Artifact Spells");
             /* Offensive Spells */
-            AddControlInWinForm("Use Drain Life & Drain Soul as filler", "UseDrainLife_SoulAsFiller", "Offensive Spells");
+            AddControlInWinForm("Use Drain Soul as filler", "UseDrainSoulAsFiller", "Offensive Spells");
             AddControlInWinForm("Use Haunt", "UseHaunt", "Offensive Spells");
-            AddControlInWinForm("Use Mana Tap", "UseManaTapAbovePercentage", "Offensive Spells", "AbovePercentage", "Mana");
             /* Offensive Cooldowns */
             AddControlInWinForm("Use Grimoire: Imp", "UseGrimoireImp", "Offensive Cooldowns");
             AddControlInWinForm("Use Grimoire: Felguard", "UseGrimoireFelguard", "Offensive Cooldowns");
@@ -1008,7 +995,7 @@ public class WarlockAffliction
             /* Healing Spell */
             AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spells");
             AddControlInWinForm("Use Healthstone", "UseHealthstoneBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Drain Life & Drain Soul", "UseDrainLife_SoulBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Drain Life & Drain Soul", "UseDrainSoulBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Start Burning Rush", "StartBurningRushAbovePercentage", "Utility Spells", "AbovePercentage", "Life");
             AddControlInWinForm("Stop Burning Rush", "StopBurningRushBelowPercentage", "Utility Spells", "BelowPercentage", "Life");
@@ -1884,7 +1871,6 @@ public class WarlockDestruction
     private readonly Spell GrimoireofSacrifice = new Spell("Grimoire of Sacrifice");
     private readonly Spell Immolate = new Spell("Immolate");
     private readonly Spell Incinerate = new Spell("Incinerate");
-    private readonly Spell ManaTap = new Spell("Mana Tap");
     private readonly Spell RainofFire = new Spell("Rain of Fire");
     private readonly Spell Shadowburn = new Spell("Shadowburn");
 
@@ -2447,7 +2433,6 @@ public class WarlockDestruction
         public bool UseDrainLifeAsFiller = false;
         public bool UseImmolate = true;
         public bool UseIncinerate = true;
-        public int UseManaTapAbovePercentage = 50;
         public bool UseRainofFire = true;
         public bool UseShadowburn = true;
         public int UseSummonImpAbovePercentage = 3;
@@ -2511,10 +2496,8 @@ public class WarlockDestruction
             AddControlInWinForm("Use Drain Life as filler", "UseDrainLifeAsFiller", "Offensive Spells");
             AddControlInWinForm("Use Immolate", "UseImmolate", "Offensive Spells");
             AddControlInWinForm("Use Incinerate", "UseIncinerate", "Offensive Spells");
-            AddControlInWinForm("Use Mana Tap", "UseManaTapAbovePercentage", "Offensive Spells", "AbovePercentage", "Mana");
             AddControlInWinForm("Use Rain of Fire", "UseRainofFire", "Offensive Spells");
             AddControlInWinForm("Use Shadowburn", "UseShadowburn", "Offensive Spells");
-            AddControlInWinForm("Use Mana Tap", "UseManaTapAbovePercentage", "Offensive Spells", "AbovePercentage", "Soul Shards");
             /* Offensive Cooldowns */
             AddControlInWinForm("Use Grimoire: Imp", "UseGrimoireImp", "Offensive Cooldowns");
             AddControlInWinForm("Use Grimoire: Felguard", "UseGrimoireFelguard", "Offensive Cooldowns");

@@ -1258,8 +1258,8 @@ public class WarriorProtection
             }
             //Cast Intercept
             if (MySettings.UseIntercept && Intercept.IsSpellUsable &&
-                ((ObjectManager.Target.IsHostile && Intercept.IsHostileDistanceGood) ||
-                 Intercept.IsFriendDistanceGood))
+                ((ObjectManager.Target.IsHostile && /*Intercept.IsHostileDistanceGood*/ CombatClass.InSpellRange(ObjectManager.Target, 8, Intercept.MaxRangeHostile)) ||
+                 (!ObjectManager.Target.IsHostile && Intercept.IsFriendDistanceGood)))
             {
                 Intercept.Cast();
                 return;

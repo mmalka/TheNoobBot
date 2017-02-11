@@ -413,57 +413,57 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             lock (_threadLocker)
             {
-            try
-            {
-                if (CheckDungeon())
-                    return false;
-
-                // To check every 1 minute minimum and unload tiles loaded more than 15 minutes ago
-                if (_loadTileCheck.IsReady)
+                try
                 {
-                    //Logging.Write("Timer ready, checking loaded tile's age");
-                    _loadTileCheck.Reset();
-                    checkTilesAgeAndUnload();
-                }
-
-                Tuple<int, int> coords = new Tuple<int, int>(x, y);
-                if (_mesh.HasTileAt(x, y))
-                {
-                    _loadedTiles[coords] = Others.TimesSec;
-                    return true;
-                }
-                string path = GetTilePath(x, y);
-
-                string fName = GetTileName(x, y);
-                if (!downloadTile(fName))
-                    return false;
-                if (!File.Exists(path))
-                    return false;
-                byte[] data = File.ReadAllBytes(path);
-                Logging.WriteNavigator(GetTileName(x, y, true) + " loaded.");
-                if (!LoadTile(data))
-                {
-                    Others.DeleteFile(_meshPath + "\\" + fName);
-                    if (!forceDownloadTile(fName))
+                    if (CheckDungeon())
                         return false;
-                    data = File.ReadAllBytes(path);
+
+                    // To check every 1 minute minimum and unload tiles loaded more than 15 minutes ago
+                    if (_loadTileCheck.IsReady)
+                    {
+                        //Logging.Write("Timer ready, checking loaded tile's age");
+                        _loadTileCheck.Reset();
+                        checkTilesAgeAndUnload();
+                    }
+
+                    Tuple<int, int> coords = new Tuple<int, int>(x, y);
+                    if (_mesh.HasTileAt(x, y))
+                    {
+                        _loadedTiles[coords] = Others.TimesSec;
+                        return true;
+                    }
+                    string path = GetTilePath(x, y);
+
+                    string fName = GetTileName(x, y);
+                    if (!downloadTile(fName))
+                        return false;
+                    if (!File.Exists(path))
+                        return false;
+                    byte[] data = File.ReadAllBytes(path);
+                    Logging.WriteNavigator(GetTileName(x, y, true) + " loaded.");
                     if (!LoadTile(data))
                     {
-                        Logging.WriteError("Problem with Meshes tile " + fName + " , cannot load it.");
-                        return false;
+                        Others.DeleteFile(_meshPath + "\\" + fName);
+                        if (!forceDownloadTile(fName))
+                            return false;
+                        data = File.ReadAllBytes(path);
+                        if (!LoadTile(data))
+                        {
+                            Logging.WriteError("Problem with Meshes tile " + fName + " , cannot load it.");
+                            return false;
+                        }
                     }
+                    if (!_loadedTiles.ContainsKey(coords)) // multi thread on the same path can cause a duplicate here
+                        _loadedTiles.Add(coords, Others.TimesSec);
+                    return true;
                 }
-                if (!_loadedTiles.ContainsKey(coords)) // multi thread on the same path can cause a duplicate here
-                    _loadedTiles.Add(coords, Others.TimesSec);
-                return true;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("LoadTile(int x, int y): " + exception);
-                return false;
+                catch (Exception exception)
+                {
+                    Logging.WriteError("LoadTile(int x, int y): " + exception);
+                    return false;
+                }
             }
         }
-    }
 
         private static readonly List<string> blackListMaptitle = new List<string>();
 
