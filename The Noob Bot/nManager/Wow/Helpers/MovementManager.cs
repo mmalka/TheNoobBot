@@ -1381,6 +1381,17 @@ namespace nManager.Wow.Helpers
 
         #region Facing code
 
+        /* WIP */
+
+        public static void FaceCTM(WoWObject obj, bool start = true)
+        {
+            if (!obj.IsValid)
+                return;
+            UInt128 objGuid = obj.Guid;
+            ClickToMove.CGPlayer_C__ClickToMove(0, 0, 0, objGuid,
+                (int)(start ? ClickToMoveType.FaceTarget : ClickToMoveType.Stop_ThrowsException), 0f);
+        }
+
         /// <summary>
         ///     Faces the Unit.
         /// </summary>

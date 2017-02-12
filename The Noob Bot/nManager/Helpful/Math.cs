@@ -42,6 +42,21 @@ namespace nManager.Helpful
             return 0;
         }
 
+        public static float CalculateNeededFacing(Vector3 start, Vector3 faceTarget)
+        {
+            return NormalizeRadian((float) System.Math.Atan2((faceTarget.Y - start.Y), (faceTarget.X - start.X)));
+        }
+
+        public static float NormalizeRadian(float radian)
+        {
+            if (radian < 0f)
+            {
+                return (float) (-(float) (-(double) radian%6.2831853071795862) + 6.2831853071795862);
+            }
+            return (float) (radian%6.2831853071795862);
+        }
+
+
         /// <summary>
         /// Return Angle to pos x =0 z = 0.
         /// </summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
@@ -20,12 +21,13 @@ namespace nManager.Wow.Helpers
 
                 // Allocate Memory:
                 uint posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
-                uint guidCodecave = Memory.WowMemory.Memory.AllocateMemory(0x8);
+                uint guidCodecave = Memory.WowMemory.Memory.AllocateMemory(32);
                 uint precisionCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4);
                 if (posCodecave <= 0 || guidCodecave <= 0 || precisionCodecave <= 0)
                     return;
                 // Write value:
                 Memory.WowMemory.Memory.WriteInt128(guidCodecave, guid);
+                Memory.WowMemory.Memory.WriteInt128(guidCodecave + (uint) Marshal.SizeOf(guid), ObjectManager.ObjectManager.Me.TransportGuid);
                 Memory.WowMemory.Memory.WriteFloat(precisionCodecave, precision);
 
                 Memory.WowMemory.Memory.WriteFloat(posCodecave, x);
