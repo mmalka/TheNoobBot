@@ -23,6 +23,16 @@ namespace nManager.Wow.Bot.States
                 if (!Products.Products.IsStarted)
                     return false;
 
+                if (_reloggerTimer != null && _reloggerTimer.IsReady)
+                {
+                    if (!_reloggerOff)
+                    {
+                        Logging.Write("We have tryed to relog for 5minutes without success, stopping Relogger system.");
+                        _reloggerOff = true;
+                    }
+                    return false;
+                }
+
                 // Need relogger
                 if (nManagerSetting.CurrentSetting.ActivateReloggerFeature &&
                     nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount != string.Empty &&
@@ -45,6 +55,8 @@ namespace nManager.Wow.Bot.States
         }
 
         private bool _relogger;
+        private bool _reloggerOff = false;
+        private Helpful.Timer _reloggerTimer;
 
         public override void Run()
         {
@@ -52,7 +64,11 @@ namespace nManager.Wow.Bot.States
                 return;
 
             if (!_relogger)
+            {
                 Logging.Write("Initiate player relogging.");
+                _reloggerTimer = new Helpful.Timer(1000*60*5);
+                _reloggerTimer.Reset();
+            }
 
             while (Products.Products.IsStarted)
             {
@@ -76,6 +92,7 @@ namespace nManager.Wow.Bot.States
                     if (Usefuls.InGame && !Usefuls.IsLoading)
                     {
                         Logging.Write("Ending player relogging with success.");
+                        _reloggerTimer = null;
                         _relogger = false;
                         ConfigWowForThisBot.ConfigWow();
                         if (Products.Products.ProductName == "Damage Dealer" && !nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer)
