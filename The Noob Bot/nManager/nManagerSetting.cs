@@ -291,7 +291,7 @@ namespace nManager
         public bool PlayASongIfNewWhispReceived;
         public bool ActivatePathFindingFeature = true;
         public bool AllowTNBToSetYourMaxFps = true;
-        public float MaxDistanceToGoToMailboxesOrNPCs = 1000;
+        public float MaxDistanceToGoToMailboxesOrNPCs = 4000; // PathFinder is much better now.
         public bool AutoConfirmOnBoPItems = true;
         public bool ActivateAlwaysOnTopFeature;
         public int RepairWhenDurabilityIsUnderPercent = 35;
