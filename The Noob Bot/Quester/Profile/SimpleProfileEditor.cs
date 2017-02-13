@@ -431,6 +431,7 @@ namespace Quester.Profile
                     objective.IgnoreNotSelectable = CBObjIgnoreNotSelectable.Checked;
                     objective.ForceTravelToQuestZone = CBObjForceTravelToQuestZone.Checked;
                     objective.IgnoreFight = CBObjIgnoreFight.Checked;
+                    objective.DeactivateMount = CBObjDeactivateMount.Checked;
 
                     if (_displayXml)
                     {
@@ -657,6 +658,7 @@ namespace Quester.Profile
                     newObjective.IgnoreNotSelectable = CBObjIgnoreNotSelectable.Checked;
                     newObjective.ForceTravelToQuestZone = CBObjForceTravelToQuestZone.Checked;
                     newObjective.IgnoreFight = CBObjIgnoreFight.Checked;
+                    newObjective.DeactivateMount = CBObjDeactivateMount.Checked;
 
                     Quest lastSelQuestx = _profile.Quests[_lastSelectedQuest.Index];
 
@@ -1180,6 +1182,7 @@ namespace Quester.Profile
             TBObjMessage.Enabled = false;
             CBObjPressKeys.Enabled = false;
             TBObjLuaMacro.Enabled = false;
+            CBObjDeactivateMount.Checked = false;
 
             TBObjCount.Text = string.Empty;
             TBObjEntry.Text = string.Empty;
@@ -1531,6 +1534,7 @@ namespace Quester.Profile
             CBObjIgnoreFight.Checked = qObjective.IgnoreFight;
             CBObjIgnoreNotSelectable.Checked = qObjective.IgnoreNotSelectable;
             CBObjForceTravelToQuestZone.Checked = qObjective.ForceTravelToQuestZone;
+            CBObjDeactivateMount.Checked = qObjective.DeactivateMount;
 
             CBObjType.SelectedValueChanged -= CBObjType_SelectedValueChanged;
             CBObjType.SelectedValue = cbSelectValue;

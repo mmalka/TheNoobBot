@@ -446,6 +446,7 @@ namespace The_Noob_Bot
         {
             DevToolsLabel.Font = new Font(DevToolsLabel.Font, DevToolsLabel.Font.Style ^ FontStyle.Bold);
         }
+
         private void QuestToolLabel_MouseEnter(object sender, EventArgs e)
         {
             QuestToolLabel.Font = new Font(QuestToolLabel.Font, QuestToolLabel.Font.Style | FontStyle.Bold);

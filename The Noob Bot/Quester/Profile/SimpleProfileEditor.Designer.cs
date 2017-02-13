@@ -115,6 +115,7 @@ namespace Quester.Profile
             this.TBObjInternalIndex = new System.Windows.Forms.TextBox();
             this.ButtonObjDumpIndex = new System.Windows.Forms.Button();
             this.PanelObjAll = new System.Windows.Forms.Panel();
+            this.CBObjDeactivateMount = new System.Windows.Forms.CheckBox();
             this.CBObjIgnoreFight = new System.Windows.Forms.CheckBox();
             this.CBObjForceTravelToQuestZone = new System.Windows.Forms.CheckBox();
             this.CBObjIgnoreNotSelectable = new System.Windows.Forms.CheckBox();
@@ -1082,6 +1083,7 @@ namespace Quester.Profile
             // 
             // PanelObjAll
             // 
+            this.PanelObjAll.Controls.Add(this.CBObjDeactivateMount);
             this.PanelObjAll.Controls.Add(this.CBObjIgnoreFight);
             this.PanelObjAll.Controls.Add(this.CBObjForceTravelToQuestZone);
             this.PanelObjAll.Controls.Add(this.CBObjIgnoreNotSelectable);
@@ -1118,11 +1120,22 @@ namespace Quester.Profile
             this.PanelObjAll.TabIndex = 14;
             this.PanelObjAll.Visible = false;
             // 
+            // CBObjDeactivateMount
+            // 
+            this.CBObjDeactivateMount.AutoSize = true;
+            this.CBObjDeactivateMount.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBObjDeactivateMount.Location = new System.Drawing.Point(55, 364);
+            this.CBObjDeactivateMount.Name = "CBObjDeactivateMount";
+            this.CBObjDeactivateMount.Size = new System.Drawing.Size(111, 17);
+            this.CBObjDeactivateMount.TabIndex = 88;
+            this.CBObjDeactivateMount.Text = "Deactivate Mount";
+            this.CBObjDeactivateMount.UseVisualStyleBackColor = true;
+            // 
             // CBObjIgnoreFight
             // 
             this.CBObjIgnoreFight.AutoSize = true;
             this.CBObjIgnoreFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreFight.Location = new System.Drawing.Point(84, 364);
+            this.CBObjIgnoreFight.Location = new System.Drawing.Point(2, 295);
             this.CBObjIgnoreFight.Name = "CBObjIgnoreFight";
             this.CBObjIgnoreFight.Size = new System.Drawing.Size(82, 17);
             this.CBObjIgnoreFight.TabIndex = 87;
@@ -1166,11 +1179,11 @@ namespace Quester.Profile
             // 
             this.CBObjIgnoreBlackList.AutoSize = true;
             this.CBObjIgnoreBlackList.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreBlackList.Location = new System.Drawing.Point(68, 296);
+            this.CBObjIgnoreBlackList.Location = new System.Drawing.Point(84, 296);
             this.CBObjIgnoreBlackList.Name = "CBObjIgnoreBlackList";
-            this.CBObjIgnoreBlackList.Size = new System.Drawing.Size(98, 17);
+            this.CBObjIgnoreBlackList.Size = new System.Drawing.Size(82, 17);
             this.CBObjIgnoreBlackList.TabIndex = 83;
-            this.CBObjIgnoreBlackList.Text = "Ignore Blacklist";
+            this.CBObjIgnoreBlackList.Text = "Ignore BList";
             this.CBObjIgnoreBlackList.UseVisualStyleBackColor = true;
             // 
             // CBObjIsDead
@@ -2000,5 +2013,6 @@ namespace Quester.Profile
         internal CheckBox CBObjIgnoreFight;
         internal Label label45;
         internal TextBox TBObjLuaMacro;
+        internal CheckBox CBObjDeactivateMount;
     }
 }
