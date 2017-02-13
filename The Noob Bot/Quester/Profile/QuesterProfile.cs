@@ -298,6 +298,7 @@ namespace Quester.Profile
         EquipItem,
         InteractWith,
         KillMob,
+        KillMobUseItem,
         MoveTo,
         PickUpObject,
         PickUpQuest,

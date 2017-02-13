@@ -382,6 +382,13 @@ namespace Quester.Profile
                         case "UseLuaMacro":
                             objective.LuaMacro = TBObjLuaMacro.Text;
                             break;
+                        case "KillMobUseItem":
+                            objective.CanPullUnitsAlreadyInFight = CBObjCanPullUnitsInFight.Checked;
+                            objective.Count = Others.ToInt32(TBObjCount.Text);
+                            objective.Range = Others.ToInt32(TBObjRange.Text);
+                            objective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            break;
                     }
 
 
@@ -619,6 +626,13 @@ namespace Quester.Profile
                             break;
                         case "UseLuaMacro":
                             newObjective.LuaMacro = TBObjLuaMacro.Text;
+                            break;
+                        case "KillMobUseItem":
+                            newObjective.CanPullUnitsAlreadyInFight = CBObjCanPullUnitsInFight.Checked;
+                            newObjective.Count = Others.ToInt32(TBObjCount.Text);
+                            newObjective.Range = Others.ToInt32(TBObjRange.Text);
+                            newObjective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             break;
                     }
 
@@ -1513,6 +1527,19 @@ namespace Quester.Profile
                     TBObjLuaMacro.Enabled = true;
                     TBObjLuaMacro.Text = qObjective.LuaMacro;
                     break;
+                case "KillMobUseItem":
+                    TBObjCount.Enabled = true;
+                    CBObjCanPullUnitsInFight.Enabled = true;
+                    TBObjRange.Enabled = true;
+                    TBObjUseItemID.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+
+                    TBObjCount.Text = qObjective.Count.ToString();
+                    CBObjCanPullUnitsInFight.Checked = qObjective.CanPullUnitsAlreadyInFight;
+                    TBObjRange.Text = qObjective.Range.ToString();
+                    TBObjUseItemID.Text = qObjective.UseItemId.ToString();
+                    TBObjWaitMs.Text = qObjective.WaitMs.ToString();
+                    break;
             }
 
             switch (qObjective.Objective.ToString())
@@ -1649,119 +1676,123 @@ namespace Quester.Profile
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Killing mobs",
-                Value = 6
+                Value = (int) Quester.Profile.Objective.KillMob
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Gathering Items",
-                Value = 8
+                Value = (int) Objective.PickUpObject
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Use an Item",
-                Value = 11
+                Value = (int) Objective.UseItem
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Pickup Quest",
-                Value = 9
+                Value = (int) Objective.PickUpQuest
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Turnin Quest",
-                Value = 13
+                Value = (int) Objective.TurnInQuest
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Interacting with a gameobject",
-                Value = 5
+                Value = (int) Objective.InteractWith
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Going Somewhere",
-                Value = 7
+                Value = (int) Objective.MoveTo
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Just Wait",
-                Value = 21
+                Value = (int) Objective.Wait
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "PickUp Npc",
-                Value = 25
+                Value = (int) Objective.PickUpNPC
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Buying Item",
-                Value = 2
+                Value = (int) Objective.BuyItem
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Use an Item AOE",
-                Value = 15
+                Value = (int) Objective.UseItemAOE
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Casting a spell",
-                Value = 18
+                Value = (int) Objective.UseSpell
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Casting a spell AOE",
-                Value = 19
+                Value = (int) Objective.UseSpellAOE
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Use Flight",
-                Value = 14
+                Value = (int) Objective.UseFlightPath
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Use Vehicle",
-                Value = 20
+                Value = (int) Objective.UseVehicle
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Eject Vehicle",
-                Value = 3
+                Value = (int) Objective.EjectVehicle
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Click On Terrain",
-                Value = 23
+                Value = (int) Objective.ClickOnTerrain
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Message",
-                Value = 24
+                Value = (int) Objective.MessageBox
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Press Key",
-                Value = 10
+                Value = (int) Objective.PressKey
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "CSharpScript",
-                Value = 27
+                Value = (int) Objective.CSharpScript
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Travel To",
-                Value = 22
+                Value = (int) Objective.TravelTo
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Equip Item",
-                Value = 4
+                Value = (int) Objective.EquipItem
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "Use LuaMacro",
-                Value = 12
+                Value = (int) Objective.UseLuaMacro
             });
-
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "KillMob UseItem On Corpse",
+                Value = (int)Objective.KillMobUseItem
+            });
 
             CBObjType.DataSource = cbObjTypeList;
 
@@ -1774,12 +1805,12 @@ namespace Quester.Profile
             npcType.Add(new ComboBoxValue
             {
                 Name = "QuestGiver",
-                Value = 44
+                Value = (int) Npc.NpcType.QuestGiver
             });
             npcType.Add(new ComboBoxValue
             {
                 Name = "FlightMaster",
-                Value = 35
+                Value = (int) Npc.NpcType.FlightMaster
             });
 
 
@@ -2044,6 +2075,14 @@ namespace Quester.Profile
                     break;
                 case "UseLuaMacro":
                     TBObjLuaMacro.Enabled = true;
+                    break;
+                case "KillMobUseItem":
+                    TBObjEntry.Enabled = true;
+                    TBObjCount.Enabled = true;
+                    CBObjCanPullUnitsInFight.Enabled = true;
+                    TBObjRange.Enabled = true;
+                    TBObjUseItemID.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
                     break;
             }
 

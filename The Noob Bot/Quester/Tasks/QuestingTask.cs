@@ -242,6 +242,14 @@ namespace Quester.Tasks
                 return false;
             }
 
+            // KILL MOB & Use Item
+            if (questObjective.Objective == Objective.KillMobUseItem)
+            {
+                if (questObjective.CurrentCount >= questObjective.Count)
+                    return true;
+                return false;
+            }
+
             // PICK UP OBJECT
             if (questObjective.Objective == Objective.PickUpObject)
             {
@@ -475,6 +483,117 @@ namespace Quester.Tasks
                             Thread.Sleep(Usefuls.Latency);
                         }
                         Fight.StopFight();
+                    }
+                    lockedTarget = null;
+                }
+                else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
+                {
+                    // Need GoTo Zone:
+                    if (questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
+                    {
+                        Quest.TravelToQuestZone(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)], ref CurrentQuestObjective.TravelToQuestZone,
+                            questObjective.ContinentId,
+                            questObjective.ForceTravelToQuestZone);
+                        MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
+                    }
+                    else
+                    {
+                        // Start Move
+                        MovementManager.GoLoop(questObjective.PathHotspots);
+                    }
+                }
+            }
+
+
+            // KILL MOB & Use Item
+            if (questObjective.Objective == Objective.KillMobUseItem)
+            {
+                WoWUnit wowUnit = new WoWUnit(0);
+                if (!wowUnit.IsValid)
+                    wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
+                        questObjective.AllowPlayerControlled);
+
+                if (!wowUnit.IsValid && questObjective.Factions.Count > 0)
+                    wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByFaction(questObjective.Factions), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
+                        questObjective.AllowPlayerControlled);
+
+                if (!IsInAvoidMobsList(wowUnit) && !nManagerSetting.IsBlackListedZone(wowUnit.Position) &&
+                    !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
+                    (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
+                {
+                    if (lockedTarget == null)
+                    {
+                        lockedTarget = wowUnit;
+                        MovementManager.FindTarget(wowUnit, CombatClass.GetAggroRange);
+                        Thread.Sleep(100);
+                        if (MovementManager.InMovement)
+                        {
+                            return;
+                        }
+                    }
+                    Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
+                    UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
+                    if (!wowUnit.IsDead && Unkillable != 0 && wowUnit.HealthPercent == 100.0f)
+                    {
+                        nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
+                        Logging.Write("Can't reach " + wowUnit.Name + ", blacklisting it.");
+                    }
+                    else if (wowUnit.IsDead)
+                    {
+                        Statistics.Kills++;
+                        Thread.Sleep(50 + Usefuls.Latency);
+                        while (!ObjectManager.Me.IsMounted && ObjectManager.Me.InCombat &&
+                               ObjectManager.GetNumberAttackPlayer() <= 0)
+                        {
+                            Thread.Sleep(Usefuls.Latency);
+                        }
+                        Fight.StopFight();
+                        if (wowUnit.IsTapped && (!wowUnit.IsTapped || !wowUnit.IsTappedByMe))
+                            return;
+                        questObjective.CurrentCount++;
+                        if (wowUnit.GetDistance > questObjective.Range)
+                        {
+                            bool success;
+                            List<Point> path = PathFinder.FindPath(wowUnit.Position, out success);
+                            if (!success)
+                            {
+                                nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
+                                Logging.Write("Can't reach " + wowUnit.Name + " corpse, blacklisting it.");
+                            }
+                            MovementManager.Go(path);
+                            Timer goTimer = new Timer(20*1000);
+                            while (MovementManager.InMovement)
+                            {
+                                if (wowUnit.GetDistance <= questObjective.Range)
+                                    break;
+                                if (ObjectManager.Me.InInevitableCombat)
+                                    return;
+                                if (goTimer.IsReady)
+                                    return;
+                                Thread.Sleep(100);
+                            }
+                            if (wowUnit.GetDistance > questObjective.Range)
+                                return;
+                        }
+                        MountTask.DismountMount();
+                        MovementManager.StopMove();
+                        MovementManager.Face(wowUnit);
+                        Interact.InteractWith(wowUnit.GetBaseAddress);
+                        nManagerSetting.AddBlackList(wowUnit.Guid, 30*1000);
+                        if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0)
+                            return;
+                        Timer cooldownTimer = new Timer(8000);
+                        while (!cooldownTimer.IsReady && ItemsManager.IsItemOnCooldown(questObjective.UseItemId))
+                            Thread.Sleep(100);
+                        if (!ItemsManager.IsItemUsable(questObjective.UseItemId) && !questObjective.IgnoreItemNotUsable)
+                            return;
+
+                        ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+                        if (questObjective.Count > 0)
+                            questObjective.CurrentCount++;
+                        else if (questObjective.Count == 0)
+                            questObjective.IsObjectiveCompleted = true;
+                        Thread.Sleep(questObjective.WaitMs);
                     }
                     lockedTarget = null;
                 }
