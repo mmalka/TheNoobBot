@@ -36,9 +36,12 @@ namespace nManager.Wow.Bot.Tasks
         private static string _flyMount;
         public static bool SettingsHasChanged;
         private static Timer dismountTimer = new Timer(0);
+        public static bool AllowMounting = true;
 
         public static MountCapacity GetMountCapacity()
         {
+            if (!AllowMounting)
+                return MountCapacity.Feet;
             if (_startupCheck || SettingsHasChanged)
             {
                 // 1st Check if mounts in general settings exist

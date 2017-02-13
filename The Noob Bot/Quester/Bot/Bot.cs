@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using nManager.Wow.Bot.Tasks;
 using Quester.Profile;
 using nManager;
 using nManager.FiniteStateMachine;
@@ -23,6 +24,8 @@ namespace Quester.Bot
         {
             try
             {
+                MountTask.AllowMounting = true;
+                Quest.GetSetIgnoreFight = false;
                 Profile = new QuesterProfile();
                 QuesterProfileLoader f = new QuesterProfileLoader();
                 f.ShowDialog();
@@ -174,6 +177,8 @@ namespace Quester.Bot
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();
+                MountTask.AllowMounting = true;
+                Quest.GetSetIgnoreFight = false;
                 Profile = null;
                 Tasks.QuestingTask.Cleanup();
                 EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_DETAIL, callback => Quest.AutoCompleteQuest());

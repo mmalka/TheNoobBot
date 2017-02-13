@@ -147,6 +147,7 @@ namespace Quester.Tasks
 
         public static void ResetQuestObjective()
         {
+            MountTask.AllowMounting = true;
             QuestStatus = "Reset Quest Objective";
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
@@ -176,6 +177,8 @@ namespace Quester.Tasks
         public static bool QuestObjectiveIsFinish(ref QuestObjective questObjective)
         {
             Quest.GetSetIgnoreFight = false;
+            MountTask.AllowMounting = true;
+
             if (questObjective == null)
                 return true;
             var currentObjectiveQuestId = questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id;
@@ -356,6 +359,7 @@ namespace Quester.Tasks
             if (questObjective == null)
                 return;
 
+            MountTask.AllowMounting = !questObjective.DeactivateMount;
             QuestStatus = questObjective.Objective.ToString();
             CheckMandatoryFieldsByObjective(questObjective);
             if (questObjective.OnlyInVehicule && !ObjectManager.Me.InTransport)

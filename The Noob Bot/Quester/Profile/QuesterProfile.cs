@@ -187,6 +187,7 @@ namespace Quester.Profile
         internal int CurrentCount = 0;
         [XmlIgnore] public List<Point> PathHotspots = null;
         public List<int> Entry = new List<int>();
+        [DefaultValue(false)] public bool DeactivateMount = false;
 
         public bool ShouldSerializeEntry()
         {

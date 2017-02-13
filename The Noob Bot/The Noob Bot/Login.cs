@@ -117,12 +117,15 @@ namespace The_Noob_Bot
                     var sw = new StreamWriter(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config");
                     sw.WriteLine("<?xml version=\"1.0\"?>");
                     sw.WriteLine("<configuration>");
-                    sw.WriteLine("<startup>");
-                    sw.WriteLine("<supportedRuntime version=\"v4.0\"/>");
-                    sw.WriteLine("</startup>");
-                    sw.WriteLine("<runtime>");
-                    sw.WriteLine("<loadFromRemoteSources enabled=\"true\"/>");
-                    sw.WriteLine("</runtime>");
+                    sw.WriteLine("  <startup>");
+                    sw.WriteLine("      <supportedRuntime version=\"v4.0\"/>");
+                    sw.WriteLine("  </startup>");
+                    sw.WriteLine("  <runtime>");
+                    sw.WriteLine("    <loadFromRemoteSources enabled=\"true\"/>");
+                    sw.WriteLine("    <assemblyBinding xmlns=\"urn:schemas-microsoft-com:asm.v1\">");
+                    sw.WriteLine("      <probing privatePath=\"products\"/>");
+                    sw.WriteLine("    </assemblyBinding>");
+                    sw.WriteLine("  </runtime>");
                     sw.WriteLine("</configuration>");
                     sw.Close();
 

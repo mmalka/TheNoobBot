@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.MemoryClass;
@@ -22,6 +23,7 @@ namespace nManager.Wow.Helpers
         static Quest()
         {
             GetSetIgnoreFight = false;
+            MountTask.AllowMounting = true;
         }
 
         public static bool GetSetIgnoreFight { get; set; }
