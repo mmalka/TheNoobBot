@@ -41,6 +41,8 @@ namespace nManager.Wow.Bot.States
         private bool _useJeeves;
         private bool _suspendSelling = false;
         private bool _suspendMailing = false;
+        private Point _travelLocation = null;
+        private bool _travelDisabled = false;
 
         public override bool NeedToRun
         {
@@ -412,11 +414,37 @@ namespace nManager.Wow.Bot.States
                 foreach (Npc npc in listNPCs)
                 {
                     Npc target = npc;
+                    bool doTravel = target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 400 || target.ContinentIdInt != Usefuls.ContinentId;
+                    if (!doTravel && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 400)
+                    {
+                        // Close NPC but no path ?
+                        bool success;
+                        PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, target.Position, Usefuls.ContinentNameMpq, out success);
+                        if (!success)
+                            doTravel = true;
+                    }
+                    //Start travel
+                    if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
+                    {
+                        MovementManager.StopMove();
+                        Logging.Write("Calling travel system for ToTown...");
+                        Products.Products.TravelToContinentId = target.ContinentIdInt;
+                        Products.Products.TravelTo = target.Position;
+                        // Pass the check for valid destination as a lambda
+                        Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
+                        _travelLocation = ObjectManager.ObjectManager.Me.Position;
+                        return;
+                    }
+                    if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 0.1f)
+                        _travelDisabled = true; // don't forget to release travel once arrived.
                     //Start target finding based on Seller.
                     uint baseAddress = MovementManager.FindTarget(ref target, 0, !ObjectManager.ObjectManager.Me.IsMounted);
                     if (MovementManager.InMovement)
                         return;
-                    if (baseAddress == 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
+                    if (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= 5f)
+                        return;
+                    _travelDisabled = false;
+                    if (baseAddress == 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5f)
                         NpcDB.DelNpc(target);
                     else if (baseAddress > 0)
                     {
