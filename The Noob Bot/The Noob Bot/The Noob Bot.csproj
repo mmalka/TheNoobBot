@@ -124,6 +124,11 @@
       <Name>nManager</Name>
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Quester\Quester.csproj">
+      <Project>{96ca8810-5b34-47a7-8253-edca42fa02c4}</Project>
+      <Name>Quester</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Button Refresh.png" />

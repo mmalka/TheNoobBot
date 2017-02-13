@@ -188,8 +188,8 @@ namespace The_Noob_Bot
             MainSettingsButton.Text = nManager.Translate.Get(nManager.Translate.Id.General_Settings);
             StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.StartProduct);
             ProductSettingsButton.Text = nManager.Translate.Get(nManager.Translate.Id.Product_Settings);
+            //QuestToolLabel.Text = nManager.Translate.Get(nManager.Translate.Id.DevTools);
             DevToolsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.DevTools);
-            WebsiteLink.Text = nManager.Translate.Get(nManager.Translate.Id.Website);
             WantToSubscribeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.WantToSubscribe);
             ProductsListPriceLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SelectOffer);
             GoToPaymentPageButton.Text = nManager.Translate.Get(nManager.Translate.Id.PaymentPage);
@@ -446,6 +446,15 @@ namespace The_Noob_Bot
         {
             DevToolsLabel.Font = new Font(DevToolsLabel.Font, DevToolsLabel.Font.Style ^ FontStyle.Bold);
         }
+        private void QuestToolLabel_MouseEnter(object sender, EventArgs e)
+        {
+            QuestToolLabel.Font = new Font(QuestToolLabel.Font, QuestToolLabel.Font.Style | FontStyle.Bold);
+        }
+
+        private void QuestToolLabel_MouseLeave(object sender, EventArgs e)
+        {
+            QuestToolLabel.Font = new Font(QuestToolLabel.Font, QuestToolLabel.Font.Style ^ FontStyle.Bold);
+        }
 
         private void WebsiteLink_MouseEnter(object sender, EventArgs e)
         {
@@ -494,11 +503,17 @@ namespace The_Noob_Bot
             }
         }
 
-        private void DevToolsLabel_Click(object sender, EventArgs e)
+        private void QuestToolLabel_Click(object sender, EventArgs e)
         {
-            var t = new Thread(DeveloperToolsThread) {Name = "DeveloperToolsForm"};
+            var t = new Thread(QuestToolThread) {Name = "QuestToolForm"};
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
+        }
+
+        private void QuestToolThread()
+        {
+            var f = new Quester.Profile.SimpleProfileEditor {TopMost = true};
+            f.ShowDialog();
         }
 
         private void MainPanelTimer_Tick(object sender, EventArgs e)
@@ -644,6 +659,13 @@ namespace The_Noob_Bot
         private void GoToPaymentPageButton_Click(object sender, EventArgs e)
         {
             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/get-a-bg-bot-wow/");
+        }
+
+        private void DevToolsLabel_Click_1(object sender, EventArgs e)
+        {
+            var t = new Thread(DeveloperToolsThread) {Name = "DeveloperToolsForm"};
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
         }
     }
 }

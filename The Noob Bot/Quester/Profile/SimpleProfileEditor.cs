@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -38,7 +39,8 @@ namespace Quester.Profile
         public SimpleProfileEditor(string profile = "")
         {
             InitializeComponent();
-
+            TNBControlMenu.TitleText = "Quest Profile Editor - Profile not yet saved";
+            Text = TNBControlMenu.TitleText;
             /*TODO Auto Create Taxi
             Wow.Enums.WoWEventsType.ENABLE_TAXI_BENCHMARK
             Wow.Enums.WoWEventsType.DISABLE_TAXI_BENCHMARK
@@ -75,7 +77,6 @@ namespace Quester.Profile
             if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
             {
                 XmlSerializer.Serialize(_fullpath, _profile);
-                Close();
             }
             else
             {
@@ -363,6 +364,8 @@ namespace Quester.Profile
                             objective.ScriptConditionIsComplete = TBObjCompletedScript.Text;
                             objective.CollectCount = Others.ToInt32(TBObjCollectCount.Text);
                             objective.CollectItemId = Others.ToInt32(TBObjCollectItemID.Text);
+                            objective.LuaMacro = TBObjLuaMacro.Text;
+
                             //objective.Keys = (Keybindings)CBObjPressKeys.SelectedValue;
                             break;
                         case "TravelTo":
@@ -371,6 +374,9 @@ namespace Quester.Profile
                             break;
                         case "EquipItem":
                             objective.EquipItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            break;
+                        case "UseLuaMacro":
+                            objective.LuaMacro = TBObjLuaMacro.Text;
                             break;
                     }
 
@@ -592,6 +598,7 @@ namespace Quester.Profile
                             newObjective.ScriptConditionIsComplete = TBObjCompletedScript.Text;
                             newObjective.CollectCount = Others.ToInt32(TBObjCollectCount.Text);
                             newObjective.CollectItemId = Others.ToInt32(TBObjCollectItemID.Text);
+                            newObjective.LuaMacro = TBObjLuaMacro.Text;
                             //newObjective.Keys = (Keybindings)CBObjPressKeys.SelectedValue;
                             break;
                         case "TravelTo":
@@ -600,6 +607,9 @@ namespace Quester.Profile
                             break;
                         case "EquipItem":
                             newObjective.EquipItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            break;
+                        case "UseLuaMacro":
+                            newObjective.LuaMacro = TBObjLuaMacro.Text;
                             break;
                     }
 
@@ -880,6 +890,8 @@ namespace Quester.Profile
 
         private void ButtonNewXML_Click(object sender, EventArgs e)
         {
+            TNBControlMenu.TitleText = "Quest Profile Editor - Profile not yet saved";
+            Text = TNBControlMenu.TitleText;
             TreeView.Nodes.Clear();
             _npcParentNode.Nodes.Clear();
             _questParentNode.Nodes.Clear();
@@ -906,6 +918,7 @@ namespace Quester.Profile
                 _fullpath = Application.StartupPath + @"\Profiles\Quester\" + profile;
                 _profile = new QuesterProfile();
 
+                string fileName = _fullpath.Split('\\').Last();
                 if (string.IsNullOrEmpty(profile) || !File.Exists(_fullpath))
                 {
                     string file = Others.DialogBoxOpenFile(Application.StartupPath + @"\Profiles\Quester\", "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
@@ -913,11 +926,16 @@ namespace Quester.Profile
                     {
                         _fullpath = file;
                         _profile = XmlSerializer.Deserialize<QuesterProfile>(file);
+                        fileName = _fullpath.Split('\\').Last();
+                        TNBControlMenu.TitleText = "Quest Profile Editor - " + fileName;
+                        Text = TNBControlMenu.TitleText;
                     }
                 }
                 else
                 {
                     _profile = XmlSerializer.Deserialize<QuesterProfile>(_fullpath);
+                    TNBControlMenu.TitleText = "Quest Profile Editor - " + fileName;
+                    Text = TNBControlMenu.TitleText;
                 }
 
                 TreeView.Nodes.Clear();
@@ -1156,6 +1174,7 @@ namespace Quester.Profile
             CBObjForceTravelToQuestZone.Checked = false;
             TBObjMessage.Enabled = false;
             CBObjPressKeys.Enabled = false;
+            TBObjLuaMacro.Enabled = false;
 
             TBObjCount.Text = string.Empty;
             TBObjEntry.Text = string.Empty;
@@ -1185,6 +1204,7 @@ namespace Quester.Profile
             TBObjMessage.Text = string.Empty;
             CBObjPressKeys.Text = string.Empty;
             TBObjCompletedScript.Text = string.Empty;
+            TBObjLuaMacro.Text = string.Empty;
         }
 
         public void ClearQuestForm()
@@ -1455,6 +1475,7 @@ namespace Quester.Profile
                     TBObjQuestID.Text = qObjective.QuestId.ToString();
                     TBObjQuestName.Text = qObjective.QuestName.ToString();
                     TBObjCompletedScript.Text = qObjective.ScriptConditionIsComplete;
+                    TBObjLuaMacro.Text = qObjective.LuaMacro;
 
                     TBObjQuestName.Enabled = true;
                     TBObjCollectCount.Enabled = true;
@@ -1469,6 +1490,8 @@ namespace Quester.Profile
                     TBObjMessage.Enabled = true;
                     TBObjCompletedScript.Enabled = true;
                     TBObjEntry.Enabled = true;
+                    TBObjLuaMacro.Enabled = true;
+
                     break;
                 case "TravelTo":
                     TBObjPosition.Text = qObjective.Position.ToString();
@@ -1477,6 +1500,10 @@ namespace Quester.Profile
                 case "EquipItem":
                     TBObjUseItemID.Text = qObjective.EquipItemId.ToString();
                     TBObjUseItemID.Enabled = true;
+                    break;
+                case "UseLuaMacro":
+                    TBObjLuaMacro.Enabled = true;
+                    TBObjLuaMacro.Text = qObjective.LuaMacro;
                     break;
             }
 
@@ -1721,6 +1748,12 @@ namespace Quester.Profile
                 Name = "Equip Item",
                 Value = 4
             });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Use LuaMacro",
+                Value = 12
+            });
+       
 
             CBObjType.DataSource = cbObjTypeList;
 
@@ -1993,6 +2026,7 @@ namespace Quester.Profile
                     TBObjMessage.Enabled = true;
                     TBObjCompletedScript.Enabled = true;
                     TBObjEntry.Enabled = true;
+                    TBObjLuaMacro.Enabled = true;
                     break;
                 case "TravelTo":
                     TBObjPosition.Enabled = true;
@@ -2000,6 +2034,10 @@ namespace Quester.Profile
                 case "EquipItem":
                     TBObjUseItemID.Enabled = true;
                     break;
+                case "UseLuaMacro":
+                    TBObjLuaMacro.Enabled = true;
+                    break;
+
             }
 
             switch (selectedObjectiveName)

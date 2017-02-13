@@ -25,7 +25,6 @@ namespace Quester.Profile
         }
 
         //Requise par le Concepteur Windows Form
-
         private System.ComponentModel.IContainer components;
         //REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
         //Elle peut être modifiée à l'aide du Concepteur Windows Form.  
@@ -102,6 +101,8 @@ namespace Quester.Profile
             this.TBQuestMinLvl = new System.Windows.Forms.TextBox();
             this.Label16 = new System.Windows.Forms.Label();
             this.TabPageObjectives = new System.Windows.Forms.TabPage();
+            this.label45 = new System.Windows.Forms.Label();
+            this.TBObjLuaMacro = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.TBObjCompletedScript = new System.Windows.Forms.TextBox();
             this.CBObjPressKeys = new System.Windows.Forms.ComboBox();
@@ -911,6 +912,8 @@ namespace Quester.Profile
             // 
             // TabPageObjectives
             // 
+            this.TabPageObjectives.Controls.Add(this.label45);
+            this.TabPageObjectives.Controls.Add(this.TBObjLuaMacro);
             this.TabPageObjectives.Controls.Add(this.label41);
             this.TabPageObjectives.Controls.Add(this.TBObjCompletedScript);
             this.TabPageObjectives.Controls.Add(this.CBObjPressKeys);
@@ -950,6 +953,24 @@ namespace Quester.Profile
             this.TabPageObjectives.TabIndex = 1;
             this.TabPageObjectives.Text = "Objectives";
             this.TabPageObjectives.UseVisualStyleBackColor = true;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(184, 200);
+            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(58, 13);
+            this.label45.TabIndex = 91;
+            this.label45.Text = "Lua Macro";
+            // 
+            // TBObjLuaMacro
+            // 
+            this.TBObjLuaMacro.Location = new System.Drawing.Point(273, 196);
+            this.TBObjLuaMacro.Margin = new System.Windows.Forms.Padding(2);
+            this.TBObjLuaMacro.Name = "TBObjLuaMacro";
+            this.TBObjLuaMacro.Size = new System.Drawing.Size(98, 20);
+            this.TBObjLuaMacro.TabIndex = 90;
             // 
             // label41
             // 
@@ -1011,10 +1032,10 @@ namespace Quester.Profile
             // LBObjHotspots
             // 
             this.LBObjHotspots.FormattingEnabled = true;
-            this.LBObjHotspots.Location = new System.Drawing.Point(184, 317);
+            this.LBObjHotspots.Location = new System.Drawing.Point(184, 343);
             this.LBObjHotspots.Margin = new System.Windows.Forms.Padding(2);
             this.LBObjHotspots.Name = "LBObjHotspots";
-            this.LBObjHotspots.Size = new System.Drawing.Size(186, 134);
+            this.LBObjHotspots.Size = new System.Drawing.Size(186, 108);
             this.LBObjHotspots.TabIndex = 80;
             this.LBObjHotspots.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LBObjHotspots_PreviewKeyDown);
             // 
@@ -1023,7 +1044,7 @@ namespace Quester.Profile
             this.CBObjInternalQuestIdManual.AutoSize = true;
             this.CBObjInternalQuestIdManual.Checked = true;
             this.CBObjInternalQuestIdManual.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CBObjInternalQuestIdManual.Location = new System.Drawing.Point(280, 213);
+            this.CBObjInternalQuestIdManual.Location = new System.Drawing.Point(282, 238);
             this.CBObjInternalQuestIdManual.Name = "CBObjInternalQuestIdManual";
             this.CBObjInternalQuestIdManual.Size = new System.Drawing.Size(67, 17);
             this.CBObjInternalQuestIdManual.TabIndex = 79;
@@ -1033,7 +1054,7 @@ namespace Quester.Profile
             // Label37
             // 
             this.Label37.AutoSize = true;
-            this.Label37.Location = new System.Drawing.Point(184, 270);
+            this.Label37.Location = new System.Drawing.Point(186, 295);
             this.Label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label37.Name = "Label37";
             this.Label37.Size = new System.Drawing.Size(68, 13);
@@ -1042,7 +1063,7 @@ namespace Quester.Profile
             // 
             // TBObjInternalIndex
             // 
-            this.TBObjInternalIndex.Location = new System.Drawing.Point(268, 266);
+            this.TBObjInternalIndex.Location = new System.Drawing.Point(270, 291);
             this.TBObjInternalIndex.Margin = new System.Windows.Forms.Padding(2);
             this.TBObjInternalIndex.Name = "TBObjInternalIndex";
             this.TBObjInternalIndex.Size = new System.Drawing.Size(103, 20);
@@ -1381,7 +1402,7 @@ namespace Quester.Profile
             // 
             // ButtonObjHotSpots
             // 
-            this.ButtonObjHotSpots.Location = new System.Drawing.Point(184, 288);
+            this.ButtonObjHotSpots.Location = new System.Drawing.Point(186, 313);
             this.ButtonObjHotSpots.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonObjHotSpots.Name = "ButtonObjHotSpots";
             this.ButtonObjHotSpots.Size = new System.Drawing.Size(186, 28);
@@ -1416,7 +1437,7 @@ namespace Quester.Profile
             // CBObjInternalQuestID
             // 
             this.CBObjInternalQuestID.FormattingEnabled = true;
-            this.CBObjInternalQuestID.Location = new System.Drawing.Point(187, 244);
+            this.CBObjInternalQuestID.Location = new System.Drawing.Point(189, 269);
             this.CBObjInternalQuestID.Name = "CBObjInternalQuestID";
             this.CBObjInternalQuestID.Size = new System.Drawing.Size(184, 21);
             this.CBObjInternalQuestID.TabIndex = 64;
@@ -1426,7 +1447,7 @@ namespace Quester.Profile
             this.CBInternalObj.AutoSize = true;
             this.CBInternalObj.Checked = true;
             this.CBInternalObj.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CBInternalObj.Location = new System.Drawing.Point(185, 214);
+            this.CBInternalObj.Location = new System.Drawing.Point(187, 239);
             this.CBInternalObj.Name = "CBInternalObj";
             this.CBInternalObj.Size = new System.Drawing.Size(98, 17);
             this.CBInternalObj.TabIndex = 14;
@@ -1437,7 +1458,7 @@ namespace Quester.Profile
             // Label32
             // 
             this.Label32.AutoSize = true;
-            this.Label32.Location = new System.Drawing.Point(199, 230);
+            this.Label32.Location = new System.Drawing.Point(201, 255);
             this.Label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label32.Name = "Label32";
             this.Label32.Size = new System.Drawing.Size(85, 13);
@@ -1449,7 +1470,7 @@ namespace Quester.Profile
             this.CBObjIgnoreQuestCompleted.AutoSize = true;
             this.CBObjIgnoreQuestCompleted.Checked = true;
             this.CBObjIgnoreQuestCompleted.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CBObjIgnoreQuestCompleted.Location = new System.Drawing.Point(185, 197);
+            this.CBObjIgnoreQuestCompleted.Location = new System.Drawing.Point(187, 222);
             this.CBObjIgnoreQuestCompleted.Name = "CBObjIgnoreQuestCompleted";
             this.CBObjIgnoreQuestCompleted.Size = new System.Drawing.Size(140, 17);
             this.CBObjIgnoreQuestCompleted.TabIndex = 13;
@@ -1778,7 +1799,7 @@ namespace Quester.Profile
             this.TNBControlMenu.LogoImage = ((System.Drawing.Image)(resources.GetObject("TNBControlMenu.LogoImage")));
             this.TNBControlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.TNBControlMenu.Name = "TNBControlMenu";
-            this.TNBControlMenu.Size = new System.Drawing.Size(663, 35);
+            this.TNBControlMenu.Size = new System.Drawing.Size(663, 40);
             this.TNBControlMenu.TabIndex = 85;
             this.TNBControlMenu.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TNBControlMenu.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
@@ -1801,6 +1822,7 @@ namespace Quester.Profile
             this.Controls.Add(this.ButtonLoadXML);
             this.Controls.Add(this.TreeView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -1976,5 +1998,7 @@ namespace Quester.Profile
         private nManager.Helpful.Forms.UserControls.TnbControlMenu TNBControlMenu;
         internal Button button1;
         internal CheckBox CBObjIgnoreFight;
+        internal Label label45;
+        internal TextBox TBObjLuaMacro;
     }
 }

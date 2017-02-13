@@ -74,7 +74,7 @@ namespace The_Noob_Bot
             this.RemoteSessionSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.RemoteSessionLabel = new System.Windows.Forms.Label();
             this.WebsiteLink = new System.Windows.Forms.Label();
-            this.DevToolsLabel = new System.Windows.Forms.Label();
+            this.QuestToolLabel = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.HomePanelTimer = new System.Windows.Forms.Timer(this.components);
             this.MainFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -85,8 +85,8 @@ namespace The_Noob_Bot
             this.StartButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.ProductSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.MainSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.DevToolsLabel = new System.Windows.Forms.Label();
             this.PanelHome.SuspendLayout();
-            this.PanelLog.SuspendLayout();
             this.PanelAccount.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -634,37 +634,36 @@ namespace The_Noob_Bot
             this.WebsiteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WebsiteLink.ForeColor = System.Drawing.Color.Snow;
             this.WebsiteLink.Image = ((System.Drawing.Image)(resources.GetObject("WebsiteLink.Image")));
-            this.WebsiteLink.Location = new System.Drawing.Point(479, 44);
+            this.WebsiteLink.Location = new System.Drawing.Point(545, 44);
             this.WebsiteLink.Margin = new System.Windows.Forms.Padding(0);
-            this.WebsiteLink.MaximumSize = new System.Drawing.Size(95, 33);
-            this.WebsiteLink.MinimumSize = new System.Drawing.Size(95, 33);
+            this.WebsiteLink.MaximumSize = new System.Drawing.Size(25, 33);
+            this.WebsiteLink.MinimumSize = new System.Drawing.Size(25, 33);
             this.WebsiteLink.Name = "WebsiteLink";
-            this.WebsiteLink.Size = new System.Drawing.Size(95, 33);
+            this.WebsiteLink.Size = new System.Drawing.Size(25, 33);
             this.WebsiteLink.TabIndex = 21;
-            this.WebsiteLink.Text = "    Website";
             this.WebsiteLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.WebsiteLink.Click += new System.EventHandler(this.WebsiteLink_Click);
             this.WebsiteLink.MouseEnter += new System.EventHandler(this.WebsiteLink_MouseEnter);
             this.WebsiteLink.MouseLeave += new System.EventHandler(this.WebsiteLink_MouseLeave);
             // 
-            // DevToolsLabel
+            // QuestToolLabel
             // 
-            this.DevToolsLabel.AutoEllipsis = true;
-            this.DevToolsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DevToolsLabel.ForeColor = System.Drawing.Color.Snow;
-            this.DevToolsLabel.Image = global::The_Noob_Bot.Properties.Resources.tab_inactive_mainframe;
-            this.DevToolsLabel.Location = new System.Drawing.Point(368, 44);
-            this.DevToolsLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.DevToolsLabel.MaximumSize = new System.Drawing.Size(108, 33);
-            this.DevToolsLabel.MinimumSize = new System.Drawing.Size(108, 33);
-            this.DevToolsLabel.Name = "DevToolsLabel";
-            this.DevToolsLabel.Size = new System.Drawing.Size(108, 33);
-            this.DevToolsLabel.TabIndex = 22;
-            this.DevToolsLabel.Text = "DevTools";
-            this.DevToolsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.DevToolsLabel.Click += new System.EventHandler(this.DevToolsLabel_Click);
-            this.DevToolsLabel.MouseEnter += new System.EventHandler(this.DevToolsLabel_MouseEnter);
-            this.DevToolsLabel.MouseLeave += new System.EventHandler(this.DevToolsLabel_MouseLeave);
+            this.QuestToolLabel.AutoEllipsis = true;
+            this.QuestToolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuestToolLabel.ForeColor = System.Drawing.Color.Snow;
+            this.QuestToolLabel.Image = global::The_Noob_Bot.Properties.Resources.tab_inactive_mainframe;
+            this.QuestToolLabel.Location = new System.Drawing.Point(462, 44);
+            this.QuestToolLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.QuestToolLabel.MaximumSize = new System.Drawing.Size(80, 33);
+            this.QuestToolLabel.MinimumSize = new System.Drawing.Size(80, 33);
+            this.QuestToolLabel.Name = "QuestToolLabel";
+            this.QuestToolLabel.Size = new System.Drawing.Size(80, 33);
+            this.QuestToolLabel.TabIndex = 22;
+            this.QuestToolLabel.Text = "QuestTool";
+            this.QuestToolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.QuestToolLabel.Click += new System.EventHandler(this.QuestToolLabel_Click);
+            this.QuestToolLabel.MouseEnter += new System.EventHandler(this.QuestToolLabel_MouseEnter);
+            this.QuestToolLabel.MouseLeave += new System.EventHandler(this.QuestToolLabel_MouseLeave);
             // 
             // HomePanelTimer
             // 
@@ -764,14 +763,34 @@ namespace The_Noob_Bot
             this.MainSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.MainSettingsButton.Click += new System.EventHandler(this.MainSettingsButton_Click);
             // 
+            // DevToolsLabel
+            // 
+            this.DevToolsLabel.AutoEllipsis = true;
+            this.DevToolsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DevToolsLabel.ForeColor = System.Drawing.Color.Snow;
+            this.DevToolsLabel.Image = global::The_Noob_Bot.Properties.Resources.tab_inactive_mainframe;
+            this.DevToolsLabel.Location = new System.Drawing.Point(378, 44);
+            this.DevToolsLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.DevToolsLabel.MaximumSize = new System.Drawing.Size(80, 33);
+            this.DevToolsLabel.MinimumSize = new System.Drawing.Size(80, 33);
+            this.DevToolsLabel.Name = "DevToolsLabel";
+            this.DevToolsLabel.Size = new System.Drawing.Size(80, 33);
+            this.DevToolsLabel.TabIndex = 24;
+            this.DevToolsLabel.Text = "DevTools";
+            this.DevToolsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DevToolsLabel.Click += new System.EventHandler(this.DevToolsLabel_Click_1);
+            this.DevToolsLabel.MouseEnter += new System.EventHandler(this.DevToolsLabel_MouseEnter);
+            this.DevToolsLabel.MouseLeave += new System.EventHandler(this.DevToolsLabel_MouseLeave);
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(575, 371);
-            this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.DevToolsLabel);
+            this.Controls.Add(this.MainHeader);
+            this.Controls.Add(this.QuestToolLabel);
             this.Controls.Add(this.WebsiteLink);
             this.Controls.Add(this.ProductList);
             this.Controls.Add(this.StartButton);
@@ -791,7 +810,6 @@ namespace The_Noob_Bot
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.PanelHome.ResumeLayout(false);
-            this.PanelLog.ResumeLayout(false);
             this.PanelAccount.ResumeLayout(false);
             this.PanelAccount.PerformLayout();
             this.ResumeLayout(false);
@@ -845,7 +863,7 @@ namespace The_Noob_Bot
         private TnbProgressBar Health;
         private TnbProgressBar TargetHealth;
         private System.Windows.Forms.Label WebsiteLink;
-        private System.Windows.Forms.Label DevToolsLabel;
+        private System.Windows.Forms.Label QuestToolLabel;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Timer HomePanelTimer;
         private System.Windows.Forms.Timer MainFormTimer;
@@ -853,6 +871,7 @@ namespace The_Noob_Bot
         private System.Windows.Forms.Timer LoggingAreaTimer;
         private TnbControlMenu MainHeader;
         private System.Windows.Forms.Label BotStartedSinceLabel;
+        private System.Windows.Forms.Label DevToolsLabel;
     }
 }
 
