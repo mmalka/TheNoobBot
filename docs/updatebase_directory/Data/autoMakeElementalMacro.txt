@@ -10,6 +10,10 @@ itemName = GetItemInfo(22576);
 for i = 1, GetItemCount(itemName)/10 do
      RunMacroText("/use " .. itemName);
 end 
+itemName = GetItemInfo(49655);
+for i = 1, GetItemCount(itemName)/10 do
+     RunMacroText("/use " .. itemName);
+end 
 itemName = GetItemInfo(22575);
 for i = 1, GetItemCount(itemName)/10 do
      RunMacroText("/use " .. itemName);
