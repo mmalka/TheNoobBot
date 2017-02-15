@@ -10,6 +10,7 @@ using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 using nManager.Wow.Class;
+using Quester.Tasks;
 using Quest = nManager.Wow.Helpers.Quest;
 
 namespace Quester.Bot
@@ -174,6 +175,8 @@ namespace Quester.Bot
         {
             try
             {
+                Script.CachedScripts = new Dictionary<string, IScript>();
+                // clear cache on Stop.
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();
