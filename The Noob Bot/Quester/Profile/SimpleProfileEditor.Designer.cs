@@ -101,6 +101,7 @@ namespace Quester.Profile
             this.TBQuestMinLvl = new System.Windows.Forms.TextBox();
             this.Label16 = new System.Windows.Forms.Label();
             this.TabPageObjectives = new System.Windows.Forms.TabPage();
+            this.ButtonObjHotSpotsTargetPos = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
             this.TBObjLuaMacro = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
@@ -145,7 +146,7 @@ namespace Quester.Profile
             this.Label25 = new System.Windows.Forms.Label();
             this.TBObjUseSpellId = new System.Windows.Forms.TextBox();
             this.Label26 = new System.Windows.Forms.Label();
-            this.ButtonObjHotSpots = new System.Windows.Forms.Button();
+            this.ButtonObjHotSpotsPlayerPos = new System.Windows.Forms.Button();
             this.ButtonObjImportFromGame = new System.Windows.Forms.Button();
             this.CBObjKillMobPickUpItem = new System.Windows.Forms.CheckBox();
             this.CBObjInternalQuestID = new System.Windows.Forms.ComboBox();
@@ -184,6 +185,8 @@ namespace Quester.Profile
             this.CBMainDisplayXML = new System.Windows.Forms.CheckBox();
             this.ButtonSaveXML = new System.Windows.Forms.Button();
             this.TNBControlMenu = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.ButtonQuestImpotTurnInID = new System.Windows.Forms.Button();
+            this.ButtonObjImportCursorItemID = new System.Windows.Forms.Button();
             this.ContextMenuStrip.SuspendLayout();
             this.PanelNPC.SuspendLayout();
             this.PanelSimpleQuest.SuspendLayout();
@@ -434,6 +437,7 @@ namespace Quester.Profile
             // 
             // TabPageQuest
             // 
+            this.TabPageQuest.Controls.Add(this.ButtonQuestImpotTurnInID);
             this.TabPageQuest.Controls.Add(this.button1);
             this.TabPageQuest.Controls.Add(this.label40);
             this.TabPageQuest.Controls.Add(this.TBQuestAutoAcceptIDs);
@@ -897,6 +901,7 @@ namespace Quester.Profile
             // 
             // TabPageObjectives
             // 
+            this.TabPageObjectives.Controls.Add(this.ButtonObjHotSpotsTargetPos);
             this.TabPageObjectives.Controls.Add(this.label45);
             this.TabPageObjectives.Controls.Add(this.TBObjLuaMacro);
             this.TabPageObjectives.Controls.Add(this.label41);
@@ -911,7 +916,7 @@ namespace Quester.Profile
             this.TabPageObjectives.Controls.Add(this.TBObjInternalIndex);
             this.TabPageObjectives.Controls.Add(this.ButtonObjDumpIndex);
             this.TabPageObjectives.Controls.Add(this.PanelObjAll);
-            this.TabPageObjectives.Controls.Add(this.ButtonObjHotSpots);
+            this.TabPageObjectives.Controls.Add(this.ButtonObjHotSpotsPlayerPos);
             this.TabPageObjectives.Controls.Add(this.ButtonObjImportFromGame);
             this.TabPageObjectives.Controls.Add(this.CBObjKillMobPickUpItem);
             this.TabPageObjectives.Controls.Add(this.CBObjInternalQuestID);
@@ -938,6 +943,17 @@ namespace Quester.Profile
             this.TabPageObjectives.TabIndex = 1;
             this.TabPageObjectives.Text = "Objectives";
             this.TabPageObjectives.UseVisualStyleBackColor = true;
+            // 
+            // ButtonObjHotSpotsTargetPos
+            // 
+            this.ButtonObjHotSpotsTargetPos.Location = new System.Drawing.Point(369, 384);
+            this.ButtonObjHotSpotsTargetPos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonObjHotSpotsTargetPos.Name = "ButtonObjHotSpotsTargetPos";
+            this.ButtonObjHotSpotsTargetPos.Size = new System.Drawing.Size(126, 44);
+            this.ButtonObjHotSpotsTargetPos.TabIndex = 92;
+            this.ButtonObjHotSpotsTargetPos.Text = "Add HotSpot Target.Pos";
+            this.ButtonObjHotSpotsTargetPos.UseVisualStyleBackColor = true;
+            this.ButtonObjHotSpotsTargetPos.Click += new System.EventHandler(this.ButtonObjHotSpotsTargetPos_Click);
             // 
             // label45
             // 
@@ -1014,10 +1030,10 @@ namespace Quester.Profile
             // 
             this.LBObjHotspots.FormattingEnabled = true;
             this.LBObjHotspots.ItemHeight = 16;
-            this.LBObjHotspots.Location = new System.Drawing.Point(245, 422);
+            this.LBObjHotspots.Location = new System.Drawing.Point(248, 433);
             this.LBObjHotspots.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LBObjHotspots.Name = "LBObjHotspots";
-            this.LBObjHotspots.Size = new System.Drawing.Size(247, 132);
+            this.LBObjHotspots.Size = new System.Drawing.Size(247, 116);
             this.LBObjHotspots.TabIndex = 80;
             this.LBObjHotspots.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LBObjHotspots_PreviewKeyDown);
             // 
@@ -1027,7 +1043,7 @@ namespace Quester.Profile
             this.CBObjInternalQuestIdManual.Checked = true;
             this.CBObjInternalQuestIdManual.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBObjInternalQuestIdManual.Location = new System.Drawing.Point(376, 293);
-            this.CBObjInternalQuestIdManual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjInternalQuestIdManual.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjInternalQuestIdManual.Name = "CBObjInternalQuestIdManual";
             this.CBObjInternalQuestIdManual.Size = new System.Drawing.Size(84, 21);
             this.CBObjInternalQuestIdManual.TabIndex = 79;
@@ -1064,6 +1080,7 @@ namespace Quester.Profile
             // 
             // PanelObjAll
             // 
+            this.PanelObjAll.Controls.Add(this.ButtonObjImportCursorItemID);
             this.PanelObjAll.Controls.Add(this.CBObjDeactivateMount);
             this.PanelObjAll.Controls.Add(this.CBObjIgnoreFight);
             this.PanelObjAll.Controls.Add(this.CBObjForceTravelToQuestZone);
@@ -1105,8 +1122,8 @@ namespace Quester.Profile
             // 
             this.CBObjDeactivateMount.AutoSize = true;
             this.CBObjDeactivateMount.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjDeactivateMount.Location = new System.Drawing.Point(73, 448);
-            this.CBObjDeactivateMount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjDeactivateMount.Location = new System.Drawing.Point(75, 448);
+            this.CBObjDeactivateMount.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjDeactivateMount.Name = "CBObjDeactivateMount";
             this.CBObjDeactivateMount.Size = new System.Drawing.Size(140, 21);
             this.CBObjDeactivateMount.TabIndex = 88;
@@ -1118,7 +1135,7 @@ namespace Quester.Profile
             this.CBObjIgnoreFight.AutoSize = true;
             this.CBObjIgnoreFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CBObjIgnoreFight.Location = new System.Drawing.Point(3, 363);
-            this.CBObjIgnoreFight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjIgnoreFight.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIgnoreFight.Name = "CBObjIgnoreFight";
             this.CBObjIgnoreFight.Size = new System.Drawing.Size(105, 21);
             this.CBObjIgnoreFight.TabIndex = 87;
@@ -1129,8 +1146,8 @@ namespace Quester.Profile
             // 
             this.CBObjForceTravelToQuestZone.AutoSize = true;
             this.CBObjForceTravelToQuestZone.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjForceTravelToQuestZone.Location = new System.Drawing.Point(23, 427);
-            this.CBObjForceTravelToQuestZone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjForceTravelToQuestZone.Location = new System.Drawing.Point(21, 427);
+            this.CBObjForceTravelToQuestZone.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjForceTravelToQuestZone.Name = "CBObjForceTravelToQuestZone";
             this.CBObjForceTravelToQuestZone.Size = new System.Drawing.Size(194, 21);
             this.CBObjForceTravelToQuestZone.TabIndex = 86;
@@ -1142,7 +1159,7 @@ namespace Quester.Profile
             this.CBObjIgnoreNotSelectable.AutoSize = true;
             this.CBObjIgnoreNotSelectable.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CBObjIgnoreNotSelectable.Location = new System.Drawing.Point(57, 406);
-            this.CBObjIgnoreNotSelectable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjIgnoreNotSelectable.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIgnoreNotSelectable.Name = "CBObjIgnoreNotSelectable";
             this.CBObjIgnoreNotSelectable.Size = new System.Drawing.Size(158, 21);
             this.CBObjIgnoreNotSelectable.TabIndex = 85;
@@ -1153,8 +1170,8 @@ namespace Quester.Profile
             // 
             this.CBObjAllowPlayerControlled.AutoSize = true;
             this.CBObjAllowPlayerControlled.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjAllowPlayerControlled.Location = new System.Drawing.Point(48, 385);
-            this.CBObjAllowPlayerControlled.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjAllowPlayerControlled.Location = new System.Drawing.Point(45, 385);
+            this.CBObjAllowPlayerControlled.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjAllowPlayerControlled.Name = "CBObjAllowPlayerControlled";
             this.CBObjAllowPlayerControlled.Size = new System.Drawing.Size(170, 21);
             this.CBObjAllowPlayerControlled.TabIndex = 84;
@@ -1165,8 +1182,8 @@ namespace Quester.Profile
             // 
             this.CBObjIgnoreBlackList.AutoSize = true;
             this.CBObjIgnoreBlackList.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreBlackList.Location = new System.Drawing.Point(112, 364);
-            this.CBObjIgnoreBlackList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjIgnoreBlackList.Location = new System.Drawing.Point(110, 364);
+            this.CBObjIgnoreBlackList.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIgnoreBlackList.Name = "CBObjIgnoreBlackList";
             this.CBObjIgnoreBlackList.Size = new System.Drawing.Size(105, 21);
             this.CBObjIgnoreBlackList.TabIndex = 83;
@@ -1177,8 +1194,8 @@ namespace Quester.Profile
             // 
             this.CBObjIsDead.AutoSize = true;
             this.CBObjIsDead.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIsDead.Location = new System.Drawing.Point(84, 343);
-            this.CBObjIsDead.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjIsDead.Location = new System.Drawing.Point(83, 343);
+            this.CBObjIsDead.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIsDead.Name = "CBObjIsDead";
             this.CBObjIsDead.Size = new System.Drawing.Size(132, 21);
             this.CBObjIsDead.TabIndex = 78;
@@ -1215,8 +1232,8 @@ namespace Quester.Profile
             // 
             this.CBObjCanPullUnitsInFight.AutoSize = true;
             this.CBObjCanPullUnitsInFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjCanPullUnitsInFight.Location = new System.Drawing.Point(17, 322);
-            this.CBObjCanPullUnitsInFight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjCanPullUnitsInFight.Location = new System.Drawing.Point(15, 322);
+            this.CBObjCanPullUnitsInFight.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjCanPullUnitsInFight.Name = "CBObjCanPullUnitsInFight";
             this.CBObjCanPullUnitsInFight.Size = new System.Drawing.Size(200, 21);
             this.CBObjCanPullUnitsInFight.TabIndex = 73;
@@ -1392,16 +1409,16 @@ namespace Quester.Profile
             this.Label26.TabIndex = 48;
             this.Label26.Text = "UseSpellId";
             // 
-            // ButtonObjHotSpots
+            // ButtonObjHotSpotsPlayerPos
             // 
-            this.ButtonObjHotSpots.Location = new System.Drawing.Point(248, 385);
-            this.ButtonObjHotSpots.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ButtonObjHotSpots.Name = "ButtonObjHotSpots";
-            this.ButtonObjHotSpots.Size = new System.Drawing.Size(248, 34);
-            this.ButtonObjHotSpots.TabIndex = 71;
-            this.ButtonObjHotSpots.Text = "Add HotSpot (Player Position IG)";
-            this.ButtonObjHotSpots.UseVisualStyleBackColor = true;
-            this.ButtonObjHotSpots.Click += new System.EventHandler(this.ButtonObjHotSpots_Click);
+            this.ButtonObjHotSpotsPlayerPos.Location = new System.Drawing.Point(248, 384);
+            this.ButtonObjHotSpotsPlayerPos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonObjHotSpotsPlayerPos.Name = "ButtonObjHotSpotsPlayerPos";
+            this.ButtonObjHotSpotsPlayerPos.Size = new System.Drawing.Size(116, 44);
+            this.ButtonObjHotSpotsPlayerPos.TabIndex = 71;
+            this.ButtonObjHotSpotsPlayerPos.Text = "Add HotSpot Me.Pos";
+            this.ButtonObjHotSpotsPlayerPos.UseVisualStyleBackColor = true;
+            this.ButtonObjHotSpotsPlayerPos.Click += new System.EventHandler(this.ButtonObjHotSpots_Click);
             // 
             // ButtonObjImportFromGame
             // 
@@ -1418,7 +1435,7 @@ namespace Quester.Profile
             // 
             this.CBObjKillMobPickUpItem.AutoSize = true;
             this.CBObjKillMobPickUpItem.Location = new System.Drawing.Point(369, 48);
-            this.CBObjKillMobPickUpItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjKillMobPickUpItem.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjKillMobPickUpItem.Name = "CBObjKillMobPickUpItem";
             this.CBObjKillMobPickUpItem.Size = new System.Drawing.Size(112, 21);
             this.CBObjKillMobPickUpItem.TabIndex = 65;
@@ -1431,7 +1448,7 @@ namespace Quester.Profile
             // 
             this.CBObjInternalQuestID.FormattingEnabled = true;
             this.CBObjInternalQuestID.Location = new System.Drawing.Point(252, 331);
-            this.CBObjInternalQuestID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjInternalQuestID.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjInternalQuestID.Name = "CBObjInternalQuestID";
             this.CBObjInternalQuestID.Size = new System.Drawing.Size(244, 24);
             this.CBObjInternalQuestID.TabIndex = 64;
@@ -1442,7 +1459,7 @@ namespace Quester.Profile
             this.CBInternalObj.Checked = true;
             this.CBInternalObj.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBInternalObj.Location = new System.Drawing.Point(249, 294);
-            this.CBInternalObj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBInternalObj.Margin = new System.Windows.Forms.Padding(4);
             this.CBInternalObj.Name = "CBInternalObj";
             this.CBInternalObj.Size = new System.Drawing.Size(127, 21);
             this.CBInternalObj.TabIndex = 14;
@@ -1465,7 +1482,7 @@ namespace Quester.Profile
             this.CBObjIgnoreQuestCompleted.Checked = true;
             this.CBObjIgnoreQuestCompleted.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBObjIgnoreQuestCompleted.Location = new System.Drawing.Point(249, 273);
-            this.CBObjIgnoreQuestCompleted.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBObjIgnoreQuestCompleted.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIgnoreQuestCompleted.Name = "CBObjIgnoreQuestCompleted";
             this.CBObjIgnoreQuestCompleted.Size = new System.Drawing.Size(183, 21);
             this.CBObjIgnoreQuestCompleted.TabIndex = 13;
@@ -1699,7 +1716,7 @@ namespace Quester.Profile
             // TBBlackListRadius
             // 
             this.TBBlackListRadius.Location = new System.Drawing.Point(335, 18);
-            this.TBBlackListRadius.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TBBlackListRadius.Margin = new System.Windows.Forms.Padding(4);
             this.TBBlackListRadius.Name = "TBBlackListRadius";
             this.TBBlackListRadius.Size = new System.Drawing.Size(132, 22);
             this.TBBlackListRadius.TabIndex = 81;
@@ -1733,6 +1750,7 @@ namespace Quester.Profile
             this.ButtonBlackListAdd.TabIndex = 78;
             this.ButtonBlackListAdd.Text = "Add BlackList (Player Position IG)";
             this.ButtonBlackListAdd.UseVisualStyleBackColor = true;
+            this.ButtonBlackListAdd.Click += new System.EventHandler(this.ButtonBlackListAdd_Click);
             // 
             // ButtonSaveAsXML
             // 
@@ -1792,6 +1810,28 @@ namespace Quester.Profile
             this.TNBControlMenu.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TNBControlMenu.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
             this.TNBControlMenu.TitleText = "TheNoobBot";
+            // 
+            // ButtonQuestImpotTurnInID
+            // 
+            this.ButtonQuestImpotTurnInID.Location = new System.Drawing.Point(371, 379);
+            this.ButtonQuestImpotTurnInID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonQuestImpotTurnInID.Name = "ButtonQuestImpotTurnInID";
+            this.ButtonQuestImpotTurnInID.Size = new System.Drawing.Size(31, 23);
+            this.ButtonQuestImpotTurnInID.TabIndex = 89;
+            this.ButtonQuestImpotTurnInID.Text = "Import From Game";
+            this.ButtonQuestImpotTurnInID.UseVisualStyleBackColor = true;
+            this.ButtonQuestImpotTurnInID.Click += new System.EventHandler(this.ButtonQuestImpotTurnInID_Click);
+            // 
+            // ButtonObjImportCursorItemID
+            // 
+            this.ButtonObjImportCursorItemID.Location = new System.Drawing.Point(80, 155);
+            this.ButtonObjImportCursorItemID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonObjImportCursorItemID.Name = "ButtonObjImportCursorItemID";
+            this.ButtonObjImportCursorItemID.Size = new System.Drawing.Size(31, 23);
+            this.ButtonObjImportCursorItemID.TabIndex = 89;
+            this.ButtonObjImportCursorItemID.Text = "Import From Game";
+            this.ButtonObjImportCursorItemID.UseVisualStyleBackColor = true;
+            this.ButtonObjImportCursorItemID.Click += new System.EventHandler(this.ButtonObjImportCursorItemID_Click);
             // 
             // SimpleProfileEditor
             // 
@@ -1921,7 +1961,7 @@ namespace Quester.Profile
         internal Button ButtonQuestImportFromGame;
         internal CheckedListBox CLBQuestClassMask;
         internal CheckedListBox CLBQuestRaceMask;
-        internal Button ButtonObjHotSpots;
+        internal Button ButtonObjHotSpotsPlayerPos;
         internal Button ButtonQuestAlliance;
         internal Button ButtonQuestHorde;
         internal CheckBox CBObjCanPullUnitsInFight;
@@ -1989,5 +2029,8 @@ namespace Quester.Profile
         internal Label label45;
         internal TextBox TBObjLuaMacro;
         internal CheckBox CBObjDeactivateMount;
+        internal Button ButtonObjHotSpotsTargetPos;
+        internal Button ButtonQuestImpotTurnInID;
+        internal Button ButtonObjImportCursorItemID;
     }
 }

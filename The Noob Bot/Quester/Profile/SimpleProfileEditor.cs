@@ -699,7 +699,7 @@ namespace Quester.Profile
 
         private void ButtonQuestNew_Click(object sender, EventArgs e)
         {
-            ClearQuestForm();
+            ClearQuestForm(true);
             TreeView.SelectedNode = null;
         }
 
@@ -1032,7 +1032,7 @@ namespace Quester.Profile
             else if ((string) e.Node.Tag == "Quest") //Quest Selected
             {
                 DisableObjForm();
-                ClearQuestForm();
+                ClearQuestForm(true);
 
                 PanelNPC.Visible = false;
                 PanelSimpleQuest.Visible = true;
@@ -1229,7 +1229,7 @@ namespace Quester.Profile
             TBObjLuaMacro.Text = string.Empty;
         }
 
-        public void ClearQuestForm()
+        public void ClearQuestForm(bool questClick = false)
         {
             ClearMaskListBox();
 
@@ -1251,8 +1251,12 @@ namespace Quester.Profile
             TBQuestWQ.Enabled = false;
             TBQuestAutoAcceptIDs.Text = string.Empty;
             TBQuestAutoCompleteIDs.Text = string.Empty;
-            TBBlackListRadius.Text = string.Empty;
-            TBBlackList.Text = string.Empty;
+
+            if (!questClick)
+            {
+                TBBlackListRadius.Text = string.Empty;
+                TBBlackList.Text = string.Empty;
+            }
         }
 
         public void ClearNPCForm()
@@ -1533,6 +1537,7 @@ namespace Quester.Profile
                     TBObjRange.Enabled = true;
                     TBObjUseItemID.Enabled = true;
                     TBObjWaitMs.Enabled = true;
+                    TBObjEntry.Enabled = true;
 
                     TBObjCount.Text = qObjective.Count.ToString();
                     CBObjCanPullUnitsInFight.Checked = qObjective.CanPullUnitsAlreadyInFight;
@@ -2099,6 +2104,12 @@ namespace Quester.Profile
             }
 
             CBInternalObj.Enabled = (selectedObjectiveName != "TurnInQuest" && selectedObjectiveName != "PickUpQuest");
+
+            //Auto Try to Import Quest information when selecting those objectives 
+            if(selectedObjectiveName == "TurnInQuest" || selectedObjectiveName == "PickUpQuest")
+            {
+                ButtonObjImportFromGame_Click(null, null);
+            }
         }
 
         private void CBObjKillMobPickUpItem_CheckedChanged(object sender, EventArgs e)
@@ -2526,7 +2537,7 @@ namespace Quester.Profile
         {
             string pos = ObjectManager.Me.Position.X.ToString() + ";" + ObjectManager.Me.Position.Y.ToString() + ";" + ObjectManager.Me.Position.Z.ToString() + ";" +
                          (string.IsNullOrEmpty(TBBlackListRadius.Text) ? 5f : Others.ToSingle(TBBlackListRadius.Text));
-            //if (TBObjHotSpots.Lines.Count > 0) {
+
             TBBlackList.AppendText(pos + Environment.NewLine);
         }
 
@@ -2633,6 +2644,11 @@ namespace Quester.Profile
         private void ButtonObjHotSpots_Click(object sender, EventArgs e)
         {
             LBObjHotspots.Items.Add(ObjectManager.Me.Position);
+        }
+
+        private void ButtonObjHotSpotsTargetPos_Click(object sender, EventArgs e)
+        {
+            LBObjHotspots.Items.Add(ObjectManager.Target.Position);
         }
 
         private void ButtonQuestHorde_Click(object sender, EventArgs e)
@@ -2843,6 +2859,35 @@ namespace Quester.Profile
                 }
             }
         }
+
+        private void ButtonQuestImpotTurnInID_Click(object sender, EventArgs e)
+        {
+            if (ObjectManager.Target.IsValid)
+            {
+                TBQuestTurnInID.Text = ObjectManager.Target.Entry.ToString();
+            }
+        }
+
+        private void ButtonObjImportCursorItemID_Click(object sender, EventArgs e)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            string cursorType = Lua.LuaDoString(randomString + ",_,_ =GetCursorInfo();", randomString);
+
+            if(cursorType == "item")
+            {
+                string itemId = Lua.LuaDoString("_," + randomString + ",_ =GetCursorInfo();", randomString);
+                TBObjUseItemID.Text = itemId;
+            }
+            /*"item" : String - The cursor is holding an item. 
+            itemId: Number - The itemId. 
+            itemLink : String (ItemLink) - The item's link. */
+        }
+
+      
+
+       
+
+       
     }
 
     public class ComboBoxValueString
