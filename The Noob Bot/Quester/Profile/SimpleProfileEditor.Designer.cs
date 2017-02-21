@@ -58,6 +58,7 @@ namespace Quester.Profile
             this.PanelSimpleQuest = new System.Windows.Forms.Panel();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.TabPageQuest = new System.Windows.Forms.TabPage();
+            this.ButtonQuestImpotTurnInID = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label40 = new System.Windows.Forms.Label();
             this.TBQuestAutoAcceptIDs = new System.Windows.Forms.TextBox();
@@ -116,6 +117,8 @@ namespace Quester.Profile
             this.TBObjInternalIndex = new System.Windows.Forms.TextBox();
             this.ButtonObjDumpIndex = new System.Windows.Forms.Button();
             this.PanelObjAll = new System.Windows.Forms.Panel();
+            this.CBObjIgnoreItemNotUsable = new System.Windows.Forms.CheckBox();
+            this.ButtonObjImportCursorItemID = new System.Windows.Forms.Button();
             this.CBObjDeactivateMount = new System.Windows.Forms.CheckBox();
             this.CBObjIgnoreFight = new System.Windows.Forms.CheckBox();
             this.CBObjForceTravelToQuestZone = new System.Windows.Forms.CheckBox();
@@ -185,8 +188,6 @@ namespace Quester.Profile
             this.CBMainDisplayXML = new System.Windows.Forms.CheckBox();
             this.ButtonSaveXML = new System.Windows.Forms.Button();
             this.TNBControlMenu = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.ButtonQuestImpotTurnInID = new System.Windows.Forms.Button();
-            this.ButtonObjImportCursorItemID = new System.Windows.Forms.Button();
             this.ContextMenuStrip.SuspendLayout();
             this.PanelNPC.SuspendLayout();
             this.PanelSimpleQuest.SuspendLayout();
@@ -486,6 +487,17 @@ namespace Quester.Profile
             this.TabPageQuest.TabIndex = 0;
             this.TabPageQuest.Text = "Quest";
             this.TabPageQuest.UseVisualStyleBackColor = true;
+            // 
+            // ButtonQuestImpotTurnInID
+            // 
+            this.ButtonQuestImpotTurnInID.Location = new System.Drawing.Point(371, 379);
+            this.ButtonQuestImpotTurnInID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonQuestImpotTurnInID.Name = "ButtonQuestImpotTurnInID";
+            this.ButtonQuestImpotTurnInID.Size = new System.Drawing.Size(31, 23);
+            this.ButtonQuestImpotTurnInID.TabIndex = 89;
+            this.ButtonQuestImpotTurnInID.Text = "Import From Game";
+            this.ButtonQuestImpotTurnInID.UseVisualStyleBackColor = true;
+            this.ButtonQuestImpotTurnInID.Click += new System.EventHandler(this.ButtonQuestImpotTurnInID_Click);
             // 
             // button1
             // 
@@ -1080,6 +1092,7 @@ namespace Quester.Profile
             // 
             // PanelObjAll
             // 
+            this.PanelObjAll.Controls.Add(this.CBObjIgnoreItemNotUsable);
             this.PanelObjAll.Controls.Add(this.ButtonObjImportCursorItemID);
             this.PanelObjAll.Controls.Add(this.CBObjDeactivateMount);
             this.PanelObjAll.Controls.Add(this.CBObjIgnoreFight);
@@ -1118,11 +1131,34 @@ namespace Quester.Profile
             this.PanelObjAll.TabIndex = 14;
             this.PanelObjAll.Visible = false;
             // 
+            // CBObjIgnoreItemNotUsable
+            // 
+            this.CBObjIgnoreItemNotUsable.AutoSize = true;
+            this.CBObjIgnoreItemNotUsable.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBObjIgnoreItemNotUsable.Location = new System.Drawing.Point(41, 449);
+            this.CBObjIgnoreItemNotUsable.Margin = new System.Windows.Forms.Padding(4);
+            this.CBObjIgnoreItemNotUsable.Name = "CBObjIgnoreItemNotUsable";
+            this.CBObjIgnoreItemNotUsable.Size = new System.Drawing.Size(174, 21);
+            this.CBObjIgnoreItemNotUsable.TabIndex = 90;
+            this.CBObjIgnoreItemNotUsable.Text = "Ignore Item Not Usable";
+            this.CBObjIgnoreItemNotUsable.UseVisualStyleBackColor = true;
+            // 
+            // ButtonObjImportCursorItemID
+            // 
+            this.ButtonObjImportCursorItemID.Location = new System.Drawing.Point(80, 155);
+            this.ButtonObjImportCursorItemID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonObjImportCursorItemID.Name = "ButtonObjImportCursorItemID";
+            this.ButtonObjImportCursorItemID.Size = new System.Drawing.Size(31, 23);
+            this.ButtonObjImportCursorItemID.TabIndex = 89;
+            this.ButtonObjImportCursorItemID.Text = "Import From Game";
+            this.ButtonObjImportCursorItemID.UseVisualStyleBackColor = true;
+            this.ButtonObjImportCursorItemID.Click += new System.EventHandler(this.ButtonObjImportCursorItemID_Click);
+            // 
             // CBObjDeactivateMount
             // 
             this.CBObjDeactivateMount.AutoSize = true;
             this.CBObjDeactivateMount.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjDeactivateMount.Location = new System.Drawing.Point(75, 448);
+            this.CBObjDeactivateMount.Location = new System.Drawing.Point(75, 430);
             this.CBObjDeactivateMount.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjDeactivateMount.Name = "CBObjDeactivateMount";
             this.CBObjDeactivateMount.Size = new System.Drawing.Size(140, 21);
@@ -1134,7 +1170,7 @@ namespace Quester.Profile
             // 
             this.CBObjIgnoreFight.AutoSize = true;
             this.CBObjIgnoreFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreFight.Location = new System.Drawing.Point(3, 363);
+            this.CBObjIgnoreFight.Location = new System.Drawing.Point(3, 358);
             this.CBObjIgnoreFight.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIgnoreFight.Name = "CBObjIgnoreFight";
             this.CBObjIgnoreFight.Size = new System.Drawing.Size(105, 21);
@@ -1146,7 +1182,7 @@ namespace Quester.Profile
             // 
             this.CBObjForceTravelToQuestZone.AutoSize = true;
             this.CBObjForceTravelToQuestZone.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjForceTravelToQuestZone.Location = new System.Drawing.Point(21, 427);
+            this.CBObjForceTravelToQuestZone.Location = new System.Drawing.Point(21, 412);
             this.CBObjForceTravelToQuestZone.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjForceTravelToQuestZone.Name = "CBObjForceTravelToQuestZone";
             this.CBObjForceTravelToQuestZone.Size = new System.Drawing.Size(194, 21);
@@ -1158,7 +1194,7 @@ namespace Quester.Profile
             // 
             this.CBObjIgnoreNotSelectable.AutoSize = true;
             this.CBObjIgnoreNotSelectable.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreNotSelectable.Location = new System.Drawing.Point(57, 406);
+            this.CBObjIgnoreNotSelectable.Location = new System.Drawing.Point(57, 394);
             this.CBObjIgnoreNotSelectable.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIgnoreNotSelectable.Name = "CBObjIgnoreNotSelectable";
             this.CBObjIgnoreNotSelectable.Size = new System.Drawing.Size(158, 21);
@@ -1170,7 +1206,7 @@ namespace Quester.Profile
             // 
             this.CBObjAllowPlayerControlled.AutoSize = true;
             this.CBObjAllowPlayerControlled.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjAllowPlayerControlled.Location = new System.Drawing.Point(45, 385);
+            this.CBObjAllowPlayerControlled.Location = new System.Drawing.Point(45, 376);
             this.CBObjAllowPlayerControlled.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjAllowPlayerControlled.Name = "CBObjAllowPlayerControlled";
             this.CBObjAllowPlayerControlled.Size = new System.Drawing.Size(170, 21);
@@ -1182,7 +1218,7 @@ namespace Quester.Profile
             // 
             this.CBObjIgnoreBlackList.AutoSize = true;
             this.CBObjIgnoreBlackList.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreBlackList.Location = new System.Drawing.Point(110, 364);
+            this.CBObjIgnoreBlackList.Location = new System.Drawing.Point(110, 358);
             this.CBObjIgnoreBlackList.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIgnoreBlackList.Name = "CBObjIgnoreBlackList";
             this.CBObjIgnoreBlackList.Size = new System.Drawing.Size(105, 21);
@@ -1194,7 +1230,7 @@ namespace Quester.Profile
             // 
             this.CBObjIsDead.AutoSize = true;
             this.CBObjIsDead.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIsDead.Location = new System.Drawing.Point(83, 343);
+            this.CBObjIsDead.Location = new System.Drawing.Point(83, 340);
             this.CBObjIsDead.Margin = new System.Windows.Forms.Padding(4);
             this.CBObjIsDead.Name = "CBObjIsDead";
             this.CBObjIsDead.Size = new System.Drawing.Size(132, 21);
@@ -1811,28 +1847,6 @@ namespace Quester.Profile
             this.TNBControlMenu.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
             this.TNBControlMenu.TitleText = "TheNoobBot";
             // 
-            // ButtonQuestImpotTurnInID
-            // 
-            this.ButtonQuestImpotTurnInID.Location = new System.Drawing.Point(371, 379);
-            this.ButtonQuestImpotTurnInID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ButtonQuestImpotTurnInID.Name = "ButtonQuestImpotTurnInID";
-            this.ButtonQuestImpotTurnInID.Size = new System.Drawing.Size(31, 23);
-            this.ButtonQuestImpotTurnInID.TabIndex = 89;
-            this.ButtonQuestImpotTurnInID.Text = "Import From Game";
-            this.ButtonQuestImpotTurnInID.UseVisualStyleBackColor = true;
-            this.ButtonQuestImpotTurnInID.Click += new System.EventHandler(this.ButtonQuestImpotTurnInID_Click);
-            // 
-            // ButtonObjImportCursorItemID
-            // 
-            this.ButtonObjImportCursorItemID.Location = new System.Drawing.Point(80, 155);
-            this.ButtonObjImportCursorItemID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ButtonObjImportCursorItemID.Name = "ButtonObjImportCursorItemID";
-            this.ButtonObjImportCursorItemID.Size = new System.Drawing.Size(31, 23);
-            this.ButtonObjImportCursorItemID.TabIndex = 89;
-            this.ButtonObjImportCursorItemID.Text = "Import From Game";
-            this.ButtonObjImportCursorItemID.UseVisualStyleBackColor = true;
-            this.ButtonObjImportCursorItemID.Click += new System.EventHandler(this.ButtonObjImportCursorItemID_Click);
-            // 
             // SimpleProfileEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2032,5 +2046,6 @@ namespace Quester.Profile
         internal Button ButtonObjHotSpotsTargetPos;
         internal Button ButtonQuestImpotTurnInID;
         internal Button ButtonObjImportCursorItemID;
+        internal CheckBox CBObjIgnoreItemNotUsable;
     }
 }
