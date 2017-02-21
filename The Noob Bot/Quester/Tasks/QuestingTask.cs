@@ -202,7 +202,11 @@ namespace Quester.Tasks
                         return false; // Force the bot to go on zone to check about the current status of the objective as the quest has not been completed.
                     }
                 }
-                if (questObjective.CurrentCount < questObjective.Count)
+                if (Quest.GetQuestCompleted(questObjective.InternalQuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId))
+                {
+                    return true; // We don't have this nested quest anymore but it's completed already.
+                }
+                if (questObjective.CurrentCount < questObjective.Count && !IsQuestInQuestLog(questObjective.InternalQuestId))
                     Thread.Sleep(2000); // Big possibility that there is an incomming AutoAccepted quest.
                 if (IsQuestInQuestLog(questObjective.InternalQuestId))
                     return false; // fail-safe for recently taken quests.
