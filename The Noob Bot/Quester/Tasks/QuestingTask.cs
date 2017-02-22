@@ -1083,7 +1083,7 @@ namespace Quester.Tasks
                     Npc npcQuester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
                     if (questObjective.Position.IsValid)
                         npcQuester.Position = questObjective.Position;
-                    Quest.QuestPickUp(ref npcQuester, questObjective.QuestName, questObjective.QuestId);
+                    Quest.QuestPickUp(ref npcQuester, questObjective.QuestName, questObjective.QuestId, questObjective.IgnoreBlackList);
                 }
                 if (Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.GetLogQuestIsComplete(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.QuestId))
                     questObjective.IsObjectiveCompleted = true;
@@ -1097,7 +1097,7 @@ namespace Quester.Tasks
                     Npc npcQuester = Bot.Bot.FindNearestQuesterById(questObjective.NpcEntry);
                     if (questObjective.Position.IsValid)
                         npcQuester.Position = questObjective.Position;
-                    Quest.QuestTurnIn(ref npcQuester, questObjective.QuestName, questObjective.QuestId);
+                    Quest.QuestTurnIn(ref npcQuester, questObjective.QuestName, questObjective.QuestId, questObjective.IgnoreBlackList);
                 }
                 if (!Quest.GetLogQuestId().Contains(questObjective.QuestId))
                     questObjective.IsObjectiveCompleted = true;
@@ -1254,7 +1254,7 @@ namespace Quester.Tasks
                         Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
                         SelectGossipOption = questObjective.GossipOptionsInteractWith
                     };
-                    baseAddress = MovementManager.FindTarget(ref target, questObjective.Range > 5f ? questObjective.Range : 0);
+                    baseAddress = MovementManager.FindTarget(ref target, questObjective.Range > 5f ? questObjective.Range : 0, true, questObjective.IsDead, 0f, questObjective.IgnoreBlackList);
                     if (MovementManager.InMovement)
                         return;
                     //End target finding based on Entry.
@@ -1369,7 +1369,7 @@ namespace Quester.Tasks
                     SelectGossipOption = questObjective.GossipOptionsInteractWith
                 };
                 Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
-                uint baseAddress = MovementManager.FindTarget(ref target);
+                uint baseAddress = MovementManager.FindTarget(ref target, 0f, true, questObjective.IsDead, 0f, questObjective.IgnoreBlackList);
                 if (MovementManager.InMovement)
                     return;
                 if (baseAddress > 0)
@@ -1500,7 +1500,7 @@ namespace Quester.Tasks
                 Npc taxiMan = Bot.Bot.FindNearestQuesterById(questObjective.TaxiEntry);
 
                 Quest.TravelToQuestZone(taxiMan.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone);
-                uint baseAddress = MovementManager.FindTarget(ref taxiMan);
+                uint baseAddress = MovementManager.FindTarget(ref taxiMan, 0f, true, questObjective.IsDead, 0f, questObjective.IgnoreBlackList);
                 if (MovementManager.InMovement)
                     return;
 

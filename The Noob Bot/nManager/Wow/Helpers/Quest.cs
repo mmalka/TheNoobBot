@@ -353,10 +353,10 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void QuestPickUp(ref Npc npc, string questName, int questId)
+        public static void QuestPickUp(ref Npc npc, string questName, int questId, bool ignoreBlacklist = false)
         {
             bool cancelPickUp;
-            QuestPickUp(ref npc, questName, questId, out cancelPickUp);
+            QuestPickUp(ref npc, questName, questId, out cancelPickUp, ignoreBlacklist);
         }
 
         public static bool IsNearQuestGiver(Point p)
@@ -364,7 +364,7 @@ namespace nManager.Wow.Helpers
             return ObjectManager.ObjectManager.Me.Position.DistanceTo(p) <= 40f;
         }
 
-        public static void QuestPickUp(ref Npc npc, string questName, int questId, out bool cancelPickUp)
+        public static void QuestPickUp(ref Npc npc, string questName, int questId, out bool cancelPickUp, bool ignoreBlacklist = false)
         {
             cancelPickUp = false;
             if (AbandonnedId == questId) // should happen only when we do a different quest requirement for optimization
@@ -378,7 +378,7 @@ namespace nManager.Wow.Helpers
             }
             AbandonnedId = 0;
             Point me = ObjectManager.ObjectManager.Me.Position;
-            WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry), false, false, true);
+            WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry, true), false, ignoreBlacklist, true);
             // We have the NPC in memory and he is closer than the QuesterDB entry. (some Npc moves)
             if (mNpc.HasQuests)
                 npc.Position = mNpc.Position;
@@ -401,7 +401,7 @@ namespace nManager.Wow.Helpers
             if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
-            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
+            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true, 0f, ignoreBlacklist); // can pick up quest on dead NPC.
             if (baseAddress > 0)
             {
                 var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(npc.Guid);
@@ -507,10 +507,10 @@ namespace nManager.Wow.Helpers
             CloseWindow();
         }
 
-        public static void QuestTurnIn(ref Npc npc, string questName, int questId)
+        public static void QuestTurnIn(ref Npc npc, string questName, int questId, bool ignoreBlacklist = false)
         {
             Point me = ObjectManager.ObjectManager.Me.Position;
-            WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry), false, false, true);
+            WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry, true), false, ignoreBlacklist, true);
             if (mNpc.CanTurnIn)
                 npc.Position = mNpc.Position;
             else if (mNpc.IsValid)
@@ -533,7 +533,7 @@ namespace nManager.Wow.Helpers
             if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
-            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true);
+            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true, 0f, ignoreBlacklist);
             if (baseAddress > 0)
             {
                 var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(npc.Guid);
