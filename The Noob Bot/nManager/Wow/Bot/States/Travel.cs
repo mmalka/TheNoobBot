@@ -380,15 +380,41 @@ namespace nManager.Wow.Bot.States
             foreach (Transport transport in _generatedRoutePath)
             {
                 if (transport is Taxi)
-                    continue;
-                if (transport.ArrivalIsA)
-                    Logging.Write("Travel: " + transport.Name + "(" + transport.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(transport.BContinentId) + " (" +
-                                  (!(transport is Portal) && !(transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint) + ") to " +
-                                  Usefuls.ContinentNameMpqByContinentId(transport.AContinentId) + " (" + (!(transport is Portal) && !(transport is CustomPath) ? transport.APoint : transport.AOutsidePoint) + ")");
+                {
+                    var taxi = transport as Taxi;
+                    Logging.Write("Travel: Taxi " + taxi.Name + "(" + taxi.Id + "), to " + GetTaxiByTaxiId(taxi.EndOfPath).Name + "(" + taxi.EndOfPath + ")");
+                }
+                else if (transport is Portal)
+                {
+                    var portal = transport as Portal;
+                    Logging.Write("Travel: " + portal.Name + "(" + portal.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(portal.AContinentId) + " (" +
+                                  portal.APoint + ") to " +
+                                  Usefuls.ContinentNameMpqByContinentId(portal.BContinentId) + " (" + portal.BPoint + ")");
+                }
+                else if (transport is CustomPath)
+                {
+                    var customPath = transport as CustomPath;
+
+                    if (customPath.ArrivalIsA)
+                        Logging.Write("Travel: " + customPath.Name + "(" + customPath.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(customPath.BContinentId) + " (" +
+                                      customPath.BPoint + ") to " +
+                                      Usefuls.ContinentNameMpqByContinentId(customPath.AContinentId) + " (" + customPath.APoint + ")");
+                    else
+                        Logging.Write("Travel: " + customPath.Name + "(" + customPath.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(customPath.AContinentId) + " (" +
+                                      customPath.APoint + ") to " +
+                                      Usefuls.ContinentNameMpqByContinentId(customPath.BContinentId) + " (" + customPath.BPoint + ")");
+                }
                 else
-                    Logging.Write("Travel: " + transport.Name + "(" + transport.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(transport.AContinentId) + " (" +
-                                  (!(transport is Portal) && !(transport is CustomPath) ? transport.APoint : transport.AOutsidePoint) + ") to " +
-                                  Usefuls.ContinentNameMpqByContinentId(transport.BContinentId) + " (" + (!(transport is Portal) && !(transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint) + ")");
+                {
+                    if (transport.ArrivalIsA)
+                        Logging.Write("Travel: " + transport.Name + "(" + transport.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(transport.BContinentId) + " (" +
+                                      transport.BOutsidePoint + ") to " +
+                                      Usefuls.ContinentNameMpqByContinentId(transport.AContinentId) + " (" + transport.AOutsidePoint + ")");
+                    else
+                        Logging.Write("Travel: " + transport.Name + "(" + transport.Id + "), from " + Usefuls.ContinentNameMpqByContinentId(transport.AContinentId) + " (" +
+                                      transport.AOutsidePoint + ") to " +
+                                      Usefuls.ContinentNameMpqByContinentId(transport.BContinentId) + " (" + transport.BOutsidePoint + ")");
+                }
             }
             if (_generatedRoutePath.Count > 1)
                 Logging.Write("Travel: We will recalculate travel path once arrived to make sure we are always on the fastest path.");
@@ -946,6 +972,16 @@ namespace nManager.Wow.Bot.States
         private bool IsTaxiLinked(Taxi taxi)
         {
             return FindNextTaxiHopFor(taxi) != null;
+        }
+
+        private Taxi GetTaxiByTaxiId(uint taxiId)
+        {
+            foreach (Taxi availableTaxi in _availableTaxis)
+            {
+                if (availableTaxi.Id == taxiId)
+                    return availableTaxi;
+            }
+            return new Taxi();
         }
 
         public static void TravelPatientlybyTaxiOrPortal(bool ignoreCombatClass = false)
