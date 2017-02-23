@@ -493,5 +493,29 @@
         <Z>90.83488</Z>
       </BPoint>
     </Portal>
+	<Portal Id="184501" Name="Falcon Watch, Bottow of Tower" Faction="Horde" AContinentId="530" BContinentId="530">
+      <APoint> <!-- Bottom of the Tower -->
+        <X>-592.5488</X>
+		<Y>4076.474</Y>
+		<Z>94.14468</Z>
+      </APoint>
+      <BPoint> <!-- Top of the Tower -->
+		<X>-589.9444</X>
+		<Y>4076.405</Y>
+		<Z>143.4609</Z>
+      </BPoint>
+    </Portal>
+	<Portal Id="184500" Name="Falcon Watch, Top of Tower" Faction="Horde" AContinentId="530" BContinentId="530">
+      <APoint><!-- Top of the Tower -->
+		<X>-589.9444</X>
+		<Y>4076.405</Y>
+		<Z>143.4609</Z>
+      </APoint>
+      <BPoint> <!-- Bottom of the Tower -->
+        <X>-592.5488</X>
+		<Y>4076.474</Y>
+		<Z>94.14468</Z>
+      </BPoint>
+    </Portal>
   </Items>
 </Portals>

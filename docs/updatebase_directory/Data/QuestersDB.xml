@@ -6359,6 +6359,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>3230</Entry>
+    <Name>Nazgrel</Name>
+    <Position>
+      <X>242.997284</X>
+      <Y>2698.19873</Y>
+      <Z>89.75939</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>3233</Entry>
     <Name>Lorekeeper Raintotem</Name>
     <Position>
@@ -9627,9 +9639,33 @@
     <Entry>5639</Entry>
     <Name>Craven Drok</Name>
     <Position>
+      <X>1782.22644</X>
+      <Y>-4300.69</Y>
+      <Z>3.248244</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5639</Entry>
+    <Name>Craven Drok</Name>
+    <Position>
       <X>1785.02673</X>
       <Y>-4373.386</Y>
       <Z>-16.0317764</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5639</Entry>
+    <Name>Craven Drok</Name>
+    <Position>
+      <X>1847.741</X>
+      <Y>-4409.60742</Y>
+      <Z>5.467855</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -11103,9 +11139,9 @@
     <Entry>7506</Entry>
     <Name>Bloodmage Lynnore</Name>
     <Position>
-      <X>-11469.3662</X>
-      <Y>-2629.90674</Y>
-      <Z>4.11436224</Z>
+      <X>-11469.4111</X>
+      <Y>-2629.923</Y>
+      <Z>4.092065</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -11201,6 +11237,17 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>7783</Entry>
+    <Name>Loramus Thalipedes</Name>
+    <Position>
+      <X>-11457</X>
+      <Y>-2635.34</Y>
+      <Z>3.95295334</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>7783</Entry>
@@ -12844,6 +12891,18 @@
     <Entry>10880</Entry>
     <Name>Warcaller Gorlach</Name>
     <Position>
+      <X>1761.34351</X>
+      <Y>-4306.5376</Y>
+      <Z>7.02639771</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10880</Entry>
+    <Name>Warcaller Gorlach</Name>
+    <Position>
       <X>1765.48914</X>
       <Y>-4524.927</Y>
       <Z>25.8058376</Z>
@@ -12950,7 +13009,7 @@
     <Position>
       <X>4738.67</X>
       <Y>-867.752</Y>
-      <Z>343.468384</Z>
+      <Z>343.468018</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -13000,6 +13059,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>10929</Entry>
+    <Name>Haleh</Name>
+    <Position>
+      <X>6178.788</X>
+      <Y>-4559.205</Y>
+      <Z>713.3444</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>10977</Entry>
     <Name>Quixxil</Name>
     <Position>
@@ -13039,7 +13110,7 @@
     <Position>
       <X>4730.97</X>
       <Y>-875.901</Y>
-      <Z>343.3851</Z>
+      <Z>343.385284</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -13307,6 +13378,17 @@
       <Z>27.8800926</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11184</Entry>
+    <Name>Wixxrak</Name>
+    <Position>
+      <X>6733.38965</X>
+      <Y>-4699.038</Y>
+      <Z>721.3709</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -13733,31 +13815,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-166.801468</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-31.1677113</Z>
+      <Z>-417.438171</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13781,6 +13839,18 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-166.801468</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -13793,7 +13863,19 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-417.438171</Z>
+      <Z>-31.1677113</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -15005,6 +15087,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>14375</Entry>
+    <Name>Scout Stronghand</Name>
+    <Position>
+      <X>1711.1842</X>
+      <Y>-4393.325</Y>
+      <Z>33.5663376</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>14392</Entry>
     <Name>Overlord Runthak</Name>
     <Position>
@@ -15182,6 +15276,18 @@
       <Y>2057.99146</Y>
       <Z>46.5326653</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>14720</Entry>
+    <Name>High Overlord Saurfang</Name>
+    <Position>
+      <X>1664.16846</X>
+      <Y>-4345.79346</Y>
+      <Z>26.2898312</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -17281,6 +17387,30 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>16574</Entry>
+    <Name>Far Seer Regulkut</Name>
+    <Position>
+      <X>176.157227</X>
+      <Y>2738.78</Y>
+      <Z>88.21345</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16575</Entry>
+    <Name>Shadow Hunter Ty'jin</Name>
+    <Position>
+      <X>230.405411</X>
+      <Y>2696.49341</Y>
+      <Z>89.73478</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>16576</Entry>
     <Name>Overlord Hun Maimfist</Name>
     <Position>
@@ -17293,12 +17423,36 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>16577</Entry>
+    <Name>Martik Tor'seldori</Name>
+    <Position>
+      <X>134.00618</X>
+      <Y>2689.843</Y>
+      <Z>85.81112</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>16583</Entry>
     <Name>Rohok</Name>
     <Position>
       <X>167.278427</X>
       <Y>2795.66919</Y>
       <Z>113.365425</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16584</Entry>
+    <Name>Watch Commander Krunk</Name>
+    <Position>
+      <X>126.304817</X>
+      <Y>2708</Y>
+      <Z>88.61336</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19615,6 +19769,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>18267</Entry>
+    <Name>Battlecryer Blackeye</Name>
+    <Position>
+      <X>131.1919</X>
+      <Y>2649.85669</Y>
+      <Z>83.95832</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>18273</Entry>
     <Name>Kilrath</Name>
     <Position>
@@ -20513,6 +20679,18 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19255</Entry>
+    <Name>General Krakork</Name>
+    <Position>
+      <X>216.483765</X>
+      <Y>2653.85718</Y>
+      <Z>87.972</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>19256</Entry>
@@ -21442,6 +21620,28 @@
       <X>4013.69019</X>
       <Y>1529.10046</Y>
       <Z>-113.617989</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>20159</Entry>
+    <Name>Magister Aledis</Name>
+    <Position>
+      <X>-551.5127</X>
+      <Y>4196.352</Y>
+      <Z>45.8027954</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>20159</Entry>
+    <Name>Magister Aledis</Name>
+    <Position>
+      <X>-209.041656</X>
+      <Y>4449.212</Y>
+      <Z>42.29382</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -22579,7 +22779,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>27.8561249</Z>
+      <Z>-123.336624</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22603,7 +22803,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>-123.336624</Z>
+      <Z>27.8561249</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22639,7 +22839,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22651,7 +22851,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -23398,6 +23598,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>21175</Entry>
+    <Name>Magister Bloodhawk</Name>
+    <Position>
+      <X>240.444122</X>
+      <Y>2692.59717</Y>
+      <Z>89.7438354</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>21183</Entry>
     <Name>Oronok Torn-heart</Name>
     <Position>
@@ -23433,6 +23645,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>21256</Entry>
+    <Name>Vurtok Axebreaker</Name>
+    <Position>
+      <X>228.035889</X>
+      <Y>2692.4563</Y>
+      <Z>90.70373</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>21257</Entry>
     <Name>Apothecary Zelana</Name>
     <Position>
@@ -23463,6 +23687,18 @@
       <X>-1334.52124</X>
       <Y>2382.24878</Y>
       <Z>88.96338</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21283</Entry>
+    <Name>Megzeg Nukklebust</Name>
+    <Position>
+      <X>145.44577</X>
+      <Y>2690.015</Y>
+      <Z>85.5537643</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -35849,6 +36085,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>37172</Entry>
+    <Name>Detective Snap Snagglebolt</Name>
+    <Position>
+      <X>1614.24475</X>
+      <Y>-4389.905</Y>
+      <Z>20.927</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>37515</Entry>
     <Name>Lane Tallgrass</Name>
     <Position>
@@ -35879,6 +36127,28 @@
       <X>-1805.73608</X>
       <Y>-2380.67529</Y>
       <Z>91.75388</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37675</Entry>
+    <Name>Public Relations Agent</Name>
+    <Position>
+      <X>-1218.16663</X>
+      <Y>61.68403</Y>
+      <Z>130.866974</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37675</Entry>
+    <Name>Public Relations Agent</Name>
+    <Position>
+      <X>1592</X>
+      <Y>-4429.05</Y>
+      <Z>15.5940332</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -36041,6 +36311,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>37847</Entry>
+    <Name>Mankrik</Name>
+    <Position>
+      <X>-4148.82471</X>
+      <Y>-1942.79517</Y>
+      <Z>92.94929</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>37908</Entry>
     <Name>Calder Gray</Name>
     <Position>
@@ -36156,6 +36438,28 @@
       <Z>11.943553</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>38042</Entry>
+    <Name>Kwee Q. Peddlefeet</Name>
+    <Position>
+      <X>1595.81</X>
+      <Y>-4428.15</Y>
+      <Z>14.1975937</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>38044</Entry>
+    <Name>Kwee Q. Peddlefeet</Name>
+    <Position>
+      <X>-1216.00171</X>
+      <Y>57.3940964</Y>
+      <Z>129.9241</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -36367,6 +36671,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>38328</Entry>
+    <Name>Roka</Name>
+    <Position>
+      <X>1781.52</X>
+      <Y>-4508.14</Y>
+      <Z>27.73978</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>38378</Entry>
     <Name>Commander Walpole</Name>
     <Position>
@@ -36521,6 +36837,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>38703</Entry>
+    <Name>Megs Dreadshredder</Name>
+    <Position>
+      <X>-7954.868</X>
+      <Y>-5245.2207</Y>
+      <Z>1.25155461</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>38704</Entry>
     <Name>Kelsey Steelspark</Name>
     <Position>
@@ -36560,7 +36888,7 @@
     <Position>
       <X>-8303.047</X>
       <Y>-3278.44971</Y>
-      <Z>24.4776421</Z>
+      <Z>24.4783516</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -36643,7 +36971,7 @@
     <Position>
       <X>-9474.21</X>
       <Y>-2461.97754</Y>
-      <Z>17.0007324</Z>
+      <Z>17.0013123</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -36827,6 +37155,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>39118</Entry>
+    <Name>General Twinbraid</Name>
+    <Position>
+      <X>-3663.67529</X>
+      <Y>-1869.64063</Y>
+      <Z>91.6688156</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>39144</Entry>
     <Name>Alto Stonespire</Name>
     <Position>
@@ -36835,6 +37175,18 @@
       <Z>34.5571556</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>39154</Entry>
+    <Name>Hurlston Stonesthrow</Name>
+    <Position>
+      <X>-3661.59375</X>
+      <Y>-1865.08508</Y>
+      <Z>91.66822</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -38375,7 +38727,7 @@
     <Position>
       <X>-10867.6533</X>
       <Y>-2675.69971</Y>
-      <Z>9.891027</Z>
+      <Z>9.8077</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -38435,7 +38787,7 @@
     <Position>
       <X>-10618.6182</X>
       <Y>-3472.019</Y>
-      <Z>5.59496069</Z>
+      <Z>5.596007</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -38479,7 +38831,7 @@
     <Position>
       <X>-11806.1768</X>
       <Y>-3182.68921</Y>
-      <Z>-30.73854</Z>
+      <Z>-30.7384758</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -44541,7 +44893,7 @@
     <Position>
       <X>4740.09</X>
       <Y>-876.09</Y>
-      <Z>343.467957</Z>
+      <Z>343.468658</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -44598,7 +44950,7 @@
     <Position>
       <X>5218.87</X>
       <Y>-703.203</Y>
-      <Z>343.723022</Z>
+      <Z>343.723541</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -44609,7 +44961,7 @@
     <Position>
       <X>5220.6</X>
       <Y>-704.363</Y>
-      <Z>344.0027</Z>
+      <Z>344.002563</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -44793,7 +45145,7 @@
     <Position>
       <X>6423.77</X>
       <Y>-964.604</Y>
-      <Z>423.149475</Z>
+      <Z>423.149445</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -44951,6 +45303,30 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>48032</Entry>
+    <Name>Seedling Protector</Name>
+    <Position>
+      <X>5976.861</X>
+      <Y>-1119.42383</Y>
+      <Z>380.201447</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48032</Entry>
+    <Name>Seedling Protector</Name>
+    <Position>
+      <X>6218.997</X>
+      <Y>-1156.001</Y>
+      <Z>382.521</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>48033</Entry>
     <Name>Stebben Oreknuckle</Name>
     <Position>
@@ -44960,6 +45336,42 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48042</Entry>
+    <Name>Sapling Protector</Name>
+    <Position>
+      <X>5976.939</X>
+      <Y>-1119.45288</Y>
+      <Z>380.201538</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48042</Entry>
+    <Name>Sapling Protector</Name>
+    <Position>
+      <X>6079.301</X>
+      <Y>-1226.633</Y>
+      <Z>370.4528</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48044</Entry>
+    <Name>Flourishing Protector</Name>
+    <Position>
+      <X>6231.53</X>
+      <Y>-1362.359</Y>
+      <Z>376.7228</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>48046</Entry>
@@ -45003,7 +45415,7 @@
     <Position>
       <X>6099.1</X>
       <Y>-865.406</Y>
-      <Z>411.9585</Z>
+      <Z>411.958069</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -45225,7 +45637,7 @@
     <Position>
       <X>6111.48</X>
       <Y>-865.859</Y>
-      <Z>412.467957</Z>
+      <Z>412.468018</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -45236,7 +45648,7 @@
     <Position>
       <X>6111.81</X>
       <Y>-870.03</Y>
-      <Z>412.3925</Z>
+      <Z>412.392029</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -45366,7 +45778,7 @@
     <Position>
       <X>6007.84</X>
       <Y>-829.347</Y>
-      <Z>412.081146</Z>
+      <Z>412.080536</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -45388,7 +45800,7 @@
     <Position>
       <X>6108.09</X>
       <Y>-883.596</Y>
-      <Z>411.8579</Z>
+      <Z>411.858429</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -45542,6 +45954,28 @@
       <X>6543.913</X>
       <Y>-4110.53</Y>
       <Z>663.3642</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48659</Entry>
+    <Name>Quel'dorei Spirit</Name>
+    <Position>
+      <X>6538.568</X>
+      <Y>-4115.86133</Y>
+      <Z>664.576233</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48660</Entry>
+    <Name>Sin'dorei Spirit</Name>
+    <Position>
+      <X>6535.741</X>
+      <Y>-4109.193</Y>
+      <Z>662.8596</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -52665,17 +53099,6 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>706.5976</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72447</Entry>
-    <Name>Chronalis</Name>
-    <Position>
-      <X>2890.49658</X>
-      <Y>627.434</Y>
       <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
@@ -52688,6 +53111,17 @@
       <X>2890.49658</X>
       <Y>627.434</Y>
       <Z>513.6742</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>72447</Entry>
+    <Name>Chronalis</Name>
+    <Position>
+      <X>2890.49658</X>
+      <Y>627.434</Y>
+      <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -71880,6 +72314,18 @@
       <X>-511.646484</X>
       <Y>3120.21045</Y>
       <Z>-1.724838</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>183343</Entry>
+    <Name>Warboss Nekrogg's Orders</Name>
+    <Position>
+      <X>67.9898</X>
+      <Y>3211.88623</Y>
+      <Z>32.935112</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>

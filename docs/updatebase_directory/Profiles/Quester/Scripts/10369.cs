@@ -1,6 +1,4 @@
-WoWUnit wowUnit = new WoWUnit(0);
-
-wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreBlackList);
+WoWUnit wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreBlackList);
 
 if(wowUnit.IsValid)
 {	
@@ -8,7 +6,7 @@ if(wowUnit.IsValid)
 	MovementManager.FindTarget(wowUnit, CombatClass.GetAggroRange);
 	Thread.Sleep(100);
 	
-	if(MovementManager.InMovement && wowUnit.Position.DistanceTo(ObjectManager.Me.Position) >= 20f)
+	if(MovementManager.InMovement && wowUnit.Position.DistanceTo(ObjectManager.Me.Position) >= 10f)
 	{
 		return false;
 	}

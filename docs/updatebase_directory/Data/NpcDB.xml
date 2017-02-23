@@ -5655,9 +5655,33 @@
     <Entry>3291</Entry>
     <Name>Greishan Ironstove</Name>
     <Position>
+      <X>-5687.505</X>
+      <Y>-2767.69556</Y>
+      <Z>362.460754</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
       <X>-5366.349</X>
       <Y>-2936.02856</Y>
       <Z>327.55777</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
+      <X>-4930.588</X>
+      <Y>-2745.60449</Y>
+      <Z>327.489929</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -6282,6 +6306,18 @@
       <X>1755.572</X>
       <Y>-4516.157</Y>
       <Z>27.6150761</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3367</Entry>
+    <Name>Felika</Name>
+    <Position>
+      <X>1850.54858</X>
+      <Y>-4523.01465</Y>
+      <Z>24.1481457</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -11743,6 +11779,50 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>-12189.2</X>
+      <Y>-2562.87</Y>
+      <Z>4.84287357</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-12189.2</X>
+      <Y>-2562.87</Y>
+      <Z>4.84287357</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-10779.1895</X>
+      <Y>-1194.15759</Y>
+      <Z>35.19237</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-10779.1895</X>
+      <Y>-1194.15759</Y>
+      <Z>35.19237</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>-7357.565</X>
       <Y>-1315.57385</Y>
       <Z>-263.300049</Z>
@@ -11752,6 +11832,28 @@
   </Npc>
   <Npc>
     <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-5351.069</X>
+      <Y>-2890.36865</Y>
+      <Z>341.7979</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-5351.069</X>
+      <Y>-2890.36865</Y>
+      <Z>341.7979</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
     <Name>Gardien des âmes</Name>
     <Position>
       <X>-4875.29</X>
@@ -11837,6 +11939,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1267.77258</X>
+      <Y>2441.69971</Y>
+      <Z>62.990036</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1267.77258</X>
+      <Y>2441.69971</Y>
+      <Z>62.990036</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -11952,6 +12076,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>-214.435226</X>
+      <Y>5593.08936</Y>
+      <Z>20.59219</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-214.435226</X>
+      <Y>5593.08936</Y>
+      <Z>20.59219</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>-202.8125</X>
       <Y>7724.606</Y>
       <Z>141.0579</Z>
@@ -11991,6 +12137,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>164.329865</X>
+      <Y>2567.76221</Y>
+      <Z>78.43652</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>164.329865</X>
+      <Y>2567.76221</Y>
+      <Z>78.43652</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -15709,6 +15877,30 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>11555</Entry>
+    <Name>Gorn One Eye</Name>
+    <Position>
+      <X>7030.721</X>
+      <Y>-2106.31763</Y>
+      <Z>587.4366</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11557</Entry>
+    <Name>Meilosh</Name>
+    <Position>
+      <X>7025.62744</X>
+      <Y>-2135.691</Y>
+      <Z>586.4097</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>11874</Entry>
     <Name>Masat T'andr</Name>
     <Position>
@@ -17600,7 +17792,7 @@
     <Position>
       <X>62.0795364</X>
       <Y>2719.00659</Y>
-      <Z>85.19302</Z>
+      <Z>85.1646</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -21610,7 +21802,7 @@
     <Position>
       <X>-18.83496</X>
       <Y>2140.57935</Y>
-      <Z>114.069763</Z>
+      <Z>114.0697</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
@@ -22499,7 +22691,7 @@
     <Position>
       <X>-1329.01392</X>
       <Y>2397.58447</Y>
-      <Z>89.07499</Z>
+      <Z>89.07508</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -24915,6 +25107,50 @@
     <Entry>24934</Entry>
     <Name>Snack-O-Matic IV</Name>
     <Position>
+      <X>-12433.0117</X>
+      <Y>290.893951</Y>
+      <Z>26.4400139</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>-12424.1348</X>
+      <Y>546.9628</Y>
+      <Z>33.1303329</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>-12415.124</X>
+      <Y>367.708771</Y>
+      <Z>29.1327362</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>-12413.3994</X>
+      <Y>447.7721</Y>
+      <Z>31.0709457</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
       <X>-1056.71289</X>
       <Y>367.360229</Y>
       <Z>125.697083</Z>
@@ -25022,12 +25258,166 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>1893.39355</X>
+      <Y>-4314.48828</Y>
+      <Z>129.961441</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>1922.51465</X>
+      <Y>-4385.03271</Y>
+      <Z>139.527618</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>1930.25549</X>
+      <Y>-4640.464</Y>
+      <Z>191.721863</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>1985.94031</X>
+      <Y>-4581.07666</Y>
+      <Z>171.231125</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>1997.0144</X>
+      <Y>-4419.19</Y>
+      <Z>152.779449</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24934</Entry>
+    <Name>Snack-O-Matic IV</Name>
+    <Position>
+      <X>2026.19641</X>
+      <Y>-4491.798</Y>
+      <Z>156.297363</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>24935</Entry>
     <Name>Vend-O-Tron D-Luxe</Name>
     <Position>
       <X>-12517.9424</X>
       <Y>152.377609</Y>
       <Z>31.566246</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12424.9609</X>
+      <Y>288.0864</Y>
+      <Z>26.4462528</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12424.9609</X>
+      <Y>288.0864</Y>
+      <Z>26.4462528</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12415.7285</X>
+      <Y>548.3919</Y>
+      <Z>33.1365738</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12415.7285</X>
+      <Y>548.3919</Y>
+      <Z>33.1365738</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12406.6426</X>
+      <Y>366.837769</Y>
+      <Z>29.1389751</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12406.6426</X>
+      <Y>366.837769</Y>
+      <Z>29.1389751</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12404.91</X>
+      <Y>448.555054</Y>
+      <Z>31.0771847</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>-12404.91</X>
+      <Y>448.555054</Y>
+      <Z>31.0771847</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -25168,6 +25558,28 @@
     <Entry>24935</Entry>
     <Name>Vend-O-Tron D-Luxe</Name>
     <Position>
+      <X>1845.19214</X>
+      <Y>-4460.904</Y>
+      <Z>124.218864</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>1845.19214</X>
+      <Y>-4460.904</Y>
+      <Z>124.218864</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
       <X>1850.62622</X>
       <Y>-4703.83838</Y>
       <Z>207.9591</Z>
@@ -25190,12 +25602,122 @@
     <Entry>24935</Entry>
     <Name>Vend-O-Tron D-Luxe</Name>
     <Position>
+      <X>1859.38354</X>
+      <Y>-4347.643</Y>
+      <Z>130.010452</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>1894.74829</X>
+      <Y>-4313.20947</Y>
+      <Z>129.96225</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>1942.67932</X>
+      <Y>-4376.251</Y>
+      <Z>142.843933</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>1942.67932</X>
+      <Y>-4376.251</Y>
+      <Z>142.843933</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>1966.22058</X>
+      <Y>-4616.40527</Y>
+      <Z>181.288177</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>1966.22058</X>
+      <Y>-4616.40527</Y>
+      <Z>181.288177</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
       <X>2019.99023</X>
       <Y>322.95993</Y>
       <Z>100.017227</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>2021.36865</X>
+      <Y>-4436.09131</Y>
+      <Z>154.20993</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>2021.36865</X>
+      <Y>-4436.09131</Y>
+      <Z>154.20993</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>2029.25317</X>
+      <Y>-4526.908</Y>
+      <Z>157.958527</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>2029.25317</X>
+      <Y>-4526.908</Y>
+      <Z>157.958527</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>24935</Entry>
@@ -33767,6 +34289,28 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>37674</Entry>
+    <Name>Lovely Merchant</Name>
+    <Position>
+      <X>-1218.882</X>
+      <Y>63.5868073</Y>
+      <Z>130.904083</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37674</Entry>
+    <Name>Lovely Merchant</Name>
+    <Position>
+      <X>1593.56</X>
+      <Y>-4429.04</Y>
+      <Z>15.5354328</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>37761</Entry>
     <Name>Sally "Salvager" Sandscrew</Name>
     <Position>
@@ -37732,12 +38276,12 @@
     <Entry>44339</Entry>
     <Name>Salaran</Name>
     <Position>
-      <X>-12340.1</X>
-      <Y>-3038.6</Y>
-      <Z>88.2177048</Z>
+      <X>-12345.8</X>
+      <Y>-3037.89</Y>
+      <Z>88.21621</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -37749,7 +38293,7 @@
       <Z>88.2177048</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -37758,7 +38302,7 @@
     <Position>
       <X>-12366.9</X>
       <Y>-3008.16</Y>
-      <Z>90.36069</Z>
+      <Z>90.32599</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -43395,6 +43939,17 @@
     <Entry>50983</Entry>
     <Name>Heated Forge</Name>
     <Position>
+      <X>163.2539</X>
+      <Y>2798.03418</Y>
+      <Z>111.670174</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>50983</Entry>
+    <Name>Heated Forge</Name>
+    <Position>
       <X>374.208984</X>
       <Y>-4708.35938</Y>
       <Z>14.1563005</Z>
@@ -43446,6 +44001,17 @@
     </Position>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>50984</Entry>
+    <Name>Heated Forge</Name>
+    <Position>
+      <X>-900.498047</X>
+      <Y>1965.9375</Y>
+      <Z>66.9950943</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>50985</Entry>
@@ -59882,6 +60448,28 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>115805</Entry>
+    <Name>Hoddruc Bladebender</Name>
+    <Position>
+      <X>-7927.43945</X>
+      <Y>-1938.96875</Y>
+      <Z>132.950027</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>115805</Entry>
+    <Name>Hoddruc Bladebender</Name>
+    <Position>
+      <X>-7927.43945</X>
+      <Y>-1938.96875</Y>
+      <Z>132.950027</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>130668</Entry>
     <Name>Forge</Name>
     <Position>
@@ -64631,7 +65219,6 @@
       <Y>-3041.05029</Y>
       <Z>88.1829</Z>
     </Position>
-    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>

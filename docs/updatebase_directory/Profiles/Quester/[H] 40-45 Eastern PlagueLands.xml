@@ -771,6 +771,7 @@
       <MaxLevel>52</MaxLevel>
       <NeedQuestCompletedId>
         <int>27452</int>
+        <int>27464</int>
       </NeedQuestCompletedId>
       <PickUp>45417</PickUp>
       <TurnIn>45431</TurnIn>
@@ -845,6 +846,18 @@
           <QuestName>Frederick's Fish Fancy</QuestName>
           <QuestId>27450</QuestId>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>2270.192</X>
+            <Y>-5282.675</Y>
+            <Z>81.76776</Z>
+          </Position>
+          <NpcEntry>45431</NpcEntry>
+          <QuestName>Boys Will Be Boys</QuestName>
+          <QuestId>27455</QuestId>
+        </QuestObjective>
       </Objectives>
       <AutoComplete>
         <int>27453</int>
@@ -867,19 +880,6 @@
       <PickUp>45431</PickUp>
       <TurnIn>45431</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>12617</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>2269.883</X>
-            <Y>-5342.2</Y>
-            <Z>86.98252</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
-        </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -905,6 +905,7 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27464) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27464);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>61309</UseItemId>
           <Position>
@@ -2105,7 +2106,7 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
-          <Objective>CSharpScript</Objective>
+          <Objective>KillMobUseItem</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>27528</InternalQuestId>
           <Count>8</Count>
@@ -2128,10 +2129,16 @@
               <Y>-3365.66</Y>
               <Z>112.6972</Z>
             </Point>
+            <Point>
+              <X>3212.35547</X>
+              <Y>-3686.785</Y>
+              <Z>135.869812</Z>
+            </Point>
           </Hotspots>
-          <Script>=27528.cs</Script>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>61369</UseItemId>
+          <WaitMs>1000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -2186,13 +2193,6 @@
           <NpcEntry>45730</NpcEntry>
           <QuestName>Gidwin's Fate Revealed</QuestName>
           <QuestId>27526</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>45730</NpcEntry>
-          <QuestName>Journey's End</QuestName>
-          <QuestId>27527</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
