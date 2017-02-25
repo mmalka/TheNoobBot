@@ -2018,12 +2018,14 @@ namespace Quester.Profile
                     TBObjQuestID.Enabled = true;
                     TBObjQuestName.Enabled = true;
                     TBObjPosition.Enabled = true;
+                    CBObjIgnoreQuestCompleted.Checked = true;
                     break;
                 case "TurnInQuest":
                     TBObjNPCId.Enabled = true;
                     TBObjQuestID.Enabled = true;
                     TBObjQuestName.Enabled = true;
                     TBObjPosition.Enabled = true;
+                    CBObjIgnoreQuestCompleted.Checked = true;
                     break;
                 case "UseFlightPath":
                     TBObjTaxiEntryId.Enabled = true;
@@ -2885,6 +2887,45 @@ namespace Quester.Profile
             /*"item" : String - The cursor is holding an item. 
             itemId: Number - The itemId. 
             itemLink : String (ItemLink) - The item's link. */
+        }
+
+        private void SimpleProfileEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S && !e.Alt)
+            {
+                ButtonObjectiveSave_Click(null, null);
+            }
+
+            if (e.Control && !e.Alt)
+            {
+                if (_lastSelectedQuest != null)
+                {
+                    switch (e.KeyCode)
+                    {
+                        case Keys.D1:
+                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpQuest;
+                            break;
+                        case Keys.D2:
+                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.TurnInQuest;
+                            break;
+                        case Keys.D3:
+                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.KillMob;
+                            break;
+                        case Keys.D4:
+                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpObject;
+                            break;
+                        case Keys.D5:
+                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.UseItem;
+                            break;
+                        case Keys.D6:
+                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.InteractWith;
+                            break;
+                        case Keys.D7:
+                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpNPC;
+                            break;
+                    }
+                }
+            }
         }
 
       

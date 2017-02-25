@@ -1594,7 +1594,7 @@ namespace Quester.Profile
             this.ButtonObjectiveSave.Name = "ButtonObjectiveSave";
             this.ButtonObjectiveSave.Size = new System.Drawing.Size(75, 23);
             this.ButtonObjectiveSave.TabIndex = 16;
-            this.ButtonObjectiveSave.Text = "&Save";
+            this.ButtonObjectiveSave.Text = "Save";
             this.ButtonObjectiveSave.UseVisualStyleBackColor = true;
             this.ButtonObjectiveSave.Click += new System.EventHandler(this.ButtonObjectiveSave_Click);
             // 
@@ -1865,10 +1865,12 @@ namespace Quester.Profile
             this.Controls.Add(this.TreeView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SimpleProfileEditor";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SimpleProfileEditor_KeyDown);
             this.ContextMenuStrip.ResumeLayout(false);
             this.PanelNPC.ResumeLayout(false);
             this.PanelNPC.PerformLayout();
