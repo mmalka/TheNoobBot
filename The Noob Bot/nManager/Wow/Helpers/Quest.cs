@@ -361,7 +361,7 @@ namespace nManager.Wow.Helpers
 
         public static bool IsNearQuestGiver(Point p)
         {
-            return ObjectManager.ObjectManager.Me.Position.DistanceTo(p) <= 40f;
+            return ObjectManager.ObjectManager.Me.Position.DistanceTo(p) <= 5f;
         }
 
         public static void QuestPickUp(ref Npc npc, string questName, int questId, out bool cancelPickUp, bool ignoreBlacklist = false)
@@ -385,7 +385,7 @@ namespace nManager.Wow.Helpers
             else if (mNpc.IsValid)
                 nManagerSetting.AddBlackList(npc.Guid, 60*1000);
             bool bypassTravel = false;
-            if (me.DistanceTo(npc.Position) <= 40f)
+            if (me.DistanceTo(npc.Position) <= 600f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
@@ -517,7 +517,7 @@ namespace nManager.Wow.Helpers
                 nManagerSetting.AddBlackList(npc.Guid, 60*1000);
 
             bool bypassTravel = false;
-            if (me.DistanceTo(npc.Position) <= 40f)
+            if (me.DistanceTo(npc.Position) <= 600f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
@@ -703,6 +703,25 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
+        public static int GetCurrentInternalIndexCount(int questId, uint ObjectiveInternalIndex)
+        {
+            uint descriptorsArray =
+                Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                 Descriptors.StartDescriptors);
+            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
+            for (int index = 0; index < 50; ++index)
+            {
+                var playerQuest =
+                    (PlayerQuest)
+                        Memory.WowMemory.Memory.ReadObject(
+                            (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
+                            typeof (PlayerQuest));
+                if (playerQuest.ID == questId)
+                    return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1];
+            }
+            return 0;
+        }
+
         public static bool IsQuestFailed(int questId)
         {
             uint descriptorsArray =
@@ -811,8 +830,14 @@ namespace nManager.Wow.Helpers
                 continentId = Usefuls.ContinentId;
             if (continentId != Usefuls.ContinentId)
                 doTravel = true;
-            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(destination) > 200)
+            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(destination) > 300)
                 doTravel = true;
+            else if (!doTravel)
+            {
+                // We are closer, check for a valid path.
+                PathFinder.FindPath(destination, out doTravel);
+                doTravel = !doTravel; // reverse result
+            }
             if (!travelToQuestZone)
                 doTravel = false;
             if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
