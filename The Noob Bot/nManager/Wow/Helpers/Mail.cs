@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
@@ -61,7 +62,14 @@ namespace nManager.Wow.Helpers
                 scriptLua = scriptLua + "end ";
 
                 mailSendingCompleted = Others.ToInt32(Lua.LuaDoString(scriptLua, "numAttachments")) <= 0;
-                System.Threading.Thread.Sleep(Usefuls.Latency + 1000);
+                Thread.Sleep(Usefuls.Latency + 1000);
+                if (Others.IsFrameVisible("SecureTransferDialog"))
+                {
+                    Thread.Sleep(2000);
+                    Lua.LuaDoString("SecureCapsuleGet('C_SecureTransfer').SendMail();");
+                    Lua.LuaDoString("SecureTransferDialog:Hide();");
+                    Thread.Sleep(Usefuls.Latency + 500);
+                }
             }
             catch (Exception exception)
             {
