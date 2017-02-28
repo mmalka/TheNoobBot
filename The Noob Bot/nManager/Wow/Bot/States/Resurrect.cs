@@ -48,6 +48,8 @@ namespace nManager.Wow.Bot.States
                     ObjectManager.ObjectManager.Me.IsValid &&
                     Products.Products.IsStarted)
                     return true;
+                if (ObjectManager.ObjectManager.Me.HaveBuff(15007))
+                    return true;
 
                 return false;
             }
@@ -266,7 +268,7 @@ namespace nManager.Wow.Bot.States
 
             #region Spirit Healer resurrection
 
-            if (nManagerSetting.CurrentSetting.UseSpiritHealer || _forceSpiritHealer)
+            if (nManagerSetting.CurrentSetting.UseSpiritHealer || _forceSpiritHealer || ObjectManager.ObjectManager.Me.HaveBuff(15007))
             {
                 Thread.Sleep(4000);
                 WoWUnit objectSpiritHealer = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);
