@@ -982,6 +982,15 @@ namespace nManager.Wow.Helpers
             // Can only reset an instance up to 10 times per hours.
         }
 
+        public static Reaction GetReputationReaction(int reputationId)
+        {
+            //_, _, standingID, _, _, _, _, _, _, _, _, _, _, _, _, _= GetFactionInfoByID(970);
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            string standing = Lua.LuaDoString("_, _," + randomString + ", _, _, _, _, _, _, _, _, _, _, _, _, _= GetFactionInfoByID("+reputationId+")",randomString);
+
+            return (Reaction) Others.ToInt32(standing);
+        }
+
         public static bool IsCompletedAchievement(int achievementId, bool meOnly = false)
         {
             if (achievementId <= 0)
@@ -1059,7 +1068,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public WoWCurrency GetCurrencyInfo(int entry)
+        public static WoWCurrency GetCurrencyInfo(int entry)
         {
             string randomString = Others.GetRandomString(Others.Random(5, 10));
             string result = Lua.LuaDoString(

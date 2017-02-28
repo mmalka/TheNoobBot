@@ -2,15 +2,15 @@
 {
     public enum Reaction
     {
-        Hated,
+        Unknown,
+
+        Hated, // 1
         Hostile,
         Unfriendly,
         Neutral,
         Friendly,
         Honored,
         Revered,
-        Exalted,
-
-        Unknown
+        Exalted, // 8
     }
 }
