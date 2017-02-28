@@ -932,7 +932,7 @@ dtStatus dtNavMesh::addTile(unsigned char* data, int dataSize, int flags,
 
 	// Build links freelist
 	tile->linksFreeList = 0;
-	tile->links[header->maxLinkCount-1].next = DT_NULL_LINK;
+	tile->links[header->maxLinkCount-1].next = DT_NULL_LINK; // One chinese user crash using pathfinder, and this line is the last on a crashdump I requested from him.
 	for (int i = 0; i < header->maxLinkCount-1; ++i)
 		tile->links[i].next = i+1;
 
