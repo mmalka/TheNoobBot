@@ -714,6 +714,17 @@ namespace nManager.Wow.ObjectManager
                 }
                 if (GOType == WoWGameObjectType.Chest)
                 {
+                    if (LockEntry == 2608)
+                    {
+                        if (ObjectManager.Me.Level < 110 || Usefuls.GetReputationReaction(1859) < Reaction.Neutral)
+                            return false;
+                        Usefuls.WoWCurrency ancientMana = Usefuls.GetCurrencyInfo(1155);
+                        if (ancientMana.IsValid && ancientMana.CurrentAmount == ancientMana.TotalMax)
+                            return false;
+                        // 2608 is LockEntry for Ancien Mana items.
+                        // 1859 is Nightfallen faction id.
+                        // Stop looking for Ancient Mana items if we are capped.
+                    }
                     if (Data8 != 0 && !Quest.GetLogQuestId().Contains((int) Data8))
                         return false; // Quest check
 
