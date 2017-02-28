@@ -13,18 +13,14 @@ if(wowUnit.IsValid)
 	MovementManager.StopMove();
 	Thread.Sleep(300);
 		
-	if(!wowUnit.IsTrivial)
+	while(!wowUnit.IsTrivial)
 	{
 		MovementManager.Face(wowUnit);
 		Thread.Sleep(500);
 		Interact.InteractWith(wowUnit.GetBaseAddress);
 		Thread.Sleep(500);
-		Logging.Write("Use ITem");
+		Logging.Write("Use Item");
 		ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
-		questObjective.IsObjectiveCompleted = true;
-	}
-	else
-	{
 		questObjective.IsObjectiveCompleted = true;
 	}
 	

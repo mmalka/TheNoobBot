@@ -13815,18 +13815,6 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-417.438171</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
       <Z>-333.8926</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -13851,6 +13839,30 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-417.438171</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-249.86586</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -13864,18 +13876,6 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>-31.1677113</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19506,6 +19506,17 @@
     <Entry>18099</Entry>
     <Name>Gordawg</Name>
     <Position>
+      <X>-819.8159</X>
+      <Y>6985.77539</Y>
+      <Z>34.5182076</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18099</Entry>
+    <Name>Gordawg</Name>
+    <Position>
       <X>-739.0777</X>
       <Y>6942.6377</Y>
       <Z>32.1026878</Z>
@@ -19579,6 +19590,18 @@
       <Y>6341.5415</Y>
       <Z>37.37424</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18210</Entry>
+    <Name>Mag'har Captive</Name>
+    <Position>
+      <X>-1583.62866</X>
+      <Y>8564.924</Y>
+      <Z>2.00095344</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -19737,11 +19760,21 @@
     <Entry>18262</Entry>
     <Name>Unkor the Ruthless</Name>
     <Position>
-      <X>-3276.786</X>
-      <Y>5999.964</Y>
-      <Z>-2.6366663</Z>
+      <X>-3349.8606</X>
+      <Y>6025.96826</Y>
+      <Z>0.430003136</Z>
     </Position>
-    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18262</Entry>
+    <Name>Unkor the Ruthless</Name>
+    <Position>
+      <X>-3271.787</X>
+      <Y>6001.27637</Y>
+      <Z>-3.14382267</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -19799,6 +19832,17 @@
       <X>-2099.58838</X>
       <Y>8595.171</Y>
       <Z>19.5372562</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18294</Entry>
+    <Name>Kristen Dipswitch</Name>
+    <Position>
+      <X>-1452.5946</X>
+      <Y>6351.944</Y>
+      <Z>37.2408371</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -21131,6 +21175,39 @@
       <X>2179.71436</X>
       <Y>2205.18848</Y>
       <Z>75.1092148</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19644</Entry>
+    <Name>Image of Archmage Vargoth</Name>
+    <Position>
+      <X>2252.5105</X>
+      <Y>2272.96826</Y>
+      <Z>97.8408661</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19644</Entry>
+    <Name>Image of Archmage Vargoth</Name>
+    <Position>
+      <X>2888.89966</X>
+      <Y>3802.486</Y>
+      <Z>169.803391</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19644</Entry>
+    <Name>Image of Archmage Vargoth</Name>
+    <Position>
+      <X>2988.70776</X>
+      <Y>3729.427</Y>
+      <Z>143.704758</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -22779,7 +22856,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>-123.336624</Z>
+      <Z>106.571053</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22791,7 +22868,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>106.571053</Z>
+      <Z>-123.336624</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -24204,6 +24281,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>21950</Entry>
+    <Name>Garm Wolfbrother</Name>
+    <Position>
+      <X>2272.94629</X>
+      <Y>5984.397</Y>
+      <Z>142.715546</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>21953</Entry>
     <Name>Varen the Reclaimer</Name>
     <Position>
@@ -24651,6 +24740,17 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>22386</Entry>
+    <Name>Watcher Moonshade</Name>
+    <Position>
+      <X>3109.38672</X>
+      <Y>6137.68164</Y>
+      <Z>136.219177</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>22420</Entry>
     <Name>Lakotae</Name>
     <Position>
@@ -24804,6 +24904,18 @@
       <Z>122.529381</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>22489</Entry>
+    <Name>Grunt Grahk</Name>
+    <Position>
+      <X>928.5202</X>
+      <Y>5972.80371</Y>
+      <Z>121.280617</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -53099,7 +53211,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>593.3703</Z>
+      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -53110,7 +53222,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>513.6742</Z>
+      <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -72296,6 +72408,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>183340</Entry>
+    <Name>Imarion's Shield</Name>
+    <Position>
+      <X>-644.3686</X>
+      <Y>3244.10913</Y>
+      <Z>7.86969</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>183341</Entry>
     <Name>Makha's Shield</Name>
     <Position>
@@ -72360,6 +72484,17 @@
       <X>3053.542</X>
       <Y>3694.18579</Y>
       <Z>142.835892</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>183956</Entry>
+    <Name>Coruu Control Console</Name>
+    <Position>
+      <X>2423.35938</X>
+      <Y>2755.71533</Y>
+      <Z>132.3682</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -76174,6 +76309,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>248956</Entry>
+    <Name>Compendium of Ancient Weapons Volume V</Name>
+    <Position>
+      <X>2252.96362</X>
+      <Y>2240.014</Y>
+      <Z>137.66008</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>249211</Entry>

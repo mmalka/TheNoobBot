@@ -897,4 +897,14 @@
       </Objectives>
     </Quest>
   </Quests>
+  <Blackspots>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-1251.992</X>
+        <Y>-2054.921</Y>
+        <Z>-5498.612</Z>
+      </Position>
+      <Radius>50</Radius>
+    </QuesterBlacklistRadius>
+  </Blackspots>
 </QuesterProfile>

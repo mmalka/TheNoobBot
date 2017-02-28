@@ -1,230 +1,252 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questers>
     <Npc>
-      <Name>Marshal Dughan</Name>
       <Entry>240</Entry>
+      <Name>Marshal Dughan</Name>
       <Position>
         <X>-9465.521</X>
         <Y>74.00694</Y>
         <Z>56.59602</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Deputy Rainer</Name>
       <Entry>963</Entry>
+      <Name>Deputy Rainer</Name>
       <Position>
         <X>-9662.75</X>
         <Y>694.321</Y>
         <Z>36.9357</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Remy "Two Times"</Name>
       <Entry>241</Entry>
+      <Name>Remy "Two Times"</Name>
       <Position>
         <X>-9496.32</X>
         <Y>72.8264</Y>
         <Z>56.598</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Guard Thomas</Name>
       <Entry>261</Entry>
+      <Name>Guard Thomas</Name>
       <Position>
         <X>-9610.23</X>
         <Y>-1032.05</Y>
         <Z>41.3058</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Lieutenant Horatio Laine</Name>
       <Entry>42308</Entry>
+      <Name>Lieutenant Horatio Laine</Name>
       <Position>
         <X>-9849.861</X>
         <Y>914.8265</Y>
         <Z>30.26556</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Smith Argus</Name>
       <Entry>514</Entry>
+      <Name>Smith Argus</Name>
       <Position>
         <X>-9456.65</X>
         <Y>87.85526</Y>
         <Z>58.3437</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Bartlett the Brave</Name>
       <Entry>42983</Entry>
+      <Name>Bartlett the Brave</Name>
       <Position>
         <X>-9435.714</X>
         <Y>87.61111</Y>
         <Z>57.12768</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>William Pestle</Name>
       <Entry>253</Entry>
+      <Name>William Pestle</Name>
       <Position>
         <X>-9460.302</X>
         <Y>31.93891</Y>
         <Z>56.96619</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>"Auntie" Bernice Stonefield</Name>
       <Entry>246</Entry>
+      <Name>"Auntie" Bernice Stonefield</Name>
       <Position>
         <X>-9889.68</X>
         <Y>338.467</Y>
         <Z>36.6486</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Billy Maclure</Name>
       <Entry>247</Entry>
+      <Name>Billy Maclure</Name>
       <Position>
         <X>-9923.68</X>
         <Y>38.3872</Y>
         <Z>32.5951</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Maybell Maclure</Name>
       <Entry>251</Entry>
+      <Name>Maybell Maclure</Name>
       <Position>
-        <X>-10014.00</X>
+        <X>-10014</X>
         <Y>37.605</Y>
         <Z>35.2531</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Tommy Joe Stonefield</Name>
       <Entry>252</Entry>
+      <Name>Tommy Joe Stonefield</Name>
       <Position>
         <X>-9930.05</X>
         <Y>499.734</Y>
         <Z>32.5204</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Gramma Stonefield</Name>
       <Entry>248</Entry>
+      <Name>Gramma Stonefield</Name>
       <Position>
         <X>-9880.63</X>
         <Y>322.619</Y>
         <Z>37.8244</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ma Stonefield</Name>
       <Entry>244</Entry>
+      <Name>Ma Stonefield</Name>
       <Position>
         <X>-9895</X>
         <Y>332.4236</Y>
         <Z>36.36964</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Osric Strang</Name>
       <Entry>1323</Entry>
+      <Name>Osric Strang</Name>
       <Position>
         <X>-8702.28</X>
         <Y>382.052</Y>
         <Z>103.909</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Dungar Longdrink</Name>
       <Entry>352</Entry>
+      <Name>Dungar Longdrink</Name>
       <Position>
         <X>-8835.76</X>
         <Y>490.084</Y>
         <Z>109.699</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Bounty Board</Name>
       <Entry>203733</Entry>
+      <Name>Bounty Board</Name>
       <Position>
         <X>-9613.384</X>
         <Y>-1033.26</Y>
         <Z>40.24267</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Marshal McCree</Name>
       <Entry>42256</Entry>
+      <Name>Marshal McCree</Name>
       <Position>
         <X>-9468.153</X>
         <Y>-1305.781</Y>
         <Z>44.15007</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Supervisor Raelen</Name>
       <Entry>10616</Entry>
+      <Name>Supervisor Raelen</Name>
       <Position>
         <X>-9469.79</X>
         <Y>-1289.22</Y>
         <Z>41.1855</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Sara Timberlain</Name>
       <Entry>278</Entry>
+      <Name>Sara Timberlain</Name>
       <Position>
         <X>-9530.045</X>
         <Y>-1222.585</Y>
         <Z>47.28971</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>A half-eaten body</Name>
       <Entry>55</Entry>
+      <Name>A half-eaten body</Name>
       <Position>
         <X>-9335.724</X>
         <Y>-986.4991</Y>
         <Z>67.68374</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Rolf's corpse</Name>
       <Entry>56</Entry>
+      <Name>Rolf's corpse</Name>
       <Position>
         <X>-9224.089</X>
         <Y>-1234.167</Y>
         <Z>73.66974</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Wanted Poster</Name>
       <Entry>68</Entry>
+      <Name>Wanted Poster</Name>
       <Position>
         <X>-9667.986</X>
         <Y>683.4402</Y>
         <Z>36.93801</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Wanted Poster</Name>
       <Entry>156561</Entry>
+      <Name>Wanted Poster</Name>
       <Position>
         <X>-9749.977</X>
         <Y>682.7853</Y>
         <Z>27.61941</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
   </Questers>
-
   <Quests>
-    <!-- Small 2 quests serie -->
     <Quest>
       <Name>The Fargodeep Mine</Name>
-      <Id>62</Id>
       <RaceMask>1101</RaceMask>
+      <Id>62</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>12</MaxLevel>
@@ -249,11 +271,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>The Jasperlode Mine</Name>
-      <Id>76</Id>
       <RaceMask>1101</RaceMask>
+      <Id>76</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -273,14 +294,16 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Gold Dust Exchange</Name>
-      <Id>47</Id>
       <RaceMask>1101</RaceMask>
+      <Id>47</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>12</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>76</int>
+      </NeedQuestCompletedId>
       <PickUp>241</PickUp>
       <TurnIn>241</TurnIn>
       <Objectives>
@@ -294,12 +317,12 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>773</CollectItemId>
-          <CollectCount>10</CollectCount>
           <Entry>
             <int>475</int>
             <int>40</int>
           </Entry>
+          <CollectItemId>773</CollectItemId>
+          <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
               <X>-9843.54</X>
@@ -310,14 +333,16 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Kobold Candles</Name>
-      <Id>60</Id>
       <RaceMask>1101</RaceMask>
+      <Id>60</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>12</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>47</int>
+      </NeedQuestCompletedId>
       <PickUp>253</PickUp>
       <TurnIn>253</TurnIn>
       <Objectives>
@@ -331,12 +356,12 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>772</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>475</int>
             <int>40</int>
           </Entry>
+          <CollectItemId>772</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-9843.54</X>
@@ -347,24 +372,24 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Another serie -->
-
     <Quest>
       <Name>A Fishy Peril</Name>
-      <Id>40</Id>
       <RaceMask>1101</RaceMask>
+      <Id>40</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>60</int>
+      </NeedQuestCompletedId>
       <PickUp>241</PickUp>
       <TurnIn>240</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Further Concerns</Name>
-      <Id>35</Id>
       <RaceMask>1101</RaceMask>
+      <Id>35</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -373,12 +398,12 @@
       </NeedQuestCompletedId>
       <PickUp>240</PickUp>
       <TurnIn>261</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Find the Lost Guards</Name>
-      <Id>37</Id>
       <RaceMask>1101</RaceMask>
+      <Id>37</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -387,12 +412,12 @@
       </NeedQuestCompletedId>
       <PickUp>261</PickUp>
       <TurnIn>55</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Discover Rolf's Fate</Name>
-      <Id>45</Id>
       <RaceMask>1101</RaceMask>
+      <Id>45</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -401,12 +426,12 @@
       </NeedQuestCompletedId>
       <PickUp>55</PickUp>
       <TurnIn>56</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Report to Thomas</Name>
-      <Id>71</Id>
       <RaceMask>1101</RaceMask>
+      <Id>71</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -415,12 +440,12 @@
       </NeedQuestCompletedId>
       <PickUp>56</PickUp>
       <TurnIn>261</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Cloth and Leather Armor</Name>
-      <Id>59</Id>
       <RaceMask>1101</RaceMask>
+      <Id>59</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -429,28 +454,29 @@
       </NeedQuestCompletedId>
       <PickUp>261</PickUp>
       <TurnIn>278</TurnIn>
+      <Objectives />
     </Quest>
-
-    <!-- -->
-
     <Quest>
       <Name>Bounty on Murlocs</Name>
-      <Id>46</Id>
       <RaceMask>1101</RaceMask>
+      <Id>46</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>59</int>
+      </NeedQuestCompletedId>
       <PickUp>203733</PickUp>
       <TurnIn>261</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>780</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>46</int>
             <int>732</int>
           </Entry>
+          <CollectItemId>780</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-9300.575</X>
@@ -471,14 +497,16 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Protect the Frontier</Name>
-      <Id>52</Id>
       <RaceMask>1101</RaceMask>
+      <Id>52</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>46</int>
+      </NeedQuestCompletedId>
       <PickUp>261</PickUp>
       <TurnIn>261</TurnIn>
       <Objectives>
@@ -598,24 +626,26 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Wanted: James Clark</Name>
-      <Id>26152</Id>
       <RaceMask>1101</RaceMask>
+      <Id>26152</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>52</int>
+      </NeedQuestCompletedId>
       <PickUp>203733</PickUp>
       <TurnIn>42256</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>57122</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>13159</int>
           </Entry>
+          <CollectItemId>57122</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9491.77</X>
@@ -626,22 +656,24 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>The Collector</Name>
-      <Id>123</Id>
       <RaceMask>1101</RaceMask>
+      <Id>123</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26152</int>
+      </NeedQuestCompletedId>
       <ItemPickUp>1307</ItemPickUp>
       <TurnIn>42256</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Manhunt</Name>
-      <Id>147</Id>
       <RaceMask>1101</RaceMask>
+      <Id>147</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -653,11 +685,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>2239</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>473</int>
           </Entry>
+          <CollectItemId>2239</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9806.25</X>
@@ -668,24 +700,26 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>A Bundle of Trouble</Name>
-      <Id>5545</Id>
       <RaceMask>1101</RaceMask>
+      <Id>5545</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>147</int>
+      </NeedQuestCompletedId>
       <PickUp>10616</PickUp>
       <TurnIn>10616</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <CollectItemId>13872</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>176793</int>
           </Entry>
+          <CollectItemId>13872</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-9397.572</X>
@@ -706,111 +740,110 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Fine Linen Goods</Name>
-      <Id>83</Id>
       <RaceMask>1101</RaceMask>
+      <Id>83</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>5545</int>
+      </NeedQuestCompletedId>
       <PickUp>278</PickUp>
       <TurnIn>278</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>1019</CollectItemId>
-          <CollectCount>6</CollectCount>
           <Entry>
             <int>116</int>
           </Entry>
+          <CollectItemId>1019</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>-9808.443</X>
               <Y>-858.3017</Y>
               <Z>39.27779</Z>
-              <Point>
-              </Point>
-              <X>-9736.291</X>
-              <Y>-872.4417</Y>
-              <Z>39.68148</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Another serie -->
     <Quest>
       <Name>A Swift Message</Name>
-      <Id>26393</Id>
       <RaceMask>1</RaceMask>
+      <Id>26393</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>83</int>
+      </NeedQuestCompletedId>
       <PickUp>514</PickUp>
       <TurnIn>42983</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Continue to Stormwind</Name>
+      <RaceMask>1</RaceMask>
       <Id>26394</Id>
+      <QuestLevel>7</QuestLevel>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>12</MaxLevel>
       <NeedQuestCompletedId>
         <int>26393</int>
       </NeedQuestCompletedId>
+      <PickUp>42983</PickUp>
+      <TurnIn>1323</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Dungar Longdrink</Name>
       <RaceMask>1</RaceMask>
+      <Id>26395</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
-      <PickUp>42983</PickUp>
-      <TurnIn>1323</TurnIn>
-    </Quest>
-
-    <Quest>
-      <Name>Dungar Longdrink</Name>
-      <Id>26395</Id>
       <NeedQuestCompletedId>
         <int>26394</int>
       </NeedQuestCompletedId>
+      <PickUp>1323</PickUp>
+      <TurnIn>352</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Return to Argus</Name>
       <RaceMask>1</RaceMask>
+      <Id>26396</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
-      <PickUp>1323</PickUp>
-      <TurnIn>352</TurnIn>
-    </Quest>
-
-    <Quest>
-      <Name>Return to Argus</Name>
-      <Id>26396</Id>
       <NeedQuestCompletedId>
         <int>26395</int>
       </NeedQuestCompletedId>
-      <RaceMask>1</RaceMask>
-      <QuestLevel>7</QuestLevel>
-      <MinLevel>5</MinLevel>
-      <MaxLevel>12</MaxLevel>
       <PickUp>352</PickUp>
       <TurnIn>514</TurnIn>
+      <Objectives />
     </Quest>
-
-    <!-- -->
-
     <Quest>
       <Name>Westbrook Garrison Needs Help!</Name>
-      <Id>239</Id>
       <RaceMask>1101</RaceMask>
+      <Id>239</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>8</MinLevel>
       <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26396</int>
+      </NeedQuestCompletedId>
       <PickUp>240</PickUp>
       <TurnIn>963</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Riverpaw Gnoll Bounty</Name>
-      <Id>11</Id>
       <RaceMask>1101</RaceMask>
+      <Id>11</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>8</MinLevel>
       <MaxLevel>14</MaxLevel>
@@ -822,12 +855,12 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>782</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>97</int>
             <int>478</int>
           </Entry>
+          <CollectItemId>782</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-9830.644</X>
@@ -843,23 +876,24 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Another serie -->
     <Quest>
       <Name>Lost Necklace</Name>
-      <Id>85</Id>
       <RaceMask>1101</RaceMask>
+      <Id>85</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>11</int>
+      </NeedQuestCompletedId>
       <PickUp>246</PickUp>
       <TurnIn>247</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Pie for Billy</Name>
-      <Id>86</Id>
       <RaceMask>1101</RaceMask>
+      <Id>86</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
@@ -871,12 +905,12 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>60401</CollectItemId>
-          <CollectCount>4</CollectCount>
           <Entry>
             <int>113</int>
             <int>524</int>
           </Entry>
+          <CollectItemId>60401</CollectItemId>
+          <CollectCount>4</CollectCount>
           <Hotspots>
             <Point>
               <X>-9790.472</X>
@@ -902,25 +936,24 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Back to Billy</Name>
-      <Id>84</Id>
-      <NeedQuestCompletedId>
-        <int>86</int>
-      </NeedQuestCompletedId>
       <RaceMask>1101</RaceMask>
+      <Id>84</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>86</int>
+      </NeedQuestCompletedId>
       <PickUp>246</PickUp>
       <TurnIn>247</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Goldtooth</Name>
-      <Id>87</Id>
       <RaceMask>1101</RaceMask>
+      <Id>87</Id>
       <QuestLevel>8</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
@@ -932,11 +965,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>981</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>327</int>
           </Entry>
+          <CollectItemId>981</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9806.375</X>
@@ -947,71 +980,69 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!-- Another serie -->
     <Quest>
       <Name>A Visit With Maybell</Name>
-      <Id>26150</Id>
       <RaceMask>1101</RaceMask>
+      <Id>26150</Id>
+      <QuestLevel>6</QuestLevel>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>11</MaxLevel>
       <NeedQuestCompletedId>
         <int>60</int>
       </NeedQuestCompletedId>
       <NeedQuestNotCompletedId>
         <int>106</int>
       </NeedQuestNotCompletedId>
+      <PickUp>253</PickUp>
+      <TurnIn>251</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Young Lovers</Name>
+      <RaceMask>1101</RaceMask>
+      <Id>106</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
-      <PickUp>253</PickUp>
-      <TurnIn>251</TurnIn>
-    </Quest>
-
-    <Quest>
-      <Name>Young Lovers</Name>
-      <Id>106</Id>
-      <RaceMask>1101</RaceMask>
       <NeedQuestCompletedId>
         <int>26150</int>
       </NeedQuestCompletedId>
+      <PickUp>251</PickUp>
+      <TurnIn>252</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Speak with Gramma</Name>
+      <RaceMask>1101</RaceMask>
+      <Id>111</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
-      <PickUp>251</PickUp>
-      <TurnIn>252</TurnIn>
-    </Quest>
-
-    <Quest>
-      <Name>Speak with Gramma</Name>
-      <Id>111</Id>
-      <RaceMask>1101</RaceMask>
       <NeedQuestCompletedId>
         <int>106</int>
       </NeedQuestCompletedId>
+      <PickUp>252</PickUp>
+      <TurnIn>248</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Note to William</Name>
+      <RaceMask>1101</RaceMask>
+      <Id>107</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
-      <PickUp>252</PickUp>
-      <TurnIn>248</TurnIn>
-    </Quest>
-
-    <Quest>
-      <Name>Note to William</Name>
-      <Id>107</Id>
-      <RaceMask>1101</RaceMask>
       <NeedQuestCompletedId>
         <int>111</int>
       </NeedQuestCompletedId>
-      <QuestLevel>6</QuestLevel>
-      <MinLevel>5</MinLevel>
-      <MaxLevel>11</MaxLevel>
       <PickUp>248</PickUp>
       <TurnIn>253</TurnIn>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Collecting Kelp</Name>
-      <Id>112</Id>
       <RaceMask>1101</RaceMask>
+      <Id>112</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
@@ -1023,12 +1054,12 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>1256</CollectItemId>
-          <CollectCount>4</CollectCount>
           <Entry>
             <int>735</int>
             <int>285</int>
           </Entry>
+          <CollectItemId>1256</CollectItemId>
+          <CollectCount>4</CollectCount>
           <Hotspots>
             <Point>
               <X>-9482.655</X>
@@ -1044,27 +1075,24 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>The Escape</Name>
-      <Id>114</Id>
       <RaceMask>1101</RaceMask>
-      <NeedQuestCompletedId>
-        <int>112</int>
-      </NeedQuestCompletedId>
+      <Id>114</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>112</int>
+      </NeedQuestCompletedId>
       <PickUp>253</PickUp>
       <TurnIn>251</TurnIn>
+      <Objectives />
     </Quest>
-
-    <!-- Others -->
-
     <Quest>
       <Name>Princess Must Die!</Name>
-      <Id>88</Id>
       <RaceMask>1101</RaceMask>
+      <Id>88</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>6</MinLevel>
       <MaxLevel>14</MaxLevel>
@@ -1076,11 +1104,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>1006</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>330</int>
           </Entry>
+          <CollectItemId>1006</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9936.256</X>
@@ -1091,12 +1119,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Wanted: "Hogger"</Name>
-      <Id>176</Id>
       <RaceMask>1101</RaceMask>
-      <QuestLevel>13</QuestLevel> <!-- 11 normaly, but with the relax, it would take it a level 9 if there is no other quest -->
+      <Id>176</Id>
+      <QuestLevel>13</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>16</MaxLevel>
       <PickUp>68</PickUp>
@@ -1104,7 +1131,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 1 -->
+          <Count>-1</Count>
           <Entry>
             <int>448</int>
           </Entry>
@@ -1118,12 +1145,11 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Wanted: "Hogger"</Name>
-      <Id>176</Id>
       <RaceMask>1101</RaceMask>
-      <QuestLevel>13</QuestLevel> <!-- 11 normaly, but with the relax, it would take it a level 9 if there is no other quest -->
+      <Id>176</Id>
+      <QuestLevel>13</QuestLevel>
       <MinLevel>7</MinLevel>
       <MaxLevel>16</MaxLevel>
       <PickUp>156561</PickUp>
@@ -1131,7 +1157,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count> <!-- 1 -->
+          <Count>-1</Count>
           <Entry>
             <int>448</int>
           </Entry>
@@ -1145,7 +1171,5 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
   </Quests>
-  <Blackspots />
 </QuesterProfile>

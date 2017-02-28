@@ -26,17 +26,18 @@ if (!wowUnit.IsValid)
     return true;
 }
 
-/*if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
 {
     questObjective.IsObjectiveCompleted = true;
     return true;
-}*/
+}
 
 if (wowUnit.IsMounted)
     MountTask.Mount();
 else
     MountTask.DismountMount();
     
+	
 bool resultSuccess = false;
 List<Point> listPoint = PathFinder.FindPath(wowUnit.Position, out resultSuccess);
 if (resultSuccess)

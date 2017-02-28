@@ -3567,7 +3567,7 @@
     <Position>
       <X>-53.9236</X>
       <Y>-907.637</Y>
-      <Z>56.2094574</Z>
+      <Z>56.2094536</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -6933,28 +6933,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>3537</Entry>
-    <Name>Zixil</Name>
-    <Position>
-      <X>-23.5721035</X>
-      <Y>-875.986633</Y>
-      <Z>59.2092056</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3537</Entry>
-    <Name>Zixil</Name>
-    <Position>
-      <X>-23.5721035</X>
-      <Y>-875.986633</Y>
-      <Z>59.2091942</Z>
-    </Position>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>3539</Entry>
     <Name>Ott</Name>
     <Position>
@@ -6976,6 +6954,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3544</Entry>
+    <Name>Jason Lemieux</Name>
+    <Position>
+      <X>-144.9776</X>
+      <Y>-896.352539</Y>
+      <Z>55.14234</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -6985,18 +6975,6 @@
       <X>-143.5624</X>
       <Y>-910.8252</Y>
       <Z>55.13803</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3544</Entry>
-    <Name>Jason Lemieux</Name>
-    <Position>
-      <X>-93.342</X>
-      <Y>-854.517</Y>
-      <Z>55.1381</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -12604,6 +12582,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>2356.59473</X>
+      <Y>2332.345</Y>
+      <Z>106.163826</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2356.59473</X>
+      <Y>2332.345</Y>
+      <Z>106.163826</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>2412.448</X>
       <Y>2498.91675</Y>
       <Z>286.769</Z>
@@ -12819,6 +12819,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3021.07275</X>
+      <Y>3595.82739</Y>
+      <Z>145.759216</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3021.07275</X>
+      <Y>3595.82739</Y>
+      <Z>145.759216</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -16718,6 +16740,7 @@
       <Y>-338.2</Y>
       <Z>131.197723</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -21169,6 +21192,18 @@
     <Entry>19015</Entry>
     <Name>Mathar G'ochar</Name>
     <Position>
+      <X>-1445.68066</X>
+      <Y>7148.597</Y>
+      <Z>41.6470261</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19015</Entry>
+    <Name>Mathar G'ochar</Name>
+    <Position>
       <X>-1349.01917</X>
       <Y>7192.779</Y>
       <Z>33.79785</Z>
@@ -21219,7 +21254,7 @@
     <Position>
       <X>-1282.6925</X>
       <Y>7228.01465</Y>
-      <Z>38.9955559</Z>
+      <Z>38.9577522</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -59557,6 +59592,39 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107599</Entry>
+    <Name>Izzee the 'Clutch'</Name>
+    <Position>
+      <X>3068.16357</X>
+      <Y>3634.65967</Y>
+      <Z>143.780853</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107610</Entry>
+    <Name>Kitzie Crankshot</Name>
+    <Position>
+      <X>3069.80933</X>
+      <Y>3632.92944</Y>
+      <Z>144.411865</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107619</Entry>
+    <Name>Blaze Magmaburn</Name>
+    <Position>
+      <X>3071.82886</X>
+      <Y>3630.98145</Y>
+      <Z>143.781143</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>107675</Entry>

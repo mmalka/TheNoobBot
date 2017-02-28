@@ -1653,7 +1653,9 @@
               <Z>34.50844</Z>
             </Point>
           </Hotspots>
-          <WaitMs>1000</WaitMs>
+          <ScriptConditionIsComplete>=25006-Comp.cs</ScriptConditionIsComplete>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <WaitMs>3000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
@@ -1673,12 +1675,13 @@
           </Entry>
           <Hotspots>
             <Point>
-              <X>2245.208</X>
-              <Y>233.0016</Y>
-              <Z>41.81265</Z>
+              <X>2246.787</X>
+              <Y>228.409973</Y>
+              <Z>42.65257</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
       </Objectives>
     </Quest>

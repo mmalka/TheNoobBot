@@ -414,7 +414,7 @@
           <Entry>
             <int>19401</int>
           </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ScriptConditionIsComplete>return (ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; ObjectManager.Me.IsMounted;</ScriptConditionIsComplete>
           <Position>
             <X>-23.49077</X>
             <Y>2122.148</Y>
@@ -457,6 +457,13 @@
           <WaitMs>500</WaitMs>
           <Range>50</Range>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>19273</NpcEntry>
+          <QuestName>Mission: Gateways Murketh and Shaadraz</QuestName>
+          <QuestId>10129</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -478,6 +485,7 @@
           <Entry>
             <int>19401</int>
           </Entry>
+          <ScriptConditionIsComplete>return (ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; ObjectManager.Me.IsMounted;</ScriptConditionIsComplete>
           <Position>
             <X>-23.99325</X>
             <Y>2129.893</Y>
@@ -494,6 +502,7 @@
             <int>19399</int>
           </Entry>
           <Script>=10163.cs</Script>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 3, 5) || (!(ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; !ObjectManager.Me.IsMounted) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
           <UseItemId>28132</UseItemId>
           <WaitMs>500</WaitMs>
           <Range>73</Range>
@@ -506,6 +515,7 @@
             <int>19398</int>
           </Entry>
           <Script>=10163.cs</Script>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 1, 20) || (!(ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; !ObjectManager.Me.IsMounted) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
           <UseItemId>28132</UseItemId>
           <WaitMs>500</WaitMs>
           <Range>73</Range>
@@ -518,6 +528,7 @@
             <int>19397</int>
           </Entry>
           <Script>=10163.cs</Script>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 2, 5) || (!(ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; !ObjectManager.Me.IsMounted) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
           <UseItemId>28132</UseItemId>
           <WaitMs>500</WaitMs>
           <Range>73</Range>
@@ -531,6 +542,9 @@
       <QuestLevel>61</QuestLevel>
       <MinLevel>58</MinLevel>
       <MaxLevel>71</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>10162</int>
+      </NeedQuestCompletedId>
       <PickUp>19273</PickUp>
       <TurnIn>3230</TurnIn>
       <Objectives />
@@ -692,6 +706,65 @@
             <Z>214.8076</Z>
           </Position>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>1</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>230.402313</X>
+              <Y>2827.63916</Y>
+              <Z>131.341492</Z>
+            </Point>
+            <Point>
+              <X>233.837387</X>
+              <Y>2832.59229</Y>
+              <Z>132.869141</Z>
+            </Point>
+            <Point>
+              <X>233.3448</X>
+              <Y>2836.14453</Y>
+              <Z>134.861191</Z>
+            </Point>
+            <Point>
+              <X>229.752472</X>
+              <Y>2835.93066</Y>
+              <Z>136.607285</Z>
+            </Point>
+            <Point>
+              <X>228.451523</X>
+              <Y>2832.563</Y>
+              <Z>138.301468</Z>
+            </Point>
+            <Point>
+              <X>231.459549</X>
+              <Y>2830.396</Y>
+              <Z>140.170563</Z>
+            </Point>
+            <Point>
+              <X>234.2579</X>
+              <Y>2832.79077</Y>
+              <Z>142.0225</Z>
+            </Point>
+            <Point>
+              <X>233.607681</X>
+              <Y>2835.795</Y>
+              <Z>143.571045</Z>
+            </Point>
+            <Point>
+              <X>228.61087</X>
+              <Y>2836.57568</Y>
+              <Z>145.195755</Z>
+            </Point>
+            <Point>
+              <X>223.5745</X>
+              <Y>2838.1582</Y>
+              <Z>145.02272</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -773,7 +846,7 @@
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16858</NpcEntry>
+          <NpcEntry>185166</NpcEntry>
           <QuestName>Wanted: Worg Master Kruush</QuestName>
           <QuestId>10809</QuestId>
         </QuestObjective>
@@ -1339,6 +1412,149 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>A Burden of Souls</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>10864</Id>
+      <QuestLevel>61</QuestLevel>
+      <MinLevel>58</MinLevel>
+      <MaxLevel>71</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>10295</int>
+      </NeedQuestCompletedId>
+      <PickUp>16588</PickUp>
+      <TurnIn>16588</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>16915</NpcEntry>
+          <QuestName>Outland Sucks!</QuestName>
+          <QuestId>10236</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>10236</InternalQuestId>
+          <Entry>
+            <int>183934</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>6</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>190.6562</X>
+              <Y>3009.187</Y>
+              <Z>-1.198686</Z>
+            </Point>
+            <Point>
+              <X>61.34621</X>
+              <Y>3065.401</Y>
+              <Z>-1.222687</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>16915</NpcEntry>
+          <QuestName>Outland Sucks!</QuestName>
+          <QuestId>10236</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>16915</NpcEntry>
+          <QuestName>How to Serve Goblins</QuestName>
+          <QuestId>10238</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>10238</InternalQuestId>
+          <Entry>
+            <int>183936</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>67.98618</X>
+              <Y>3210.056</Y>
+              <Z>32.11222</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
+          <InternalQuestId>10238</InternalQuestId>
+          <Entry>
+            <int>183940</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>-73.61762</X>
+              <Y>3139.282</Y>
+              <Z>-4.26917</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>3</InternalIndex>
+          <InternalQuestId>10238</InternalQuestId>
+          <Entry>
+            <int>183941</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>-122.942</X>
+              <Y>3088.318</Y>
+              <Z>3.297917</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>20</Count>
+          <Entry>
+            <int>19414</int>
+            <int>16878</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>91.9764938</X>
+              <Y>3149.38086</Y>
+              <Z>18.8614616</Z>
+            </Point>
+            <Point>
+              <X>-121.418083</X>
+              <Y>3053.814</Y>
+              <Z>-0.7015806</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>16915</NpcEntry>
+          <QuestName>How to Serve Goblins</QuestName>
+          <QuestId>10238</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Investigate the Crash</Name>
       <RaceMask>33555378</RaceMask>
       <Id>10213</Id>
@@ -1346,7 +1562,7 @@
       <MinLevel>58</MinLevel>
       <MaxLevel>72</MaxLevel>
       <NeedQuestCompletedId>
-        <int>10389</int>
+        <int>10864</int>
       </NeedQuestCompletedId>
       <PickUp>16858</PickUp>
       <TurnIn>19367</TurnIn>
@@ -1455,7 +1671,7 @@
             <int>16863</int>
           </Entry>
           <CollectItemId>23270</CollectItemId>
-          <CollectCount>8</CollectCount>
+          <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
               <X>-1006.468</X>
@@ -1478,7 +1694,7 @@
               <Z>25.84659</Z>
             </Point>
           </Hotspots>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.ItemsManager.GetItemCount(23270) &gt;= 8 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9361) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9361);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.ItemsManager.GetItemCount(23270) &gt;= 10 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9361) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9361);</ScriptConditionIsComplete>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
@@ -1686,150 +1902,6 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>A Burden of Souls</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>10864</Id>
-      <QuestLevel>61</QuestLevel>
-      <MinLevel>58</MinLevel>
-      <MaxLevel>71</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>10295</int>
-      </NeedQuestCompletedId>
-      <PickUp>16588</PickUp>
-      <TurnIn>16588</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16915</NpcEntry>
-          <QuestName>Outland Sucks!</QuestName>
-          <QuestId>10236</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>10236</InternalQuestId>
-          <Entry>
-            <int>183934</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>6</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>190.6562</X>
-              <Y>3009.187</Y>
-              <Z>-1.198686</Z>
-            </Point>
-            <Point>
-              <X>61.34621</X>
-              <Y>3065.401</Y>
-              <Z>-1.222687</Z>
-            </Point>
-          </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16915</NpcEntry>
-          <QuestName>Outland Sucks!</QuestName>
-          <QuestId>10236</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16915</NpcEntry>
-          <QuestName>How to Serve Goblins</QuestName>
-          <QuestId>10238</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>10238</InternalQuestId>
-          <Entry>
-            <int>183936</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>67.98618</X>
-              <Y>3210.056</Y>
-              <Z>32.11222</Z>
-            </Point>
-          </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>2</InternalIndex>
-          <InternalQuestId>10238</InternalQuestId>
-          <Entry>
-            <int>183940</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>-73.61762</X>
-              <Y>3139.282</Y>
-              <Z>-4.26917</Z>
-            </Point>
-          </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>3</InternalIndex>
-          <InternalQuestId>10238</InternalQuestId>
-          <Entry>
-            <int>183941</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>-122.942</X>
-              <Y>3088.318</Y>
-              <Z>3.297917</Z>
-            </Point>
-          </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
-          <Count>20</Count>
-          <Entry>
-            <int>19414</int>
-            <int>16878</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>91.9764938</X>
-              <Y>3149.38086</Y>
-              <Z>18.8614616</Z>
-            </Point>
-            <Point>
-              <X>-121.418083</X>
-              <Y>3053.814</Y>
-              <Z>-0.7015806</Z>
-            </Point>
-          </Hotspots>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16915</NpcEntry>
-          <QuestName>How to Serve Goblins</QuestName>
-          <QuestId>10238</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1841,7 +1913,7 @@
       <MinLevel>58</MinLevel>
       <MaxLevel>71</MaxLevel>
       <NeedQuestCompletedId>
-        <int>10864</int>
+        <int>10295</int>
       </NeedQuestCompletedId>
       <PickUp>16588</PickUp>
       <TurnIn>16588</TurnIn>
@@ -2000,7 +2072,7 @@
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16790</NpcEntry>
+          <NpcEntry>181638</NpcEntry>
           <QuestName>Wanted: Blacktalon the Savage</QuestName>
           <QuestId>9466</QuestId>
         </QuestObjective>
@@ -2095,6 +2167,7 @@
           <InternalQuestId>9374</InternalQuestId>
           <Count>1</Count>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreItemNotUsable>true</IgnoreItemNotUsable>
           <UseItemId>31955</UseItemId>
           <WaitMs>1000</WaitMs>
         </QuestObjective>
@@ -2336,7 +2409,6 @@
           <Entry>
             <int>184500</int>
           </Entry>
-          <ScriptConditionIsComplete>return  true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-592.6013</X>
@@ -2362,6 +2434,7 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
+          <ScriptConditionIsComplete>=9370-CompScript.cs</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>23358</UseItemId>
           <Position>
@@ -2435,43 +2508,38 @@
           <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpNPC</Objective>
-          <InternalQuestId>10286</InternalQuestId>
+          <Objective>CSharpScript</Objective>
           <Count>1</Count>
           <Entry>
             <int>20159</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>-240.710922</X>
-              <Y>4874.905</Y>
-              <Z>28.73608</Z>
+              <X>-617.776367</X>
+              <Y>4218.4126</Y>
+              <Z>49.7468719</Z>
             </Point>
             <Point>
-              <X>-342.1557</X>
-              <Y>3909.527</Y>
-              <Z>71.49562</Z>
+              <X>-448.729248</X>
+              <Y>3872.28027</Y>
+              <Z>61.7072334</Z>
+            </Point>
+            <Point>
+              <X>-276.062164</X>
+              <Y>4006.472</Y>
+              <Z>97.28428</Z>
             </Point>
           </Hotspots>
-          <ScriptConditionIsComplete>return ((nManager.Wow.ObjectManager.ObjectManager.Target.Entry == 20159) &amp;&amp; nManager.Wow.ObjectManager.ObjectManager.Target.Attackable) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10286) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10286);</ScriptConditionIsComplete>
+          <Script>=10286.cs</Script>
+          <ScriptConditionIsComplete>=10286-Comp.cs</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>2000</WaitMs>
+          <WaitMs>5000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>10286</InternalQuestId>
-          <Count>1</Count>
-          <Entry>
-            <int>20159</int>
-          </Entry>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <NpcEntry>20159</NpcEntry>
           <QuestName>Arelion's Secret</QuestName>
           <QuestId>10286</QuestId>
@@ -2760,12 +2828,14 @@
           <Entry>
             <int>184500</int>
           </Entry>
+          <ScriptConditionIsComplete>=OrbTransHellfireTop.cs</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-            <X>-590.3996</X>
-            <Y>4070.824</Y>
-            <Z>143.2581</Z>
+            <X>-591.6452</X>
+            <Y>4081.289</Y>
+            <Z>143.2578</Z>
           </Position>
+          <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
@@ -2832,7 +2902,7 @@
             <Y>4836.017</Y>
             <Z>76.66693</Z>
           </Position>
-          <WaitMs>2000</WaitMs>
+          <WaitMs>80000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>

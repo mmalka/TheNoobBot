@@ -237,13 +237,18 @@
           <WaitMs>5000</WaitMs>
         </QuestObjective>
         <QuestObjective>
-          <Objective>MoveTo</Objective>
+          <Objective>CSharpScript</Objective>
           <Count>1</Count>
+          <Entry>
+            <int>47681</int>
+          </Entry>
+          <Script>=EscortToPosition.cs</Script>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(28156) || nManager.Wow.Helpers.Quest.GetQuestCompleted(28156);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-            <X>-886.923</X>
-            <Y>223.6415</Y>
-            <Z>8.913714</Z>
+            <X>-896.8657</X>
+            <Y>230.2161</Y>
+            <Z>9.736773</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -462,6 +467,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
           <InternalQuestId>28189</InternalQuestId>
           <Count>15</Count>
           <Entry>
@@ -1263,7 +1269,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
-          <WaitMs>60000</WaitMs>
+          <WaitMs>63000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
@@ -1296,6 +1302,7 @@
             </Point>
           </Hotspots>
           <WaitMs>160000</WaitMs>
+          <IgnoreFight>true</IgnoreFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1449,6 +1456,7 @@
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
+          <IgnoreNotSelectable>true</IgnoreNotSelectable>
           <AllowPlayerControlled>true</AllowPlayerControlled>
         </QuestObjective>
         <QuestObjective>

@@ -403,7 +403,6 @@
             <Z>24.33389</Z>
           </Position>
           <WaitMs>1000</WaitMs>
-          <Range>10</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -808,6 +807,7 @@
             <Y>1527.987</Y>
             <Z>114.9552</Z>
           </Position>
+          <IgnoreFight>true</IgnoreFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1214,6 +1214,16 @@
       <TurnIn>45474</TurnIn>
       <Objectives>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(27423) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27423) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27423);</ScriptConditionIsComplete>
+          <Position>
+            <X>-1205.428</X>
+            <Y>1128.434</Y>
+            <Z>31.51239</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>27423</InternalQuestId>
@@ -1247,6 +1257,7 @@
               <Z>1.582135</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
       </Objectives>
       <AutoAccept>

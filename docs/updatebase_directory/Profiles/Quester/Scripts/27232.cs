@@ -3,12 +3,7 @@ nManager.Wow.ObjectManager.WoWUnit Worgen = nManager.Wow.ObjectManager.ObjectMan
 
 if (Worgen.IsValid && Worgen.Position.DistanceTo(ObjectManager.Me.Position) <= 150)
 {
-	var listP = new System.Collections.Generic.List<Point>();
-	listP.Add(Worgen.Position);
-
-   
-	nManager.Wow.Helpers.MovementManager.Go(listP);
-
+	MovementManager.FaceCTM(Worgen);
 	Interact.InteractWith(Worgen.GetBaseAddress);
 
 	float angle = Worgen.Position.Z - ObjectManager.Me.Position.Z;

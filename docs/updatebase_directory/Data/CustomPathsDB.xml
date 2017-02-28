@@ -667,9 +667,9 @@
     </CustomPath>
 	<CustomPath Id="13" Name="Sporeggar Hut" Faction="Neutral" AContinentId="530" BContinentId="530">
       <APoint>
-		 <X>206.0886</X>
-		 <Y>8500.522</Y>
-		 <Z>24.56188</Z>
+		 <X>209.6958</X>
+		 <Y>8507</Y>
+		 <Z>24.18773</Z>
       </APoint>
       <BPoint>
 		 <X>189.6395</X>
@@ -677,6 +677,11 @@
 		 <Z>26.9627</Z>
       </BPoint>
       <Points>
+		<Point>
+		 <X>209.6958</X>
+		 <Y>8507</Y>
+		 <Z>24.18773</Z>
+		</Point>
         <Point>
 		 <X>206.0886</X>
 		 <Y>8500.522</Y>
@@ -694,5 +699,69 @@
         </Point>
       </Points>
     </CustomPath>
+	<CustomPath Id="14" Name="Hellfire - Thrallmar Tower" Faction="Neutral" AContinentId="530" BContinentId="530">
+      <APoint>
+		<X>230.402313</X>
+		<Y>2827.63916</Y>
+		<Z>131.341492</Z>
+      </APoint>
+      <BPoint>
+		<X>223.5745</X>
+		<Y>2838.1582</Y>
+		<Z>145.02272</Z>
+      </BPoint>
+      <Points>
+        <Point>
+		  <X>230.402313</X>
+		  <Y>2827.63916</Y>
+		  <Z>131.341492</Z>
+		</Point>
+		<Point>
+		  <X>233.837387</X>
+		  <Y>2832.59229</Y>
+		  <Z>132.869141</Z>
+		</Point>
+		<Point>
+		  <X>233.3448</X>
+		  <Y>2836.14453</Y>
+		  <Z>134.861191</Z>
+		</Point>
+		<Point>
+		  <X>229.752472</X>
+		  <Y>2835.93066</Y>
+		  <Z>136.607285</Z>
+		</Point>
+		<Point>
+		  <X>228.451523</X>
+		  <Y>2832.563</Y>
+		  <Z>138.301468</Z>
+		</Point>
+		<Point>
+		  <X>231.459549</X>
+		  <Y>2830.396</Y>
+		  <Z>140.170563</Z>
+		</Point>
+		<Point>
+		  <X>234.2579</X>
+		  <Y>2832.79077</Y>
+		  <Z>142.0225</Z>
+		</Point>
+		<Point>
+		  <X>233.607681</X>
+		  <Y>2835.795</Y>
+		  <Z>143.571045</Z>
+		</Point>
+		<Point>
+		  <X>228.61087</X>
+		  <Y>2836.57568</Y>
+		  <Z>145.195755</Z>
+		</Point>
+		<Point>
+		  <X>223.5745</X>
+		  <Y>2838.1582</Y>
+		  <Z>145.02272</Z>
+		</Point>
+      </Points>
+    </CustomPath>
   </Items>
-</CustomPaths>
+</CustomPaths> 

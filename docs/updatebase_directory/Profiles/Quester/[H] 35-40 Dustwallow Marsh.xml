@@ -662,7 +662,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
-          <WaitMs>45000</WaitMs>
+          <WaitMs>50000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
