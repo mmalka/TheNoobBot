@@ -240,6 +240,26 @@ namespace Quester.Profile
             return Position != null && Position.IsValid;
         }
 
+        public bool ShouldSerializeExtraPoint()
+        {
+            return ExtraPoint != null && ExtraPoint.IsValid;
+        }
+
+        public bool ShouldSerializeExtraObject1()
+        {
+            return ExtraObject1 != null;
+        }
+
+        public bool ShouldSerializeExtraObject2()
+        {
+            return ExtraObject2 != null;
+        }
+
+        public bool ShouldSerializeExtraObject3()
+        {
+            return ExtraObject3 != null;
+        }
+
         // Wait
         [DefaultValue(0)] public int WaitMs = 0;
 
@@ -286,6 +306,15 @@ namespace Quester.Profile
 
         // MessageBox
         [DefaultValue("")] public string Message = "";
+
+        // Extra for developpers/scripters.
+        [DefaultValue("")] public string ExtraString = "";
+        [DefaultValue(0)] public int ExtraInt = 0;
+        [DefaultValue(0f)] public float ExtraFloat = 0f;
+        public Point ExtraPoint = new Point();
+        public object ExtraObject1 = new object();
+        public object ExtraObject2 = new object();
+        public object ExtraObject3 = new object();
     }
 
     [Serializable]
