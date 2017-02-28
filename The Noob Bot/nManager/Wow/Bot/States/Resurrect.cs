@@ -24,6 +24,7 @@ namespace nManager.Wow.Bot.States
         private Timer _battlegroundResurrect = new Timer(0);
         private readonly Spell _shamanReincarnation = new Spell("Reincarnation");
         private readonly Spell _warlockSoulstone = new Spell("Soulstone");
+        private const uint ResurrectionSicknessId = 15007;
         private bool _forceSpiritHealer;
 
         public override List<State> NextStates
@@ -48,7 +49,7 @@ namespace nManager.Wow.Bot.States
                     ObjectManager.ObjectManager.Me.IsValid &&
                     Products.Products.IsStarted)
                     return true;
-                if (ObjectManager.ObjectManager.Me.HaveBuff(15007))
+                if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                     return true;
 
                 return false;
@@ -187,6 +188,7 @@ namespace nManager.Wow.Bot.States
                     {
                         _forceSpiritHealer = true;
                         Logging.Write("There in no easy acces to the corpse, use Spirit Healer instead.");
+                        // todo: Check few positions "In Range", we don't necesserly need to get to our body.
                         return;
                     }
                     if (points.Count > 1 || (points.Count <= 1 && !nManagerSetting.CurrentSetting.UseSpiritHealer))
@@ -306,10 +308,10 @@ namespace nManager.Wow.Bot.States
                         _forceSpiritHealer = false;
                         Logging.Write("The player have been resurrected by the Spirit Healer.");
                         Statistics.Deaths++;
-                        if (ObjectManager.ObjectManager.Me.HaveBuff(15007))
+                        if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                         {
                             Logging.Write("Resurrection Sickness detected, we will now wait its full duration to avoid dieing in chain.");
-                            while (ObjectManager.ObjectManager.Me.HaveBuff(15007))
+                            while (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                             {
                                 Thread.Sleep(1000);
                                 // We don't need to return if we get in combat, we would die quickly anyway, and we will ressurect from our body this time.
