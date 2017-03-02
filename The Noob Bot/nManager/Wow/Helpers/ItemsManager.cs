@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Ink;
 using nManager.Helpful;
 using nManager.Wow.Enums;
@@ -382,6 +383,26 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.GameFrameUnLock();
             }
             return reagentsItems;
+        }
+        
+        public static List<string> GetAllQuestsItems()
+        {
+            List<string> questsItems = new List<string>();
+            var listItems = ObjectManager.ObjectManager.GetObjectWoWItem();
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                foreach (var item in listItems)
+                {
+                    if (item.GetItemInfo.ItemType == "Quest" && !questsItems.Contains(item.Name))
+                        questsItems.Add(item.Name);
+                }
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
+            return questsItems;
         }
     }
 }

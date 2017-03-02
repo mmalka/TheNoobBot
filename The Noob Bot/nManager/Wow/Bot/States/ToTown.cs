@@ -494,8 +494,7 @@ namespace nManager.Wow.Bot.States
                                 vQuality.Add(WoWItemQuality.Rare);
                             if (nManagerSetting.CurrentSetting.SellPurple)
                                 vQuality.Add(WoWItemQuality.Epic);
-                            Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems,
-                                nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
+                            Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems, nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
                             Thread.Sleep(3000);
                             if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft)
                                 _suspendSelling = true;
