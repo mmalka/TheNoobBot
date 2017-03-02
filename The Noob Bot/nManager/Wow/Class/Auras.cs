@@ -103,10 +103,7 @@ namespace nManager.Wow.Class
 
             public void TryCancel()
             {
-                if (Cancellable)
-                {
-                    Lua.LuaDoString(string.Format("for i = 1,40 do local spellId = select(11, UnitAura('player', i)) if spellId == {0} then CancelUnitBuff('player', i) end end", AuraSpellId));
-                }
+                Lua.LuaDoString(string.Format("for i = 1,40 do local spellId = select(11, UnitAura('player', i)) if spellId == {0} then CancelUnitBuff('player', i) end end", AuraSpellId));
             }
 
             public override string ToString()
