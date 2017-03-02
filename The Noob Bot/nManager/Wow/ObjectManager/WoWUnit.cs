@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
@@ -2845,6 +2846,35 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("WoWUnit > HasQuests: " + e);
                     return false;
                 }
+            }
+        }
+
+        private bool _totemCache;
+        private bool _isTotem;
+
+        public bool IsTotem
+        {
+            get
+            {
+                if (ObjectManager.TotemEntryList == null || ObjectManager.TotemEntryList.Count <= 0)
+                {
+                    ObjectManager.TotemEntryList = new List<int>();
+                    Logging.Write("Loading TotemEntryList...");
+                    string[] totemEntryList = Others.ReadFileAllLines(Application.StartupPath + "\\Data\\TotemEntryList.txt");
+                    for (int i = 0; i <= totemEntryList.Length - 1; i++)
+                    {
+                        int creatureId = Others.ToInt32(totemEntryList[i]);
+                        if (creatureId > 0 && !ObjectManager.TotemEntryList.Contains(creatureId))
+                            ObjectManager.TotemEntryList.Add(creatureId);
+                    }
+                    if (ObjectManager.TotemEntryList.Count > 0)
+                        Logging.Write("Loaded " + ObjectManager.TotemEntryList.Count + " entries to Totem Entry List.");
+                }
+                if (_totemCache)
+                    return _isTotem;
+                _totemCache = true;
+                _isTotem = ObjectManager.TotemEntryList != null && ObjectManager.TotemEntryList.Contains(Entry);
+                return _isTotem;
             }
         }
 
