@@ -672,8 +672,19 @@ namespace nManager.Wow.Bot.States
                     if (Usefuls.IsFlying)
                         MountTask.DismountMount();
 
-                    if (customPath.ArrivalIsA ? customPath.BPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f : customPath.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
+                    if ((customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint).DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
                     {
+                        bool validArrivalPath;
+                        bool validEntrancePath;
+                        var pathToArrival = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.APoint : customPath.BPoint, out validArrivalPath);
+                        var pathToEntrance = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint, out validEntrancePath);
+                        if (validArrivalPath)
+                        {
+                            if (!validEntrancePath)
+                                return;
+                            if (Math.DistanceListPoint(pathToArrival) <= Math.DistanceListPoint(pathToEntrance))
+                                return; // we are closer to arrival, return instead of going back to entrance.
+                        }
                         GoToDepartureQuayOrPortal(selectedTransport);
                         EnterTransportOrTakePortal(selectedTransport);
                         return;
