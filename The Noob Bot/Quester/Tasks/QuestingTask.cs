@@ -1564,7 +1564,7 @@ namespace Quester.Tasks
                 };
 
                 Point me = ObjectManager.Me.Position;
-                if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
+                if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                 {
                     MovementManager.StopMove();
                     Logging.Write("Calling travel system for World Quest...");

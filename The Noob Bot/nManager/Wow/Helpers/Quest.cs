@@ -387,6 +387,10 @@ namespace nManager.Wow.Helpers
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 600f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
+            if (Usefuls.IsFlying && npc.ContinentIdInt == Usefuls.ContinentId)
+                bypassTravel = true;
+            else if (Usefuls.IsFlying)
+                MountTask.DismountMount();
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
@@ -519,6 +523,10 @@ namespace nManager.Wow.Helpers
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 600f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
+            if (Usefuls.IsFlying && npc.ContinentIdInt == Usefuls.ContinentId)
+                bypassTravel = true;
+            else if (Usefuls.IsFlying)
+                MountTask.DismountMount();
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
@@ -828,6 +836,13 @@ namespace nManager.Wow.Helpers
             bool doTravel = forceTravel;
             if (continentId == -1)
                 continentId = Usefuls.ContinentId;
+            if (continentId == Usefuls.ContinentId && Usefuls.IsFlying && !forceTravel)
+                return;
+            if (continentId == Usefuls.ContinentId && Usefuls.IsFlying && forceTravel)
+            {
+                MountTask.DismountMount();
+                // land before generating paths...
+            }
             if (continentId != Usefuls.ContinentId)
                 doTravel = true;
             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(destination) > 300)

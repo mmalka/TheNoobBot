@@ -293,7 +293,7 @@ namespace nManager.Wow.Bot.States
                             }
                             Logging.Write("Not inside, then go to Digsite " + digsitesZone.name);
                             Point me = ObjectManager.ObjectManager.Me.Position;
-                            if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
+                            if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                             {
                                 MovementManager.StopMove();
                                 Logging.Write("Calling travel system to go to digsite...");

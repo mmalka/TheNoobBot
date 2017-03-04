@@ -424,7 +424,7 @@ namespace nManager.Wow.Bot.States
                             doTravel = true;
                     }
                     //Start travel
-                    if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
+                    if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                     {
                         MovementManager.StopMove();
                         Logging.Write("Calling travel system for ToTown...");
