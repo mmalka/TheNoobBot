@@ -38,6 +38,13 @@ namespace nManager.Wow.Bot.States
             set { Products.Products.TravelTo = value; }
         }
 
+        private bool ForceTravel
+        {
+            get { return Products.Products.ForceTravel; }
+            set { Products.Products.ForceTravel = value; }
+        }
+
+
         private int TravelToContinentId
         {
             get { return Products.Products.TravelToContinentId; }
@@ -227,6 +234,7 @@ namespace nManager.Wow.Bot.States
                     {
                         TravelToContinentId = 9999999;
                         TravelTo = new Point();
+                        ForceTravel = false;
                         TargetValidationFct = null;
                         Logging.Write("Travel: We are close enough and we have a valid path. Cancelling Travel.");
                         return new List<Transport>();
@@ -325,13 +333,17 @@ namespace nManager.Wow.Bot.States
                     List<Point> way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
                     if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last()) && !(oneWayTravel.Key is CustomPath)))
                     {
-                        if (travelCost > Math.DistanceListPoint(way))
+                        if (travelCost > Math.DistanceListPoint(way) && !ForceTravel)
                         {
                             TravelToContinentId = 9999999;
                             TravelTo = new Point();
                             TargetValidationFct = null;
                             Logging.Write("Travel: Found a faster path without using Transports. Cancelling Travel.");
                             return new List<Transport>();
+                        }
+                        if (ForceTravel)
+                        {
+                            Logging.Write("Travel: Found a faster path without using Transports but ForceTravel is activated.");
                         }
                     }
                 }
@@ -353,6 +365,7 @@ namespace nManager.Wow.Bot.States
                 // todo: allow to take taxi in case there is no lift and we have no path to the transport.
                 TravelToContinentId = 9999999;
                 TravelTo = new Point();
+                ForceTravel = false;
                 TargetValidationFct = null;
                 Logging.Write("Travel: Couldn't find a travel path.");
                 return new List<Transport>();
@@ -454,6 +467,7 @@ namespace nManager.Wow.Bot.States
             }
             TravelToContinentId = 9999999;
             TravelTo = new Point();
+            ForceTravel = false;
             TargetValidationFct = null;
             Logging.Write("Travel is terminated, waiting for product to take the control back.");
         }
@@ -531,6 +545,7 @@ namespace nManager.Wow.Bot.States
                         Thread.Sleep(10000);
                         TravelToContinentId = 9999999;
                         TravelTo = new Point();
+                        ForceTravel = false;
                         TargetValidationFct = null;
                         Logging.Write("We've used Flight Master Wistle, waiting for product to regenerate travel path.");
                         return;

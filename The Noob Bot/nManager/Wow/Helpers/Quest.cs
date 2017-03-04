@@ -862,6 +862,7 @@ namespace nManager.Wow.Helpers
                 travelToQuestZone = false;
                 Products.Products.TravelToContinentId = continentId;
                 Products.Products.TravelTo = destination;
+                Products.Products.ForceTravel = forceTravel;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
                 _travelLocation = ObjectManager.ObjectManager.Me.Position;
