@@ -63,6 +63,8 @@ namespace nManager.Wow.Bot.States
                 WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 if (unit == null || !unit.IsValid || unit.IsDead || IgnoreStrikeBackCreatureList.Contains(unit.Entry) || TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
                     continue;
+                if (unit.Health > (ObjectManager.ObjectManager.Me.Health*15))
+                    continue; // Do not pull lethal monsters.
                 if (unit.GetMove)
                     _unitToPull = unit;
             }
