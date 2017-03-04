@@ -235,6 +235,8 @@ namespace Quester.Tasks
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
                 if (ItemsManager.GetItemCount(questObjective.CollectItemId) < questObjective.CollectCount)
                     return false;
+                else if (questObjective.InternalIndex <= 0)
+                    return true;
 
             // KILL MOB
             if (questObjective.Objective == Objective.KillMob)
