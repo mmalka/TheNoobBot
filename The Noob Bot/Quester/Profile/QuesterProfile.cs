@@ -312,9 +312,9 @@ namespace Quester.Profile
         [DefaultValue(0)] public int ExtraInt = 0;
         [DefaultValue(0f)] public float ExtraFloat = 0f;
         public Point ExtraPoint = new Point();
-        public object ExtraObject1 = new object();
-        public object ExtraObject2 = new object();
-        public object ExtraObject3 = new object();
+        public object ExtraObject1 = null; // Developpers will always need to assume they are null if they wanna use it.
+        public object ExtraObject2 = null; // That's the only way to effectively prevent them from being serialized.
+        public object ExtraObject3 = null;
     }
 
     [Serializable]
