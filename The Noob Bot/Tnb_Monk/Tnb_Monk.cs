@@ -554,7 +554,7 @@ public class MonkBrewmaster
                 return;
             }
             //Cast Purifying Brew
-            if (ObjectManager.Me.HealthPercent > MySettings.UsePurifyingBrewBelowPercentage &&
+            if (ObjectManager.Me.HealthPercent < MySettings.UsePurifyingBrewBelowPercentage &&
                 PurifyingBrew.IsSpellUsable && !IronskinBrew.HaveBuff)
             {
                 PurifyingBrew.Cast();

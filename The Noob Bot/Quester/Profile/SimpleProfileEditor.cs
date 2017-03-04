@@ -1800,7 +1800,7 @@ namespace Quester.Profile
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "KillMob UseItem On Corpse",
-                Value = (int)Objective.KillMobUseItem
+                Value = (int) Objective.KillMobUseItem
             });
 
             CBObjType.DataSource = cbObjTypeList;
@@ -2112,7 +2112,7 @@ namespace Quester.Profile
             CBInternalObj.Enabled = (selectedObjectiveName != "TurnInQuest" && selectedObjectiveName != "PickUpQuest");
 
             //Auto Try to Import Quest information when selecting those objectives 
-            if(selectedObjectiveName == "TurnInQuest" || selectedObjectiveName == "PickUpQuest")
+            if (selectedObjectiveName == "TurnInQuest" || selectedObjectiveName == "PickUpQuest")
             {
                 ButtonObjImportFromGame_Click(null, null);
             }
@@ -2879,7 +2879,7 @@ namespace Quester.Profile
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             string cursorType = Lua.LuaDoString(randomString + ",_,_ =GetCursorInfo();", randomString);
 
-            if(cursorType == "item")
+            if (cursorType == "item")
             {
                 string itemId = Lua.LuaDoString("_," + randomString + ",_ =GetCursorInfo();", randomString);
                 TBObjUseItemID.Text = itemId;
@@ -2905,45 +2905,38 @@ namespace Quester.Profile
                         switch (e.KeyCode)
                         {
                             case Keys.D1:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpQuest;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.PickUpQuest;
                                 break;
                             case Keys.D2:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.TurnInQuest;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.TurnInQuest;
                                 break;
                             case Keys.D3:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.KillMob;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.KillMob;
                                 break;
                             case Keys.D4:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpObject;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.PickUpObject;
                                 break;
                             case Keys.D5:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.UseItem;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.UseItem;
                                 break;
                             case Keys.D6:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.InteractWith;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.InteractWith;
                                 break;
                             case Keys.D7:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpNPC;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.PickUpNPC;
                                 break;
                         }
                     }
                 }
             }
-            else if(TabControl1.SelectedTab == TabPageQuest)
+            else if (TabControl1.SelectedTab == TabPageQuest)
             {
                 if (e.Control && e.KeyCode == Keys.S && !e.Alt)
                 {
                     ButtonQuestSave_Click(null, null);
                 }
-
             }
         }
-
-      
-
-       
-
-       
     }
 
     public class ComboBoxValueString

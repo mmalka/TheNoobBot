@@ -384,7 +384,7 @@ namespace nManager.Wow.Helpers
             }
             return reagentsItems;
         }
-        
+
         public static List<string> GetAllQuestsItems()
         {
             List<string> questsItems = new List<string>();

@@ -57,7 +57,7 @@ namespace nManager.Wow.ObjectManager
         public static ConcurrentDictionary<UInt128, WoWObject> ObjectDictionary { get; set; }
         public static WoWPlayer Me { get; private set; }
 
-        public static List<int> TotemEntryList; 
+        public static List<int> TotemEntryList;
 
         public static WoWUnit Target
         {

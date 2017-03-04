@@ -580,7 +580,7 @@ public class HunterMarksmanship
                     }
 
                     //Revive Pet
-                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.IsValid)
+                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.Health <= 0)
                     {
                         if (MySettings.UseCombatRevive || !ObjectManager.Me.InCombat)
                         {
@@ -671,7 +671,7 @@ public class HunterMarksmanship
             if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable &&
                 AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 30)
+                if (ObjectManager.Me.Focus < 30)
                     return false;
                 AMurderofCrows.Cast();
                 return true;
@@ -681,7 +681,7 @@ public class HunterMarksmanship
             if (MySettings.UseMarkedShot && MarkedShot.IsSpellUsable && MarkedShot.IsHostileDistanceGood &&
                 ObjectManager.Target.UnitAura(Vulnerable.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2000)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 30)
+                if (ObjectManager.Me.Focus < 30)
                     return false;
                 MarkedShot.Cast();
                 return true;
@@ -698,7 +698,7 @@ public class HunterMarksmanship
             //Cast Windburst on cooldown.
             if (MySettings.UseWindburst && Windburst.IsSpellUsable && Windburst.IsHostileDistanceGood)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 20)
+                if (ObjectManager.Me.Focus < 20)
                     return false;
                 Windburst.Cast();
                 return true;
@@ -706,7 +706,7 @@ public class HunterMarksmanship
             //Cast Barrage on cooldown.
             if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 60)
+                if (ObjectManager.Me.Focus < 60)
                     return false;
                 Barrage.Cast();
                 return true;
@@ -714,9 +714,9 @@ public class HunterMarksmanship
             //Cast Aimed Shot when Target has Vulnerable Dot or you have 80+ Focus.
             if (MySettings.UseAimedShot && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood &&
                 (ObjectManager.Target.UnitAura(Vulnerable.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 1000 ||
-                 ObjectManager.Me.PowerTypeFocus >= 80))
+                 ObjectManager.Me.Focus >= 80))
             {
-                if (ObjectManager.Me.PowerTypeFocus < 30)
+                if (ObjectManager.Me.Focus < 30)
                     return false;
                 AimedShot.Cast();
                 return true;
@@ -1291,7 +1291,7 @@ public class HunterBeastMastery
                     }
 
                     //Revive Pet
-                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.IsValid)
+                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.Health <= 0)
                     {
                         if (MySettings.UseCombatRevive || !ObjectManager.Me.InCombat)
                         {
@@ -1391,7 +1391,7 @@ public class HunterBeastMastery
             if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable &&
                 AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 30)
+                if (ObjectManager.Me.Focus < 30)
                     return;
                 AMurderofCrows.Cast();
                 return;
@@ -1411,7 +1411,7 @@ public class HunterBeastMastery
             if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood &&
                 !ObjectManager.Pet.HaveBuff(BeastCleave.Ids) && ObjectManager.Target.GetUnitInSpellRange(8f) > 1)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 40)
+                if (ObjectManager.Me.Focus < 40)
                     return;
                 MultiShot.Cast();
                 return;
@@ -1439,7 +1439,7 @@ public class HunterBeastMastery
             if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood &&
                 ObjectManager.Target.GetUnitInSpellRange(8f) > 1)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 60)
+                if (ObjectManager.Me.Focus < 60)
                     return;
                 Barrage.Cast();
                 return;
@@ -1448,7 +1448,7 @@ public class HunterBeastMastery
             if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood &&
                 SurgeoftheStormgod.HaveBuff && ObjectManager.Target.GetUnitInSpellRange(8f) >= 4)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 40)
+                if (ObjectManager.Me.Focus < 40)
                     return;
                 MultiShot.Cast();
                 return;
@@ -1457,7 +1457,7 @@ public class HunterBeastMastery
             if (MySettings.UseKillCommand && KillCommand.IsSpellUsable &&
                 ObjectManager.Pet.Position.DistanceTo(ObjectManager.Target.Position) <= 25)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 30)
+                if (ObjectManager.Me.Focus < 30)
                     return;
                 KillCommand.Cast();
                 return;
@@ -1471,16 +1471,16 @@ public class HunterBeastMastery
             //Cast Barrage on cooldown.
             if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 60)
+                if (ObjectManager.Me.Focus < 60)
                     return;
                 Barrage.Cast();
                 return;
             }
             //Cast Cobra Shot when you have over (default = 90) Focus or Bestial Wrath is active.
-            if (ObjectManager.Me.PowerTypeFocus > MySettings.UseCobraShotAboveValue || BestialWrath.HaveBuff
+            if (ObjectManager.Me.Focus > MySettings.UseCobraShotAboveValue || BestialWrath.HaveBuff
                 && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood)
             {
-                if (ObjectManager.Me.PowerTypeFocus < 40)
+                if (ObjectManager.Me.Focus < 40)
                     return;
                 CobraShot.Cast();
                 return;
@@ -1983,7 +1983,7 @@ public class HunterSurvival
                     }
 
                     //Revive Pet
-                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.IsValid)
+                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.Health <= 0)
                     {
                         if (MySettings.UseCombatRevive || !ObjectManager.Me.InCombat)
                         {

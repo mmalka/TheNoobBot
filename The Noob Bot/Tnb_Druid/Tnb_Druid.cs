@@ -30,7 +30,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 1.01f;
+    internal static float Version = 1.02f;
 
     #region ICombatClass Members
 
@@ -288,6 +288,7 @@ public class DruidBalance
     private readonly Spell CatForm = new Spell("Cat Form");
     private readonly Spell MoonkinForm = new Spell(24858);
     private readonly Spell TravelForm = new Spell("Travel Form");
+    private readonly Spell OwlkinFrenzy = new Spell(157228);
     private readonly Spell LunarEmpowerment = new Spell(164547);
     private readonly Spell SolarEmpowerment = new Spell(164545);
 
@@ -601,12 +602,6 @@ public class DruidBalance
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Change Form
-            if (MySettings.UseIncarnation && Incarnation.IsSpellUsable && !Incarnation.HaveBuff)
-            {
-                Incarnation.Cast();
-                return true;
-            }
             //Moonkin Form
             if (MySettings.UseMoonkinForm && MoonkinForm.IsSpellUsable && !ObjectManager.Me.HaveBuff(MoonkinForm.Id))
             {
@@ -630,6 +625,10 @@ public class DruidBalance
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
+            //Only Burst when the main DotS are on the target
+            if (!Moonfire.TargetHaveBuff && !Sunfire.TargetHaveBuff)
+                return;
+
             //Burst Buffs
             if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
             {
@@ -649,7 +648,12 @@ public class DruidBalance
             {
                 CelestialAlignment.Cast();
             }
-            if (MySettings.UseAstralCommunion && AstralCommunion.IsSpellUsable && ObjectManager.Me.Eclipse < 25) // AstralPower, LunarPower, Eclipse
+            if (MySettings.UseIncarnation && Incarnation.IsSpellUsable && !Incarnation.HaveBuff)
+            {
+                Incarnation.Cast();
+                return;
+            }
+            if (ObjectManager.Me.Eclipse < MySettings.UseAstralCommunionBelowPercentage && AstralCommunion.IsSpellUsable) // AstralPower, LunarPower, Eclipse
             {
                 AstralCommunion.Cast();
             }
@@ -674,12 +678,70 @@ public class DruidBalance
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Pool Astral Power and New Moon charges for Fury of Elune
-            if (MySettings.UseFuryofElune && FuryofElune.IsSpellUsable && ObjectManager.Target.GetUnitInSpellRange(3f) >= 2)
+            if (LunarEmpowerment.BuffStack == 3)
             {
-                if (ObjectManager.Me.Eclipse == 100 && NewMoon.GetSpellCharges == 3)
+                Logging.WriteFileOnly("Lunar Empowerment has 3 stacks!" + MySettings.UseLunarStrike + ", " + LunarStrike.IsSpellUsable + ", " + LunarStrike.IsHostileDistanceGood);
+            }
+
+            //Cast Solar Wrath when target isn't in combat
+            if (MySettings.UseSolarWrath && SolarWrath.IsSpellUsable && SolarWrath.IsHostileDistanceGood &&
+                !ObjectManager.Target.InCombat)
+            {
+                SolarWrath.Cast();
+                return;
+            }
+
+            //Cast New Moon when you cap charges
+            if (MySettings.UseNewMoon && NewMoon.IsSpellUsable && NewMoon.GetSpellCharges >= 3)
+            {
+                NewMoon.Cast();
+                return;
+            }
+
+            //Apply Moonfire
+            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood && !Moonfire.TargetHaveBuff)
+            {
+                Moonfire.Cast();
+                return;
+            }
+
+            //Apply Sunfire
+            if (MySettings.UseSunfire && Sunfire.IsSpellUsable && Sunfire.IsHostileDistanceGood && !Sunfire.TargetHaveBuff)
+            {
+                Sunfire.Cast();
+                return;
+            }
+
+            //Apply Stellar Flare
+            if (MySettings.UseStellarFlare && StellarFlare.IsSpellUsable && StellarFlare.IsHostileDistanceGood && !StellarFlare.TargetHaveBuff)
+            {
+                StellarFlare.Cast();
+                return;
+            }
+
+            //Cast LunarStrike when it's an Instant
+            if (MySettings.UseLunarStrike && LunarStrike.IsSpellUsable && LunarStrike.IsHostileDistanceGood &&
+                (OwlkinFrenzy.HaveBuff || WarriorofElune.HaveBuff))
+            {
+                LunarStrike.Cast();
+                return;
+            }
+
+            //Pool Astral Power and New Moon charges for Fury of Elune when off cooldown
+            if (MySettings.UseFuryofEluneAtPercentage > 0 && FuryofElune.IsSpellUsable && ObjectManager.Target.GetUnitInSpellRange(3f) >= 2)
+            {
+                //Cast Fury of Elune
+                if (ObjectManager.Me.Eclipse >= MySettings.UseFuryofEluneAtPercentage && NewMoon.GetSpellCharges == 3 &&
+                    !FuryofElune.HaveBuff)
                 {
                     FuryofElune.CastAtPosition(ObjectManager.Target.Position);
+                    return;
+                }
+                //Cast New Moon while Fury of Elune is active
+                if (MySettings.UseNewMoon && NewMoon.IsSpellUsable && NewMoon.GetSpellCharges > 0 &&
+                    FuryofElune.HaveBuff)
+                {
+                    NewMoon.Cast();
                     return;
                 }
             }
@@ -695,13 +757,13 @@ public class DruidBalance
                     }
                 }
                 else if (MySettings.UseStarsurge && Starsurge.IsSpellUsable && Starsurge.IsHostileDistanceGood &&
-                         (LunarEmpowerment.TargetBuffStack < 3 || SolarEmpowerment.TargetBuffStack < 3 || ObjectManager.Me.ManaPercentage == 100))
+                         (LunarEmpowerment.BuffStack < 3 || SolarEmpowerment.BuffStack < 3 || ObjectManager.Me.ManaPercentage == 100))
                 {
                     Starsurge.Cast();
                     return;
                 }
 
-                //Don't cap on New Moon charges
+                //Cast New Moon when you have more then 1 charge
                 if (MySettings.UseNewMoon && NewMoon.IsSpellUsable && NewMoon.GetSpellCharges > 1)
                 {
                     NewMoon.Cast();
@@ -709,44 +771,64 @@ public class DruidBalance
                 }
             }
 
-
-            //Keep Stellar Flare, Moonfire and Sunfire up
-            if (MySettings.UseStellarFlare && StellarFlare.IsSpellUsable && StellarFlare.IsHostileDistanceGood && !StellarFlare.TargetHaveBuff)
+            //Cast Solar Wrath when you cap Solar Empowerment and have less than 4 targets
+            if (MySettings.UseSolarWrath && SolarWrath.IsSpellUsable && SolarWrath.IsHostileDistanceGood &&
+                SolarEmpowerment.BuffStack == 3 && ObjectManager.GetUnitInSpellRange(8f) < 4)
             {
-                StellarFlare.Cast();
+                SolarWrath.Cast();
                 return;
             }
-            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood && !Moonfire.TargetHaveBuff)
+
+            //Cast Lunar Strike when you cap Lunar Empowerment
+            if (MySettings.UseLunarStrike && LunarStrike.IsSpellUsable && LunarStrike.IsHostileDistanceGood &&
+                LunarEmpowerment.BuffStack == 3)
+            {
+                //Cast Warrior of Elune is ready
+                if (MySettings.UseWarriorofElune && WarriorofElune.IsSpellUsable)
+                {
+                    WarriorofElune.Cast();
+                }
+                LunarStrike.Cast();
+            }
+
+            //Maintain Moonfire (Pandemic Window)
+            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
+                ObjectManager.Target.UnitAura(Moonfire.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
             {
                 Moonfire.Cast();
                 return;
             }
-            if (MySettings.UseSunfire && Sunfire.IsSpellUsable && Sunfire.IsHostileDistanceGood && !Sunfire.TargetHaveBuff)
+
+            //Maintain Sunfire (Pandemic Window)
+            if (MySettings.UseSunfire && Sunfire.IsSpellUsable && Sunfire.IsHostileDistanceGood &&
+                ObjectManager.Target.UnitAura(Sunfire.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 4000)
             {
                 Sunfire.Cast();
                 return;
             }
 
-            //Consume Lunar & Solar Empowerment && Fill with Lunar Strike on 2+ targets
-            if (MySettings.UseSolarWrath && SolarWrath.IsSpellUsable && SolarWrath.IsHostileDistanceGood && SolarEmpowerment.TargetBuffStack == 3)
+            //Maintain Stellar Flare (Pandemic Window)
+            if (MySettings.UseStellarFlare && StellarFlare.IsSpellUsable && StellarFlare.IsHostileDistanceGood &&
+                ObjectManager.Target.UnitAura(StellarFlare.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 8000)
             {
-                SolarWrath.Cast();
-                return;
-            }
-            if (MySettings.UseLunarStrike && LunarStrike.IsSpellUsable && LunarStrike.IsHostileDistanceGood &&
-                (ObjectManager.GetUnitInSpellRange(8f) >= 2 || LunarEmpowerment.TargetBuffStack == 3))
-            {
-                if (MySettings.UseWarriorofElune && WarriorofElune.IsSpellUsable && LunarEmpowerment.TargetBuffStack >= 2)
-                {
-                    WarriorofElune.Cast();
-                    LunarStrike.Cast();
-                    Others.SafeSleep(1500 + Usefuls.Latency);
-                }
-                LunarStrike.Cast();
+                StellarFlare.Cast();
                 return;
             }
 
-            //Fill with Solar Wrath
+            //Cast Lunar Strike when you will hit 2+ targets
+            if (MySettings.UseLunarStrike && LunarStrike.IsSpellUsable && LunarStrike.IsHostileDistanceGood &&
+                ObjectManager.GetUnitInSpellRange(8f) >= 2)
+            {
+                //Wait for 2 Lunar Empowerments when Warrior of Elune is off cooldown
+                if (MySettings.UseWarriorofElune && WarriorofElune.IsSpellUsable &&
+                    LunarEmpowerment.BuffStack >= 2)
+                {
+                    WarriorofElune.Cast();
+                }
+                LunarStrike.Cast();
+            }
+
+            //Cast Solar Wrath
             if (MySettings.UseSolarWrath && SolarWrath.IsSpellUsable && SolarWrath.IsHostileDistanceGood)
             {
                 SolarWrath.Cast();
@@ -793,10 +875,10 @@ public class DruidBalance
         /* Offensive Cooldowns */
         public bool UseCelestialAlignment = true;
         public bool UseForceofNature = true;
-        public bool UseFuryofElune = false;
+        public int UseFuryofEluneAtPercentage = 90;
         public bool UseWarriorofElune = true;
         public bool UseIncarnation = true;
-        public bool UseAstralCommunion = true;
+        public int UseAstralCommunionBelowPercentage = 15;
 
         /* Defensive Cooldowns */
         public int UseBarkskinBelowPercentage = 75;
@@ -853,10 +935,10 @@ public class DruidBalance
             /* Offensive Cooldowns */
             AddControlInWinForm("Use Celestial Alignment", "UseCelestialAlignment", "Offensive Cooldowns");
             AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldowns");
-            //AddControlInWinForm("Use Fury of Elune", "UseFuryofElune", "Offensive Cooldowns");//Not properly implemented
+            AddControlInWinForm("Use Fury of Elune", "UseFuryofEluneAtPercentage", "Offensive Cooldowns", "AtPercentage", "Astral Power");
             AddControlInWinForm("Use Warrior of Elune", "UseWarriorofElune", "Offensive Cooldowns");
             AddControlInWinForm("Use Incarnation: Chosen of Elune", "UseIncarnation", "Offensive Cooldowns");
-            AddControlInWinForm("Use Astral Communion", "UseAstralCommunion", "Offensive Cooldowns");
+            AddControlInWinForm("Use Astral Communion", "UseAstralCommunionBelowPercentage", "Offensive Cooldowns", "BelowPercentage", "Astral Power");
             /* Defensive Cooldowns */
             AddControlInWinForm("Use Barkskin", "UseBarkskinBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");

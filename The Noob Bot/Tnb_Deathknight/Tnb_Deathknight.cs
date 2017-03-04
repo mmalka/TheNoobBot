@@ -27,7 +27,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 1.0f;
+    internal static float Version = 1.01f;
 
     #region ICombatClass Members
 
@@ -218,6 +218,12 @@ public class DeathknightBlood
 
     #region Buffs
 
+    private readonly Spell RapidDecomposition = new Spell(194662);
+
+    #endregion
+
+    #region Buffs
+
     private readonly Spell BoneShield = new Spell(195181);
     private readonly Spell DarkSuccor = new Spell(101568);
     private readonly Spell CrimsonScourge = new Spell(81141);
@@ -242,7 +248,7 @@ public class DeathknightBlood
     private readonly Spell DeathsCaress = new Spell("Death's Caress");
     private readonly Spell DeathandDecay = new Spell("Death and Decay");
     private readonly Spell DeathStrike = new Spell("Death Strike");
-    private readonly Spell HearthStrike = new Spell("Hearth Strike");
+    private readonly Spell HeartStrike = new Spell("Heart Strike");
     private readonly Spell Marrowrend = new Spell("Marrowrend");
 
     #endregion
@@ -272,7 +278,7 @@ public class DeathknightBlood
     private readonly Spell BloodTap = new Spell("Blood Tap");
     private readonly Spell DarkCommand = new Spell("Dark Command");
     private readonly Spell DeathGrip = new Spell("Death Grip");
-    private readonly Spell GorefiendsGrasp = new Spell("Gorefriend's Grasp");
+    private readonly Spell GorefiendsGrasp = new Spell("Gorefiend's Grasp");
     //private readonly Spell MindFreeze = new Spell("Mind Freeze");
     private readonly Spell PathofFrost = new Spell("Path of Frost");
     private readonly Spell RaiseAlly = new Spell("Raise Ally");
@@ -404,10 +410,18 @@ public class DeathknightBlood
                 Blooddrinker.Cast();
                 return true;
             }
-            //Blooddrinker
-            if (ObjectManager.Me.HealthPercent < MySettings.UseBonestormBelowPercentage && Bonestorm.IsSpellUsable /*&& Bonestorm.IsHostileDistanceGood*/)
+            //Bonestorm
+            if (ObjectManager.Me.HealthPercent < MySettings.UseBonestormBelowPercentage && Bonestorm.IsSpellUsable &&
+                ObjectManager.Me.RunicPower > MySettings.UseBonestormAbovePercentage /*&& Bonestorm.IsHostileDistanceGood*/)
             {
                 Bonestorm.Cast();
+                return true;
+            }
+            //Death Strike
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage &&
+                DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
+            {
+                DeathStrike.Cast();
                 return true;
             }
             return false;
@@ -586,89 +600,73 @@ public class DeathknightBlood
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
+            // Use Marrowrend if your Bone Shield is close to expiring (3 seconds or less)
+            if (MySettings.UseMarrowrend && Marrowrend.IsSpellUsable && Marrowrend.IsHostileDistanceGood &&
+                ObjectManager.Me.UnitAura(BoneShield.Ids).AuraTimeLeftInMs < 3000)
+            {
+                Marrowrend.Cast();
+                return;
+            }
+            // Use Blood Boil if any nearby enemies do not have your Blood Plague disease.
             if (MySettings.UseBloodBoil && BloodBoil.IsSpellUsable && BloodBoil.IsHostileDistanceGood && !BloodPlague.TargetHaveBuff)
             {
                 BloodBoil.Cast();
                 return;
             }
-            if (MySettings.UseMarrowrend && Marrowrend.IsSpellUsable && Marrowrend.IsHostileDistanceGood && BoneShield.BuffStack == 0)
+            // Use Death and Decay if you have a Crimson Scourge proc and
+            if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable &&
+                DeathandDecay.IsHostileDistanceGood && CrimsonScourge.HaveBuff)
             {
-                Marrowrend.Cast();
-                return;
+                // you are using the Rapid Decomposition talent
+                if (RapidDecomposition.HaveBuff ||
+                    // or will hit multiple enemies.
+                    ObjectManager.Target.GetUnitInSpellRange(5f) > 1)
+                {
+                    DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
+                    return;
+                }
             }
-            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood &&
-                DarkSuccor.HaveBuff)
+            // Use Death Strike to avoid capping Runic Power.
+            if (MySettings.UseDeathStrike && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood &&
+                ObjectManager.Me.RunicPowerPercentage >= 90)
             {
                 DeathStrike.Cast();
                 return;
             }
+            // Use Marrowrend if you have 6 or fewer stacks of Bone Shield.
+            if (MySettings.UseMarrowrend && Marrowrend.IsSpellUsable && Marrowrend.IsHostileDistanceGood &&
+                BoneShield.BuffStack <= 6)
+            {
+                Marrowrend.Cast();
+                return;
+            }
+            // Use Death and Decay if
+            if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable &&
+                DeathandDecay.IsHostileDistanceGood)
+            {
+                // you have atleat 3 Runes and are using the Rapid Decomposition talent
+                if ((ObjectManager.Me.Runes >= 3 && RapidDecomposition.HaveBuff) ||
+                    // or will hit atlesat 3 enemies.
+                    ObjectManager.Target.GetUnitInSpellRange(5f) >= 3)
+                {
+                    DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
+                    return;
+                }
+            }
+            // Use Heart Strike if you have 3 or more Runes
+            if (MySettings.UseHeartStrike && HeartStrike.IsSpellUsable && HeartStrike.IsHostileDistanceGood &&
+                ObjectManager.Me.Runes >= 3)
+            {
+                HeartStrike.Cast();
+                return;
+            }
+            // Use Consumption.
             if (MySettings.UseConsumption && Consumption.IsSpellUsable && Consumption.IsHostileDistanceGood)
             {
                 Consumption.Cast();
                 return;
             }
-
-            //Single Target 
-            if (ObjectManager.Target.GetUnitInSpellRange(5f) == 1)
-            {
-                if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood && CrimsonScourge.HaveBuff)
-                {
-                    DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
-                    return;
-                }
-                if (BoneShield.BuffStack < 6 || ObjectManager.Me.UnitAura(BoneShield.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2000)
-                {
-                    if (MySettings.UseMarrowrend && Marrowrend.IsSpellUsable && Marrowrend.IsHostileDistanceGood)
-                    {
-                        Marrowrend.Cast();
-                        return;
-                    }
-                }
-                else
-                {
-                    if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
-                    {
-                        DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
-                        return;
-                    }
-                    if (MySettings.UseHearthStrike && HearthStrike.IsSpellUsable && HearthStrike.IsHostileDistanceGood)
-                    {
-                        HearthStrike.Cast();
-                        return;
-                    }
-                }
-            }
-                //Multiple Targets
-            else
-            {
-                if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
-                {
-                    DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
-                    return;
-                }
-                if (BoneShield.BuffStack < 6 || ObjectManager.Me.UnitAura(BoneShield.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2000)
-                {
-                    if (MySettings.UseMarrowrend && Marrowrend.IsSpellUsable && Marrowrend.IsHostileDistanceGood)
-                    {
-                        Marrowrend.Cast();
-                        return;
-                    }
-                }
-                else
-                {
-                    if (MySettings.UseHearthStrike && HearthStrike.IsSpellUsable && HearthStrike.IsHostileDistanceGood)
-                    {
-                        HearthStrike.Cast();
-                        return;
-                    }
-                }
-            }
-
-            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
-            {
-                DeathStrike.Cast();
-                return;
-            }
+            // Use Blood Boil.
             if (MySettings.UseBloodBoil && BloodBoil.IsSpellUsable && BloodBoil.IsHostileDistanceGood)
             {
                 BloodBoil.Cast();
@@ -701,23 +699,25 @@ public class DeathknightBlood
         /* Offensive Spells */
         public bool UseBloodBoil = true;
         public bool UseDeathandDecay = true;
-        public int UseDeathStrikeBelowPercentage = 100;
-        public bool UseHearthStrike = true;
+        public bool UseDeathStrike = true;
+        public bool UseHeartStrike = true;
         public bool UseMarrowrend = true;
 
         /* Defensive Spells */
+        public int UseAntiMagicShellBelowPercentage = 40;
         public int UseAsphyxiateBelowPercentage = 0;
         public int UseBloodMirrorBelowPercentage = 0;
-        public int UseDancingRuneWeaponBelowPercentage = 0;
+        public int UseDancingRuneWeaponBelowPercentage = 20;
         public int UseMarkofBloodBelowPercentage = 0;
         public int UseRuneTapBelowPercentage = 0;
         public int UseTombstoneBelowPercentage = 0;
-        public int UseVampiricBloodBelowPercentage = 0;
-        public int UseAntiMagicShellBelowPercentage = 0;
+        public int UseVampiricBloodBelowPercentage = 60;
 
         /* Healing Spells */
         public int UseBlooddrinkerBelowPercentage = 60;
         public int UseBonestormBelowPercentage = 40;
+        public int UseBonestormAbovePercentage = 35;
+        public int UseDeathStrikeBelowPercentage = 80;
 
         /* Utility Spells */
         public bool UseDarkCommand = true;
@@ -744,12 +744,13 @@ public class DeathknightBlood
             /* Artifact Spells */
             AddControlInWinForm("Use Consumption", "UseConsumption", "Artifact Spells");
             /* Offensive Spells */
-            AddControlInWinForm("Use BloodBoil", "UseBloodBoil", "Offensive Spells");
+            AddControlInWinForm("Use Blood Boil", "UseBloodBoil", "Offensive Spells");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spells");
-            AddControlInWinForm("Use Death Strike", "UseDeathStrikeBelowPercentage", "Offensive Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use HeartStrike", "UseHearthStrike", "Offensive Spells");
-            AddControlInWinForm("Use BloodBoil", "UseBloodBoil", "Offensive Spells");
+            AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Offensive Spells");
+            AddControlInWinForm("Use Heart Strike", "UseHeartStrike", "Offensive Spells");
+            AddControlInWinForm("Use Marrowrend", "UseMarrowrend", "Offensive Spells");
             /* Defensive Spells */
+            AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShellBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Asphyxiate", "UseAsphyxiateBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Blood Mirror", "UseBloodMirrorBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Dancing Rune Weapon", "UseDancingRuneWeaponBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
@@ -757,10 +758,11 @@ public class DeathknightBlood
             AddControlInWinForm("Use Rune Tap", "UseRuneTapBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Tombstone", "UseTombstoneBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Vampiric Blood", "UseVampiricBloodBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShellBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Healing Spells */
             AddControlInWinForm("Use Blooddrinker", "UseBlooddrinkerBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Bonestorm", "UseBonestormBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Bonestorm", "UseBonestormAbovePercentage", "Healing Spells", "AbovePercentage", "Runic Power");
+            AddControlInWinForm("Use Death Strike", "UseDeathStrikeBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Use Dark Command", "UseDarkCommand", "Utility Spells");
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Utility Spells");

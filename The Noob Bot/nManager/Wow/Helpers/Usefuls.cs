@@ -986,7 +986,7 @@ namespace nManager.Wow.Helpers
         {
             //_, _, standingID, _, _, _, _, _, _, _, _, _, _, _, _, _= GetFactionInfoByID(970);
             string randomString = Others.GetRandomString(Others.Random(4, 10));
-            string standing = Lua.LuaDoString("_, _," + randomString + ", _, _, _, _, _, _, _, _, _, _, _, _, _= GetFactionInfoByID("+reputationId+")",randomString);
+            string standing = Lua.LuaDoString("_, _," + randomString + ", _, _, _, _, _, _, _, _, _, _, _, _, _= GetFactionInfoByID(" + reputationId + ")", randomString);
 
             return (Reaction) Others.ToInt32(standing);
         }
