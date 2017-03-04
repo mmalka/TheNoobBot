@@ -316,5 +316,6 @@ namespace nManager
         public bool HideCharacterNameFromTitle = false;
         public bool ActivateSafeResurrectionSystem = true;
         public bool DontSellReagents = true;
+        public bool DeactivateFlyingMount = false;
     }
 }

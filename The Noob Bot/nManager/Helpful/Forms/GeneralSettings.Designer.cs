@@ -39,6 +39,8 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.MainPanel = new nManager.Helpful.Forms.UserControls.TnbRibbonManager();
             this.SpellManagementSystemPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.UseSafeResurrectionPointLabel = new System.Windows.Forms.Label();
+            this.UseSafeResurrectionPoint = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.HealerClass = new nManager.Helpful.Forms.UserControls.TnbComboBox();
             this.CombatClass = new nManager.Helpful.Forms.UserControls.TnbComboBox();
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel = new System.Windows.Forms.Label();
@@ -272,8 +274,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.UseSafeResurrectionPointLabel = new System.Windows.Forms.Label();
-            this.UseSafeResurrectionPoint = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.DeactivateFlyingMountLabel = new System.Windows.Forms.Label();
+            this.DeactivateFlyingMount = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -430,6 +432,29 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SpellManagementSystemPanelName.TitleText = "Spell Management System - Combat/Healer Class";
             this.SpellManagementSystemPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("SpellManagementSystemPanelName.UnfolderImage")));
+            // 
+            // UseSafeResurrectionPointLabel
+            // 
+            this.UseSafeResurrectionPointLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseSafeResurrectionPointLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseSafeResurrectionPointLabel.Location = new System.Drawing.Point(300, 123);
+            this.UseSafeResurrectionPointLabel.Name = "UseSafeResurrectionPointLabel";
+            this.UseSafeResurrectionPointLabel.Size = new System.Drawing.Size(154, 22);
+            this.UseSafeResurrectionPointLabel.TabIndex = 55;
+            this.UseSafeResurrectionPointLabel.Text = "Ressurect in SafeSpot";
+            // 
+            // UseSafeResurrectionPoint
+            // 
+            this.UseSafeResurrectionPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UseSafeResurrectionPoint.Location = new System.Drawing.Point(459, 123);
+            this.UseSafeResurrectionPoint.MaximumSize = new System.Drawing.Size(60, 20);
+            this.UseSafeResurrectionPoint.MinimumSize = new System.Drawing.Size(60, 20);
+            this.UseSafeResurrectionPoint.Name = "UseSafeResurrectionPoint";
+            this.UseSafeResurrectionPoint.OffText = "OFF";
+            this.UseSafeResurrectionPoint.OnText = "ON";
+            this.UseSafeResurrectionPoint.Size = new System.Drawing.Size(60, 20);
+            this.UseSafeResurrectionPoint.TabIndex = 56;
+            this.UseSafeResurrectionPoint.Value = false;
             // 
             // HealerClass
             // 
@@ -973,6 +998,8 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MountManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.MountManagementPanelName.ContentSize = new System.Drawing.Size(556, 180);
+            this.MountManagementPanelName.Controls.Add(this.DeactivateFlyingMountLabel);
+            this.MountManagementPanelName.Controls.Add(this.DeactivateFlyingMount);
             this.MountManagementPanelName.Controls.Add(this.AquaticMountName);
             this.MountManagementPanelName.Controls.Add(this.AquaticMountNameLabel);
             this.MountManagementPanelName.Controls.Add(this.IgnoreFightIfMountedLabel);
@@ -1037,7 +1064,7 @@ namespace nManager.Helpful.Forms
             // IgnoreFightIfMounted
             // 
             this.IgnoreFightIfMounted.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.IgnoreFightIfMounted.Location = new System.Drawing.Point(475, 85);
+            this.IgnoreFightIfMounted.Location = new System.Drawing.Point(475, 83);
             this.IgnoreFightIfMounted.MaximumSize = new System.Drawing.Size(60, 20);
             this.IgnoreFightIfMounted.MinimumSize = new System.Drawing.Size(60, 20);
             this.IgnoreFightIfMounted.Name = "IgnoreFightIfMounted";
@@ -3545,28 +3572,29 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
             // 
-            // UseSafeResurrectionPointLabel
+            // DeactivateFlyingMountLabel
             // 
-            this.UseSafeResurrectionPointLabel.BackColor = System.Drawing.Color.Transparent;
-            this.UseSafeResurrectionPointLabel.ForeColor = System.Drawing.Color.Black;
-            this.UseSafeResurrectionPointLabel.Location = new System.Drawing.Point(300, 123);
-            this.UseSafeResurrectionPointLabel.Name = "UseSafeResurrectionPointLabel";
-            this.UseSafeResurrectionPointLabel.Size = new System.Drawing.Size(154, 22);
-            this.UseSafeResurrectionPointLabel.TabIndex = 55;
-            this.UseSafeResurrectionPointLabel.Text = "Ressurect in SafeSpot";
+            this.DeactivateFlyingMountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DeactivateFlyingMountLabel.ForeColor = System.Drawing.Color.Black;
+            this.DeactivateFlyingMountLabel.Location = new System.Drawing.Point(316, 110);
+            this.DeactivateFlyingMountLabel.Name = "DeactivateFlyingMountLabel";
+            this.DeactivateFlyingMountLabel.Size = new System.Drawing.Size(154, 22);
+            this.DeactivateFlyingMountLabel.TabIndex = 25;
+            this.DeactivateFlyingMountLabel.Text = "Deactivate Flying Mount";
+            this.DeactivateFlyingMountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // UseSafeResurrectionPoint
+            // DeactivateFlyingMount
             // 
-            this.UseSafeResurrectionPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.UseSafeResurrectionPoint.Location = new System.Drawing.Point(459, 123);
-            this.UseSafeResurrectionPoint.MaximumSize = new System.Drawing.Size(60, 20);
-            this.UseSafeResurrectionPoint.MinimumSize = new System.Drawing.Size(60, 20);
-            this.UseSafeResurrectionPoint.Name = "UseSafeResurrectionPoint";
-            this.UseSafeResurrectionPoint.OffText = "OFF";
-            this.UseSafeResurrectionPoint.OnText = "ON";
-            this.UseSafeResurrectionPoint.Size = new System.Drawing.Size(60, 20);
-            this.UseSafeResurrectionPoint.TabIndex = 56;
-            this.UseSafeResurrectionPoint.Value = false;
+            this.DeactivateFlyingMount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.DeactivateFlyingMount.Location = new System.Drawing.Point(475, 112);
+            this.DeactivateFlyingMount.MaximumSize = new System.Drawing.Size(60, 20);
+            this.DeactivateFlyingMount.MinimumSize = new System.Drawing.Size(60, 20);
+            this.DeactivateFlyingMount.Name = "DeactivateFlyingMount";
+            this.DeactivateFlyingMount.OffText = "OFF";
+            this.DeactivateFlyingMount.OnText = "ON";
+            this.DeactivateFlyingMount.Size = new System.Drawing.Size(60, 20);
+            this.DeactivateFlyingMount.TabIndex = 26;
+            this.DeactivateFlyingMount.Value = false;
             // 
             // GeneralSettings
             // 
@@ -3870,5 +3898,7 @@ namespace nManager.Helpful.Forms
         private TnbSwitchButton DontSellReagents;
         private Label UseSafeResurrectionPointLabel;
         private TnbSwitchButton UseSafeResurrectionPoint;
+        private Label DeactivateFlyingMountLabel;
+        private TnbSwitchButton DeactivateFlyingMount;
     }
 }

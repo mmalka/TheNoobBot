@@ -129,7 +129,7 @@ namespace nManager.Wow.Bot.Tasks
                     return MountCapacity.Feet; // Tannan Jungle Intro to leave to the docks.
 
                 if ((ObjectManager.ObjectManager.Me.Level >= 60 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 58)) && _flyMount != string.Empty &&
-                    Usefuls.IsFlyableArea)
+                    Usefuls.IsFlyableArea && !nManagerSetting.CurrentSetting.DeactivateFlyingMount)
                 {
                     ContinentId cont = (ContinentId) Usefuls.ContinentId;
 

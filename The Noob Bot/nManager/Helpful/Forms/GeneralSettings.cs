@@ -397,6 +397,8 @@ namespace nManager.Helpful.Forms
             ActivateMonsterLooting.OnText = onText;
             ActivateLootStatistics.OffText = offText;
             ActivateLootStatistics.OnText = onText;
+            DeactivateFlyingMount.OffText = offText;
+            DeactivateFlyingMount.OnText = onText;
             DoRegenManaIfLow.OffText = offText;
             DoRegenManaIfLow.OnText = onText;
             IgnoreFightIfMounted.OffText = offText;
@@ -565,6 +567,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.UseFrameLock = UseFrameLock.Value;
                 nManagerSetting.CurrentSetting.DontSellReagents = DontSellReagents.Value;
                 nManagerSetting.CurrentSetting.ActivateSafeResurrectionSystem = UseSafeResurrectionPoint.Value;
+                nManagerSetting.CurrentSetting.DeactivateFlyingMount = DeactivateFlyingMount.Value;
                 foreach (string s in ActivatedPluginsList.Items)
                 {
                     nManagerSetting.CurrentSetting.ActivatedPluginsList.Add(s);
@@ -699,6 +702,7 @@ namespace nManager.Helpful.Forms
                 UseSafeResurrectionPoint.Value = managerSetting.ActivateSafeResurrectionSystem;
                 ActivatedPluginsList.Items.Clear();
                 UseFrameLock.Value = managerSetting.UseFrameLock;
+                DeactivateFlyingMount.Value = managerSetting.DeactivateFlyingMount;
                 foreach (string s in managerSetting.ActivatedPluginsList)
                 {
                     if (AvailablePluginsList.Items.Contains(s))
