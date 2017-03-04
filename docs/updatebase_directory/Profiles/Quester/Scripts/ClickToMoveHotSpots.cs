@@ -6,7 +6,7 @@ if(!MovementManager.InMovement)
 	{ 
 		Logging.Write("Moving with ClickToMove");
 		MountTask.Mount();
-		System.Threading.Thread.Sleep(2000);
+		System.Threading.Thread.Sleep(500);
 		var listP = new List<Point>();
 		listP.Add(ObjectManager.Me.Position);
 		listP.AddRange(questObjective.Hotspots);

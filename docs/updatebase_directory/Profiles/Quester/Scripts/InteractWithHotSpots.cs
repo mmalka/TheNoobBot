@@ -18,7 +18,7 @@ int q = QuestID; /* not used but otherwise getting warning QuestID not used */
 uint baseAddress = 0;
 
 /* If Entry found continue, otherwise continue checking around HotSpots */
-if ((unit.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid)) || (node.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid)))
+if ((unit.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid)) || (node.IsValid && !nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid)))
 {
 
 	/* Entry found, GoTo */

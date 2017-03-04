@@ -486,5 +486,37 @@
         <Z>253.4846</Z>
       </BPoint>
     </Transport>
+	 <Transport Id="188521" Name="Elevator" Faction="Neutral" AContinentId="571" BContinentId="571">
+      <AOutsidePoint> 
+ <X>2884.795</X>
+ <Y>6205.878</Y>
+ <Z>104.066</Z>
+      </AOutsidePoint>
+      <BOutsidePoint>
+ <X>2886.772</X>
+ <Y>6221.708</Y>
+ <Z>208.749</Z>
+      </BOutsidePoint>
+      <AInsidePoint>
+ <X>2882.031</X>
+ <Y>6219.323</Y>
+ <Z>105.3799</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+    <X>2895.896</X>
+ <Y>6232.027</Y>
+ <Z>208.9087</Z>
+      </BInsidePoint>
+      <APoint>
+		<X>2878.316</X>
+		<Y>6223.632</Y>
+		<Z>105.3792</Z>
+      </APoint>
+      <BPoint>
+	  <X>2892.18</X>
+		<Y>6236.337</Y>
+		<Z>208.908</Z>
+      </BPoint>
+    </Transport>
   </Items>
 </Transports>

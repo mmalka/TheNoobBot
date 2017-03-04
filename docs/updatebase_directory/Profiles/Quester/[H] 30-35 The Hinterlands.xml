@@ -516,7 +516,6 @@
             </Point>
           </Hotspots>
           <Script>=UseItemWithHotSpots.cs</Script>
-          <IgnoreBlackList>true</IgnoreBlackList>
           <IgnoreNotSelectable>true</IgnoreNotSelectable>
           <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <UseItemId>58209</UseItemId>

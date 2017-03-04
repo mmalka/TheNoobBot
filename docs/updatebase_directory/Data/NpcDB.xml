@@ -1253,7 +1253,7 @@
     <Position>
       <X>-5590.67</X>
       <Y>-428.416</Y>
-      <Z>397.3265</Z>
+      <Z>397.3267</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -2998,7 +2998,7 @@
     <Position>
       <X>-5568.99</X>
       <Y>-429.114</Y>
-      <Z>397.3265</Z>
+      <Z>397.326721</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -3032,9 +3032,9 @@
     <Entry>1692</Entry>
     <Name>Golorn Frostbeard</Name>
     <Position>
-      <X>-5640.83154</X>
-      <Y>-501.3918</Y>
-      <Z>396.669525</Z>
+      <X>-5633.44</X>
+      <Y>-496.477</Y>
+      <Z>396.690826</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -11878,6 +11878,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>-1765.03125</X>
+      <Y>1410.88025</Y>
+      <Z>20.8905888</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1765.03125</X>
+      <Y>1410.88025</Y>
+      <Z>20.8905888</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>-1346.96118</X>
       <Y>-2046.03516</Y>
       <Z>71.38631</Z>
@@ -12758,6 +12780,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>2830.98413</X>
+      <Y>5969.683</Y>
+      <Z>114.279205</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2830.98413</X>
+      <Y>5969.683</Y>
+      <Z>114.279205</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>2850.49146</X>
       <Y>6557.335</Y>
       <Z>209.161514</Z>
@@ -12973,6 +13017,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3613.33179</X>
+      <Y>6804.92139</Y>
+      <Z>172.952042</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3613.33179</X>
+      <Y>6804.92139</Y>
+      <Z>172.952042</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -14754,6 +14820,18 @@
       <X>-4771.243</X>
       <Y>-1163.58435</Y>
       <Z>502.353271</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>9099</Entry>
+    <Name>Sraaz</Name>
+    <Position>
+      <X>-4736.71826</X>
+      <Y>-1076.00452</Y>
+      <Z>502.43927</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -26098,6 +26176,54 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25274</Entry>
+    <Name>Armorer Orkuruk</Name>
+    <Position>
+      <X>2771.92554</X>
+      <Y>6216.135</Y>
+      <Z>83.4484</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25274</Entry>
+    <Name>Armorer Orkuruk</Name>
+    <Position>
+      <X>2771.92554</X>
+      <Y>6216.135</Y>
+      <Z>83.4484</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25277</Entry>
+    <Name>Chief Engineer Leveny</Name>
+    <Position>
+      <X>2823.84839</X>
+      <Y>6118.378</Y>
+      <Z>83.51979</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>EngineeringTrainer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25278</Entry>
+    <Name>Williamson</Name>
+    <Position>
+      <X>2803.70166</X>
+      <Y>6154.502</Y>
+      <Z>84.79287</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25314</Entry>
     <Name>Archmage Berinand</Name>
     <Position>
@@ -26876,6 +27002,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>26945</Entry>
+    <Name>Zend'li Venomtusk</Name>
+    <Position>
+      <X>2819.00269</X>
+      <Y>6158.25342</Y>
+      <Z>104.974007</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>26950</Entry>
     <Name>Sanut Swiftspear</Name>
     <Position>
@@ -27089,6 +27227,54 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>TailoringTrainer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26972</Entry>
+    <Name>Orn Tenderhoof</Name>
+    <Position>
+      <X>2818.316</X>
+      <Y>6151.036</Y>
+      <Z>85.32454</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>CookingTrainer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26974</Entry>
+    <Name>Tansy Wildmane</Name>
+    <Position>
+      <X>2836.99121</X>
+      <Y>6148.09375</Y>
+      <Z>104.973022</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>HerbalismTrainer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26975</Entry>
+    <Name>Arthur Henslowe</Name>
+    <Position>
+      <X>2813.4856</X>
+      <Y>6163.407</Y>
+      <Z>104.962463</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>AlchemyTrainer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26976</Entry>
+    <Name>Brunna Ironaxe</Name>
+    <Position>
+      <X>2853.53223</X>
+      <Y>6115.999</Y>
+      <Z>83.4954758</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>MiningTrainer</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -29966,6 +30152,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>29233</Entry>
+    <Name>Nurse Applewood</Name>
+    <Position>
+      <X>2809.35449</X>
+      <Y>6169.411</Y>
+      <Z>104.969337</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>FirstAidTrainer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>29244</Entry>
     <Name>Jesse Masters</Name>
     <Position>
@@ -32373,6 +32571,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>32474</Entry>
+    <Name>Fishy Ser'ji</Name>
+    <Position>
+      <X>2804.14282</X>
+      <Y>6165.574</Y>
+      <Z>85.30526</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>FishingTrainer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>32477</Entry>
     <Name>Chester Copperpot</Name>
     <Position>
@@ -33934,6 +34144,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>35132</Entry>
+    <Name>Tohfo Skyhoof</Name>
+    <Position>
+      <X>2768.74487</X>
+      <Y>6140.368</Y>
+      <Z>208.7717</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>35133</Entry>
     <Name>Maigra Keenfeather</Name>
     <Position>
@@ -34482,6 +34704,18 @@
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>38853</Entry>
+    <Name>Marie Allen</Name>
+    <Position>
+      <X>-1634.15979</X>
+      <Y>1301.48267</Y>
+      <Z>19.66326</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>38873</Entry>
@@ -49150,6 +49384,17 @@
     <ContinentId>LostIsles</ContinentId>
   </Npc>
   <Npc>
+    <Entry>68993</Entry>
+    <Name>Fenegan Cobbler</Name>
+    <Position>
+      <X>-1675.29163</X>
+      <Y>1312.40454</Y>
+      <Z>20.2930012</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>69059</Entry>
     <Name>Agent Malley</Name>
     <Position>
@@ -62807,6 +63052,28 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>191287</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2760.49829</X>
+      <Y>6177.198</Y>
+      <Z>83.32198</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>191288</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2826.31787</X>
+      <Y>6108.43</Y>
+      <Z>83.32198</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>191346</Entry>
     <Name>Forge</Name>
     <Position>
@@ -62871,6 +63138,18 @@
       <Z>652.4331</Z>
     </Position>
     <Type>RuneForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>191832</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>2789.62769</X>
+      <Y>6148.12</Y>
+      <Z>84.5860062</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Mailbox</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -63033,6 +63312,17 @@
     <Position>
       <X>2757.91162</X>
       <Y>6203.107</Y>
+      <Z>83.32198</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>192573</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2851.60449</X>
+      <Y>6105.69336</Y>
       <Z>83.32198</Z>
     </Position>
     <Type>SmeltingForge</Type>
@@ -63880,6 +64170,18 @@
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>202591</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-1496.14063</X>
+      <Y>1409.72913</Y>
+      <Z>35.5236</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>202592</Entry>

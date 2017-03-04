@@ -246,9 +246,9 @@
           <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(28156) || nManager.Wow.Helpers.Quest.GetQuestCompleted(28156);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-            <X>-896.8657</X>
-            <Y>230.2161</Y>
-            <Z>9.736773</Z>
+            <X>-903.0149</X>
+            <Y>232.8842</Y>
+            <Z>9.56105</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -1269,7 +1269,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
-          <WaitMs>63000</WaitMs>
+          <WaitMs>40000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
@@ -1284,6 +1284,7 @@
               <Z>93.22417</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>        return !ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, false), false, false,true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip);</ScriptConditionIsComplete>
           <AllowPlayerControlled>true</AllowPlayerControlled>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>

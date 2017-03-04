@@ -414,7 +414,7 @@
           <Entry>
             <int>19401</int>
           </Entry>
-          <ScriptConditionIsComplete>return (ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; ObjectManager.Me.IsMounted;</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return ObjectManager.Me.MountDisplayId == 18712;</ScriptConditionIsComplete>
           <Position>
             <X>-23.49077</X>
             <Y>2122.148</Y>
@@ -485,7 +485,7 @@
           <Entry>
             <int>19401</int>
           </Entry>
-          <ScriptConditionIsComplete>return (ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; ObjectManager.Me.IsMounted;</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return ObjectManager.Me.MountDisplayId == 18712;</ScriptConditionIsComplete>
           <Position>
             <X>-23.99325</X>
             <Y>2129.893</Y>
@@ -502,7 +502,7 @@
             <int>19399</int>
           </Entry>
           <Script>=10163.cs</Script>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 3, 5) || (!(ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; !ObjectManager.Me.IsMounted) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 3, 5) || !(ObjectManager.Me.MountDisplayId == 18712) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
           <UseItemId>28132</UseItemId>
           <WaitMs>500</WaitMs>
           <Range>73</Range>
@@ -515,7 +515,7 @@
             <int>19398</int>
           </Entry>
           <Script>=10163.cs</Script>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 1, 20) || (!(ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; !ObjectManager.Me.IsMounted) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 1, 20) || !(ObjectManager.Me.MountDisplayId == 18712) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
           <UseItemId>28132</UseItemId>
           <WaitMs>500</WaitMs>
           <Range>73</Range>
@@ -528,7 +528,7 @@
             <int>19397</int>
           </Entry>
           <Script>=10163.cs</Script>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 2, 5) || (!(ObjectManager.Me.MountDisplayId == 18712) &amp;&amp; !ObjectManager.Me.IsMounted) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.IsObjectiveCompleted(10162, 2, 5) || !(ObjectManager.Me.MountDisplayId == 18712) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10162) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10162);</ScriptConditionIsComplete>
           <UseItemId>28132</UseItemId>
           <WaitMs>500</WaitMs>
           <Range>73</Range>

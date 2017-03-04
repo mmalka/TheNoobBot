@@ -1556,6 +1556,16 @@
     <Entry>658</Entry>
     <Name>Sten Stoutarm</Name>
     <Position>
+      <X>-6242.718</X>
+      <Y>345.8797</Y>
+      <Z>383.4303</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>658</Entry>
+    <Name>Sten Stoutarm</Name>
+    <Position>
       <X>-6231.978</X>
       <Y>346.829773</Y>
       <Z>383.684418</Z>
@@ -1789,6 +1799,16 @@
       <Z>16.238987</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>786</Entry>
+    <Name>Grelin Whitebeard</Name>
+    <Position>
+      <X>-6363.002</X>
+      <Y>567.0847</Y>
+      <Z>385.7679</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2364,6 +2384,16 @@
     <Name>Grundel Harkin</Name>
     <Position>
       <X>-6104.505</X>
+      <Y>384.0296</Y>
+      <Z>395.5431</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1104</Entry>
+    <Name>Grundel Harkin</Name>
+    <Position>
+      <X>-6104.505</X>
       <Y>384.029572</Y>
       <Z>395.543152</Z>
     </Position>
@@ -2615,6 +2645,16 @@
     <Name>Foreman Stonebrow</Name>
     <Position>
       <X>-5726.583</X>
+      <Y>-1600.289</Y>
+      <Z>385.9011</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1254</Entry>
+    <Name>Foreman Stonebrow</Name>
+    <Position>
+      <X>-5726.583</X>
       <Y>-1600.2887</Y>
       <Z>385.90094</Z>
     </Position>
@@ -2647,6 +2687,26 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>1261</Entry>
+    <Name>Veron Amberstill</Name>
+    <Position>
+      <X>-5537.029</X>
+      <Y>-1323.672</Y>
+      <Z>399.0157</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1265</Entry>
+    <Name>Rudra Amberstill</Name>
+    <Position>
+      <X>-5513.785</X>
+      <Y>-1304.712</Y>
+      <Z>404.5258</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>1265</Entry>
     <Name>Rudra Amberstill</Name>
     <Position>
@@ -2656,6 +2716,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1267</Entry>
+    <Name>Ragnar Thunderbrew</Name>
+    <Position>
+      <X>-5596.211</X>
+      <Y>-504.1317</Y>
+      <Z>400.6327</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2680,6 +2750,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1269</Entry>
+    <Name>Razzle Sprysprocket</Name>
+    <Position>
+      <X>-5636.52</X>
+      <Y>-471.158</Y>
+      <Z>397.7675</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2854,6 +2934,16 @@
     <Position>
       <X>-6368.77</X>
       <Y>562.093</Y>
+      <Z>385.5307</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1354</Entry>
+    <Name>Apprentice Soren</Name>
+    <Position>
+      <X>-6368.77</X>
+      <Y>562.093</Y>
       <Z>385.53067</Z>
     </Position>
     <Faction>Alliance</Faction>
@@ -2894,6 +2984,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1374</Entry>
+    <Name>Rejold Barleybrew</Name>
+    <Position>
+      <X>-5612.144</X>
+      <Y>-516.9948</Y>
+      <Z>402.6357</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3362,6 +3462,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>1573</Entry>
+    <Name>Gryth Thurden</Name>
+    <Position>
+      <X>-4821.125</X>
+      <Y>-1152.396</Y>
+      <Z>502.2118</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>1609</Entry>
     <Name>Catapulte des Gueules-de-dragon</Name>
     <Position>
@@ -3443,6 +3553,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1699</Entry>
+    <Name>Gremlock Pilsnor</Name>
+    <Position>
+      <X>-5595.668</X>
+      <Y>-543.5071</Y>
+      <Z>398.7641</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3612,6 +3732,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>1872</Entry>
+    <Name>Tharek Blackstone</Name>
+    <Position>
+      <X>-5573.777</X>
+      <Y>-464.4554</Y>
+      <Z>401.9636</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>1931</Entry>
     <Name>Captured Scarlet Zealot</Name>
     <Position>
@@ -3705,6 +3835,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1977</Entry>
+    <Name>Senator Mehr Stonehallow</Name>
+    <Position>
+      <X>-5714.723</X>
+      <Y>-1580</Y>
+      <Z>383.2043</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -8072,6 +8212,16 @@
     <Entry>4256</Entry>
     <Name>Golnir Bouldertoe</Name>
     <Position>
+      <X>-4708.058</X>
+      <Y>-1120.925</Y>
+      <Z>504.4493</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4256</Entry>
+    <Name>Golnir Bouldertoe</Name>
+    <Position>
       <X>-4708.05762</X>
       <Y>-1120.92517</Y>
       <Z>504.4482</Z>
@@ -10774,6 +10924,16 @@
     <Name>Hands Springsprocket</Name>
     <Position>
       <X>-6248.838</X>
+      <Y>135.0416</Y>
+      <Z>431.5902</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6782</Entry>
+    <Name>Hands Springsprocket</Name>
+    <Position>
+      <X>-6248.838</X>
       <Y>135.041565</Y>
       <Z>431.590057</Z>
     </Position>
@@ -11754,6 +11914,16 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>8416</Entry>
+    <Name>Felix Whindlebolt</Name>
+    <Position>
+      <X>-6371.58</X>
+      <Y>575.1347</Y>
+      <Z>385.7417</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -13815,7 +13985,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-333.8926</Z>
+      <Z>-31.1677113</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13851,6 +14021,18 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-333.8926</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -13864,18 +14046,6 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>103.496796</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-31.1677113</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22856,7 +23026,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>106.571053</Z>
+      <Z>-123.336624</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -22868,7 +23038,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>-123.336624</Z>
+      <Z>106.571053</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -27046,6 +27216,42 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>24703</Entry>
+    <Name>Chieftain Wintergale</Name>
+    <Position>
+      <X>3466.441</X>
+      <Y>4195.97656</Y>
+      <Z>18.2440739</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24706</Entry>
+    <Name>Durm Icehide</Name>
+    <Position>
+      <X>3469.25464</X>
+      <Y>4191.822</Y>
+      <Z>18.2453079</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24709</Entry>
+    <Name>Sage Aeire</Name>
+    <Position>
+      <X>3462.51831</X>
+      <Y>4192.30762</Y>
+      <Z>18.2418671</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>24727</Entry>
     <Name>Caylee Dak</Name>
     <Position>
@@ -27600,6 +27806,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25237</Entry>
+    <Name>Garrosh Hellscream</Name>
+    <Position>
+      <X>2838.318</X>
+      <Y>6187.358</Y>
+      <Z>84.6826859</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25245</Entry>
     <Name>James Deacon</Name>
     <Position>
@@ -27608,6 +27826,18 @@
       <Z>12.4937611</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25247</Entry>
+    <Name>Endorah</Name>
+    <Position>
+      <X>2794.36377</X>
+      <Y>6165.11426</Y>
+      <Z>85.072525</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -27648,6 +27878,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25256</Entry>
+    <Name>High Overlord Saurfang</Name>
+    <Position>
+      <X>2834.03687</X>
+      <Y>6186.43262</Y>
+      <Z>84.68327</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25257</Entry>
     <Name>Saurfang the Younger</Name>
     <Position>
@@ -27670,6 +27912,78 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25272</Entry>
+    <Name>Sauranok the Mystic</Name>
+    <Position>
+      <X>2825.42065</X>
+      <Y>6197.176</Y>
+      <Z>85.66852</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25273</Entry>
+    <Name>Warsong Recruitment Officer</Name>
+    <Position>
+      <X>2759.319</X>
+      <Y>6091.645</Y>
+      <Z>77.7891159</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25273</Entry>
+    <Name>Warsong Recruitment Officer</Name>
+    <Position>
+      <X>2822.69629</X>
+      <Y>6171.691</Y>
+      <Z>121.979866</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25273</Entry>
+    <Name>Warsong Recruitment Officer</Name>
+    <Position>
+      <X>2903.604</X>
+      <Y>6246.41748</Y>
+      <Z>208.750473</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25279</Entry>
+    <Name>Overlord Razgor</Name>
+    <Position>
+      <X>2784.95264</X>
+      <Y>6081.02246</Y>
+      <Z>77.68862</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25280</Entry>
+    <Name>Foreman Mortuus</Name>
+    <Position>
+      <X>2740.32715</X>
+      <Y>6147.572</Y>
+      <Z>77.51471</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25285</Entry>
     <Name>Harbinger Vurenn</Name>
     <Position>
@@ -27678,6 +27992,18 @@
       <Z>34.01714</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25288</Entry>
+    <Name>Turida Coldwind</Name>
+    <Position>
+      <X>2922.39233</X>
+      <Y>6244.3877</Y>
+      <Z>208.751831</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -27793,6 +28119,42 @@
       <X>4491.25</X>
       <Y>5710.384</Y>
       <Z>81.39847</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25327</Entry>
+    <Name>Quartermaster Holgoth</Name>
+    <Position>
+      <X>2769.98486</X>
+      <Y>6073.004</Y>
+      <Z>77.58413</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25328</Entry>
+    <Name>Shadowstalker Luther</Name>
+    <Position>
+      <X>2896.88477</X>
+      <Y>6261.055</Y>
+      <Z>61.63077</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25329</Entry>
+    <Name>Gorge the Corpsegrinder</Name>
+    <Position>
+      <X>2819.51221</X>
+      <Y>6711.80273</Y>
+      <Z>10.6976967</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -27929,6 +28291,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25394</Entry>
+    <Name>Shadowstalker Barthus</Name>
+    <Position>
+      <X>2781.89941</X>
+      <Y>6080.57666</Y>
+      <Z>77.68862</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25395</Entry>
     <Name>Private Brau</Name>
     <Position>
@@ -27948,6 +28322,30 @@
       <Y>5853.8125</Y>
       <Z>35.9470139</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25437</Entry>
+    <Name>Shadowstalker Ickoris</Name>
+    <Position>
+      <X>2879.76953</X>
+      <Y>6375.48535</Y>
+      <Z>95.04184</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25438</Entry>
+    <Name>Shadowstalker Canarius</Name>
+    <Position>
+      <X>2876.62524</X>
+      <Y>6384.604</Y>
+      <Z>93.38695</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -27986,6 +28384,29 @@
     <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25475</Entry>
+    <Name>Mobu</Name>
+    <Position>
+      <X>2811.02441</X>
+      <Y>6722.92334</Y>
+      <Z>9.186124</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25476</Entry>
+    <Name>Waltor of Pal'ea</Name>
+    <Position>
+      <X>2811.91333</X>
+      <Y>6706.436</Y>
+      <Z>10.24557</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25477</Entry>
     <Name>Crafty Wobblesprocket</Name>
     <Position>
@@ -28005,6 +28426,18 @@
       <Y>5900.23</Y>
       <Z>150.421555</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25503</Entry>
+    <Name>Elder Mootoo</Name>
+    <Position>
+      <X>2807.95142</X>
+      <Y>6744.23828</Y>
+      <Z>9.620732</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -28076,6 +28509,29 @@
       <Z>26.141428</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25607</Entry>
+    <Name>Farmer Torp</Name>
+    <Position>
+      <X>2886.3252</X>
+      <Y>6385.55029</Y>
+      <Z>92.88709</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25636</Entry>
+    <Name>Captured Tuskarr Prisoner</Name>
+    <Position>
+      <X>1903.87122</X>
+      <Y>6028.842</Y>
+      <Z>6.847435</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -28302,6 +28758,116 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3362.246</X>
+      <Y>5052.372</Y>
+      <Z>13.0374641</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3447.833</X>
+      <Y>4980.797</Y>
+      <Z>14.8171434</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3469.20752</X>
+      <Y>4821.40869</Y>
+      <Z>12.9571486</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3519.64941</X>
+      <Y>4948.21338</Y>
+      <Z>14.0003862</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3521.03784</X>
+      <Y>5073.575</Y>
+      <Z>15.9870338</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3574.16528</X>
+      <Y>4819.39063</Y>
+      <Z>1.05112159</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3587.41357</X>
+      <Y>5034.854</Y>
+      <Z>15.7925787</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3612.033</X>
+      <Y>4887.09131</Y>
+      <Z>3.24251437</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3641.00879</X>
+      <Y>4966.02246</Y>
+      <Z>-1.84697545</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25841</Entry>
+    <Name>Fizzcrank Recon Pilot</Name>
+    <Position>
+      <X>3669.24927</X>
+      <Y>5070.88135</Y>
+      <Z>13.1989279</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25849</Entry>
     <Name>Fezzix Geartwist</Name>
     <Position>
@@ -28321,6 +28887,18 @@
       <Y>5143.26465</Y>
       <Z>24.5425167</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25978</Entry>
+    <Name>Ambassador Talonga</Name>
+    <Position>
+      <X>2799.65576</X>
+      <Y>6166.96729</Y>
+      <Z>85.23361</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -28555,6 +29133,17 @@
       <X>2774.97266</X>
       <Y>934.8626</Y>
       <Z>22.5390739</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26206</Entry>
+    <Name>Keristrasza</Name>
+    <Position>
+      <X>3579.419</X>
+      <Y>6653.03955</Y>
+      <Z>195.453354</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -29405,6 +29994,30 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>26969</Entry>
+    <Name>Raenah</Name>
+    <Position>
+      <X>2842.94067</X>
+      <Y>6170.92871</Y>
+      <Z>104.843262</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26972</Entry>
+    <Name>Orn Tenderhoof</Name>
+    <Position>
+      <X>2818.316</X>
+      <Y>6151.036</Y>
+      <Z>85.32454</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>26973</Entry>
     <Name>Warden Jodi Moonsong</Name>
     <Position>
@@ -29435,6 +30048,18 @@
       <X>4322.304</X>
       <Y>1009.02</Y>
       <Z>95.6076355</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26982</Entry>
+    <Name>Geba'li</Name>
+    <Position>
+      <X>2847.7688</X>
+      <Y>6170.939</Y>
+      <Z>104.842926</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -31423,6 +32048,17 @@
       <X>5726.034</X>
       <Y>4569.98</Y>
       <Z>-119.957169</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>29155</Entry>
+    <Name>Magistrix Kaelana</Name>
+    <Position>
+      <X>2837.64624</X>
+      <Y>6173.481</Y>
+      <Z>85.15546</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -34928,6 +35564,30 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>34850</Entry>
+    <Name>Prince Liam Greymane</Name>
+    <Position>
+      <X>-1447.979</X>
+      <Y>1407.352</Y>
+      <Z>35.55609</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34863</Entry>
+    <Name>Lieutenant Walden</Name>
+    <Position>
+      <X>-1405.486</X>
+      <Y>1447.415</Y>
+      <Z>35.55592</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>34872</Entry>
     <Name>Foreman Dampwick</Name>
     <Position>
@@ -34987,6 +35647,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>34913</Entry>
+    <Name>Prince Liam Greymane</Name>
+    <Position>
+      <X>-1437.955</X>
+      <Y>1401.148</Y>
+      <Z>35.63927</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>34914</Entry>
     <Name>Tylos Dawnrunner</Name>
     <Position>
@@ -34997,6 +35669,18 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34936</Entry>
+    <Name>Gwen Armstead</Name>
+    <Position>
+      <X>-1465.224</X>
+      <Y>1403.517</Y>
+      <Z>35.55593</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>35053</Entry>
@@ -35045,6 +35729,42 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35077</Entry>
+    <Name>Lord Darius Crowley</Name>
+    <Position>
+      <X>-1679.73438</X>
+      <Y>1442.12158</Y>
+      <Z>52.287117</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35077</Entry>
+    <Name>Lord Darius Crowley</Name>
+    <Position>
+      <X>-1679.734</X>
+      <Y>1442.122</Y>
+      <Z>52.37046</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35081</Entry>
+    <Name>Sean Dempsey</Name>
+    <Position>
+      <X>-1682.16663</X>
+      <Y>1439.67017</Y>
+      <Z>52.287117</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>35085</Entry>
@@ -35166,6 +35886,54 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>35112</Entry>
+    <Name>King Genn Greymane</Name>
+    <Position>
+      <X>-1767.6615</X>
+      <Y>1347.89233</Y>
+      <Z>19.8903561</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35112</Entry>
+    <Name>King Genn Greymane</Name>
+    <Position>
+      <X>-1767.661</X>
+      <Y>1347.892</Y>
+      <Z>19.89036</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35115</Entry>
+    <Name>Lord Godfrey</Name>
+    <Position>
+      <X>-1767.094</X>
+      <Y>1352.62</Y>
+      <Z>19.91836</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35115</Entry>
+    <Name>Lord Godfrey</Name>
+    <Position>
+      <X>-1767.09375</X>
+      <Y>1352.61975</Y>
+      <Z>19.9183559</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>35131</Entry>
     <Name>Durgan Thunderbeak</Name>
     <Position>
@@ -35178,6 +35946,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>35132</Entry>
+    <Name>Tohfo Skyhoof</Name>
+    <Position>
+      <X>2768.74487</X>
+      <Y>6140.368</Y>
+      <Z>208.7717</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>35133</Entry>
     <Name>Maigra Keenfeather</Name>
     <Position>
@@ -35186,6 +35966,18 @@
       <Z>11.3401709</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35135</Entry>
+    <Name>Wind Rider Sabamba</Name>
+    <Position>
+      <X>2770.2605</X>
+      <Y>6146.73</Y>
+      <Z>208.7521</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -35258,6 +36050,111 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35369</Entry>
+    <Name>Josiah Avery</Name>
+    <Position>
+      <X>-1813.61633</X>
+      <Y>1428.31775</Y>
+      <Z>12.46319</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35369</Entry>
+    <Name>Josiah Avery</Name>
+    <Position>
+      <X>-1813.616</X>
+      <Y>1428.318</Y>
+      <Z>12.46319</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35378</Entry>
+    <Name>Lorna Crowley</Name>
+    <Position>
+      <X>-1789.75</X>
+      <Y>1427.413</Y>
+      <Z>12.93988</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35378</Entry>
+    <Name>Lorna Crowley</Name>
+    <Position>
+      <X>-1789.75</X>
+      <Y>1427.41321</Y>
+      <Z>12.9399471</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35550</Entry>
+    <Name>King Genn Greymane</Name>
+    <Position>
+      <X>-1803.646</X>
+      <Y>1406.674</Y>
+      <Z>19.92054</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35550</Entry>
+    <Name>King Genn Greymane</Name>
+    <Position>
+      <X>-1803.64587</X>
+      <Y>1406.67358</Y>
+      <Z>19.83721</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35552</Entry>
+    <Name>Lord Darius Crowley</Name>
+    <Position>
+      <X>-1679.734</X>
+      <Y>1442.122</Y>
+      <Z>52.37046</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35566</Entry>
+    <Name>Lord Darius Crowley</Name>
+    <Position>
+      <X>-1619.7</X>
+      <Y>1498.03</Y>
+      <Z>32.79989</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35618</Entry>
+    <Name>Tobias Mistmantle</Name>
+    <Position>
+      <X>-1540.45</X>
+      <Y>1572.61</Y>
+      <Z>29.20589</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>35648</Entry>
@@ -35373,6 +36270,42 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>35839</Entry>
+    <Name>Sergeant Cleese</Name>
+    <Position>
+      <X>-1687.94788</X>
+      <Y>1332.11108</Y>
+      <Z>15.1350384</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35840</Entry>
+    <Name>Gwen Armstead</Name>
+    <Position>
+      <X>-1633.13721</X>
+      <Y>1303.7865</Y>
+      <Z>19.6632671</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35840</Entry>
+    <Name>Gwen Armstead</Name>
+    <Position>
+      <X>-1633.137</X>
+      <Y>1303.786</Y>
+      <Z>19.66312</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>35867</Entry>
     <Name>Kalec</Name>
     <Position>
@@ -35382,6 +36315,126 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35869</Entry>
+    <Name>Vitus Darkwalker</Name>
+    <Position>
+      <X>-1688.85242</X>
+      <Y>1297.92188</Y>
+      <Z>20.2844944</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35870</Entry>
+    <Name>Sister Almyra</Name>
+    <Position>
+      <X>-1695.43225</X>
+      <Y>1306.85071</Y>
+      <Z>19.78239</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35871</Entry>
+    <Name>Loren the Fence</Name>
+    <Position>
+      <X>-1696.627</X>
+      <Y>1298.148</Y>
+      <Z>20.28427</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35871</Entry>
+    <Name>Loren the Fence</Name>
+    <Position>
+      <X>-1696.62671</X>
+      <Y>1298.14758</Y>
+      <Z>20.2842</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35872</Entry>
+    <Name>Myriam Spellwaker</Name>
+    <Position>
+      <X>-1690.356</X>
+      <Y>1328.23962</Y>
+      <Z>16.2986679</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35873</Entry>
+    <Name>Celestine of the Harvest</Name>
+    <Position>
+      <X>-1697.46875</X>
+      <Y>1308.93579</Y>
+      <Z>19.7826462</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35874</Entry>
+    <Name>Huntsman Blake</Name>
+    <Position>
+      <X>-1670.3125</X>
+      <Y>1297.23267</Y>
+      <Z>21.3317127</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35906</Entry>
+    <Name>Lord Godfrey</Name>
+    <Position>
+      <X>-1785.66</X>
+      <Y>1437.613</Y>
+      <Z>20.20581</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35906</Entry>
+    <Name>Lord Godfrey</Name>
+    <Position>
+      <X>-1785.65979</X>
+      <Y>1437.61292</Y>
+      <Z>20.20581</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35911</Entry>
+    <Name>King Genn Greymane</Name>
+    <Position>
+      <X>-1740.59</X>
+      <Y>1663.13</Y>
+      <Z>20.48046</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>36034</Entry>
@@ -35531,6 +36584,18 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>36332</Entry>
+    <Name>King Genn Greymane</Name>
+    <Position>
+      <X>-1821.09</X>
+      <Y>2292.597</Y>
+      <Z>42.10081</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>36334</Entry>
@@ -36080,6 +37145,16 @@
     <Entry>37081</Entry>
     <Name>Joren Ironstock</Name>
     <Position>
+      <X>-6228.306</X>
+      <Y>331.5486</Y>
+      <Z>383.2667</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37081</Entry>
+    <Name>Joren Ironstock</Name>
+    <Position>
       <X>-6228.30566</X>
       <Y>331.5486</Y>
       <Z>383.1833</Z>
@@ -36092,9 +37167,41 @@
     <Entry>37087</Entry>
     <Name>Jona Ironstock</Name>
     <Position>
+      <X>-6107.496</X>
+      <Y>384.2473</Y>
+      <Z>395.5425</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37087</Entry>
+    <Name>Jona Ironstock</Name>
+    <Position>
       <X>-6097.47949</X>
       <Y>372.41748</Y>
       <Z>395.54126</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37113</Entry>
+    <Name>Milo Geartwinge</Name>
+    <Position>
+      <X>-6245.788</X>
+      <Y>305.4635</Y>
+      <Z>383.8535</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37113</Entry>
+    <Name>Milo Geartwinge</Name>
+    <Position>
+      <X>-6245.788</X>
+      <Y>305.463531</Y>
+      <Z>383.853455</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -38671,6 +39778,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>40950</Entry>
+    <Name>Captain Tharran</Name>
+    <Position>
+      <X>-5645.439</X>
+      <Y>-493.2986</Y>
+      <Z>396.6106</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>40951</Entry>
     <Name>Quartermaster Glynna</Name>
     <Position>
@@ -38680,6 +39797,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>40951</Entry>
+    <Name>Quartermaster Glynna</Name>
+    <Position>
+      <X>-5642.425</X>
+      <Y>-493.0816</Y>
+      <Z>396.6444</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -39083,6 +40210,16 @@
     <Position>
       <X>-5695.066</X>
       <Y>-923.9097</Y>
+      <Z>398.2472</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>41298</Entry>
+    <Name>Slamp Wobblecog</Name>
+    <Position>
+      <X>-5695.066</X>
+      <Y>-923.9097</Y>
       <Z>398.247223</Z>
     </Position>
     <Faction>Alliance</Faction>
@@ -39121,6 +40258,16 @@
       <Z>25.6278877</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>41363</Entry>
+    <Name>Delber Cranktoggle</Name>
+    <Position>
+      <X>-5479.412</X>
+      <Y>-645.6684</Y>
+      <Z>392.3269</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -39453,6 +40600,16 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>41578</Entry>
+    <Name>Sergeant Flinthammer</Name>
+    <Position>
+      <X>-5538.592</X>
+      <Y>-1311.104</Y>
+      <Z>398.7935</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>41612</Entry>
     <Name>Huntress Iczelia</Name>
     <Position>
@@ -39530,6 +40687,16 @@
     <Position>
       <X>-5522.007</X>
       <Y>-1920.625</Y>
+      <Z>398.9582</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>41786</Entry>
+    <Name>Sergeant Bahrum</Name>
+    <Position>
+      <X>-5522.007</X>
+      <Y>-1920.625</Y>
       <Z>398.959045</Z>
     </Position>
     <Faction>Alliance</Faction>
@@ -39545,6 +40712,16 @@
       <Z>-405.977417</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>41804</Entry>
+    <Name>Khurgorn Singefeather</Name>
+    <Position>
+      <X>-5518.347</X>
+      <Y>-1910.189</Y>
+      <Z>398.9584</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -39604,6 +40781,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>41853</Entry>
+    <Name>Commander Stonebreaker</Name>
+    <Position>
+      <X>-4611.321</X>
+      <Y>-1695.379</Y>
+      <Z>503.5678</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -39796,6 +40983,16 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>42129</Entry>
+    <Name>Moira Thaurissan</Name>
+    <Position>
+      <X>-4871.583</X>
+      <Y>-1028.043</Y>
+      <Z>505.7151</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -41530,6 +42727,16 @@
       <X>-10732.7</X>
       <Y>264.283</Y>
       <Z>42.37257</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43701</Entry>
+    <Name>Brolan Galebeard</Name>
+    <Position>
+      <X>-5664.08</X>
+      <Y>-497.684</Y>
+      <Z>397.3409</Z>
     </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -46605,6 +47812,29 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>50371</Entry>
+    <Name>Captain Broderick</Name>
+    <Position>
+      <X>-1755.06946</X>
+      <Y>1418.03992</Y>
+      <Z>23.9322128</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>50371</Entry>
+    <Name>Captain Broderick</Name>
+    <Position>
+      <X>-1755.069</X>
+      <Y>1418.04</Y>
+      <Z>23.93214</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>50401</Entry>
     <Name>Titan Mechanism</Name>
     <Position>
@@ -46669,6 +47899,16 @@
     <Position>
       <X>-5698.252</X>
       <Y>-925.9601</Y>
+      <Z>398.0444</Z>
+    </Position>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>50601</Entry>
+    <Name>Snevik the Blade</Name>
+    <Position>
+      <X>-5698.252</X>
+      <Y>-925.9601</Y>
       <Z>398.044647</Z>
     </Position>
     <Faction>Alliance</Faction>
@@ -46684,6 +47924,16 @@
       <Z>41.8482742</Z>
     </Position>
     <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>50631</Entry>
+    <Name>Prospector Drugan</Name>
+    <Position>
+      <X>-5673.224</X>
+      <Y>-1594.071</Y>
+      <Z>383.2048</Z>
+    </Position>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -53211,17 +54461,6 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>513.6742</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72447</Entry>
-    <Name>Chronalis</Name>
-    <Position>
-      <X>2890.49658</X>
-      <Y>627.434</Y>
       <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
@@ -53234,6 +54473,17 @@
       <X>2890.49658</X>
       <Y>627.434</Y>
       <Z>706.5976</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>72447</Entry>
+    <Name>Chronalis</Name>
+    <Position>
+      <X>2890.49658</X>
+      <Y>627.434</Y>
+      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>

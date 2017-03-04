@@ -981,6 +981,9 @@
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>13</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>24492</int>
+      </NeedQuestCompletedId>
       <PickUp>1699</PickUp>
       <TurnIn>43701</TurnIn>
       <Objectives>
@@ -1081,6 +1084,9 @@
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>6392</int>
+      </NeedQuestCompletedId>
       <PickUp>1267</PickUp>
       <TurnIn>1267</TurnIn>
       <Objectives>
