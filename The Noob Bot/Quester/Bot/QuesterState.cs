@@ -89,6 +89,10 @@ namespace Quester.Bot
                 if (!Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id) && !Quest.GetLogQuestIsComplete(QuestingTask.CurrentQuest.Id) && !Quest.IsQuestFlaggedCompletedLUA(QuestingTask.CurrentQuest.Id))
                 {
                     QuestingTask.PickUpQuest();
+                    if (!Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id) && Quest.IsQuestFlaggedCompletedLUA(QuestingTask.CurrentQuest.Id))
+                    {
+                        Quest.FinishedQuestSet.Add(QuestingTask.CurrentQuest.Id);
+                    }
                     return;
                 }
             }
