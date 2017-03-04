@@ -2891,40 +2891,51 @@ namespace Quester.Profile
 
         private void SimpleProfileEditor_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.S && !e.Alt)
+            if (TabControl1.SelectedTab == TabPageObjectives)
             {
-                ButtonObjectiveSave_Click(null, null);
-            }
-
-            if (e.Control && !e.Alt)
-            {
-                if (_lastSelectedQuest != null)
+                if (e.Control && e.KeyCode == Keys.S && !e.Alt)
                 {
-                    switch (e.KeyCode)
+                    ButtonObjectiveSave_Click(null, null);
+                }
+
+                if (e.Control && !e.Alt)
+                {
+                    if (_lastSelectedQuest != null)
                     {
-                        case Keys.D1:
-                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpQuest;
-                            break;
-                        case Keys.D2:
-                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.TurnInQuest;
-                            break;
-                        case Keys.D3:
-                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.KillMob;
-                            break;
-                        case Keys.D4:
-                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpObject;
-                            break;
-                        case Keys.D5:
-                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.UseItem;
-                            break;
-                        case Keys.D6:
-                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.InteractWith;
-                            break;
-                        case Keys.D7:
-                            CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpNPC;
-                            break;
+                        switch (e.KeyCode)
+                        {
+                            case Keys.D1:
+                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpQuest;
+                                break;
+                            case Keys.D2:
+                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.TurnInQuest;
+                                break;
+                            case Keys.D3:
+                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.KillMob;
+                                break;
+                            case Keys.D4:
+                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpObject;
+                                break;
+                            case Keys.D5:
+                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.UseItem;
+                                break;
+                            case Keys.D6:
+                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.InteractWith;
+                                break;
+                            case Keys.D7:
+                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpNPC;
+                                break;
+                        }
                     }
                 }
+            }
+            else if(TabControl1.SelectedTab == TabPageQuest)
+            {
+                if (e.Control && e.KeyCode == Keys.S && !e.Alt)
+                {
+                    ButtonQuestSave_Click(null, null);
+                }
+
             }
         }
 
