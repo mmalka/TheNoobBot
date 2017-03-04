@@ -2279,7 +2279,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return UnitFlags.HasFlag(UnitFlags.NotAttackable);
+                    Logging.WriteError("WoWUnit > NotAttackable is depreciated. Please use WoWUnit > Attackable instead.");
+                    return !Attackable;
                 }
                 catch (Exception e)
                 {
