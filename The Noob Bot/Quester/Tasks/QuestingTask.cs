@@ -451,6 +451,18 @@ namespace Quester.Tasks
                 if (!wowUnit.IsValid && questObjective.Factions.Count > 0)
                     wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByFaction(questObjective.Factions), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                         questObjective.AllowPlayerControlled);
+                if (!wowUnit.Attackable && !questObjective.IgnoreBlackList)
+                {
+                    nManagerSetting.AddBlackList(wowUnit.Guid, 60000);
+                    return;
+                }
+                bool pathToUnit;
+                PathFinder.FindPath(wowUnit.Position, out pathToUnit);
+                if (!pathToUnit && wowUnit.GetDistance > questObjective.Range && !questObjective.IgnoreBlackList)
+                {
+                    nManagerSetting.AddBlackList(wowUnit.Guid, 60000);
+                    return;
+                }
 
                 if (!IsInAvoidMobsList(wowUnit) && !nManagerSetting.IsBlackListedZone(wowUnit.Position) &&
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
@@ -520,6 +532,18 @@ namespace Quester.Tasks
                 if (!wowUnit.IsValid && questObjective.Factions.Count > 0)
                     wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByFaction(questObjective.Factions), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                         questObjective.AllowPlayerControlled);
+                if (!wowUnit.Attackable && !questObjective.IgnoreBlackList)
+                {
+                    nManagerSetting.AddBlackList(wowUnit.Guid, 60000);
+                    return;
+                }
+                bool pathToUnit;
+                PathFinder.FindPath(wowUnit.Position, out pathToUnit);
+                if (!pathToUnit && wowUnit.GetDistance > questObjective.Range && !questObjective.IgnoreBlackList)
+                {
+                    nManagerSetting.AddBlackList(wowUnit.Guid, 60000);
+                    return;
+                }
 
                 if (!IsInAvoidMobsList(wowUnit) && !nManagerSetting.IsBlackListedZone(wowUnit.Position) &&
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
@@ -662,22 +686,18 @@ namespace Quester.Tasks
                     questObjective.AllowPlayerControlled);
                 Point pos;
                 uint baseAddress;
-                if (!nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid) && unit.IsValid)
+                if (!nManagerSetting.IsBlackListedZone(unit.Position) && (questObjective.IgnoreBlackList || !nManagerSetting.IsBlackListed(unit.Guid)) && unit.IsValid)
                 {
-                    if (unit.IsValid)
+                    pos = new Point(unit.Position);
+                    baseAddress = unit.GetBaseAddress;
+                    bool pathToUnit;
+                    PathFinder.FindPath(unit.Position, out pathToUnit);
+                    if (!pathToUnit && unit.GetDistance > questObjective.Range && !questObjective.IgnoreBlackList)
                     {
-                        pos = new Point(unit.Position);
-                        baseAddress = unit.GetBaseAddress;
-                    }
-                    else
-                    {
-                        if (questObjective.InternalQuestId > 0)
-                        {
-                            if (!Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
-                                questObjective.IsObjectiveCompleted = true;
-                        }
+                        nManagerSetting.AddBlackList(unit.Guid, 60000);
                         return;
                     }
+
                     MovementManager.Go(PathFinder.FindPath(pos));
                     Thread.Sleep(500 + Usefuls.Latency);
                     while (MovementManager.InMovement && pos.DistanceTo(ObjectManager.Me.Position) > 3.9f)
