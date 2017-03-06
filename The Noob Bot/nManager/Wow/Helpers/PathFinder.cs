@@ -5,6 +5,7 @@ using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers.PathFinderClass;
+using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
@@ -118,6 +119,12 @@ namespace nManager.Wow.Helpers
         public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
             bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false)
         {
+            if (!from.IsValid || !to.IsValid)
+            {
+                Logging.WriteError("public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess, bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false): Attempting to create a path from/to invalid position. Callstack: " + MemoryClass.Hook.CurrentCallStack);
+                resultSuccess = false;
+                return new List<Point>();
+            }
             List<Point> path = FindPath(from, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
             if (!resultSuccess)
             {
