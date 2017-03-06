@@ -202,7 +202,7 @@ namespace nManager.Wow.Helpers
                     {
                         Logging.WriteNavigator("Swimmming right to the destination");
                         resultSuccess = true;
-                        return new List<Point> {to};
+                        return new List<Point> {from, to};
                     }
                     Logging.WriteNavigator("Swimming to the destination using the PathFinder");
                 }
