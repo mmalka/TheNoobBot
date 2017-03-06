@@ -109,7 +109,7 @@ public static class TnbAutoInterrupt
     public static bool InternalLoop = true;
     public static string Author = "Vesper, Ryuichiro";
     public static string Name = "AutoInterrupt";
-    public static string TargetVersion = "6.3.x";
+    public static string TargetVersion = "6.5.x";
     public static string Version = "1.4.0";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 

@@ -111,7 +111,7 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "AutoEquipper";
-    public static string TargetVersion = "6.3.x";
+    public static string TargetVersion = "6.5.x";
     public static string Version = "1.1.5";
     public static string Description = "Always check the inventory on new loot for a better item for our class/specialization.";
 
