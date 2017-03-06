@@ -115,6 +115,61 @@ namespace nManager.Wow.Helpers
             return new List<Point>();
         }
 
+        public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
+            bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false)
+        {
+            List<Point> path = FindPath(from, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
+            if (!resultSuccess)
+            {
+                if (path.Count <= 50)
+                {
+                    // Incomplete path are oftens a minimum of 160 points found, that mean that path ended up in a wall.
+                    return path;
+                }
+                Point secondFrom = path[path.Count - 2];
+
+                /*
+                 * THE FOLLOWING CODE NEEDS IMPROVEMENTS IN CODING STYLE
+                 */
+
+
+                List<Point> secondPath = FindPath(secondFrom, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
+                if (resultSuccess)
+                {
+                    // this is juicy fella, we made a complete path to destination, now fix it together...
+                    path.RemoveAt(path.Count - 1); // remove the 2 last entries as we ignored them when calculating second path.
+                    path.RemoveAt(path.Count - 1);
+                    path.RemoveAt(path.Count - 1); // remove the 3rd last entry as this one is already included as the beginning point of secondPath
+                    path.AddRange(secondPath);
+                    Logging.WriteDebug("PathFinder magic was done here... #1");
+                    return path;
+                }
+                else if (secondPath.Count > 50)
+                {
+                    // allow a patchwerk of 3 paths!
+
+                    Point thirdFrom = path[path.Count - 2];
+
+                    List<Point> thirdPath = FindPath(thirdFrom, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
+                    if (resultSuccess)
+                    {
+                        // this is juicy fella, we made a complete path to destination, now fix it together...
+                        secondPath.RemoveAt(secondPath.Count - 1); // remove the 2 last entries as we ignored them when calculating second path.
+                        secondPath.RemoveAt(secondPath.Count - 1);
+                        secondPath.RemoveAt(secondPath.Count - 1); // remove the 3rd last entry as this one is already included as the beginning point of secondPath
+                        secondPath.AddRange(thirdPath);
+                        path.RemoveAt(path.Count - 1); // remove the 2 last entries as we ignored them when calculating second path.
+                        path.RemoveAt(path.Count - 1);
+                        path.RemoveAt(path.Count - 1); // remove the 3rd last entry as this one is already included as the beginning point of thirdPath
+                        path.AddRange(secondPath);
+                        Logging.WriteDebug("PathFinder magic was done here... #2");
+                        return path;
+                    }
+                }
+            }
+            return path;
+        }
+
         /// <summary>
         /// Finds the path.
         /// </summary>
@@ -125,9 +180,14 @@ namespace nManager.Wow.Helpers
         /// <param name="addFromAndStart">if set to <c>true</c> [add from and start].</param>
         /// <param name="loadAllTile"></param>
         /// <returns></returns>
-        public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
-            bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false)
+        private static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
+            bool addFromAndStart, bool loadAllTile, bool ShortPath, bool hideMe = false)
         {
+            if (!hideMe)
+            {
+                // should be run only from the function that allow pathfinder patchwerk, nowhere else
+                Logging.WriteError("FindPath: Error, accessed from unknown location.");
+            }
             if (from.DistanceTo(to) <= 1f)
             {
                 resultSuccess = true;
