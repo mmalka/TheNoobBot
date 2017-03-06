@@ -130,9 +130,10 @@ namespace nManager.Wow.Helpers
             List<Point> path = FindPath(from, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
             if (!resultSuccess)
             {
-                if (path.Count <= 50)
+                if (path.Count <= 300)
                 {
                     // Incomplete path are oftens a minimum of 160 points found, that mean that path ended up in a wall.
+                    // Only huge path are truly incomplete tho, over 300 incomplete, perhaps 400 or 500 points.
                     return path;
                 }
                 Point secondFrom = path[path.Count - 2];
