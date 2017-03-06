@@ -65,6 +65,9 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
+                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft)
+                    return false; // Make ToTown a priority.
+
                 // Get Looting
                 _units = new List<WoWUnit>();
                 List<WoWUnit> tUnit = ObjectManager.ObjectManager.GetWoWUnitLootable();
