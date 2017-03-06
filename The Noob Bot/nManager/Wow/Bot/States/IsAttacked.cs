@@ -52,7 +52,7 @@ namespace nManager.Wow.Bot.States
                 Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
                 if (Fight.InFight)
                     continue;
-                if (!Products.Products.IsStarted || !Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid)
+                if (!Products.Products.IsStarted || !Usefuls.InGame || Usefuls.IsLoading || !ObjectManager.ObjectManager.Me.IsValid)
                     continue;
                 if (ObjectManager.ObjectManager.Me.IsDeadMe || (ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)))
                     continue;
@@ -65,7 +65,7 @@ namespace nManager.Wow.Bot.States
                 WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 if (unit == null || !unit.IsValid || unit.IsDead || IgnoreStrikeBackCreatureList.Contains(unit.Entry) || TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
                     continue;
-                if (unit.Health > (ObjectManager.ObjectManager.Me.Health*15))
+                if (unit.Health > (ObjectManager.ObjectManager.Me.Health*15) || unit.IsElite)
                     continue; // Do not pull lethal monsters.
                 if (unit.GetMove)
                     _unitToPull = unit;
