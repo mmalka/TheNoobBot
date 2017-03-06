@@ -393,7 +393,7 @@ namespace Quester.Tasks
             if (questObjective.PathHotspots == null)
             {
                 questObjective.PathHotspots = new List<Point>();
-                if (questObjective.Hotspots.Count > 0)
+                if (questObjective.Hotspots.Count > 1)
                 {
                     for (int i = 0; i <= questObjective.Hotspots.Count - 1; i++)
                     {
@@ -407,13 +407,14 @@ namespace Quester.Tasks
                             points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
                             questObjective.PathHotspots.AddRange(points);
                         }
-                        else
-                        {
-                            Logging.Write("Create path to Hotspot #" + (i + 1));
-                            questObjective.PathHotspots.Add(questObjective.Hotspots[i]);
-                            questObjective.PathHotspots.Add(questObjective.Hotspots[i]);
-                        }
                     }
+                }
+                else if (questObjective.Hotspots.Count > 0)
+                {
+                    // Count == 1
+                    Logging.Write("Create path to single Hotspot");
+                    questObjective.PathHotspots.Add(questObjective.Hotspots[0]);
+                    questObjective.PathHotspots.Add(questObjective.Hotspots[0]);
                 }
                 else if (questObjective.Position.IsValid)
                 {
