@@ -121,7 +121,9 @@ namespace nManager.Wow.Helpers
         {
             if (!from.IsValid || !to.IsValid)
             {
-                Logging.WriteError("public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess, bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false): Attempting to create a path from/to invalid position. Callstack: " + MemoryClass.Hook.CurrentCallStack);
+                Logging.WriteError(
+                    "public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess, bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false): Attempting to create a path from/to invalid position. Callstack: " +
+                    MemoryClass.Hook.CurrentCallStack);
                 resultSuccess = false;
                 return new List<Point>();
             }
@@ -150,28 +152,6 @@ namespace nManager.Wow.Helpers
                     path.AddRange(secondPath);
                     Logging.WriteDebug("PathFinder magic was done here... #1");
                     return path;
-                }
-                else if (secondPath.Count > 50)
-                {
-                    // allow a patchwerk of 3 paths!
-
-                    Point thirdFrom = path[path.Count - 2];
-
-                    List<Point> thirdPath = FindPath(thirdFrom, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
-                    if (resultSuccess)
-                    {
-                        // this is juicy fella, we made a complete path to destination, now fix it together...
-                        secondPath.RemoveAt(secondPath.Count - 1); // remove the 2 last entries as we ignored them when calculating second path.
-                        secondPath.RemoveAt(secondPath.Count - 1);
-                        secondPath.RemoveAt(secondPath.Count - 1); // remove the 3rd last entry as this one is already included as the beginning point of secondPath
-                        secondPath.AddRange(thirdPath);
-                        path.RemoveAt(path.Count - 1); // remove the 2 last entries as we ignored them when calculating second path.
-                        path.RemoveAt(path.Count - 1);
-                        path.RemoveAt(path.Count - 1); // remove the 3rd last entry as this one is already included as the beginning point of thirdPath
-                        path.AddRange(secondPath);
-                        Logging.WriteDebug("PathFinder magic was done here... #2");
-                        return path;
-                    }
                 }
             }
             return path;
