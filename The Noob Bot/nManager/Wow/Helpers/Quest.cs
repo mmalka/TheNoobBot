@@ -385,7 +385,7 @@ namespace nManager.Wow.Helpers
             else if (mNpc.IsValid)
                 nManagerSetting.AddBlackList(npc.Guid, 60*1000);
             bool bypassTravel = false;
-            if (me.DistanceTo(npc.Position) <= 600f)
+            if (me.DistanceTo(npc.Position) <= 800f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
             if (Usefuls.IsFlying && npc.ContinentIdInt == Usefuls.ContinentId)
                 bypassTravel = true;
@@ -521,7 +521,7 @@ namespace nManager.Wow.Helpers
                 nManagerSetting.AddBlackList(npc.Guid, 60*1000);
 
             bool bypassTravel = false;
-            if (me.DistanceTo(npc.Position) <= 600f)
+            if (me.DistanceTo(npc.Position) <= 800f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
             if (Usefuls.IsFlying && npc.ContinentIdInt == Usefuls.ContinentId)
                 bypassTravel = true;
