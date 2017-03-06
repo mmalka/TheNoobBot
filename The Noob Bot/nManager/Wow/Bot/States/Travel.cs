@@ -806,20 +806,22 @@ namespace nManager.Wow.Bot.States
                             // Try to go directly to the final taxi instead of taking every hop one by one.
                             // Wont work if we don't know final taxi yet, so relay on normal hop to hop.
                             // Also wont work in some case where wow doesn't allow you to fly directly from somewhere and instead stop at a hub (rare?)
-                            Gossip.TakeTaxi(finalTaxi.Xcoord, finalTaxi.Ycoord);
-                            Thread.Sleep(2000);
+                            for (int i = 0; i < 3; i++)
+                            {
+                                Gossip.TakeTaxi(finalTaxi.Xcoord, finalTaxi.Ycoord);
+                                Thread.Sleep(2000);
+                            }
+                            // Wow doesn't allow to go directly to the last taxi without calling the function a few time.
                             if (ObjectManager.ObjectManager.Me.OnTaxi)
                             {
                                 if (AutomaticallyTookTaxi != null)
                                     AutomaticallyTookTaxi(this, new TaxiEventArgs {From = memoryTaxi.Entry, To = (int) finalTaxi.Id}); // Fires event
                                 Logging.Write("Flying directly to " + nextHop.Name);
-                                loop = false;
+                                return;
                             }
-                            return;
                         }
                         if (_unknownTaxis.Contains(nextHop))
                         {
-                            loop = false;
                             Logging.Write("Cannot fly to " + nextHop.Name + " yet, releasing travel.");
                             return;
                         }
