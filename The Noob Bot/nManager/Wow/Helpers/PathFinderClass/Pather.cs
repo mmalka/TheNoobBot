@@ -409,6 +409,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
+        private readonly List<string> _loadedTilesString = new List<string>();
+
         public bool LoadTile(int x, int y)
         {
             lock (_threadLocker)
@@ -440,7 +442,18 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     if (!File.Exists(path))
                         return false;
                     byte[] data = File.ReadAllBytes(path);
-                    Logging.WriteNavigator(GetTileName(x, y, true) + " loaded.");
+                    _loadedTilesString.Add(GetTileName(x, y, true));
+                    if (_loadedTilesString.Count >= 10)
+                    {
+                        string output = "";
+                        foreach (string s in _loadedTilesString)
+                        {
+                            output = s + ", " + output;
+                        }
+                        _loadedTilesString.Clear();
+
+                        Logging.WriteNavigator(output + " loaded.");
+                    }
                     if (!LoadTile(data))
                     {
                         Others.DeleteFile(_meshPath + "\\" + fName);
