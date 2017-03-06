@@ -60,6 +60,8 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (ObjectManager.ObjectManager.Me.HealthPercent <= 40)
                     continue;
+                if (ObjectManager.ObjectManager.Me.GetDurability <= nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent)
+                    continue;
                 WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 if (unit == null || !unit.IsValid || unit.IsDead || IgnoreStrikeBackCreatureList.Contains(unit.Entry) || TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
                     continue;
