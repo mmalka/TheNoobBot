@@ -145,6 +145,8 @@ namespace nManager.Wow.Bot.States
                 }
                 if (_availableTransports == null || _availablePortals == null || _availableCustomPaths == null || _availableTaxis == null || _availableTaxiLinks == null)
                     return false;
+                if (_generatedRoutePath.Count > 0)
+                    return true;
                 _generatedRoutePath = GenerateRoutePath; // Automatically cancel TravelTo if not founds.
                 return _generatedRoutePath.Count > 0;
             }
@@ -228,6 +230,7 @@ namespace nManager.Wow.Bot.States
 
                 if (travelToContinentId == currentContinentId)
                 {
+                    Logging.Write("Generating Travel from " + currentPosition + " to " + TravelTo + ", Distance: " + currentPosition.DistanceTo(TravelTo));
                     bool success;
                     var way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
                     if (success && Math.DistanceListPoint(way) <= 400f)
@@ -240,6 +243,8 @@ namespace nManager.Wow.Bot.States
                         return new List<Transport>();
                     }
                 }
+                else
+                    Logging.Write("Generating Travel from " + currentPosition + " to " + TravelTo + ", Continent Change requested.");
                 KeyValuePair<Transport, float> oneWayTravel = GetBestDirectWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
                 List<Transport> travelPlan = new List<Transport>();
                 float travelCost = 0f;
@@ -469,6 +474,8 @@ namespace nManager.Wow.Bot.States
             TravelTo = new Point();
             ForceTravel = false;
             TargetValidationFct = null;
+            _generatedRoutePath = new List<Transport>();
+
             Logging.Write("Travel is terminated, waiting for product to take the control back.");
         }
 
@@ -547,6 +554,7 @@ namespace nManager.Wow.Bot.States
                         TravelTo = new Point();
                         ForceTravel = false;
                         TargetValidationFct = null;
+                        _generatedRoutePath = new List<Transport>();
                         Logging.Write("We've used Flight Master Wistle, waiting for product to regenerate travel path.");
                         return;
                     }
