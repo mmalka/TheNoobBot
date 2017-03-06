@@ -86,6 +86,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private readonly NavMeshQuery _query;
         private readonly string _meshPath;
         private Dictionary<Tuple<int, int>, int> _loadedTiles;
+        private Dictionary<Tuple<int, int>, int> _failedTiles;
         private Helpful.Timer _loadTileCheck;
 
         #region Memory Management
@@ -328,6 +329,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 #pragma warning disable 162
                     if (Division == 1)
                     {
+                        // Depends on our settings, we may load a single mesh with no division.
                         int thirdx, thirdy;
                         LoadTile(x, y);
                         if (tx < x + 0.5f)
@@ -425,7 +427,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     {
                         //Logging.Write("Timer ready, checking loaded tile's age");
                         _loadTileCheck.Reset();
-                        checkTilesAgeAndUnload();
+                        CheckTilesAgeAndUnload();
+                        CheckFailedTilesAgeAndUnload();
                     }
 
                     Tuple<int, int> coords = new Tuple<int, int>(x, y);
@@ -433,6 +436,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     {
                         _loadedTiles[coords] = Others.TimesSec;
                         return true;
+                    }
+                    if (_failedTiles.ContainsKey(coords))
+                    {
+                        _failedTiles[coords] = Others.TimesSec; // don't retry to download that tile for another XX minutes.
+                        return false;
                     }
                     string path = GetTilePath(x, y);
 
@@ -442,6 +450,21 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     if (!File.Exists(path))
                         return false;
                     byte[] data = File.ReadAllBytes(path);
+                    if (!LoadTile(data))
+                    {
+                        Others.DeleteFile(_meshPath + "\\" + fName);
+                        if (!forceDownloadTile(fName))
+                            return false;
+                        data = File.ReadAllBytes(path);
+                        if (!LoadTile(data))
+                        {
+                            Logging.WriteError("Problem with Meshes tile " + fName + " , cannot load it.");
+                            if (!_loadedTiles.ContainsKey(coords))
+                                _failedTiles[coords] = Others.TimesSec;
+                            return false;
+                        }
+                    }
+                    // loaded
                     _loadedTilesString.Add(GetTileName(x, y, true));
                     if (_loadedTilesString.Count >= 10)
                     {
@@ -453,18 +476,6 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         _loadedTilesString.Clear();
 
                         Logging.WriteNavigator(output + " loaded.");
-                    }
-                    if (!LoadTile(data))
-                    {
-                        Others.DeleteFile(_meshPath + "\\" + fName);
-                        if (!forceDownloadTile(fName))
-                            return false;
-                        data = File.ReadAllBytes(path);
-                        if (!LoadTile(data))
-                        {
-                            Logging.WriteError("Problem with Meshes tile " + fName + " , cannot load it.");
-                            return false;
-                        }
                     }
                     if (!_loadedTiles.ContainsKey(coords)) // multi thread on the same path can cause a duplicate here
                         _loadedTiles.Add(coords, Others.TimesSec);
@@ -529,7 +540,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        private void checkTilesAgeAndUnload()
+        private void CheckTilesAgeAndUnload()
         {
             lock (_threadLocker)
             {
@@ -546,6 +557,25 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 }
                 foreach (Tuple<int, int> entry in toRemove)
                     _loadedTiles.Remove(entry);
+            }
+        }
+
+        private void CheckFailedTilesAgeAndUnload()
+        {
+            lock (_threadLocker)
+            {
+                List<Tuple<int, int>> toRemove = new List<Tuple<int, int>>();
+                foreach (KeyValuePair<Tuple<int, int>, int> entry in _failedTiles)
+                {
+                    //Logging.Write("Found " + entry.Key.Item1 + "," + entry.Key.Item2 + " time " + entry.Value);
+                    if (entry.Value < Others.TimesSec - (15*60)) // 15 * 60 = 15 mins
+                    {
+                        Logging.WriteNavigator("Allowing to retry failed tile (" + GetTileName(entry.Key.Item1, entry.Key.Item2, true) + ")");
+                        toRemove.Add(entry.Key);
+                    }
+                }
+                foreach (Tuple<int, int> entry in toRemove)
+                    _failedTiles.Remove(entry);
             }
         }
 
@@ -827,6 +857,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                     _mesh = new NavMesh();
                     _loadedTiles = new Dictionary<Tuple<int, int>, int>();
+                    _failedTiles = new Dictionary<Tuple<int, int>, int>();
                     if (_loadTileCheck == null)
                         _loadTileCheck = new Helpful.Timer(60*1000); // 1 min
                     DetourStatus status;
