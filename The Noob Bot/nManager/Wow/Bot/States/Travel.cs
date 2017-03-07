@@ -1198,58 +1198,69 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (transport.AContinentId == travelToContinentId && transport.BContinentId == travelToContinentId)
                 {
+                    var distanceToTravel = ObjectManager.ObjectManager.Me.Position.DistanceTo(travelTo);
                     bool success;
-                    transport.ArrivalIsA = true;
-                    PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                    if (success)
+                    if (transport.AOutsidePoint.DistanceTo(travelTo) < transport.BOutsidePoint.DistanceTo(travelTo))
                     {
-                        listTransport.Add(transport);
-                    }
-                    else if (transport.ALift > 0)
-                    {
-                        var aLift = GetTransportByTransportId(transport.ALift);
-                        if (aLift.Id > 0)
+                        if ((distanceToTravel + 1000f) < transport.AOutsidePoint.DistanceTo(travelTo))
+                            continue;
+                        transport.ArrivalIsA = true;
+                        PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                        if (success)
                         {
-                            transport.UseALift = true;
-                            PathFinder.FindPath(aLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                            if (success)
+                            listTransport.Add(transport);
+                        }
+                        else if (transport.ALift > 0)
+                        {
+                            var aLift = GetTransportByTransportId(transport.ALift);
+                            if (aLift.Id > 0)
                             {
-                                listTransport.Add(transport);
-                            }
-                            else
-                            {
-                                PathFinder.FindPath(aLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                transport.UseALift = true;
+                                PathFinder.FindPath(aLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (success)
                                 {
                                     listTransport.Add(transport);
                                 }
+                                else
+                                {
+                                    PathFinder.FindPath(aLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                    if (success)
+                                    {
+                                        listTransport.Add(transport);
+                                    }
+                                }
                             }
                         }
                     }
-                    transport.UseALift = false; // it's fine to set it false here as we are the bottom of the function.
-                    transport.ArrivalIsA = false;
-                    PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                    if (success)
+                    else
                     {
-                        listTransport.Add(transport);
-                    }
-                    else if (transport.BLift > 0)
-                    {
-                        var bLift = GetTransportByTransportId(transport.BLift);
-                        if (bLift.Id > 0)
+                        if ((distanceToTravel + 1000f) < transport.BOutsidePoint.DistanceTo(travelTo))
+                            continue;
+                        transport.UseALift = false; // it's fine to set it false here as we are the bottom of the function.
+                        transport.ArrivalIsA = false;
+                        PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                        if (success)
                         {
-                            transport.UseBLift = true;
-                            PathFinder.FindPath(bLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                            if (success)
+                            listTransport.Add(transport);
+                        }
+                        else if (transport.BLift > 0)
+                        {
+                            var bLift = GetTransportByTransportId(transport.BLift);
+                            if (bLift.Id > 0)
                             {
-                                listTransport.Add(transport);
-                            }
-                            else
-                            {
-                                PathFinder.FindPath(bLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                transport.UseBLift = true;
+                                PathFinder.FindPath(bLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (success)
                                 {
                                     listTransport.Add(transport);
+                                }
+                                else
+                                {
+                                    PathFinder.FindPath(bLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                    if (success)
+                                    {
+                                        listTransport.Add(transport);
+                                    }
                                 }
                             }
                         }
@@ -1332,6 +1343,13 @@ namespace nManager.Wow.Bot.States
             {
                 if (portal.BContinentId != travelToContinentId)
                     continue;
+                if (portal.AContinentId == portal.BContinentId)
+                {
+                    var distanceToTravel = travelTo.DistanceTo(ObjectManager.ObjectManager.Me.Position);
+                    // if we are on the same continent, don't even generate a path if it's way farther than us.
+                    if ((distanceToTravel + 1000f) < portal.BPoint.DistanceTo(travelTo))
+                        continue;
+                }
                 bool success;
                 PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                 if (success || portal.BPoint.DistanceTo(travelTo) < 5f)
@@ -1375,18 +1393,31 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (travelTo.DistanceTo(customPath.APoint) > 2000)
                     continue; // Don't allow CustomPath too far away.
+                var distanceToTravel = travelTo.DistanceTo(ObjectManager.ObjectManager.Me.Position);
+
+                // if we are on the same continent, don't even generate a path if it's way farther than us.
                 bool success;
-                PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                if (success && customPath.RoundTrip)
+                if (customPath.APoint.DistanceTo(travelTo) < customPath.BPoint.DistanceTo(travelTo))
                 {
-                    customPath.ArrivalIsA = true;
-                    listCustomPath.Add(customPath);
+                    if (travelTo.DistanceTo(customPath.APoint) > distanceToTravel + 1000f)
+                        continue;
+                    PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success && customPath.RoundTrip)
+                    {
+                        customPath.ArrivalIsA = true;
+                        listCustomPath.Add(customPath);
+                    }
                 }
-                PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                if (success)
+                else
                 {
-                    customPath.ArrivalIsA = false;
-                    listCustomPath.Add(customPath);
+                    if (travelTo.DistanceTo(customPath.BPoint) > distanceToTravel + 1000f)
+                        continue;
+                    PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success)
+                    {
+                        customPath.ArrivalIsA = false;
+                        listCustomPath.Add(customPath);
+                    }
                 }
             }
             return listCustomPath;
