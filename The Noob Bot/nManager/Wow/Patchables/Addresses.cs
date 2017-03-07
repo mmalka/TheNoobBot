@@ -239,7 +239,7 @@
         /// </summary>
         public enum ClickToMove
         {
-            CTM = 0xE38EE4, // GetClickToMoveStruct
+            CTM = 0xE38EA0, // CGUnit_C__IsAutoTracking
             CTM_PUSH = 0xE38EB8, // CGPlayer_C__ClickToMove
             CTM_X = CTM + 0x28, // to Check
             CTM_Y = CTM_X + 0x4,
