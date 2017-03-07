@@ -480,14 +480,12 @@ namespace Quester.Tasks
                 if (wowUnit.IsValid && wowUnit.IsAlive && (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
                     if (lockedTarget == null)
-                    {
                         lockedTarget = wowUnit;
-                        MovementManager.FindTarget(wowUnit, CombatClass.GetAggroRange);
-                        Thread.Sleep(100);
-                        if (MovementManager.InMovement)
-                        {
-                            return;
-                        }
+                    MovementManager.FindTarget(wowUnit, CombatClass.GetAggroRange);
+                    Thread.Sleep(100);
+                    if (MovementManager.InMovement)
+                    {
+                        return;
                     }
                     Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
                     UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
@@ -590,6 +588,8 @@ namespace Quester.Tasks
                 {
                     uint tNumber = Statistics.Farms;
                     FarmingTask.Pulse(new List<WoWGameObject> {node});
+                    if (ObjectManager.Me.InCombat)
+                        return; // we have been cancelled by a fight, return again.
                     if (Statistics.Farms > tNumber)
                         questObjective.CurrentCount++;
                     else if (node.GetDistance < 5)
