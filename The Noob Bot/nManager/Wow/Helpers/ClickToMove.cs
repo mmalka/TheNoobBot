@@ -83,7 +83,7 @@ namespace nManager.Wow.Helpers
             {
                 return
                     (Enums.ClickToMoveType)
-                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.ClickToMove.CTM_PUSH);
+                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.ClickToMove.CTM);
             }
             catch (Exception exception)
             {
