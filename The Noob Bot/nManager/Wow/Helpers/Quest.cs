@@ -845,7 +845,7 @@ namespace nManager.Wow.Helpers
             }
             if (continentId != Usefuls.ContinentId)
                 doTravel = true;
-            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(destination) > 300)
+            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(destination) > 800f)
                 doTravel = true;
             else if (!doTravel)
             {
