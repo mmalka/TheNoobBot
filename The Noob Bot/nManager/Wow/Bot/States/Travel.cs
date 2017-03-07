@@ -1463,14 +1463,15 @@ namespace nManager.Wow.Bot.States
             {
                 if (transport.ArrivalIsA)
                 {
-                    if (transport.BContinentId != travelFromContinentId)
-                        continue;
                     bool success;
-                    PathFinder.FindPath(transport.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                    if (success)
+                    if (transport.BContinentId == travelFromContinentId)
                     {
-                        listTransport.Add(transport);
-                        continue;
+                        PathFinder.FindPath(transport.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                        if (success)
+                        {
+                            listTransport.Add(transport);
+                            continue;
+                        }
                     }
                     if (transport.BLift > 0)
                     {
@@ -1498,14 +1499,15 @@ namespace nManager.Wow.Bot.States
                 }
                 else
                 {
-                    if (transport.AContinentId != travelFromContinentId)
-                        continue;
                     bool success;
-                    PathFinder.FindPath(transport.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-                    if (success)
+                    if (transport.AContinentId == travelFromContinentId)
                     {
-                        listTransport.Add(transport);
-                        continue;
+                        PathFinder.FindPath(transport.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                        if (success)
+                        {
+                            listTransport.Add(transport);
+                            continue;
+                        }
                     }
                     if (transport.ALift > 0)
                     {
@@ -1639,7 +1641,7 @@ namespace nManager.Wow.Bot.States
                             if (success)
                             {
                                 // bLift IsArrivalIsA=true
-                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.BContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1649,7 +1651,7 @@ namespace nManager.Wow.Bot.States
                                 wayIn = PathFinder.FindPath(travelFrom, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                                 if (!success)
                                     continue;
-                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                wayInLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.BContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1669,7 +1671,7 @@ namespace nManager.Wow.Bot.States
                             if (success)
                             {
                                 // aLift IsArrivalIsA=true
-                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.AContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1679,7 +1681,7 @@ namespace nManager.Wow.Bot.States
                                 wayOff = PathFinder.FindPath(travelTo, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (!success)
                                     continue;
-                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                wayOffLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.AContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1703,7 +1705,7 @@ namespace nManager.Wow.Bot.States
                             if (success)
                             {
                                 // aLift IsArrivalIsA=true
-                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.AContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1713,7 +1715,7 @@ namespace nManager.Wow.Bot.States
                                 wayIn = PathFinder.FindPath(travelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                                 if (!success)
                                     continue;
-                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                                wayInLift = PathFinder.FindPath(transport.AOutsidePoint, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.AContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1737,7 +1739,7 @@ namespace nManager.Wow.Bot.States
                             if (success)
                             {
                                 // bLift IsArrivalIsA=true
-                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.BContinentId), out success);
                                 if (!success)
                                     continue;
                             }
@@ -1747,7 +1749,7 @@ namespace nManager.Wow.Bot.States
                                 wayOff = PathFinder.FindPath(travelTo, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (!success)
                                     continue;
-                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                wayOffLift = PathFinder.FindPath(transport.BOutsidePoint, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.BContinentId), out success);
                                 if (!success)
                                     continue;
                             }

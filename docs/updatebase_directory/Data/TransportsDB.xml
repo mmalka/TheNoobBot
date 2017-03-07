@@ -518,7 +518,7 @@
 		<Z>208.908</Z>
       </BPoint>
     </Transport>
-    <Transport Id="176310" Name="Ship (The Bravery)" Faction="Alliance" AContinentId="1" BContinentId="1">
+    <Transport Id="176310" Name="Ship (The Bravery)" Faction="Alliance" AContinentId="1" BContinentId="0">
       <AOutsidePoint>
         <X>8179.573</X>
         <Y>1002.025</Y>
@@ -551,7 +551,7 @@
         <Z>-0.02120704</Z>
       </BPoint>
     </Transport>
-    <Transport Id="181646" Name="Ship, Night Elf (Elune's Blessing)" Faction="Alliance" AContinentId="1" BContinentId="1">
+    <Transport Id="181646" Name="Ship, Night Elf (Elune's Blessing)" Faction="Alliance" AContinentId="530" BContinentId="1">
       <AOutsidePoint>
         <X>-4264.673</X>
         <Y>-11334.56</Y>
