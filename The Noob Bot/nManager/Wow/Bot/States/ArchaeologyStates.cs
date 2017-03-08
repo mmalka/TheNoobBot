@@ -299,6 +299,8 @@ namespace nManager.Wow.Bot.States
                                 Logging.Write("Calling travel system to go to digsite...");
                                 Products.Products.TravelToContinentId = Usefuls.ContinentId;
                                 Products.Products.TravelTo = qPOI.Center;
+                                Products.Products.TravelFromContinentId = Usefuls.ContinentId;
+                                Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
                                 // Pass the check for valid destination as a lambda
                                 Products.Products.TargetValidationFct = qPOI.IsInside;
                                 _travelLocation = me;

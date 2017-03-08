@@ -397,6 +397,8 @@ namespace nManager.Wow.Helpers
                 Logging.Write("Calling travel system for Quest PickUp...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
+                Products.Products.TravelFromContinentId = Usefuls.ContinentId;
+                Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
                 _travelLocation = me;
@@ -533,6 +535,8 @@ namespace nManager.Wow.Helpers
                 Logging.Write("Calling travel system for Quest TurnIn...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
+                Products.Products.TravelFromContinentId = Usefuls.ContinentId;
+                Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
                 _travelLocation = me;
@@ -862,6 +866,8 @@ namespace nManager.Wow.Helpers
                 travelToQuestZone = false;
                 Products.Products.TravelToContinentId = continentId;
                 Products.Products.TravelTo = destination;
+                Products.Products.TravelFromContinentId = Usefuls.ContinentId;
+                Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
                 Products.Products.ForceTravel = forceTravel;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos

@@ -38,12 +38,23 @@ namespace nManager.Wow.Bot.States
             set { Products.Products.TravelTo = value; }
         }
 
+        private Point TravelFrom
+        {
+            get { return Products.Products.TravelFrom; }
+            set { Products.Products.TravelFrom = value; }
+        }
+
         private bool ForceTravel
         {
             get { return Products.Products.ForceTravel; }
             set { Products.Products.ForceTravel = value; }
         }
 
+        private int TravelFromContinentId
+        {
+            get { return Products.Products.TravelFromContinentId; }
+            set { Products.Products.TravelFromContinentId = value; }
+        }
 
         private int TravelToContinentId
         {
@@ -178,7 +189,7 @@ namespace nManager.Wow.Bot.States
                 if (!transport.UseBLift)
                     return new Transport();
                 var bLift = GetTransportByTransportId(transport.BLift);
-                PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, bLift.BOutsidePoint, Usefuls.ContinentNameMpq, out success);
+                PathFinder.FindPath(TravelFrom, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
                 if (success)
                     bLift.ArrivalIsA = true;
                 // calculate the "IsArrivalIsA" then return the bLift;
@@ -187,7 +198,7 @@ namespace nManager.Wow.Bot.States
             if (!transport.UseALift)
                 return new Transport();
             var aLift = GetTransportByTransportId(transport.ALift);
-            PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, aLift.BOutsidePoint, Usefuls.ContinentNameMpq, out success);
+            PathFinder.FindPath(TravelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
             if (success)
                 aLift.ArrivalIsA = true;
             // calculate the "IsArrivalIsA" then return the aLift;
@@ -222,21 +233,20 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                Point travelTo = TravelTo;
                 int travelToContinentId = TravelToContinentId;
-                int currentContinentId = Usefuls.ContinentId;
-                Point currentPosition = ObjectManager.ObjectManager.Me.Position;
                 bool succes;
 
-                if (travelToContinentId == currentContinentId)
+                if (travelToContinentId == TravelFromContinentId)
                 {
-                    Logging.Write("Generating Travel from " + currentPosition + " to " + TravelTo + ", Distance: " + currentPosition.DistanceTo(TravelTo));
+                    Logging.Write("Generating Travel from " + TravelFrom + " " + Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId) + " to " + TravelTo + " " +
+                                  Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ", Distance: " + TravelFrom.DistanceTo(TravelTo));
                     bool success;
-                    var way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
+                    var way = PathFinder.FindPath(TravelFrom, TravelTo, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
                     if (success && Math.DistanceListPoint(way) <= 400f)
                     {
                         TravelToContinentId = 9999999;
                         TravelTo = new Point();
+                        TravelFrom = new Point();
                         ForceTravel = false;
                         TargetValidationFct = null;
                         Logging.Write("Travel: We are close enough and we have a valid path. Cancelling Travel.");
@@ -244,8 +254,9 @@ namespace nManager.Wow.Bot.States
                     }
                 }
                 else
-                    Logging.Write("Generating Travel from " + currentPosition + " to " + TravelTo + ", Continent Change requested.");
-                KeyValuePair<Transport, float> oneWayTravel = GetBestDirectWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
+                    Logging.Write("Generating Travel from " + TravelFrom + " " + Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId) + " to " + TravelTo + " " +
+                                  Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ".");
+                KeyValuePair<Transport, float> oneWayTravel = GetBestDirectWayTransport(TravelFrom, TravelTo, TravelFromContinentId, travelToContinentId);
                 List<Transport> travelPlan = new List<Transport>();
                 float travelCost = 0f;
 
@@ -260,8 +271,6 @@ namespace nManager.Wow.Bot.States
                     bool taxiGoToLift = false;
                     if (!(oneWayTravel.Key is Taxi))
                     {
-                        Point from = ObjectManager.ObjectManager.Me.Position;
-                        int fromContinentId = Usefuls.ContinentId;
                         Point liftEntrance = (departureLift is Portal || departureLift is CustomPath)
                             ? departureLift.ArrivalIsA ? departureLift.BPoint : departureLift.APoint
                             : departureLift.ArrivalIsA ? departureLift.BOutsidePoint : departureLift.AOutsidePoint;
@@ -270,13 +279,13 @@ namespace nManager.Wow.Bot.States
                             : oneWayTravel.Key.ArrivalIsA ? oneWayTravel.Key.BOutsidePoint : oneWayTravel.Key.AOutsidePoint;
                         int liftEntranceContinentId = departureLift.ArrivalIsA ? departureLift.BContinentId : departureLift.AContinentId;
                         int transportEntranceContinentId = oneWayTravel.Key.ArrivalIsA ? oneWayTravel.Key.BContinentId : oneWayTravel.Key.AContinentId;
-                        KeyValuePair<Transport, float> taxiToTransport = GetBestDirectWayTaxi(from, transportEntrance, fromContinentId, transportEntranceContinentId);
+                        KeyValuePair<Transport, float> taxiToTransport = GetBestDirectWayTaxi(TravelFrom, transportEntrance, TravelFromContinentId, transportEntranceContinentId);
                         KeyValuePair<Transport, float> taxiToLift = new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
                         if (departureLift.Id > 0)
                         {
-                            taxiToLift = GetBestDirectWayTaxi(from, liftEntrance, fromContinentId, liftEntranceContinentId);
+                            taxiToLift = GetBestDirectWayTaxi(TravelFrom, liftEntrance, TravelFromContinentId, liftEntranceContinentId);
                         }
-                        List<Point> wayToEntrance = PathFinder.FindPath(currentPosition, liftEntrance.IsValid ? liftEntrance : transportEntrance, Usefuls.ContinentNameMpq, out succes);
+                        List<Point> wayToEntrance = PathFinder.FindPath(TravelFrom, liftEntrance.IsValid ? liftEntrance : transportEntrance, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out succes);
                         if (succes)
                         {
                             distWithoutTaxi = Math.DistanceListPoint(wayToEntrance);
@@ -332,16 +341,17 @@ namespace nManager.Wow.Bot.States
                     if (arrivalLift.Id > 0)
                         travelPlan.Add(arrivalLift);
                 }
-                if (currentContinentId == travelToContinentId && travelPlan.Count > 0)
+                if (TravelFromContinentId == travelToContinentId && travelPlan.Count > 0)
                 {
                     bool success;
-                    List<Point> way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
+                    List<Point> way = PathFinder.FindPath(TravelFrom, TravelTo, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
                     if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last()) && !(oneWayTravel.Key is CustomPath)))
                     {
                         if (travelCost > Math.DistanceListPoint(way) && !ForceTravel)
                         {
                             TravelToContinentId = 9999999;
                             TravelTo = new Point();
+                            TravelFrom = new Point();
                             TargetValidationFct = null;
                             Logging.Write("Travel: Found a faster path without using Transports. Cancelling Travel.");
                             return new List<Transport>();
@@ -370,6 +380,7 @@ namespace nManager.Wow.Bot.States
                 // todo: allow to take taxi in case there is no lift and we have no path to the transport.
                 TravelToContinentId = 9999999;
                 TravelTo = new Point();
+                TravelFrom = new Point();
                 ForceTravel = false;
                 TargetValidationFct = null;
                 Logging.Write("Travel: Couldn't find a travel path.");
@@ -382,8 +393,6 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) + " to " + TravelTo + " " +
-                          Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ".");
             MovementManager.StopMove();
 
             string s = "";
@@ -472,6 +481,7 @@ namespace nManager.Wow.Bot.States
             }
             TravelToContinentId = 9999999;
             TravelTo = new Point();
+            TravelFrom = new Point();
             ForceTravel = false;
             TargetValidationFct = null;
             _generatedRoutePath = new List<Transport>();
@@ -552,6 +562,7 @@ namespace nManager.Wow.Bot.States
                         Thread.Sleep(10000);
                         TravelToContinentId = 9999999;
                         TravelTo = new Point();
+                        TravelFrom = new Point();
                         ForceTravel = false;
                         TargetValidationFct = null;
                         _generatedRoutePath = new List<Transport>();
@@ -1103,11 +1114,11 @@ namespace nManager.Wow.Bot.States
             }
         }
 
-        private List<Transport> GetAllTransportsThatGoesToDestination(Point travelTo, int travelToContinentId)
+        private List<Transport> GetAllTransportsThatGoesToDestination(Point travelTo, int travelToContinentId, Point travelFrom, int travelFromContinentId)
         {
             var allTransports = new List<Transport>();
             List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
-            List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId);
+            List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId, travelFrom, travelFromContinentId);
             List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
             Taxi taxi = GetTaxiThatGoesToDestination(travelTo, travelToContinentId);
             allTransports.AddRange(transports);
@@ -1378,7 +1389,7 @@ namespace nManager.Wow.Bot.States
             return listPortal;
         }
 
-        private List<CustomPath> GetCustomPathsThatGoesToDestination(Point travelTo, int travelToContinentId)
+        private List<CustomPath> GetCustomPathsThatGoesToDestination(Point travelTo, int travelToContinentId, Point travelFrom, int travelFromContinentId)
         {
             var listCustomPath = new List<CustomPath>();
             foreach (CustomPath customPath in _availableCustomPaths.Items)
@@ -1387,19 +1398,24 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (customPath.AContinentId != travelToContinentId && customPath.BContinentId != travelToContinentId)
                     continue;
-                if (customPath.AContinentId == travelToContinentId && customPath.BContinentId != travelToContinentId)
+                if (customPath.AContinentId != travelFromContinentId && customPath.BContinentId != travelFromContinentId)
                     continue;
-                if (customPath.BContinentId == travelToContinentId && customPath.AContinentId != travelToContinentId)
+                if (customPath.AContinentId == travelToContinentId && customPath.BContinentId != travelFromContinentId)
                     continue;
-                if (travelTo.DistanceTo(customPath.APoint) > 2000)
+                if (customPath.BContinentId == travelToContinentId && customPath.AContinentId != travelFromContinentId)
+                    continue;
+                if (customPath.AContinentId == travelToContinentId && travelTo.DistanceTo(customPath.APoint) > 2000)
+                    continue;
+                if (customPath.BContinentId == travelToContinentId && travelTo.DistanceTo(customPath.BPoint) > 2000)
                     continue; // Don't allow CustomPath too far away.
-                var distanceToTravel = travelTo.DistanceTo(ObjectManager.ObjectManager.Me.Position);
+                var distanceToTravel = travelTo.DistanceTo(travelFrom);
 
                 // if we are on the same continent, don't even generate a path if it's way farther than us.
                 bool success;
-                if (customPath.APoint.DistanceTo(travelTo) < customPath.BPoint.DistanceTo(travelTo))
+                // Check for continent switch first (rare but faster than a distance to anyway).
+                if (customPath.AContinentId == travelToContinentId && customPath.BContinentId == travelFromContinentId && customPath.APoint.DistanceTo(travelTo) < customPath.BPoint.DistanceTo(travelTo))
                 {
-                    if (travelTo.DistanceTo(customPath.APoint) > distanceToTravel + 1000f)
+                    if (customPath.AContinentId == customPath.BContinentId && travelTo.DistanceTo(customPath.APoint) > distanceToTravel + 1000f)
                         continue;
                     PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                     if (success && customPath.RoundTrip)
@@ -1408,9 +1424,10 @@ namespace nManager.Wow.Bot.States
                         listCustomPath.Add(customPath);
                     }
                 }
-                else
+                else if (customPath.BContinentId == travelToContinentId && customPath.AContinentId == travelFromContinentId)
                 {
-                    if (travelTo.DistanceTo(customPath.BPoint) > distanceToTravel + 1000f)
+                    // recheck continent just in case
+                    if (customPath.AContinentId == customPath.BContinentId && travelTo.DistanceTo(customPath.BPoint) > distanceToTravel + 1000f)
                         continue;
                     PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                     if (success)
@@ -1426,7 +1443,7 @@ namespace nManager.Wow.Bot.States
         private List<CustomPath> GetCustomPathsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
         {
             var listCustomPath = new List<CustomPath>();
-            List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId);
+            List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId, travelFrom, travelFromContinentId);
             foreach (CustomPath customPath in customPaths)
             {
                 if (customPath.ArrivalIsA)
@@ -1772,7 +1789,7 @@ namespace nManager.Wow.Bot.States
         {
             var bestTransports = new List<Transport>();
             float bestTransportDistance = float.MaxValue;
-            List<Transport> allTransports = GetAllTransportsThatGoesToDestination(travelTo, travelToContinentId);
+            List<Transport> allTransports = GetAllTransportsThatGoesToDestination(travelTo, travelToContinentId, travelFrom, travelFromContinentId);
             foreach (Transport transport in allTransports)
             {
                 float currentTransportDistance;

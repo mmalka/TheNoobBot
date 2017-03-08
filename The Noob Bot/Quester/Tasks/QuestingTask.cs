@@ -1527,6 +1527,8 @@ namespace Quester.Tasks
                     Logging.Write("Calling travel system for World Quest...");
                     Products.TravelToContinentId = Usefuls.ContinentId; // todo find a way to define continent via profile for WQ
                     Products.TravelTo = npc.Position;
+                    Products.TravelFromContinentId = Usefuls.ContinentId;
+                    Products.TravelFrom = ObjectManager.Me.Position;
                     // Pass the check for valid destination as a lambda
                     Products.TargetValidationFct = IsNearWQ;
                     _travelLocation = me;

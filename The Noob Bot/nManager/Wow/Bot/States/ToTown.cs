@@ -430,6 +430,8 @@ namespace nManager.Wow.Bot.States
                         Logging.Write("Calling travel system for ToTown...");
                         Products.Products.TravelToContinentId = target.ContinentIdInt;
                         Products.Products.TravelTo = target.Position;
+                        Products.Products.TravelFromContinentId = Usefuls.ContinentId;
+                        Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
                         // Pass the check for valid destination as a lambda
                         Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
                         _travelLocation = ObjectManager.ObjectManager.Me.Position;

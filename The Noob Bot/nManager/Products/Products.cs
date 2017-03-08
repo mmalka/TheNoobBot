@@ -83,7 +83,9 @@ namespace nManager.Products
         }
 
         public static Point TravelTo { get; set; }
+        public static Point TravelFrom { get; set; }
         public static int TravelToContinentId { get; set; }
+        public static int TravelFromContinentId { get; set; }
         public static bool ForceTravel { get; set; }
         public static Func<Point, bool> TargetValidationFct { get; set; }
 
@@ -208,7 +210,9 @@ namespace nManager.Products
                     _inAutoPause = false;
                     _inManualPause = false;
                     TravelToContinentId = 9999999;
+                    TravelFromContinentId = 9999999;
                     TravelTo = new Point();
+                    TravelFrom = new Point();
                     ForceTravel = false;
 
                     _instanceFromOtherAssembly.Start();
@@ -249,7 +253,9 @@ namespace nManager.Products
                     _inAutoPause = false;
                     _inManualPause = false;
                     TravelToContinentId = 9999999;
+                    TravelFromContinentId = 9999999;
                     TravelTo = new Point();
+                    TravelFrom = new Point();
                     ForceTravel = false;
                     nManagerSetting.ActivateProductTipOff = false;
 
