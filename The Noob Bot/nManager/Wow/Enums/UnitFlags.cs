@@ -139,6 +139,7 @@ namespace nManager.Wow.Enums
         None = 0x0,
         FlightAvailable = 0x1,
         FlightUndiscovered = 0x2,
+        OtherFaction = 0x3,
     }
 
     [Flags]

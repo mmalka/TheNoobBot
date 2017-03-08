@@ -45,7 +45,7 @@ namespace nManager.Wow.Bot.States
                 if (!_timerCheck.IsReady && !_enRoute)
                     return false;
                 _timerCheck.Reset();
-                WoWUnit flightMaster = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitFlightMaster());
+                WoWUnit flightMaster = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitFlightMasterUndiscovered());
                 if (!flightMaster.IsValid || flightMaster.UnitFlightMasteStatus != UnitFlightMasterStatus.FlightUndiscovered)
                 {
                     _enRoute = false;

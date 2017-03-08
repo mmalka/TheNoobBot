@@ -1754,6 +1754,25 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
+        public static List<WoWUnit> GetWoWUnitFlightMasterUndiscovered(List<WoWUnit> listWoWUnit)
+        {
+            try
+            {
+                var list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcFlightMaster && a.UnitFlightMasteStatus == UnitFlightMasterStatus.FlightUndiscovered)
+                        list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitFlightMasterUndiscovered(List<WoWUnit> listWoWUnit): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
         public static List<WoWUnit> GetWoWUnitFlightMaster()
         {
             try
@@ -1763,6 +1782,19 @@ namespace nManager.Wow.ObjectManager
             catch (Exception e)
             {
                 Logging.WriteError("GetWoWUnitFlightMaster(): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitFlightMasterUndiscovered()
+        {
+            try
+            {
+                return GetWoWUnitFlightMasterUndiscovered(GetObjectWoWUnit60Yards());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitFlightMasterUndiscovered(): " + e);
             }
             return new List<WoWUnit>();
         }
