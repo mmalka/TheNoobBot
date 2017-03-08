@@ -1310,17 +1310,31 @@ namespace nManager.Wow.Bot.States
             return null;
         }
 
+        private Taxi CreateTaxiFromRef(Taxi taxi)
+        {
+            return new Taxi
+            {
+                Faction = taxi.Faction,
+                Id = taxi.Id,
+                Name = taxi.Name,
+                ContinentId = taxi.ContinentId,
+                Position = taxi.Position,
+                Xcoord = taxi.Xcoord,
+                Ycoord = taxi.Ycoord
+            };
+        }
+
         private Taxi GetTaxisThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
         {
             Taxi bestTaxi = GetTaxiThatGoesToDestination(travelTo, travelToContinentId);
             if (bestTaxi == null)
                 return null;
-            Point currentPosition = ObjectManager.ObjectManager.Me.Position;
             // Sort taxis by distance from our position
-            _availableTaxis.Sort(delegate(Taxi x, Taxi y) { return (currentPosition.DistanceTo(x.Position) < currentPosition.DistanceTo(y.Position) ? -1 : 1); });
+            _availableTaxis.Sort(delegate(Taxi x, Taxi y) { return (travelFrom.DistanceTo(x.Position) < travelFrom.DistanceTo(y.Position) ? -1 : 1); });
             uint cnt = 0;
-            foreach (Taxi taxi in _availableTaxis)
+            for (int i = 0; i < _availableTaxis.Count; i++)
             {
+                Taxi taxi = CreateTaxiFromRef(_availableTaxis[i]); // this breaks the reference, so we can safely modify "EndOfPath".
                 if (cnt >= 3) // We only check the 3 nearest taxis
                     break;
                 // Prevent going to self
