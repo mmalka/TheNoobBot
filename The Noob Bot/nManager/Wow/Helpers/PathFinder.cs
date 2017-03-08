@@ -198,7 +198,15 @@ namespace nManager.Wow.Helpers
                     Logging.WriteNavigator("Swimming to the destination using the PathFinder");
                 }
                 else
+                {
+                    from.Z = GetZPosition(from); // get to the bottom of the ocean to avoid infinite 0 count path
                     Logging.WriteNavigator("Using the PathFinder to destination out of water");
+                }
+            }
+            if (from.Type.ToLower() == "flying")
+            {
+                from.Z = GetZPosition(from);
+                Logging.WriteNavigator("Using the PathFinder while flying");
             }
             List<Point> locList = new List<Point>();
             resultSuccess = true;
