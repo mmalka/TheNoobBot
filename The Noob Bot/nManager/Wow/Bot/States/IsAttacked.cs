@@ -63,11 +63,20 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.GetDurability <= nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent)
                     continue;
                 WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
-                if (unit == null || !unit.IsValid || unit.IsDead || IgnoreStrikeBackCreatureList.Contains(unit.Entry) || TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
+                if (unit == null || !unit.IsValid || unit.IsDead || nManagerSetting.IsBlackListedZone(unit.Position))
                     continue;
-                if (unit.Health > (ObjectManager.ObjectManager.Me.Health*15) || unit.IsElite)
-                    continue; // Do not pull lethal monsters.
-                if (unit.GetMove)
+                if (IgnoreStrikeBackCreatureList.Contains(unit.Entry))
+                    continue;
+                if (unit.IsElite && System.Math.Abs(ObjectManager.ObjectManager.Me.Level - unit.Level) < 2 || System.Math.Abs(ObjectManager.ObjectManager.Me.Level - unit.Level) < -6)
+                {
+                    nManagerSetting.AddBlackListZone(unit.Position, 15f);
+                    continue; // automatically add potentially dangerous target location to blacklist to avoid suiciding farming near an elite.
+                }
+                if (unit.Health > (ObjectManager.ObjectManager.Me.Health*15))
+                    continue;
+                if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
+                    continue;
+                if (unit.GetMove) // only decide to attack if the unit move towards us or patrol.
                     _unitToPull = unit;
             }
         }
