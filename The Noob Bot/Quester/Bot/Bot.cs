@@ -27,6 +27,7 @@ namespace Quester.Bot
             {
                 MountTask.AllowMounting = true;
                 Quest.GetSetIgnoreFight = false;
+                Quest.GetSetDismissPet = false;
                 Profile = new QuesterProfile();
                 QuesterProfileLoader f = new QuesterProfileLoader();
                 f.ShowDialog();
@@ -182,6 +183,7 @@ namespace Quester.Bot
                 MovementManager.StopMove();
                 MountTask.AllowMounting = true;
                 Quest.GetSetIgnoreFight = false;
+                Quest.GetSetDismissPet = false;
                 Profile = null;
                 Tasks.QuestingTask.Cleanup();
                 EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_DETAIL, callback => Quest.AutoCompleteQuest());

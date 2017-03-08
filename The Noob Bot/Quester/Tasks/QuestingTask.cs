@@ -148,6 +148,8 @@ namespace Quester.Tasks
         public static void ResetQuestObjective()
         {
             MountTask.AllowMounting = true;
+            Quest.GetSetIgnoreFight = false;
+            Quest.GetSetDismissPet = false;
             QuestStatus = "Reset Quest Objective";
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
@@ -176,8 +178,9 @@ namespace Quester.Tasks
 
         public static bool QuestObjectiveIsFinish(ref QuestObjective questObjective)
         {
-            Quest.GetSetIgnoreFight = false;
             MountTask.AllowMounting = true;
+            Quest.GetSetIgnoreFight = false;
+            Quest.GetSetDismissPet = false;
 
             if (questObjective == null)
                 return true;
@@ -374,6 +377,8 @@ namespace Quester.Tasks
                 return;
 
             MountTask.AllowMounting = !questObjective.DeactivateMount;
+            if (questObjective.DismissPet)
+                Quest.GetSetDismissPet = true;
             QuestStatus = questObjective.Objective.ToString();
             CheckMandatoryFieldsByObjective(questObjective);
             if (questObjective.OnlyInVehicule && !ObjectManager.Me.InTransport)

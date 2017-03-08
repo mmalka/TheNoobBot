@@ -23,10 +23,12 @@ namespace nManager.Wow.Helpers
         static Quest()
         {
             GetSetIgnoreFight = false;
+            GetSetDismissPet = false;
             MountTask.AllowMounting = true;
         }
 
         public static bool GetSetIgnoreFight { get; set; }
+        public static bool GetSetDismissPet { get; set; }
 
         public static bool GetQuestCompleted(List<int> qList)
         {
