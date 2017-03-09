@@ -243,6 +243,7 @@ public class RogueAssassination
 
     private readonly Spell DeathfromAbove = new Spell("Death from Above");
     private readonly Spell Envenom = new Spell("Envenom");
+    private readonly Spell Eviscerate = new Spell("Eviscerate");
     private readonly Spell Exsanguinate = new Spell("Exsanguinate");
     private bool GarroteHasExsanguinateBuff = false;
     private bool RuptureHasExsanguinateBuff = false;
@@ -755,19 +756,26 @@ public class RogueAssassination
                 Envenom.Cast();
                 return;
             }
-            //7. Cast Fan of Knives when it hits 3+ targets 
+            //7. Cast Eviscerate
+            if (MySettings.UseEviscerate && Eviscerate.IsSpellUsable && GetFreeComboPoints() == 0 &&
+                ObjectManager.Me.Energy >= 35 && Eviscerate.IsHostileDistanceGood)
+            {
+                Eviscerate.Cast();
+                return;
+            }
+            //8. Cast Fan of Knives when it hits 3+ targets 
             if (MySettings.UseFanofKnives && FanofKnives.IsSpellUsable && ObjectManager.Me.GetUnitInSpellRange(10f) >= 3)
             {
                 FanofKnives.Cast();
                 return;
             }
-            //8. Cast Mutilate.
+            //9. Cast Mutilate.
             if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood)
             {
                 Mutilate.Cast();
                 return;
             }
-            //9. Cast Sinister Strike.
+            //10. Cast Sinister Strike.
             if (MySettings.UseMutilate && !Mutilate.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood)
             {
                 SinisterStrike.Cast();
@@ -812,6 +820,7 @@ public class RogueAssassination
         /* Offensive Spells */
         public bool UseDeathfromAbove = true;
         public bool UseEnvenom = true;
+        public bool UseEviscerate = true;
         public bool UseExsanguinate = true;
         public bool UseFanofKnives = true;
         public bool UseGarrote = true;
@@ -863,6 +872,7 @@ public class RogueAssassination
             /* Offensive Spells */
             AddControlInWinForm("Use Death from Above", "UseDeathfromAbove", "Offensive Spells");
             AddControlInWinForm("Use Envenom", "UseEnvenom", "Offensive Spells");
+            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spells");
             AddControlInWinForm("Use Exsanguinate", "UseExsanguinate", "Offensive Spells");
             AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spells");
             AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spells");
@@ -1938,7 +1948,7 @@ public class RogueSubtlety
                     return;
                 }
             }
-                //Spend combo points if they are capping.
+            //Spend combo points if they are capping.
             else
             {
                 //Apply Enveloping Shadows when

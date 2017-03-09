@@ -523,6 +523,14 @@ public class HunterMarksmanship
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
+            // Dismiss Pet when nessecary
+            if (Quest.GetSetDismissPet)
+            {
+                if (ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive)
+                    DismissPet();
+                return;
+            }
+
             if (!ObjectManager.Me.IsCast && !LoneWolf.HaveBuff)
             {
                 if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
@@ -1234,6 +1242,14 @@ public class HunterBeastMastery
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
+            // Dismiss Pet when nessecary
+            if (Quest.GetSetDismissPet)
+            {
+                if (ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive)
+                    DismissPet();
+                return;
+            }
+
             if (!ObjectManager.Me.IsCast)
             {
                 if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
@@ -1925,6 +1941,14 @@ public class HunterSurvival
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            // Dismiss Pet when nessecary
+            if (Quest.GetSetDismissPet)
+            {
+                if (ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive)
+                    DismissPet();
+                return;
+            }
 
             if (!ObjectManager.Me.IsCast)
             {

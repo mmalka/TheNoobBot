@@ -416,6 +416,12 @@ public class WarlockAffliction
         }
     }
 
+    private void DismissPet()
+    {
+        Lua.RunMacroText("DismissPet()");
+        Others.SafeSleep(1500);
+    }
+
     // For Summoning permanent Pets (always return after Casting)
     private bool Pet()
     {
@@ -424,6 +430,14 @@ public class WarlockAffliction
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            // Dismiss Pet when nessecary
+            if (Quest.GetSetDismissPet)
+            {
+                if (ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive)
+                    DismissPet();
+                return false;
+            }
 
             if ((!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) && ObjectManager.Me.SoulShards >= 1)
             {
@@ -487,8 +501,9 @@ public class WarlockAffliction
             CombatMode = true;
         }
         Healing();
-        if (Defensive() || Pet() || Offensive())
-            return;
+        Defensive();
+        Pet();
+        Offensive();
         Rotation();
     }
 
@@ -809,7 +824,7 @@ public class WarlockAffliction
                     return;
                 }
             }
-                //Summon Grimoire of Service
+            //Summon Grimoire of Service
             else if (MySettings.UseGrimoireofService && GrimoireofService.HaveBuff)
             {
                 if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
@@ -1234,6 +1249,12 @@ public class WarlockDemonology
         }
     }
 
+    private void DismissPet()
+    {
+        Lua.RunMacroText("DismissPet()");
+        Others.SafeSleep(1500);
+    }
+
     // For Summoning permanent Pets (always return after Casting)
     private bool Pet()
     {
@@ -1242,6 +1263,14 @@ public class WarlockDemonology
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            // Dismiss Pet when nessecary
+            if (Quest.GetSetDismissPet)
+            {
+                if (ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive)
+                    DismissPet();
+                return false;
+            }
 
             if ((!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) && ObjectManager.Me.SoulShards >= 1)
             {
@@ -1319,8 +1348,6 @@ public class WarlockDemonology
         }
         UpdateSummonedDemons();
         Healing();
-        if (Defensive() || Pet() || Offensive())
-            return;
         Rotation();
     }
 
@@ -1523,7 +1550,7 @@ public class WarlockDemonology
                 SummonTimers.Add(new Timer(1000*12));
                 return;
             }
-                //Summon Grimoire of Service
+            //Summon Grimoire of Service
             else if (MySettings.UseGrimoireofService && GrimoireofService.HaveBuff)
             {
                 if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)
@@ -2014,6 +2041,11 @@ public class WarlockDestruction
         }
     }
 
+    private void DismissPet()
+    {
+        Lua.RunMacroText("DismissPet()");
+        Others.SafeSleep(1500);
+    }
 
     // For Summoning permanent Pets (always return after Casting)
     private bool Pet()
@@ -2023,6 +2055,14 @@ public class WarlockDestruction
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            // Dismiss Pet when nessecary
+            if (Quest.GetSetDismissPet)
+            {
+                if (ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive)
+                    DismissPet();
+                return false;
+            }
 
             if ((!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) && ObjectManager.Me.SoulShards >= 1)
             {
@@ -2086,8 +2126,9 @@ public class WarlockDestruction
             CombatMode = true;
         }
         Healing();
-        if (Defensive() || Pet() || Offensive())
-            return;
+        Defensive();
+        Pet();
+        Offensive();
         Rotation();
     }
 
@@ -2248,7 +2289,7 @@ public class WarlockDestruction
                     return;
                 }
             }
-                //Summon Grimoire of Service
+            //Summon Grimoire of Service
             else if (MySettings.UseGrimoireofService && GrimoireofService.HaveBuff)
             {
                 if (MySettings.UseGrimoireImp && GrimoireImp.IsSpellUsable && GrimoireImp.IsHostileDistanceGood)

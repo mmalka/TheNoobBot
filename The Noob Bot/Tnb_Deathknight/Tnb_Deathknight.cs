@@ -1159,7 +1159,7 @@ public class DeathknightFrost
                     return;
                 }
             }
-                //Multiple Targets
+            //Multiple Targets
             else
             {
                 if (MySettings.UseFrostscythe && Frostscythe.IsSpellUsable && Frostscythe.IsHostileDistanceGood)

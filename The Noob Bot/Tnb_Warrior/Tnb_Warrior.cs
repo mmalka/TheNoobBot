@@ -398,8 +398,8 @@ public class WarriorArms
                 return true;
             }
             //Victory Rush
-            if (MySettings.UseVictoryRush && VictoryRush.IsSpellUsable &&
-                VictoryRush.IsHostileDistanceGood && ObjectManager.Me.HealthPercent < 70)
+            if (ObjectManager.Me.HealthPercent < MySettings.UseVictoryRushBelowPercentage &&
+                VictoryRush.IsSpellUsable && VictoryRush.IsHostileDistanceGood)
             {
                 VictoryRush.Cast();
                 return true;
@@ -763,7 +763,7 @@ public class WarriorArms
         public int UseStormBoltBelowPercentage = 50;
 
         /* Healing Spells */
-        public bool UseVictoryRush = true;
+        public int UseVictoryRushBelowPercentage = 70;
 
         /* Utility Spells */
         public bool UseHeroicThrow = true;
@@ -808,7 +808,7 @@ public class WarriorArms
             AddControlInWinForm("Use Die by the Sword", "UseDiebytheSwordBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Storm Bolt", "UseStormBoltBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Healing Spells */
-            AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spells");
+            AddControlInWinForm("Use Victory Rush", "UseVictoryRushBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Utility Spells");
             AddControlInWinForm("Use Taunt", "UseTauntBelowToTPercentage", "Utility Spells", "BelowPercentage", "Target of Target Life");
@@ -1042,10 +1042,9 @@ public class WarriorProtection
                 return true;
             }
             //Victory Rush / Impending Victory
-            if (MySettings.UseVictoryRush_ImpendingVictory && VictoryRush.IsSpellUsable &&
-                VictoryRush.IsHostileDistanceGood && (ObjectManager.Me.HealthPercent < 70 ||
-                                                      (ImpendingVictory.HaveBuff && ObjectManager.Me.Rage >= 10 &&
-                                                       ObjectManager.Me.HealthPercent < 85)))
+            if (VictoryRush.IsSpellUsable && VictoryRush.IsHostileDistanceGood &&
+                ((ObjectManager.Me.HealthPercent < MySettings.UseVictoryRushBelowPercentage && !ImpendingVictory.HaveBuff) ||
+                 (ObjectManager.Me.HealthPercent < MySettings.UseImpendingVictoryBelowPercentage && ImpendingVictory.HaveBuff && ObjectManager.Me.Rage >= 10)))
             {
                 VictoryRush.Cast();
                 return true;
@@ -1388,7 +1387,8 @@ public class WarriorProtection
         public int UseSpellReflectionBelowPercentage = 0;
 
         /* Healing Spells */
-        public bool UseVictoryRush_ImpendingVictory = true;
+        public int UseVictoryRushBelowPercentage = 70;
+        public int UseImpendingVictoryBelowPercentage = 85;
 
         /* Utility Spells */
         public bool UseHeroicLeap = true;
@@ -1436,7 +1436,8 @@ public class WarriorProtection
             AddControlInWinForm("Use Shield Wall", "UseShieldWallBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Spell Reflection", "UseSpellReflectionBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spells */
-            AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spells");
+            AddControlInWinForm("Use Victory Rush", "UseVictoryRushBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Impending Victory", "UseImpendingVictoryBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Use Heroic Leap (only to reset Taunt CD)", "UseHeroicLeap", "Utility Spells");
             AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Utility Spells");
@@ -1677,8 +1678,8 @@ public class WarriorFury
                 return true;
             }
             //Victory Rush
-            if (MySettings.UseVictoryRush && VictoryRush.IsSpellUsable &&
-                VictoryRush.IsHostileDistanceGood && ObjectManager.Me.HealthPercent < 70)
+            if (ObjectManager.Me.HealthPercent < MySettings.UseVictoryRushBelowPercentage &&
+                VictoryRush.IsSpellUsable && VictoryRush.IsHostileDistanceGood)
             {
                 VictoryRush.Cast();
                 return true;
@@ -2055,7 +2056,7 @@ public class WarriorFury
         public int UseStormBoltBelowPercentage = 50;
 
         /* Healing Spells */
-        public bool UseVictoryRush = true;
+        public int UseVictoryRushBelowPercentage = 70;
 
         /* Utility Spells */
         public bool UseHeroicThrow = true;
@@ -2099,7 +2100,7 @@ public class WarriorFury
             AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegenerationBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Storm Bolt", "UseStormBoltBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Healing Spells */
-            AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spells");
+            AddControlInWinForm("Use Victory Rush", "UseVictoryRushBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Utility Spells");
             AddControlInWinForm("Use Taunt", "UseTauntBelowToTPercentage", "Utility Spells", "BelowPercentage", "Target of Target Life");

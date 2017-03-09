@@ -1630,6 +1630,55 @@ public class MageFrost
         }
     }
 
+    private void DismissPet()
+    {
+        Lua.RunMacroText("DismissPet()");
+        Others.SafeSleep(1500);
+    }
+
+    // For Summoning permanent Pets (always return after Casting)
+    private void Pet()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            // Dismiss Pet when nessecary
+            if (Quest.GetSetDismissPet)
+            {
+                if (ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive)
+                    DismissPet();
+                return;
+            }
+
+            if (!ObjectManager.Me.IsCast && !LonelyWinter.HaveBuff)
+            {
+                if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
+                {
+                    //Summon Water Elemental //EntryId 78116 ?
+                    if (MySettings.UseSummonWaterElemental && SummonWaterElemental.IsSpellUsable)
+                    {
+                        SummonWaterElemental.Cast();
+                        return;
+                    }
+                }
+                else
+                {
+                    if (ObjectManager.Pet.Health > 0)
+                    {
+                        //Pet Heal Logic
+                    }
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
     // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
     private bool Offensive()
     {
@@ -1656,14 +1705,6 @@ public class MageFrost
             if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
             {
                 BloodFury.Cast();
-            }
-            //Cast Summon Water Elemental if it's not alive //EntryId 78116 ?
-            if (MySettings.UseSummonWaterElemental && SummonWaterElemental.IsSpellUsable && !LonelyWinter.HaveBuff &&
-                (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead))
-            {
-                Logging.WriteDebug("Pet: Health == " + ObjectManager.Pet.Health + ", Guid == " + ObjectManager.Pet.Guid + ", IsValid == " + ObjectManager.Pet.IsValid);
-                SummonWaterElemental.Cast();
-                return true;
             }
             //Cast Time Warp whenever available.
             if (MySettings.UseTimeWarp && TimeWarp.IsSpellUsable && !ObjectManager.Me.HaveBuff(80354))

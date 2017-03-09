@@ -1239,8 +1239,7 @@ public class DruidFeral
                 //1. Priority: Rake
                 if (MySettings.UseRake && Rake.IsSpellUsable && Rake.IsHostileDistanceGood && ObjectManager.Target.IsStunnable)
                 {
-                    Logging.WriteDebug("Rake IsHostileDistanceGood: " + Rake.IsHostileDistanceGood + ", Target Distance: " + ObjectManager.Target.GetDistance + ", CombatReach - Me: " +
-                                       ObjectManager.Me.GetCombatReach + ", Target: " + ObjectManager.Target.GetCombatReach + ", Rake MaxRangeHostile: " + Rake.MaxRangeHostile + " (Tooltip: Melee)");
+                    Logging.WriteDebug("Rake IsHostileDistanceGood: " + Rake.IsHostileDistanceGood + ", Target Distance: " + ObjectManager.Target.GetDistance + ", CombatReach - Me: " + ObjectManager.Me.GetCombatReach + ", Target: " + ObjectManager.Target.GetCombatReach + ", Rake MaxRangeHostile: " + Rake.MaxRangeHostile + " (Tooltip: Melee)");
                     Rake.Cast();
                     return;
                 }
@@ -1453,15 +1452,10 @@ public class DruidFeral
                 string log = "";
                 log += ObjectManager.Me.UnitAura(SavageRoarBuff.Id).IsValid ? "Savage Roar is active and has " + ObjectManager.Me.UnitAura(SavageRoarBuff.Id).AuraTimeLeftInMs/1000 + " seconds remaining. " : "";
                 log += ObjectManager.Me.UnitAura(TigersFury.Id).IsValid ? "Tiger's Fury is active and has " + ObjectManager.Me.UnitAura(TigersFury.Id).AuraTimeLeftInMs/1000 + " seconds remaining. " : "";
-                log += ObjectManager.Me.UnitAura(BloodtalonsBuff.Id).IsValid
-                    ? ObjectManager.Me.UnitAura(BloodtalonsBuff.Id).AuraCount + " Bloodtalons Stack active, which have " + ObjectManager.Me.UnitAura(SavageRoarBuff.Id).AuraTimeLeftInMs/1000 + " seconds remaining. "
-                    : "";
-                log += ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id).IsValid
-                    ? "Predatory Swiftness is active and has " + ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id).AuraTimeLeftInMs/1000 + " seconds remaining. "
-                    : "";
+                log += ObjectManager.Me.UnitAura(BloodtalonsBuff.Id).IsValid ? ObjectManager.Me.UnitAura(BloodtalonsBuff.Id).AuraCount + " Bloodtalons Stack active, which have " + ObjectManager.Me.UnitAura(SavageRoarBuff.Id).AuraTimeLeftInMs/1000 + " seconds remaining. " : "";
+                log += ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id).IsValid ? "Predatory Swiftness is active and has " + ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id).AuraTimeLeftInMs/1000 + " seconds remaining. " : "";
                 log += ObjectManager.Me.UnitAura(Berserk.Id).IsValid ? "Berserk is active and has " + ObjectManager.Me.UnitAura(Berserk.Id).AuraTimeLeftInMs/1000 + " seconds remaining. " : "";
-                log += "Combo points: " + ObjectManager.Me.ComboPoint + "/" + ObjectManager.Me.MaxComboPoint + ", Energy: " + ObjectManager.Me.Energy + "/" + ObjectManager.Me.MaxEnergy + " Mana: " +
-                       ObjectManager.Me.Mana + "/" + ObjectManager.Me.MaxMana;
+                log += "Combo points: " + ObjectManager.Me.ComboPoint + "/" + ObjectManager.Me.MaxComboPoint + ", Energy: " + ObjectManager.Me.Energy + "/" + ObjectManager.Me.MaxEnergy + " Mana: " + ObjectManager.Me.Mana + "/" + ObjectManager.Me.MaxMana;
                 Logging.WriteFileOnly(log);
             }
             EmptyLoop = false;

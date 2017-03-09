@@ -525,7 +525,7 @@ public class DruidRestoration
             DamagedPlayers.Add(Me);
             PartyHpMedian = Me.HealthPercent;
         }
-            //Setup Group
+        //Setup Group
         else
         {
             int alivePlayers = 0;
@@ -799,8 +799,7 @@ public class DruidRestoration
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            Logging.WriteFileOnly("Tank Healing? " + Tank.Name + "[" + Tank.GetUnitId() + "]: Health =" + Tank.HealthPercent + ", Range = " + Tank.GetDistance + ", Lifebloom = " +
-                                  Tank.UnitAura(Lifebloom.Ids, Me.Guid).AuraTimeLeftInMs + ", Rejuvenation = " + Tank.UnitAura(Rejuvenation.Ids, Me.Guid).AuraTimeLeftInMs + ", InCombat = " + Tank.InCombat);
+            Logging.WriteFileOnly("Tank Healing? " + Tank.Name + "[" + Tank.GetUnitId() + "]: Health =" + Tank.HealthPercent + ", Range = " + Tank.GetDistance + ", Lifebloom = " + Tank.UnitAura(Lifebloom.Ids, Me.Guid).AuraTimeLeftInMs + ", Rejuvenation = " + Tank.UnitAura(Rejuvenation.Ids, Me.Guid).AuraTimeLeftInMs + ", InCombat = " + Tank.InCombat);
 
             // Set Efflorescence
             if (MySettings.UseEfflorescenceAtMainTank && !Tank.GetMove && EfflorescenceTimer.IsReady && Efflorescence.IsSpellUsable &&
@@ -861,26 +860,20 @@ public class DruidRestoration
 
             // Channel Tranquility
             if ((!Me.GetMove || Me.UnitAura(TranquilMind.Id).IsValid) && Tranquility.IsSpellUsable &&
-                ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseTranquilityDamagedPlayerHealthThreshold && unit.GetDistance <= 40f).Count >=
-                MySettings.UseTranquilityAtDamagedPlayerDensity)
+                ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseTranquilityDamagedPlayerHealthThreshold && unit.GetDistance <= 40f).Count >= MySettings.UseTranquilityAtDamagedPlayerDensity)
             {
                 Tranquility.Cast(true);
                 return true;
             }
 
             // Cast Wild Growth
-            if (WildGrowth.IsSpellUsable &&
-                ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseWildGrowthDamagedPlayerHealthThreshold && unit.GetDistance <= 30f).Count >=
-                MySettings.UseWildGrowthAtDamagedPlayerDensity)
+            if (WildGrowth.IsSpellUsable && ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseWildGrowthDamagedPlayerHealthThreshold && unit.GetDistance <= 30f).Count >= MySettings.UseWildGrowthAtDamagedPlayerDensity)
             {
                 WildGrowth.CastOnSelf();
                 return true;
             }
 
-            Logging.WriteFileOnly("No AOE Heal casted. Tranquility would heal " +
-                                  ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseTranquilityDamagedPlayerHealthThreshold && unit.GetDistance <= 40f).Count +
-                                  " damaged players. Wild Growth would heal " +
-                                  ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseWildGrowthDamagedPlayerHealthThreshold && unit.GetDistance <= 30f).Count + " damaged players.");
+            Logging.WriteFileOnly("No AOE Heal casted. Tranquility would heal " + ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseTranquilityDamagedPlayerHealthThreshold && unit.GetDistance <= 40f).Count + " damaged players. Wild Growth would heal " + ObjectManager.GetFriendlyUnits().FindAll(unit => unit.HealthPercent < MySettings.UseWildGrowthDamagedPlayerHealthThreshold && unit.GetDistance <= 30f).Count + " damaged players.");
         }
         catch (Exception e)
         {
@@ -910,8 +903,7 @@ public class DruidRestoration
             bool SwiftmendIsSpellUsable = Swiftmend.IsSpellUsable;
             foreach (WoWPlayer player in DamagedPlayers)
             {
-                Logging.WriteFileOnly(player.Name + "[" + player.GetUnitId() + "]: Health =" + player.HealthPercent.ToString("0.0###") + ", Range = " + player.GetDistance + ", Regrowth = " +
-                                      player.UnitAura(Regrowth.Ids, Me.Guid).AuraTimeLeftInMs + ", Rejuvenation = " + player.UnitAura(Rejuvenation.Ids, Me.Guid).AuraTimeLeftInMs);
+                Logging.WriteFileOnly(player.Name + "[" + player.GetUnitId() + "]: Health =" + player.HealthPercent.ToString("0.0###") + ", Range = " + player.GetDistance + ", Regrowth = " + player.UnitAura(Regrowth.Ids, Me.Guid).AuraTimeLeftInMs + ", Rejuvenation = " + player.UnitAura(Rejuvenation.Ids, Me.Guid).AuraTimeLeftInMs);
 
                 if (player.IsHostile || player.GetDistance > Swiftmend.MaxRangeFriend)
                     continue;
@@ -1289,7 +1281,7 @@ public class PaladinHoly
                             DamagedPlayers = 1;
                             Target = ObjectManager.Me;
                         }
-                            //Setup Group
+                        //Setup Group
                         else
                         {
                             double lowestHp = 100;
@@ -2040,7 +2032,7 @@ public class ShamanRestoration
                             DamagedPlayers = 1;
                             Target = ObjectManager.Me;
                         }
-                            //Setup Group
+                        //Setup Group
                         else
                         {
                             double lowestHp = 100;

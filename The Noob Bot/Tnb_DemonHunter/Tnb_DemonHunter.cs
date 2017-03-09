@@ -554,7 +554,7 @@ public class DemonHunterHavoc
                     return;
                 }
             }
-                //Multiple Target
+            //Multiple Target
             else
             {
                 if (MySettings.UseFuryoftheIllidari && FuryoftheIllidari.IsSpellUsable && FuryoftheIllidari.IsHostileDistanceGood &&
@@ -1121,7 +1121,7 @@ public class DemonHunterVengeance
                     return;
                 }
             }
-                //Multiple Target
+            //Multiple Target
             else
             {
                 if (MySettings.UseSpiritBomb && SpiritBomb.IsSpellUsable && SoulFragments.BuffStack >= 1 &&
