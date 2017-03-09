@@ -393,7 +393,6 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            bool restartTravel;
             MovementManager.StopMove();
 
             string s = "";
@@ -457,7 +456,7 @@ namespace nManager.Wow.Bot.States
                     if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                 }
-                restartTravel = EnterTransportOrTakePortal(transport);
+                bool restartTravel = EnterTransportOrTakePortal(transport);
                 if (restartTravel)
                 {
                     // Our travel ended because we didn't have the taxi we wanted, regenerate now that the list of known taxi is updated.

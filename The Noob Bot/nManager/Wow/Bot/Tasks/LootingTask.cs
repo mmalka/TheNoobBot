@@ -148,9 +148,9 @@ namespace nManager.Wow.Bot.Tasks
                                     // we blacklist all unit around for a short time to be sure we loot then
                                     foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo2D(unit.Position) <= 25f))
                                     {
-                                        nManagerSetting.AddBlackList(u.Guid, 2600);
+                                        nManagerSetting.AddBlackList(u.Guid, 475 + Usefuls.Latency);
                                     }
-                                    nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                    nManagerSetting.AddBlackList(wowUnit.Guid, 475 + Usefuls.Latency);
                                     return;
                                 }
                             }
