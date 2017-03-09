@@ -393,6 +393,7 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
+            bool restartTravel;
             MovementManager.StopMove();
 
             string s = "";
@@ -456,7 +457,13 @@ namespace nManager.Wow.Bot.States
                     if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                 }
-                EnterTransportOrTakePortal(transport);
+                restartTravel = EnterTransportOrTakePortal(transport);
+                if (restartTravel)
+                {
+                    // Our travel ended because we didn't have the taxi we wanted, regenerate now that the list of known taxi is updated.
+                    _generatedRoutePath = GenerateRoutePath;
+                    return;
+                }
                 if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
                 if (transport is Taxi)
@@ -653,7 +660,7 @@ namespace nManager.Wow.Bot.States
             public int To { get; set; }
         }
 
-        private void EnterTransportOrTakePortal(Transport selectedTransport)
+        private bool EnterTransportOrTakePortal(Transport selectedTransport)
         {
             if (selectedTransport is Portal)
             {
@@ -673,7 +680,7 @@ namespace nManager.Wow.Bot.States
                             while (memoryPortal.GetDistance > 4.0f)
                             {
                                 if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
-                                    return;
+                                    return false;
                                 Thread.Sleep(150);
                             }
                         }
@@ -691,7 +698,7 @@ namespace nManager.Wow.Bot.States
                         {
                             GoToDepartureQuayOrPortal(selectedTransport);
                             EnterTransportOrTakePortal(selectedTransport);
-                            return;
+                            return false;
                         }
                         memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id), ObjectManager.ObjectManager.Me.Position);
                     }
@@ -715,13 +722,13 @@ namespace nManager.Wow.Bot.States
                         if (validArrivalPath)
                         {
                             if (!validEntrancePath)
-                                return;
+                                return false;
                             if (Math.DistanceListPoint(pathToArrival) <= Math.DistanceListPoint(pathToEntrance))
-                                return; // we are closer to arrival, return instead of going back to entrance.
+                                return false; // we are closer to arrival, return instead of going back to entrance.
                         }
                         GoToDepartureQuayOrPortal(selectedTransport);
                         EnterTransportOrTakePortal(selectedTransport);
-                        return;
+                        return false;
                     }
                     // We are at the beginning of the path.
                     List<Point> path = customPath.Points;
@@ -738,7 +745,7 @@ namespace nManager.Wow.Bot.States
                     while (MovementManager.InMovement)
                     {
                         if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
-                            return;
+                            return false;
                         Thread.Sleep(150);
                     }
                     loop = false;
@@ -763,7 +770,7 @@ namespace nManager.Wow.Bot.States
                             {
                                 if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                                 {
-                                    return;
+                                    return false;
                                 }
                                 Thread.Sleep(150);
                             }
@@ -772,7 +779,7 @@ namespace nManager.Wow.Bot.States
                         if (nextHop == null)
                         {
                             Logging.Write("There is a problem with taxi links, some are missing to complete the minimal graph");
-                            return;
+                            return false;
                         }
                         MountTask.DismountMount();
                         Interact.InteractWith(memoryTaxi.GetBaseAddress, true);
@@ -796,7 +803,7 @@ namespace nManager.Wow.Bot.States
                         if (!Gossip.IsTaxiWindowOpen())
                         {
                             Logging.Write("There is a problem with taxi master");
-                            return;
+                            return false;
                         }
                         // It's time to rethink the situation where the player does not know all taxis we need
                         // Taxi window is open, then we can get all taxis the player knowns
@@ -836,13 +843,13 @@ namespace nManager.Wow.Bot.States
                                 if (AutomaticallyTookTaxi != null)
                                     AutomaticallyTookTaxi(this, new TaxiEventArgs {From = memoryTaxi.Entry, To = (int) finalTaxi.Id}); // Fires event
                                 Logging.Write("Flying directly to " + nextHop.Name);
-                                return;
+                                return false;
                             }
                         }
                         if (_unknownTaxis.Contains(nextHop))
                         {
                             Logging.Write("Cannot fly to " + nextHop.Name + " yet, releasing travel.");
-                            return;
+                            return true;
                         }
                         Gossip.TakeTaxi(nextHop.Xcoord, nextHop.Ycoord);
 
@@ -858,7 +865,7 @@ namespace nManager.Wow.Bot.States
                         {
                             GoToDepartureQuayOrPortal(selectedTransport);
                             EnterTransportOrTakePortal(selectedTransport);
-                            return;
+                            return false;
                         }
                         memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id));
                     }
@@ -884,7 +891,7 @@ namespace nManager.Wow.Bot.States
                     while (loop)
                     {
                         if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
-                            return;
+                            return false;
                         if (ObjectManager.ObjectManager.Me.InTransport)
                         {
                             loop = false;
@@ -905,6 +912,7 @@ namespace nManager.Wow.Bot.States
                 MovementManager.StopMove();
                 Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
             }
+            return false;
         }
 
         private void LeaveTransport(Transport selectedTransport)
