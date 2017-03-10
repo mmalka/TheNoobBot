@@ -188,6 +188,7 @@ namespace nManager.Wow.Bot.States
                 {
                     tPointCorps = ObjectManager.ObjectManager.Me.PositionCorpse;
                     bool success;
+                    tPointCorps.Z = PathFinder.GetZPosition(tPointCorps); // make sure to get the right Z in case we died in the air/surface of water.
                     List<Point> points = PathFinder.FindPath(tPointCorps, out success);
                     if (!success)
                     {
