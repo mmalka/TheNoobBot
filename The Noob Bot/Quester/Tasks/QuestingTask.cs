@@ -509,10 +509,10 @@ namespace Quester.Tasks
                     {
                         // Only attack the creature if it's alive (think about corpse for use item)
                         Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
-                        UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
-                        if (!wowUnit.IsDead && Unkillable != 0 && wowUnit.HealthPercent == 100.0f)
+                        UInt128 unkillable = Fight.StartFight(wowUnit.Guid);
+                        if (!wowUnit.IsDead && unkillable != 0 && wowUnit.HealthPercent == 100.0f)
                         {
-                            nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
+                            nManagerSetting.AddBlackList(unkillable, 3*60*1000);
                             Logging.Write("Can't reach " + wowUnit.Name + ", blacklisting it.");
                         }
                     }
@@ -541,7 +541,7 @@ namespace Quester.Tasks
                                 List<Point> path = PathFinder.FindPath(wowUnit.Position, out success);
                                 if (!success)
                                 {
-                                    nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
+                                    nManagerSetting.AddBlackList(wowUnit.Guid, 3*60*1000);
                                     Logging.Write("Can't reach " + wowUnit.Name + " corpse, blacklisting it.");
                                 }
                                 MovementManager.Go(path);
