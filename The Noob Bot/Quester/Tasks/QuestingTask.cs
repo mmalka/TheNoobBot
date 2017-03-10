@@ -457,7 +457,16 @@ namespace Quester.Tasks
                         wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByQuestLoot(questObjective.CollectItemId), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                             questObjective.AllowPlayerControlled);
                 }
-
+                if (questObjective.Objective == Objective.KillMobUseItem)
+                {
+                    if (!wowUnit.IsValid)
+                    {
+                        // allow to target non blacklisted corpse.
+                        wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, true), false, false, questObjective.AllowPlayerControlled);
+                        if (!wowUnit.IsTappedByMe)
+                            wowUnit = new WoWUnit(0);
+                    }
+                }
                 if (!wowUnit.IsValid)
                     wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                         questObjective.AllowPlayerControlled);
@@ -579,6 +588,7 @@ namespace Quester.Tasks
                     {
                         // Start Move
                         MovementManager.GoLoop(questObjective.PathHotspots);
+                        lockedTarget = null;
                     }
                 }
             }
