@@ -207,6 +207,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     int durabilitys = 0;
                     int maxDurabilitys = 0;
+                    int brokenItems = 0;
                     WoWObject[] objects = ObjectManager.ObjectList.ToArray();
                     foreach (WoWObject o in objects.Where(o => o.Type == WoWObjectType.Item))
                     {
@@ -219,6 +220,8 @@ namespace nManager.Wow.ObjectManager
                             if (itemMaxDurability == 0)
                                 continue;
                             int itemDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Durability);
+                            if (itemDurability == 0)
+                                brokenItems++;
                             durabilitys += itemDurability;
                             maxDurabilitys += itemMaxDurability;
                         }
@@ -227,7 +230,10 @@ namespace nManager.Wow.ObjectManager
                             Logging.WriteError("WoWPlayer > GetDurability#1: " + e);
                         }
                     }
-                    return maxDurabilitys == 0 ? 100 : durabilitys*100/maxDurabilitys;
+                    int ret = maxDurabilitys == 0 ? 100 : durabilitys*100/maxDurabilitys;
+                    if (ret > 35 && brokenItems >= 2)
+                        return 35; // force "low" if 2 items are broken completly
+                    return ret;
                 }
                 catch (Exception e)
                 {
