@@ -53,6 +53,7 @@ namespace nManager.Wow.Bot.States
         private static readonly List<Npc> TeacherFoundNoSpam = new List<Npc>();
         private List<Npc> _listOfTeachers = new List<Npc>();
         private Npc _teacher = new Npc();
+        private bool _doTravel = true;
 
         public override string DisplayName
         {
@@ -318,6 +319,8 @@ namespace nManager.Wow.Bot.States
                     bestTeacher = teacher;
             }
 
+            if (bestTeacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 800)
+                Quest.TravelToQuestZone(bestTeacher.Position, ref _doTravel, bestTeacher.ContinentIdInt, false, bestTeacher.Type.ToString());
             uint baseAddress = MovementManager.FindTarget(ref bestTeacher);
             if (MovementManager.InMovement)
                 return;
@@ -347,9 +350,11 @@ namespace nManager.Wow.Bot.States
                 }
                 Interact.InteractWith(baseAddress);
                 Thread.Sleep(500 + Usefuls.Latency);
+                Quest.CompleteQuest();
                 Gossip.TrainAllAvailableSpells();
                 TeacherFoundNoSpam.Remove(bestTeacher);
                 SpellManager.UpdateSpellBook();
+                _doTravel = true;
             }
             // still on the road, but not in movement for some reasons
         }

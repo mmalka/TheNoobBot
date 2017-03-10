@@ -843,7 +843,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void TravelToQuestZone(Point destination, ref bool travelToQuestZone, int continentId = -1, bool forceTravel = false)
+        public static void TravelToQuestZone(Point destination, ref bool travelToQuestZone, int continentId = -1, bool forceTravel = false, string reason = "TravelToQuestZone")
         {
             bool doTravel = forceTravel;
             if (continentId == -1)
@@ -870,7 +870,7 @@ namespace nManager.Wow.Helpers
             if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
-                Logging.Write("Calling travel system for TravelToQuestZone...");
+                Logging.Write("Calling travel system for " + reason + "...");
                 travelToQuestZone = false;
                 Products.Products.TravelToContinentId = continentId;
                 Products.Products.TravelTo = destination;
