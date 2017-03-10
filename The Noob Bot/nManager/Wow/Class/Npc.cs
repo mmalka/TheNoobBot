@@ -42,6 +42,8 @@ namespace nManager.Wow.Class
             set { _position = value; }
         }
 
+        [DefaultValue(false)] public bool ForceTravel = false;
+
         private Point _position = new Point();
 
         [DefaultValue(FactionType.Neutral)]
