@@ -688,18 +688,43 @@ namespace nManager.Wow.Bot.States
                         Interact.InteractWith(memoryPortal.GetBaseAddress);
                         Thread.Sleep(150);
                         Interact.InteractWith(memoryPortal.GetBaseAddress);
+                        Thread.Sleep(300);
+                        while (ObjectManager.ObjectManager.Me.IsCasting)
+                        {
+                            Thread.Sleep(100);
+                        }
                         TravelPatientlybyTaxiOrPortal();
                         loop = false;
                     }
                     else
                     {
-                        if (portal.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
-                        {
-                            GoToDepartureQuayOrPortal(selectedTransport);
-                            EnterTransportOrTakePortal(selectedTransport);
-                            return false;
-                        }
                         memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id), ObjectManager.ObjectManager.Me.Position);
+
+                        if (portal.AContinentId == portal.BContinentId)
+                        {
+                            if (portal.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) < portal.BPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position))
+                            {
+                                if (portal.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
+                                {
+                                    GoToDepartureQuayOrPortal(selectedTransport);
+                                    EnterTransportOrTakePortal(selectedTransport);
+                                    return false;
+                                }
+                            }
+                            else
+                                return false; // arrived
+                        }
+                        else
+                        {
+                            if (Usefuls.ContinentId == portal.BContinentId)
+                                return false; // arrived
+                            if (portal.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
+                            {
+                                GoToDepartureQuayOrPortal(selectedTransport);
+                                EnterTransportOrTakePortal(selectedTransport);
+                                return false;
+                            }
+                        }
                     }
                 }
             }
