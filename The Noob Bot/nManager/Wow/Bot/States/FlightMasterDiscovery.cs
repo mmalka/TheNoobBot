@@ -52,7 +52,9 @@ namespace nManager.Wow.Bot.States
                     return false;
                 }
                 _flightMaster = flightMaster;
-                return true;
+                bool success;
+                PathFinder.FindPath(_flightMaster.Position, out success);
+                return success; // only return true if we have a valid path to target (in case we are currently in a zone where we need to use a portal etc.
             }
         }
 
