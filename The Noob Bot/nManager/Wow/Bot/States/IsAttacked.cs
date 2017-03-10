@@ -69,7 +69,7 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (unit.IsElite && System.Math.Abs(ObjectManager.ObjectManager.Me.Level - unit.Level) < 2 || System.Math.Abs(ObjectManager.ObjectManager.Me.Level - unit.Level) < -6)
                 {
-                    nManagerSetting.AddBlackListZone(unit.Position, 15f);
+                    //nManagerSetting.AddBlackListZone(unit.Position, 15f);
                     continue; // automatically add potentially dangerous target location to blacklist to avoid suiciding farming near an elite.
                 }
                 if (unit.Health > (ObjectManager.ObjectManager.Me.Health*15))
