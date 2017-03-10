@@ -366,8 +366,10 @@ namespace nManager.Wow.Helpers
             return ObjectManager.ObjectManager.Me.Position.DistanceTo(p) <= 5f;
         }
 
-        public static void QuestPickUp(ref Npc npc, string questName, int questId, out bool cancelPickUp, bool ignoreBlacklist = false)
+        public static void QuestPickUp(ref Npc npc, string questName, int questId, out bool cancelPickUp, bool ignoreBlacklist = false, bool forceTravel = false)
         {
+            if (npc.ForceTravel)
+                forceTravel = true;
             cancelPickUp = false;
             if (AbandonnedId == questId) // should happen only when we do a different quest requirement for optimization
             {
@@ -401,6 +403,7 @@ namespace nManager.Wow.Helpers
                 Products.Products.TravelTo = npc.Position;
                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;
                 Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
+                Products.Products.ForceTravel = forceTravel;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
                 _travelLocation = me;
@@ -515,8 +518,10 @@ namespace nManager.Wow.Helpers
             CloseWindow();
         }
 
-        public static void QuestTurnIn(ref Npc npc, string questName, int questId, bool ignoreBlacklist = false)
+        public static void QuestTurnIn(ref Npc npc, string questName, int questId, bool ignoreBlacklist = false, bool forceTravel = false)
         {
+            if (npc.ForceTravel)
+                forceTravel = true;
             Point me = ObjectManager.ObjectManager.Me.Position;
             WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry, true), false, ignoreBlacklist, true);
             if (mNpc.CanTurnIn)
@@ -539,6 +544,7 @@ namespace nManager.Wow.Helpers
                 Products.Products.TravelTo = npc.Position;
                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;
                 Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
+                Products.Products.ForceTravel = forceTravel;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
                 _travelLocation = me;
