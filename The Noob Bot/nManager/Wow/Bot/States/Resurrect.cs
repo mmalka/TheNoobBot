@@ -162,7 +162,12 @@ namespace nManager.Wow.Bot.States
 
             #region Go To Corpse resurrection
 
-            if (ObjectManager.ObjectManager.Me.PositionCorpse.IsValid && !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
+            if (ObjectManager.ObjectManager.Me.Level <= 10)
+            {
+                _forceSpiritHealer = true;
+                Logging.Write("We have no penalty for using Spirit Healer, so let's use it.");
+            }
+            else if (ObjectManager.ObjectManager.Me.PositionCorpse.IsValid && !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
             {
                 while (Usefuls.IsLoading && Products.Products.IsStarted && Usefuls.InGame)
                 {
@@ -310,7 +315,7 @@ namespace nManager.Wow.Bot.States
                         Statistics.Deaths++;
                         if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                         {
-                            Logging.Write("Resurrection Sickness detected, we will now wait its full duration to avoid dieing in chain.");
+                            Logging.Write("Resurrection Sickness detected, we will now wait its full duration to avoid dying in chain.");
                             while (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                             {
                                 Thread.Sleep(1000);
