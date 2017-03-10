@@ -865,7 +865,7 @@ namespace nManager.Wow.Helpers
                 PathFinder.FindPath(destination, out doTravel);
                 doTravel = !doTravel; // reverse result
             }
-            if (!travelToQuestZone)
+            if (!travelToQuestZone && !forceTravel)
                 doTravel = false;
             if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
             {
