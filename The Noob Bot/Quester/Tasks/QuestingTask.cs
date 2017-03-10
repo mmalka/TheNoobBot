@@ -451,6 +451,8 @@ namespace Quester.Tasks
                 }
 
                 WoWUnit wowUnit = new WoWUnit(0);
+                if (lockedTarget != null && lockedTarget.IsValid && !nManagerSetting.IsBlackListed(lockedTarget.Guid))
+                    wowUnit = lockedTarget;
                 if (questObjective.Objective == Objective.KillMob)
                 {
                     if (questObjective.CollectItemId != 0)
@@ -474,8 +476,10 @@ namespace Quester.Tasks
                 if (!wowUnit.IsValid && questObjective.Factions.Count > 0)
                     wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByFaction(questObjective.Factions), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                         questObjective.AllowPlayerControlled);
-                if (!questObjective.IgnoreBlackList && wowUnit.IsValid && (!wowUnit.Attackable || IsInAvoidMobsList(wowUnit) || nManagerSetting.IsBlackListedZone(wowUnit.Position)))
+                if (!questObjective.IgnoreBlackList && wowUnit.IsValid && ((!wowUnit.Attackable && !wowUnit.IsDead) || IsInAvoidMobsList(wowUnit) || nManagerSetting.IsBlackListedZone(wowUnit.Position)))
                 {
+                    if (!wowUnit.Attackable)
+                        Logging.Write("Can't attack " + wowUnit.Name + ", blacklisting it."); // notify why we blacklisted it
                     nManagerSetting.AddBlackList(wowUnit.Guid, 60000);
                     return;
                 }
@@ -493,7 +497,7 @@ namespace Quester.Tasks
 
                 if (wowUnit.IsValid && wowUnit.IsAlive && (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
-                    if (lockedTarget == null)
+                    if (lockedTarget == null || !lockedTarget.IsValid)
                         lockedTarget = wowUnit;
                     MovementManager.FindTarget(wowUnit, CombatClass.GetAggroRange);
                     Thread.Sleep(100);
@@ -501,14 +505,18 @@ namespace Quester.Tasks
                     {
                         return;
                     }
-                    Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
-                    UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
-                    if (!wowUnit.IsDead && Unkillable != 0 && wowUnit.HealthPercent == 100.0f)
+                    if (!wowUnit.IsDead)
                     {
-                        nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
-                        Logging.Write("Can't reach " + wowUnit.Name + ", blacklisting it.");
+                        // Only attack the creature if it's alive (think about corpse for use item)
+                        Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
+                        UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
+                        if (!wowUnit.IsDead && Unkillable != 0 && wowUnit.HealthPercent == 100.0f)
+                        {
+                            nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
+                            Logging.Write("Can't reach " + wowUnit.Name + ", blacklisting it.");
+                        }
                     }
-                    else if (wowUnit.IsDead)
+                    if (wowUnit.IsDead)
                     {
                         Statistics.Kills++;
                         if (questObjective.Objective == Objective.KillMob && (!wowUnit.IsTapped || (wowUnit.IsTapped && wowUnit.IsTappedByMe)))
