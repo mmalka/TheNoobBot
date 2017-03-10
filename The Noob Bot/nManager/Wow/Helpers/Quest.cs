@@ -355,10 +355,10 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void QuestPickUp(ref Npc npc, string questName, int questId, bool ignoreBlacklist = false)
+        public static void QuestPickUp(ref Npc npc, string questName, int questId, bool ignoreBlacklist = false, bool forceTravel = false)
         {
             bool cancelPickUp;
-            QuestPickUp(ref npc, questName, questId, out cancelPickUp, ignoreBlacklist);
+            QuestPickUp(ref npc, questName, questId, out cancelPickUp, ignoreBlacklist, forceTravel);
         }
 
         public static bool IsNearQuestGiver(Point p)
