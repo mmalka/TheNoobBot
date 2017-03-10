@@ -563,7 +563,6 @@ namespace Quester.Tasks
                             MovementManager.StopMove();
                             MovementManager.Face(wowUnit);
                             Interact.InteractWith(wowUnit.GetBaseAddress);
-                            nManagerSetting.AddBlackList(wowUnit.Guid, 30*1000);
                             if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0)
                                 return;
                             Timer cooldownTimer = new Timer(8000);
@@ -573,6 +572,12 @@ namespace Quester.Tasks
                                 return;
 
                             ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+                            nManagerSetting.AddBlackList(wowUnit.Guid, 3*60*1000);
+                            Thread.Sleep(200);
+                            while (ObjectManager.Me.IsCasting)
+                            {
+                                Thread.Sleep(200);
+                            }
                             if (questObjective.Count > 0)
                                 questObjective.CurrentCount++;
                             else if (questObjective.Count == 0)

@@ -1115,23 +1115,21 @@ namespace nManager.Wow.Helpers
 
         public static Point GetSafeResPoint()
         {
-            float x = 0;
-            float y = 0;
             Single degree = 0;
             Point posCorpse = ObjectManager.ObjectManager.Me.PositionCorpse;
-            bool validPoint = false;
             Point bestPoint = new Point();
             Point rezPos = new Point(0, 0, 0);
 
             while (degree < 360) //Search for safe rez point, if no safe point found, just rez and get killed again!
             {
                 //Calculate position on a circle 15degrees at a time and check if we can go there
-                x = (float) (posCorpse.X + 30f*System.Math.Cos(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
-                y = (float) (posCorpse.Y + 30f*System.Math.Sin(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
+                float x = (float) (posCorpse.X + 30f*System.Math.Cos(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
+                float y = (float) (posCorpse.Y + 30f*System.Math.Sin(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
                 rezPos = new Point(x, y, PathFinder.GetZPosition(x, y));
 
                 if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) < 36.0f && !nManagerSetting.IsBlackListedZone(rezPos))
                 {
+                    bool validPoint;
                     List<Point> path = PathFinder.FindPath(rezPos, out validPoint); //Valid Point?
 
                     if (validPoint && Helpful.Math.DistanceListPoint(path) <= 40f) //Point Valid : keep only the point that is the farthest from the mobs
