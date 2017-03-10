@@ -1137,7 +1137,7 @@ namespace nManager.Wow.Helpers
                         WoWUnit mobc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), rezPos); //Closest mob from current point
                         WoWUnit mobb = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitHostile(), bestPoint); //Closest mob from best point
 
-                        if (degree == 0)
+                        if (!bestPoint.IsValid)
                             bestPoint = rezPos; //First iterration
 
                         if (bestPoint.DistanceTo(mobb.Position) < rezPos.DistanceTo(mobc.Position))
