@@ -266,7 +266,7 @@ namespace nManager.Wow.Bot.Tasks
                             }
                             if (MovementManager.FindTarget(inode, 5.5f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius*4.0f) == 0)
                             {
-                                nManagerSetting.AddBlackList(inode.Guid, 1000*60*5);
+                                nManagerSetting.AddBlackList(inode.Guid, 1000*20);
                                 _curNode = null;
                                 return;
                             }
