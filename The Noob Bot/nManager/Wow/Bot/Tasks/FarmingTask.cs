@@ -232,7 +232,7 @@ namespace nManager.Wow.Bot.Tasks
                         inode = _curNode;
                     if (inode.IsValid)
                     {
-                        _curNode = node;
+                        _curNode = node; // we save a node we potentially bypassed to make sure we run the list.
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) > 5.0f)
                         {
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
