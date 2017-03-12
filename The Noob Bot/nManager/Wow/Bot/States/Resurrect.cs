@@ -235,6 +235,8 @@ namespace nManager.Wow.Bot.States
                     Timer distanceTimer = null;
                     while (safeResPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                     {
+                        if (!MovementManager.InMovement)
+                            MovementManager.Go(points);
                         if (distanceTimer == null && tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 39.0f)
                             distanceTimer = new Timer(10000); // start a 10sec timer when we are in range of our corpse.
                         if (distanceTimer != null && distanceTimer.IsReady)
