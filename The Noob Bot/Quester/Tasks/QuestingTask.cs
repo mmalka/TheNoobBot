@@ -1413,16 +1413,35 @@ namespace Quester.Tasks
                         MountTask.DismountMount();
                         Spell runeforging = new Spell("Runeforging");
                         Lua.RunMacroText("/cast " + runeforging.NameInGame);
+                        // open trade skill
                         Thread.Sleep(250 + Usefuls.Latency);
-                        Lua.RunMacroText("/script DoTradeSkill(GetTradeSkillSelectionIndex())");
-                        Lua.LuaDoString("DoTradeSkill(GetTradeSkillSelectionIndex())"); // bug
+                        int targetRecipe = 0;
+                        if (questObjective.Entry.Count > 0)
+                            targetRecipe = questObjective.Entry[0];
+                        if (targetRecipe > 0)
+                            Lua.LuaDoString("C_TradeSkillUI.CraftRecipe(" + targetRecipe + ")"); // use profile provided recipe
+                        else
+                            Lua.LuaDoString("C_TradeSkillUI.CraftRecipe(TradeSkillFrame.RecipeList:GetSelectedRecipeID())"); // select default selected runeforge
+                        // use selected recipe
                         Thread.Sleep(250 + Usefuls.Latency);
-                        // selectionne le premier dans la liste, donc OK
-                        Lua.RunMacroText("/click CharacterMainHandSlot");
+                        Lua.LuaDoString("C_TradeSkillUI.CloseTradeSkill()");
+                        // close trade skill window (enchanting mechanisms)
                         Thread.Sleep(250 + Usefuls.Latency);
-                        Lua.LuaDoString("ReplaceEnchant()");
+                        Lua.LuaDoString("CharacterFrame:Show()");
+                        // bring character  frame
+                        Thread.Sleep(250 + Usefuls.Latency);
+                        Lua.LuaDoString("CharacterMainHandSlot:Click()");
+                        Thread.Sleep(250 + Usefuls.Latency);
+                        Lua.LuaDoString("ReplaceEnchant()"); // may wait to confirm that
+                        Lua.LuaDoString("StaticPopup1:Hide()"); // hide popup (ReplaceEnchant bypass it)
+                        while (ObjectManager.Me.IsCasting)
+                        {
+                            Thread.Sleep(100);
+                        }
+                        Lua.RunMacroText("/script CharacterFrame:Hide()");
+                        // hide character frame
+                        Thread.Sleep(250 + Usefuls.Latency);
                         Thread.Sleep(questObjective.WaitMs);
-                        Lua.LuaDoString("CloseTradeSkill()");
                         questObjective.IsObjectiveCompleted = true;
                     }
                 }
