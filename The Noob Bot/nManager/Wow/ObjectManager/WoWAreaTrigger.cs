@@ -54,7 +54,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<uint>(Descriptors.AreaTriggerFields.Duration);
+                    return GetDescriptor<uint>(Descriptors.AreaTriggerFields.Duration); // or base +120
                 }
                 catch (Exception e)
                 {
@@ -112,13 +112,31 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        private Spell _spell;
+
+        public Spell Spell
+        {
+            get
+            {
+                if (_spell != null)
+                    return _spell;
+                if (Entry > 0)
+                {
+                    _spell = new Spell((uint)Entry);
+                    return _spell;
+                }
+                return new Spell(0);
+            }
+        }
+
         public uint SpellID
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<uint>(Descriptors.AreaTriggerFields.SpellID);
+                    return Memory.WowMemory.Memory.ReadUInt(BaseAddress + 136);
+                    return GetDescriptor<uint>(Descriptors.AreaTriggerFields.SpellID); // or base+136
                 }
                 catch (Exception e)
                 {
@@ -144,19 +162,19 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public float BoundsRadius2D
+        public float[] BoundsRadius2D
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<float>(Descriptors.AreaTriggerFields.BoundsRadius2D);
+                    return new[] {GetDescriptor<float>(Descriptors.AreaTriggerFields.BoundsRadius2D), GetDescriptor<float>(Descriptors.AreaTriggerFields.BoundsRadius2D + 4)};
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("AreaTriggerFields > Radius: " + e);
                 }
-                return 0;
+                return new[] {0f, 0f};
             }
         }
 
@@ -202,30 +220,12 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        // NON WORKING
         public override Point Position
         {
             get
             {
                 try
                 {
-                    /* CUSTOM
-                    uint i = (uint)(Addresses.GameObject.GAMEOBJECT_FIELD_X + (-500));
-                    while (false)
-                    {
-                        Logging.Write("New check, i=" + i);
-                        var pt = new Point(
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i),
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 4),
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 8));
-                        if (pt.X > -12000 && pt.X < 12000 && pt.Y > -12000 && pt.Y < 12000 && pt.Z > -12000 && pt.Z < 12000)
-                            Logging.Write(pt.ToString());
-                        i += 4;
-                        if (i > 0x1200)
-                            break;
-                    }
-
-                    CUSTOM */
                     return
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
@@ -243,18 +243,29 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        // NON WORKING
+        public float Rotation
+        {
+            get
+            {
+                try
+                {
+                    Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.GameObject.GAMEOBJECT_FIELD_R);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("AreaTriggerFields > Rotation: " + e);
+                }
+                return 0f;
+            }
+        }
+
         public override string Name
         {
             get
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadUTF8String(
-                            Memory.WowMemory.Memory.ReadUInt(
-                                Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
-                                (uint) Addresses.GameObject.CachedName));
+                    return Spell.NameInGame;
                 }
                 catch (Exception e)
                 {
@@ -277,13 +288,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        /*public override string ToString()
+        public override string ToString()
         {
-            string retString = String.Format("DynamicObject: {0}BaseAddress: {1}, {0}Caster: {2}, {0}OverrideScaleCurve: {3}, {0}ExtraScaleCurve: {4}, {0}Duration: {5}, {0}TimeToTarget: {6}, {0}" +
-                                             "{0}TimeToTargetScale: {7}, {0}TimeToTargetExtraScale: {8}, {0}SpellID: {9}, {0}SpellVisualID: {10}, {0}BoundsRadius2D: {11}, {0}Faction: {12}, {0}Name: {13}",
-                Environment.NewLine, BaseAddress, Caster, OverrideScaleCurve, ExtraScaleCurve, Duration, TimeToTarget, TimeToTargetScale, TimeToTargetExtraScale, SpellID, SpellVisualID, BoundsRadius2D
-                , Faction, Name);
+            string retString = String.Format("AreaTrigger: {0}BaseAddress: {1}, {0}Caster: {2}, {0}OverrideScaleCurve: {3}, {0}ExtraScaleCurve: {4}, {0}Duration: {5}, {0}TimeToTarget: {6}, {0}" +
+                                             "{0}TimeToTargetScale: {7}, {0}TimeToTargetExtraScale: {8}, {0}SpellID: {9}, {0}SpellVisualID: {10}, {0}BoundsRadius2D: {11}, {0}Faction: {12}, {0}Name: {13}, {0}Entry: {14}",
+                Environment.NewLine, BaseAddress, Caster, "", "", Duration, TimeToTarget, TimeToTargetScale, TimeToTargetExtraScale, SpellID, SpellXSpellVisualID, BoundsRadius2D
+                , Faction, Name, Entry);
             return retString;
-        }*/
+        }
     }
 }

@@ -10,7 +10,8 @@
         GameObject = 5,
         DynamicObject = 6,
         Corpse = 7,
-        AiGroup = 8,
-        AreaTrigger = 9
+        AreaTrigger = 8,
+        Scene = 9,
+        Conversation = 10
     }
 }

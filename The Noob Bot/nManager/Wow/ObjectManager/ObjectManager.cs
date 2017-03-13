@@ -201,7 +201,8 @@ namespace nManager.Wow.ObjectManager
                                     //_dynamicObjectList.Add(new WoWDynamicObject(o.Value.GetBaseAddress));
                                     break;
                                 case WoWObjectType.AreaTrigger:
-                                    //_areaTriggerList.Add(new WoWAreaTrigger(o.Value.GetBaseAddress));
+                                    _areaTriggerList.Add(new WoWAreaTrigger(o.Value.GetBaseAddress));
+                                    Logging.Write(_areaTriggerList[_areaTriggerList.Count - 1].ToString());
                                     break;
                                 default:
                                     _objectList.Add(o.Value);
@@ -256,8 +257,8 @@ namespace nManager.Wow.ObjectManager
                             switch (objType)
                             {
                                     // Belive it or not, the base Object class is hardly used in WoW.
-                                case WoWObjectType.Object:
-                                    obj = new WoWObject((uint) currentObject);
+                                case WoWObjectType.Object: // "None"
+                                    //obj = new WoWObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.Item:
                                     obj = new WoWItem((uint) currentObject);
@@ -280,28 +281,20 @@ namespace nManager.Wow.ObjectManager
                                     obj = new WoWGameObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.DynamicObject:
-                                    obj = new WoWDynamicObject((uint) currentObject);
+                                    //obj = new WoWDynamicObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.Corpse:
                                     obj = new WoWCorpse((uint) currentObject);
                                     break;
                                 case WoWObjectType.AreaTrigger:
-                                    //obj = new WoWAreaTrigger((uint)currentObject);
+                                    obj = new WoWAreaTrigger((uint) currentObject);
                                     break;
                                     // These two aren't used in most bots, as they're fairly pointless.
                                     // They are AI and area triggers for NPCs handled by the client itself.
-                                case WoWObjectType.AiGroup:
+                                case WoWObjectType.Scene:
+                                case WoWObjectType.Conversation:
+                                    obj = new WoWObject((uint) currentObject);
                                     break;
-                                    /*default:
-                                    Logging.Write("GUID: " + objGuid);
-                                    Logging.Write("TYPE: " + objType);
-                                    Logging.Write("GetWoWId: " + objGuid.GetWoWId);
-                                    Logging.Write("GetWoWMapId: " + objGuid.GetWoWMapId);
-                                    Logging.Write("GetWoWRealmId: " + objGuid.GetWoWRealmId);
-                                    Logging.Write("GetWoWServerId: " + objGuid.GetWoWServerId);
-                                    Logging.Write("GetWoWSubType: " + objGuid.GetWoWSubType);
-                                    Logging.Write("GetWoWType: " + objGuid.GetWoWType);
-                                    break;*/
                             }
                             if (obj != null)
                             {

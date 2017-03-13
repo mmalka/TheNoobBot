@@ -176,6 +176,7 @@
             GAMEOBJECT_FIELD_X = 0x138, // ?
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
+            GAMEOBJECT_FIELD_R = GAMEOBJECT_FIELD_X + 0x10,
             PackedRotationQuaternion = 0x148, // GetQuaternionOffset => UnpackQuaternion
             TransformationMatrice = 0x270, // GetMatrixOffset  ((this + 0x270), 0x40u)
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
