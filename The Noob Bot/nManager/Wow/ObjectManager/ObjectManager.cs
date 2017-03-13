@@ -202,7 +202,6 @@ namespace nManager.Wow.ObjectManager
                                     break;
                                 case WoWObjectType.AreaTrigger:
                                     _areaTriggerList.Add(new WoWAreaTrigger(o.Value.GetBaseAddress));
-                                    Logging.Write(_areaTriggerList[_areaTriggerList.Count - 1].ToString());
                                     break;
                                 default:
                                     _objectList.Add(o.Value);

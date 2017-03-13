@@ -102,13 +102,18 @@ namespace nManager.Wow.Helpers
                     {
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString(randomString + " = tostring(IsFlyableArea())");
-                        return Lua.GetLocalizedText(randomString) == "true";
+                        if (Lua.GetLocalizedText(randomString) == "true")
+                        {
+                            Point pointAbove = ObjectManager.ObjectManager.Me.Position;
+                            pointAbove.Z += 30;
+                            return !TraceLine.TraceLineGo(pointAbove);
+                        }
                     }
                     catch (Exception e)
                     {
                         Logging.WriteError("IsFlyableArea: " + e);
-                        return false;
                     }
+                    return false;
                 }
             }
         }
