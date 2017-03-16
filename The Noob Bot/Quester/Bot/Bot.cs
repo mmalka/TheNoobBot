@@ -120,6 +120,12 @@ namespace Quester.Bot
                 Dictionary<Point, float> blackListDic = new Dictionary<Point, float>();
                 foreach (QuesterBlacklistRadius b in Profile.Blackspots)
                 {
+                    if (blackListDic.ContainsKey(b.Position))
+                    {
+                        if (blackListDic[b.Position] <= b.Radius)
+                            blackListDic[b.Position] = b.Radius;
+                        continue;
+                    }
                     blackListDic.Add(b.Position, b.Radius);
                 }
                 nManagerSetting.AddRangeBlackListZone(blackListDic);
