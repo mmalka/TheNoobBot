@@ -1478,9 +1478,12 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     if (Guid == ObjectManager.Me.Guid)
+                    {
                         Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.TargetSystem.PtrToVMT) + (uint) Addresses.TargetSystem.Target, value);
+                        Lua.LuaDoString("UnitFrame_Update(TargetFrame);");
+                    }
                     else
-                        Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors) + (uint) Descriptors.UnitFields.Target*Descriptors.Multiplicator, value);
+                        Logging.WriteError("You can only set the target of Me.Focus.");
                 }
                 catch (Exception e)
                 {
@@ -1511,8 +1514,11 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     if (Guid == ObjectManager.Me.Guid)
+                    {
                         Memory.WowMemory.Memory.WriteInt128(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.TargetSystem.PtrToVMT) + (uint) Addresses.TargetSystem.Focus, value);
-                    else Logging.Write("You can only set the focus of Me.Focus.");
+                        Lua.LuaDoString("UnitFrame_Update(FocusFrame);");
+                    }
+                    else Logging.WriteError("You can only set the focus of Me.Focus.");
                 }
                 catch (Exception e)
                 {
