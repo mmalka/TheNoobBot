@@ -252,9 +252,9 @@
         <Z>132.6236</Z>
       </BInsidePoint>
       <APoint>
-        <X>1735.905</X>
-        <Y>-4257.915</Y>
-        <Z>133.1062</Z>
+		<X>1724.363</X>
+        <Y>-4238.469</Y>
+        <Z>151.253</Z>
       </APoint>
       <BPoint>
         <X>-1026.856</X>
@@ -488,24 +488,24 @@
     </Transport>
 	 <Transport Id="188521" Name="Elevator" Faction="Neutral" AContinentId="571" BContinentId="571">
       <AOutsidePoint> 
- <X>2884.795</X>
- <Y>6205.878</Y>
- <Z>104.066</Z>
+		<X>2884.795</X>
+		<Y>6205.878</Y>
+		<Z>104.066</Z>
       </AOutsidePoint>
       <BOutsidePoint>
- <X>2886.772</X>
- <Y>6221.708</Y>
- <Z>208.749</Z>
+		<X>2886.772</X>
+		<Y>6221.708</Y>
+		<Z>208.749</Z>
       </BOutsidePoint>
       <AInsidePoint>
- <X>2882.031</X>
- <Y>6219.323</Y>
- <Z>105.3799</Z>
+		<X>2882.031</X>
+		<Y>6219.323</Y>
+		<Z>105.3799</Z>
       </AInsidePoint>
       <BInsidePoint>
-    <X>2895.896</X>
- <Y>6232.027</Y>
- <Z>208.9087</Z>
+		<X>2895.896</X>
+		<Y>6232.027</Y>
+		<Z>208.9087</Z>
       </BInsidePoint>
       <APoint>
 		<X>2878.316</X>
@@ -513,12 +513,76 @@
 		<Z>105.3792</Z>
       </APoint>
       <BPoint>
-	  <X>2892.18</X>
+		<X>2892.18</X>
 		<Y>6236.337</Y>
 		<Z>208.908</Z>
       </BPoint>
     </Transport>
-    <Transport Id="176310" Name="Ship (The Bravery)" Faction="Alliance" AContinentId="1" BContinentId="0">
+	<Transport Id="190118" Name="Elevator - Howling Fjord" Faction="Neutral" AContinentId="571" BContinentId="571">
+      <AOutsidePoint> 
+		<X>1694.923</X>
+		<Y>-5838.399</Y>
+		<Z>11.99691</Z>
+      </AOutsidePoint>
+      <BOutsidePoint>
+		<X>1678.465</X>
+		<Y>-5823.596</Y>
+		<Z>247.9719</Z>
+      </BOutsidePoint>
+      <AInsidePoint>
+		<X>1689.036</X>
+		<Y>-5832.195</Y>
+		<Z>12.07043</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+		<X>1688.315</X>
+		<Y>-5831.435</Y>
+		<Z>246.511</Z>
+      </BInsidePoint>
+      <APoint>
+		<X>1680.114</X>
+		<Y>-5824.42</Y>
+		<Z>-72.76546</Z>
+      </APoint>
+      <BPoint>
+		<X>1680.114</X>
+		<Y>-5824.42</Y>
+		<Z>161.673</Z>
+      </BPoint>
+    </Transport>
+	<Transport Id="188360" Name="Gondola - Howling Fjord" Faction="Neutral" AContinentId="571" BContinentId="571">
+      <AOutsidePoint> 
+		<X>684.4108</X>
+		<Y>-3823.495</Y>
+		<Z>254.6836</Z>
+      </AOutsidePoint>
+      <BOutsidePoint>
+		<X>600.8484</X>
+		<Y>-2891.289</Y>
+		<Z>42.32505</Z>
+      </BOutsidePoint>
+      <AInsidePoint>
+		<X>675.3946</X>
+		<Y>-3823.837</Y>
+		<Z>254.682</Z>
+      </AInsidePoint>
+      <BInsidePoint>
+		<X>592.1217</X>
+		<Y>-2891.764</Y>
+		<Z>42.76627</Z>
+      </BInsidePoint>
+      <APoint>
+		<X>678.707</X>
+		<Y>-3823.947</Y>
+		<Z>268.0588</Z>
+      </APoint>
+      <BPoint>
+		<X>595.1279</X>
+		<Y>-2892.092</Y>
+		<Z>56.11942</Z>
+      </BPoint>
+    </Transport>
+	<Transport Id="176310" Name="Ship (The Bravery)" Faction="Alliance" AContinentId="1" BContinentId="0">
       <AOutsidePoint>
         <X>8179.573</X>
         <Y>1002.025</Y>

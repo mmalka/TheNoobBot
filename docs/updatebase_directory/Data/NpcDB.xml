@@ -9507,7 +9507,7 @@
     <Position>
       <X>2275.08</X>
       <Y>236.997</Y>
-      <Z>33.6908035</Z>
+      <Z>33.6907539</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>RidingTrainer</Type>
@@ -11878,6 +11878,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>-1766.48267</X>
+      <Y>1656.99475</Y>
+      <Z>21.4169235</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1766.48267</X>
+      <Y>1656.99475</Y>
+      <Z>21.4169235</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>-1765.03125</X>
       <Y>1410.88025</Y>
       <Z>20.8905888</Z>
@@ -12137,6 +12159,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>71.4396744</X>
+      <Y>-4649.07031</Y>
+      <Z>283.327759</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>71.4396744</X>
+      <Y>-4649.07031</Y>
+      <Z>283.327759</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -12604,6 +12648,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>2220.12427</X>
+      <Y>-4650.74</Y>
+      <Z>215.377747</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2220.12427</X>
+      <Y>-4650.74</Y>
+      <Z>215.377747</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>2356.59473</X>
       <Y>2332.345</Y>
       <Z>106.163826</Z>
@@ -12731,6 +12797,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2764.86279</X>
+      <Y>1043.72778</Y>
+      <Z>24.055315</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2764.86279</X>
+      <Y>1043.72778</Y>
+      <Z>24.055315</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -20558,7 +20646,7 @@
     <Position>
       <X>148.588333</X>
       <Y>2636.02222</Y>
-      <Z>85.9346848</Z>
+      <Z>85.93479</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -22780,7 +22868,7 @@
     <Position>
       <X>-1319.30176</X>
       <Y>2351.02466</Y>
-      <Z>88.95512</Z>
+      <Z>88.95548</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -22804,22 +22892,10 @@
     <Position>
       <X>-1329.01392</X>
       <Y>2397.58447</Y>
-      <Z>89.07508</Z>
+      <Z>89.07509</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>19561</Entry>
-    <Name>Hagash the Blind</Name>
-    <Position>
-      <X>-1329.01392</X>
-      <Y>2397.58447</Y>
-      <Z>89.07499</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -24126,7 +24202,7 @@
     <Position>
       <X>179.787079</X>
       <Y>2605.40015</Y>
-      <Z>87.28399</Z>
+      <Z>87.2838</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -24138,7 +24214,7 @@
     <Position>
       <X>179.787079</X>
       <Y>2605.40015</Y>
-      <Z>87.28399</Z>
+      <Z>87.28406</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
@@ -24863,7 +24939,7 @@
     <Position>
       <X>420.1329</X>
       <Y>-4528.415</Y>
-      <Z>246.744324</Z>
+      <Z>246.744629</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -34101,7 +34177,7 @@
     <Position>
       <X>45.0989571</X>
       <Y>2741.53052</Y>
-      <Z>85.17036</Z>
+      <Z>85.17035</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>RidingTrainer</Type>
@@ -38367,7 +38443,7 @@
     <Position>
       <X>-11000.4531</X>
       <Y>-2727.72046</Y>
-      <Z>6.41601229</Z>
+      <Z>6.415706</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -38391,7 +38467,7 @@
     <Position>
       <X>-10946.4</X>
       <Y>-2770.81</Y>
-      <Z>6.905242</Z>
+      <Z>6.905438</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -38617,7 +38693,7 @@
     <Position>
       <X>-11806.4</X>
       <Y>-3227.13</Y>
-      <Z>-30.3268528</Z>
+      <Z>-30.32678</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -39527,17 +39603,6 @@
     <Entry>45417</Entry>
     <Name>Fiona</Name>
     <Position>
-      <X>3008.54</X>
-      <Y>-3438.77</Y>
-      <Z>149.708542</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>45417</Entry>
-    <Name>Fiona</Name>
-    <Position>
       <X>3162.27</X>
       <Y>-4325.08</Y>
       <Z>132.407288</Z>
@@ -39631,17 +39696,6 @@
       <Z>143.914</Z>
     </Position>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>45451</Entry>
-    <Name>Argus Highbeacon</Name>
-    <Position>
-      <X>3010.16</X>
-      <Y>-3428.6</Y>
-      <Z>149.709686</Z>
-    </Position>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -49382,6 +49436,17 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>68993</Entry>
+    <Name>Fenegan Cobbler</Name>
+    <Position>
+      <X>-1740.25354</X>
+      <Y>1635.76563</Y>
+      <Z>20.4822121</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Gilneas2</ContinentId>
   </Npc>
   <Npc>
     <Entry>68993</Entry>
