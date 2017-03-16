@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Enums;
 using Quester.Profile;
 using nManager;
 using nManager.FiniteStateMachine;
@@ -20,6 +21,43 @@ namespace Quester.Bot
         private static readonly Engine Fsm = new Engine();
 
         internal static QuesterProfile Profile;
+
+        internal static bool DisplayedOnce = false;
+
+        internal static void DumpInfoAboutProfile(string profileName, QuesterProfile profile)
+        {
+            if (string.IsNullOrEmpty(profile.Author))
+                return;
+            if (DisplayedOnce)
+                Logging.Write(profileName + " by " + profile.Author);
+            else
+            {
+                Logging.Write("Loading " + profileName + " created by " + profile.Author);
+                DisplayedOnce = true;
+            }
+            switch (profile.DevelopmentStatus)
+            {
+                case DevelopmentStatus.WorkInProgress:
+                    Logging.WriteDebug("This profile is still a work in progress and may not be even complete.");
+                    break;
+                case DevelopmentStatus.Untested:
+                    Logging.WriteDebug("This profile has yet to be reviewed by our team and may contains stucks, bugs.");
+                    break;
+                case DevelopmentStatus.Outdated:
+                    Logging.WriteDebug("This profile is outdated and may contains stucks, bugs, don't hesitate to report them so we can update it properly.");
+                    break;
+                case DevelopmentStatus.ReleaseCandidate:
+                    Logging.WriteDebug("This profile has been reviewed by our team but is subject to have unseen bugs.");
+                    break;
+                case DevelopmentStatus.Completed:
+                    Logging.WriteDebug("This profile is marked as completed, if any issue, please report so we can downgrade it to outdated.");
+                    break;
+            }
+            if (!string.IsNullOrEmpty(profile.Description))
+                Logging.Write("Description found: " + profile.Description);
+            if (!string.IsNullOrEmpty(profile.ExtraCredits))
+                Logging.Write("Special thanks: " + profile.ExtraCredits);
+        }
 
         internal static bool Pulse()
         {
@@ -41,22 +79,13 @@ namespace Quester.Bot
                         ? XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)
                         : XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" +
                                                                     QuesterSettings.CurrentSettings.LastProfile);
-                    bool displayedOnce = false;
-                    if (!string.IsNullOrEmpty(Profile.Author))
-                    {
-                        displayedOnce = true;
-                        Logging.Write("Loading quester profile " + QuesterSettings.CurrentSettings.LastProfile + " created by " + Profile.Author);
-                        Logging.WriteDebug("Development status: " + Profile.DevelopmentStatus);
-                        if (!string.IsNullOrEmpty(Profile.Description))
-                            Logging.Write("Description found: " + Profile.Description);
-                        if (!string.IsNullOrEmpty(Profile.ExtraCredits))
-                            Logging.Write("Special thanks: " + Profile.ExtraCredits);
-                    }
+                    DumpInfoAboutProfile(QuesterSettings.CurrentSettings.LastProfile, Profile);
+
                     foreach (Include include in Profile.Includes)
                     {
                         try
                         {
-                            if (!Tasks.Script.Run(include.ScriptCondition)) continue;
+                            if (!Script.Run(include.ScriptCondition)) continue;
                             //Logging.Write(Translation.GetText(Translation.Text.SubProfil) + " " + include.PathFile);
                             QuesterProfile profileInclude = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + include.PathFile);
                             if (profileInclude != null)
@@ -66,20 +95,7 @@ namespace Quester.Bot
                                 Profile.Blackspots.AddRange(profileInclude.Blackspots);
                                 Profile.AvoidMobs.AddRange(profileInclude.AvoidMobs);
                                 Profile.Quests.AddRange(profileInclude.Quests);
-                                if (string.IsNullOrEmpty(profileInclude.Author))
-                                    continue;
-                                if (displayedOnce)
-                                    Logging.Write(include.PathFile + " by " + profileInclude.Author);
-                                else
-                                {
-                                    Logging.Write("Loading " + include.PathFile + " created by " + profileInclude.Author);
-                                    displayedOnce = true;
-                                }
-                                Logging.WriteDebug("Development status: " + profileInclude.DevelopmentStatus);
-                                if (!string.IsNullOrEmpty(profileInclude.Description))
-                                    Logging.Write("Description found: " + profileInclude.Description);
-                                if (!string.IsNullOrEmpty(profileInclude.ExtraCredits))
-                                    Logging.Write("Special thanks: " + profileInclude.ExtraCredits);
+                                DumpInfoAboutProfile(include.PathFile, profileInclude);
                             }
                         }
 
