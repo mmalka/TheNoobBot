@@ -494,7 +494,22 @@ namespace Quester.Tasks
                         return;
                     }
                 }
-
+                if (wowUnit.IsAlive && wowUnit.IsAboveGround)
+                {
+                    if (((wowUnit.GetDistance - wowUnit.GetDistance2D) > 3 || System.Math.Abs(wowUnit.Position.Z - ObjectManager.Me.Position.Z) > 8f) && (wowUnit.GetDistance > (CombatClass.GetRange - 1f)))
+                    {
+                        // Target is far from the ground and not yet in pull range
+                        float groundZ = PathFinder.GetZPosition(wowUnit.Position);
+                        float deltaZ = wowUnit.Position.Z - groundZ;
+                        if (deltaZ > 9f && CombatClass.GetRange < 29f || deltaZ > 15f)
+                        {
+                            // 9y higher than us for melee, 15y for ranger, can be tweaked, show me more cases.
+                            Logging.Write("Creature " + wowUnit.Name + " is flying too high for us, blacklisting it for 30 seconds.");
+                            nManagerSetting.AddBlackList(wowUnit.Guid, 30000); // ignore it for 30 seconds.
+                            return;
+                        }
+                    }
+                }
                 if (wowUnit.IsValid && wowUnit.IsAlive && (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
                     if (lockedTarget == null || !lockedTarget.IsValid)
