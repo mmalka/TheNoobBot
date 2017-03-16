@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="Several authors" DevelopmentStatus="WorkInProgress">
+  <Includes>
+    <Include>
+      <PathFile>[H] 1-10 Mulgore - Tauren Starting Zone.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 10-20 Northern Barrens.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 20-25 Hillsbrad Foothills.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 25-30 Arathi Highlands.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 30-35 The Hinterlands.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 35-40 Dustwallow Marsh.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 40-45 Eastern PlagueLands.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 45-49 Tanaris.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 49-53 Felwood.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 53-57 Winterspring.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 57-59 Blasted Lands.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 60-62 Hellfire Peninsula.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 62-64 Zangarmarsh.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 64-66 Nagrand.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 65-68 Blade's Edge Mountains.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 67-70 Netherstorm.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 68-72 Borean Tundra.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 68-72 Howling Fjord.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 71-75 Dragonblight.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[H] 76-78 Sholazar Basin.xml</PathFile>
+    </Include>
+  </Includes>
+  <Questers />
+  <Quests />
+</QuesterProfile>

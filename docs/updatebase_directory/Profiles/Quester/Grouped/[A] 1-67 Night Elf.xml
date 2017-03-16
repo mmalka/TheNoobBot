@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="Several authors" DevelopmentStatus="WorkInProgress">
+  <Includes>
+    <Include>
+      <PathFile>[A] 1-10 Teldrassil - Night Elf Starting Zone.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 10-15 Westfall.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 15-20 Redridge Mountains.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 20-25 Duskwood.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 25-35 Stranglethorn Vale.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 35-40 Dustwallow Marsh.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 40-45 Eastern PlagueLands.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 45-49 Tanaris.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 49-53 Felwood.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 53-57 Winterspring.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 57-59 Blasted Lands.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 60-62 Hellfire Peninsula.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 62-64 Zangarmarsh.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 64-66 Nagrand.xml</PathFile>
+    </Include>
+    <Include>
+      <PathFile>[A] 66-67 Blade's Edge Mountains.xml</PathFile>
+    </Include>
+  </Includes>
+  <Questers />
+  <Quests />
+</QuesterProfile>
