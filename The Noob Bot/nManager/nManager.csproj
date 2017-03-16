@@ -204,6 +204,7 @@
     <Compile Include="Wow\Class\Quaternion.cs" />
     <Compile Include="Wow\Class\UInt128.cs" />
     <Compile Include="Wow\Class\Vector3.cs" />
+    <Compile Include="Wow\Enums\DevelopmentStatus.cs" />
     <Compile Include="Wow\Enums\GuidType.cs" />
     <Compile Include="Wow\Enums\InstanceType.cs" />
     <Compile Include="Wow\Enums\MovementFlags.cs" />

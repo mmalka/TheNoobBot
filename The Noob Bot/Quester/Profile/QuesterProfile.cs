@@ -17,6 +17,9 @@ namespace Quester.Profile
     [Serializable]
     public class QuesterProfile
     {
+        [XmlAttribute] public string Author = ""; // serialize even empty to force authors to fill
+        [XmlAttribute] public DevelopmentStatus DevelopmentStatus = DevelopmentStatus.WorkInProgress; // set default as WIP if null or new
+        [XmlAttribute, DefaultValue("")] public string Description; // only serialize if set
         public List<Include> Includes = new List<Include>();
 
         public bool ShouldSerializeIncludes()
