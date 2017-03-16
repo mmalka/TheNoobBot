@@ -32,6 +32,7 @@ namespace nManager.Wow.Class
 
         private string _name = "NoName";
 
+        [XmlIgnore]
         public string InternalData { get; set; }
 
         [DefaultValue(0)] public int SelectGossipOption = 0;
