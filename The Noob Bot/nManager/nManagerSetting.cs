@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using nManager.Helpful;
 using nManager.Wow.Class;
-using nManager.Wow.Helpers;
+using nManager.Wow.MemoryClass;
 using nManager.Wow.ObjectManager;
+using Usefuls = nManager.Wow.Helpers.Usefuls;
 
 namespace nManager
 {
@@ -85,6 +86,8 @@ namespace nManager
         {
             try
             {
+                if (Information.DevMode)
+                    Logging.WriteDebug("Blacklist (" + guid + ") for " + timeInMilisec + "ms from " + Hook.CurrentCallStack);
                 if (_blackListGuidByTime.ContainsKey(guid))
                     _blackListGuidByTime.Remove(guid);
 

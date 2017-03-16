@@ -10,5 +10,6 @@
         public const string Version = "MD5HashVersionForDev"; // current = 6.5.3 vs MD5HashVersionForDev
         public static string MainTitle = "The Noob Bot " + Version;
         public static string SchedulerTitle = "The Noob Scheduler for " + MainTitle;
+        public static bool DevMode = !Version.Contains(".");
     }
 }
