@@ -173,8 +173,6 @@ namespace Quester.Profile
                         GroupedProfilesList.Items.Add(SimpleProfilesList.Items[SimpleProfilesList.SelectedIndices[i]]);
                         GroupedProfilesList.SelectedIndex = GroupedProfilesList.Items.Count - 1;
                         SimpleProfilesList.Items.RemoveAt(SimpleProfilesList.SelectedIndices[i]);
-                        if (SimpleProfilesList.Items.Count > 0)
-                            SimpleProfilesList.SelectedIndex = 0;
                     }
                 }
             }
