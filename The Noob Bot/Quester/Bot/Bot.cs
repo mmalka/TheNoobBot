@@ -41,7 +41,14 @@ namespace Quester.Bot
                         ? XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)
                         : XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" +
                                                                     QuesterSettings.CurrentSettings.LastProfile);
-
+                    if (!string.IsNullOrEmpty(Profile.Author))
+                    {
+                        Logging.Write("Loading quester profile " + QuesterSettings.CurrentSettings.LastProfile + "(" + Profile.DevelopmentStatus + ") created by " + Profile.Author);
+                        if (!string.IsNullOrEmpty(Profile.Description))
+                            Logging.Write("Description found: " + Profile.Description);
+                        if (!string.IsNullOrEmpty(Profile.ExtraCredits))
+                            Logging.Write("Special thanks: " + Profile.ExtraCredits);
+                    }
                     foreach (Include include in Profile.Includes)
                     {
                         try
@@ -56,6 +63,14 @@ namespace Quester.Bot
                                 Profile.Blackspots.AddRange(profileInclude.Blackspots);
                                 Profile.AvoidMobs.AddRange(profileInclude.AvoidMobs);
                                 Profile.Quests.AddRange(profileInclude.Quests);
+                                if (!string.IsNullOrEmpty(profileInclude.Author))
+                                {
+                                    Logging.Write("Loading quester profile " + QuesterSettings.CurrentSettings.LastProfile + "(" + profileInclude.DevelopmentStatus + ") created by " + profileInclude.Author);
+                                    if (!string.IsNullOrEmpty(profileInclude.Description))
+                                        Logging.Write("Description found: " + profileInclude.Description);
+                                    if (!string.IsNullOrEmpty(profileInclude.ExtraCredits))
+                                        Logging.Write("Special thanks: " + profileInclude.ExtraCredits);
+                                }
                             }
                         }
 
