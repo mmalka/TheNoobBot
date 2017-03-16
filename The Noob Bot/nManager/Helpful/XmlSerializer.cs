@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace nManager.Helpful
 {
@@ -32,8 +33,20 @@ namespace nManager.Helpful
                 {
                     using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                     {
-                        System.Xml.Serialization.XmlSerializer s = new System.Xml.Serialization.XmlSerializer(@object.GetType());
-                        s.Serialize(w, @object);
+                        // create a XmlAttributes class with empty namespace and namespace disabled
+                        var xmlAttributes = new XmlAttributes {XmlType = new XmlTypeAttribute {Namespace = ""}, Xmlns = false};
+                        // create a XmlAttributeOverrides class
+                        var xmlAttributeOverrides = new XmlAttributeOverrides();
+                        // implement our previously created XmlAttributes to the overrider for our specificed class
+                        xmlAttributeOverrides.Add(@object.GetType(), xmlAttributes);
+                        // initialize the serializer for our class and attribute override
+                        var s = new System.Xml.Serialization.XmlSerializer(@object.GetType(), xmlAttributeOverrides);
+                        // create a blank XmlSerializerNamespaces
+                        var xmlSrzNamespace = new XmlSerializerNamespaces();
+                        xmlSrzNamespace.Add("", "");
+                        // Serialize with blank XmlSerializerNames using our initialized serializer with namespace disabled
+                        s.Serialize(w, @object, xmlSrzNamespace);
+                        // All kind of namespace are totally unable to serialize.
                     }
                 }
                 return true;
