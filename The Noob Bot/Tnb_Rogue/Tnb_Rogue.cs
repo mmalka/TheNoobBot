@@ -296,7 +296,7 @@ public class RogueAssassination
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
         Main.InternalAggroRange = Main.InternalRange;
-        Main.InternalLightHealingSpell = null;
+        Main.InternalLightHealingSpell = CrimsonVial;
         MySettings = RogueAssassinationSettings.GetSettings();
         Main.DumpCurrentSettings<RogueAssassinationSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1023,7 +1023,7 @@ public class RogueOutlaw
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
         Main.InternalAggroRange = Main.InternalRange;
-        Main.InternalLightHealingSpell = null;
+        Main.InternalLightHealingSpell = CrimsonVial;
         MySettings = RogueOutlawSettings.GetSettings();
         Main.DumpCurrentSettings<RogueOutlawSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1590,7 +1590,7 @@ public class RogueSubtlety
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
         Main.InternalAggroRange = Main.InternalRange;
-        Main.InternalLightHealingSpell = null;
+        Main.InternalLightHealingSpell = CrimsonVial;
         MySettings = RogueSubtletySettings.GetSettings();
         Main.DumpCurrentSettings<RogueSubtletySettings>(MySettings);
         UInt128 lastTarget = 0;
