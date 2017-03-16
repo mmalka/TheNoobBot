@@ -389,6 +389,7 @@ namespace nManager.Helpful.Forms
                         "StateAnimID: " + ObjectManager.Target.GetDescriptor<StateAnimID>(Descriptors.UnitFields.StateAnimID) + Environment.NewLine +
                         "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags) + Environment.NewLine +
                         questStatusText + flightStatusText +
+                        "MovementStatus: " + ObjectManager.Target.MovementStatus + Environment.NewLine +
                         "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
                     if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Taxi))
                     {
@@ -533,7 +534,9 @@ namespace nManager.Helpful.Forms
                     Environment.NewLine +
                     "  </Npc>" +
                     Environment.NewLine + Environment.NewLine +
-                    "Distance: " + pos.DistanceTo(ObjectManager.Me.Position);
+                    "Distance: " + pos.DistanceTo(ObjectManager.Me.Position) +
+                    Environment.NewLine + Environment.NewLine +
+                    "Distance2D: " + pos.DistanceTo2D(ObjectManager.Me.Position);
             }
             catch (Exception ex)
             {

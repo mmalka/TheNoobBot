@@ -80,6 +80,10 @@ namespace nManager.Wow.ObjectManager
                                                               (uint) Addresses.UnitField.UNIT_FIELD_Y),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
                                                               (uint) Addresses.UnitField.UNIT_FIELD_Z));
+                    if (IsSwimming)
+                        ret.Type = "Swimming";
+                    if (IsAboveGround)
+                        ret.Type = "Flying";
                     if (InTransport)
                     {
                         var t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
@@ -107,14 +111,6 @@ namespace nManager.Wow.ObjectManager
                             if (p.IsValid && p.IsAlive)
                                 return p.Position;
                         }
-                    }
-
-                    if (Guid == ObjectManager.Me.Guid)
-                    {
-                        if (Usefuls.IsFlying)
-                            ret.Type = "Flying";
-                        if (Usefuls.IsSwimming)
-                            ret.Type = "Swimming";
                     }
 
                     return ret;
@@ -2876,6 +2872,44 @@ namespace nManager.Wow.ObjectManager
                 _totemCache = true;
                 _isTotem = ObjectManager.TotemEntryList != null && ObjectManager.TotemEntryList.Contains(Entry);
                 return _isTotem;
+            }
+        }
+
+
+        public bool IsFalling
+        {
+            get { return MovementStatus.HasFlag(MovementFlags.Falling); }
+        }
+
+        public bool IsSwimming
+        {
+            get { return MovementStatus.HasFlag(MovementFlags.Swimming); }
+        }
+
+        public bool IsFlying
+        {
+            get { return MovementStatus.HasFlag(MovementFlags.Flying); }
+        }
+
+        public bool IsAboveGround
+        {
+            get { return IsFlying || MovementStatus.HasFlag(MovementFlags.Levitating) || MovementStatus.HasFlag(MovementFlags.Hover); }
+        }
+
+        public MovementFlags MovementStatus
+        {
+            get
+            {
+                try
+                {
+                    return
+                        (MovementFlags) Memory.WowMemory.Memory.ReadInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.MovementFlagsOffsets.Offset1) + (uint) Addresses.MovementFlagsOffsets.Offset2);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GetMovementStatus: " + e);
+                    return MovementFlags.None;
+                }
             }
         }
 
