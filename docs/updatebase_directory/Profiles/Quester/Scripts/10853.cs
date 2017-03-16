@@ -12,7 +12,7 @@ if(nManager.Wow.Helpers.ItemsManager.GetItemCount(31663) >= 0) //Go to town and 
 	if (unit.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid))
 	{
 				
-		if (unit.IsValid && unit.NotAttackable)
+		if (unit.IsValid && !unit.Attackable)
 		{	
 			nManagerSetting.AddBlackList(unit.Guid, 30*10000); //Blacklist NotAttackable units
 			return false;
@@ -23,7 +23,7 @@ if(nManager.Wow.Helpers.ItemsManager.GetItemCount(31663) >= 0) //Go to town and 
 		if(!nManager.Wow.ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer().Exists(x=> x.GetBaseAddress == unit.GetBaseAddress))
 		{
 			//Go Toward the unit until we aggro it
-			baseAddress = MovementManager.FindTarget(unit, CombatClass.GetAggroRange);
+			baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
 		
 			//Pre Select Target
 			if (unit.IsValid && unit.Position.DistanceTo(ObjectManager.Me.Position) <= 80 && ObjectManager.Target.Guid != unit.Guid)
@@ -52,19 +52,22 @@ if(nManager.Wow.Helpers.ItemsManager.GetItemCount(31663) >= 0) //Go to town and 
 			return false;
 
 			ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+			Thread.Sleep(500);
 		}
-		
-		//The mob is aggro, go back to the totem to be in range of it		
-		baseAddressTotem = MovementManager.FindTarget(totem, 5f);
-		
-		if (baseAddressTotem <= 0)
-			return false;
-		if (baseAddressTotem > 0 && (totem.IsValid && totem.GetDistance > questObjective.Range))
-			return false;
+		else
+		{
+			//The mob is aggro, go back to the totem to be in range of it		
+			baseAddressTotem = MovementManager.FindTarget(totem, 5f);
+			
+			if (baseAddressTotem <= 0)
+				return false;
+			if (baseAddressTotem > 0 && (totem.IsValid && totem.GetDistance > questObjective.Range))
+				return false;
 
-		MovementManager.StopMove();
-		MountTask.DismountMount();
-		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
+			MovementManager.StopMove();
+			MountTask.DismountMount();
+			nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
+		}
 		
 		return false; //Let the bot kill the mob(s)
 		

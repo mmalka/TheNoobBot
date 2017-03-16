@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<QuesterProfile Author="Arasal" DevelopmentStatus="ReleaseCandidate">
   <Questers />
   <Quests>
     <Quest>
@@ -1269,7 +1269,8 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
-          <WaitMs>40000</WaitMs>
+          <ScriptConditionIsComplete>return !ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(48503, false), false, false,true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip);</ScriptConditionIsComplete>
+          <WaitMs>5000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>

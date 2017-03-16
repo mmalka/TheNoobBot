@@ -1,148 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-    <Npc>
-      <Name>Magistrix Erona</Name>
-      <Entry>15278</Entry>
-      <Position>
-        <X>10351.96</X>
-        <Y>-6359.932</Y>
-        <Z>34.03353</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Julia Sunstriker</Name>
-      <Entry>15279</Entry>
-      <Position>
-        <X>10337.19</X>
-        <Y>-6419.446</Y>
-        <Z>38.5332</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Jesthenis Sunstriker</Name>
-      <Entry>15280</Entry>
-      <Position>
-        <X>10366.67</X>
-        <Y>-6431.529</Y>
-        <Z>38.53442</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Summoner Teli'Larien</Name>
-      <Entry>15283</Entry>
-      <Position>
-        <X>10337.57</X>
-        <Y>-6405.026</Y>
-        <Z>38.53379</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Matron Arena</Name>
-      <Entry>15284</Entry>
-      <Position>
-        <X>10372.4</X>
-        <Y>-6428.843</Y>
-        <Z>38.53328</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Pathstalker Kariel</Name>
-      <Entry>15285</Entry>
-      <Position>
-        <X>10384.53</X>
-        <Y>-6404.986</Y>
-        <Z>38.53305</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Well Watcher Solanian</Name>
-      <Entry>15295</Entry>
-      <Position>
-        <X>10376.43</X>
-        <Y>-6406.689</Y>
-        <Z>49.71607</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Arcanist Ithanas</Name>
-      <Entry>15296</Entry>
-      <Position>
-        <X>10413.7</X>
-        <Y>-6372.463</Y>
-        <Z>35.64339</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Name>Arcanist Helion</Name>
-      <Entry>15297</Entry>
-      <Position>
-        <X>10419.66</X>
-        <Y>-6318.618</Y>
-        <Z>35.57385</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Entry>15281</Entry>
-      <Name>Lanthan Perilon</Name>
-      <Position>
-        <X>10302.25</X>
-        <Y>-6229.303</Y>
-        <Z>26.62262</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Entry>15301</Entry>
-      <Name>Outrunner Alarion</Name>
-      <Position>
-        <X>9984.044</X>
-        <Y>-6478.019</Y>
-        <Z>0.9976389</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Entry>15513</Entry>
-      <Name>Ranger Sallina</Name>
-      <Position>
-        <X>10384.72</X>
-        <Y>-6410.674</Y>
-        <Z>38.53406</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Entry>43010</Entry>
-      <Name>Delios Silverblade</Name>
-      <Position>
-        <X>10381.3</X>
-        <Y>-6422.5</Y>
-        <Z>38.53176</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Entry>63332</Entry>
-      <Name>Pao</Name>
-      <Position>
-        <X>10378.89</X>
-        <Y>-6398.024</Y>
-        <Z>38.53273</Z>
-      </Position>
-    </Npc>
-  </Questers>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="Vesper" DevelopmentStatus="Outdated">
   <Quests>
-    <!-- Main quest line -->
     <Quest>
       <Name>Reclaiming Sunstrider Isle</Name>
+      <RaceMask>512</RaceMask>
       <Id>8325</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
+      <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>4</MaxLevel>
-      <QuestLevel>1</QuestLevel>
       <PickUp>15278</PickUp>
       <TurnIn>15278</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>-1</Count><!-- 6 -->
+          <Count>-1</Count>
           <Entry>
             <int>15274</int>
           </Entry>
@@ -161,14 +32,13 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Unfortunate Measures</Name>
+      <RaceMask>512</RaceMask>
       <Id>8326</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
+      <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
-      <QuestLevel>3</QuestLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
       </NeedQuestCompletedId>
@@ -177,12 +47,12 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>20797</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>15366</int>
             <int>15372</int>
           </Entry>
+          <CollectItemId>20797</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>10262.66</X>
@@ -193,11 +63,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Solanian's Belongings</Name>
+      <RaceMask>512</RaceMask>
       <Id>37443</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -257,11 +126,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>The Shrine of Dath'Remar</Name>
+      <RaceMask>512</RaceMask>
       <Id>37442</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>1</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -284,11 +152,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>A Fistful of Slivers</Name>
+      <RaceMask>512</RaceMask>
       <Id>37440</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -300,12 +167,12 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>20482</CollectItemId>
-          <CollectCount>6</CollectCount>
           <Entry>
             <int>15274</int>
             <int>15294</int>
           </Entry>
+          <CollectItemId>20482</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>10233.04</X>
@@ -316,11 +183,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Thirst Unending</Name>
+      <RaceMask>512</RaceMask>
       <Id>37439</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -332,26 +198,18 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpellAOE</Objective>
-          <UseSpellId>28730</UseSpellId>
           <Entry>
             <int>15274</int>
           </Entry>
+          <UseSpellId>28730</UseSpellId>
           <Range>8</Range>
-          <Position>
-            <Point>
-              <X>10233.04</X>
-              <Y>-6331.622</Y>
-              <Z>30.8401</Z>
-            </Point>
-          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Report to Lanthan Perilon</Name>
+      <RaceMask>512</RaceMask>
       <Id>8327</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -360,304 +218,12 @@
       </NeedQuestCompletedId>
       <PickUp>15278</PickUp>
       <TurnIn>15281</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
-    <Quest>
-      <Name>Charge</Name>
-      <Id>27091</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>1</ClassMask> <!-- Warrior -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>8329</int>
-      </NeedQuestCompletedId>
-      <PickUp>43010</PickUp>
-      <TurnIn>43010</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>10371.88</X>
-            <Y>-6351.023</Y>
-            <Z>33.21012</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>-1</Count>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>10371.88</X>
-              <Y>-6351.023</Y>
-              <Z>33.21012</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
-    <Quest>
-      <Name>Ways of the Light</Name>
-      <Id>10069</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>2</ClassMask> <!-- Paladin -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>9676</int>
-      </NeedQuestCompletedId>
-      <PickUp>15280</PickUp>
-      <TurnIn>15280</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <UseSpellId>105361</UseSpellId>
-          <Position>
-            <Point>
-              <X>10345.46</X>
-              <Y>-6366.245</Y>
-              <Z>34.79651</Z>
-            </Point>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>10345.46</X>
-              <Y>-6366.245</Y>
-              <Z>34.79651</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
-    <Quest>
-      <Name>Steady Shot</Name>
-      <Id>10070</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>9393</int>
-      </NeedQuestCompletedId>
-      <PickUp>15513</PickUp>
-      <TurnIn>15513</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <UseSpellId>56641</UseSpellId>
-          <Range>15</Range>
-          <Count>5</Count>
-          <Hotspots>
-            <Point>
-              <X>10331.89</X>
-              <Y>-6370.064</Y>
-              <Z>33.70367</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
-    <Quest>
-      <Name>Evisceration</Name>
-      <Id>10071</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>8</ClassMask> <!-- Rogue -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>9392</int>
-      </NeedQuestCompletedId>
-      <PickUp>15285</PickUp>
-      <TurnIn>15285</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <UseSpellId>2098</UseSpellId>
-          <Count>3</Count>
-          <Hotspots>
-            <Point>
-              <X>10363.9</X>
-              <Y>-6375.25</Y>
-              <Z>36.93128</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
-    <Quest>
-      <Name>Learning the Word</Name>
-      <Id>10072</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>16</ClassMask> <!-- Priest -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>8564</int>
-      </NeedQuestCompletedId>
-      <PickUp>15284</PickUp>
-      <TurnIn>15284</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <UseSpellId>589</UseSpellId>
-          <Range>15</Range>
-          <Count>5</Count>
-          <Hotspots>
-            <Point>
-              <X>10331.89</X>
-              <Y>-6370.064</Y>
-              <Z>33.70367</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
-    <Quest>
-      <Name>Frost Nova</Name>
-      <Id>10068</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>128</ClassMask> <!-- Mage -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>8328</int>
-      </NeedQuestCompletedId>
-      <PickUp>15279</PickUp>
-      <TurnIn>15279</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <UseSpellId>122</UseSpellId>
-          <Range>15</Range>
-          <Count>2</Count>
-          <Hotspots>
-            <Point>
-              <X>10331.89</X>
-              <Y>-6370.064</Y>
-              <Z>33.70367</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
-    <Quest>
-      <Name>Corruption</Name>
-      <Id>10073</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>256</ClassMask> <!-- Warlock -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>8563</int>
-      </NeedQuestCompletedId>
-      <PickUp>15283</PickUp>
-      <TurnIn>15283</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <UseSpellId>172</UseSpellId>
-          <Range>10</Range>
-          <Count>5</Count>
-          <Position>
-            <X>10331.89</X>
-            <Y>-6370.064</Y>
-            <Z>33.70367</Z>
-          </Position>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
-    <Quest>
-      <Name>Tiger Palm</Name>
-      <Id>31171</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
-      <ClassMask>512</ClassMask> <!-- Monk -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>7</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>31170</int>
-      </NeedQuestCompletedId>
-      <PickUp>63332</PickUp>
-      <TurnIn>63332</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <UseSpellId>100780</UseSpellId>
-          <Count>1</Count>
-          <Hotspots>
-            <Point>
-              <X>10331.89</X>
-              <Y>-6370.064</Y>
-              <Z>33.70367</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44937</int>
-          </Entry>
-          <UseSpellId>100787</UseSpellId>
-          <Count>1</Count>
-          <Hotspots>
-            <Point>
-              <X>10331.89</X>
-              <Y>-6370.064</Y>
-              <Z>33.70367</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-
     <Quest>
       <Name>Aggression</Name>
+      <RaceMask>512</RaceMask>
       <Id>8334</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -699,11 +265,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Felendren the Banished</Name>
+      <RaceMask>512</RaceMask>
       <Id>8335</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>5</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -761,11 +326,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>3</InternalIndex>
-          <CollectItemId>20799</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>15367</int>
           </Entry>
+          <CollectItemId>20799</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>10126.88</X>
@@ -776,24 +341,21 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
     <Quest>
       <Name>Tainted Arcane Sliver</Name>
+      <RaceMask>512</RaceMask>
       <Id>8338</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>9</MaxLevel>
       <ItemPickUp>20483</ItemPickUp>
       <TurnIn>15297</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-
     <Quest>
       <Name>Aiding the Outrunners</Name>
+      <RaceMask>512</RaceMask>
       <Id>8347</Id>
-      <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>5</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -802,9 +364,7 @@
       </NeedQuestCompletedId>
       <PickUp>15281</PickUp>
       <TurnIn>15301</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
   </Quests>
-  <Blackspots />
 </QuesterProfile>

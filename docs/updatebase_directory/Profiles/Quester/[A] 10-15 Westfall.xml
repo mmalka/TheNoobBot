@@ -1,208 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-    <Npc>
-      <Entry>240</Entry>
-      <Name>Marshal Dughan</Name>
-      <Position>
-        <X>-9465.521</X>
-        <Y>74.00694</Y>
-        <Z>56.59651</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42308</Entry>
-      <Name>Lieutenant Horatio Laine</Name>
-      <Position>
-        <X>-9849.801</X>
-        <Y>915.1215</Y>
-        <Z>30.28275</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42405</Entry>
-      <Name>Two-Shoed Lou</Name>
-      <Position>
-        <X>-9852.321</X>
-        <Y>1278.76</Y>
-        <Z>40.91484</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42498</Entry>
-      <Name>Jimb "Candles" McHannigan</Name>
-      <Position>
-        <X>-9857.424</X>
-        <Y>1281.175</Y>
-        <Z>41.00282</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42558</Entry>
-      <Name>Lieutenant Horatio Laine</Name>
-      <Position>
-        <X>-9855.285</X>
-        <Y>1275.561</Y>
-        <Z>40.89561</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>233</Entry>
-      <Name>Farmer Saldean</Name>
-      <Position>
-        <X>-10128.7</X>
-        <Y>1055.21</Y>
-        <Z>36.25076</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42497</Entry>
-      <Name>Mama Celeste</Name>
-      <Position>
-        <X>-9846.435</X>
-        <Y>1282.747</Y>
-        <Z>41.88733</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>235</Entry>
-      <Name>Salma Saldean</Name>
-      <Position>
-        <X>-10112.16</X>
-        <Y>1042.099</Y>
-        <Z>37.47038</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42575</Entry>
-      <Name>Hope Saldean</Name>
-      <Position>
-        <X>-10499.07</X>
-        <Y>1022.682</Y>
-        <Z>60.52831</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>821</Entry>
-      <Name>Captain Danuvin</Name>
-      <Position>
-        <X>-10509.97</X>
-        <Y>1040.674</Y>
-        <Z>60.51789</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>234</Entry>
-      <Name>Marshal Gryan Stoutmantle </Name>
-      <Position>
-        <X>-10508.79</X>
-        <Y>1045.233</Y>
-        <Z>60.51798</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>7024</Entry>
-      <Name>Agent Kearnen</Name>
-      <Position>
-        <X>-11042.13</X>
-        <Y>625.1042</Y>
-        <Z>36.90501</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42425</Entry>
-      <Name>Captain Alpert</Name>
-      <Position>
-        <X>-10896.19</X>
-        <Y>1543.047</Y>
-        <Z>54.64977</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42651</Entry>
-      <Name>Thoralius the Wise</Name>
-      <Position>
-        <X>-10917.14</X>
-        <Y>1512.413</Y>
-        <Z>50.74065</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>392</Entry>
-      <Name>Captain Grayson</Name>
-      <Position>
-        <X>-11397.82</X>
-        <Y>1949.042</Y>
-        <Z>10.01396</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>878</Entry>
-      <Name>Scout Galiaan</Name>
-      <Position>
-        <X>-10504.72</X>
-        <Y>1042.872</Y>
-        <Z>60.51788</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>35</Entry>
-      <Name>Captain's Footlocker</Name>
-      <Position>
-        <X>-10514.25</X>
-        <Y>2109.988</Y>
-        <Z>2.688241</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>36</Entry>
-      <Name>Broken Barrel</Name>
-      <Position>
-        <X>-10515.17</X>
-        <Y>1598.615</Y>
-        <Z>27.6535</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>34</Entry>
-      <Name>Old Jug</Name>
-      <Position>
-        <X>-9797.295</X>
-        <Y>1594.66</Y>
-        <Z>39.69501</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>33</Entry>
-      <Name>Locked Chest</Name>
-      <Position>
-        <X>-9794.486</X>
-        <Y>2107.637</Y>
-        <Z>12.30399</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-  </Questers>
+<QuesterProfile Author="Neo2003" DevelopmentStatus="Outdated">
   <Quests>
     <Quest>
       <Name>Hero's Call: Westfall!</Name>
@@ -402,7 +199,7 @@
             <Z>37.15257</Z>
           </Position>
         </QuestObjective>
-		<QuestObjective>
+        <QuestObjective>
           <Objective>Wait</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>90000</WaitMs>
@@ -430,7 +227,7 @@
             <Z>41.90318</Z>
           </Position>
         </QuestObjective>
-         <QuestObjective>
+        <QuestObjective>
           <Objective>Wait</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>30000</WaitMs>
@@ -533,6 +330,20 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>Heart of the Watcher</Name>
+      <RaceMask>2098253</RaceMask>
+      <Id>26252</Id>
+      <QuestLevel>10</QuestLevel>
+      <MinLevel>10</MinLevel>
+      <MaxLevel>25</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26241</int>
+      </NeedQuestCompletedId>
+      <ItemPickUp>57935</ItemPickUp>
+      <TurnIn>233</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
       <Name>Westfall Stew</Name>
       <RaceMask>2098253</RaceMask>
       <Id>26241</Id>
@@ -609,20 +420,6 @@
           </Hotspots>
         </QuestObjective>
       </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Heart of the Watcher</Name>
-      <RaceMask>2098253</RaceMask>
-      <Id>26252</Id>
-      <QuestLevel>10</QuestLevel>
-      <MinLevel>10</MinLevel>
-      <MaxLevel>25</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>26241</int>
-      </NeedQuestCompletedId>
-      <ItemPickUp>57935</ItemPickUp>
-      <TurnIn>233</TurnIn>
-      <Objectives />
     </Quest>
     <Quest>
       <Name>You Have Our Thanks</Name>
@@ -1026,7 +823,7 @@
             <Z>70.38566</Z>
           </Position>
         </QuestObjective>
-         <QuestObjective>
+        <QuestObjective>
           <Objective>Wait</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>60000</WaitMs>

@@ -1,328 +1,363 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="Vesper" DevelopmentStatus="Outdated">
   <Questers>
     <Npc>
-      <Name>Master Shang Xi</Name>
       <Entry>53566</Entry>
+      <Name>Master Shang Xi</Name>
       <Position>
         <X>1462.004</X>
         <Y>3465.594</Y>
         <Z>181.5974</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Merchant Lorvo</Name>
       <Entry>54943</Entry>
+      <Name>Merchant Lorvo</Name>
       <Position>
         <X>1201.16</X>
         <Y>3507.858</Y>
         <Z>85.83623</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Aysa Cloudsinger</Name>
       <Entry>54567</Entry>
+      <Name>Aysa Cloudsinger</Name>
       <Position>
         <X>1206.309</X>
         <Y>3507.464</Y>
         <Z>85.90691</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Master Shang Xi</Name>
       <Entry>54608</Entry>
+      <Name>Master Shang Xi</Name>
       <Position>
         <X>1168.255</X>
         <Y>3442.328</Y>
         <Z>104.6882</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ji Firepaw</Name>
       <Entry>54568</Entry>
+      <Name>Ji Firepaw</Name>
       <Position>
         <X>1407.141</X>
         <Y>3637.298</Y>
         <Z>83.49342</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Master Shang Xi</Name>
       <Entry>54609</Entry>
+      <Name>Master Shang Xi</Name>
       <Position>
         <X>1403.391</X>
         <Y>3636.197</Y>
         <Z>83.82425</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Master Li Fei</Name>
       <Entry>54135</Entry>
+      <Name>Master Li Fei</Name>
       <Position>
         <X>1331.776</X>
         <Y>3942.804</Y>
         <Z>110.4592</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Huo</Name>
       <Entry>54787</Entry>
+      <Name>Huo</Name>
       <Position>
         <X>1259.799</X>
         <Y>3926.655</Y>
         <Z>128.2796</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Master Shang Xi</Name>
       <Entry>54786</Entry>
+      <Name>Master Shang Xi</Name>
       <Position>
         <X>960.0434</X>
         <Y>3606.05</Y>
         <Z>196.3307</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Aysa Cloudsinger</Name>
       <Entry>54975</Entry>
+      <Name>Aysa Cloudsinger</Name>
       <Position>
         <X>1027.401</X>
         <Y>3227.353</Y>
         <Z>115.1724</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jojo Ironbrow</Name>
       <Entry>55021</Entry>
+      <Name>Jojo Ironbrow</Name>
       <Position>
         <X>1039.491</X>
         <Y>3283.111</Y>
         <Z>129.5231</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Old Man Liang</Name>
       <Entry>55020</Entry>
+      <Name>Old Man Liang</Name>
       <Position>
         <X>1096.363</X>
         <Y>3093.003</Y>
         <Z>144.5597</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Shu</Name>
       <Entry>65493</Entry>
+      <Name>Shu</Name>
       <Position>
         <X>1115.03</X>
         <Y>2864.224</Y>
         <Z>100.3095</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ji Firepaw</Name>
       <Entry>55477</Entry>
+      <Name>Ji Firepaw</Name>
       <Position>
         <X>629.354</X>
         <Y>3139.15</Y>
         <Z>87.74126</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Gao Summerdraft</Name>
       <Entry>55479</Entry>
+      <Name>Gao Summerdraft</Name>
       <Position>
         <X>603.9965</X>
         <Y>3159.637</Y>
         <Z>87.78916</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jojo Ironbrow</Name>
       <Entry>55478</Entry>
+      <Name>Jojo Ironbrow</Name>
       <Position>
         <X>598.3958</X>
         <Y>3132.111</Y>
         <Z>89.17931</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ji Firepaw</Name>
       <Entry>55583</Entry>
+      <Name>Ji Firepaw</Name>
       <Position>
         <X>1131.813</X>
         <Y>4151.838</Y>
         <Z>190.6179</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Elder Shaopai</Name>
       <Entry>55588</Entry>
+      <Name>Elder Shaopai</Name>
       <Position>
         <X>1078.806</X>
         <Y>4130.425</Y>
         <Z>212.583</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jojo Ironbrow</Name>
       <Entry>55585</Entry>
+      <Name>Jojo Ironbrow</Name>
       <Position>
         <X>1078.087</X>
         <Y>4180.681</Y>
         <Z>205.8848</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jade Tiger Pillar</Name>
       <Entry>209673</Entry>
+      <Name>Jade Tiger Pillar</Name>
       <Position>
         <X>1186.703</X>
         <Y>4273.449</Y>
         <Z>222.6417</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Aysa Cloudsinger</Name>
       <Entry>55595</Entry>
+      <Name>Aysa Cloudsinger</Name>
       <Position>
         <X>1151.804</X>
         <Y>4099.264</Y>
         <Z>196.457</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Dafeng</Name>
       <Entry>55592</Entry>
+      <Name>Dafeng</Name>
       <Position>
         <X>543.5643</X>
         <Y>4320.984</Y>
         <Z>212.239</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Master Shang Xi</Name>
       <Entry>55586</Entry>
+      <Name>Master Shang Xi</Name>
       <Position>
         <X>711.3351</X>
         <Y>4178.052</Y>
         <Z>197.7628</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Master Shang Xi</Name>
       <Entry>55672</Entry>
+      <Name>Master Shang Xi</Name>
       <Position>
         <X>874.1059</X>
         <Y>4459.53</Y>
         <Z>241.1882</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Aysa Cloudsinger</Name>
       <Entry>56662</Entry>
+      <Name>Aysa Cloudsinger</Name>
       <Position>
         <X>911.717</X>
         <Y>4557.338</Y>
         <Z>230.9691</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Elder Shaopai</Name>
       <Entry>56012</Entry>
+      <Name>Elder Shaopai</Name>
       <Position>
         <X>926.3021</X>
         <Y>3608.648</Y>
         <Z>196.3374</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Wei Palerage </Name>
       <Entry>55943</Entry>
+      <Name>Wei Palerage </Name>
       <Position>
         <X>421.9549</X>
         <Y>3641.987</Y>
         <Z>93.61701</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Korga Strongmane</Name>
       <Entry>60042</Entry>
+      <Name>Korga Strongmane</Name>
       <Position>
         <X>421.7101</X>
         <Y>3637.882</Y>
         <Z>93.70938</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Makael Bay</Name>
       <Entry>60055</Entry>
+      <Name>Makael Bay</Name>
       <Position>
         <X>498.0677</X>
         <Y>4009.228</Y>
         <Z>78.29452</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ji Firepaw</Name>
       <Entry>55942</Entry>
+      <Name>Ji Firepaw</Name>
       <Position>
         <X>495.0608</X>
         <Y>4007.917</Y>
         <Z>78.28329</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Delora Lionheart</Name>
       <Entry>55944</Entry>
+      <Name>Delora Lionheart</Name>
       <Position>
         <X>245.8056</X>
         <Y>3851.635</Y>
         <Z>73.07021</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jojo Ironbrow</Name>
       <Entry>55940</Entry>
+      <Name>Jojo Ironbrow</Name>
       <Position>
         <X>249.0486</X>
         <Y>3849.711</Y>
         <Z>73.23772</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Aysa Cloudsinger</Name>
       <Entry>56416</Entry>
+      <Name>Aysa Cloudsinger</Name>
       <Position>
         <X>286.9531</X>
         <Y>4004.331</Y>
         <Z>74.69049</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ji Firepaw</Name>
       <Entry>56418</Entry>
+      <Name>Ji Firepaw</Name>
       <Position>
         <X>251.6389</X>
         <Y>3929.475</Y>
         <Z>66.63631</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
     <Npc>
-      <Name>Spirit of Master Shang Xi</Name>
       <Entry>56013</Entry>
+      <Name>Spirit of Master Shang Xi</Name>
       <Position>
-      <X>926.4063</X>
-      <Y>3605.01</Y>
-      <Z>196.3212</Z>
+        <X>926.4063</X>
+        <Y>3605.01</Y>
+        <Z>196.3212</Z>
       </Position>
+      <ContinentId>HawaiiMainLand</ContinentId>
     </Npc>
   </Questers>
   <Quests>
     <Quest>
       <Name>The Lesson of the Iron Bough</Name>
-      <Id>30038</Id>
-      <RaceMask>8388608</RaceMask>
       <ClassMask>1</ClassMask>
+      <RaceMask>8388608</RaceMask>
+      <Id>30038</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -347,14 +382,14 @@
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>73210</EquipItemId>
-        </QuestObjective>       
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Iron Bough</Name>
-      <Id>30034</Id>
-      <RaceMask>8388608</RaceMask>
       <ClassMask>4</ClassMask>
+      <RaceMask>8388608</RaceMask>
+      <Id>30034</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -379,14 +414,14 @@
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>73211</EquipItemId>
-        </QuestObjective>       
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Iron Bough</Name>
-      <Id>30036</Id>
-      <RaceMask>8388608</RaceMask>
       <ClassMask>8</ClassMask>
+      <RaceMask>8388608</RaceMask>
+      <Id>30036</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -411,18 +446,18 @@
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>73208</EquipItemId>
-        </QuestObjective> 
+        </QuestObjective>
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>73212</EquipItemId>
-        </QuestObjective>     
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Iron Bough</Name>
-      <Id>30035</Id>
-      <RaceMask>8388608</RaceMask>
       <ClassMask>16</ClassMask>
+      <RaceMask>8388608</RaceMask>
+      <Id>30035</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -447,18 +482,18 @@
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>73207</EquipItemId>
-        </QuestObjective> 
+        </QuestObjective>
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>76393</EquipItemId>
-        </QuestObjective>   
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Iron Bough</Name>
-      <Id>30037</Id>
-      <RaceMask>8388608</RaceMask>
       <ClassMask>64</ClassMask>
+      <RaceMask>8388608</RaceMask>
+      <Id>30037</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -487,14 +522,14 @@
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>73213</EquipItemId>
-        </QuestObjective> 
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Iron Bough</Name>
-      <Id>30033</Id>
-      <RaceMask>8388608</RaceMask>
       <ClassMask>128</ClassMask>
+      <RaceMask>8388608</RaceMask>
+      <Id>30033</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -519,18 +554,18 @@
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>76390</EquipItemId>
-        </QuestObjective> 
+        </QuestObjective>
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>76392</EquipItemId>
-        </QuestObjective>  
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Iron Bough</Name>
-      <Id>30027</Id>
-      <RaceMask>8388608</RaceMask>
       <ClassMask>512</ClassMask>
+      <RaceMask>8388608</RaceMask>
+      <Id>30027</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -551,17 +586,17 @@
               <Z>171.1618</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+        </QuestObjective>
         <QuestObjective>
           <Objective>EquipItem</Objective>
           <EquipItemId>73209</EquipItemId>
-        </QuestObjective>    
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Sandy Fist</Name>
-      <Id>29406</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29406</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -579,12 +614,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>1</InternalIndex>
           <Count>10</Count>
           <Entry>
             <int>53714</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1429.487</X>
@@ -592,13 +626,14 @@
               <Z>171.1618</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of Stifled Pride</Name>
-      <Id>29524</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29524</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -610,13 +645,12 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>1</InternalIndex>
           <Count>6</Count>
           <Entry>
             <int>54587</int>
             <int>65470</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1445.325</X>
@@ -624,13 +658,14 @@
               <Z>173.5681</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Lesson of the Burning Scroll</Name>
-      <Id>29408</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29408</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -656,8 +691,8 @@
     </Quest>
     <Quest>
       <Name>The Disciple's Challenge</Name>
-      <Id>29409</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29409</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -672,7 +707,7 @@
           <Count>1</Count>
           <Entry>
             <int>54611</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1380.608</X>
@@ -685,8 +720,8 @@
     </Quest>
     <Quest>
       <Name>Aysa of the Tushui</Name>
-      <Id>29410</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29410</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -695,13 +730,12 @@
       </NeedQuestCompletedId>
       <PickUp>53566</PickUp>
       <TurnIn>54943</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Items of Utmost Importance</Name>
-      <Id>29424</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29424</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -715,8 +749,8 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>54943</NpcEntry>
-          <QuestId>29419</QuestId>
           <QuestName>The Missing Driver</QuestName>
+          <QuestId>29419</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -733,11 +767,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>72071</CollectItemId>
-          <CollectCount>6</CollectCount>
           <Entry>
             <int>54130</int>
           </Entry>
+          <CollectItemId>72071</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>1345.689</X>
@@ -750,22 +784,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>54943</NpcEntry>
-          <QuestId>29419</QuestId>
           <QuestName>The Missing Driver</QuestName>
+          <QuestId>29419</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>54943</NpcEntry>
-          <QuestId>29424</QuestId>
           <QuestName>Items of Utmost Importance</QuestName>
+          <QuestId>29424</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Way of the Tushui</Name>
-      <Id>29414</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29414</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -787,8 +821,8 @@
     </Quest>
     <Quest>
       <Name>Ji of the Huojin</Name>
-      <Id>29522</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29522</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -797,13 +831,12 @@
       </NeedQuestCompletedId>
       <PickUp>54608</PickUp>
       <TurnIn>54568</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Way of the Huojin</Name>
-      <Id>29417</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29417</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -814,13 +847,12 @@
       <TurnIn>54568</TurnIn>
       <Objectives>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <Count>8</Count>
           <Entry>
             <int>54568</int>
             <int>57205</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1398.534</X>
@@ -833,13 +865,14 @@
               <Z>81.49236</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Kindling the Fire</Name>
-      <Id>29418</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29418</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -853,18 +886,18 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>54568</NpcEntry>
-          <QuestId>29523</QuestId>
           <QuestName>Fanning the Flames</QuestName>
+          <QuestId>29523</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>72109</UseItemId>
           <Count>1</Count>
+          <UseItemId>72109</UseItemId>
           <Position>
             <X>1231.56</X>
             <Y>3715.671</Y>
             <Z>93.45683</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
@@ -872,13 +905,13 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>29523</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>72112</CollectItemId>
-          <CollectCount>1</CollectCount>
+          <InternalQuestId>29523</InternalQuestId>
           <Entry>
             <int>54631</int>
           </Entry>
+          <CollectItemId>72112</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>1233.501</X>
@@ -913,15 +946,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>54568</NpcEntry>
-          <QuestId>29523</QuestId>
           <QuestName>Fanning the Flames</QuestName>
-        </QuestObjective>   
+          <QuestId>29523</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Spirit's Guardian</Name>
-      <Id>29420</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29420</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -930,13 +963,12 @@
       </NeedQuestCompletedId>
       <PickUp>54609</PickUp>
       <TurnIn>54135</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Challenger's Fires</Name>
-      <Id>29664</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29664</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -998,15 +1030,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>54135</NpcEntry>
-          <QuestId>29664</QuestId>
           <QuestName>The Challenger's Fires</QuestName>
+          <QuestId>29664</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Only the Worthy Shall Pass</Name>
-      <Id>29421</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29421</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1021,7 +1053,7 @@
           <Count>1</Count>
           <Entry>
             <int>54734</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1347.234</X>
@@ -1034,8 +1066,8 @@
     </Quest>
     <Quest>
       <Name>Huo, the Spirit of Fire</Name>
-      <Id>29422</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29422</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1047,21 +1079,21 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>72583</UseItemId>
           <Count>1</Count>
+          <UseItemId>72583</UseItemId>
           <Position>
             <X>1267.331</X>
             <Y>3928.915</Y>
             <Z>125.7294</Z>
           </Position>
-          <WaitMs>10000</WaitMs>            
+          <WaitMs>10000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Passion of Shen-zin Su</Name>
-      <Id>29423</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29423</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1083,8 +1115,8 @@
     </Quest>
     <Quest>
       <Name>The Singing Pools</Name>
-      <Id>29521</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29521</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1093,13 +1125,12 @@
       </NeedQuestCompletedId>
       <PickUp>54786</PickUp>
       <TurnIn>54975</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Lesson of the Balanced Rock</Name>
-      <Id>29663</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29663</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1122,7 +1153,7 @@
           <Count>6</Count>
           <Entry>
             <int>55019</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>921.6508</X>
@@ -1135,8 +1166,8 @@
     </Quest>
     <Quest>
       <Name>Stronger Than Reeds</Name>
-      <Id>29662</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29662</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1161,13 +1192,13 @@
               <Z>116.5215</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+        </QuestObjective>
       </Objectives>
     </Quest>
-    <Quest><!--it must be concluded manuel-->
+    <Quest>
       <Name>The Lesson of Dry Fur</Name>
-      <Id>29661</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29661</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1189,8 +1220,8 @@
     </Quest>
     <Quest>
       <Name>Finding an Old Friend</Name>
-      <Id>29676</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29676</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1199,13 +1230,12 @@
       </NeedQuestCompletedId>
       <PickUp>54975</PickUp>
       <TurnIn>55020</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Sting of Learning</Name>
-      <Id>29666</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29666</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1219,14 +1249,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55020</NpcEntry>
-          <QuestId>29677</QuestId>
           <QuestName>The Sun Pearl</QuestName>
+          <QuestId>29677</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29677</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29677</InternalQuestId>
           <Entry>
             <int>209584</int>
           </Entry>
@@ -1239,6 +1268,7 @@
               <Z>82.32864</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1246,7 +1276,7 @@
           <Count>6</Count>
           <Entry>
             <int>60411</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1032.795</X>
@@ -1263,27 +1293,27 @@
             <Y>2899.601</Y>
             <Z>90.88116</Z>
           </Position>
-        </QuestObjective> 
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>55020</NpcEntry>
-          <QuestId>29677</QuestId>
-          <QuestName>The Sun Pearl</QuestName>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55020</NpcEntry>
-          <QuestId>29666</QuestId>
+          <QuestName>The Sun Pearl</QuestName>
+          <QuestId>29677</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>55020</NpcEntry>
           <QuestName>The Sting of Learning</QuestName>
-        </QuestObjective> 
+          <QuestId>29666</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Shu, the Spirit of Water</Name>
-      <Id>29678</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29678</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1291,7 +1321,7 @@
         <int>29666</int>
       </NeedQuestCompletedId>
       <PickUp>55020</PickUp>
-      <TurnIn>65493</TurnIn><!--Popup TurnIn -> manuel-->
+      <TurnIn>65493</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1307,20 +1337,20 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>73791</UseItemId>
           <Count>1</Count>
+          <UseItemId>73791</UseItemId>
           <Position>
             <X>1106.603</X>
             <Y>2863.834</Y>
             <Z>92.1893</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
-    <Quest><!--The Quest "A New Friend" must be concluded manuel-->
+    <Quest>
       <Name>The Source of Our Livelihood</Name>
-      <Id>29680</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29680</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1332,10 +1362,10 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>57710</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>979.0695</X>
             <Y>2863.868</Y>
@@ -1347,15 +1377,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55477</NpcEntry>
-          <QuestId>29680</QuestId>
           <QuestName>The Source of Our Livelihood</QuestName>
+          <QuestId>29680</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Rascals</Name>
-      <Id>29769</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29769</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1369,14 +1399,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55479</NpcEntry>
-          <QuestId>29770</QuestId>
           <QuestName>Still Good!</QuestName>
+          <QuestId>29770</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29770</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29770</InternalQuestId>
           <Entry>
             <int>209640</int>
             <int>209639</int>
@@ -1390,12 +1419,12 @@
               <Z>70.50766</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29770</InternalQuestId>
           <InternalIndex>2</InternalIndex>
+          <InternalQuestId>29770</InternalQuestId>
           <Entry>
             <int>209641</int>
           </Entry>
@@ -1408,12 +1437,12 @@
               <Z>48.70206</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29770</InternalQuestId>
           <InternalIndex>3</InternalIndex>
+          <InternalQuestId>29770</InternalQuestId>
           <Entry>
             <int>209643</int>
             <int>209644</int>
@@ -1429,14 +1458,15 @@
               <Z>76.66714</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>10</Count>
           <Entry>
             <int>55483</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>555.2309</X>
@@ -1449,22 +1479,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55479</NpcEntry>
-          <QuestId>29770</QuestId>
           <QuestName>Still Good!</QuestName>
+          <QuestId>29770</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55477</NpcEntry>
-          <QuestId>29769</QuestId>
           <QuestName>Rascals</QuestName>
-        </QuestObjective> 
+          <QuestId>29769</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Stronger Than Wood</Name>
-      <Id>29771</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29771</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1478,13 +1508,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55477</NpcEntry>
-          <QuestId>29768</QuestId>
           <QuestName>Missing Mallet</QuestName>
+          <QuestId>29768</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <InternalQuestId>29768</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29768</InternalQuestId>
           <Entry>
             <int>214406</int>
           </Entry>
@@ -1497,7 +1527,7 @@
               <Z>73.1811</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
@@ -1518,22 +1548,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55477</NpcEntry>
-          <QuestId>29768</QuestId>
           <QuestName>Missing Mallet</QuestName>
-        </QuestObjective> 
+          <QuestId>29768</QuestId>
+        </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55478</NpcEntry>
-          <QuestId>29771</QuestId>
           <QuestName>Stronger Than Wood</QuestName>
-        </QuestObjective>  
+          <QuestId>29771</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Raucous Rousing</Name>
-      <Id>29772</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29772</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1558,8 +1588,8 @@
     </Quest>
     <Quest>
       <Name>Not In the Face!</Name>
-      <Id>29774</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29774</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1573,14 +1603,14 @@
           <Objective>InteractWith</Objective>
           <Entry>
             <int>55556</int>
-          </Entry> 
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          </Entry>
           <Position>
             <X>665.7882</X>
             <Y>3136.766</Y>
             <Z>87.86058</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1598,15 +1628,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55477</NpcEntry>
-          <QuestId>29774</QuestId>
           <QuestName>Not In the Face!</QuestName>
+          <QuestId>29774</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Spirit and Body of Shen-zin Su</Name>
-      <Id>29775</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29775</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1618,10 +1648,10 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>59497</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>588.7031</X>
             <Y>3165.64</Y>
@@ -1646,15 +1676,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>54786</NpcEntry>
-          <QuestId>29775</QuestId>
           <QuestName>The Spirit and Body of Shen-zin Su</QuestName>
+          <QuestId>29775</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Morning Breeze Village</Name>
-      <Id>29776</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29776</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1663,13 +1693,12 @@
       </NeedQuestCompletedId>
       <PickUp>54786</PickUp>
       <TurnIn>55583</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Tools of the Enemy</Name>
-      <Id>29777</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29777</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1683,25 +1712,25 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55583</NpcEntry>
-          <QuestId>29778</QuestId>
           <QuestName>Rewritten Wisdoms</QuestName>
+          <QuestId>29778</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55585</NpcEntry>
-          <QuestId>29783</QuestId>
           <QuestName>Stronger Than Stone</QuestName>
+          <QuestId>29783</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29778</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29778</InternalQuestId>
           <Count>5</Count>
           <Entry>
             <int>209660</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>922.2874</X>
             <Y>4106.15</Y>
@@ -1711,9 +1740,8 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29783</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29783</InternalQuestId>
           <Entry>
             <int>209665</int>
           </Entry>
@@ -1726,15 +1754,16 @@
               <Z>198.0257</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>74615</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>55601</int>
           </Entry>
+          <CollectItemId>74615</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>922.2874</X>
@@ -1747,29 +1776,29 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55585</NpcEntry>
-          <QuestId>29783</QuestId>
           <QuestName>Stronger Than Stone</QuestName>
+          <QuestId>29783</QuestId>
         </QuestObjective>
-         <QuestObjective>
+        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55583</NpcEntry>
-          <QuestId>29778</QuestId>
           <QuestName>Rewritten Wisdoms</QuestName>
+          <QuestId>29778</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55588</NpcEntry>
-          <QuestId>29777</QuestId>
           <QuestName>Tools of the Enemy</QuestName>
-        </QuestObjective>   
+          <QuestId>29777</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Direct Solution</Name>
-      <Id>29779</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29779</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1783,32 +1812,31 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55583</NpcEntry>
-          <QuestId>29780</QuestId>
           <QuestName>Do No Evil</QuestName>
+          <QuestId>29780</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55583</NpcEntry>
-          <QuestId>29781</QuestId>
           <QuestName>Monkey Advisory Warning</QuestName>
+          <QuestId>29781</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>209673</NpcEntry>
-          <QuestId>29782</QuestId>
           <QuestName>Stronger Than Bone</QuestName>
+          <QuestId>29782</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29780</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29780</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>55634</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1173.863</X>
@@ -1816,12 +1844,12 @@
               <Z>210.9166</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29781</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29781</InternalQuestId>
           <Entry>
             <int>209669</int>
           </Entry>
@@ -1839,6 +1867,7 @@
               <Z>209.9508</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1847,7 +1876,7 @@
           <Entry>
             <int>55633</int>
             <int>55632</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>1201.593</X>
@@ -1865,36 +1894,36 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55585</NpcEntry>
-          <QuestId>29782</QuestId>
           <QuestName>Stronger Than Bone</QuestName>
+          <QuestId>29782</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55583</NpcEntry>
-          <QuestId>29780</QuestId>
           <QuestName>Do No Evil</QuestName>
+          <QuestId>29780</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55583</NpcEntry>
-          <QuestId>29781</QuestId>
           <QuestName>Monkey Advisory Warning</QuestName>
+          <QuestId>29781</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55583</NpcEntry>
-          <QuestId>29779</QuestId>
           <QuestName>The Direct Solution</QuestName>
-        </QuestObjective>   
+          <QuestId>29779</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Balanced Perspective</Name><!--it must be concluded manuel-->
-      <Id>29784</Id>
+      <Name>Balanced Perspective</Name>
       <RaceMask>8388608</RaceMask>
+      <Id>29784</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1926,8 +1955,8 @@
     </Quest>
     <Quest>
       <Name>Dafeng, the Spirit of Air</Name>
-      <Id>29785</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29785</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1936,13 +1965,12 @@
       </NeedQuestCompletedId>
       <PickUp>55595</PickUp>
       <TurnIn>55592</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
-      <Name>Battle for the Skies</Name><!--it must be concluded manuel-->
-      <Id>29786</Id>
+      <Name>Battle for the Skies</Name>
       <RaceMask>8388608</RaceMask>
+      <Id>29786</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1964,8 +1992,8 @@
     </Quest>
     <Quest>
       <Name>Worthy of Passing</Name>
-      <Id>29787</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29787</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1980,7 +2008,7 @@
           <Count>1</Count>
           <Entry>
             <int>56274</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>845.8941</X>
@@ -1993,8 +2021,8 @@
     </Quest>
     <Quest>
       <Name>Unwelcome Nature</Name>
-      <Id>29788</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29788</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2008,14 +2036,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55672</NpcEntry>
-          <QuestId>29789</QuestId>
           <QuestName>Small, But Significant</QuestName>
+          <QuestId>29789</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29789</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29789</InternalQuestId>
           <Entry>
             <int>209774</int>
             <int>209671</int>
@@ -2029,6 +2056,7 @@
               <Z>221.8641</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -2036,7 +2064,7 @@
           <Count>8</Count>
           <Entry>
             <int>55640</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>969.9914</X>
@@ -2049,22 +2077,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55672</NpcEntry>
-          <QuestId>29789</QuestId>
           <QuestName>Small, But Significant</QuestName>
+          <QuestId>29789</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55672</NpcEntry>
-          <QuestId>29788</QuestId>
           <QuestName>Unwelcome Nature</QuestName>
-        </QuestObjective>   
+          <QuestId>29788</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Passing Wisdom</Name>
-      <Id>29790</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29790</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2082,8 +2110,8 @@
     </Quest>
     <Quest>
       <Name>The Suffering of Shen-zin Su</Name>
-      <Id>29791</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29791</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2109,8 +2137,8 @@
     </Quest>
     <Quest>
       <Name>Bidden to Greatness</Name>
-      <Id>29792</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29792</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2148,8 +2176,8 @@
     </Quest>
     <Quest>
       <Name>Preying on the Predators</Name>
-      <Id>30591</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>30591</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2163,14 +2191,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>60042</NpcEntry>
-          <QuestId>29795</QuestId>
           <QuestName>Stocking Stalks</QuestName>
+          <QuestId>29795</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>29795</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29795</InternalQuestId>
           <Entry>
             <int>211397</int>
             <int>211400</int>
@@ -2193,14 +2220,14 @@
               <Z>81.88158</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Count>9</Count>
           <Entry>
             <int>55946</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>329.8083</X>
@@ -2213,27 +2240,28 @@
               <Z>81.88158</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>60042</NpcEntry>
-          <QuestId>29795</QuestId>
           <QuestName>Stocking Stalks</QuestName>
+          <QuestId>29795</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55943</NpcEntry>
-          <QuestId>30591</QuestId>
           <QuestName>Preying on the Predators</QuestName>
-        </QuestObjective>   
+          <QuestId>30591</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Wrecking the Wreck</Name>
-      <Id>30589</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>30589</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2242,13 +2270,12 @@
       </NeedQuestCompletedId>
       <PickUp>60042</PickUp>
       <TurnIn>60055</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Evil from the Seas</Name>
-      <Id>29793</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29793</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2262,14 +2289,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>60055</NpcEntry>
-          <QuestId>30590</QuestId>
           <QuestName>Handle With Care</QuestName>
+          <QuestId>30590</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>30590</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>30590</InternalQuestId>
           <Entry>
             <int>209792</int>
           </Entry>
@@ -2282,15 +2308,15 @@
               <Z>78.90999</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>56007</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>462.0202</X>
@@ -2298,27 +2324,28 @@
               <Z>78.90999</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>60055</NpcEntry>
-          <QuestId>30590</QuestId>
           <QuestName>Handle With Care</QuestName>
+          <QuestId>30590</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55942</NpcEntry>
-          <QuestId>29793</QuestId>
           <QuestName>Evil from the Seas</QuestName>
-        </QuestObjective> 
+          <QuestId>29793</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Urgent News</Name>
-      <Id>29796</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29796</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2327,13 +2354,12 @@
       </NeedQuestCompletedId>
       <PickUp>55942</PickUp>
       <TurnIn>55944</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>None Left Behind</Name>
-      <Id>29794</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29794</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2405,15 +2431,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55944</NpcEntry>
-          <QuestId>29794</QuestId>
           <QuestName>None Left Behind</QuestName>
+          <QuestId>29794</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>From Bad to Worse</Name>
-      <Id>29665</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29665</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2427,14 +2453,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55944</NpcEntry>
-          <QuestId>29797</QuestId>
           <QuestName>Medical Supplies</QuestName>
+          <QuestId>29797</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <InternalQuestId>29797</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>29797</InternalQuestId>
           <Entry>
             <int>209793</int>
           </Entry>
@@ -2447,15 +2472,15 @@
               <Z>59.76417</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>1</InternalIndex>
           <Count>8</Count>
           <Entry>
             <int>56360</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>233.5851</X>
@@ -2463,27 +2488,28 @@
               <Z>59.76417</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55944</NpcEntry>
-          <QuestId>29797</QuestId>
           <QuestName>Medical Supplies</QuestName>
+          <QuestId>29797</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>55940</NpcEntry>
-          <QuestId>29665</QuestId>
           <QuestName>From Bad to Worse</QuestName>
-        </QuestObjective>  
+          <QuestId>29665</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>An Ancient Evil</Name>
-      <Id>29798</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>29798</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2498,7 +2524,7 @@
           <Count>1</Count>
           <Entry>
             <int>56009</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>281.9219</X>
@@ -2511,8 +2537,8 @@
     </Quest>
     <Quest>
       <Name>Risking It All</Name>
-      <Id>30767</Id>
       <RaceMask>8388608</RaceMask>
+      <Id>30767</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>

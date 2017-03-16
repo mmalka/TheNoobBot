@@ -1,39 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-  <Npc><Entry>76484</Entry></Npc>
-    <!--
-  <Npc>
-    <Name>XXXXXXXXXXX</Name>
-    <Entry>XXXXXXXXXXX</Entry>
-    <Position>
-    <X>XXXXXXXXXXX</X>
-    <Y>YYYYYYYYYYY</Y>
-    <Z>ZZZZZZZZZZZ</Z>
-    </Position>
-  </Npc>-->
-  </Questers>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="Vesper" DevelopmentStatus="Outdated">
   <Quests>
     <Quest>
       <Name>The Home of the Frostwolves</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>35884</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask> <!-- Horde only -->
       <NeedQuestCompletedId>
         <int>34446</int>
       </NeedQuestCompletedId>
       <AutoAccepted>true</AutoAccepted>
       <TurnIn>78563</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>A Song of Frost and Fire</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33815</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>35884</int>
       </NeedQuestCompletedId>
@@ -45,9 +33,9 @@
           <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Position>
-             <X>5435.972</X>
-             <Y>4950.341</Y>
-             <Z>64.67026</Z>
+            <X>5435.972</X>
+            <Y>4950.341</Y>
+            <Z>64.67026</Z>
           </Position>
           <WaitMs>5000</WaitMs>
         </QuestObjective>
@@ -55,11 +43,11 @@
     </Quest>
     <Quest>
       <Name>Of Wolves and Warriors</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34402</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33815</int>
       </NeedQuestCompletedId>
@@ -67,12 +55,12 @@
       <TurnIn>70859</TurnIn>
       <Objectives>
         <QuestObjective>
-        <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Objective>MoveTo</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5617.515</X>
-             <Y>4527.972</Y>
-             <Z>119.6658</Z>
+            <X>5617.515</X>
+            <Y>4527.972</Y>
+            <Z>119.6658</Z>
           </Position>
           <WaitMs>20000</WaitMs>
         </QuestObjective>
@@ -80,11 +68,11 @@
     </Quest>
     <Quest>
       <Name>For the Horde!</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34364</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34402</int>
       </NeedQuestCompletedId>
@@ -92,13 +80,13 @@
       <TurnIn>78466</TurnIn>
       <Objectives>
         <QuestObjective>
-        <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>229057</int>
           </Entry>
-          <InternalIndex>1</InternalIndex>
-          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>5630.22</X>
             <Y>4529.672</Y>
@@ -110,11 +98,11 @@
     </Quest>
     <Quest>
       <Name>Back to Work</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34375</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34364</int>
       </NeedQuestCompletedId>
@@ -125,12 +113,11 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78466</NpcEntry>
-          <QuestId>34592</QuestId>
           <QuestName>A Gronnling Problem</QuestName>
+          <QuestId>34592</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34375</InternalQuestId>
           <Entry>
@@ -139,25 +126,25 @@
           <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
-             <X>5519.443</X>
-             <Y>4488.985</Y>
-             <Z>137.8323</Z>
+              <X>5519.443</X>
+              <Y>4488.985</Y>
+              <Z>137.8323</Z>
             </Point>
             <Point>
-             <X>5688.725</X>
-             <Y>4611.477</Y>
-             <Z>142.9869</Z>
+              <X>5688.725</X>
+              <Y>4611.477</Y>
+              <Z>142.9869</Z>
             </Point>
             <Point>
-             <X>5741.323</X>
-             <Y>4487.038</Y>
-             <Z>132.8235</Z>
+              <X>5741.323</X>
+              <Y>4487.038</Y>
+              <Z>132.8235</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34592</InternalQuestId>
           <Count>8</Count>
@@ -166,45 +153,46 @@
           </Entry>
           <Hotspots>
             <Point>
-             <X>5519.443</X>
-             <Y>4488.985</Y>
-             <Z>137.8323</Z>
+              <X>5519.443</X>
+              <Y>4488.985</Y>
+              <Z>137.8323</Z>
             </Point>
             <Point>
-             <X>5688.725</X>
-             <Y>4611.477</Y>
-             <Z>142.9869</Z>
+              <X>5688.725</X>
+              <Y>4611.477</Y>
+              <Z>142.9869</Z>
             </Point>
             <Point>
-             <X>5741.323</X>
-             <Y>4487.038</Y>
-             <Z>132.8235</Z>
+              <X>5741.323</X>
+              <Y>4487.038</Y>
+              <Z>132.8235</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78466</NpcEntry>
-          <QuestId>34592</QuestId>
           <QuestName>A Gronnling Problem</QuestName>
+          <QuestId>34592</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78466</NpcEntry>
-          <QuestId>34375</QuestId>
           <QuestName>Back to Work</QuestName>
+          <QuestId>34375</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Den of Skog</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34765</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34375</int>
       </NeedQuestCompletedId>
@@ -213,12 +201,12 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>79903</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>5411.537</X>
             <Y>4543.161</Y>
@@ -229,11 +217,11 @@
     </Quest>
     <Quest>
       <Name>Establish Your Garrison</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34378</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34765</int>
       </NeedQuestCompletedId>
@@ -242,27 +230,27 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>79757</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5570.319</X>
-             <Y>4639.779</Y>
-             <Z>146.5382</Z>
+            <X>5570.319</X>
+            <Y>4639.779</Y>
+            <Z>146.5382</Z>
           </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>What We Need</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34822</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34378</int>
       </NeedQuestCompletedId>
@@ -273,15 +261,15 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78466</NpcEntry>
-          <QuestId>34824</QuestId>
           <QuestName>What We Got</QuestName>
+          <QuestId>34824</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78487</NpcEntry>
-          <QuestId>34823</QuestId>
           <QuestName>The Ogron Live?</QuestName>
+          <QuestId>34823</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -291,64 +279,64 @@
             <int>237191</int>
           </Entry>
           <Position>
-             <X>5569.713</X>
-             <Y>4500.63</Y>
-             <Z>131.5081</Z>
+            <X>5569.713</X>
+            <Y>4500.63</Y>
+            <Z>131.5081</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34824</InternalQuestId>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <Count>1</Count>
           <Entry>
             <int>86775</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>5737.327</X>
-              <Y>4538.995</Y>
-              <Z>137.9497</Z>
+            <X>5737.327</X>
+            <Y>4538.995</Y>
+            <Z>137.9497</Z>
           </Position>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>34824</InternalQuestId>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
-          <WaitMs>2000</WaitMs>
           <Count>1</Count>
           <Entry>
             <int>80225</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5576.162</X>
-             <Y>4597.182</Y>
-             <Z>136.5887</Z>
+            <X>5576.162</X>
+            <Y>4597.182</Y>
+            <Z>136.5887</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78466</NpcEntry>
-          <QuestId>34824</QuestId>
           <QuestName>What We Got</QuestName>
+          <QuestId>34824</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34823</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Count>1</Count>
           <Entry>
             <int>80167</int>
           </Entry>
-          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5870.058</X>
-             <Y>4944.75</Y>
-             <Z>26.47139</Z>
+            <X>5870.058</X>
+            <Y>4944.75</Y>
+            <Z>26.47139</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -364,14 +352,14 @@
           <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
-             <X>5680.111</X>
-             <Y>4943.427</Y>
-             <Z>20.06469</Z>
+              <X>5680.111</X>
+              <Y>4943.427</Y>
+              <Z>20.06469</Z>
             </Point>
             <Point>
-             <X>5736.45</X>
-             <Y>4883.792</Y>
-             <Z>30.24138</Z>
+              <X>5736.45</X>
+              <Y>4883.792</Y>
+              <Z>30.24138</Z>
             </Point>
             <Point>
               <X>5691.717</X>
@@ -384,25 +372,25 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78487</NpcEntry>
-          <QuestId>34823</QuestId>
           <QuestName>The Ogron Live?</QuestName>
+          <QuestId>34823</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78466</NpcEntry>
-          <QuestId>34822</QuestId>
           <QuestName>What We Need</QuestName>
+          <QuestId>34822</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Build Your Barracks</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34461</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34822</int>
       </NeedQuestCompletedId>
@@ -413,76 +401,29 @@
           <Objective>MessageBox</Objective>
           <Message>You must do this quest manually, don't worry, it's fast, just loot the blueprint, learn it, place your barrack, then activate it, then the bot can finish the quest for you.</Message>
         </QuestObjective>
-        <!--<QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <CollectItemId>111956</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <InternalIndex>1</InternalIndex>
-          <Entry>
-            <int>231012</int>
-          </Entry>
-          <Position>
-             <X>5580.745</X>
-             <Y>4467.201</Y>
-             <Z>130.8458</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <UseItemId>111956</UseItemId>
-          <Position>
-             <X>5580.745</X>
-             <Y>4467.201</Y>
-             <Z>130.8458</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>80600</int>
-          </Entry>
-          <Position>
-             <X>5564.77</X>
-             <Y>4518.144</Y>
-             <Z>131.946</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>231217</int>
-          </Entry>
-          <Position>
-             <X>5589.483</X>
-             <Y>4478.865</Y>
-             <Z>130.1043</Z>
-          </Position>
-        </QuestObjective>-->
       </Objectives>
     </Quest>
     <Quest>
       <Name>We Need An Army</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34861</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34461</int>
       </NeedQuestCompletedId>
       <PickUp>78466</PickUp>
       <TurnIn>79740</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Winds of Change</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34462</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34861</int>
       </NeedQuestCompletedId>
@@ -490,41 +431,38 @@
       <TurnIn>79740</TurnIn>
       <Objectives>
         <QuestObjective>
-        <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Objective>InteractWith</Objective>
-          <Entry>
-            <int>80577</int>
-          </Entry>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34462</InternalQuestId>
           <Count>1</Count>
+          <Entry>
+            <int>80577</int>
+          </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>5709.614</X>
-              <Y>4001.037</Y>
-              <Z>70.64414</Z>
+            <X>5709.614</X>
+            <Y>4001.037</Y>
+            <Z>70.64414</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5530.802</X>
-             <Y>4175.847</Y>
-             <Z>58.69526</Z>
+            <X>5530.802</X>
+            <Y>4175.847</Y>
+            <Z>58.69526</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>231100</NpcEntry>
-          <QuestId>34960</QuestId>
           <QuestName>The Land Provides</QuestName>
+          <QuestId>34960</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <CollectItemId>112266</CollectItemId>
-          <CollectCount>30</CollectCount>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34960</InternalQuestId>
           <Entry>
@@ -532,42 +470,45 @@
             <int>231097</int>
             <int>231098</int>
           </Entry>
+          <CollectItemId>112266</CollectItemId>
+          <CollectCount>30</CollectCount>
           <Hotspots>
             <Point>
-             <X>5313.244</X>
-             <Y>4115.776</Y>
-             <Z>61.57504</Z>
+              <X>5313.244</X>
+              <Y>4115.776</Y>
+              <Z>61.57504</Z>
             </Point>
-            <Point>             
-             <X>5439.4</X>
-             <Y>4185.454</Y>
-             <Z>58.09093</Z>
+            <Point>
+              <X>5439.4</X>
+              <Y>4185.454</Y>
+              <Z>58.09093</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78466</NpcEntry>
-          <QuestId>34960</QuestId>
           <QuestName>The Land Provides</QuestName>
+          <QuestId>34960</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>79740</NpcEntry>
-          <QuestId>34462</QuestId>
           <QuestName>Wings of Change</QuestName>
+          <QuestId>34462</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Mission Probable</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34775</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34462</int>
       </NeedQuestCompletedId>
@@ -580,9 +521,9 @@
             <int>80432</int>
           </Entry>
           <Position>
-             <X>5560.87</X>
-             <Y>4508.535</Y>
-             <Z>132.6968</Z>
+            <X>5560.87</X>
+            <Y>4508.535</Y>
+            <Z>132.6968</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -593,41 +534,13 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--<Quest> It makes us go out of the garrison and don't know how to go back there automatically.
-      <Name>Ashran Appearance</Name>
-      <Id>36706</Id>
-      <QuestLevel>90</QuestLevel>
-      <MinLevel>90</MinLevel>
-      <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
-      <NeedQuestCompletedId>
-        <int>34775</int>
-      </NeedQuestCompletedId>
-      <PickUp>78466</PickUp>
-      <TurnIn>86315</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
-          <WaitMs>60000</WaitMs>
-          <Entry>
-            <int>79407</int>
-          </Entry>
-          <Position>
-              <X>5575.775</X>
-              <Y>4563.67</Y>
-              <Z>136.2083</Z>
-          </Position>
-        </QuestObjective>
-      </Objectives>
-    </Quest>-->
     <Quest>
       <Name>Den of Wolves</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34379</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34775</int>
       </NeedQuestCompletedId>
@@ -636,25 +549,25 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <WaitMs>60000</WaitMs>
           <Entry>
             <int>78320</int>
           </Entry>
           <Position>
-              <X>5575.775</X>
-              <Y>4563.67</Y>
-              <Z>136.2083</Z>
+            <X>5575.775</X>
+            <Y>4563.67</Y>
+            <Z>136.2083</Z>
           </Position>
+          <WaitMs>60000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Rally the Frostwolves</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34380</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34379</int>
       </NeedQuestCompletedId>
@@ -665,70 +578,70 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>80456</NpcEntry>
-          <QuestId>33816</QuestId>
           <QuestName>Honor Has Its Rewards</QuestName>
+          <QuestId>33816</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33816</InternalQuestId>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <Count>1</Count>
           <Entry>
             <int>226468</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5966.711</X>
-             <Y>6434.538</Y>
-             <Z>62.69036</Z>
+            <X>5966.711</X>
+            <Y>6434.538</Y>
+            <Z>62.69036</Z>
           </Position>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74272</NpcEntry>
-          <QuestId>33816</QuestId>
           <QuestName>Honor Has Its Rewards</QuestName>
+          <QuestId>33816</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>80456</NpcEntry> <!-- backup if first npc disapeared -->
-          <QuestId>33816</QuestId>
+          <NpcEntry>80456</NpcEntry>
           <QuestName>Honor Has Its Rewards</QuestName>
+          <QuestId>33816</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34380</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>78971</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5826.148</X>
-             <Y>6324.195</Y>
-             <Z>89.12051</Z>
+            <X>5826.148</X>
+            <Y>6324.195</Y>
+            <Z>89.12051</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>76557</NpcEntry>
-          <QuestId>34380</QuestId>
           <QuestName>Rally the Frostwolves</QuestName>
+          <QuestId>34380</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Gormaul Tower</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33784</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34380</int>
       </NeedQuestCompletedId>
@@ -737,89 +650,89 @@
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <Position>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-          </Position>
           <InternalIndex>1</InternalIndex>
           <Count>1</Count>
+          <Position>
+            <X>6472.198</X>
+            <Y>6207.476</Y>
+            <Z>220.7517</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <Hotspots>
-           <Point>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-           </Point>
-           <Point>
-             <X>6484.495</X>
-             <Y>6198.385</Y>
-             <Z>221.6419</Z>
-           </Point>
-           <Point>
-             <X>6470.251</X>
-             <Y>6265.243</Y>
-             <Z>227.8426</Z>
-           </Point>
-           <Point>
-              <X>6449.634</X>
-              <Y>6317.182</Y>
-              <Z>227.9934</Z>
-           </Point>
-          </Hotspots>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>75240</int>
             <int>73373</int>
             <int>73371</int>
             <int>73472</int>
           </Entry>
-          <InternalIndex>2</InternalIndex>
-          <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>6472.198</X>
+              <Y>6207.476</Y>
+              <Z>220.7517</Z>
+            </Point>
+            <Point>
+              <X>6484.495</X>
+              <Y>6198.385</Y>
+              <Z>221.6419</Z>
+            </Point>
+            <Point>
+              <X>6470.251</X>
+              <Y>6265.243</Y>
+              <Z>227.8426</Z>
+            </Point>
+            <Point>
+              <X>6449.634</X>
+              <Y>6317.182</Y>
+              <Z>227.9934</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <Hotspots>
-           <Point>
-              <X>6471.03</X>
-              <Y>6296.861</Y>
-              <Z>228.2867</Z>
-           </Point>
-          </Hotspots>
+          <InternalIndex>3</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>78173</int>
           </Entry>
-          <InternalIndex>3</InternalIndex>
-          <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>6471.03</X>
+              <Y>6296.861</Y>
+              <Z>228.2867</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <Hotspots>
-           <Point>
-              <X>6442.194</X>
-              <Y>6340.358</Y>
-              <Z>228.1915</Z>
-           </Point>
-          </Hotspots>
+          <InternalIndex>4</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>76208</int>
           </Entry>
-          <InternalIndex>4</InternalIndex>
-          <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>6442.194</X>
+              <Y>6340.358</Y>
+              <Z>228.1915</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>These Colors Don't Run</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33526</Id>
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33784</int>
       </NeedQuestCompletedId>
@@ -828,136 +741,136 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <Hotspots>
-           <Point>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-           </Point>
-          </Hotspots>
+          <Count>3</Count>
           <Entry>
             <int>75240</int>
             <int>73373</int>
             <int>73371</int>
           </Entry>
-          <Count>3</Count>
+          <Hotspots>
+            <Point>
+              <X>6472.198</X>
+              <Y>6207.476</Y>
+              <Z>220.7517</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <IsDead>true</IsDead>
-          <IgnoreBlackList>true</IgnoreBlackList>
-          <Position>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-          </Position>
-          <UseItemId>107279</UseItemId>
+          <InternalIndex>1</InternalIndex>
+          <Count>3</Count>
           <Entry>
             <int>75240</int>
             <int>73373</int>
             <int>73371</int>
           </Entry>
-          <InternalIndex>1</InternalIndex>
-          <Count>3</Count>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <UseItemId>107279</UseItemId>
+          <Position>
+            <X>6472.198</X>
+            <Y>6207.476</Y>
+            <Z>220.7517</Z>
+          </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <Hotspots>
-           <Point>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-           </Point>
-          </Hotspots>
+          <Count>3</Count>
           <Entry>
             <int>75240</int>
             <int>73373</int>
             <int>73371</int>
           </Entry>
-          <Count>3</Count>
+          <Hotspots>
+            <Point>
+              <X>6472.198</X>
+              <Y>6207.476</Y>
+              <Z>220.7517</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <IsDead>true</IsDead>
-          <IgnoreBlackList>true</IgnoreBlackList>
-          <Position>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-          </Position>
-          <UseItemId>107279</UseItemId>
-          <Entry>
-            <int>75240</int>
-            <int>73373</int>
-            <int>73371</int>
-          </Entry>
           <InternalIndex>1</InternalIndex>
           <Count>6</Count>
+          <Entry>
+            <int>75240</int>
+            <int>73373</int>
+            <int>73371</int>
+          </Entry>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <UseItemId>107279</UseItemId>
+          <Position>
+            <X>6472.198</X>
+            <Y>6207.476</Y>
+            <Z>220.7517</Z>
+          </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <Hotspots>
-           <Point>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-           </Point>
-          </Hotspots>
+          <Count>3</Count>
           <Entry>
             <int>75240</int>
             <int>73373</int>
             <int>73371</int>
           </Entry>
-          <Count>3</Count>
+          <Hotspots>
+            <Point>
+              <X>6472.198</X>
+              <Y>6207.476</Y>
+              <Z>220.7517</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <IsDead>true</IsDead>
-          <Position>
-             <X>6472.198</X>
-             <Y>6207.476</Y>
-             <Z>220.7517</Z>
-          </Position>
-          <UseItemId>107279</UseItemId>
+          <InternalIndex>1</InternalIndex>
+          <Count>8</Count>
           <Entry>
             <int>75240</int>
             <int>73373</int>
             <int>73371</int>
           </Entry>
-          <InternalIndex>1</InternalIndex>
-          <Count>8</Count>
+          <UseItemId>107279</UseItemId>
+          <Position>
+            <X>6472.198</X>
+            <Y>6207.476</Y>
+            <Z>220.7517</Z>
+          </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-        <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>6694.534</X>
-             <Y>6136.355</Y>
-             <Z>241.5987</Z>
+            <X>6694.534</X>
+            <Y>6136.355</Y>
+            <Z>241.5987</Z>
           </Position>
           <WaitMs>10000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-        <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>6886.922</X>
-             <Y>5852.325</Y>
-             <Z>258.6885</Z>
+            <X>6886.922</X>
+            <Y>5852.325</Y>
+            <Z>258.6885</Z>
           </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Deeds Left Undone</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33546</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33526</int>
       </NeedQuestCompletedId>
@@ -966,27 +879,27 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <CollectItemId>107361</CollectItemId>
-          <CollectCount>5</CollectCount>
           <InternalIndex>2</InternalIndex>
           <Entry>
             <int>225681</int>
           </Entry>
+          <CollectItemId>107361</CollectItemId>
+          <CollectCount>5</CollectCount>
           <Hotspots>
             <Point>
-             <X>6769.986</X>
-             <Y>5847.63</Y>
-             <Z>258.6877</Z>
+              <X>6769.986</X>
+              <Y>5847.63</Y>
+              <Z>258.6877</Z>
             </Point>
             <Point>
-             <X>6714.564</X>
-             <Y>5817.011</Y>
-             <Z>258.6878</Z>
+              <X>6714.564</X>
+              <Y>5817.011</Y>
+              <Z>258.6878</Z>
             </Point>
             <Point>
-             <X>6769.253</X>
-             <Y>5777.621</Y>
-             <Z>258.687</Z>
+              <X>6769.253</X>
+              <Y>5777.621</Y>
+              <Z>258.687</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
@@ -996,29 +909,29 @@
             <int>75167</int>
           </Entry>
           <Position>
-              <X>6791.94</X>
-              <Y>5757.763</Y>
-              <Z>258.6885</Z>
+            <X>6791.94</X>
+            <Y>5757.763</Y>
+            <Z>258.6885</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6788.955</X>
-              <Y>5911.362</Y>
-              <Z>258.7185</Z>
+            <X>6788.955</X>
+            <Y>5911.362</Y>
+            <Z>258.7185</Z>
           </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Great Balls of Fire!</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33408</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33546</int>
       </NeedQuestCompletedId>
@@ -1029,20 +942,20 @@
           <Objective>MoveTo</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>6625.648</X>
-             <Y>5670.456</Y>
-             <Z>319.2068</Z>
+            <X>6625.648</X>
+            <Y>5670.456</Y>
+            <Z>319.2068</Z>
           </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Butcher of Bladespire</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33410</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33408</int>
       </NeedQuestCompletedId>
@@ -1051,28 +964,28 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <Hotspots>
-           <Point>
-              <X>6663.344</X>
-              <Y>5771.747</Y>
-              <Z>318.8412</Z>
-           </Point>
-          </Hotspots>
+          <Count>1</Count>
           <Entry>
             <int>74254</int>
           </Entry>
-          <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>6663.344</X>
+              <Y>5771.747</Y>
+              <Z>318.8412</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Armed and Dangerous</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33344</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33410</int>
       </NeedQuestCompletedId>
@@ -1083,59 +996,43 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>75186</NpcEntry>
-          <QuestId>33622</QuestId>
           <QuestName>To the Slaughter</QuestName>
+          <QuestId>33622</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Hotspots>
-           <Point>
-              <X>6816.583</X>
-              <Y>5778.011</Y>
-              <Z>325.2144</Z>
-           </Point>
-           <Point>
-             <X>6753.862</X>
-             <Y>5818.546</Y>
-             <Z>325.2152</Z>
-           </Point>
-           <Point>
-              <X>6802.643</X>
-              <Y>5884.53</Y>
-              <Z>325.2161</Z>
-           </Point>
-          </Hotspots>
+          <InternalIndex>4</InternalIndex>
+          <InternalQuestId>33344</InternalQuestId>
+          <Count>10</Count>
           <Entry>
             <int>76238</int>
             <int>76547</int>
           </Entry>
-          <Count>10</Count>
-          <InternalIndex>4</InternalIndex>
-          <InternalQuestId>33344</InternalQuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Hotspots>
-           <Point>
+            <Point>
               <X>6816.583</X>
               <Y>5778.011</Y>
               <Z>325.2144</Z>
-           </Point>
-           <Point>
-             <X>6753.862</X>
-             <Y>5818.546</Y>
-             <Z>325.2152</Z>
-           </Point>
-           <Point>
+            </Point>
+            <Point>
+              <X>6753.862</X>
+              <Y>5818.546</Y>
+              <Z>325.2152</Z>
+            </Point>
+            <Point>
               <X>6802.643</X>
               <Y>5884.53</Y>
               <Z>325.2161</Z>
-           </Point>
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>33622</InternalQuestId>
+          <Count>10</Count>
           <Entry>
             <int>73469</int>
             <int>73470</int>
@@ -1143,33 +1040,49 @@
             <int>78173</int>
             <int>74254</int>
           </Entry>
-          <Count>10</Count>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>33622</InternalQuestId>
+          <Hotspots>
+            <Point>
+              <X>6816.583</X>
+              <Y>5778.011</Y>
+              <Z>325.2144</Z>
+            </Point>
+            <Point>
+              <X>6753.862</X>
+              <Y>5818.546</Y>
+              <Z>325.2152</Z>
+            </Point>
+            <Point>
+              <X>6802.643</X>
+              <Y>5884.53</Y>
+              <Z>325.2161</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>75177</NpcEntry>
-          <QuestId>33622</QuestId>
           <QuestName>To the Slaughter</QuestName>
+          <QuestId>33622</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>75177</NpcEntry>
-          <QuestId>33344</QuestId>
           <QuestName>Armed and Dangerous</QuestName>
+          <QuestId>33344</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Last Steps</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33527</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33344</int>
       </NeedQuestCompletedId>
@@ -1184,37 +1097,36 @@
             <int>231902</int>
           </Entry>
           <Position>
-             <X>6823.487</X>
-             <Y>5795.625</Y>
-             <Z>325.1956</Z>
+            <X>6823.487</X>
+            <Y>5795.625</Y>
+            <Z>325.1956</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>2</InternalIndex>
           <Count>1</Count>
-          <Hotspots>
-           <Point>
-              <X>6787.101</X>
-              <Y>5827.432</Y>
-              <Z>410.1517</Z>
-           </Point>
-          </Hotspots>
           <Entry>
             <int>74105</int>
           </Entry>
-          <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>6787.101</X>
+              <Y>5827.432</Y>
+              <Z>410.1517</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Moving In</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33657</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33527</int>
       </NeedQuestCompletedId>
@@ -1229,9 +1141,9 @@
             <int>75560</int>
           </Entry>
           <Position>
-             <X>6813.402</X>
-             <Y>5767.606</Y>
-             <Z>410.1498</Z>
+            <X>6813.402</X>
+            <Y>5767.606</Y>
+            <Z>410.1498</Z>
           </Position>
           <WaitMs>60000</WaitMs>
         </QuestObjective>
@@ -1239,11 +1151,11 @@
     </Quest>
     <Quest>
       <Name>Save Wolf Home</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33468</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33657</int>
       </NeedQuestCompletedId>
@@ -1254,26 +1166,25 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>81678</NpcEntry>
-          <QuestId>33412</QuestId>
           <QuestName>Mopping Up</QuestName>
+          <QuestId>33412</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78222</NpcEntry>
-          <QuestId>33119</QuestId>
           <QuestName>Slavery and Strife</QuestName>
+          <QuestId>33119</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>76662</NpcEntry>
-          <QuestId>33898</QuestId>
           <QuestName>Slaying Slavers</QuestName>
+          <QuestId>33898</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33119</InternalQuestId>
           <Entry>
@@ -1282,9 +1193,9 @@
           <CollectCount>5</CollectCount>
           <Hotspots>
             <Point>
-             <X>6642.298</X>
-             <Y>5943.006</Y>
-             <Z>126.7193</Z>
+              <X>6642.298</X>
+              <Y>5943.006</Y>
+              <Z>126.7193</Z>
             </Point>
             <Point>
               <X>6581.926</X>
@@ -1292,17 +1203,18 @@
               <Z>142.3871</Z>
             </Point>
             <Point>
-             <X>6544.689</X>
-             <Y>5796.612</Y>
-             <Z>153.9264</Z>
+              <X>6544.689</X>
+              <Y>5796.612</Y>
+              <Z>153.9264</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33898</InternalQuestId>
+          <Count>12</Count>
           <Entry>
             <int>72752</int>
             <int>73490</int>
@@ -1312,12 +1224,11 @@
             <int>73698</int>
             <int>80949</int>
           </Entry>
-          <Count>12</Count>
           <Hotspots>
             <Point>
-             <X>6642.298</X>
-             <Y>5943.006</Y>
-             <Z>126.7193</Z>
+              <X>6642.298</X>
+              <Y>5943.006</Y>
+              <Z>126.7193</Z>
             </Point>
             <Point>
               <X>6581.926</X>
@@ -1325,49 +1236,49 @@
               <Z>142.3871</Z>
             </Point>
             <Point>
-             <X>6544.689</X>
-             <Y>5796.612</Y>
-             <Z>153.9264</Z>
+              <X>6544.689</X>
+              <Y>5796.612</Y>
+              <Z>153.9264</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33119</InternalQuestId>
           <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>6607.335</X>
-             <Y>5620.124</Y>
-             <Z>166.8304</Z>
+            <X>6607.335</X>
+            <Y>5620.124</Y>
+            <Z>166.8304</Z>
           </Position>
-       </QuestObjective>
+        </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72890</NpcEntry>
-          <QuestId>33119</QuestId>
           <QuestName>Slavery and Strife</QuestName>
+          <QuestId>33119</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72890</NpcEntry>
-          <QuestId>33483</QuestId>
           <QuestName>Mulverick's Plight</QuestName>
+          <QuestId>33483</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33483</InternalQuestId>
-          <CollectCount>1</CollectCount>
-          <CollectItemId>107075</CollectItemId>
+          <Count>1</Count>
           <Entry>
             <int>72873</int>
           </Entry>
-          <Count>1</Count>
+          <CollectItemId>107075</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>6809.377</X>
@@ -1375,34 +1286,35 @@
               <Z>155.3925</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>4</InternalIndex>
           <InternalQuestId>33483</InternalQuestId>
-          <CollectCount>2</CollectCount>
-          <CollectItemId>107066</CollectItemId>
           <Entry>
             <int>76706</int>
           </Entry>
+          <CollectItemId>107066</CollectItemId>
+          <CollectCount>2</CollectCount>
           <Hotspots>
             <Point>
-             <X>6877.602</X>
-             <Y>5871.111</Y>
-             <Z>135.0301</Z>
+              <X>6877.602</X>
+              <Y>5871.111</Y>
+              <Z>135.0301</Z>
             </Point>
             <Point>
-             <X>6713.841</X>
-             <Y>5852.674</Y>
-             <Z>139.9635</Z>
+              <X>6713.841</X>
+              <Y>5852.674</Y>
+              <Z>139.9635</Z>
             </Point>
             <Point>
-             <X>6719.481</X>
-             <Y>5769.783</Y>
-             <Z>147.1006</Z>
+              <X>6719.481</X>
+              <Y>5769.783</Y>
+              <Z>147.1006</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1413,63 +1325,62 @@
             <int>225826</int>
           </Entry>
           <Position>
-             <X>6580.168</X>
-             <Y>5626.079</Y>
-             <Z>166.8733</Z>
+            <X>6580.168</X>
+            <Y>5626.079</Y>
+            <Z>166.8733</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72890</NpcEntry>
-          <QuestId>33483</QuestId>
           <QuestName>Mulverick's Plight</QuestName>
+          <QuestId>33483</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>79047</NpcEntry>
-          <QuestId>33484</QuestId>
           <QuestName>The Slavemaster's Demise</QuestName>
+          <QuestId>33484</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>79047</NpcEntry>
-          <QuestId>34732</QuestId>
           <QuestName>Mulverick's Offer of Service</QuestName>
+          <QuestId>34732</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>76662</NpcEntry>
-          <QuestId>33898</QuestId>
           <QuestName>Slaying Slavers</QuestName>
+          <QuestId>33898</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74635</NpcEntry>
-          <QuestId>33412</QuestId>
           <QuestName>Mopping Up</QuestName>
+          <QuestId>33412</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74635</NpcEntry>
-          <QuestId>33450</QuestId>
           <QuestName>The Warlord's Guard</QuestName>
+          <QuestId>33450</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74635</NpcEntry>
-          <QuestId>33454</QuestId>
           <QuestName>The Cure</QuestName>
+          <QuestId>33454</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33454</InternalQuestId>
           <Count>5</Count>
@@ -1478,9 +1389,9 @@
           </Entry>
           <Hotspots>
             <Point>
-             <X>7179.521</X>
-             <Y>5860.926</Y>
-             <Z>119.606</Z>
+              <X>7179.521</X>
+              <Y>5860.926</Y>
+              <Z>119.606</Z>
             </Point>
             <Point>
               <X>7153.395</X>
@@ -1488,77 +1399,78 @@
               <Z>119.6317</Z>
             </Point>
             <Point>
-             <X>7165.643</X>
-             <Y>5870.586</Y>
-             <Z>119.7578</Z>
+              <X>7165.643</X>
+              <Y>5870.586</Y>
+              <Z>119.7578</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33450</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>74704</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>7259.942</X>
-             <Y>5864.626</Y>
-             <Z>122.053</Z>
+            <X>7259.942</X>
+            <Y>5864.626</Y>
+            <Z>122.053</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>33450</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>74706</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>7210.009</X>
-             <Y>5754.581</Y>
-             <Z>140.2088</Z>
+            <X>7210.009</X>
+            <Y>5754.581</Y>
+            <Z>140.2088</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33450</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>74707</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>7317.433</X>
-             <Y>5797.162</Y>
-             <Z>111.3056</Z>
+            <X>7317.433</X>
+            <Y>5797.162</Y>
+            <Z>111.3056</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74635</NpcEntry>
-          <QuestId>33450</QuestId>
           <QuestName>The Warlord's Guard</QuestName>
+          <QuestId>33450</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74635</NpcEntry>
-          <QuestId>33454</QuestId>
           <QuestName>The Cure</QuestName>
+          <QuestId>33454</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74635</NpcEntry>
-          <QuestId>33467</QuestId>
           <QuestName>The Fall of the Warlord</QuestName>
+          <QuestId>33467</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1567,46 +1479,45 @@
             <int>227291</int>
           </Entry>
           <Position>
-             <X>7209.378</X>
-             <Y>6078.933</Y>
-             <Z>117.4472</Z>
+            <X>7209.378</X>
+            <Y>6078.933</Y>
+            <Z>117.4472</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33467</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>73763</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>7199.043</X>
-             <Y>6094.179</Y>
-             <Z>117.447</Z>
+            <X>7199.043</X>
+            <Y>6094.179</Y>
+            <Z>117.447</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>81678</NpcEntry>
-          <QuestId>33467</QuestId>
           <QuestName>The Fall of the Warlord</QuestName>
+          <QuestId>33467</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78222</NpcEntry>
-          <QuestId>33484</QuestId>
           <QuestName>The Slavemaster's Demise</QuestName>
+          <QuestId>33484</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
-          <IsBonusObjective>true</IsBonusObjective>
           <InternalQuestId>34505</InternalQuestId>
+          <IsBonusObjective>true</IsBonusObjective>
           <Count>12</Count>
           <Entry>
             <int>78870</int>
@@ -1615,9 +1526,9 @@
           </Entry>
           <Hotspots>
             <Point>
-             <X>6204.763</X>
-             <Y>5936.872</Y>
-             <Z>135.5417</Z>
+              <X>6204.763</X>
+              <Y>5936.872</Y>
+              <Z>135.5417</Z>
             </Point>
             <Point>
               <X>6174.626</X>
@@ -1635,22 +1546,22 @@
               <Z>120.006</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
-          <IsBonusObjective>true</IsBonusObjective>
           <InternalQuestId>34505</InternalQuestId>
+          <IsBonusObjective>true</IsBonusObjective>
           <Count>10</Count>
           <Entry>
             <int>78791</int>
           </Entry>
           <Hotspots>
             <Point>
-             <X>6204.763</X>
-             <Y>5936.872</Y>
-             <Z>135.5417</Z>
+              <X>6204.763</X>
+              <Y>5936.872</Y>
+              <Z>135.5417</Z>
             </Point>
             <Point>
               <X>6174.626</X>
@@ -1668,13 +1579,12 @@
               <Z>120.006</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>4</InternalIndex>
           <InternalQuestId>33468</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>74702</int>
@@ -1686,13 +1596,13 @@
               <Z>64.61336</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33468</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>74700</int>
@@ -1704,20 +1614,20 @@
               <Z>53.50825</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74507</NpcEntry>
-          <QuestId>33807</QuestId>
           <QuestName>Free Our Brothers and Sisters</QuestName>
+          <QuestId>33807</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>33468</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>74708</int>
@@ -1729,10 +1639,11 @@
               <Z>97.51855</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33807</InternalQuestId>
           <Count>6</Count>
@@ -1747,23 +1658,22 @@
               <Z>77.30491</Z>
             </Point>
             <Point>
-             <X>5988.957</X>
-             <Y>6171.801</Y>
-             <Z>70.38125</Z>
+              <X>5988.957</X>
+              <Y>6171.801</Y>
+              <Z>70.38125</Z>
             </Point>
             <Point>
-             <X>5907.369</X>
-             <Y>6181.022</Y>
-             <Z>52.93782</Z>
+              <X>5907.369</X>
+              <Y>6181.022</Y>
+              <Z>52.93782</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>5</InternalIndex>
           <InternalQuestId>33468</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>15</Count>
           <Entry>
             <int>74329</int>
@@ -1776,52 +1686,52 @@
               <Z>77.30491</Z>
             </Point>
             <Point>
-             <X>5988.957</X>
-             <Y>6171.801</Y>
-             <Z>70.38125</Z>
+              <X>5988.957</X>
+              <Y>6171.801</Y>
+              <Z>70.38125</Z>
             </Point>
             <Point>
-             <X>5907.369</X>
-             <Y>6181.022</Y>
-             <Z>52.93782</Z>
+              <X>5907.369</X>
+              <Y>6181.022</Y>
+              <Z>52.93782</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74651</NpcEntry>
-          <QuestId>33807</QuestId>
           <QuestName>Free Our Brothers and Sisters</QuestName>
+          <QuestId>33807</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74651</NpcEntry>
-          <QuestId>33468</QuestId>
           <QuestName>Save Wolf Home</QuestName>
+          <QuestId>33468</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Farseer</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33469</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33468</int>
       </NeedQuestCompletedId>
       <PickUp>74651</PickUp>
       <TurnIn>74272</TurnIn>
       <Objectives>
-      <QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33469</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>74653</int>
@@ -1833,16 +1743,18 @@
               <Z>29.53395</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Pool of Visions</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33470</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33469</int>
       </NeedQuestCompletedId>
@@ -1858,9 +1770,9 @@
             <int>74272</int>
           </Entry>
           <Position>
-              <X>5918.662</X>
-              <Y>6480.467</Y>
-              <Z>29.53395</Z>
+            <X>5918.662</X>
+            <Y>6480.467</Y>
+            <Z>29.53395</Z>
           </Position>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
@@ -1868,11 +1780,11 @@
     </Quest>
     <Quest>
       <Name>Back to Bladespire Citadel</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33473</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33470</int>
       </NeedQuestCompletedId>
@@ -1898,11 +1810,11 @@
     </Quest>
     <Quest>
       <Name>Securing the South</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>32989</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33473</int>
       </NeedQuestCompletedId>
@@ -1913,22 +1825,22 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70860</NpcEntry>
-          <QuestId>32783</QuestId>
           <QuestName>Ga'nar's Vengeance</QuestName>
+          <QuestId>32783</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70909</NpcEntry>
-          <QuestId>32783</QuestId>
           <QuestName>Ga'nar's Vengeance</QuestName>
+          <QuestId>32783</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70909</NpcEntry>
-          <QuestId>32791</QuestId>
           <QuestName>Let the Hunt Begin!</QuestName>
+          <QuestId>32791</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1939,37 +1851,35 @@
             <int>70878</int>
           </Entry>
           <Position>
-             <X>7224.098</X>
-             <Y>5617.626</Y>
-             <Z>125.7956</Z>
+            <X>7224.098</X>
+            <Y>5617.626</Y>
+            <Z>125.7956</Z>
           </Position>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <WaitMs>20000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>32791</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>70900</int>
           </Entry>
           <Hotspots>
             <Point>
-             <X>7220.388</X>
-             <Y>5329.398</Y>
-             <Z>62.20007</Z>
-            </Point> 
+              <X>7220.388</X>
+              <Y>5329.398</Y>
+              <Z>62.20007</Z>
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>4</InternalIndex>
           <InternalQuestId>32791</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>78644</int>
@@ -1979,61 +1889,62 @@
               <X>7213.543</X>
               <Y>5299.498</Y>
               <Z>62.5172</Z>
-            </Point> 
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74000</NpcEntry>
-          <QuestId>32791</QuestId>
           <QuestName>Let the Hunt Begin!</QuestName>
+          <QuestId>32791</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74000</NpcEntry>
-          <QuestId>32792</QuestId>
           <QuestName>Leave Nothing Behind!</QuestName>
+          <QuestId>32792</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74222</NpcEntry>
-          <QuestId>32929</QuestId>
           <QuestName>They Rely on Numbers</QuestName>
+          <QuestId>32929</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32792</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>71669</int>
           </Entry>
           <Hotspots>
             <Point>
-             <X>7137.032</X>
-             <Y>5254.891</Y>
-             <Z>81.69637</Z>
-            </Point> 
+              <X>7137.032</X>
+              <Y>5254.891</Y>
+              <Z>81.69637</Z>
+            </Point>
             <Point>
-             <X>7110.153</X>
-             <Y>5210.737</Y>
-             <Z>84.42574</Z>
-            </Point> 
+              <X>7110.153</X>
+              <Y>5210.737</Y>
+              <Z>84.42574</Z>
+            </Point>
             <Point>
-             <X>7080.371</X>
-             <Y>5146.742</Y>
-             <Z>88.25648</Z>
-            </Point> 
+              <X>7080.371</X>
+              <Y>5146.742</Y>
+              <Z>88.25648</Z>
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>32792</InternalQuestId>
           <Entry>
@@ -2042,25 +1953,25 @@
           <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
-             <X>5519.443</X>
-             <Y>4488.985</Y>
-             <Z>137.8323</Z>
+              <X>5519.443</X>
+              <Y>4488.985</Y>
+              <Z>137.8323</Z>
             </Point>
             <Point>
-             <X>5688.725</X>
-             <Y>4611.477</Y>
-             <Z>142.9869</Z>
+              <X>5688.725</X>
+              <Y>4611.477</Y>
+              <Z>142.9869</Z>
             </Point>
             <Point>
-             <X>5741.323</X>
-             <Y>4487.038</Y>
-             <Z>132.8235</Z>
+              <X>5741.323</X>
+              <Y>4487.038</Y>
+              <Z>132.8235</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>32792</InternalQuestId>
           <Entry>
@@ -2070,28 +1981,27 @@
           <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
-             <X>5519.443</X>
-             <Y>4488.985</Y>
-             <Z>137.8323</Z>
+              <X>5519.443</X>
+              <Y>4488.985</Y>
+              <Z>137.8323</Z>
             </Point>
             <Point>
-             <X>5688.725</X>
-             <Y>4611.477</Y>
-             <Z>142.9869</Z>
+              <X>5688.725</X>
+              <Y>4611.477</Y>
+              <Z>142.9869</Z>
             </Point>
             <Point>
-             <X>5741.323</X>
-             <Y>4487.038</Y>
-             <Z>132.8235</Z>
+              <X>5741.323</X>
+              <Y>4487.038</Y>
+              <Z>132.8235</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32929</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>15</Count>
           <Entry>
             <int>88265</int>
@@ -2124,53 +2034,54 @@
           </Entry>
           <Hotspots>
             <Point>
-             <X>7137.032</X>
-             <Y>5254.891</Y>
-             <Z>81.69637</Z>
-            </Point> 
+              <X>7137.032</X>
+              <Y>5254.891</Y>
+              <Z>81.69637</Z>
+            </Point>
             <Point>
-             <X>7110.153</X>
-             <Y>5210.737</Y>
-             <Z>84.42574</Z>
-            </Point> 
+              <X>7110.153</X>
+              <Y>5210.737</Y>
+              <Z>84.42574</Z>
+            </Point>
             <Point>
-             <X>7080.371</X>
-             <Y>5146.742</Y>
-             <Z>88.25648</Z>
-            </Point> 
+              <X>7080.371</X>
+              <Y>5146.742</Y>
+              <Z>88.25648</Z>
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74223</NpcEntry>
-          <QuestId>32929</QuestId>
           <QuestName>They Rely on Numbers</QuestName>
+          <QuestId>32929</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74223</NpcEntry>
-          <QuestId>32804</QuestId>
           <QuestName>Articles of the Fallen</QuestName>
+          <QuestId>32804</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70910</NpcEntry>
-          <QuestId>32792</QuestId>
           <QuestName>Leave Nothing Behind!</QuestName>
+          <QuestId>32792</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70910</NpcEntry>
-          <QuestId>32794</QuestId>
           <QuestName>Wrath of Gronn</QuestName>
+          <QuestId>32794</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32804</InternalQuestId>
           <Entry>
@@ -2180,95 +2091,94 @@
           <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
-             <X>6909.541</X>
-             <Y>4637.025</Y>
-             <Z>174.0374</Z>
-            </Point> 
+              <X>6909.541</X>
+              <Y>4637.025</Y>
+              <Z>174.0374</Z>
+            </Point>
             <Point>
               <X>6883.293</X>
               <Y>4635.764</Y>
               <Z>174.9903</Z>
-            </Point> 
+            </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32794</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>3</Count>
           <Entry>
             <int>74160</int>
           </Entry>
           <Hotspots>
             <Point>
-             <X>6909.541</X>
-             <Y>4637.025</Y>
-             <Z>174.0374</Z>
-            </Point> 
+              <X>6909.541</X>
+              <Y>4637.025</Y>
+              <Z>174.0374</Z>
+            </Point>
             <Point>
               <X>6883.293</X>
               <Y>4635.764</Y>
               <Z>174.9903</Z>
-            </Point> 
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74223</NpcEntry>
-          <QuestId>32804</QuestId>
           <QuestName>Articles of the Fallen</QuestName>
+          <QuestId>32804</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70941</NpcEntry>
-          <QuestId>32794</QuestId>
           <QuestName>Wrath of Gronn</QuestName>
+          <QuestId>32794</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70941</NpcEntry>
-          <QuestId>32795</QuestId>
           <QuestName>The Eldest</QuestName>
+          <QuestId>32795</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <Count>1</Count>
           <InternalQuestId>32795</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>70941</int>
           </Entry>
           <Position>
-              <X>6901.172</X>
-              <Y>4554.826</Y>
-              <Z>68.05287</Z>
+            <X>6901.172</X>
+            <Y>4554.826</Y>
+            <Z>68.05287</Z>
           </Position>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <Count>1</Count>
           <InternalQuestId>32795</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>70941</int>
           </Entry>
           <Position>
-              <X>6901.172</X>
-              <Y>4554.826</Y>
-              <Z>68.05287</Z>
+            <X>6901.172</X>
+            <Y>4554.826</Y>
+            <Z>68.05287</Z>
           </Position>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32795</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>70863</int>
@@ -2278,69 +2188,59 @@
               <X>6840.213</X>
               <Y>4542.333</Y>
               <Z>68.06163</Z>
-            </Point> 
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70941</NpcEntry>
-          <QuestId>32795</QuestId>
           <QuestName>The Eldest</QuestName>
+          <QuestId>32795</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>70941</NpcEntry>
-          <QuestId>32796</QuestId>
           <QuestName>To the Garrison</QuestName>
+          <QuestId>32796</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>GarrisonHearthstone</Objective>
-          <InternalQuestId>32796</InternalQuestId>          
+          <InternalQuestId>32796</InternalQuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74163</NpcEntry>
-          <QuestId>32796</QuestId>
           <QuestName>To the Garrison</QuestName>
+          <QuestId>32796</QuestId>
         </QuestObjective>
-        <!--<QuestObjective>
-          <Objective>TravelTo</Objective>
-          <ContinentId>1116</ContinentId>
-          <Entry>
-            <int>76879</int>--> <!-- the destination taxi as "IsArrivedCheck" -->
-          <!--</Entry>
-          <Position>
-              <X>6161.578</X>
-              <Y>5053.60938</Y>
-              <Z>134.314651</Z>
-          </Position>
-        </QuestObjective>-->
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <Position>
-             <X>6140.038</X>
-             <Y>5149.385</Y>
-             <Z>131.5334</Z>
+            <X>6140.038</X>
+            <Y>5149.385</Y>
+            <Z>131.5334</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <NpcEntry>72274</NpcEntry>
-          <QuestId>32989</QuestId>
           <QuestName>Securing the South</QuestName>
+          <QuestId>32989</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>They Who Held Fast</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>32990</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>32989</int>
       </NeedQuestCompletedId>
@@ -2351,11 +2251,11 @@
           <Objective>InteractWith</Objective>
           <InternalIndex>4</InternalIndex>
           <InternalQuestId>32990</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Count>1</Count>
           <Entry>
             <int>72449</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>6122.181</X>
             <Y>4976.077</Y>
@@ -2366,69 +2266,66 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74358</NpcEntry>
-          <QuestId>33013</QuestId>
           <QuestName>Of Fire and Thunder</QuestName>
+          <QuestId>33013</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>32990</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Count>1</Count>
           <Entry>
             <int>72383</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6117.802</X>
-              <Y>4960.088</Y>
-              <Z>137.2586</Z>
+            <X>6117.802</X>
+            <Y>4960.088</Y>
+            <Z>137.2586</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>32990</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Count>1</Count>
           <Entry>
             <int>72381</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6123.001</X>
-              <Y>5064.688</Y>
-              <Z>134.0659</Z>
+            <X>6123.001</X>
+            <Y>5064.688</Y>
+            <Z>134.0659</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32990</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Count>1</Count>
           <Entry>
             <int>72380</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6136.196</X>
-              <Y>5110.458</Y>
-              <Z>131.71</Z>
+            <X>6136.196</X>
+            <Y>5110.458</Y>
+            <Z>131.71</Z>
           </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Into the Boneslag</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>32991</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>32990</int>
       </NeedQuestCompletedId>
-      <AutoComplete>
-        <int>33013</int>
-      </AutoComplete>
       <PickUp>72274</PickUp>
       <TurnIn>72274</TurnIn>
       <Objectives>
@@ -2436,97 +2333,100 @@
           <Objective>InteractWith</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32991</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IsDead>true</IsDead>
           <Count>1</Count>
           <Entry>
             <int>72400</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6275.522</X>
-              <Y>5034.088</Y>
-              <Z>48.90404</Z>
+            <X>6275.522</X>
+            <Y>5034.088</Y>
+            <Z>48.90404</Z>
           </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>32991</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IsDead>true</IsDead>
           <Count>1</Count>
           <Entry>
             <int>72399</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6451.089</X>
-              <Y>4992.683</Y>
-              <Z>58.82104</Z>
+            <X>6451.089</X>
+            <Y>4992.683</Y>
+            <Z>58.82104</Z>
           </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33013</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Count>1</Count>
           <Entry>
             <int>221379</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6465.366</X>
-              <Y>4867.069</Y>
-              <Z>48.65531</Z>
+            <X>6465.366</X>
+            <Y>4867.069</Y>
+            <Z>48.65531</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>32991</InternalQuestId>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <Count>1</Count>
           <Entry>
             <int>72494</int>
           </Entry>
           <Position>
-              <X>6521.037</X>
-              <Y>4797.245</Y>
-              <Z>67.18397</Z>
+            <X>6521.037</X>
+            <Y>4797.245</Y>
+            <Z>67.18397</Z>
           </Position>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33013</InternalQuestId>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Count>1</Count>
           <Entry>
             <int>221378</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6504.655</X>
-              <Y>4772.43</Y>
-              <Z>68.21293</Z>
+            <X>6504.655</X>
+            <Y>4772.43</Y>
+            <Z>68.21293</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6416.872</X>
-              <Y>4597.837</Y>
-              <Z>85.40118</Z>
+            <X>6416.872</X>
+            <Y>4597.837</Y>
+            <Z>85.40118</Z>
           </Position>
         </QuestObjective>
       </Objectives>
+      <AutoComplete>
+        <int>33013</int>
+      </AutoComplete>
     </Quest>
     <Quest>
       <Name>Moving Target</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>32992</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>32991</int>
       </NeedQuestCompletedId>
@@ -2537,24 +2437,23 @@
           <Objective>MoveTo</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32992</InternalQuestId>
-          <IgnoreQuestCompleted>false</IgnoreQuestCompleted>
-          <WaitMs>10000</WaitMs>
           <Count>1</Count>
           <Position>
-             <X>5971.519</X>
-             <Y>4117.857</Y>
-             <Z>119.4638</Z>
-         </Position>
+            <X>5971.519</X>
+            <Y>4117.857</Y>
+            <Z>119.4638</Z>
+          </Position>
+          <WaitMs>10000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Strength of Our Bonds</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>32993</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>32992</int>
       </NeedQuestCompletedId>
@@ -2565,24 +2464,23 @@
           <Objective>MoveTo</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>32993</InternalQuestId>
-          <IgnoreQuestCompleted>false</IgnoreQuestCompleted>
-          <WaitMs>10000</WaitMs>
           <Count>1</Count>
           <Position>
-             <X>5835.621</X>
-             <Y>3644.564</Y>
-             <Z>120.9055</Z>
-         </Position>
+            <X>5835.621</X>
+            <Y>3644.564</Y>
+            <Z>120.9055</Z>
+          </Position>
+          <WaitMs>10000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Where's My Wolf?!</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33826</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>32993</int>
       </NeedQuestCompletedId>
@@ -2593,15 +2491,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72373</NpcEntry>
-          <QuestId>33785</QuestId>
           <QuestName>Karg Unchained</QuestName>
+          <QuestId>33785</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33826</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>72864</int>
@@ -2611,31 +2507,31 @@
               <X>5770.025</X>
               <Y>3481.803</Y>
               <Z>131.6979</Z>
-            </Point> 
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33826</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>72500</int>
           </Entry>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>5625.609</X>
-              <Y>3775.825</Y>
-              <Z>112.8711</Z>
+            <X>5625.609</X>
+            <Y>3775.825</Y>
+            <Z>112.8711</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33785</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>25</Count>
           <Entry>
             <int>78806</int>
@@ -2651,45 +2547,47 @@
           </Entry>
           <Hotspots>
             <Point>
-             <X>5649.867</X>
-             <Y>3733.661</Y>
-             <Z>118.4344</Z>
+              <X>5649.867</X>
+              <Y>3733.661</Y>
+              <Z>118.4344</Z>
             </Point>
             <Point>
               <X>5588.01</X>
               <Y>3665.069</Y>
               <Z>125.7548</Z>
-            </Point> 
+            </Point>
             <Point>
               <X>5516.374</X>
               <Y>3747.06</Y>
               <Z>113.8871</Z>
-            </Point> 
+            </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72373</NpcEntry>
-          <QuestId>33785</QuestId>
           <QuestName>Karg Unchained</QuestName>
+          <QuestId>33785</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72373</NpcEntry>
-          <QuestId>33826</QuestId>
           <QuestName>Where's My Wolf?!</QuestName>
+          <QuestId>33826</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Master Siegesmith</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33828</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33826</int>
       </NeedQuestCompletedId>
@@ -2700,12 +2598,11 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72373</NpcEntry>
-          <QuestId>32994</QuestId>
           <QuestName>Enfilade</QuestName>
+          <QuestId>32994</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalQuestId>32994</InternalQuestId>
           <Entry>
             <int>230262</int>
@@ -2715,14 +2612,14 @@
           <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
-             <X>5220.758</X>
-             <Y>3668.406</Y>
-             <Z>128.2289</Z>
+              <X>5220.758</X>
+              <Y>3668.406</Y>
+              <Z>128.2289</Z>
             </Point>
             <Point>
-             <X>5355.525</X>
-             <Y>3551.552</Y>
-             <Z>120.4976</Z> 
+              <X>5355.525</X>
+              <Y>3551.552</Y>
+              <Z>120.4976</Z>
             </Point>
             <Point>
               <X>5300.617</X>
@@ -2730,55 +2627,56 @@
               <Z>119.0926</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33828</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>76594</int>
           </Entry>
           <Hotspots>
             <Point>
-             <X>5649.867</X>
-             <Y>3733.661</Y>
-             <Z>118.4344</Z>
+              <X>5649.867</X>
+              <Y>3733.661</Y>
+              <Z>118.4344</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
-           <Objective>MessageBox</Objective>
-           <Message>You need to go in the loading area (jump) of 5 Iron Horde Cannons (tanks) and destroy them. Then close this pop-up when it's done.</Message>
-          <InternalQuestId>32994</InternalQuestId>
+          <Objective>MessageBox</Objective>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>32994</InternalQuestId>
           <Count>6</Count>
+          <Message>You need to go in the loading area (jump) of 5 Iron Horde Cannons (tanks) and destroy them. Then close this pop-up when it's done.</Message>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72373</NpcEntry>
-          <QuestId>32994</QuestId>
           <QuestName>Enfilade</QuestName>
+          <QuestId>32994</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72274</NpcEntry>
-          <QuestId>33828</QuestId>
           <QuestName>The Master Siegesmith</QuestName>
+          <QuestId>33828</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Return to the Pack</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33493</Id>
       <QuestLevel>91</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33828</int>
       </NeedQuestCompletedId>
@@ -2791,27 +2689,27 @@
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <Position>
-             <X>5596.864</X>
-             <Y>4546.244</Y>
-             <Z>129.6055</Z>
+            <X>5596.864</X>
+            <Y>4546.244</Y>
+            <Z>129.6055</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>74163</NpcEntry>
-          <QuestId>33493</QuestId>
           <QuestName>Return to the Pack</QuestName>
+          <QuestId>33493</QuestId>
         </QuestObjective>
       </Objectives>
-      </Quest>
-      <Quest>
+    </Quest>
+    <Quest>
       <Name>Bigger is Better</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>36567</Id>
       <QuestLevel>92</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33493</int>
       </NeedQuestCompletedId>
@@ -2819,18 +2717,18 @@
       <TurnIn>78466</TurnIn>
       <Objectives>
         <QuestObjective>
-           <Objective>MessageBox</Objective>
-           <Message>Please upgrade your garrison to level 2.</Message>
+          <Objective>MessageBox</Objective>
+          <Message>Please upgrade your garrison to level 2.</Message>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Thunderlord Invasion!</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>37291</Id>
       <QuestLevel>92</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>36567</int>
       </NeedQuestCompletedId>
@@ -2839,40 +2737,38 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>37291</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <Count>1</Count>
           <Entry>
             <int>88228</int>
           </Entry>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>5590.561</X>
-              <Y>4579.132</Y>
-              <Z>136.5882</Z>
+            <X>5590.561</X>
+            <Y>4579.132</Y>
+            <Z>136.5882</Z>
           </Position>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalQuestId>37291</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <WaitMs>50000</WaitMs>
           <Count>1</Count>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-             <X>5634.304</X>
-             <Y>4528.564</Y>
-             <Z>119.0454</Z>
+            <X>5634.304</X>
+            <Y>4528.564</Y>
+            <Z>119.0454</Z>
           </Position>
+          <WaitMs>50000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>37291</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>72934</int>
@@ -2886,31 +2782,33 @@
           </Entry>
           <Hotspots>
             <Point>
-             <X>5690.446</X>
-             <Y>4515.759</Y>
-             <Z>125.682</Z>
+              <X>5690.446</X>
+              <Y>4515.759</Y>
+              <Z>125.682</Z>
             </Point>
             <Point>
-             <X>5568.41</X>
-             <Y>4502.513</Y>
-             <Z>130.3826</Z>
+              <X>5568.41</X>
+              <Y>4502.513</Y>
+              <Z>130.3826</Z>
             </Point>
             <Point>
-             <X>5600.113</X>
-             <Y>4593.547</Y>
-             <Z>136.5896</Z>
+              <X>5600.113</X>
+              <Y>4593.547</Y>
+              <Z>136.5896</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Iron Wolf</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>33010</Id>
       <QuestLevel>92</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>37291</int>
       </NeedQuestCompletedId>
@@ -2919,10 +2817,8 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33010</InternalQuestId>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>1</Count>
           <Entry>
             <int>74225</int>
@@ -2934,29 +2830,32 @@
               <Z>116.2998</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>To Thunder Pass</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34123</Id>
       <QuestLevel>92</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>33010</int>
       </NeedQuestCompletedId>
       <PickUp>76720</PickUp>
       <TurnIn>76487</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Battle of Thunder Pass</Name>
+      <RaceMask>33555378</RaceMask>
       <Id>34124</Id>
       <QuestLevel>92</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
-      <RaceMask>33555378</RaceMask>
       <NeedQuestCompletedId>
         <int>34123</int>
       </NeedQuestCompletedId>
@@ -2967,26 +2866,25 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78209</NpcEntry>
-          <QuestId>34346</QuestId>
           <QuestName>Frosted Fury</QuestName>
+          <QuestId>34346</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78208</NpcEntry>
-          <QuestId>34344</QuestId>
           <QuestName>Lurkers</QuestName>
+          <QuestId>34344</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78208</NpcEntry>
-          <QuestId>34345</QuestId>
           <QuestName>Poulticide</QuestName>
+          <QuestId>34345</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34345</InternalQuestId>
           <Entry>
@@ -2996,30 +2894,30 @@
           <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
-             <X>6675.441</X>
-             <Y>4215.465</Y>
-             <Z>92.52082</Z>
+              <X>6675.441</X>
+              <Y>4215.465</Y>
+              <Z>92.52082</Z>
             </Point>
             <Point>
-             <X>6647.108</X>
-             <Y>4151.016</Y>
-             <Z>92.13142</Z>
+              <X>6647.108</X>
+              <Y>4151.016</Y>
+              <Z>92.13142</Z>
             </Point>
             <Point>
-             <X>6770.602</X>
-             <Y>4127.532</Y>
-             <Z>82.74722</Z>
+              <X>6770.602</X>
+              <Y>4127.532</Y>
+              <Z>82.74722</Z>
             </Point>
             <Point>
-             <X>6763.074</X>
-             <Y>3967.721</Y>
-             <Z>92.12762</Z>
+              <X>6763.074</X>
+              <Y>3967.721</Y>
+              <Z>92.12762</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34346</InternalQuestId>
           <Entry>
@@ -3029,30 +2927,30 @@
           <CollectCount>3</CollectCount>
           <Hotspots>
             <Point>
-             <X>6675.441</X>
-             <Y>4215.465</Y>
-             <Z>92.52082</Z>
+              <X>6675.441</X>
+              <Y>4215.465</Y>
+              <Z>92.52082</Z>
             </Point>
             <Point>
-             <X>6647.108</X>
-             <Y>4151.016</Y>
-             <Z>92.13142</Z>
+              <X>6647.108</X>
+              <Y>4151.016</Y>
+              <Z>92.13142</Z>
             </Point>
             <Point>
-             <X>6770.602</X>
-             <Y>4127.532</Y>
-             <Z>82.74722</Z>
+              <X>6770.602</X>
+              <Y>4127.532</Y>
+              <Z>82.74722</Z>
             </Point>
             <Point>
-             <X>6763.074</X>
-             <Y>3967.721</Y>
-             <Z>92.12762</Z>
+              <X>6763.074</X>
+              <Y>3967.721</Y>
+              <Z>92.12762</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34344</InternalQuestId>
           <Entry>
@@ -3062,54 +2960,55 @@
           <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
-             <X>6675.441</X>
-             <Y>4215.465</Y>
-             <Z>92.52082</Z>
+              <X>6675.441</X>
+              <Y>4215.465</Y>
+              <Z>92.52082</Z>
             </Point>
             <Point>
-             <X>6647.108</X>
-             <Y>4151.016</Y>
-             <Z>92.13142</Z>
+              <X>6647.108</X>
+              <Y>4151.016</Y>
+              <Z>92.13142</Z>
             </Point>
             <Point>
-             <X>6770.602</X>
-             <Y>4127.532</Y>
-             <Z>82.74722</Z>
+              <X>6770.602</X>
+              <Y>4127.532</Y>
+              <Z>82.74722</Z>
             </Point>
             <Point>
-             <X>6763.074</X>
-             <Y>3967.721</Y>
-             <Z>92.12762</Z>
+              <X>6763.074</X>
+              <Y>3967.721</Y>
+              <Z>92.12762</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78209</NpcEntry>
-          <QuestId>34346</QuestId>
           <QuestName>Frosted Fury</QuestName>
+          <QuestId>34346</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78208</NpcEntry>
-          <QuestId>34344</QuestId>
           <QuestName>Lurkers</QuestName>
+          <QuestId>34344</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78208</NpcEntry>
-          <QuestId>34345</QuestId>
           <QuestName>Poulticide</QuestName>
+          <QuestId>34345</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78208</NpcEntry>
-          <QuestId>34348</QuestId>
           <QuestName>The Real Prey</QuestName>
+          <QuestId>34348</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -3117,20 +3016,19 @@
           <InternalQuestId>34348</InternalQuestId>
           <Count>1</Count>
           <Position>
-             <X>7074.731</X>
-             <Y>4233.887</Y>
-             <Z>82.67204</Z>
+            <X>7074.731</X>
+            <Y>4233.887</Y>
+            <Z>82.67204</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34348</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>78230</int>
           </Entry>
-          <Count>1</Count>
           <Hotspots>
             <Point>
               <X>7083.627</X>
@@ -3138,16 +3036,16 @@
               <Z>56.556</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>34501</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>78896</int>
           </Entry>
-          <Count>1</Count>
           <Hotspots>
             <Point>
               <X>7534.199</X>
@@ -3155,16 +3053,16 @@
               <Z>108.8777</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>34501</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>78893</int>
           </Entry>
-          <Count>1</Count>
           <Hotspots>
             <Point>
               <X>7494.774</X>
@@ -3172,16 +3070,16 @@
               <Z>104.1536</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>34501</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>78764</int>
           </Entry>
-          <Count>1</Count>
           <Hotspots>
             <Point>
               <X>7464.165</X>
@@ -3189,22 +3087,22 @@
               <Z>112.0498</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>4</InternalIndex>
           <InternalQuestId>34501</InternalQuestId>
+          <Count>10</Count>
           <Entry>
             <int>78758</int>
             <int>78869</int>
           </Entry>
-          <Count>10</Count>
           <Hotspots>
             <Point>
-             <X>7527.787</X>
-             <Y>3456.909</Y>
-             <Z>105.4352</Z>
+              <X>7527.787</X>
+              <Y>3456.909</Y>
+              <Z>105.4352</Z>
             </Point>
             <Point>
               <X>7545.046</X>
@@ -3222,44 +3120,44 @@
               <Z>114.1257</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78208</NpcEntry>
-          <QuestId>34348</QuestId>
           <QuestName>The Real Prey</QuestName>
+          <QuestId>34348</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>78208</NpcEntry>
-          <QuestId>34731</QuestId>
           <QuestName>Oath of Shadow Hunter Rala</QuestName>
+          <QuestId>34731</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72976</NpcEntry>
-          <QuestId>33125</QuestId>
           <QuestName>A Proper Parting</QuestName>
+          <QuestId>33125</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72976</NpcEntry>
-          <QuestId>33132</QuestId>
           <QuestName>Gut Guttra</QuestName>
+          <QuestId>33132</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33132</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>72967</int>
           </Entry>
-          <Count>1</Count>
           <Hotspots>
             <Point>
               <X>6417.922</X>
@@ -3267,130 +3165,131 @@
               <Z>166.2539</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Hotspots>
-           <Point>
-             <X>6394.789</X>
-             <Y>3358.541</Y>
-             <Z>162.9617</Z>
-           </Point>
-           <Point>
-             <X>6316.899</X>
-             <Y>3338.5</Y>
-             <Z>163.5701</Z>
-           </Point>
-           <Point>
-             <X>6286.672</X>
-             <Y>3417.397</Y>
-             <Z>146.2119</Z>
-           </Point>
-          </Hotspots>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>33145</InternalQuestId>
+          <Count>3</Count>
           <Entry>
             <int>73284</int>
           </Entry>
-          <Count>3</Count>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>33145</InternalQuestId>
+          <Hotspots>
+            <Point>
+              <X>6394.789</X>
+              <Y>3358.541</Y>
+              <Z>162.9617</Z>
+            </Point>
+            <Point>
+              <X>6316.899</X>
+              <Y>3338.5</Y>
+              <Z>163.5701</Z>
+            </Point>
+            <Point>
+              <X>6286.672</X>
+              <Y>3417.397</Y>
+              <Z>146.2119</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33145</InternalQuestId>
+          <Count>8</Count>
           <Entry>
             <int>72987</int>
           </Entry>
-          <Count>8</Count>
           <Hotspots>
-           <Point>
-             <X>6394.789</X>
-             <Y>3358.541</Y>
-             <Z>162.9617</Z>
-           </Point>
-           <Point>
-             <X>6316.899</X>
-             <Y>3338.5</Y>
-             <Z>163.5701</Z>
-           </Point>
-           <Point>
-             <X>6286.672</X>
-             <Y>3417.397</Y>
-             <Z>146.2119</Z>
-           </Point>
+            <Point>
+              <X>6394.789</X>
+              <Y>3358.541</Y>
+              <Z>162.9617</Z>
+            </Point>
+            <Point>
+              <X>6316.899</X>
+              <Y>3338.5</Y>
+              <Z>163.5701</Z>
+            </Point>
+            <Point>
+              <X>6286.672</X>
+              <Y>3417.397</Y>
+              <Z>146.2119</Z>
+            </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IsDead>true</IsDead>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>33125</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>73486</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6202.682</X>
-              <Y>3682.571</Y>
-              <Z>92.27114</Z>
+            <X>6202.682</X>
+            <Y>3682.571</Y>
+            <Z>92.27114</Z>
           </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IsDead>true</IsDead>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>33125</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>72959</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6225.103</X>
-              <Y>3712.933</Y>
-              <Z>92.15155</Z>
+            <X>6225.103</X>
+            <Y>3712.933</Y>
+            <Z>92.15155</Z>
           </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IsDead>true</IsDead>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>33125</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>73467</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-              <X>6354.588</X>
-              <Y>3735.841</Y>
-              <Z>92.83998</Z>
+            <X>6354.588</X>
+            <Y>3735.841</Y>
+            <Z>92.83998</Z>
           </Position>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72976</NpcEntry>
-          <QuestId>33125</QuestId>
           <QuestName>A Proper Parting</QuestName>
+          <QuestId>33125</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>72976</NpcEntry>
-          <QuestId>33132</QuestId>
           <QuestName>Gut Guttra</QuestName>
+          <QuestId>33132</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <Position>
-              <X>6001.138</X>
-              <Y>2920.924</Y>
-              <Z>184.5208</Z>
+            <X>6001.138</X>
+            <Y>2920.924</Y>
+            <Z>184.5208</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -3401,33 +3300,7 @@
           <Objective>MessageBox</Objective>
           <Message>Talk to Durotan and let you be guided by the Scenario informations, enjoy :)</Message>
         </QuestObjective>
-        <!--<QuestObjective>
-          <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>34124</InternalQuestId>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
-          <Count>1</Count>
-          <Entry>
-            <int>76484</int>
-          </Entry>
-          <Position>
-              <X>6001.138</X>
-              <Y>2920.924</Y>
-              <Z>184.5208</Z>
-          </Position>
-        </QuestObjective>-->
       </Objectives>
     </Quest>
   </Quests>
-  <Blackspots>
-    <!--<QuesterBlacklistRadius>
-      <Position>
-         <X>4567.556</X>
-         <Y>-2209.459</Y>
-         <Z>-0.2059663</Z>
-      </Position>
-      <Radius>10</Radius>
-    </QuesterBlacklistRadius>-->
-  </Blackspots>
 </QuesterProfile>

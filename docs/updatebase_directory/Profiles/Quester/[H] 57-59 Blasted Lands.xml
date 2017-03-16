@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
   <Questers>
     <Npc>
       <Entry>7783</Entry>
@@ -640,7 +640,6 @@
           <Entry>
             <int>203181</int>
           </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-11456.62</X>
             <Y>-2633.077</Y>
@@ -1357,87 +1356,6 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>You Are Rakh'likh, Demon</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>25701</Id>
-      <QuestLevel>57</QuestLevel>
-      <MinLevel>54</MinLevel>
-      <MaxLevel>67</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>25700</int>
-      </NeedQuestCompletedId>
-      <PickUp>7783</PickUp>
-      <TurnIn>41159</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>203181</int>
-          </Entry>
-          <Position>
-            <X>-11458.48</X>
-            <Y>-2634.073</Y>
-            <Z>3.668999</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>8816</int>
-          </Entry>
-          <Position>
-            <X>-11113.41</X>
-            <Y>-2898.854</Y>
-            <Z>10.84721</Z>
-          </Position>
-          <WaitMs>8000</WaitMs>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>41280</int>
-          </Entry>
-          <Script>=26171-2.cs</Script>
-          <Range>0</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <InternalIndex>2</InternalIndex>
-          <Count>1</Count>
-          <Entry>
-            <int>41292</int>
-          </Entry>
-          <Script>=26171.cs</Script>
-          <IgnoreBlackList>true</IgnoreBlackList>
-          <UseItemId>56012</UseItemId>
-          <IgnoreFight>true</IgnoreFight>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <Count>1</Count>
-          <Hotspots>
-            <Point>
-              <X>-11193.6533</X>
-              <Y>-2831.50269</Y>
-              <Z>116.606346</Z>
-            </Point>
-            <Point>
-              <X>-11176.4854</X>
-              <Y>-2836.2666</Y>
-              <Z>116.472527</Z>
-            </Point>
-          </Hotspots>
-          <Script>=ClickToMoveHotSpots.cs</Script>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Range>0</Range>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
       <Name>The Demons and the Druid</Name>
       <RaceMask>33555378</RaceMask>
       <Id>25717</Id>
@@ -1445,7 +1363,7 @@
       <MinLevel>55</MinLevel>
       <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25701</int>
+        <int>25700</int>
       </NeedQuestCompletedId>
       <PickUp>42344</PickUp>
       <TurnIn>42344</TurnIn>

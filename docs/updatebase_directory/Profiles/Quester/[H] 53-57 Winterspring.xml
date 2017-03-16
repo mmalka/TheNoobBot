@@ -1,43 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-    <Npc>
-      <Entry>48659</Entry>
-      <Name>Quel'dorei Spirit</Name>
-      <Position>
-        <X>6538.568</X>
-        <Y>-4115.861</Y>
-        <Z>664.5759</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>48660</Entry>
-      <Name>Sin'dorei Spirit</Name>
-      <Position>
-        <X>6535.741</X>
-        <Y>-4109.193</Y>
-        <Z>662.8598</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>10929</Entry>
-      <Name>Haleh</Name>
-      <Position>
-        <X>6178.788</X>
-        <Y>-4559.205</Y>
-        <Z>713.3444</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-  </Questers>
+<QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
   <Quests>
     <Quest>
       <Name>Threat of the Winterfall</Name>
@@ -1436,62 +1398,59 @@
       <TurnIn>50263</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>PickUpObject</Objective>
+          <Objective>InteractWith</Objective>
           <InternalIndex>2</InternalIndex>
           <InternalQuestId>28839</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>207423</int>
           </Entry>
           <CollectItemId>1</CollectItemId>
           <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>5612.375</X>
-              <Y>-5027.177</Y>
-              <Z>808.2142</Z>
-            </Point>
-          </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
+          <Position>
+            <X>5612.375</X>
+            <Y>-5027.177</Y>
+            <Z>808.2142</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpObject</Objective>
+          <Objective>InteractWith</Objective>
           <InternalIndex>3</InternalIndex>
           <InternalQuestId>28839</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>207422</int>
           </Entry>
           <CollectItemId>1</CollectItemId>
           <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>5470.808</X>
-              <Y>-4976.972</Y>
-              <Z>850.514</Z>
-            </Point>
-          </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
+          <Position>
+            <X>5470.808</X>
+            <Y>-4976.972</Y>
+            <Z>850.514</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpObject</Objective>
+          <Objective>InteractWith</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>28839</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>207421</int>
           </Entry>
           <CollectItemId>1</CollectItemId>
           <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>5752.42725</X>
-              <Y>-4989.627</Y>
-              <Z>809.639648</Z>
-            </Point>
-          </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
           <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <Position>
+            <X>5752.427</X>
+            <Y>-4989.627</Y>
+            <Z>809.6396</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>

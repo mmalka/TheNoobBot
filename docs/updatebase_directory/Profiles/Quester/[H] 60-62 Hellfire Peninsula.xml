@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
   <Questers />
   <Quests>
     <Quest>
@@ -968,13 +968,6 @@
           <QuestId>9345</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16858</NpcEntry>
-          <QuestName>Investigate the Crash</QuestName>
-          <QuestId>10213</QuestId>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>19736</NpcEntry>
@@ -1184,6 +1177,11 @@
               <X>-1091.75146</X>
               <Y>2087.1853</Y>
               <Z>65.35767</Z>
+            </Point>
+            <Point>
+              <X>-954.4109</X>
+              <Y>1961.37292</Y>
+              <Z>67.12851</Z>
             </Point>
           </Hotspots>
           <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(31347) &gt;= 4)  ||  nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(10792) || nManager.Wow.Helpers.Quest.GetQuestCompleted(10792);</ScriptConditionIsComplete>
@@ -1419,7 +1417,7 @@
       <MinLevel>58</MinLevel>
       <MaxLevel>71</MaxLevel>
       <NeedQuestCompletedId>
-        <int>10295</int>
+        <int>10389</int>
       </NeedQuestCompletedId>
       <PickUp>16588</PickUp>
       <TurnIn>16588</TurnIn>
@@ -1671,7 +1669,7 @@
             <int>16863</int>
           </Entry>
           <CollectItemId>23270</CollectItemId>
-          <CollectCount>10</CollectCount>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-1006.468</X>
@@ -1694,7 +1692,7 @@
               <Z>25.84659</Z>
             </Point>
           </Hotspots>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.ItemsManager.GetItemCount(23270) &gt;= 10 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9361) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9361);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.ItemsManager.GetItemCount(23270) &gt;= 8 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9361) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9361);</ScriptConditionIsComplete>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
@@ -1749,6 +1747,7 @@
           <InternalQuestId>9351</InternalQuestId>
           <Entry>
             <int>16975</int>
+            <int>16974</int>
           </Entry>
           <CollectItemId>1</CollectItemId>
           <CollectCount>10</CollectCount>
@@ -2023,19 +2022,6 @@
       <TurnIn>16789</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>184501</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-592.592</X>
-            <Y>4076.445</Y>
-            <Z>94.13636</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>16789</NpcEntry>
@@ -2058,20 +2044,9 @@
       <TurnIn>16789</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>184500</int>
-          </Entry>
-          <Position>
-            <X>-592.6056</X>
-            <Y>4071.903</Y>
-            <Z>143.2578</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <NpcEntry>181638</NpcEntry>
           <QuestName>Wanted: Blacktalon the Savage</QuestName>
           <QuestId>9466</QuestId>
@@ -2361,20 +2336,6 @@
           <QuestId>9397</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>184501</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-593.3398</X>
-            <Y>4076.17</Y>
-            <Z>94.01125</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>16789</NpcEntry>
@@ -2403,20 +2364,6 @@
       <PickUp>16789</PickUp>
       <TurnIn>16789</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>184500</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-592.6013</X>
-            <Y>4073.469</Y>
-            <Z>143.6378</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
-        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -2543,13 +2490,6 @@
           <NpcEntry>20159</NpcEntry>
           <QuestName>Arelion's Secret</QuestName>
           <QuestId>10286</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>20159</NpcEntry>
-          <QuestName>The Mistress Revealed</QuestName>
-          <QuestId>10287</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -2783,26 +2723,6 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>16793</NpcEntry>
-          <QuestName>The Mistress Revealed</QuestName>
-          <QuestId>10287</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>184501</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-592.2051</X>
-            <Y>4075.538</Y>
-            <Z>94.18803</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>16789</NpcEntry>
           <QuestName>Marking the Path</QuestName>
           <QuestId>9391</QuestId>
@@ -2822,21 +2742,6 @@
       <PickUp>16789</PickUp>
       <TurnIn>16789</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>184500</int>
-          </Entry>
-          <ScriptConditionIsComplete>=OrbTransHellfireTop.cs</ScriptConditionIsComplete>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-591.6452</X>
-            <Y>4081.289</Y>
-            <Z>143.2578</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>

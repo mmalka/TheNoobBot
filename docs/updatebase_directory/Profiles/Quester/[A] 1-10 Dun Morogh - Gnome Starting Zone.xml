@@ -1,426 +1,472 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="Zwox" DevelopmentStatus="Untested">
   <Questers>
     <Npc>
-      <Name>Nevin Twistwrench</Name>
       <Entry>45966</Entry>
+      <Name>Nevin Twistwrench</Name>
       <Position>
         <X>-4984.88</X>
         <Y>875.616</Y>
         <Z>274.3095</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Carvo Blastbolt</Name>
       <Entry>47250</Entry>
+      <Name>Carvo Blastbolt</Name>
       <Position>
         <X>-4983.87</X>
         <Y>779.559</Y>
         <Z>288.485</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Gaffer Coilspring</Name>
       <Entry>46274</Entry>
+      <Name>Gaffer Coilspring</Name>
       <Position>
         <X>-5175.33</X>
         <Y>767.455</Y>
         <Z>285.4743</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Technician Braggle</Name>
       <Entry>46255</Entry>
+      <Name>Technician Braggle</Name>
       <Position>
         <X>-5172.65</X>
         <Y>691.495</Y>
         <Z>288.0849</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Nevin Twistwrench</Name>
       <Entry>42396</Entry>
+      <Name>Nevin Twistwrench</Name>
       <Position>
         <X>-5200.58</X>
         <Y>475.514</Y>
         <Z>388.3253</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>"Doc" Cogspin</Name>
       <Entry>42323</Entry>
+      <Name>"Doc" Cogspin</Name>
       <Position>
         <X>-5077.156</X>
         <Y>477.2257</Y>
         <Z>401.7401</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Bipsi Frostflinger</Name>
       <Entry>42331</Entry>
+      <Name>Bipsi Frostflinger</Name>
       <Position>
         <X>-5086.4</X>
         <Y>446.071</Y>
         <Z>409.823</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>High Tinker Mekkatorque</Name>
       <Entry>42317</Entry>
+      <Name>High Tinker Mekkatorque</Name>
       <Position>
         <X>-5131.771</X>
         <Y>490.1035</Y>
         <Z>395.5454</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Alamar Grimm</Name>
       <Entry>460</Entry>
+      <Name>Alamar Grimm</Name>
       <Position>
         <X>-5195.21</X>
         <Y>509.182</Y>
         <Z>387.773</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Drill Sergeant Steamcrank</Name>
       <Entry>42324</Entry>
+      <Name>Drill Sergeant Steamcrank</Name>
       <Position>
         <X>-5163.068</X>
         <Y>454.2274</Y>
         <Z>392.3529</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Kelsey Steelspark</Name>
       <Entry>42366</Entry>
+      <Name>Kelsey Steelspark</Name>
       <Position>
         <X>-5141.02</X>
         <Y>502.714</Y>
         <Z>395.5452</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Xi, Friend to the Small</Name>
       <Entry>63238</Entry>
+      <Name>Xi, Friend to the Small</Name>
       <Position>
         <X>-5166.229</X>
         <Y>464.4757</Y>
         <Z>390.4302</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Engineer Grindspark</Name>
       <Entry>42553</Entry>
+      <Name>Engineer Grindspark</Name>
       <Position>
         <X>-5073.268</X>
         <Y>454.8828</Y>
         <Z>410.9181</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Corporal Fizzwhistle</Name>
       <Entry>42630</Entry>
+      <Name>Corporal Fizzwhistle</Name>
       <Position>
         <X>-5222.997</X>
         <Y>499.4688</Y>
         <Z>387.28</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Tock Sprysprocket</Name>
       <Entry>42611</Entry>
+      <Name>Tock Sprysprocket</Name>
       <Position>
         <X>-5054.649</X>
         <Y>480.5104</Y>
         <Z>402.9746</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Captain Tread Sparknozzle</Name>
       <Entry>42489</Entry>
+      <Name>Captain Tread Sparknozzle</Name>
       <Position>
         <X>-5140.02</X>
         <Y>496.22</Y>
         <Z>395.5454</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jessup McCree</Name>
       <Entry>42708</Entry>
+      <Name>Jessup McCree</Name>
       <Position>
         <X>-5531.19</X>
         <Y>516.505</Y>
         <Z>388.7753</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Hinkles Fastblast</Name>
       <Entry>42491</Entry>
+      <Name>Hinkles Fastblast</Name>
       <Position>
         <X>-5142.26</X>
         <Y>499.502</Y>
         <Z>395.5451</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jarvi Shadowstep</Name>
       <Entry>42353</Entry>
+      <Name>Jarvi Shadowstep</Name>
       <Position>
         <X>-5379.257</X>
         <Y>304.467</Y>
         <Z>393.7029</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Torben Zapblast</Name>
       <Entry>46293</Entry>
+      <Name>Torben Zapblast</Name>
       <Position>
         <X>-5182.16</X>
         <Y>686.507</Y>
         <Z>287.7941</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>High Tinker Mekkatorque</Name>
       <Entry>42849</Entry>
+      <Name>High Tinker Mekkatorque</Name>
       <Position>
         <X>-5313.493</X>
         <Y>148.3941</Y>
         <Z>389.4272</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Captain Tharran</Name>
       <Entry>40950</Entry>
+      <Name>Captain Tharran</Name>
       <Position>
         <X>-5645.439</X>
         <Y>-493.2986</Y>
         <Z>396.6106</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ciara Deepstone</Name>
       <Entry>42933</Entry>
+      <Name>Ciara Deepstone</Name>
       <Position>
         <X>-5410.04</X>
         <Y>-306.828</Y>
         <Z>400.692</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Innkeeper Belm</Name>
       <Entry>1247</Entry>
+      <Name>Innkeeper Belm</Name>
       <Position>
         <X>-5601.6</X>
         <Y>-531.203</Y>
         <Z>399.654</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Gremlock Pilsnor</Name>
       <Entry>1699</Entry>
+      <Name>Gremlock Pilsnor</Name>
       <Position>
         <X>-5600.58</X>
         <Y>-543.316</Y>
         <Z>399.0972</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Brolan Galebeard</Name>
       <Entry>43701</Entry>
+      <Name>Brolan Galebeard</Name>
       <Position>
         <X>-5664.08</X>
         <Y>-497.684</Y>
         <Z>397.341</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ragnar Thunderbrew</Name>
       <Entry>1267</Entry>
+      <Name>Ragnar Thunderbrew</Name>
       <Position>
         <X>-5596.211</X>
         <Y>-504.1317</Y>
         <Z>400.6315</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Rejold Barleybrew</Name>
       <Entry>1374</Entry>
+      <Name>Rejold Barleybrew</Name>
       <Position>
         <X>-5612.144</X>
         <Y>-516.9948</Y>
         <Z>402.6357</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Quartermaster Glynna</Name>
       <Entry>40951</Entry>
+      <Name>Quartermaster Glynna</Name>
       <Position>
         <X>-5642.425</X>
         <Y>-493.0816</Y>
         <Z>396.6444</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Prospector Drugan</Name>
       <Entry>50631</Entry>
+      <Name>Prospector Drugan</Name>
       <Position>
         <X>-5673.224</X>
         <Y>-1594.071</Y>
         <Z>383.2048</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Senator Mehr Stonehallow</Name>
       <Entry>1977</Entry>
+      <Name>Senator Mehr Stonehallow</Name>
       <Position>
         <X>-5714.723</X>
         <Y>-1580</Y>
         <Z>383.2043</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Foreman Stonebrow</Name>
       <Entry>1254</Entry>
+      <Name>Foreman Stonebrow</Name>
       <Position>
         <X>-5726.583</X>
         <Y>-1600.289</Y>
         <Z>385.9011</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Sergeant Bahrum</Name>
       <Entry>41786</Entry>
+      <Name>Sergeant Bahrum</Name>
       <Position>
         <X>-5522.007</X>
         <Y>-1920.625</Y>
         <Z>398.9582</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Khurgorn Singefeather</Name>
       <Entry>41804</Entry>
+      <Name>Khurgorn Singefeather</Name>
       <Position>
         <X>-5518.347</X>
         <Y>-1910.189</Y>
         <Z>398.9584</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Commander Stonebreaker</Name>
       <Entry>41853</Entry>
+      <Name>Commander Stonebreaker</Name>
       <Position>
         <X>-4611.321</X>
         <Y>-1695.379</Y>
         <Z>503.5686</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Sergeant Flinthammer</Name>
       <Entry>41578</Entry>
+      <Name>Sergeant Flinthammer</Name>
       <Position>
         <X>-5538.592</X>
         <Y>-1311.104</Y>
         <Z>398.7935</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Rudra Amberstill</Name>
       <Entry>1265</Entry>
+      <Name>Rudra Amberstill</Name>
       <Position>
         <X>-5513.785</X>
         <Y>-1304.712</Y>
         <Z>404.5255</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Golnir Bouldertoe</Name>
       <Entry>4256</Entry>
+      <Name>Golnir Bouldertoe</Name>
       <Position>
         <X>-4708.058</X>
         <Y>-1120.925</Y>
         <Z>504.4493</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Gryth Thurden</Name>
       <Entry>1573</Entry>
+      <Name>Gryth Thurden</Name>
       <Position>
         <X>-4821.125</X>
         <Y>-1152.396</Y>
         <Z>502.2118</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Mountaineer Dunstan</Name>
       <Entry>40991</Entry>
+      <Name>Mountaineer Dunstan</Name>
       <Position>
         <X>-5475.986</X>
         <Y>-229.2361</Y>
         <Z>354.377</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Mountaineer Lewin</Name>
       <Entry>40994</Entry>
+      <Name>Mountaineer Lewin</Name>
       <Position>
         <X>-5502.422</X>
         <Y>-271.9618</Y>
         <Z>354.2404</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Mountaineer Valgrum</Name>
       <Entry>41056</Entry>
+      <Name>Mountaineer Valgrum</Name>
       <Position>
         <X>-5387.958</X>
         <Y>-278.2431</Y>
         <Z>363.0529</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Razzle Sprysprocket</Name>
       <Entry>1269</Entry>
+      <Name>Razzle Sprysprocket</Name>
       <Position>
         <X>-5636.52</X>
         <Y>-471.158</Y>
         <Z>397.7675</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Delber Cranktoggle</Name>
       <Entry>41363</Entry>
+      <Name>Delber Cranktoggle</Name>
       <Position>
         <X>-5479.412</X>
         <Y>-645.6684</Y>
         <Z>392.3269</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Slamp Wobblecog</Name>
       <Entry>41298</Entry>
+      <Name>Slamp Wobblecog</Name>
       <Position>
         <X>-5695.066</X>
         <Y>-923.9097</Y>
         <Z>398.2472</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Snevik the Blade</Name>
       <Entry>50601</Entry>
+      <Name>Snevik the Blade</Name>
       <Position>
         <X>-5698.252</X>
         <Y>-925.9601</Y>
         <Z>398.0444</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
   </Questers>
   <Quests>
     <Quest>
       <Name>Pinned Down</Name>
-      <Id>27670</Id>
       <RaceMask>64</RaceMask>
+      <Id>27670</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -432,7 +478,7 @@
           <Count>6</Count>
           <Entry>
             <int>46363</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-4986.174</X>
@@ -445,8 +491,8 @@
     </Quest>
     <Quest>
       <Name>Report to Carvo Blastbolt</Name>
-      <Id>28167</Id>
       <RaceMask>64</RaceMask>
+      <Id>28167</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -455,13 +501,12 @@
       </NeedQuestCompletedId>
       <PickUp>45966</PickUp>
       <TurnIn>47250</TurnIn>
-      <Objectives>
-      </Objectives>
-    </Quest>   
+      <Objectives />
+    </Quest>
     <Quest>
       <Name>See to the Survivors</Name>
-      <Id>27671</Id>
       <RaceMask>64</RaceMask>
+      <Id>27671</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -473,23 +518,23 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>62057</UseItemId>
           <Count>1</Count>
           <Entry>
             <int>46268</int>
           </Entry>
+          <UseItemId>62057</UseItemId>
           <Position>
             <X>-4998.91</X>
             <Y>757.25</Y>
             <Z>288.4853</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
-      </Objectives>      
+      </Objectives>
     </Quest>
     <Quest>
       <Name>Withdraw to the Loading Room!</Name>
-      <Id>28169</Id>
       <RaceMask>64</RaceMask>
+      <Id>28169</Id>
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -498,13 +543,12 @@
       </NeedQuestCompletedId>
       <PickUp>47250</PickUp>
       <TurnIn>46274</TurnIn>
-      <Objectives>
-      </Objectives>
-    </Quest> 
+      <Objectives />
+    </Quest>
     <Quest>
       <Name>Decontamination</Name>
-      <Id>27635</Id>
       <RaceMask>64</RaceMask>
+      <Id>27635</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -519,19 +563,19 @@
           <Entry>
             <int>46185</int>
           </Entry>
-            <Position>
-              <X>-5173.01</X>
-              <Y>734.88</Y>
-              <Z>288.8873</Z>
-            </Position>
+          <Position>
+            <X>-5173.01</X>
+            <Y>734.88</Y>
+            <Z>288.8873</Z>
+          </Position>
           <WaitMs>30000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>To the Surface</Name>
-      <Id>27674</Id>
       <RaceMask>64</RaceMask>
+      <Id>27674</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -546,27 +590,27 @@
           <Entry>
             <int>46293</int>
           </Entry>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
           <Position>
             <X>-5182.16</X>
             <Y>686.507</Y>
             <Z>287.7935</Z>
           </Position>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42396</NpcEntry>
-          <QuestId>27674</QuestId>
           <QuestName>Zur Oberfläche</QuestName>
+          <QuestId>27674</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Future of Gnomeregan</Name>
-      <Id>26203</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>1</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26203</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -575,14 +619,13 @@
       </NeedQuestCompletedId>
       <PickUp>42396</PickUp>
       <TurnIn>42324</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Meet the High Tinker</Name>
-      <Id>26425</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>1</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26425</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -591,14 +634,13 @@
       </NeedQuestCompletedId>
       <PickUp>42324</PickUp>
       <TurnIn>42317</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Fight Continues</Name>
-      <Id>26208</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>1</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26208</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -609,17 +651,15 @@
       <TurnIn>42317</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+          <Objective>None</Objective>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Future of Gnomeregan</Name>
-      <Id>26206</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>8</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26206</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -628,14 +668,13 @@
       </NeedQuestCompletedId>
       <PickUp>42396</PickUp>
       <TurnIn>42366</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Meet the High Tinker</Name>
-      <Id>26423</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>8</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26423</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -644,14 +683,13 @@
       </NeedQuestCompletedId>
       <PickUp>42366</PickUp>
       <TurnIn>42317</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Fight Continues</Name>
-      <Id>26208</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>8</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26208</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -662,17 +700,15 @@
       <TurnIn>42317</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+          <Objective>None</Objective>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Future of Gnomeregan</Name>
-      <Id>26199</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>16</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26199</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -681,14 +717,13 @@
       </NeedQuestCompletedId>
       <PickUp>42396</PickUp>
       <TurnIn>42323</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Meet the High Tinker</Name>
-      <Id>26422</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>16</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26422</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -697,14 +732,13 @@
       </NeedQuestCompletedId>
       <PickUp>42323</PickUp>
       <TurnIn>42317</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Fight Continues</Name>
-      <Id>26208</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>16</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26208</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -715,17 +749,15 @@
       <TurnIn>42317</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+          <Objective>None</Objective>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Future of Gnomeregan</Name>
-      <Id>26197</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>128</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26197</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -734,14 +766,13 @@
       </NeedQuestCompletedId>
       <PickUp>42396</PickUp>
       <TurnIn>42331</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Meet the High Tinker</Name>
-      <Id>26421</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>128</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26421</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -750,14 +781,13 @@
       </NeedQuestCompletedId>
       <PickUp>42331</PickUp>
       <TurnIn>42317</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Fight Continues</Name>
-      <Id>26208</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>128</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26208</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -768,17 +798,15 @@
       <TurnIn>42317</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+          <Objective>None</Objective>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Future of Gnomeregan</Name>
-      <Id>26202</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>256</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26202</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -787,14 +815,13 @@
       </NeedQuestCompletedId>
       <PickUp>42396</PickUp>
       <TurnIn>460</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Meet the High Tinker</Name>
-      <Id>26424</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>256</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26424</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -803,14 +830,13 @@
       </NeedQuestCompletedId>
       <PickUp>460</PickUp>
       <TurnIn>42317</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Fight Continues</Name>
-      <Id>26208</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>256</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26208</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -821,17 +847,15 @@
       <TurnIn>42317</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+          <Objective>None</Objective>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Future of Gnomeregan</Name>
-      <Id>31135</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>512</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>31135</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -840,14 +864,13 @@
       </NeedQuestCompletedId>
       <PickUp>42396</PickUp>
       <TurnIn>63238</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Meet the High Tinker</Name>
-      <Id>31137</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>512</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>31137</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -856,14 +879,13 @@
       </NeedQuestCompletedId>
       <PickUp>63238</PickUp>
       <TurnIn>42317</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Fight Continues</Name>
-      <Id>26208</Id>
-      <RaceMask>64</RaceMask>
       <ClassMask>512</ClassMask>
+      <RaceMask>64</RaceMask>
+      <Id>26208</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -874,16 +896,14 @@
       <TurnIn>42317</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+          <Objective>None</Objective>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>A Triumph of Gnomish Ingenuity</Name>
-      <Id>26566</Id>
       <RaceMask>64</RaceMask>
+      <Id>26566</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -892,13 +912,12 @@
       </NeedQuestCompletedId>
       <PickUp>42317</PickUp>
       <TurnIn>42553</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Scrounging for Parts</Name>
-      <Id>26222</Id>
       <RaceMask>64</RaceMask>
+      <Id>26222</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -925,13 +944,13 @@
               <Z>404.3365</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>      
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>A Job for the Multi-Bot</Name>
-      <Id>26205</Id>
       <RaceMask>64</RaceMask>
+      <Id>26205</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -1009,8 +1028,8 @@
     </Quest>
     <Quest>
       <Name>What's Left Behind</Name>
-      <Id>26264</Id>
       <RaceMask>64</RaceMask>
+      <Id>26264</Id>
       <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
@@ -1024,17 +1043,17 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42630</NpcEntry>
-          <QuestId>26265</QuestId>
           <QuestName>Dealing with the Fallout</QuestName>
+          <QuestId>26265</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>26265</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26265</InternalQuestId>
           <Count>8</Count>
           <Entry>
             <int>42185</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5282.824</X>
@@ -1046,11 +1065,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>57987</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>42184</int>
           </Entry>
+          <CollectItemId>57987</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-5292.149</X>
@@ -1063,22 +1082,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42630</NpcEntry>
-          <QuestId>26265</QuestId>
           <QuestName>Dealing with the Fallout</QuestName>
+          <QuestId>26265</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42611</NpcEntry>
-          <QuestId>26264</QuestId>
           <QuestName>What's Left Behind</QuestName>
+          <QuestId>26264</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>What's Keeping Jessup?</Name>
-      <Id>26316</Id>
       <RaceMask>64</RaceMask>
+      <Id>26316</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1087,13 +1106,12 @@
       </NeedQuestCompletedId>
       <PickUp>42489</PickUp>
       <TurnIn>42708</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Missing in Action</Name>
-      <Id>26284</Id>
       <RaceMask>64</RaceMask>
+      <Id>26284</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1195,8 +1213,8 @@
     </Quest>
     <Quest>
       <Name>Get Me Explosives Back!</Name>
-      <Id>26285</Id>
       <RaceMask>64</RaceMask>
+      <Id>26285</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1208,11 +1226,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>58202</CollectItemId>
-          <CollectCount>9</CollectCount>
           <Entry>
             <int>42222</int>
           </Entry>
+          <CollectItemId>58202</CollectItemId>
+          <CollectCount>9</CollectCount>
           <Hotspots>
             <Point>
               <X>-5620.258</X>
@@ -1225,8 +1243,8 @@
     </Quest>
     <Quest>
       <Name>Finishin' the Job</Name>
-      <Id>26318</Id>
       <RaceMask>64</RaceMask>
+      <Id>26318</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1241,7 +1259,7 @@
           <Count>1</Count>
           <Entry>
             <int>42773</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5529.441</X>
@@ -1265,8 +1283,8 @@
     </Quest>
     <Quest>
       <Name>One More Thing</Name>
-      <Id>26329</Id>
       <RaceMask>64</RaceMask>
+      <Id>26329</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1275,13 +1293,12 @@
       </NeedQuestCompletedId>
       <PickUp>42708</PickUp>
       <TurnIn>42317</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>No Tanks!</Name>
-      <Id>26333</Id>
       <RaceMask>64</RaceMask>
+      <Id>26333</Id>
       <QuestLevel>4</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>9</MaxLevel>
@@ -1295,60 +1312,60 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42317</NpcEntry>
-          <QuestId>26331</QuestId>
           <QuestName>Crushcog's Minions</QuestName>
+          <QuestId>26331</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>26331</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26331</InternalQuestId>
           <Count>10</Count>
           <Entry>
             <int>42223</int>
             <int>42226</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5022.66</X>
               <Y>213.0807</Y>
-              <Z>386.7673</Z> 
+              <Z>386.7673</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <InternalIndex>1</InternalIndex>
-          <UseItemId>58200</UseItemId>
           <Count>7</Count>
           <Entry>
             <int>42224</int>
           </Entry>
+          <UseItemId>58200</UseItemId>
           <Position>
             <X>-5047.86</X>
             <Y>205.885</Y>
             <Z>386.7674</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42317</NpcEntry>
-          <QuestId>26331</QuestId>
           <QuestName>Crushcog's Minions</QuestName>
+          <QuestId>26331</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42491</NpcEntry>
-          <QuestId>26333</QuestId>
           <QuestName>No Tanks!</QuestName>
+          <QuestId>26333</QuestId>
         </QuestObjective>
-      </Objectives>      
+      </Objectives>
     </Quest>
     <Quest>
       <Name>Staging in Brewnall</Name>
-      <Id>26339</Id>
       <RaceMask>64</RaceMask>
+      <Id>26339</Id>
       <QuestLevel>5</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>11</MaxLevel>
@@ -1357,13 +1374,12 @@
       </NeedQuestCompletedId>
       <PickUp>42366</PickUp>
       <TurnIn>42353</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Paint it Black</Name>
-      <Id>26342</Id>
       <RaceMask>64</RaceMask>
+      <Id>26342</Id>
       <QuestLevel>5</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>11</MaxLevel>
@@ -1374,26 +1390,26 @@
       <TurnIn>42353</TurnIn>
       <Objectives>
         <QuestObjective>
-          <IgnoreFight>true</IgnoreFight>
           <Objective>UseItem</Objective>
-          <UseItemId>58203</UseItemId>
           <InternalIndex>1</InternalIndex>
           <Count>999</Count>
           <Entry>
             <int>42291</int>
           </Entry>
+          <UseItemId>58203</UseItemId>
           <Position>
             <X>-5331.707</X>
             <Y>237.3903</Y>
             <Z>386.1113</Z>
-          </Position>            
+          </Position>
+          <IgnoreFight>true</IgnoreFight>
         </QuestObjective>
-      </Objectives>      
+      </Objectives>
     </Quest>
     <Quest>
       <Name>Down with Crushcog!</Name>
-      <Id>26364</Id>
       <RaceMask>64</RaceMask>
+      <Id>26364</Id>
       <QuestLevel>5</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>11</MaxLevel>
@@ -1408,39 +1424,38 @@
           <Entry>
             <int>42849</int>
           </Entry>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <Position>
             <X>-5313.493</X>
             <Y>148.3941</Y>
             <Z>389.4272</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <Entry>
             <int>42849</int>
           </Entry>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <Position>
             <X>-5313.493</X>
             <Y>148.3941</Y>
             <Z>389.4272</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
           <WaitMs>90000</WaitMs>
         </QuestObjective>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <InternalIndex>2</InternalIndex>
           <Count>10</Count>
           <Entry>
             <int>43230</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5266.078</X>
@@ -1448,13 +1463,14 @@
               <Z>393.5657</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>On to Kharanos</Name>
-      <Id>26373</Id>
       <RaceMask>64</RaceMask>
+      <Id>26373</Id>
       <QuestLevel>5</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>11</MaxLevel>
@@ -1468,29 +1484,29 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42933</NpcEntry>
-          <QuestId>26380</QuestId>
           <QuestName>Bound for Kharanos</QuestName>
+          <QuestId>26380</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1247</NpcEntry>
-          <QuestId>26380</QuestId>
           <QuestName>Bound for Kharanosm</QuestName>
+          <QuestId>26380</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40950</NpcEntry>
-          <QuestId>26373</QuestId>
           <QuestName>On to Kharanos</QuestName>
+          <QuestId>26373</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Honor Students</Name>
-      <Id>6387</Id>
       <RaceMask>64</RaceMask>
+      <Id>6387</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>13</MaxLevel>
@@ -1499,13 +1515,12 @@
       </NeedQuestCompletedId>
       <PickUp>1699</PickUp>
       <TurnIn>43701</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Ride to Ironforge</Name>
-      <Id>6391</Id>
       <RaceMask>64</RaceMask>
+      <Id>6391</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1518,24 +1533,24 @@
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>47000</WaitMs>
+          <TaxiEntry>43701</TaxiEntry>
           <FlightDestinationX>0.4661611020565</FlightDestinationX>
           <FlightDestinationY>0.40653544664383</FlightDestinationY>
-          <TaxiEntry>43701</TaxiEntry>
-          <WaitMs>47000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>4256</NpcEntry>
-          <QuestId>6391</QuestId>
           <QuestName>Ride to Ironforge</QuestName>
+          <QuestId>6391</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Gryth Thurden</Name>
-      <Id>6388</Id>
       <RaceMask>64</RaceMask>
+      <Id>6388</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1544,13 +1559,12 @@
       </NeedQuestCompletedId>
       <PickUp>4256</PickUp>
       <TurnIn>1573</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Return to Gremlock</Name>
-      <Id>6392</Id>
       <RaceMask>64</RaceMask>
+      <Id>6392</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1563,24 +1577,24 @@
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>49000</WaitMs>
+          <TaxiEntry>1573</TaxiEntry>
           <FlightDestinationX>0.44322398304939</FlightDestinationX>
           <FlightDestinationY>0.37740278244019</FlightDestinationY>
-          <TaxiEntry>1573</TaxiEntry>
-          <WaitMs>49000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1699</NpcEntry>
-          <QuestId>6392</QuestId>
           <QuestName>Return to Gremlock</QuestName>
+          <QuestId>6392</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Frostmane Aggression</Name>
-      <Id>25724</Id>
       <RaceMask>64</RaceMask>
+      <Id>25724</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
@@ -1594,13 +1608,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1374</NpcEntry>
-          <QuestId>315</QuestId>
           <QuestName>The Perfect Stout</QuestName>
+          <QuestId>315</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <InternalQuestId>315</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>315</InternalQuestId>
           <Entry>
             <int>276</int>
           </Entry>
@@ -1618,14 +1632,14 @@
               <Z>440.3643</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>   
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>5</Count>
           <Entry>
             <int>41121</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5234.156</X>
@@ -1640,7 +1654,7 @@
           <Count>7</Count>
           <Entry>
             <int>41122</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5332.814</X>
@@ -1653,22 +1667,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1374</NpcEntry>
-          <QuestId>315</QuestId>
           <QuestName>The Perfect Stout</QuestName>
+          <QuestId>315</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40950</NpcEntry>
-          <QuestId>25724</QuestId>
           <QuestName>Frostmane Aggression</QuestName>
+          <QuestId>25724</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Pilfered Supplies</Name>
-      <Id>25668</Id>
       <RaceMask>64</RaceMask>
+      <Id>25668</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
@@ -1682,73 +1696,73 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40950</NpcEntry>
-          <QuestId>313</QuestId>
           <QuestName>Forced to Watch from Afar</QuestName>
+          <QuestId>313</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40950</NpcEntry>
-          <QuestId>25667</QuestId>
           <QuestName>Culling the Wendigos</QuestName>
+          <QuestId>25667</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <InternalQuestId>313</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>313</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>40991</int>
-          </Entry> 
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          </Entry>
           <Position>
             <X>-5475.986</X>
             <Y>-229.2361</Y>
             <Z>354.377</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <InternalQuestId>313</InternalQuestId>
           <InternalIndex>2</InternalIndex>
+          <InternalQuestId>313</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>40994</int>
-          </Entry> 
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          </Entry>
           <Position>
             <X>-5502.422</X>
             <Y>-271.9618</Y>
             <Z>354.2404</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <InternalQuestId>313</InternalQuestId>
           <InternalIndex>3</InternalIndex>
+          <InternalQuestId>313</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>41056</int>
-          </Entry> 
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          </Entry>
           <Position>
             <X>-5387.958</X>
             <Y>-278.2431</Y>
             <Z>363.0529</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>25667</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25667</InternalQuestId>
           <Count>10</Count>
           <Entry>
             <int>40941</int>
             <int>40940</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5747.731</X>
@@ -1762,7 +1776,7 @@
           <InternalIndex>1</InternalIndex>
           <Entry>
             <int>203130</int>
-            <int>203129</int>            
+            <int>203129</int>
           </Entry>
           <CollectItemId>55151</CollectItemId>
           <CollectCount>6</CollectCount>
@@ -1778,29 +1792,29 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40950</NpcEntry>
-          <QuestId>313</QuestId>
           <QuestName>Forced to Watch from Afar</QuestName>
+          <QuestId>313</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40950</NpcEntry>
-          <QuestId>25667</QuestId>
           <QuestName>Culling the Wendigos</QuestName>
+          <QuestId>25667</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40951</NpcEntry>
-          <QuestId>25668</QuestId>
           <QuestName>Pilfered Supplies</QuestName>
+          <QuestId>25668</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Pushing Forward</Name>
-      <Id>25792</Id>
       <RaceMask>64</RaceMask>
+      <Id>25792</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1814,18 +1828,18 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1269</NpcEntry>
-          <QuestId>412</QuestId>
           <QuestName>Operation Recombobulation</QuestName>
+          <QuestId>412</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>412</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>3084</CollectItemId>
-          <CollectCount>8</CollectCount>
+          <InternalQuestId>412</InternalQuestId>
           <Entry>
             <int>41146</int>
           </Entry>
+          <CollectItemId>3084</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-5828.385</X>
@@ -1837,38 +1851,38 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <InternalIndex>1</InternalIndex>
-          <UseItemId>56009</UseItemId>
           <Count>4</Count>
           <Entry>
             <int>41202</int>
           </Entry>
+          <UseItemId>56009</UseItemId>
           <Position>
             <X>-5828.385</X>
             <Y>-689.4739</Y>
             <Z>397.8268</Z>
           </Position>
-          <WaitMs>2000</WaitMs>            
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1269</NpcEntry>
-          <QuestId>412</QuestId>
           <QuestName>Operation Recombobulation</QuestName>
+          <QuestId>412</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40950</NpcEntry>
-          <QuestId>25792</QuestId>
           <QuestName>Pushing Forward</QuestName>
-        </QuestObjective>  
+          <QuestId>25792</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Help from Steelgrill's Depot</Name>
-      <Id>25838</Id>
       <RaceMask>64</RaceMask>
+      <Id>25838</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1877,13 +1891,12 @@
       </NeedQuestCompletedId>
       <PickUp>40950</PickUp>
       <TurnIn>41363</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Ultrasafe Personnel Launcher</Name>
-      <Id>25839</Id>
       <RaceMask>64</RaceMask>
+      <Id>25839</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1909,15 +1922,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>41298</NpcEntry>
-          <QuestId>25839</QuestId>
           <QuestName>The Ultrasafe Personnel Launcher</QuestName>
+          <QuestId>25839</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Eliminate the Resistance</Name>
-      <Id>25840</Id>
       <RaceMask>64</RaceMask>
+      <Id>25840</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -1931,60 +1944,60 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>50601</NpcEntry>
-          <QuestId>28868</QuestId>
           <QuestName>The View from Down Here</QuestName>
+          <QuestId>28868</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>41298</NpcEntry>
-          <QuestId>25841</QuestId>
           <QuestName>Strike From Above</QuestName>
+          <QuestId>25841</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>28868</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <UseItemId>67249</UseItemId>
+          <InternalQuestId>28868</InternalQuestId>
           <Count>5</Count>
           <Entry>
             <int>41251</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>67249</UseItemId>
           <Position>
             <X>-5755.353</X>
             <Y>-922.0764</Y>
             <Z>397.0574</Z>
           </Position>
-          <WaitMs>2000</WaitMs>             
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>25841</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <UseItemId>56048</UseItemId>
+          <InternalQuestId>25841</InternalQuestId>
           <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>56048</UseItemId>
           <Position>
             <X>-5709.309</X>
             <Y>-1024.526</Y>
             <Z>394.8342</Z>
-          </Position> 
-          <WaitMs>2000</WaitMs>            
+          </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>25841</InternalQuestId>
           <InternalIndex>2</InternalIndex>
-          <UseItemId>56048</UseItemId>
+          <InternalQuestId>25841</InternalQuestId>
           <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>56048</UseItemId>
           <Position>
             <X>-5809.945</X>
             <Y>-956.325</Y>
             <Z>393.4526</Z>
           </Position>
-          <WaitMs>2000</WaitMs>            
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1992,7 +2005,7 @@
           <Count>1</Count>
           <Entry>
             <int>41284</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5761.127</X>
@@ -2007,7 +2020,7 @@
           <Count>5</Count>
           <Entry>
             <int>41258</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5761.127</X>
@@ -2020,29 +2033,29 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>41298</NpcEntry>
-          <QuestId>25841</QuestId>
           <QuestName>Strike From Above</QuestName>
+          <QuestId>25841</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>50601</NpcEntry>
-          <QuestId>28868</QuestId>
           <QuestName>The View from Down Here</QuestName>
+          <QuestId>28868</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>41298</NpcEntry>
-          <QuestId>25840</QuestId>
           <QuestName>Eliminate the Resistance</QuestName>
+          <QuestId>25840</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>A Hand at the Ranch</Name>
-      <Id>25882</Id>
       <RaceMask>64</RaceMask>
+      <Id>25882</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2051,13 +2064,12 @@
       </NeedQuestCompletedId>
       <PickUp>41298</PickUp>
       <TurnIn>41578</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>It's Raid Night Every Night</Name>
-      <Id>25932</Id>
       <RaceMask>64</RaceMask>
+      <Id>25932</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2073,12 +2085,11 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>1</InternalIndex>
           <Count>5</Count>
           <Entry>
             <int>41603</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5553.974</X>
@@ -2086,13 +2097,14 @@
               <Z>398.5777</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Protecting the Herd</Name>
-      <Id>314</Id>
       <RaceMask>64</RaceMask>
+      <Id>314</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2104,11 +2116,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>3627</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>1388</int>
           </Entry>
+          <CollectItemId>3627</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-5390.211</X>
@@ -2121,8 +2133,8 @@
     </Quest>
     <Quest>
       <Name>Priceless Treasures</Name>
-      <Id>25937</Id>
       <RaceMask>64</RaceMask>
+      <Id>25937</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>6</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2136,40 +2148,40 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1977</NpcEntry>
-          <QuestId>433</QuestId>
           <QuestName>The Public Servant</QuestName>
+          <QuestId>433</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1254</NpcEntry>
-          <QuestId>432</QuestId>
           <QuestName>Those Blasted Troggs!</QuestName>
+          <QuestId>432</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <InternalQuestId>433</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <UseItemId>56222</UseItemId>
+          <InternalQuestId>433</InternalQuestId>
           <Count>7</Count>
           <Entry>
             <int>41671</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>56222</UseItemId>
           <Position>
             <X>-5685.237</X>
             <Y>-1686.959</Y>
             <Z>360.7954</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>432</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>432</InternalQuestId>
           <Count>8</Count>
           <Entry>
             <int>1115</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5823.069</X>
@@ -2185,12 +2197,12 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>432</InternalQuestId>
           <InternalIndex>2</InternalIndex>
+          <InternalQuestId>432</InternalQuestId>
           <Count>8</Count>
           <Entry>
             <int>1117</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5823.069</X>
@@ -2207,7 +2219,6 @@
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>203385</int>
           </Entry>
@@ -2225,34 +2236,35 @@
               <Z>358.8672</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1977</NpcEntry>
-          <QuestId>433</QuestId>
           <QuestName>The Public Servant</QuestName>
+          <QuestId>433</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1254</NpcEntry>
-          <QuestId>432</QuestId>
           <QuestName>Those Blasted Troggs!</QuestName>
+          <QuestId>432</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>50631</NpcEntry>
-          <QuestId>25937</QuestId>
           <QuestName>Priceless Treasures</QuestName>
+          <QuestId>25937</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Trouble at the Lake</Name>
-      <Id>25986</Id>
       <RaceMask>64</RaceMask>
+      <Id>25986</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>6</MinLevel>
       <MaxLevel>16</MaxLevel>
@@ -2261,13 +2273,12 @@
       </NeedQuestCompletedId>
       <PickUp>1977</PickUp>
       <TurnIn>41786</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Dealing with the Surge</Name>
-      <Id>25979</Id>
       <RaceMask>64</RaceMask>
+      <Id>25979</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>6</MinLevel>
       <MaxLevel>16</MaxLevel>
@@ -2281,18 +2292,17 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>41786</NpcEntry>
-          <QuestId>25978</QuestId>
           <QuestName>Entombed in Ice</QuestName>
+          <QuestId>25978</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>25978</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25978</InternalQuestId>
           <Count>6</Count>
           <Entry>
             <int>41768</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5604.005</X>
@@ -2300,6 +2310,7 @@
               <Z>395.2916</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -2307,7 +2318,7 @@
           <Count>6</Count>
           <Entry>
             <int>41762</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5602.349</X>
@@ -2320,22 +2331,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>41786</NpcEntry>
-          <QuestId>25978</QuestId>
           <QuestName>Entombed in Ice</QuestName>
+          <QuestId>25978</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>41804</NpcEntry>
-          <QuestId>25979</QuestId>
           <QuestName>Dealing with the Surge</QuestName>
+          <QuestId>25979</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Dark Iron Scheming</Name>
-      <Id>25997</Id>
       <RaceMask>64</RaceMask>
+      <Id>25997</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
@@ -2348,11 +2359,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>2</InternalIndex>
-          <CollectItemId>56264</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>6123</int>
           </Entry>
+          <CollectItemId>56264</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-5924.196</X>
@@ -2367,7 +2378,7 @@
           <Count>5</Count>
           <Entry>
             <int>6123</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-5851.712</X>

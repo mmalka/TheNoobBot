@@ -1,447 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-    <Npc>
-      <Entry>43731</Entry>
-      <Name>Sister Elsington</Name>
-      <Position>
-        <X>-10757.5</X>
-        <Y>292.533</Y>
-        <Z>39.54087</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>469</Entry>
-      <Name>Lieutenant Doren</Name>
-      <Position>
-        <X>-11296.86</X>
-        <Y>-206.6889</Y>
-        <Z>75.89813</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>739</Entry>
-      <Name>Brother Nimetz</Name>
-      <Position>
-        <X>-11320.17</X>
-        <Y>-193.3374</Y>
-        <Z>76.14473</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>1422</Entry>
-      <Name>Corporal Sethman</Name>
-      <Position>
-        <X>-11312.99</X>
-        <Y>-182.6012</Y>
-        <Z>75.23149</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>43886</Entry>
-      <Name>Berrin Burnquill</Name>
-      <Position>
-        <X>-11345</X>
-        <Y>-223.418</Y>
-        <Z>75.65723</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>43885</Entry>
-      <Name>Emerine Junis</Name>
-      <Position>
-        <X>-11299.2</X>
-        <Y>-210.722</Y>
-        <Z>76.14243</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42736</Entry>
-      <Name>Lashtail Hatchling</Name>
-      <Position>
-        <X>-11313.22</X>
-        <Y>-197.1888</Y>
-        <Z>76.30916</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>43884</Entry>
-      <Name>Osborn Obnoticus</Name>
-      <Position>
-        <X>-11305.2</X>
-        <Y>-188.778</Y>
-        <Z>75.5318</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>773</Entry>
-      <Name>Krazek</Name>
-      <Position>
-        <X>-11649</X>
-        <Y>-43.9358</Y>
-        <Z>16.23899</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>770</Entry>
-      <Name>Corporal Kaleb</Name>
-      <Position>
-        <X>-11309.14</X>
-        <Y>-187.4311</Y>
-        <Z>75.46924</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>733</Entry>
-      <Name>Sergeant Yohwa</Name>
-      <Position>
-        <X>-11310.41</X>
-        <Y>-205.1148</Y>
-        <Z>75.17924</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>42790</Entry>
-      <Name>Bloodlord Mandokir</Name>
-      <Position>
-        <X>-11307.7</X>
-        <Y>-191.165</Y>
-        <Z>75.47125</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>716</Entry>
-      <Name>Barnil Steinkrug</Name>
-      <Position>
-        <X>-11621.53</X>
-        <Y>-70.29166</Y>
-        <Z>16.23964</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>715</Entry>
-      <Name>Hemet Nesingwary Jr.</Name>
-      <Position>
-        <X>-11646.52</X>
-        <Y>-66.84008</Y>
-        <Z>16.23865</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>717</Entry>
-      <Name>Ajeck Rouack</Name>
-      <Position>
-        <X>-11636.22</X>
-        <Y>-80.82813</Y>
-        <Z>16.23964</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>718</Entry>
-      <Name>Sire S. J. Erlgadin</Name>
-      <Position>
-        <X>-11625.49</X>
-        <Y>-48.63889</Y>
-        <Z>16.23934</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>773</Entry>
-      <Name>Krazek</Name>
-      <Position>
-        <X>-11649</X>
-        <Y>-43.9358</Y>
-        <Z>16.241</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2495</Entry>
-      <Name>Drizzlik</Name>
-      <Position>
-        <X>-11656.77</X>
-        <Y>-46.35352</Y>
-        <Z>16.2379</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44017</Entry>
-      <Name>Priesterin Thaalia</Name>
-      <Position>
-        <X>-12841.1</X>
-        <Y>-447.958</Y>
-        <Z>12.9662</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>43045</Entry>
-      <Name>Jakob Windstill</Name>
-      <Position>
-        <X>-11340.74</X>
-        <Y>-218.7031</Y>
-        <Z>75.21392</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44019</Entry>
-      <Name>Livingston Marschall</Name>
-      <Position>
-        <X>-12846.1</X>
-        <Y>-437.988</Y>
-        <Z>12.96758</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44018</Entry>
-      <Name>Wulfred Harrys</Name>
-      <Position>
-        <X>-12828.8</X>
-        <Y>-444.807</Y>
-        <Z>12.96725</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44043</Entry>
-      <Name>Kinnel</Name>
-      <Position>
-        <X>-12828.25</X>
-        <Y>-436.6487</Y>
-        <Z>12.96671</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44021</Entry>
-      <Name>Ghaliri</Name>
-      <Position>
-        <X>-12843</X>
-        <Y>-415.333</Y>
-        <Z>12.96867</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>43043</Entry>
-      <Name>Colin Flinkhammer</Name>
-      <Position>
-        <X>-13601.3</X>
-        <Y>-91.0451</Y>
-        <Z>38.68172</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44082</Entry>
-      <Name>Bronwyn Hackschlag</Name>
-      <Position>
-        <X>-13634.6</X>
-        <Y>-71.5122</Y>
-        <Z>35.24102</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>43042</Entry>
-      <Name>Robert Rhodes</Name>
-      <Position>
-        <X>-12823.31</X>
-        <Y>-414.4375</Y>
-        <Z>12.9671</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44099</Entry>
-      <Name>Dask "Der Kolben" Fusselmaul</Name>
-      <Position>
-        <X>-13619.7</X>
-        <Y>-74.0313</Y>
-        <Z>35.23997</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44100</Entry>
-      <Name>Goris</Name>
-      <Position>
-        <X>-13632.4</X>
-        <Y>-52.1181</Y>
-        <Z>35.23846</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>4083</Entry>
-      <Name>Linzi Hackschlag</Name>
-      <Position>
-        <X>-13626.7</X>
-        <Y>-77.9288</Y>
-        <Z>35.24041</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44084</Entry>
-      <Name>Maywiki</Name>
-      <Position>
-        <X>-13627.5</X>
-        <Y>-86.5521</Y>
-        <Z>35.23944</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>44112</Entry>
-      <Name>Airwyn Bantamflax</Name>
-      <Position>
-        <X>-14442.82</X>
-        <Y>433.4705</Y>
-        <Z>16.82097</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2859</Entry>
-      <Name>Gyll</Name>
-      <Position>
-        <X>-14477.9</X>
-        <Y>464.101</Y>
-        <Z>36.38107</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2634</Entry>
-      <Name>Prinzessin Poobah</Name>
-      <Position>
-        <X>-14596.72</X>
-        <Y>-237.9673</Y>
-        <Z>24.79353</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2500</Entry>
-      <Name>Kapitän Hecklebury Smotts</Name>
-      <Position>
-        <X>-14300.4</X>
-        <Y>517.43</Y>
-        <Z>8.700215</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2502</Entry>
-      <Name>Zitterhand Phillipe</Name>
-      <Position>
-        <X>-14297.77</X>
-        <Y>508.8956</Y>
-        <Z>8.964228</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2501</Entry>
-      <Name>Seewolf MacKinley</Name>
-      <Position>
-        <X>-14447.4</X>
-        <Y>448.002</Y>
-        <Z>15.63581</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>204406</Entry>
-      <Name>Halb vergrabene Flasche</Name>
-      <Position>
-        <X>-14237.89</X>
-        <Y>-31.45903</Y>
-        <Z>2.844468</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2490</Entry>
-      <Name>Erster Maat Krazz</Name>
-      <Position>
-        <X>-14411.1</X>
-        <Y>427.967</Y>
-        <Z>8.86894</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2083</Entry>
-      <Name>Blutsegelkorrespondenz</Name>
-      <Position>
-        <X>-14126.2</X>
-        <Y>480.146</Y>
-        <Z>2.43849</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2487</Entry>
-      <Name>Flottenmeister Seehorn</Name>
-      <Position>
-        <X>-14444.77</X>
-        <Y>486.8108</Y>
-        <Z>28.72227</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2496</Entry>
-      <Name>Baron Revilgaz</Name>
-      <Position>
-        <X>-14439</X>
-        <Y>483.483</Y>
-        <Z>28.84415</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>43504</Entry>
-      <Name>Yancey Grillsen</Name>
-      <Position>
-        <X>-14004.5</X>
-        <Y>378.8</Y>
-        <Z>30.86202</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>2548</Entry>
-      <Name>Käpt'n Kielhol</Name>
-      <Position>
-        <X>-14923.15</X>
-        <Y>357.066</Y>
-        <Z>7.541321</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-  </Questers>
+<QuesterProfile Author="Neo2003" DevelopmentStatus="Outdated">
   <Quests>
     <Quest>
       <Name>Rebels Without a Clue</Name>
@@ -461,7 +19,6 @@
           <Entry>
             <int>43045</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-11340.74</X>
             <Y>-218.7031</Y>
@@ -470,7 +27,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>469</NpcEntry>
           <QuestName>Rebels Without a Clue</QuestName>
@@ -493,7 +49,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>739</NpcEntry>
           <QuestName>Bad Medicine</QuestName>
@@ -516,7 +71,6 @@
               <Z>28.48868</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -533,7 +87,6 @@
               <Z>31.20948</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -550,11 +103,9 @@
               <Z>30.56163</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1422</NpcEntry>
           <QuestName>Just Hatched</QuestName>
@@ -562,7 +113,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>739</NpcEntry>
           <QuestName>Bad Medicine</QuestName>
@@ -570,7 +120,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>469</NpcEntry>
           <QuestName>The Fate of Kurzen</QuestName>
@@ -593,7 +142,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1422</NpcEntry>
           <QuestName>I Think She's Hungry</QuestName>
@@ -602,7 +150,6 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
@@ -631,7 +178,6 @@
               <Z>49.6452</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -653,13 +199,11 @@
               <Z>49.6452</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1422</NpcEntry>
           <QuestName>I Think She's Hungry</QuestName>
@@ -667,7 +211,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>739</NpcEntry>
           <QuestName>Control Sample</QuestName>
@@ -690,7 +233,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>739</NpcEntry>
           <QuestName>The Source of the Madness</QuestName>
@@ -712,7 +254,6 @@
               <Z>34.37435</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -722,7 +263,6 @@
           <Entry>
             <int>204828</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-11570.83</X>
             <Y>-572.6729</Y>
@@ -731,7 +271,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>739</NpcEntry>
           <QuestName>The Source of the Madness</QuestName>
@@ -739,7 +278,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>469</NpcEntry>
           <QuestName>Spared from Madness</QuestName>
@@ -774,7 +312,6 @@
               <Z>36.48145</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -790,7 +327,6 @@
               <Z>14.96485</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -806,7 +342,6 @@
               <Z>31.09168</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -822,7 +357,6 @@
               <Z>29.9455</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -841,7 +375,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43886</NpcEntry>
           <QuestName>Bloodscalp Insight</QuestName>
@@ -849,7 +382,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43885</NpcEntry>
           <QuestName>Water Elementals</QuestName>
@@ -871,7 +403,6 @@
               <Z>1.959393</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -890,7 +421,6 @@
               <Z>22.31658</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -908,11 +438,9 @@
               <Z>1.701574</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43885</NpcEntry>
           <QuestName>Water Elementals</QuestName>
@@ -920,7 +448,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43886</NpcEntry>
           <QuestName>Bloodscalp Insight</QuestName>
@@ -928,7 +455,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>1422</NpcEntry>
           <QuestName>Deep Roots</QuestName>
@@ -965,7 +491,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43885</NpcEntry>
           <QuestName>You Can Take the Murloc Out of the Ocean...</QuestName>
@@ -973,7 +498,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43886</NpcEntry>
           <QuestName>Sacred to the Bloodscalp</QuestName>
@@ -1002,13 +526,11 @@
               <Z>-4.03894</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1029,12 +551,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1055,12 +575,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1081,12 +599,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1107,12 +623,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1133,12 +647,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1159,12 +671,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1185,12 +695,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1211,12 +719,10 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11829.34</X>
@@ -1237,11 +743,9 @@
               <Z>14.09596</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43885</NpcEntry>
           <QuestName>You Can Take the Murloc Out of the Ocean...</QuestName>
@@ -1249,7 +753,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43886</NpcEntry>
           <QuestName>Sacred to the Bloodscalp</QuestName>
@@ -1257,7 +760,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43884</NpcEntry>
           <QuestName>A Nose for This Sort of Thing</QuestName>
@@ -1280,7 +782,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>770</NpcEntry>
           <QuestName>Krazek's Cookery</QuestName>
@@ -1288,7 +789,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>773</NpcEntry>
           <QuestName>Krazek's Cookery</QuestName>
@@ -1297,7 +797,6 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>23680</UseItemId>
           <Position>
             <X>-12129.62</X>
@@ -1320,7 +819,6 @@
               <Z>4.664644</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1339,7 +837,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43884</NpcEntry>
           <QuestName>A Physical Specimen</QuestName>
@@ -1348,7 +845,6 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <UseItemId>58165</UseItemId>
           <Position>
             <X>-11544.7</X>
@@ -1371,7 +867,6 @@
               <Z>60.91384</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -1393,7 +888,6 @@
               <Z>50.05811</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1414,7 +908,6 @@
               <Z>50.05811</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1435,7 +928,6 @@
               <Z>50.05811</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1456,11 +948,9 @@
               <Z>50.05811</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43884</NpcEntry>
           <QuestName>A Physical Specimen</QuestName>
@@ -1468,7 +958,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>733</NpcEntry>
           <QuestName>Population Con-Troll</QuestName>
@@ -1536,7 +1025,6 @@
               <Z>48.18446</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1577,7 +1065,6 @@
               <Z>17.40855</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1613,7 +1100,6 @@
               <Z>15.60936</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1659,7 +1145,6 @@
               <Z>46.00028</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1695,7 +1180,6 @@
               <Z>16.69284</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1731,7 +1215,6 @@
               <Z>44.34231</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1767,7 +1250,6 @@
               <Z>33.46058</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1808,7 +1290,6 @@
               <Z>32.78093</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1844,7 +1325,6 @@
               <Z>15.9059</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1880,7 +1360,6 @@
               <Z>36.05669</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1916,7 +1395,6 @@
               <Z>12.05387</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1947,7 +1425,6 @@
               <Z>22.53868</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1979,7 +1456,6 @@
               <Z>38.29867</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2011,7 +1487,6 @@
               <Z>10.43301</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2043,7 +1518,6 @@
               <Z>12.09284</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2065,7 +1539,6 @@
           <Entry>
             <int>43042</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-12823.31</X>
@@ -2089,11 +1562,9 @@
               <Z>11.74157</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2495</NpcEntry>
           <QuestName>Excelsior</QuestName>
@@ -2134,7 +1605,6 @@
               <Z>16.18782</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2167,7 +1637,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>57000</WaitMs>
           <TaxiEntry>43045</TaxiEntry>
@@ -2176,7 +1645,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44017</NpcEntry>
           <QuestName>Priestess Thaalia</QuestName>
@@ -2199,7 +1667,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44018</NpcEntry>
           <QuestName>The Mosh'Ogg Bounty</QuestName>
@@ -2207,7 +1674,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44017</NpcEntry>
           <QuestName>Mind Vision</QuestName>
@@ -2239,7 +1705,6 @@
               <Z>56.38671</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
@@ -2259,7 +1724,6 @@
               <Z>53.88907</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2277,11 +1741,9 @@
               <Z>3.051927</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44017</NpcEntry>
           <QuestName>Mind Vision</QuestName>
@@ -2289,7 +1751,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44018</NpcEntry>
           <QuestName>The Mosh'Ogg Bounty</QuestName>
@@ -2297,7 +1758,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44019</NpcEntry>
           <QuestName>The Mind's Eye</QuestName>
@@ -2323,7 +1783,6 @@
           <Entry>
             <int>44017</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-12841.1</X>
             <Y>-447.958</Y>
@@ -2349,7 +1808,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44017</NpcEntry>
           <QuestName>Mind Control</QuestName>
@@ -2357,7 +1815,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44043</NpcEntry>
           <QuestName>Nighttime in the Jungle</QuestName>
@@ -2379,7 +1836,6 @@
               <Z>71.24371</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2390,7 +1846,6 @@
           <Entry>
             <int>204247</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-12923.85</X>
@@ -2420,11 +1875,9 @@
               <Z>51.1082</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44043</NpcEntry>
           <QuestName>Nighttime in the Jungle</QuestName>
@@ -2432,7 +1885,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44017</NpcEntry>
           <QuestName>Mind Control</QuestName>
@@ -2440,7 +1892,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44021</NpcEntry>
           <QuestName>Zul'Mamwe Mambo</QuestName>
@@ -2466,7 +1917,6 @@
           <Entry>
             <int>43042</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-12823.31</X>
@@ -2481,7 +1931,6 @@
           <Entry>
             <int>43043</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-13601.3</X>
@@ -2492,7 +1941,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44082</NpcEntry>
           <QuestName>To the Cape!</QuestName>
@@ -2529,7 +1977,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44099</NpcEntry>
           <QuestName>Too Big For His Britches</QuestName>
@@ -2557,7 +2004,6 @@
               <Z>4.23236</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2579,11 +2025,9 @@
               <Z>13.79516</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44099</NpcEntry>
           <QuestName>Too Big For His Britches</QuestName>
@@ -2591,7 +2035,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44100</NpcEntry>
           <QuestName>Good-Fer-Nothin' Slither-Dogs</QuestName>
@@ -2614,7 +2057,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44083</NpcEntry>
           <QuestName>Plush Pelts</QuestName>
@@ -2622,7 +2064,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44099</NpcEntry>
           <QuestName>Perfectly Pure</QuestName>
@@ -2630,7 +2071,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44083</NpcEntry>
           <QuestName>If They're Just Going to Leave Them Lying Around...</QuestName>
@@ -2657,7 +2097,6 @@
               <Z>18.0149</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2681,7 +2120,6 @@
               <Z>18.0149</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2700,7 +2138,6 @@
               <Z>86.02605</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2729,7 +2166,6 @@
               <Z>51.84032</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2757,11 +2193,9 @@
               <Z>51.84032</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44083</NpcEntry>
           <QuestName>If They're Just Going to Leave Them Lying Around...</QuestName>
@@ -2769,7 +2203,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44099</NpcEntry>
           <QuestName>Perfectly Pure</QuestName>
@@ -2777,7 +2210,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44083</NpcEntry>
           <QuestName>Plush Pelts</QuestName>
@@ -2785,7 +2217,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44083</NpcEntry>
           <QuestName>Akiris by the Bundle</QuestName>
@@ -2825,7 +2256,6 @@
           <Entry>
             <int>204361</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-13343.4</X>
             <Y>-32.9097</Y>
@@ -2870,7 +2300,6 @@
               <Z>17.34117</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2916,7 +2345,6 @@
               <Z>9.688547</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2938,7 +2366,6 @@
           <Entry>
             <int>2859</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-14477.9</X>
@@ -2949,7 +2376,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>44112</NpcEntry>
           <QuestName>Airwyn Bantamflax</QuestName>
@@ -2972,7 +2398,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2500</NpcEntry>
           <QuestName>Die Truhe des Kapitäns</QuestName>
@@ -2980,7 +2405,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>51000</WaitMs>
           <TaxiEntry>2859</TaxiEntry>
@@ -3003,12 +2427,10 @@
               <Z>-5.603063</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>204406</NpcEntry>
           <QuestName>Flaschenpost</QuestName>
@@ -3016,7 +2438,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2634</NpcEntry>
           <QuestName>Flaschenpost</QuestName>
@@ -3024,7 +2445,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2634</NpcEntry>
           <QuestName>Der Schutz ihrer königlichen Hoheit, Prinzessin Poobah</QuestName>
@@ -3050,12 +2470,10 @@
               <Z>8.37474</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2634</NpcEntry>
           <QuestName>Der Schutz ihrer königlichen Hoheit, Prinzessin Poobah</QuestName>
@@ -3063,7 +2481,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2634</NpcEntry>
           <QuestName>Bahaarte Diebe</QuestName>
@@ -3096,7 +2513,6 @@
               <Z>6.385939</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -3126,7 +2542,6 @@
               <Z>6.385939</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -3156,7 +2571,6 @@
               <Z>6.385939</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -3186,12 +2600,10 @@
               <Z>6.385939</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2634</NpcEntry>
           <QuestName>Bahaarte Diebe</QuestName>
@@ -3199,7 +2611,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2634</NpcEntry>
           <QuestName>Muklas Ende</QuestName>
@@ -3220,12 +2631,10 @@
               <Z>8.870799</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2634</NpcEntry>
           <QuestName>Muklas Ende</QuestName>
@@ -3251,11 +2660,9 @@
               <Z>13.35479</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>55000</WaitMs>
           <TaxiEntry>43043</TaxiEntry>
@@ -3264,7 +2671,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2500</NpcEntry>
           <QuestName>Die Truhe des Kapitäns</QuestName>
@@ -3272,7 +2678,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2502</NpcEntry>
           <QuestName>Zitterhand Angst einjagen</QuestName>
@@ -3295,7 +2700,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2502</NpcEntry>
           <QuestName>Return to MacKinley</QuestName>
@@ -3310,7 +2714,6 @@
           <Name>Kelsey Yance</Name>
           <CollectItemId>59036</CollectItemId>
           <CollectCount>1</CollectCount>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14331.23</X>
             <Y>419.2986</Y>
@@ -3322,7 +2725,6 @@
           <Entry>
             <int>2491</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14463.6</X>
             <Y>489.274</Y>
@@ -3340,7 +2742,6 @@
           <Name>Whiskey Slim</Name>
           <CollectItemId>59037</CollectItemId>
           <CollectCount>1</CollectCount>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14463.6</X>
             <Y>489.274</Y>
@@ -3349,7 +2750,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2501</NpcEntry>
           <QuestName>Return to MacKinley</QuestName>
@@ -3357,7 +2757,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2500</NpcEntry>
           <QuestName>A Giant's Feast</QuestName>
@@ -3380,7 +2779,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>51000</WaitMs>
           <TaxiEntry>2859</TaxiEntry>
@@ -3402,7 +2800,6 @@
               <Z>0.5670322</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -3420,7 +2817,6 @@
               <Z>3.528949</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -3430,7 +2826,6 @@
           <Entry>
             <int>43377</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-13873.87</X>
@@ -3442,7 +2837,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>55000</WaitMs>
           <TaxiEntry>43043</TaxiEntry>
@@ -3451,7 +2845,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2501</NpcEntry>
           <QuestName>Kill-Collect</QuestName>
@@ -3474,7 +2867,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>51000</WaitMs>
           <TaxiEntry>2859</TaxiEntry>
@@ -3494,12 +2886,10 @@
               <Z>1.445566</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2083</NpcEntry>
           <QuestName>The Bloodsail Buccaneers</QuestName>
@@ -3522,7 +2912,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>55000</WaitMs>
           <TaxiEntry>43043</TaxiEntry>
@@ -3531,7 +2920,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2490</NpcEntry>
           <QuestName>Bloodsail Treachery</QuestName>
@@ -3582,7 +2970,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>51000</WaitMs>
           <TaxiEntry>2859</TaxiEntry>
@@ -3604,7 +2991,6 @@
               <Z>2.53409</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -3621,7 +3007,6 @@
               <Z>3.05864</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -3642,7 +3027,6 @@
               <Z>3.206605</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -3663,11 +3047,9 @@
               <Z>3.206605</Z>
             </Point>
           </Hotspots>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>55000</WaitMs>
           <TaxiEntry>43043</TaxiEntry>
@@ -3676,7 +3058,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2496</NpcEntry>
           <QuestName>Einzelheiten des Angriffs</QuestName>
@@ -3699,7 +3080,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>51000</WaitMs>
           <TaxiEntry>2859</TaxiEntry>
@@ -3708,7 +3088,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43504</NpcEntry>
           <QuestName>Auf Tuchfühlung mit den Blutsegeln</QuestName>
@@ -3731,7 +3110,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>55000</WaitMs>
           <TaxiEntry>43043</TaxiEntry>
@@ -3740,7 +3118,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2487</NpcEntry>
           <QuestName>Sieht doch wie ein Taurenpirat aus</QuestName>
@@ -3751,7 +3128,6 @@
           <Entry>
             <int>2663</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14334.84</X>
             <Y>425.6806</Y>
@@ -3766,7 +3142,6 @@
           <Entry>
             <int>43505</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14402.9</X>
             <Y>399.231</Y>
@@ -3781,7 +3156,6 @@
           <Entry>
             <int>43505</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14402.9</X>
             <Y>399.231</Y>
@@ -3795,7 +3169,6 @@
           <Entry>
             <int>2487</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14444.71</X>
             <Y>486.8149</Y>
@@ -3809,7 +3182,6 @@
           <Entry>
             <int>2487</int>
           </Entry>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-14444.71</X>
             <Y>486.8149</Y>
@@ -3820,7 +3192,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2487</NpcEntry>
           <QuestName>Sieht doch wie ein Taurenpirat aus</QuestName>
@@ -3828,7 +3199,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>51000</WaitMs>
           <TaxiEntry>2859</TaxiEntry>
@@ -3837,7 +3207,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43504</NpcEntry>
           <QuestName>Feststellung Eurer Loyalität</QuestName>

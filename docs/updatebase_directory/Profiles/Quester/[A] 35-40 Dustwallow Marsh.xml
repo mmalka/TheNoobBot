@@ -1,29 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-    <Npc>
-      <Entry>107574</Entry>
-      <Name>King Anduin Wrynn</Name>
-      <Position>
-        <X>-8363.292</X>
-        <Y>232.5469</Y>
-        <Z>156.9912</Z>
-      </Position>
-      <Type>FlightMaster</Type>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>5089</Entry>
-      <Name>Balos Jacken</Name>
-      <Position>
-        <X>-3934.26</X>
-        <Y>-2869.76</Y>
-        <Z>51.22113</Z>
-      </Position>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-  </Questers>
+<QuesterProfile Author="Neo2003" DevelopmentStatus="Outdated">
   <Quests>
     <Quest>
       <Name>The Call of Kalimdor</Name>

@@ -32,24 +32,17 @@ try
 		/* Entry found, GoTo */
 		if (node.IsValid)
 		{
+			unit = new WoWUnit(0);
 			baseAddress = MovementManager.FindTarget(node, questObjective.Range);
 		}
 		if (unit.IsValid)
 		{
+			node = new WoWGameObject(0);
 			baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
 		}
 		Thread.Sleep(500);
 		
-		//Pre Select Target
-		if (node.IsValid && node.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != node.Guid)
-		{
-			Interact.InteractWith(node.GetBaseAddress);
-		}
-		else if (unit.IsValid && unit.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != unit.Guid)
-		{
-			ObjectManager.Me.Target = unit.Guid;
-			//Interact.InteractWith(unit.GetBaseAddress);
-		}
+	
 			
 		if (MovementManager.InMovement)
 			return false;
@@ -67,6 +60,29 @@ try
 			
 		}
 
+		/* Target Reached */
+		MovementManager.StopMove();
+		MountTask.DismountMount();
+		
+		//Pre Select Target
+		if (node.IsValid && node.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != node.Guid)
+		{
+			Interact.InteractWith(node.GetBaseAddress);
+		}
+		else if (unit.IsValid && unit.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != unit.Guid)
+		{	
+			Lua.LuaDoString("ClearTarget()");
+			
+			if(questObjective.ExtraString == "InteractWith")
+			{
+				Interact.InteractWith(unit.GetBaseAddress);
+			}
+			else
+			{
+				ObjectManager.Me.Target = unit.Guid;
+			}
+		}
+		
 		if (node.IsValid)
 		{
 			MovementManager.Face(node);
@@ -84,7 +100,8 @@ try
 
 		if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
 			return false;
-
+		
+		
 		ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
 
 		Thread.Sleep(Usefuls.Latency + 250);
@@ -101,6 +118,7 @@ try
 		}
 		else if (unit.IsValid)
 		{
+			
 			Interact.InteractWith(unit.GetBaseAddress); //Interact With Unit to Attack it
 			nManagerSetting.AddBlackList(unit.Guid, 30*1000);
 		}

@@ -50,6 +50,8 @@ if(unit.IsValid)
 		}
 		Thread.Sleep(50);
 	}
+	Lua.LuaDoString("ClearTarget()");
+	ObjectManager.Me.Target = unit.Guid;
 	Fight.StopFight();
 	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
 	Thread.Sleep(500);

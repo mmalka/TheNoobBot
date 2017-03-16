@@ -15,7 +15,7 @@ if (unit.IsValid)
 	if(unit.Position.DistanceTo(ObjectManager.Me.Position) >=30) 
 	{
 		MovementManager.StopMove();
-		while(unit.Position.DistanceTo(ObjectManager.Me.Position) >=15 && unit.IsValid && !unit.IsDead)
+		while(unit.Position.DistanceTo(ObjectManager.Me.Position) >=15 && unit.IsValid && !unit.IsDead && !unit.InCombat)
 		{
 			if(ObjectManager.Me.IsDeadMe)
 				return false;
@@ -53,6 +53,7 @@ if (unit.IsValid)
 	
 	if(unit.InCombat)
 	{
+		Logging.Write("Defend Unit");
 		nManager.Wow.Helpers.Fight.StartFight(unit.Target);
 	}
 
@@ -70,3 +71,4 @@ if (unit.IsValid)
 	
 	return true;
 }
+return true;

@@ -23,10 +23,15 @@ if ((unit.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nMana
 
 	/* Entry found, GoTo */
 	if(node.IsValid)
+	{
+		unit = new WoWUnit(0);
 		baseAddress = MovementManager.FindTarget(node, questObjective.Range);
-	if(unit.IsValid)
+	}
+	else if(unit.IsValid)
+	{
+		node = new WoWGameObject(0);
 		baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
-	
+	}
 	Thread.Sleep(500);
 	
 	if (MovementManager.InMovement)

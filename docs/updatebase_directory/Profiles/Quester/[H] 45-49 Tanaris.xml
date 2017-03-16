@@ -1,43 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-    <Npc>
-      <Entry>38704</Entry>
-      <Name>Kelsey Steelspark</Name>
-      <Position>
-        <X>-7945.066</X>
-        <Y>-5270.217</Y>
-        <Z>0.7689236</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>208177</Entry>
-      <Name>Candy Bucket</Name>
-      <Position>
-        <X>-8702.172</X>
-        <Y>-4080.111</Y>
-        <Z>40.45698</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>39059</Entry>
-      <Name>Kelsey Steelspark</Name>
-      <Position>
-        <X>-9757.29</X>
-        <Y>-3669.866</Y>
-        <Z>10.86723</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <Type>QuestGiver</Type>
-      <ContinentId>Kalimdor</ContinentId>
-    </Npc>
-  </Questers>
+<QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
   <Quests>
     <Quest>
       <Name>Puddle Stomping</Name>

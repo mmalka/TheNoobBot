@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
   <Questers />
   <Quests>
     <Quest>
@@ -26,15 +26,17 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <NpcEntry>17834</NpcEntry>
-          <QuestName>The Dying Balance</QuestName>
-          <QuestId>9895</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <NpcEntry>17841</NpcEntry>
           <QuestName>Disturbance at Umbrafen Lake</QuestName>
           <QuestId>9716</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <NpcEntry>17834</NpcEntry>
+          <QuestName>The Dying Balance</QuestName>
+          <QuestId>9895</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1030,9 +1032,32 @@
       <TurnIn>18012</TurnIn>
       <Objectives>
         <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>-1</Count>
+          <Entry>
+            <int>20088</int>
+            <int>20089</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>648.909668</X>
+              <Y>6427.18457</Y>
+              <Z>21.6543217</Z>
+            </Point>
+            <Point>
+              <X>449.7467</X>
+              <Y>6300.36963</Y>
+              <Z>19.37303</Z>
+            </Point>
+          </Hotspots>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(9731) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9731) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(9731);</ScriptConditionIsComplete>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>MoveTo</Objective>
           <Count>1</Count>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9731) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9731);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return ((new Point(571.7109f, 6942.156f, 6.912009f)).DistanceTo(ObjectManager.Me.Position) &lt;=10) ||  nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9731) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9731);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>571.7109</X>
@@ -1041,15 +1066,32 @@
           </Position>
         </QuestObjective>
         <QuestObjective>
-          <Objective>MoveTo</Objective>
+          <Objective>CSharpScript</Objective>
           <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>561.4414</X>
+              <Y>6942.419</Y>
+              <Z>-9.155874</Z>
+              <Type>Swimming</Type>
+            </Point>
+            <Point>
+              <X>561.4414</X>
+              <Y>6942.419</Y>
+              <Z>15.9917984</Z>
+              <Type>Swimming</Type>
+            </Point>
+            <Point>
+              <X>543.92865</X>
+              <Y>6937.43262</Y>
+              <Z>15.9410372</Z>
+              <Type>Swimming</Type>
+            </Point>
+          </Hotspots>
+          <Script>=ClickToMoveHotSpots.cs</Script>
           <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9731) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9731);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>559.5987</X>
-            <Y>6929.076</Y>
-            <Z>-5.52491</Z>
-          </Position>
+          <Range>0</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1300,13 +1342,14 @@
           </Entry>
           <Hotspots>
             <Point>
-              <X>525.3061</X>
-              <Y>7379.37744</Y>
-              <Z>23.2340431</Z>
+              <X>531.5376</X>
+              <Y>7375.622</Y>
+              <Z>20.1924286</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
@@ -1862,7 +1905,7 @@
           <QuestName>Glowcap Mushrooms</QuestName>
           <QuestId>9808</QuestId>
         </QuestObjective>
-		 <QuestObjective>
+        <QuestObjective>
           <Objective>CSharpScript</Objective>
           <Count>1</Count>
           <Hotspots>

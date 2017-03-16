@@ -13130,6 +13130,30 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>10881</Entry>
+    <Name>Bluff Runner Windstrider</Name>
+    <Position>
+      <X>-1229.57861</X>
+      <Y>-72.20578</Y>
+      <Z>162.27623</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10881</Entry>
+    <Name>Bluff Runner Windstrider</Name>
+    <Position>
+      <X>-1214.3479</X>
+      <Y>100.912529</Y>
+      <Z>133.650833</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>10918</Entry>
     <Name>Lorax</Name>
     <Position>
@@ -13985,18 +14009,6 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-417.438171</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
       <Z>-31.1677113</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -14021,6 +14033,30 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-417.438171</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-333.8926</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -14034,18 +14070,6 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>103.496796</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-333.8926</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -23026,18 +23050,6 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>106.571053</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-4243.21338</X>
-      <Y>323.120758</Y>
       <Z>27.8561249</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -23051,6 +23063,18 @@
       <X>-4243.21338</X>
       <Y>323.120758</Y>
       <Z>-123.336624</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21060</Entry>
+    <Name>Esprit de l'air enragé</Name>
+    <Position>
+      <X>-4243.21338</X>
+      <Y>323.120758</Y>
+      <Z>106.571053</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -23086,7 +23110,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -23098,7 +23122,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -29178,6 +29202,18 @@
     <Entry>26181</Entry>
     <Name>Emissary Brighthoof</Name>
     <Position>
+      <X>3724.3916</X>
+      <Y>2846.78638</Y>
+      <Z>89.76345</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26181</Entry>
+    <Name>Emissary Brighthoof</Name>
+    <Position>
       <X>3766.80957</X>
       <Y>2908.83</Y>
       <Z>90.49831</Z>
@@ -29359,6 +29395,30 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>26379</Entry>
+    <Name>Overlord Agmar</Name>
+    <Position>
+      <X>3842.11841</X>
+      <Y>1492.08313</Y>
+      <Z>91.71697</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26379</Entry>
+    <Name>Overlord Agmar</Name>
+    <Position>
+      <X>3863.49121</X>
+      <Y>1564.80591</Y>
+      <Z>89.7249756</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>26415</Entry>
     <Name>Senior Sergeant Juktok</Name>
     <Position>
@@ -29428,6 +29488,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>26443</Entry>
+    <Name>Tariolstrasz</Name>
+    <Position>
+      <X>3549.36987</X>
+      <Y>379.349762</Y>
+      <Z>52.2280273</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>26459</Entry>
     <Name>Commander Saia Azuresteel</Name>
     <Position>
@@ -29440,6 +29512,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>26471</Entry>
+    <Name>Image of Archmage Aethas Sunreaver</Name>
+    <Position>
+      <X>3846.755</X>
+      <Y>1492.91711</Y>
+      <Z>92.5503159</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>26473</Entry>
     <Name>Ko'char the Unbreakable</Name>
     <Position>
@@ -29447,6 +29531,18 @@
       <Y>319.3978</Y>
       <Z>137.676361</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26485</Entry>
+    <Name>Orphan Matron Twinbreeze</Name>
+    <Position>
+      <X>3842.57031</X>
+      <Y>1476.59436</Y>
+      <Z>137.474014</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -29654,6 +29750,18 @@
       <X>3825.22437</X>
       <Y>1533.92249</Y>
       <Z>89.725296</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26652</Entry>
+    <Name>Greatmother Icemist</Name>
+    <Position>
+      <X>3874.54639</X>
+      <Y>1594.33069</Y>
+      <Z>90.34938</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -31347,6 +31455,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>28095</Entry>
+    <Name>Tracker Gekgek</Name>
+    <Position>
+      <X>5063.89648</X>
+      <Y>4728.062</Y>
+      <Z>-132.0957</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>28099</Entry>
     <Name>Corporal Maga</Name>
     <Position>
@@ -31354,6 +31474,18 @@
       <Y>-2615.709</Y>
       <Z>302.764069</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28114</Entry>
+    <Name>Mistcaller Soo-gan</Name>
+    <Position>
+      <X>6165.004</X>
+      <Y>5092.975</Y>
+      <Z>-97.37651</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -31550,6 +31682,39 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>28214</Entry>
+    <Name>Goregek the Gorilla Hunter</Name>
+    <Position>
+      <X>5275.47</X>
+      <Y>4534.574</Y>
+      <Z>-81.67752</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28216</Entry>
+    <Name>Zepik the Gorloc Hunter</Name>
+    <Position>
+      <X>6137.333</X>
+      <Y>4898.277</Y>
+      <Z>-93.46379</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28217</Entry>
+    <Name>Injured Rainspeaker Oracle</Name>
+    <Position>
+      <X>5474.152</X>
+      <Y>4461.753</Y>
+      <Z>-137.9803</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>28228</Entry>
     <Name>Crusader Valus</Name>
     <Position>
@@ -31648,6 +31813,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28374</Entry>
+    <Name>Zootfizzle</Name>
+    <Position>
+      <X>6448.37158</X>
+      <Y>5094.65527</Y>
+      <Z>-64.06521</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>28375</Entry>
@@ -32044,6 +32220,17 @@
       <X>5500.679</X>
       <Y>4753.163</Y>
       <Z>-194.4336</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28771</Entry>
+    <Name>Colvin Norrington</Name>
+    <Position>
+      <X>6455.092</X>
+      <Y>5096.62549</Y>
+      <Z>-64.48988</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -37156,6 +37343,18 @@
       <Z>189.7109</Z>
     </Position>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>36803</Entry>
+    <Name>Dyami Windsoar</Name>
+    <Position>
+      <X>-2933.408</X>
+      <Y>-42.7239571</Y>
+      <Z>189.7109</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>36903</Entry>
@@ -54749,7 +54948,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>513.6742</Z>
+      <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -54760,7 +54959,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>593.3703</Z>
+      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>

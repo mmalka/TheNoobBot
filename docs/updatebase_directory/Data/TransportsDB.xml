@@ -486,7 +486,7 @@
         <Z>253.4846</Z>
       </BPoint>
     </Transport>
-	 <Transport Id="188521" Name="Elevator" Faction="Neutral" AContinentId="571" BContinentId="571">
+	 <Transport Id="188521" Name="Elevator - Borean Tundra" Faction="Neutral" AContinentId="571" BContinentId="571">
       <AOutsidePoint> 
 		<X>2884.795</X>
 		<Y>6205.878</Y>

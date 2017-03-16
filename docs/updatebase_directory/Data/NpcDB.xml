@@ -7576,6 +7576,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>3685</Entry>
+    <Name>Harb Clawhoof</Name>
+    <Position>
+      <X>-2279.79639</X>
+      <Y>-392.069733</Y>
+      <Z>-9.396398</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>3690</Entry>
     <Name>Kar Stormsinger</Name>
     <Position>
@@ -13209,6 +13221,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>3842.49487</X>
+      <Y>1431.58472</Y>
+      <Z>90.7243958</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3842.49487</X>
+      <Y>1431.58472</Y>
+      <Z>90.7243958</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>3970.111</X>
       <Y>4021.00879</Y>
       <Z>883.461365</Z>
@@ -13380,6 +13414,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>6246.36572</X>
+      <Y>5170.85254</Y>
+      <Z>-83.2722</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>6246.36572</X>
+      <Y>5170.85254</Y>
+      <Z>-83.2722</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -19560,6 +19616,17 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>17190</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1981.13721</X>
+      <Y>442.017365</Y>
+      <Z>133.589584</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>17214</Entry>
     <Name>Anchorite Fateema</Name>
     <Position>
@@ -24532,28 +24599,6 @@
       <X>-3384.47461</X>
       <Y>3611.29956</Y>
       <Z>275.9874</Z>
-    </Position>
-    <Type>Repair</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>23373</Entry>
-    <Name>Mortog Steamhead</Name>
-    <Position>
-      <X>748.8289</X>
-      <Y>6883.973</Y>
-      <Z>-63.9283943</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>23373</Entry>
-    <Name>Mortog Steamhead</Name>
-    <Position>
-      <X>748.8289</X>
-      <Y>6883.973</Y>
-      <Z>-63.9283943</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>

@@ -1,48 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers>
-    <Npc>
-      <Entry>25462</Entry>
-      <Name>The Lich King</Name>
-      <Position>
-        <X>2345.299</X>
-        <Y>-5671.679</Y>
-        <Z>426.0314</Z>
-      </Position>
-    </Npc>
-    <Npc>
-      <Entry>28357</Entry>
-      <Name>Instructor Razuvious</Name>
-      <Position>
-        <X>2482.108</X>
-        <Y>-5553.094</Y>
-        <Z>420.6425</Z>
-      </Position>
-    </Npc>
-  </Questers>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="Vesper" DevelopmentStatus="WorkInProgress">
   <Quests>
-    <!-- Quest 1 -->
-    <!--In Service Of The Lich King (Deathknight)-->
     <Quest>
       <Name>In Service Of The Lich King</Name>
+      <ClassMask>40</ClassMask>
       <Id>12593</Id>
-      <ClassMask>40</ClassMask> <!-- Deathnight -->
       <QuestLevel>55</QuestLevel>
       <MinLevel>55</MinLevel>
       <MaxLevel>58</MaxLevel>
       <PickUp>25462</PickUp>
       <TurnIn>28357</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
-    <!--In Service Of The Lich King (Deathknight)-->
-    <!-- Quest 2 -->
-
-    <!--The Emblazoned Runeblade (Deathknight)-->
     <Quest>
       <Name>The Emblazoned Runeblade</Name>
+      <ClassMask>40</ClassMask>
       <Id>12619</Id>
-      <ClassMask>40</ClassMask> <!-- Deathnight -->
       <QuestLevel>55</QuestLevel>
       <MinLevel>55</MinLevel>
       <MaxLevel>58</MaxLevel>
@@ -75,14 +48,10 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--The Emblazoned Runeblade (Deathknight)-->
-    <!-- Quest 3 -->
-
-    <!--Runeforging: Preparation For Battle (Deathknight)-->
     <Quest>
       <Name>Runeforging: Preparation For Battle</Name>
+      <ClassMask>40</ClassMask>
       <Id>12842</Id>
-      <ClassMask>40</ClassMask> <!-- Deathnight -->
       <QuestLevel>55</QuestLevel>
       <MinLevel>55</MinLevel>
       <MaxLevel>58</MaxLevel>
@@ -107,7 +76,5 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <!--Runeforging: Preparation For Battle (Deathknight)-->
   </Quests>
-  <Blackspots />
 </QuesterProfile>

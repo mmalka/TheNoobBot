@@ -8,6 +8,14 @@ uint baseAddress = 0;
 if (unit.IsValid)
 {
 	/* Entry found, GoTo */
+	if(unit.InCombat)
+	{
+		
+		ObjectManager.Me.Target = unit.Target;
+		MountTask.DismountMount();
+		nManager.Wow.Helpers.Fight.StartFight(unit.Target);
+		return false;
+	}
 	
 	baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
 	
@@ -20,13 +28,6 @@ if (unit.IsValid)
 		return false;
 	if (baseAddress > 0 && (unit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range))
 		return false;
-	
-	if(unit.InCombat)
-	{
-		ObjectManager.Me.Target = unit.Target;
-		nManager.Wow.Helpers.Fight.StartFight(unit.Target);
-		return false;
-	}
 
 	Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
 
