@@ -156,7 +156,7 @@ namespace Quester.Profile
 
         private void ProfileManagerAdd_Click(object sender, EventArgs e)
         {
-            var f = new SimpleProfileEditor();
+            var f = new SimpleProfileEditor("blank");
             f.ShowDialog();
             RefreshProfileManagerForm();
         }

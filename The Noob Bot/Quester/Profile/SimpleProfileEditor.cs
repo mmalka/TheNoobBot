@@ -181,7 +181,7 @@ namespace Quester.Profile
             TreeView.SelectedNode = null;
         }
 
-            private void ButtonObjectiveSave_Click(object sender, EventArgs e)
+        private void ButtonObjectiveSave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -224,7 +224,7 @@ namespace Quester.Profile
                                 objective.CollectCount = 0;
                                 objective.CollectItemId = 0;
                             }
-                          
+
                             objective.CanPullUnitsAlreadyInFight = CBObjCanPullUnitsInFight.Checked;
 
                             break;
@@ -448,7 +448,9 @@ namespace Quester.Profile
                         }
                     }
 
-                    TreeView.SelectedNode.Text = objective.Objective == Objective.TurnInQuest || objective.Objective == Objective.PickUpQuest ? objective.Objective + " " + objective.QuestName : objective.Objective.ToString();
+                    TreeView.SelectedNode.Text = objective.Objective == Objective.TurnInQuest || objective.Objective == Objective.PickUpQuest
+                        ? objective.Objective + " " + objective.QuestName
+                        : objective.Objective.ToString();
 
                     objective.IsDead = CBObjIsDead.Checked;
                     objective.ScriptConditionIsComplete = TBObjCompletedScript.Text;
@@ -716,7 +718,10 @@ namespace Quester.Profile
 
                     lastSelQuestx.Objectives.Add(newObjective);
 
-                    var objectiveNode = new TreeNode(newObjective.Objective == Objective.TurnInQuest || newObjective.Objective == Objective.PickUpQuest ? newObjective.Objective + " " + newObjective.QuestName : newObjective.Objective.ToString()) { Tag = "Objective" };
+                    var objectiveNode =
+                        new TreeNode(newObjective.Objective == Objective.TurnInQuest || newObjective.Objective == Objective.PickUpQuest
+                            ? newObjective.Objective + " " + newObjective.QuestName
+                            : newObjective.Objective.ToString()) {Tag = "Objective"};
 
                     _lastSelectedQuest.Nodes.Add(objectiveNode);
                     TreeView.SelectedNode = objectiveNode;
@@ -982,24 +987,27 @@ namespace Quester.Profile
                 _fullpath = Application.StartupPath + @"\Profiles\Quester\" + profile;
                 _profile = new QuesterProfile();
 
-                string fileName = _fullpath.Split('\\').Last();
-                if (string.IsNullOrEmpty(profile) || !File.Exists(_fullpath))
+                if (profile != "blank")
                 {
-                    string file = Others.DialogBoxOpenFile(Application.StartupPath + @"\Profiles\Quester\", "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
-                    if (File.Exists(file))
+                    string fileName = _fullpath.Split('\\').Last();
+                    if (string.IsNullOrEmpty(profile) || !File.Exists(_fullpath))
                     {
-                        _fullpath = file;
-                        _profile = XmlSerializer.Deserialize<QuesterProfile>(file);
-                        fileName = _fullpath.Split('\\').Last();
+                        string file = Others.DialogBoxOpenFile(Application.StartupPath + @"\Profiles\Quester\", "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        if (File.Exists(file))
+                        {
+                            _fullpath = file;
+                            _profile = XmlSerializer.Deserialize<QuesterProfile>(file);
+                            fileName = _fullpath.Split('\\').Last();
+                            TNBControlMenu.TitleText = "Quest Profile Editor - " + fileName;
+                            Text = TNBControlMenu.TitleText;
+                        }
+                    }
+                    else
+                    {
+                        _profile = XmlSerializer.Deserialize<QuesterProfile>(_fullpath);
                         TNBControlMenu.TitleText = "Quest Profile Editor - " + fileName;
                         Text = TNBControlMenu.TitleText;
                     }
-                }
-                else
-                {
-                    _profile = XmlSerializer.Deserialize<QuesterProfile>(_fullpath);
-                    TNBControlMenu.TitleText = "Quest Profile Editor - " + fileName;
-                    Text = TNBControlMenu.TitleText;
                 }
 
                 TreeView.Nodes.Clear();
@@ -1857,7 +1865,7 @@ namespace Quester.Profile
             cbObjTypeList.Add(new ComboBoxValueString
             {
                 Name = "KillMob UseItem On Corpse",
-                Value = (int)Objective.KillMobUseItem
+                Value = (int) Objective.KillMobUseItem
             });
 
             CBObjType.DataSource = cbObjTypeList;
@@ -2169,7 +2177,7 @@ namespace Quester.Profile
             CBInternalObj.Enabled = (selectedObjectiveName != "TurnInQuest" && selectedObjectiveName != "PickUpQuest");
 
             //Auto Try to Import Quest information when selecting those objectives 
-            if(selectedObjectiveName == "TurnInQuest" || selectedObjectiveName == "PickUpQuest")
+            if (selectedObjectiveName == "TurnInQuest" || selectedObjectiveName == "PickUpQuest")
             {
                 ButtonObjImportFromGame_Click(null, null);
             }
@@ -2936,7 +2944,7 @@ namespace Quester.Profile
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             string cursorType = Lua.LuaDoString(randomString + ",_,_ =GetCursorInfo();", randomString);
 
-            if(cursorType == "item")
+            if (cursorType == "item")
             {
                 string itemId = Lua.LuaDoString("_," + randomString + ",_ =GetCursorInfo();", randomString);
                 TBObjUseItemID.Text = itemId;
@@ -2962,37 +2970,36 @@ namespace Quester.Profile
                         switch (e.KeyCode)
                         {
                             case Keys.D1:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpQuest;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.PickUpQuest;
                                 break;
                             case Keys.D2:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.TurnInQuest;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.TurnInQuest;
                                 break;
                             case Keys.D3:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.KillMob;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.KillMob;
                                 break;
                             case Keys.D4:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpObject;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.PickUpObject;
                                 break;
                             case Keys.D5:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.UseItem;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.UseItem;
                                 break;
                             case Keys.D6:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.InteractWith;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.InteractWith;
                                 break;
                             case Keys.D7:
-                                CBObjType.SelectedValue = (int)Quester.Profile.Objective.PickUpNPC;
+                                CBObjType.SelectedValue = (int) Quester.Profile.Objective.PickUpNPC;
                                 break;
                         }
                     }
                 }
             }
-            else if(TabControl1.SelectedTab == TabPageQuest)
+            else if (TabControl1.SelectedTab == TabPageQuest)
             {
                 if (e.Control && e.KeyCode == Keys.S && !e.Alt)
                 {
                     ButtonQuestSave_Click(null, null);
                 }
-
             }
         }
     }
