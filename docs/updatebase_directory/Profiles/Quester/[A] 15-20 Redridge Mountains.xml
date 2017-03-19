@@ -665,6 +665,7 @@
             <Y>-2770.077</Y>
             <Z>90.38326</Z>
           </Position>
+          <DismissPet>true</DismissPet>
           <Range>0</Range>
         </QuestObjective>
         <QuestObjective>
@@ -693,6 +694,8 @@
             <Y>-2741.091</Y>
             <Z>88.71474</Z>
           </Position>
+          <IgnoreFight>true</IgnoreFight>
+          <DismissPet>true</DismissPet>
           <Range>0</Range>
         </QuestObjective>
         <QuestObjective>
@@ -710,6 +713,7 @@
               <Z>90.20651</Z>
             </Point>
           </Hotspots>
+          <IgnoreFight>true</IgnoreFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>

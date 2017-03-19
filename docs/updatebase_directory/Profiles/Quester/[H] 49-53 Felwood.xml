@@ -740,6 +740,7 @@
           <Entry>
             <int>47679</int>
           </Entry>
+          <ScriptConditionIsComplete>return  ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(47679, false), false,true,false).IsValid &amp;&amp; ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(47679, false), false,true,false).Attackable || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(28213) || nManager.Wow.Helpers.Quest.GetQuestCompleted(28213);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>63284</UseItemId>
           <Position>
@@ -1548,6 +1549,13 @@
           <WaitMs>120000</WaitMs>
           <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>48127</NpcEntry>
+          <QuestName>Back to Business</QuestName>
+          <QuestId>28372</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -1600,6 +1608,11 @@
               <X>6613.01074</X>
               <Y>-1638.686</Y>
               <Z>495.916565</Z>
+            </Point>
+            <Point>
+              <X>6543.953</X>
+              <Y>-1434.76624</Y>
+              <Z>439.912231</Z>
             </Point>
           </Hotspots>
           <Script>=UseItemWithHotSpots.cs</Script>

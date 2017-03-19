@@ -620,7 +620,8 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <InternalQuestId>27450</InternalQuestId>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>2070.649</X>
             <Y>-4347.485</Y>
@@ -629,7 +630,8 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <InternalQuestId>27450</InternalQuestId>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>2106.082</X>
             <Y>-4357.752</Y>
@@ -638,7 +640,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalQuestId>27451</InternalQuestId>
           <Entry>
             <int>8541</int>
             <int>8543</int>
@@ -779,6 +780,8 @@
             <Y>-4581.38</Y>
             <Z>62.2165</Z>
           </Position>
+          <IgnoreFight>true</IgnoreFight>
+          <Range>10</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -1196,6 +1199,15 @@
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TravelTo</Objective>
+          <Position>
+            <X>1750.425</X>
+            <Y>-5430.014</Y>
+            <Z>82.30948</Z>
+          </Position>
+          <ContinentId>0</ContinentId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>

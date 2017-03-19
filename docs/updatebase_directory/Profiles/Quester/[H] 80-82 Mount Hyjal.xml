@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile Author="" DevelopmentStatus="WorkInProgress">
+  <Questers />
+  <Quests>
+    <Quest>
+      <Name>The Eye of the Storm</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>28805</Id>
+      <QuestLevel>80</QuestLevel>
+      <MinLevel>77</MinLevel>
+      <MaxLevel>90</MaxLevel>
+      <PickUp>45244</PickUp>
+      <TurnIn>45244</TurnIn>
+      <Objectives />
+    </Quest>
+  </Quests>
+</QuesterProfile>

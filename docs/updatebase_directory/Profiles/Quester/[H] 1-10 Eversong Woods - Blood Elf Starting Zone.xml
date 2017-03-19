@@ -2,6 +2,371 @@
 <QuesterProfile Author="Vesper" DevelopmentStatus="Outdated">
   <Quests>
     <Quest>
+      <Name>Reclaiming Sunstrider Isle</Name>
+      <RaceMask>512</RaceMask>
+      <Id>8325</Id>
+      <QuestLevel>1</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>4</MaxLevel>
+      <PickUp>15278</PickUp>
+      <TurnIn>15278</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>-1</Count>
+          <Entry>
+            <int>15274</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10279.71</X>
+              <Y>-6345.525</Y>
+              <Z>23.56811</Z>
+            </Point>
+            <Point>
+              <X>10401.25</X>
+              <Y>-6228.733</Y>
+              <Z>32.73214</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Unfortunate Measures</Name>
+      <RaceMask>512</RaceMask>
+      <Id>8326</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8325</int>
+      </NeedQuestCompletedId>
+      <PickUp>15278</PickUp>
+      <TurnIn>15278</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Entry>
+            <int>15366</int>
+            <int>15372</int>
+          </Entry>
+          <CollectItemId>20797</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>10262.66</X>
+              <Y>-6245.344</Y>
+              <Z>23.76003</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Solanian's Belongings</Name>
+      <RaceMask>512</RaceMask>
+      <Id>37443</Id>
+      <QuestLevel>4</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>7</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8326</int>
+      </NeedQuestCompletedId>
+      <PickUp>15295</PickUp>
+      <TurnIn>15295</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Entry>
+            <int>180512</int>
+          </Entry>
+          <CollectItemId>20472</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>10223.86</X>
+              <Y>-6344.173</Y>
+              <Z>30.84076</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>180510</int>
+          </Entry>
+          <CollectItemId>20470</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>10093.04</X>
+              <Y>-6218.321</Y>
+              <Z>16.66767</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Entry>
+            <int>180511</int>
+          </Entry>
+          <CollectItemId>20471</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>10294.89</X>
+              <Y>-6030.453</Y>
+              <Z>28.44272</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>The Shrine of Dath'Remar</Name>
+      <RaceMask>512</RaceMask>
+      <Id>37442</Id>
+      <QuestLevel>1</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>7</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8326</int>
+      </NeedQuestCompletedId>
+      <PickUp>15295</PickUp>
+      <TurnIn>15295</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Entry>
+            <int>180516</int>
+          </Entry>
+          <Position>
+            <X>10405.8</X>
+            <Y>-5946.007</Y>
+            <Z>42.50818</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>A Fistful of Slivers</Name>
+      <RaceMask>512</RaceMask>
+      <Id>37440</Id>
+      <QuestLevel>4</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>7</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8325</int>
+      </NeedQuestCompletedId>
+      <PickUp>15296</PickUp>
+      <TurnIn>15296</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Entry>
+            <int>15274</int>
+            <int>15294</int>
+          </Entry>
+          <CollectItemId>20482</CollectItemId>
+          <CollectCount>6</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>10233.04</X>
+              <Y>-6331.622</Y>
+              <Z>30.8401</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Thirst Unending</Name>
+      <RaceMask>512</RaceMask>
+      <Id>37439</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8325</int>
+      </NeedQuestCompletedId>
+      <PickUp>15297</PickUp>
+      <TurnIn>15297</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseSpellAOE</Objective>
+          <Entry>
+            <int>15274</int>
+          </Entry>
+          <UseSpellId>28730</UseSpellId>
+          <Range>8</Range>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Report to Lanthan Perilon</Name>
+      <RaceMask>512</RaceMask>
+      <Id>8327</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8326</int>
+      </NeedQuestCompletedId>
+      <PickUp>15278</PickUp>
+      <TurnIn>15281</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Aggression</Name>
+      <RaceMask>512</RaceMask>
+      <Id>8334</Id>
+      <QuestLevel>4</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>7</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8327</int>
+      </NeedQuestCompletedId>
+      <PickUp>15281</PickUp>
+      <TurnIn>15281</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>7</Count>
+          <Entry>
+            <int>15271</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10335.81</X>
+              <Y>-6054.489</Y>
+              <Z>25.62166</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>7</Count>
+          <Entry>
+            <int>15294</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10335.81</X>
+              <Y>-6054.489</Y>
+              <Z>25.62166</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Felendren the Banished</Name>
+      <RaceMask>512</RaceMask>
+      <Id>8335</Id>
+      <QuestLevel>5</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8334</int>
+      </NeedQuestCompletedId>
+      <PickUp>15281</PickUp>
+      <TurnIn>15281</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>15273</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10174</X>
+              <Y>-6047.451</Y>
+              <Z>25.54031</Z>
+            </Point>
+            <Point>
+              <X>10126.59</X>
+              <Y>-6060.782</Y>
+              <Z>25.57061</Z>
+            </Point>
+            <Point>
+              <X>10073.3</X>
+              <Y>-6041.656</Y>
+              <Z>42.1649</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>2</Count>
+          <Entry>
+            <int>15298</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10073.3</X>
+              <Y>-6041.656</Y>
+              <Z>42.1649</Z>
+            </Point>
+            <Point>
+              <X>10126.88</X>
+              <Y>-5992.934</Y>
+              <Z>109.024</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Entry>
+            <int>15367</int>
+          </Entry>
+          <CollectItemId>20799</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>10126.88</X>
+              <Y>-5992.934</Y>
+              <Z>109.024</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Tainted Arcane Sliver</Name>
+      <RaceMask>512</RaceMask>
+      <Id>8338</Id>
+      <QuestLevel>4</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>9</MaxLevel>
+      <ItemPickUp>20483</ItemPickUp>
+      <TurnIn>15297</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Aiding the Outrunners</Name>
+      <RaceMask>512</RaceMask>
+      <Id>8347</Id>
+      <QuestLevel>5</QuestLevel>
+      <MinLevel>4</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8335</int>
+      </NeedQuestCompletedId>
+      <PickUp>15281</PickUp>
+      <TurnIn>15301</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
       <Name>Slain by the Wretched</Name>
       <RaceMask>33555378</RaceMask>
       <Id>9704</Id>
@@ -47,9 +412,26 @@
       <QuestLevel>5</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>10</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8350</int>
+      </NeedQuestCompletedId>
       <PickUp>15418</PickUp>
       <TurnIn>15418</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>15403</NpcEntry>
+          <QuestName>Unstable Mana Crystals</QuestName>
+          <QuestId>8463</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>15403</NpcEntry>
+          <QuestName>Wanted: Thaelis the Hungerer</QuestName>
+          <QuestId>8468</QuestId>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <Entry>
@@ -65,20 +447,10 @@
             </Point>
           </Hotspots>
         </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Unstable Mana Crystals</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>8463</Id>
-      <QuestLevel>5</QuestLevel>
-      <MinLevel>4</MinLevel>
-      <MaxLevel>10</MaxLevel>
-      <PickUp>15403</PickUp>
-      <TurnIn>15403</TurnIn>
-      <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>8463</InternalQuestId>
           <Entry>
             <int>180600</int>
           </Entry>
@@ -91,6 +463,25 @@
               <Z>0.06178053</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>8468</InternalQuestId>
+          <Entry>
+            <int>15949</int>
+          </Entry>
+          <CollectItemId>21781</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>9769.443</X>
+              <Y>-6722.763</Y>
+              <Z>0.06178053</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -102,7 +493,7 @@
       <MinLevel>4</MinLevel>
       <MaxLevel>11</MaxLevel>
       <NeedQuestCompletedId>
-        <int>8463</int>
+        <int>8472</int>
       </NeedQuestCompletedId>
       <PickUp>15403</PickUp>
       <TurnIn>15401</TurnIn>
@@ -125,33 +516,6 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Wanted: Thaelis the Hungerer</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>8468</Id>
-      <QuestLevel>6</QuestLevel>
-      <MinLevel>4</MinLevel>
-      <MaxLevel>11</MaxLevel>
-      <PickUp>180918</PickUp>
-      <TurnIn>16924</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Entry>
-            <int>15949</int>
-          </Entry>
-          <CollectItemId>21781</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>9769.443</X>
-              <Y>-6722.763</Y>
-              <Z>0.06178053</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
       <Name>Delivery to the North Sanctum</Name>
       <RaceMask>33555378</RaceMask>
       <Id>8895</Id>
@@ -159,7 +523,7 @@
       <MinLevel>4</MinLevel>
       <MaxLevel>11</MaxLevel>
       <NeedQuestCompletedId>
-        <int>8472</int>
+        <int>9352</int>
       </NeedQuestCompletedId>
       <PickUp>15418</PickUp>
       <TurnIn>15405</TurnIn>
@@ -194,6 +558,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
           <Count>5</Count>
           <Entry>
             <int>15647</int>
@@ -204,10 +569,16 @@
               <Y>-6246.214</Y>
               <Z>17.59816</Z>
             </Point>
+            <Point>
+              <X>9098.521</X>
+              <Y>-6167.043</Y>
+              <Z>34.24718</Z>
+            </Point>
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>5</Count>
           <Entry>
             <int>15648</int>
@@ -217,6 +588,11 @@
               <X>9153.321</X>
               <Y>-6246.214</Y>
               <Z>17.59816</Z>
+            </Point>
+            <Point>
+              <X>9098.521</X>
+              <Y>-6167.043</Y>
+              <Z>34.24718</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
@@ -229,6 +605,9 @@
       <QuestLevel>6</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>11</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>8486</int>
+      </NeedQuestCompletedId>
       <PickUp>15941</PickUp>
       <TurnIn>15945</TurnIn>
       <Objectives />
@@ -326,6 +705,9 @@
       <QuestLevel>6</QuestLevel>
       <MinLevel>4</MinLevel>
       <MaxLevel>11</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9066</int>
+      </NeedQuestCompletedId>
       <ItemPickUp>20765</ItemPickUp>
       <TurnIn>15403</TurnIn>
       <Objectives />
@@ -1475,21 +1857,6 @@
       </NeedQuestCompletedId>
       <PickUp>181011</PickUp>
       <TurnIn>15951</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Missing in the Ghostlands</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>9144</Id>
-      <QuestLevel>10</QuestLevel>
-      <MinLevel>8</MinLevel>
-      <MaxLevel>15</MaxLevel>
-      <NeedQuestNotCompletedId>
-        <int>9147</int>
-        <int>28560</int>
-      </NeedQuestNotCompletedId>
-      <PickUp>16210</PickUp>
-      <TurnIn>16183</TurnIn>
       <Objectives />
     </Quest>
   </Quests>

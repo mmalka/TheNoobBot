@@ -21,6 +21,7 @@
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>24906</InternalQuestId>
           <Entry>
             <int>202198</int>
           </Entry>
@@ -43,7 +44,6 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>24907</InternalQuestId>
           <Count>8</Count>
           <Entry>
             <int>39022</int>
@@ -80,6 +80,43 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>Seaside Salvage</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>24906</Id>
+      <QuestLevel>45</QuestLevel>
+      <MinLevel>42</MinLevel>
+      <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>24907</int>
+      </NeedQuestCompletedId>
+      <PickUp>38534</PickUp>
+      <TurnIn>38534</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>202198</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>7</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>-7543.656</X>
+              <Y>-3873.991</Y>
+              <Z>-0.5687146</Z>
+            </Point>
+            <Point>
+              <X>-7622.592</X>
+              <Y>-3984.501</Y>
+              <Z>-1.554045</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Rocket Rescue</Name>
       <RaceMask>33555378</RaceMask>
       <Id>24910</Id>
@@ -87,7 +124,7 @@
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
       <NeedQuestCompletedId>
-        <int>24907</int>
+        <int>24906</int>
       </NeedQuestCompletedId>
       <PickUp>38534</PickUp>
       <TurnIn>38534</TurnIn>
@@ -165,7 +202,7 @@
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25048</int>
+        <int>24910</int>
       </NeedQuestCompletedId>
       <PickUp>39178</PickUp>
       <TurnIn>39178</TurnIn>
@@ -352,6 +389,11 @@
               <Y>-3045.188</Y>
               <Z>10.70518</Z>
             </Point>
+            <Point>
+              <X>-7218.1665</X>
+              <Y>-3281.153</Y>
+              <Z>11.4333363</Z>
+            </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -410,7 +452,7 @@
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25115</int>
+        <int>25021</int>
       </NeedQuestCompletedId>
       <PickUp>38927</PickUp>
       <TurnIn>38927</TurnIn>
@@ -1131,12 +1173,21 @@
         <QuestObjective>
           <Objective>PressKey</Objective>
           <Count>1</Count>
+          <WaitMs>3000</WaitMs>
+          <OnlyInVehicule>true</OnlyInVehicule>
+          <Keys>MOVEBACKWARD</Keys>
+          <ScriptConditionIsComplete>return !ObjectManager.Target.IsValid || ObjectManager.Target.GetDistance &gt; 6f || ObjectManager.Target.Entry != 11811;</ScriptConditionIsComplete>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PressKey</Objective>
+          <Count>1</Count>
           <Position>
             <X>-9239.902</X>
             <Y>-4005.98</Y>
             <Z>-34.11099</Z>
           </Position>
           <WaitMs>1000</WaitMs>
+          <IgnoreAllFight>true</IgnoreAllFight>
           <IgnoreFight>true</IgnoreFight>
           <OnlyInVehicule>true</OnlyInVehicule>
           <Keys>ACTIONBUTTON2</Keys>
@@ -1627,6 +1678,14 @@
         <X>-9258.106</X>
         <Y>-2948.418</Y>
         <Z>12.11264</Z>
+      </Position>
+      <Radius>10</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-9751.089</X>
+        <Y>-2751.847</Y>
+        <Z>11.26937</Z>
       </Position>
       <Radius>10</Radius>
     </QuesterBlacklistRadius>

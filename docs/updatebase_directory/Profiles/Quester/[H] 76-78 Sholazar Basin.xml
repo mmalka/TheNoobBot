@@ -2330,25 +2330,185 @@
           <QuestId>12579</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>-1</Count>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>6</Count>
           <Entry>
-            <int>28378</int>
+            <int>28113</int>
+          </Entry>
+          <DeactivateMount>true</DeactivateMount>
+          <Hotspots>
+            <Point>
+              <X>5779.45068</X>
+              <Y>3587.5686</Y>
+              <Z>-10.1718493</Z>
+            </Point>
+            <Point>
+              <X>5703.69531</X>
+              <Y>3831.62061</Y>
+              <Z>-58.5816841</Z>
+            </Point>
+          </Hotspots>
+          <Script>=InteractWithHotSpots.cs</Script>
+          <WaitMs>500</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>12579</InternalQuestId>
+          <Entry>
+            <int>190702</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>10</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>5744.74756</X>
+              <Y>3722.23145</Y>
+              <Z>-33.6120148</Z>
+            </Point>
+            <Point>
+              <X>5543.92</X>
+              <Y>3932.581</Y>
+              <Z>-61.69208</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>27801</NpcEntry>
+          <QuestName>Salvaging Life's Strength</QuestName>
+          <QuestId>12805</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>27801</NpcEntry>
+          <QuestName>Cultist Incursion</QuestName>
+          <QuestId>12608</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>28027</int>
+          </Entry>
+          <ScriptConditionIsComplete> return (nManager.Wow.Helpers.ItemsManager.GetItemCount(38624) &gt;= 1);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>5649.699</X>
+            <Y>4553.732</Y>
+            <Z>-134.8296</Z>
+          </Position>
+          <WaitMs>500</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(28122, false), false,false,true).IsValid || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(12579);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>38624</UseItemId>
+          <WaitMs>500</WaitMs>
+          <Range>2</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>28122</NpcEntry>
+          <QuestName>Lifeblood of the Mosswalker Shrine</QuestName>
+          <QuestId>12579</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>28122</NpcEntry>
+          <QuestName>The Mosswalker Savior</QuestName>
+          <QuestId>12580</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Exterminate the Intruders</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>12617</Id>
+      <QuestLevel>77</QuestLevel>
+      <MinLevel>74</MinLevel>
+      <MaxLevel>87</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>12580</int>
+      </NeedQuestCompletedId>
+      <PickUp>27801</PickUp>
+      <TurnIn>27801</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>27801</NpcEntry>
+          <QuestName>Weapons of Destruction</QuestName>
+          <QuestId>12660</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>12660</InternalQuestId>
+          <Count>4</Count>
+          <Entry>
+            <int>190590</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>6551.45752</X>
-              <Y>4981.20361</Y>
-              <Z>-49.982563</Z>
+              <X>6091.495</X>
+              <Y>4426.361</Y>
+              <Z>-83.7298355</Z>
             </Point>
             <Point>
-              <X>6411.97266</X>
-              <Y>4889.096</Y>
-              <Z>-62.53662</Z>
+              <X>6007.52148</X>
+              <Y>4508.113</Y>
+              <Z>-87.320755</Z>
+            </Point>
+          </Hotspots>
+          <Script>=InteractWithHotSpots.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>28373</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>6101.71631</X>
+              <Y>4467.20166</Y>
+              <Z>-85.26905</Z>
+            </Point>
+            <Point>
+              <X>6016.755</X>
+              <Y>4513.79639</Y>
+              <Z>-86.91181</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>27801</NpcEntry>
+          <QuestName>Weapons of Destruction</QuestName>
+          <QuestId>12660</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>27801</NpcEntry>
+          <QuestName>Exterminate the Intruders</QuestName>
+          <QuestId>12617</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>

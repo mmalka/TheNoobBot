@@ -2,10 +2,7 @@
 <QuesterProfile Author="Several authors" DevelopmentStatus="WorkInProgress">
   <Includes>
     <Include>
-      <PathFile>[H] 1-5 Sunstrider Isle - Blood Elf Starting Zone.xml</PathFile>
-    </Include>
-    <Include>
-      <PathFile>[H] 5-12 Eversong Woods.xml</PathFile>
+      <PathFile>[H] 1-10 Tirisfal Glades - Undead Starting Zone.xml</PathFile>
     </Include>
     <Include>
       <PathFile>[H] 10-20 Silverpine.xml</PathFile>
