@@ -1373,12 +1373,8 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 var unitFlags = UnitFlags;
-                if (unitFlags.HasFlag(UnitFlags.Rename) && unitFlags.HasFlag(UnitFlags.InCombat) && !unitFlags.HasFlag(UnitFlags.PetInCombat) ||
-                    unitFlags.HasFlag(UnitFlags.Rename) && !unitFlags.HasFlag(UnitFlags.InCombat) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
+                if (unitFlags.HasFlag(UnitFlags.Rename) && !IsTotem)
                 {
-                    // Totem + PetInCombat may be a normal Totem.
-                    // Totem and no combat => evading done, near home location.
-                    // Totem + Combat and no PetInCombat => evading started, still considered in combat for some time.
                     nManagerSetting.AddBlackList(Guid, 10*1000);
                     return true;
                 }
