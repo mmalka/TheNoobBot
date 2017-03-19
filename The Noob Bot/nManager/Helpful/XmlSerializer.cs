@@ -33,20 +33,28 @@ namespace nManager.Helpful
                 {
                     using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                     {
-                        // create a XmlAttributes class with empty namespace and namespace disabled
-                        var xmlAttributes = new XmlAttributes {XmlType = new XmlTypeAttribute {Namespace = ""}, Xmlns = false};
-                        // create a XmlAttributeOverrides class
-                        var xmlAttributeOverrides = new XmlAttributeOverrides();
-                        // implement our previously created XmlAttributes to the overrider for our specificed class
-                        xmlAttributeOverrides.Add(@object.GetType(), xmlAttributes);
-                        // initialize the serializer for our class and attribute override
-                        var s = new System.Xml.Serialization.XmlSerializer(@object.GetType(), xmlAttributeOverrides);
-                        // create a blank XmlSerializerNamespaces
-                        var xmlSrzNamespace = new XmlSerializerNamespaces();
-                        xmlSrzNamespace.Add("", "");
-                        // Serialize with blank XmlSerializerNames using our initialized serializer with namespace disabled
-                        s.Serialize(w, @object, xmlSrzNamespace);
-                        // All kind of namespace are totally unable to serialize.
+                        if (@object.GetType().ToString() == "Quester.Profile.QuesterProfile")
+                        {
+                            // create a XmlAttributes class with empty namespace and namespace disabled
+                            var xmlAttributes = new XmlAttributes {XmlType = new XmlTypeAttribute {Namespace = ""}, Xmlns = false};
+                            // create a XmlAttributeOverrides class
+                            var xmlAttributeOverrides = new XmlAttributeOverrides();
+                            // implement our previously created XmlAttributes to the overrider for our specificed class
+                            xmlAttributeOverrides.Add(@object.GetType(), xmlAttributes);
+                            // initialize the serializer for our class and attribute override
+                            var s = new System.Xml.Serialization.XmlSerializer(@object.GetType(), xmlAttributeOverrides);
+                            // create a blank XmlSerializerNamespaces
+                            var xmlSrzNamespace = new XmlSerializerNamespaces();
+                            xmlSrzNamespace.Add("", "");
+                            // Serialize with blank XmlSerializerNames using our initialized serializer with namespace disabled
+                            s.Serialize(w, @object, xmlSrzNamespace);
+                            // All kind of namespace are totally unable to serialize.
+                        }
+                        else
+                        {
+                            var s = new System.Xml.Serialization.XmlSerializer(@object.GetType());
+                            s.Serialize(w, @object);
+                        }
                     }
                 }
                 return true;
