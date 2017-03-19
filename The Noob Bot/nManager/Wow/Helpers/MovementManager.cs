@@ -250,6 +250,11 @@ namespace nManager.Wow.Helpers
 
                                     Statistics.OffsetStats = 0x53;
                                 }
+                                if (_points.Count <= 0 && !_first)
+                                {
+                                    _movement = false;
+                                    _loop = false;
+                                }
                             }
                             Thread.Sleep(80);
                         }
