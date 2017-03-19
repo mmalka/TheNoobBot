@@ -845,13 +845,13 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void TravelToQuestZone(Point destination, ref bool travelToQuestZone, int continentId = -1, bool forceTravel = false, string reason = "TravelToQuestZone")
+        public static bool TravelToQuestZone(Point destination, ref bool travelToQuestZone, int continentId = -1, bool forceTravel = false, string reason = "TravelToQuestZone")
         {
             bool doTravel = forceTravel;
             if (continentId == -1)
                 continentId = Usefuls.ContinentId;
             if (continentId == Usefuls.ContinentId && Usefuls.IsFlying && !forceTravel)
-                return;
+                return false;
             if (continentId == Usefuls.ContinentId && Usefuls.IsFlying && forceTravel)
             {
                 MountTask.DismountMount();
@@ -882,10 +882,11 @@ namespace nManager.Wow.Helpers
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
                 _travelLocation = ObjectManager.ObjectManager.Me.Position;
-                return;
+                return true;
             }
             if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 0.1f)
                 _travelDisabled = true; // release travel once arrived.
+            return false;
         }
     }
 }

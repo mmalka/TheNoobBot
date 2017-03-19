@@ -320,7 +320,8 @@ namespace nManager.Wow.Bot.States
             }
 
             if (bestTeacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 800)
-                Quest.TravelToQuestZone(bestTeacher.Position, ref _doTravel, bestTeacher.ContinentIdInt, false, bestTeacher.Type.ToString());
+                if (Quest.TravelToQuestZone(bestTeacher.Position, ref _doTravel, bestTeacher.ContinentIdInt, false, bestTeacher.Type.ToString()))
+                    return;
             uint baseAddress = MovementManager.FindTarget(ref bestTeacher);
             if (MovementManager.InMovement)
                 return;
