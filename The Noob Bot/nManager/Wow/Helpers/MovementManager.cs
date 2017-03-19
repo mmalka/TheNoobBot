@@ -64,7 +64,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return _movement && ObjectManager.ObjectManager.Me.GetMove;
+                    return _movement;
                 }
                 catch (Exception exception)
                 {
@@ -1577,6 +1577,7 @@ namespace nManager.Wow.Helpers
                 asMoved = Target.Position.DistanceTo(TargetIsNPC.Position) > 3;
                 Target.Position = TargetIsNPC.Position;
                 Target.Name = TargetIsNPC.Name;
+                Target.Guid = TargetIsNPC.Guid;
                 return TargetIsNPC.GetBaseAddress;
             }
             WoWGameObject TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position, ignoreBlacklist);
@@ -1585,6 +1586,7 @@ namespace nManager.Wow.Helpers
                 asMoved = Target.Position.DistanceTo(TargetIsGameObject.Position) > 3;
                 Target.Position = TargetIsGameObject.Position;
                 Target.Name = TargetIsGameObject.Name;
+                Target.Guid = TargetIsGameObject.Guid;
                 return TargetIsGameObject.GetBaseAddress;
             }
             WoWPlayer TargetIsPlayer = ObjectManager.ObjectManager.GetObjectWoWPlayer(Target.Guid);
@@ -1593,6 +1595,7 @@ namespace nManager.Wow.Helpers
                 asMoved = Target.Position != TargetIsPlayer.Position;
                 Target.Position = TargetIsPlayer.Position;
                 Target.Name = TargetIsPlayer.Name;
+                Target.Guid = TargetIsPlayer.Guid;
                 return TargetIsPlayer.GetBaseAddress;
             }
             return 0;
@@ -1642,17 +1645,19 @@ namespace nManager.Wow.Helpers
 
         public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0, bool ignoreBlacklist = false)
         {
-            if (doMount && !InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
+            bool patherResult, requiresUpdate;
+
+            uint baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
+            if (doMount && !InMovement && baseAddress <= 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount();
+            if (doMount && !InMovement && baseAddress > 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 60f)
+                MountTask.Mount();
 
-            bool patherResult, requiresUpdate;
-            uint baseAddress;
 
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
             if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
             {
-                baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
                 if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly) // Then we are > ~180 of the target
                 {
                     Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
@@ -1682,7 +1687,8 @@ namespace nManager.Wow.Helpers
             if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InInevitableCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
                 // Out of range of the position
-                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
+                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
+                    TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS))
                 {
                     baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
                     if (LongMove.IsLongMove) // we are in longmove
