@@ -528,8 +528,8 @@ namespace nManager.Wow.Helpers
             WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry, true), false, ignoreBlacklist, true);
             if (mNpc.CanTurnIn)
                 npc.Position = mNpc.Position;
-            else if (mNpc.IsValid)
-                nManagerSetting.AddBlackList(npc.Guid, 60*1000);
+            if (mNpc.IsValid && !mNpc.CanTurnIn)
+                nManagerSetting.AddBlackList(mNpc.Guid, 60*1000);
 
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 800f)
