@@ -529,7 +529,7 @@ namespace nManager.Wow.Helpers
             if (mNpc.CanTurnIn)
                 npc.Position = mNpc.Position;
             if (mNpc.IsValid && !mNpc.CanTurnIn)
-                nManagerSetting.AddBlackList(mNpc.Guid, 60*1000);
+                nManagerSetting.AddBlackList(mNpc.Guid, 20*1000);
 
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 800f)
