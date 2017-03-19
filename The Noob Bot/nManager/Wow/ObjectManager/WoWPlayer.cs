@@ -166,7 +166,7 @@ namespace nManager.Wow.ObjectManager
                                 if (ObjectManager.Pet.InCombat && !ObjectManager.Pet.IsDead)
                                     petAttack = true;
 
-                            if (!isdead && (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat)))
+                            if (!isdead && (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.InCombat)))
                                 return true;
                             return petAttack;
                         }
@@ -175,7 +175,7 @@ namespace nManager.Wow.ObjectManager
                     {
                         Logging.WriteError("WoWPlayer > InCombat#1: " + e);
                     }
-                    return (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat) || petAttack) && !isdead;
+                    return (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.InCombat) || petAttack) && !isdead;
                 }
                 catch (Exception e)
                 {

@@ -1440,8 +1440,7 @@ namespace nManager.Wow.ObjectManager
         {
             foreach (WoWUnit u in GetObjectWoWUnit60Yards())
             {
-                if (u.IsValid && u.IsAlive && u.Attackable && !u.PlayerControlled && !u.NotSelectable && UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
-                    u.GetDistance < (u.AggroDistance*0.90f) && !(u.InCombat && !u.IsTargetingMe))
+                if (u.IsValid && u.IsAlive && u.Attackable && !u.PlayerControlled && UnitRelation.GetReaction(Me, u) < Reaction.Neutral && u.GetDistance < (u.AggroDistance*0.85f) && !(u.InCombat && !u.IsTargetingMe))
                 {
                     /*Logging.Write("Target is: " + u.Name);
                     Logging.Write("Target Distance: " + u.GetDistance);

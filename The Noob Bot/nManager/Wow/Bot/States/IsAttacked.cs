@@ -65,6 +65,8 @@ namespace nManager.Wow.Bot.States
                 WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 if (unit == null || !unit.IsValid || unit.IsDead || nManagerSetting.IsBlackListedZone(unit.Position))
                     continue;
+                if (unit.InCombat)
+                    continue;
                 if (IgnoreStrikeBackCreatureList.Contains(unit.Entry))
                     continue;
                 if (unit.IsElite && System.Math.Abs(ObjectManager.ObjectManager.Me.Level - unit.Level) < 2 || System.Math.Abs(ObjectManager.ObjectManager.Me.Level - unit.Level) < -6)

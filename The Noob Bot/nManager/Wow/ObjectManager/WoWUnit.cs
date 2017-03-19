@@ -362,7 +362,7 @@ namespace nManager.Wow.ObjectManager
 
         public bool OnTaxi
         {
-            get { return UnitFlags.HasFlag(UnitFlags.TaxiFlight); }
+            get { return UnitFlags.HasFlag(UnitFlags.OnTaxi); }
         }
 
         public uint Mana
@@ -1373,8 +1373,8 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 var unitFlags = UnitFlags;
-                if (unitFlags.HasFlag(UnitFlags.Totem) && unitFlags.HasFlag(UnitFlags.Combat) && !unitFlags.HasFlag(UnitFlags.PetInCombat) ||
-                    unitFlags.HasFlag(UnitFlags.Totem) && !unitFlags.HasFlag(UnitFlags.Combat) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
+                if (unitFlags.HasFlag(UnitFlags.Rename) && unitFlags.HasFlag(UnitFlags.InCombat) && !unitFlags.HasFlag(UnitFlags.PetInCombat) ||
+                    unitFlags.HasFlag(UnitFlags.Rename) && !unitFlags.HasFlag(UnitFlags.InCombat) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
                 {
                     // Totem + PetInCombat may be a normal Totem.
                     // Totem and no combat => evading done, near home location.
@@ -2041,7 +2041,7 @@ namespace nManager.Wow.ObjectManager
                             }
                         }
                     }
-                    return UnitFlags.HasFlag(UnitFlags.Combat);
+                    return UnitFlags.HasFlag(UnitFlags.InCombat) || UnitFlags.HasFlag(UnitFlags.PetInCombat);
                 }
                 catch (Exception e)
                 {
@@ -2221,7 +2221,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return UnitFlags.HasFlag(UnitFlags.PlayerControlled);
+                    return UnitFlags.HasFlag(UnitFlags.PVPAttackable);
                 }
                 catch (Exception e)
                 {
@@ -2257,15 +2257,10 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (IsEvading)
                         return false;
-                    return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) &&
+                    const UnitFlags nonAttackable = UnitFlags.PlayerCannotAttack | UnitFlags.NoAttack | UnitFlags.ImmuneToPlayer | UnitFlags.NoAttack2 | UnitFlags.NotSelectable;
+                    return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & (uint) nonAttackable) == 0) &&
                            (UnitRelation.GetReaction(Faction) < Reaction.Neutral ||
                             (UnitRelation.GetReaction(Faction) == Reaction.Neutral && (GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0 || Guid == ObjectManager.Me.Target && CanAttackTargetLUA)));
-                    /*  GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0
-                        Donne ça en plus long et plus lent:
-                        UnitFlags f = GetUnitFlags;
-                        !f.HasFlag(UnitFlags.SelectableNotAttackable_1) && !f.HasFlag(UnitFlags.SelectableNotAttackable_2) &&
-                        !f.HasFlag(UnitFlags.NotAttackable) && !f.HasFlag(UnitFlags.Flag_9_0x200) &&
-                        !f.HasFlag(UnitFlags.SelectableNotAttackable_3)*/
                 }
                 catch (Exception e)
                 {
@@ -2314,7 +2309,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return UnitFlags.HasFlag(UnitFlags.PlayerControlled);
+                    return UnitFlags.HasFlag(UnitFlags.PVPAttackable);
                 }
                 catch (Exception e)
                 {
