@@ -183,12 +183,15 @@ namespace nManager.Wow.Bot.Tasks
             return _spellAquaMount.HaveBuff;
         }
 
-        public static void Mount(bool stopMove = true)
+        public static void Mount(bool stopMove = true, bool bypassForcedGround = false)
         {
             switch (GetMountCapacity())
             {
                 case MountCapacity.Fly:
-                    MountingFlyingMount(stopMove);
+                    if (!bypassForcedGround && nManagerSetting.CurrentSetting.UseGroundMount)
+                        MountingGroundMount(stopMove);
+                    else
+                        MountingFlyingMount(stopMove);
                     break;
                 case MountCapacity.Swimm:
                     MountingAquaticMount(stopMove);

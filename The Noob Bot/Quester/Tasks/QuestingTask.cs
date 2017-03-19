@@ -1115,7 +1115,7 @@ namespace Quester.Tasks
                         questObjective.Position.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.GatheringSearchRadius)
                     {
                         if (Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone))
-                            return false;
+                            return;
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
@@ -1322,10 +1322,9 @@ namespace Quester.Tasks
                 {
                     if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        if (Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone)
-                        ;
-                        MovementManager.Go(PathFinder.FindPath(wowUnit.Position)))
-                        return;
+                        if (Quest.TravelToQuestZone(questObjective.Position, ref CurrentQuestObjective.TravelToQuestZone, questObjective.ContinentId, questObjective.ForceTravelToQuestZone))
+                            return;
+                        MovementManager.Go(PathFinder.FindPath(wowUnit.Position));
                     }
                     else
                     {
