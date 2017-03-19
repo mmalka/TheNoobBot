@@ -40,7 +40,7 @@ namespace nManager.Wow.Bot.Tasks
 
         public static MountCapacity GetMountCapacity()
         {
-            if (!AllowMounting)
+            if (!AllowMounting || Usefuls.PlayerUsingVehicle)
                 return MountCapacity.Feet;
             if (_startupCheck || SettingsHasChanged)
             {

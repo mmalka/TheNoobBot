@@ -120,32 +120,29 @@ namespace nManager.Wow.Enums
         Negative = 0x0080,
     }
 
-    [Flags]
     public enum UnitQuestGiverStatus
     {
-        None = 0x0,
-        Unavailable = 0x1,
-        LowLevelAvailable = 0x2,
-        LowLevelTurnInRepeatable = 0x3,
-        LowLevelAvailableRepeatable = 0x4,
-        Incomplete = 0x5,
-        TurnInRepeatable = 0x6,
-        AvailableRepeatable = 0x7,
-        Available = 0x8,
-        TurnInInvisible = 0x9, // '?' hidden on the MiniMap.
-        TurnIn = 0xA,
+        None = 0,
+        Unavailable = 1,
+        LowLevelAvailable = 2,
+        LowLevelTurnInRepeatable = 3,
+        LowLevelAvailableRepeatable = 4,
+        Incomplete = 5,
+        TurnInRepeatable = 6,
+        AvailableRepeatable = 7,
+        Available = 8,
+        TurnInInvisible = 9, // '?' hidden on the MiniMap.
+        TurnIn = 10,
     }
 
-    [Flags]
     public enum UnitFlightMasterStatus
     {
-        None = 0x0,
-        FlightAvailable = 0x1,
-        FlightUndiscovered = 0x2,
-        OtherFaction = 0x3,
+        None = 0,
+        FlightAvailable = 1,
+        FlightUndiscovered = 2,
+        OtherFaction = 3,
     }
 
-    [Flags]
     public enum UnitClassification
     {
         Normal,
