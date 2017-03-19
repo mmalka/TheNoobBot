@@ -68,7 +68,7 @@ namespace nManager.Wow.Bot.States
                 if (Usefuls.PlayerUsingVehicle)
                     return false;
 
-                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft)
+                if (Usefuls.GetContainerNumFreeSlots <= 0)
                     return false; // Make ToTown a priority.
 
                 // Get Looting

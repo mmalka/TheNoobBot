@@ -264,7 +264,7 @@ namespace nManager
         public int NumberOfFoodsWeGot; // TODO Count the items instead (!?)
         public int NumberOfBeverageWeGot; // TODO Count the items instead (!?)
         public bool ActivateAutoRepairFeature = true;
-        public bool ActivateAutoSellingFeature;
+        public bool ActivateAutoSellingFeature = true;
         public bool SellGray = true;
         public bool SellWhite;
         public bool SellGreen;
