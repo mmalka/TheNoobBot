@@ -461,6 +461,8 @@ namespace nManager.Wow.Bot.States
                 {
                     // Our travel ended because we didn't have the taxi we wanted, regenerate now that the list of known taxi is updated.
                     _generatedRoutePath = GenerateRoutePath;
+                    if (!CombatClass.IsAliveCombatClass)
+                        CombatClass.LoadCombatClass();
                     return;
                 }
                 if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
@@ -491,7 +493,8 @@ namespace nManager.Wow.Bot.States
             ForceTravel = false;
             TargetValidationFct = null;
             _generatedRoutePath = new List<Transport>();
-
+            if (!CombatClass.IsAliveCombatClass)
+                CombatClass.LoadCombatClass();
             Logging.Write("Travel is terminated, waiting for product to take the control back.");
         }
 
@@ -1819,7 +1822,10 @@ namespace nManager.Wow.Bot.States
                             // we already did the check prior to that, so let's assume it's correct.
                         }
                     }
-                    currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayInLift) + Math.DistanceListPoint(wayOff) + Math.DistanceListPoint(wayOffLift);
+                    float extraDistance = 0f;
+                    if (transport.Id == 190549)
+                        extraDistance = transport.AOutsidePoint.DistanceTo2D(transport.BOutsidePoint);
+                    currentTransportDistance = extraDistance + Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayInLift) + Math.DistanceListPoint(wayOff) + Math.DistanceListPoint(wayOffLift);
                     currentId = transport.Id;
                 }
 
