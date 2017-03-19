@@ -964,6 +964,7 @@ namespace Quester.Tasks
                         {
                             Thread.Sleep(250 + Usefuls.Latency);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
+                            Thread.Sleep(250 + Usefuls.Latency);
                         }
                         if (Others.IsFrameVisible("StaticPopup1Button1"))
                             Lua.RunMacroText("/click StaticPopup1Button1");
