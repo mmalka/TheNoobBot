@@ -7,7 +7,6 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
-using Math = System.Math;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.ObjectManager
@@ -1382,9 +1381,23 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public UnitClassification UnitClassification
+        {
+            get
+            {
+                return
+                    (UnitClassification) Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow) + (uint) Addresses.UnitField.CachedUnitClassification);
+            }
+        }
+
         public bool IsElite
         {
-            get { return UnitFlags.HasFlag(UnitFlags.PlusMob); }
+            get { return UnitClassification == UnitClassification.Elite || UnitClassification == UnitClassification.RareElite || UnitClassification == UnitClassification.WorldBoss; }
+        }
+
+        public bool IsRare
+        {
+            get { return UnitClassification == UnitClassification.Rare || UnitClassification == UnitClassification.RareElite; }
         }
 
         public bool IsLootable
@@ -2534,30 +2547,25 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                if (IsBoss)
+                if (UnitClassification == UnitClassification.WorldBoss)
                     return false;
                 uint unitLevel = Level;
                 uint playerLevel = ObjectManager.Me.Level;
 
                 var levelAboveUnit = (int) (playerLevel - unitLevel);
 
-                if (levelAboveUnit <= -3)
+                if (levelAboveUnit <= 0)
                     return false;
-
-                if (levelAboveUnit < 0)
-                {
-                    if (ObjectManager.Me.MaxHealth/2 >= MaxHealth)
-                        return true;
+                if (levelAboveUnit <= 2 && UnitClassification == UnitClassification.Elite)
                     return false;
-                }
-
+                if (levelAboveUnit > 3 && UnitClassification == UnitClassification.Trivial)
+                    return true;
                 if (levelAboveUnit < 5)
                 {
                     if (ObjectManager.Me.MaxHealth*1.5 >= MaxHealth)
                         return true;
                     return false;
                 }
-
                 if (levelAboveUnit < 10)
                 {
                     if (ObjectManager.Me.MaxHealth*4 >= MaxHealth)

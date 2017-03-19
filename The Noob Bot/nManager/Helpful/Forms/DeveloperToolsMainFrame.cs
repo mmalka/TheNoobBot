@@ -383,6 +383,7 @@ namespace nManager.Helpful.Forms
                         "ContinentId: " + Usefuls.ContinentNameByContinentId(Usefuls.ContinentId) + " (" + Usefuls.ContinentId + ")" + Environment.NewLine +
                         "IsDead : " + ObjectManager.Target.IsDead + Environment.NewLine +
                         "IsTrivial : " + ObjectManager.Target.IsTrivial + Environment.NewLine +
+                        "UnitClassification : " + ObjectManager.Target.UnitClassification + Environment.NewLine +
                         "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
                         "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
                         "UnitFlag3: " + ObjectManager.Target.GetDescriptor<UnitFlags3>(Descriptors.UnitFields.Flags3) + Environment.NewLine +

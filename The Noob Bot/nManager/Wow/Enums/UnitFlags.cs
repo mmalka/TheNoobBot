@@ -146,32 +146,46 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
-    public enum BagType
+    public enum UnitClassification
     {
-        None = 0x1000000,
-        Unspecified = 0x0,
-        Quiver = 0x1,
-        AmmoPouch = 0x2,
-        SoulBag = 0x4,
-        LeatherworkingBag = 0x8,
-        InscriptionBag = 0x10,
-        HerbBag = 0x20,
-        EnchantingBag = 0x40,
-        EngineeringBag = 0x80,
-        Keyring = 0x100,
-        GemBag = 0x200,
-        MiningBag = 0x400,
-        Unknown = 0x800,
-        VanityPets = 0x1000,
-        LureBag = 0x8000,
+        Normal,
+        Elite,
+        RareElite,
+        WorldBoss,
+        Rare,
+        Trivial,
+        Minus,
     }
+}
 
-    [Flags]
-    public enum TypeFlag
-    {
-        None = 0,
-        HERB_LOOT = 0x100,
-        MINING_LOOT = 0x200,
-        ENGENEERING_LOOT = 0x8000,
-    }
+[Flags]
+public enum BagType
+{
+    None = 0x1000000,
+    Unspecified = 0x0,
+    Quiver = 0x1,
+    AmmoPouch = 0x2,
+    SoulBag = 0x4,
+    LeatherworkingBag = 0x8,
+    InscriptionBag = 0x10,
+    HerbBag = 0x20,
+    EnchantingBag = 0x40,
+    EngineeringBag = 0x80,
+    Keyring = 0x100,
+    GemBag = 0x200,
+    MiningBag = 0x400,
+    Unknown = 0x800,
+    VanityPets = 0x1000,
+    LureBag = 0x8000,
+}
+
+[Flags]
+public enum TypeFlag
+{
+    None = 0,
+    HERB_LOOT = 0x100,
+    MINING_LOOT = 0x200,
+    ENGENEERING_LOOT = 0x8000,
+}
+
 }
