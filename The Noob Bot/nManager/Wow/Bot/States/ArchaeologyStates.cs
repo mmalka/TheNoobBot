@@ -622,7 +622,7 @@ namespace nManager.Wow.Bot.States
                             {
                                 return;
                             }
-                            MountTask.Mount();
+                            MountTask.Mount(true, true);
                             LongMove.LongMoveByNewThread(p);
                             Timer timer = new Timer(2000*points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position)/3);
 

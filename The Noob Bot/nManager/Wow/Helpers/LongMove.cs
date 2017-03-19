@@ -69,7 +69,7 @@ namespace nManager.Wow.Helpers
                 _usedLoop = true;
 
                 //MovementManager.StopMove();
-                MountTask.Mount(false);
+                MountTask.Mount(false, true);
 
                 Point pTemps = ObjectManager.ObjectManager.Me.Position;
 
