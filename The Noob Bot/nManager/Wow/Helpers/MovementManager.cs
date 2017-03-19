@@ -64,7 +64,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return _movement;
+                    return _movement && ObjectManager.ObjectManager.Me.GetMove;
                 }
                 catch (Exception exception)
                 {
