@@ -190,7 +190,7 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 return ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) && !CustomProfile.GetSetIgnoreFight &&
-                       !Quest.GetSetIgnoreFight;
+                       !Quest.GetSetIgnoreFight && !Quest.GetSetIgnoreAllFight;
             }
         }
 

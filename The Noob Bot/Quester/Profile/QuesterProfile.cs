@@ -269,6 +269,7 @@ namespace Quester.Profile
 
         // InteractWith/UseSpell/UseSpellAOE
         [DefaultValue(false)] public bool IgnoreFight = false;
+        [DefaultValue(false)] public bool IgnoreAllFight = false;
         [DefaultValue(false)] public bool DismissPet = false;
 
         // InteractWith

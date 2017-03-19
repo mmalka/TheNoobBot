@@ -147,9 +147,6 @@ namespace Quester.Tasks
 
         public static void ResetQuestObjective()
         {
-            MountTask.AllowMounting = true;
-            Quest.GetSetIgnoreFight = false;
-            Quest.GetSetDismissPet = false;
             QuestStatus = "Reset Quest Objective";
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
@@ -178,10 +175,6 @@ namespace Quester.Tasks
 
         public static bool QuestObjectiveIsFinish(ref QuestObjective questObjective)
         {
-            MountTask.AllowMounting = true;
-            Quest.GetSetIgnoreFight = false;
-            Quest.GetSetDismissPet = false;
-
             if (questObjective == null)
                 return true;
             var currentObjectiveQuestId = questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id;
@@ -379,6 +372,8 @@ namespace Quester.Tasks
             MountTask.AllowMounting = !questObjective.DeactivateMount;
             if (questObjective.DismissPet)
                 Quest.GetSetDismissPet = true;
+            if (questObjective.IgnoreAllFight)
+                Quest.GetSetIgnoreAllFight = true;
             QuestStatus = questObjective.Objective.ToString();
             CheckMandatoryFieldsByObjective(questObjective);
             if (questObjective.OnlyInVehicule && !ObjectManager.Me.InTransport)
@@ -1566,10 +1561,20 @@ namespace Quester.Tasks
             {
                 Script.Run(questObjective.Script, CurrentQuest.Id, ref questObjective);
             }
+            if (!questObjective.IsObjectiveCompleted)
+                return;
+            MountTask.AllowMounting = true;
+            Quest.GetSetIgnoreFight = false;
+            Quest.GetSetDismissPet = false;
+            Quest.GetSetIgnoreAllFight = false;
         }
 
         public static void PickUpQuest()
         {
+            Quest.GetSetIgnoreFight = false;
+            Quest.GetSetIgnoreAllFight = false;
+            Quest.GetSetDismissPet = false;
+            MountTask.AllowMounting = true;
             QuestStatus = "Pick-Up Quest";
             Npc npc;
             if (CurrentQuest.WorldQuestLocation != null && CurrentQuest.WorldQuestLocation.IsValid)
@@ -1639,6 +1644,10 @@ namespace Quester.Tasks
                     return;
                 }
             }
+            Quest.GetSetIgnoreFight = false;
+            Quest.GetSetIgnoreAllFight = false;
+            Quest.GetSetDismissPet = false;
+            MountTask.AllowMounting = true;
             QuestStatus = "Turn-In Quest";
             Npc npc = Bot.Bot.FindNearestQuesterById(CurrentQuest.TurnIn);
             if (npc == null)

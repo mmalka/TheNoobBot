@@ -100,7 +100,7 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (CustomProfile.GetSetIgnoreFight || Quest.GetSetIgnoreFight)
+                if (CustomProfile.GetSetIgnoreFight || Quest.GetSetIgnoreFight || Quest.GetSetIgnoreAllFight)
                     return false;
 
                 /* RANDOM SECURITY CHECK */

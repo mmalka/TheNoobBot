@@ -65,6 +65,7 @@ namespace Quester.Bot
             {
                 MountTask.AllowMounting = true;
                 Quest.GetSetIgnoreFight = false;
+                Quest.GetSetIgnoreAllFight = false;
                 Quest.GetSetDismissPet = false;
                 Profile = new QuesterProfile();
                 QuesterProfileLoader f = new QuesterProfileLoader();
@@ -199,8 +200,8 @@ namespace Quester.Bot
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(10, "FSM Quester");
-                EventsListener.HookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_DETAIL, callback => Quest.AutoCompleteQuest());
-                EventsListener.HookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest());
+                EventsListener.HookEvent(WoWEventsType.QUEST_DETAIL, callback => Quest.AutoCompleteQuest());
+                EventsListener.HookEvent(WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest());
 
                 return true;
             }
@@ -229,11 +230,12 @@ namespace Quester.Bot
                 MovementManager.StopMove();
                 MountTask.AllowMounting = true;
                 Quest.GetSetIgnoreFight = false;
+                Quest.GetSetIgnoreAllFight = false;
                 Quest.GetSetDismissPet = false;
                 Profile = null;
-                Tasks.QuestingTask.Cleanup();
-                EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_DETAIL, callback => Quest.AutoCompleteQuest());
-                EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest());
+                QuestingTask.Cleanup();
+                EventsListener.UnHookEvent(WoWEventsType.QUEST_DETAIL, callback => Quest.AutoCompleteQuest());
+                EventsListener.UnHookEvent(WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest());
             }
             catch (Exception e)
             {
