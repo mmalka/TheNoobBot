@@ -62,6 +62,16 @@ namespace nManager.Wow.Bot.States
         {
             MovementManager.StopMove();
             MovementManager.StopMoveTo();
+            if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
+            {
+                Logging.Write("Resurrection Sickness detected, we will now wait its full duration to avoid dying in chain.");
+                while (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
+                {
+                    Thread.Sleep(1000);
+                    // We don't need to return if we get in combat, we would die quickly anyway, and we will ressurect from our body this time.
+                }
+                return;
+            }
             Logging.Write("The player has died. Starting the resurrection process.");
 
             #region Reincarnation
@@ -316,15 +326,6 @@ namespace nManager.Wow.Bot.States
                         _forceSpiritHealer = false;
                         Logging.Write("The player have been resurrected by the Spirit Healer.");
                         Statistics.Deaths++;
-                        if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
-                        {
-                            Logging.Write("Resurrection Sickness detected, we will now wait its full duration to avoid dying in chain.");
-                            while (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
-                            {
-                                Thread.Sleep(1000);
-                                // We don't need to return if we get in combat, we would die quickly anyway, and we will ressurect from our body this time.
-                            }
-                        }
                     }
                 }
             }
