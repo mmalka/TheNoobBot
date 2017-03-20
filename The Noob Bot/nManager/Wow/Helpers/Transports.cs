@@ -51,5 +51,15 @@ namespace nManager.Wow.Helpers
         {
             return BOutsidePoint.IsValid;
         }
+
+        public bool ShouldSerializeAPoint()
+        {
+            return APoint.IsValid;
+        }
+
+        public bool ShouldSerializeBPoint()
+        {
+            return BPoint.IsValid;
+        }
     }
 }
