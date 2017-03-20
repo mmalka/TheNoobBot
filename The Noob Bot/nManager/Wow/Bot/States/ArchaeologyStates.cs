@@ -296,7 +296,7 @@ namespace nManager.Wow.Bot.States
                             if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                             {
                                 MovementManager.StopMove();
-                                Logging.Write("Calling travel system to go to digsite...");
+                                Logging.Write("Calling travel system to go to digsite " + digsitesZone.name + " (" + digsitesZone.id + ")...");
                                 Products.Products.TravelToContinentId = Usefuls.ContinentId;
                                 Products.Products.TravelTo = qPOI.Center;
                                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;

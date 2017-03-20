@@ -400,7 +400,7 @@ namespace nManager.Wow.Helpers
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
-                Logging.Write("Calling travel system for Quest PickUp...");
+                Logging.Write("Calling travel system for PickUpQuest " + questName + "(" + questId + ") from " + npc.Name + " (" + npc.Entry + ")...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;
@@ -444,7 +444,7 @@ namespace nManager.Wow.Helpers
                     // This code is there for Mimesis and I'm not currently working on Quester, so I'm not going to "return;" there as quester will be even more lost.
                 }
                 InteractTarget(ref npc, baseAddress);
-                Logging.Write("PickUp Quest " + questName + " id: " + questId);
+                Logging.Write("PickUpQuest " + questName + " (" + questId + ") from " + npc.Name + " (" + npc.Entry + ")");
                 int id = GetQuestID();
                 if (GetNumGossipAvailableQuests() == 0 && id == questId)
                 {
@@ -541,7 +541,7 @@ namespace nManager.Wow.Helpers
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
-                Logging.Write("Calling travel system for Quest TurnIn...");
+                Logging.Write("Calling travel system for TurnInQuest " + questName + "(" + questId + ") from " + npc.Name + " (" + npc.Entry + ")...");
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;
@@ -580,7 +580,7 @@ namespace nManager.Wow.Helpers
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
                 InteractTarget(ref npc, baseAddress);
-                Logging.Write("turnIn Quest " + questName + " id: " + questId);
+                Logging.Write("QuestTurnIn " + questName + " (" + questId + ") to " + npc.Name + " (" + npc.Entry + ")");
                 int id = GetQuestID();
                 if (GetNumGossipActiveQuests() == 0 && id == questId)
                 {

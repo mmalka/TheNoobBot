@@ -427,7 +427,21 @@ namespace nManager.Wow.Bot.States
                     if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                     {
                         MovementManager.StopMove();
-                        Logging.Write("Calling travel system for ToTown...");
+                        switch (npc.Type)
+                        {
+                            case Npc.NpcType.Repair:
+                                Logging.Write("Calling travel system to NpcRepair " + npc.Name + " (" + npc.Entry + ")...");
+                                break;
+                            case Npc.NpcType.Vendor:
+                                Logging.Write("Calling travel system to NpcVendor " + npc.Name + " (" + npc.Entry + ")...");
+                                break;
+                            case Npc.NpcType.Mailbox:
+                                Logging.Write("Calling travel system to Mailbox " + npc.Name + " (" + npc.Entry + ")...");
+                                break;
+                            default:
+                                Logging.Write("Calling travel system for ToTown to " + npc.Name + " (" + npc.Entry + ")...");
+                                break;
+                        }
                         Products.Products.TravelToContinentId = target.ContinentIdInt;
                         Products.Products.TravelTo = target.Position;
                         Products.Products.TravelFromContinentId = Usefuls.ContinentId;

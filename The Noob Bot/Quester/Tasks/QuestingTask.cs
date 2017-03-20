@@ -1613,7 +1613,7 @@ namespace Quester.Tasks
                 if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                 {
                     MovementManager.StopMove();
-                    Logging.Write("Calling travel system for World Quest...");
+                    Logging.Write("Calling travel system for World Quest " + npc.Name + " (" + npc.Entry + ")...");
                     Products.TravelToContinentId = Usefuls.ContinentId; // todo find a way to define continent via profile for WQ
                     Products.TravelTo = npc.Position;
                     Products.TravelFromContinentId = Usefuls.ContinentId;
