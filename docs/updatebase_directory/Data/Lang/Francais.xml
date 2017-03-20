@@ -1408,7 +1408,7 @@
     </Translation>
     <Translation>
       <Id>TipOffRadiusHigh</Id>
-      <Text>Nous recommandons fortement de définir la valeur du rayon de recherche au maximum à 100 mètres dans Configurations générales =&gt; Gestion des loots et farms =&gt; Zone de recherche =&gt; +100 (plus que 100 mètres)</Text>
+      <Text>Nous recommandons fortement de définir la valeur du rayon de recherche au maximum à 70 mètres dans Configurations générales =&gt; Gestion des loots et farms =&gt; Zone de recherche =&gt; +100 (plus que 70 mètres)</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOn</Id>

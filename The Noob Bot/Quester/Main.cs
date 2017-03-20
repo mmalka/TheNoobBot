@@ -119,24 +119,12 @@ public class Main : IProduct
                 _selling = "\n" + Translate.Get(Translate.Id.TipOffSellingOnQuester);
                 _sellingQuality = "\n" + Translate.Get(Translate.Id.TipOffSellingQualityQuester);
             }
-            if (nManagerSetting.CurrentSetting.GatheringSearchRadius < 100)
+            if (nManagerSetting.CurrentSetting.GatheringSearchRadius < 70)
                 _radius = "\n" + Translate.Get(Translate.Id.TipOffRadiusHigh);
-            if (ObjectManager.Me.Level >= 20 && ObjectManager.Me.Level < 60)
-            {
-                if (!nManagerSetting.CurrentSetting.UseGroundMount)
-                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
-                else if (nManagerSetting.CurrentSetting.UseGroundMount &&
-                         string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
-                    _useground = "\n" + Translate.Get(Translate.Id.TipOffEmptyGroundMount);
-            }
-            else if (ObjectManager.Me.Level >= 60)
-            {
-                if (nManagerSetting.CurrentSetting.UseGroundMount)
-                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOff);
-                if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName))
-                    _usefly = "\n" + Translate.Get(Translate.Id.TipOffEmptyFlyingMount);
-            }
-
+            if (!nManagerSetting.CurrentSetting.UseGroundMount)
+                _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
+            else if (nManagerSetting.CurrentSetting.UseGroundMount && string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
+                _useground = "\n" + Translate.Get(Translate.Id.TipOffEmptyGroundMount);
             if (_looting != null || _radius != null || _selling != null || _usefly != null || _useground != null)
             {
                 MessageBox.Show(
