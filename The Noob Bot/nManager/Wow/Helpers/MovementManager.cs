@@ -503,12 +503,13 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (_movement && _points.Count > 0)
+                if (_movement && _points.Count > 0 && _points.Count > firstIdPoint)
                 {
-                    MountTask.Mount(false);
+                    int idPoint = firstIdPoint;
+                    if (_points[idPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                        MountTask.Mount(false);
                     if (!_movement)
                         return;
-                    int idPoint = firstIdPoint;
                     if (_points[idPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 30)
                     {
                         bool result;
