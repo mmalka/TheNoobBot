@@ -1013,10 +1013,7 @@ namespace nManager.Wow.Helpers
             {
                 _loop = false;
                 _movement = false;
-                lock (typeof (MovementManager))
-                {
-                    StopMoveTo();
-                }
+                StopMoveTo();
             }
             catch (Exception exception)
             {
@@ -1353,33 +1350,38 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static object _LockStopMoveTo = new object();
+
         /// <summary>
         ///     Stop Player.
         /// </summary>
         public static void StopMoveTo(bool stabilizeZAxis = true, bool stabilizeSides = false)
         {
-            try
+            lock (_LockStopMoveTo)
             {
-                _loopMoveTo = false;
-                if (ObjectManager.ObjectManager.Me.GetMove)
+                try
                 {
-                    if (stabilizeZAxis)
+                    _loopMoveTo = false;
+                    if (ObjectManager.ObjectManager.Me.GetMove)
                     {
-                        MovementsAction.Ascend(false);
-                        MovementsAction.Descend(false);
-                    }
-                    MovementsAction.MoveForward(true, true);
-                    MovementsAction.MoveBackward(true, true);
-                    if (stabilizeSides)
-                    {
-                        MovementsAction.StrafeLeft(true, true);
-                        MovementsAction.StrafeRight(true, true);
+                        if (stabilizeZAxis)
+                        {
+                            MovementsAction.Ascend(false);
+                            MovementsAction.Descend(false);
+                        }
+                        MovementsAction.MoveForward(true, true);
+                        MovementsAction.MoveBackward(true, true);
+                        if (stabilizeSides)
+                        {
+                            MovementsAction.StrafeLeft(true, true);
+                            MovementsAction.StrafeRight(true, true);
+                        }
                     }
                 }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("MovementManager > StopMoveTo(): " + exception);
+                catch (Exception exception)
+                {
+                    Logging.WriteError("MovementManager > StopMoveTo(): " + exception);
+                }
             }
         }
 
