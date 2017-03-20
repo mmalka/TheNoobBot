@@ -45,10 +45,10 @@ namespace nManager.Wow.ObjectManager
             {
                 string specInfo = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(
-                    "if GetSpecialization() ~= nil and GetSpecializationInfo(GetSpecialization()) ~= nil then id,name,description,icon,background,role = GetSpecializationInfo(GetSpecialization()) " +
-                    specInfo + " = id .. \"^\" .. name .. \"^\" .. role else " + specInfo + " = 0 end");
+                    "if GetSpecialization() ~= nil and GetSpecializationInfo(GetSpecialization()) ~= nil then id,name,description,icon,role,primary = GetSpecializationInfo(GetSpecialization()) " +
+                    specInfo + " = id .. \"^\" .. name .. \"^\" .. role .. \"^\" .. primary else " + specInfo + " = 0 end");
                 string[] specInfos = Lua.GetLocalizedText(specInfo).Split('^');
-                if (specInfos.Count() != 3)
+                if (specInfos.Count() != 4)
                 {
                     if (doOutput)
                         Logging.WriteDebug("WoW Specialization not found");
