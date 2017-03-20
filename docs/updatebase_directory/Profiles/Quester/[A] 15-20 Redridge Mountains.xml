@@ -1,36 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Neo2003" DevelopmentStatus="Outdated">
+  <Questers />
   <Quests>
-    <Quest>
-      <Name>Hero's Call: Redridge Mountains!</Name>
-      <RaceMask>2098253</RaceMask>
-      <Id>26365</Id>
-      <QuestLevel>10</QuestLevel>
-      <MinLevel>10</MinLevel>
-      <MaxLevel>25</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>26296</int>
-      </NeedQuestCompletedId>
-      <PickUp>821</PickUp>
-      <TurnIn>464</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>170000</WaitMs>
-          <TaxiEntry>523</TaxiEntry>
-          <FlightDestinationX>0.47141459584236</FlightDestinationX>
-          <FlightDestinationY>0.24494062364101</FlightDestinationY>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>464</NpcEntry>
-          <QuestName>Hero's Call: Redridge Mountains!</QuestName>
-          <QuestId>26365</QuestId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
     <Quest>
       <Name>Wanted: Redridge Gnolls</Name>
       <RaceMask>2098253</RaceMask>
@@ -38,9 +9,6 @@
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>26365</int>
-      </NeedQuestCompletedId>
       <PickUp>204344</PickUp>
       <TurnIn>464</TurnIn>
       <Objectives>

@@ -1,20 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Neo2003" DevelopmentStatus="Outdated">
+  <Questers />
   <Quests>
-    <Quest>
-      <Name>Hero's Call: Duskwood!</Name>
-      <RaceMask>2098253</RaceMask>
-      <Id>26728</Id>
-      <QuestLevel>20</QuestLevel>
-      <MinLevel>20</MinLevel>
-      <MaxLevel>30</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>26570</int>
-      </NeedQuestCompletedId>
-      <PickUp>900</PickUp>
-      <TurnIn>264</TurnIn>
-      <Objectives />
-    </Quest>
     <Quest>
       <Name>Wolves at Our Heels</Name>
       <RaceMask>2098253</RaceMask>
@@ -22,9 +9,6 @@
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>26728</int>
-      </NeedQuestCompletedId>
       <PickUp>264</PickUp>
       <TurnIn>264</TurnIn>
       <Objectives>

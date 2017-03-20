@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
+  <Questers />
   <Quests>
     <Quest>
       <Name>The Corruption of the Jadefire</Name>
@@ -1545,8 +1546,9 @@
           <Entry>
             <int>43073</int>
           </Entry>
+          <ScriptConditionIsComplete>return ObjectManager.ObjectManager.GetWoWUnitByEntry(48127).Count &gt; 0 &amp;&amp; ObjectManager.ObjectManager.GetWoWUnitByEntry(48127)[0].GetDistance &lt;= 25);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>120000</WaitMs>
+          <WaitMs>20000</WaitMs>
           <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>

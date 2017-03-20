@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
+<QuesterProfile Author="Arasal" DevelopmentStatus="ReleaseCandidate">
   <Questers>
     <Npc>
       <Entry>7783</Entry>
@@ -362,6 +362,7 @@
             <Y>-2633.443</Y>
             <Z>3.905512</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -374,6 +375,7 @@
             <Y>-2717</Y>
             <Z>13.23</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -408,6 +410,7 @@
             <Y>-2633.561</Y>
             <Z>3.985438</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -506,6 +509,7 @@
             <Y>-2717.699</Y>
             <Z>13.59753</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -618,7 +622,7 @@
             <Y>-2718.135</Y>
             <Z>13.56009</Z>
           </Position>
-          <WaitMs>500</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -633,22 +637,24 @@
         <int>25687</int>
       </NeedQuestCompletedId>
       <PickUp>7506</PickUp>
-      <TurnIn>7506</TurnIn>
+      <TurnIn>7783</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>203181</int>
           </Entry>
           <Position>
-            <X>-11456.62</X>
-            <Y>-2633.077</Y>
-            <Z>3.871852</Z>
+            <X>-11454.42</X>
+            <Y>-2634.742</Y>
+            <Z>4.303937</Z>
           </Position>
-          <WaitMs>500</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>203196</int>
           </Entry>
@@ -657,7 +663,7 @@
             <Y>-2548.228</Y>
             <Z>99.46088</Z>
           </Position>
-          <WaitMs>500</WaitMs>
+          <WaitMs>5000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -678,10 +684,12 @@
               <Z>97.09299</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25688);</ScriptConditionIsComplete>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>203180</int>
           </Entry>
@@ -691,7 +699,7 @@
             <Y>-2717</Y>
             <Z>13.23</Z>
           </Position>
-          <WaitMs>500</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -727,6 +735,7 @@
             <Y>-2633.238</Y>
             <Z>3.72225</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -913,6 +922,7 @@
             <Y>-2717</Y>
             <Z>13.23</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -952,6 +962,7 @@
             <Y>-2633.664</Y>
             <Z>3.945443</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -1306,7 +1317,7 @@
             <Y>-2717</Y>
             <Z>13.23</Z>
           </Position>
-          <WaitMs>500</WaitMs>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>

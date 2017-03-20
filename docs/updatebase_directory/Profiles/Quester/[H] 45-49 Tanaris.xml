@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
+<QuesterProfile Author="Arasal" DevelopmentStatus="ReleaseCandidate">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Puddle Stomping</Name>
@@ -466,13 +467,14 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TravelTo</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25522) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(25522);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-6944.405</X>
             <Y>-3386.126</Y>
             <Z>13.62207</Z>
           </Position>
-          <ContinentId>1</ContinentId>
+          <ContinentId>0</ContinentId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1173,10 +1175,10 @@
         <QuestObjective>
           <Objective>PressKey</Objective>
           <Count>1</Count>
+          <ScriptConditionIsComplete>return !ObjectManager.Target.IsValid || ObjectManager.Target.GetDistance &gt; 6f || ObjectManager.Target.Entry != 11811;</ScriptConditionIsComplete>
           <WaitMs>3000</WaitMs>
           <OnlyInVehicule>true</OnlyInVehicule>
           <Keys>MOVEBACKWARD</Keys>
-          <ScriptConditionIsComplete>return !ObjectManager.Target.IsValid || ObjectManager.Target.GetDistance &gt; 6f || ObjectManager.Target.Entry != 11811;</ScriptConditionIsComplete>
         </QuestObjective>
         <QuestObjective>
           <Objective>PressKey</Objective>
@@ -1187,8 +1189,8 @@
             <Z>-34.11099</Z>
           </Position>
           <WaitMs>1000</WaitMs>
-          <IgnoreAllFight>true</IgnoreAllFight>
           <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
           <OnlyInVehicule>true</OnlyInVehicule>
           <Keys>ACTIONBUTTON2</Keys>
         </QuestObjective>
@@ -1242,6 +1244,7 @@
             <int>5473</int>
             <int>5472</int>
           </Entry>
+          <DeactivateMount>true</DeactivateMount>
           <Hotspots>
             <Point>
               <X>-8334.908</X>
