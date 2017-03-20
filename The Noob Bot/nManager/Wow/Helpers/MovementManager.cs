@@ -1350,14 +1350,14 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static object _LockStopMoveTo = new object();
+        private static readonly object LockStopMoveTo = new object();
 
         /// <summary>
         ///     Stop Player.
         /// </summary>
         public static void StopMoveTo(bool stabilizeZAxis = true, bool stabilizeSides = false)
         {
-            lock (_LockStopMoveTo)
+            lock (LockStopMoveTo)
             {
                 try
                 {

@@ -184,49 +184,149 @@ namespace nManager.Wow.Bot.States
         private Transport GetDepartureLift(Transport transport)
         {
             bool success;
-            if (transport.ArrivalIsA)
+            if (!(transport is Portal) && !(transport is CustomPath) && !(transport is Taxi))
             {
-                if (!transport.UseBLift)
+                if (transport.ArrivalIsA)
+                {
+                    if (!transport.UseBLift)
+                        return new Transport();
+                    var bLift = GetTransportByTransportId(transport.BLift);
+                    PathFinder.FindPath(TravelFrom, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+                    if (success)
+                        bLift.ArrivalIsA = true;
+                    // calculate the "IsArrivalIsA" then return the bLift;
+                    return bLift;
+                }
+                if (!transport.UseALift)
                     return new Transport();
-                var bLift = GetTransportByTransportId(transport.BLift);
-                PathFinder.FindPath(TravelFrom, bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+                var aLift = GetTransportByTransportId(transport.ALift);
+                PathFinder.FindPath(TravelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
                 if (success)
-                    bLift.ArrivalIsA = true;
-                // calculate the "IsArrivalIsA" then return the bLift;
-                return bLift;
+                    aLift.ArrivalIsA = true;
+                // calculate the "IsArrivalIsA" then return the aLift;
+                return aLift;
             }
-            if (!transport.UseALift)
-                return new Transport();
-            var aLift = GetTransportByTransportId(transport.ALift);
-            PathFinder.FindPath(TravelFrom, aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
-            if (success)
-                aLift.ArrivalIsA = true;
-            // calculate the "IsArrivalIsA" then return the aLift;
-            return aLift;
+            if (transport is Portal)
+            {
+                var portal = transport as Portal;
+                if (portal.ArrivalIsA)
+                {
+                    if (!portal.UseBLift)
+                        return new Transport();
+                    var bLift = GetTransportByTransportId(portal.BLift);
+                    PathFinder.FindPath(TravelFrom, bLift.BPoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+                    if (success)
+                        bLift.ArrivalIsA = true;
+                    // calculate the "IsArrivalIsA" then return the bLift;
+                    return bLift;
+                }
+                if (!portal.UseALift)
+                    return new Transport();
+                var aLift = GetTransportByTransportId(portal.ALift);
+                PathFinder.FindPath(TravelFrom, aLift.BPoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+                if (success)
+                    aLift.ArrivalIsA = true;
+                // calculate the "IsArrivalIsA" then return the aLift;
+                return aLift;
+            }
+            if (transport is CustomPath)
+            {
+                var customPath = transport as CustomPath;
+                if (customPath.ArrivalIsA)
+                {
+                    if (!customPath.UseBLift)
+                        return new Transport();
+                    var bLift = GetTransportByTransportId(customPath.BLift);
+                    PathFinder.FindPath(TravelFrom, bLift.BPoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+                    if (success)
+                        bLift.ArrivalIsA = true;
+                    // calculate the "IsArrivalIsA" then return the bLift;
+                    return bLift;
+                }
+                if (!customPath.UseALift)
+                    return new Transport();
+                var aLift = GetTransportByTransportId(customPath.ALift);
+                PathFinder.FindPath(TravelFrom, aLift.BPoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+                if (success)
+                    aLift.ArrivalIsA = true;
+                // calculate the "IsArrivalIsA" then return the aLift;
+                return aLift;
+            }
+            return new Transport();
         }
 
         private Transport GetArrivalLift(Transport transport)
         {
             bool success;
-            if (!transport.ArrivalIsA)
+            if (!(transport is Portal) && !(transport is CustomPath) && !(transport is Taxi))
             {
-                if (!transport.UseBLift)
+                if (!transport.ArrivalIsA)
+                {
+                    if (!transport.UseBLift)
+                        return new Transport();
+                    var bLift = GetTransportByTransportId(transport.BLift);
+                    PathFinder.FindPath(TravelTo, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+                    if (success)
+                        bLift.ArrivalIsA = true;
+                    // calculate the "IsArrivalIsA" then return the bLift;
+                    return bLift;
+                }
+                if (!transport.UseALift)
                     return new Transport();
-                var bLift = GetTransportByTransportId(transport.BLift);
-                PathFinder.FindPath(TravelTo, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+                var aLift = GetTransportByTransportId(transport.ALift);
+                PathFinder.FindPath(TravelTo, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
                 if (success)
-                    bLift.ArrivalIsA = true;
-                // calculate the "IsArrivalIsA" then return the bLift;
-                return bLift;
+                    aLift.ArrivalIsA = true;
+                // calculate the "IsArrivalIsA" then return the aLift;
+                return aLift;
             }
-            if (!transport.UseALift)
-                return new Transport();
-            var aLift = GetTransportByTransportId(transport.ALift);
-            PathFinder.FindPath(TravelTo, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
-            if (success)
-                aLift.ArrivalIsA = true;
-            // calculate the "IsArrivalIsA" then return the aLift;
-            return aLift;
+            if (transport is Portal)
+            {
+                var portal = transport as Portal;
+                if (!portal.ArrivalIsA)
+                {
+                    if (!portal.UseBLift)
+                        return new Transport();
+                    var bLift = GetTransportByTransportId(portal.BLift);
+                    PathFinder.FindPath(TravelTo, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+                    if (success)
+                        bLift.ArrivalIsA = true;
+                    // calculate the "IsArrivalIsA" then return the bLift;
+                    return bLift;
+                }
+                if (!portal.UseALift)
+                    return new Transport();
+                var aLift = GetTransportByTransportId(portal.ALift);
+                PathFinder.FindPath(TravelTo, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+                if (success)
+                    aLift.ArrivalIsA = true;
+                // calculate the "IsArrivalIsA" then return the aLift;
+                return aLift;
+            }
+            if (transport is CustomPath)
+            {
+                var customPath = transport as CustomPath;
+                if (!customPath.ArrivalIsA)
+                {
+                    if (!customPath.UseBLift)
+                        return new Transport();
+                    var bLift = GetTransportByTransportId(customPath.BLift);
+                    PathFinder.FindPath(TravelTo, bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+                    if (success)
+                        bLift.ArrivalIsA = true;
+                    // calculate the "IsArrivalIsA" then return the bLift;
+                    return bLift;
+                }
+                if (!customPath.UseALift)
+                    return new Transport();
+                var aLift = GetTransportByTransportId(customPath.ALift);
+                PathFinder.FindPath(TravelTo, aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+                if (success)
+                    aLift.ArrivalIsA = true;
+                // calculate the "IsArrivalIsA" then return the aLift;
+                return aLift;
+            }
+            return new Transport();
         }
 
         private List<Transport> GenerateRoutePath
