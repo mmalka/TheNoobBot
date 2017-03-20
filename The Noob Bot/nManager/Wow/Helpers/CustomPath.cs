@@ -19,5 +19,6 @@ namespace nManager.Wow.Helpers
         [DefaultValue(0)] [XmlAttribute(AttributeName = "RequireQuestId")] public int RequireQuestId;
         public List<Point> Points; // The path should work both ways.
         [DefaultValue(true)] public bool RoundTrip = true;
+        [DefaultValue(false)] public bool AllowFar = false;
     }
 }

@@ -1464,9 +1464,9 @@ namespace nManager.Wow.Bot.States
                     continue;
                 if (customPath.BContinentId == travelToContinentId && customPath.AContinentId != travelFromContinentId)
                     continue;
-                if (customPath.AContinentId == travelToContinentId && travelTo.DistanceTo(customPath.APoint) > 2000)
+                if (customPath.AContinentId == travelToContinentId && !customPath.AllowFar && travelTo.DistanceTo(customPath.APoint) > 2000)
                     continue;
-                if (customPath.BContinentId == travelToContinentId && travelTo.DistanceTo(customPath.BPoint) > 2000)
+                if (customPath.BContinentId == travelToContinentId && !customPath.AllowFar && travelTo.DistanceTo(customPath.BPoint) > 2000)
                     continue; // Don't allow CustomPath too far away.
                 var distanceToTravel = travelTo.DistanceTo(travelFrom);
 
