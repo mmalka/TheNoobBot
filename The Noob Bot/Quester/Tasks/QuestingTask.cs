@@ -65,10 +65,11 @@ namespace Quester.Tasks
                         Logging.Write("Action system loaded with fakeQuest: \"" + quest.Name + "\".");
                         return;
                     }
-                    if (Quest.GetLogQuestId().Contains(quest.Id) && quest.MinLevel <= ObjectManager.Me.Level)
+                    if (Quest.GetLogQuestId().Contains(quest.Id) && quest.MinLevel <= ObjectManager.Me.Level && Quest.GetQuestCompleted(quest.NeedQuestCompletedId))
                     {
+                        // perhaps code a recursive check for the whole quest line to prevent player's mistakes ????
                         CurrentQuest = quest;
-                        Logging.Write("resuming \"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
+                        Logging.Write("Resuming " + quest.Name + " (" + quest.Id + "): Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
                         return;
                     }
                 }
