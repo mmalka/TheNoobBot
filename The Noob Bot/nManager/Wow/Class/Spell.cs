@@ -179,7 +179,7 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return KnownSpell && (!SpellHasCharges || GetSpellCharges > 0) && SpellManager.IsSpellUsableLUA(this);
+                    return KnownSpell && IsSpellUsableIgnoreUnknown;
                 }
                 catch (Exception exception)
                 {
@@ -189,6 +189,21 @@ namespace nManager.Wow.Class
             }
         }
 
+        public bool IsSpellUsableIgnoreUnknown
+        {
+            get
+            {
+                try
+                {
+                    return (!SpellHasCharges || GetSpellCharges > 0) && SpellManager.IsSpellUsableLUA(this);
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("Spell > IsSpellUsableIgnoreUnknown: " + exception);
+                }
+                return false;
+            }
+        }
         /// <summary>
         /// Return the available SpellCharges using LUA.
         /// </summary>
