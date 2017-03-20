@@ -349,6 +349,8 @@ namespace nManager.Wow.ObjectManager
             {
                 lock (Locker)
                 {
+                    if (_unitList == null)
+                        return new List<WoWUnit>();
                     var list = new List<WoWUnit>();
                     for (int i = 0; i < _unitList.Count; i++)
                     {
@@ -372,6 +374,8 @@ namespace nManager.Wow.ObjectManager
                 lock (Locker)
                 {
                     // We are not always in range of a boss/add, that doesn't mean we need to forget about them.
+                    if (_unitList60Yards == null)
+                        return new List<WoWUnit>();
                     var list = new List<WoWUnit>();
                     for (int i = 0; i < _unitList60Yards.Count; i++)
                     {
