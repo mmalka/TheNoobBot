@@ -8,7 +8,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.VisualBasic;
 using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -87,7 +86,8 @@ namespace Quester.Profile
         {
             if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
             {
-                string fileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\", Translate.Get(Translate.Id.SimpleQuestProfileFile) + " (*.xml)|*.xml");
+                string fileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\",
+                    Translate.Get(Translate.Id.SimpleQuestProfileFile) + " (*.xml)|*.xml");
                 if (fileToSaveAs != "")
                     XmlSerializer.Serialize(fileToSaveAs, _profile);
                 Close();
@@ -153,15 +153,22 @@ namespace Quester.Profile
                     TBNpcPosition.Text = ObjectManager.Target.Position.ToString();
                     CBNpcFaction.SelectedValue = ObjectManager.Target.Faction;
 
-                    CBNpcType.SelectedValue = (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver)) ? Npc.NpcType.QuestGiver : Npc.NpcType.FlightMaster;
+                    CBNpcType.SelectedValue =
+                    (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags)
+                        .HasFlag(UnitNPCFlags.QuestGiver))
+                        ? Npc.NpcType.QuestGiver
+                        : Npc.NpcType.FlightMaster;
                     TBNpcContinentId.Text = Usefuls.ContinentNameByContinentId(Usefuls.ContinentId);
                 }
             }
             else
             {
-                WoWGameObject wowGO = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
+                WoWGameObject wowGO =
+                    ObjectManager.GetNearestWoWGameObject(
+                        ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
 
-                if (wowGO.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGO.Position) < 5f && QuestersDB.GetNpcByEntry(wowGO.Entry).Entry == 0)
+                if (wowGO.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGO.Position) < 5f &&
+                    QuestersDB.GetNpcByEntry(wowGO.Entry).Entry == 0)
                 {
                     TBNpcName.Text = wowGO.Name;
                     TBNpcId.Text = wowGO.Entry.ToString(CultureInfo.InvariantCulture);
@@ -184,11 +191,14 @@ namespace Quester.Profile
         {
             try
             {
-                if (TreeView.SelectedNode != null && ((string) TreeView.SelectedNode.Tag == "Objective" || (string) TreeView.SelectedNode.Tag == "NewObjective"))
+                if (TreeView.SelectedNode != null &&
+                    ((string) TreeView.SelectedNode.Tag == "Objective" ||
+                     (string) TreeView.SelectedNode.Tag == "NewObjective"))
                 {
                     //Existing Objective Modification(s)
 
-                    QuestObjective objective = _profile.Quests[_lastSelectedObjective.Parent.Index].Objectives[_lastSelectedObjective.Index];
+                    QuestObjective objective =
+                        _profile.Quests[_lastSelectedObjective.Parent.Index].Objectives[_lastSelectedObjective.Index];
 
                     //Handles when a New Objective was added with the right click on the treeview
                     if ((string) TreeView.SelectedNode.Tag == "NewObjective")
@@ -409,7 +419,10 @@ namespace Quester.Profile
                     if (CBInternalObj.Checked)
                     {
                         //if (objective.InternalQuestId == 0) {
-                        objective.InternalQuestId = Others.ToInt32(CBObjInternalQuestIdManual.Checked ? CBObjInternalQuestID.Text : CBObjInternalQuestID.SelectedValue.ToString());
+                        objective.InternalQuestId =
+                            Others.ToInt32(CBObjInternalQuestIdManual.Checked
+                                ? CBObjInternalQuestID.Text
+                                : CBObjInternalQuestID.SelectedValue.ToString());
                         //}
                     }
                     else
@@ -446,7 +459,8 @@ namespace Quester.Profile
                         }
                     }
 
-                    TreeView.SelectedNode.Text = objective.Objective == Objective.TurnInQuest || objective.Objective == Objective.PickUpQuest
+                    TreeView.SelectedNode.Text = objective.Objective == Objective.TurnInQuest ||
+                                                 objective.Objective == Objective.PickUpQuest
                         ? objective.Objective + " " + objective.QuestName
                         : objective.Objective.ToString();
 
@@ -461,6 +475,7 @@ namespace Quester.Profile
                     objective.IgnoreItemNotUsable = CBObjIgnoreItemNotUsable.Checked;
                     objective.DismissPet = CBObjDismissPet.Checked;
                     objective.IsBonusObjective = CBObjIsBonusObjective.Checked;
+                    objective.IgnoreAllFight = CBObjIgnoreAllFight.Checked;
 
                     if (_displayXml)
                     {
@@ -671,7 +686,10 @@ namespace Quester.Profile
 
                     if (CBInternalObj.Checked)
                     {
-                        newObjective.InternalQuestId = Others.ToInt32(CBObjInternalQuestIdManual.Checked ? CBObjInternalQuestID.Text : CBObjInternalQuestID.SelectedValue.ToString());
+                        newObjective.InternalQuestId =
+                            Others.ToInt32(CBObjInternalQuestIdManual.Checked
+                                ? CBObjInternalQuestID.Text
+                                : CBObjInternalQuestID.SelectedValue.ToString());
                     }
 
                     uint internalIndex;
@@ -693,13 +711,15 @@ namespace Quester.Profile
                     newObjective.IgnoreItemNotUsable = CBObjIgnoreItemNotUsable.Checked;
                     newObjective.DismissPet = CBObjDismissPet.Checked;
                     newObjective.IsBonusObjective = CBObjIsBonusObjective.Checked;
+                    newObjective.IgnoreAllFight = CBObjIgnoreAllFight.Checked;
 
                     Quest lastSelQuestx = _profile.Quests[_lastSelectedQuest.Index];
 
                     lastSelQuestx.Objectives.Add(newObjective);
 
                     var objectiveNode =
-                        new TreeNode(newObjective.Objective == Objective.TurnInQuest || newObjective.Objective == Objective.PickUpQuest
+                        new TreeNode(newObjective.Objective == Objective.TurnInQuest ||
+                                     newObjective.Objective == Objective.PickUpQuest
                             ? newObjective.Objective + " " + newObjective.QuestName
                             : newObjective.Objective.ToString()) {Tag = "Objective"};
 
@@ -714,10 +734,11 @@ namespace Quester.Profile
                 if (_profile.Quests.Count > 0)
                     SaveSimpleProfile_Click(null, null);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Probablement plus intéressant d'afficher la vrai erreur dans les logs aussi.
-                MessageBox.Show(@"Make sure the form is filled with numbers." + Constants.vbCrLf + @"Position/HostSpots ex: X;Y;Z");
+                MessageBox.Show(@"Make sure the form is filled with numbers." + Environment.NewLine +
+                                @"Position/HostSpots ex: X;Y;Z");
+                Logging.WriteError("private void ButtonObjectiveSave_Click(object sender, EventArgs e): " + ex);
             }
         }
 
@@ -972,7 +993,8 @@ namespace Quester.Profile
                     string fileName = _fullpath.Split('\\').Last();
                     if (string.IsNullOrEmpty(profile) || !File.Exists(_fullpath))
                     {
-                        string file = Others.DialogBoxOpenFile(Application.StartupPath + @"\Profiles\Quester\", "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        string file = Others.DialogBoxOpenFile(Application.StartupPath + @"\Profiles\Quester\",
+                            "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
                         if (File.Exists(file))
                         {
                             _fullpath = file;
@@ -1014,7 +1036,10 @@ namespace Quester.Profile
                     //QUEST OBJECTIVES
                     foreach (QuestObjective questObjective in quest.Objectives)
                     {
-                        var questObjectiveNode = new TreeNode(questObjective.Objective + " " + questObjective.QuestName) {Tag = "Objective"};
+                        var questObjectiveNode = new TreeNode(questObjective.Objective + " " + questObjective.QuestName)
+                        {
+                            Tag = "Objective"
+                        };
 
                         questNode.Nodes.Add(questObjectiveNode);
                     }
@@ -1221,6 +1246,7 @@ namespace Quester.Profile
             CBObjIgnoreBlackList.Checked = false;
             CBObjIsBonusObjective.Checked = false;
             CBObjIgnoreFight.Checked = false;
+            CBObjIgnoreAllFight.Checked = false;
             CBObjIgnoreNotSelectable.Checked = false;
             CBObjForceTravelToQuestZone.Checked = false;
             TBObjMessage.Enabled = false;
@@ -1607,6 +1633,7 @@ namespace Quester.Profile
             CBObjAllowPlayerControlled.Checked = qObjective.AllowPlayerControlled;
             CBObjIgnoreBlackList.Checked = qObjective.IgnoreBlackList;
             CBObjIgnoreFight.Checked = qObjective.IgnoreFight;
+            CBObjIgnoreAllFight.Checked = qObjective.IgnoreAllFight;
             CBObjIgnoreNotSelectable.Checked = qObjective.IgnoreNotSelectable;
             CBObjForceTravelToQuestZone.Checked = qObjective.ForceTravelToQuestZone;
             CBObjDeactivateMount.Checked = qObjective.DeactivateMount;
@@ -1868,7 +1895,7 @@ namespace Quester.Profile
 
             var factL = new List<ComboBoxValue>();
 
-            foreach (object st in Enum.GetValues(typeof (Npc.FactionType)))
+            foreach (object st in Enum.GetValues(typeof(Npc.FactionType)))
             {
                 factL.Add(new ComboBoxValue
                 {
@@ -1881,9 +1908,9 @@ namespace Quester.Profile
             CBNpcFaction.ValueMember = "Value";
             CBNpcFaction.DisplayMember = "Name";
 
-            foreach (String st in Enum.GetNames(typeof (WoWClassMask)))
+            foreach (String st in Enum.GetNames(typeof(WoWClassMask)))
             {
-                int classValue = Convert.ToInt32(string.Format("{0:D}", Enum.Parse(typeof (WoWClassMask), st)));
+                int classValue = Convert.ToInt32(string.Format("{0:D}", Enum.Parse(typeof(WoWClassMask), st)));
 
                 CLBQuestClassMask.Items.Add(new ComboBoxValue
                 {
@@ -1894,7 +1921,7 @@ namespace Quester.Profile
 
             CLBQuestClassMask.DisplayMember = "Name";
             CLBQuestClassMask.ValueMember = "Value";
-            foreach (String st in Enum.GetNames(typeof (WoWRace)))
+            foreach (String st in Enum.GetNames(typeof(WoWRace)))
             {
                 switch (st)
                 {
@@ -1913,7 +1940,7 @@ namespace Quester.Profile
                     case "PandarenNeutral":
                     case "PandarenAliance":
                     case "PandarenHorde":
-                        int raceValue = Convert.ToInt32(string.Format("{0:D}", Enum.Parse(typeof (WoWRace), st)));
+                        int raceValue = Convert.ToInt32(string.Format("{0:D}", Enum.Parse(typeof(WoWRace), st)));
                         int exp = raceValue - 1;
                         uint raceMask = (exp >= 0 ? (uint) (Math.Pow(2, exp)) : 0);
                         CLBQuestRaceMask.Items.Add(new ComboBoxValue
@@ -1930,7 +1957,7 @@ namespace Quester.Profile
 
             var pressKeysList = new List<ComboBoxValue>();
 
-            foreach (object st in Enum.GetValues(typeof (Keybindings)))
+            foreach (object st in Enum.GetValues(typeof(Keybindings)))
             {
                 pressKeysList.Add(new ComboBoxValue
                 {
@@ -1960,7 +1987,7 @@ namespace Quester.Profile
                 cbObjSelValue = Others.ToInt32(CBObjType.SelectedValue.ToString());
             }
 
-            string selectedObjectiveName = Enum.GetName(typeof (Objective), cbObjSelValue);
+            string selectedObjectiveName = Enum.GetName(typeof(Objective), cbObjSelValue);
             return selectedObjectiveName;
         }
 
@@ -2218,56 +2245,45 @@ namespace Quester.Profile
 
         private void ButtonObjImportFromGame_Click(object sender, EventArgs e)
         {
-            //   If lastSelectedObjective IsNot Nothing Then
-
-            if (ObjectManager.Target.IsValid && QuestersDB.GetNpcByEntry(ObjectManager.Target.Entry).Entry == 0)
+            if (GetSelectedObjectiveTypeName() == "PickUpQuest" || GetSelectedObjectiveTypeName() == "TurnInQuest")
             {
-                if (MessageBox.Show("This Quest Giver isnt in the DB. Do you want to Add it?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (ObjectManager.Target.IsValid && QuestersDB.GetNpcByEntry(ObjectManager.Target.Entry).Entry == 0)
                 {
-                    ButtonNewNPC_Click(null, null);
-                    ButtonNpcImport_Click(null, null);
-                    ButtonSaveNPC_Click(null, null);
+                    MessageBox.Show("This Quest Giver isnt in the DB. Do you want to Add it?", "Warning",
+                        MessageBoxButtons.OK);
                 }
-            }
 
-            WoWGameObject wowGOv = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
-            if (wowGOv.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGOv.Position) < 5f && QuestersDB.GetNpcByEntry(wowGOv.Entry).Entry == 0)
-            {
-                if (MessageBox.Show(@"This Quest Giver (Object) isnt in the DB. Do you want to Add it?", @"Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                WoWGameObject wowGOv =
+                    ObjectManager.GetNearestWoWGameObject(
+                        ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
+                if (wowGOv.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGOv.Position) < 5f &&
+                    QuestersDB.GetNpcByEntry(wowGOv.Entry).Entry == 0)
                 {
-                    ButtonNewNPC_Click(null, null);
-                    ButtonNpcImport_Click(null, null);
-                    ButtonSaveNPC_Click(null, null);
+                    MessageBox.Show(@"This Quest Giver (Object) isnt in the DB. Do you want to Add it?", @"Warning",
+                        MessageBoxButtons.YesNo);
                 }
-            }
 
-
-            if (ObjectManager.Target.IsNpcQuestGiver)
-            {
-                switch (GetSelectedObjectiveTypeName())
+                if (ObjectManager.Target.IsNpcQuestGiver)
                 {
-                    case "PickUpQuest":
-                    case "TurnInQuest":
-                        TBObjNPCId.Text = ObjectManager.Target.Entry.ToString(CultureInfo.InvariantCulture);
-                        string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        TBObjQuestID.Text = Lua.LuaDoString(randomString + " = GetQuestID()", randomString);
-                        TBObjQuestName.Text = Lua.LuaDoString(randomString + "= GetTitleText()", randomString);
-
-                        break;
-                }
-            }
-            else
-            {
-                WoWGameObject wowGO = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
-                if (wowGO.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGO.Position) < 5f)
-                {
-                    TBObjNPCId.Text = wowGO.Entry.ToString(CultureInfo.InvariantCulture);
+                    TBObjNPCId.Text = ObjectManager.Target.Entry.ToString(CultureInfo.InvariantCulture);
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
                     TBObjQuestID.Text = Lua.LuaDoString(randomString + " = GetQuestID()", randomString);
-                    TBObjQuestName.Text = Lua.LuaDoString(randomString + " = GetTitleText()", randomString);
+                    TBObjQuestName.Text = Lua.LuaDoString(randomString + "= GetTitleText()", randomString);
+                }
+                else
+                {
+                    WoWGameObject wowGO =
+                        ObjectManager.GetNearestWoWGameObject(
+                            ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
+                    if (wowGO.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGO.Position) < 10f)
+                    {
+                        TBObjNPCId.Text = wowGO.Entry.ToString(CultureInfo.InvariantCulture);
+                        string randomString = Others.GetRandomString(Others.Random(4, 10));
+                        TBObjQuestID.Text = Lua.LuaDoString(randomString + " = GetQuestID()", randomString);
+                        TBObjQuestName.Text = Lua.LuaDoString(randomString + " = GetTitleText()", randomString);
+                    }
                 }
             }
-
 
             //Fill Count 
             if (GetSelectedObjectiveTypeName() == "KillMob" & CBObjKillMobPickUpItem.Checked == false)
@@ -2279,13 +2295,17 @@ namespace Quester.Profile
                 {
                     qId = (int) CBObjInternalQuestID.SelectedValue;
                     //count = Lua.LuaDoString("text, objectiveType, finishedd,currentStatut,finishStatut= GetQuestObjectiveInfo(" + qId + ",1,false)", "finishStatut");
-                    count = Lua.LuaDoString("_, _, _, _," + randomString + "= GetQuestObjectiveInfo(" + qId + ",1,false)", randomString);
+                    count =
+                        Lua.LuaDoString("_, _, _, _," + randomString + "= GetQuestObjectiveInfo(" + qId + ",1,false)",
+                            randomString);
                 }
                 else
                 {
                     qId = _profile.Quests[_lastSelectedQuest.Index].Id;
                     //count = Lua.LuaDoString("text, objectiveType, finishedd,currentStatut,finishStatut= GetQuestObjectiveInfo(" + qId + ",1,false)", "finishStatut");
-                    count = Lua.LuaDoString("_, _, _, _," + randomString + "= GetQuestObjectiveInfo(" + qId + ",1,false)", randomString);
+                    count =
+                        Lua.LuaDoString("_, _, _, _," + randomString + "= GetQuestObjectiveInfo(" + qId + ",1,false)",
+                            randomString);
                 }
 
                 if (CBObjKillMobPickUpItem.Checked == false)
@@ -2298,6 +2318,14 @@ namespace Quester.Profile
                 }
             }
 
+            if (GetSelectedObjectiveTypeName() == "InteractWith" && ObjectManager.Target.IsValid)
+            {
+
+                TBObjPosition.Text = ObjectManager.Target.Position.ToString();
+                TBObjEntry.Text = ObjectManager.Target.Entry.ToString();
+                TBObjCount.Text = "1";
+                TBObjWaitMs.Text = "1500";
+            }
 
             if (ObjectManager.Target.IsNpcFlightMaster && GetSelectedObjectiveTypeName() == "UseFlightPath")
             {
@@ -2315,7 +2343,9 @@ namespace Quester.Profile
             }
             else
             {
-                if (ObjectManager.Me.Position.DistanceTo(ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster()).Position) < 5f)
+                if (
+                    ObjectManager.Me.Position.DistanceTo(
+                        ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster()).Position) < 5f)
                 {
                     unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster());
                 }
@@ -2352,7 +2382,9 @@ namespace Quester.Profile
             {
                 if (ObjectManager.Target.IsValid && QuestersDB.GetNpcByEntry(ObjectManager.Target.Entry) == null)
                 {
-                    if (MessageBox.Show(@"This Quest Giver isnt in the DB. Do you want to Add it?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (
+                        MessageBox.Show(@"This Quest Giver isnt in the DB. Do you want to Add it?", "Warning",
+                            MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ButtonNewNPC.PerformClick();
                         ButtonNpcImport.PerformClick();
@@ -2363,10 +2395,15 @@ namespace Quester.Profile
                     }
                 }
 
-                WoWGameObject wowGO = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
-                if (wowGO.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGO.Position) < 5f && QuestersDB.GetNpcByEntry(wowGO.Entry) == null)
+                WoWGameObject wowGO =
+                    ObjectManager.GetNearestWoWGameObject(
+                        ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
+                if (wowGO.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGO.Position) < 5f &&
+                    QuestersDB.GetNpcByEntry(wowGO.Entry) == null)
                 {
-                    if (MessageBox.Show(@"This Quest Giver (Object) isnt in the DB. Do you want to Add it?", @"Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (
+                        MessageBox.Show(@"This Quest Giver (Object) isnt in the DB. Do you want to Add it?", @"Warning",
+                            MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ButtonNewNPC.PerformClick();
                         ButtonNpcImport.PerformClick();
@@ -2388,9 +2425,13 @@ namespace Quester.Profile
 
                 Thread.Sleep(1000);
 
-                int questLogIdx = Others.ToInt32(Lua.LuaDoString(randomString + " = GetQuestLogIndexByID(" + TBQuestID.Text + ")", randomString));
+                int questLogIdx =
+                    Others.ToInt32(Lua.LuaDoString(randomString + " = GetQuestLogIndexByID(" + TBQuestID.Text + ")",
+                        randomString));
 
-                int questl = Others.ToInt32(Lua.LuaDoString("_, " + randomString + " = GetQuestLogTitle(" + questLogIdx + ")", randomString));
+                int questl =
+                    Others.ToInt32(Lua.LuaDoString("_, " + randomString + " = GetQuestLogTitle(" + questLogIdx + ")",
+                        randomString));
 
                 TBQuestLevel.Text = questl.ToString(CultureInfo.InvariantCulture);
                 TBQuestMaxLvl.Text = GetMaxQuestLvl(questl).ToString(CultureInfo.InvariantCulture);
@@ -2543,11 +2584,13 @@ namespace Quester.Profile
             {
                 if (_lastSelectedQuest != null && TreeView.SelectedNode != null)
                 {
-                    TBQuestNeedQuestCompId.Text = _profile.Quests[_lastSelectedQuest.Index - 1].Id.ToString(CultureInfo.InvariantCulture);
+                    TBQuestNeedQuestCompId.Text =
+                        _profile.Quests[_lastSelectedQuest.Index - 1].Id.ToString(CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    TBQuestNeedQuestCompId.Text = _profile.Quests[_profile.Quests.Count - 1].Id.ToString(CultureInfo.InvariantCulture);
+                    TBQuestNeedQuestCompId.Text =
+                        _profile.Quests[_profile.Quests.Count - 1].Id.ToString(CultureInfo.InvariantCulture);
                 }
             }
         }
@@ -2577,7 +2620,8 @@ namespace Quester.Profile
 
         private void ButtonBlackListAdd_Click(object sender, EventArgs e)
         {
-            string pos = ObjectManager.Me.Position.X + ";" + ObjectManager.Me.Position.Y + ";" + ObjectManager.Me.Position.Z + ";" +
+            string pos = ObjectManager.Me.Position.X + ";" + ObjectManager.Me.Position.Y + ";" +
+                         ObjectManager.Me.Position.Z + ";" +
                          (string.IsNullOrEmpty(TBBlackListRadius.Text) ? 5f : Others.ToSingle(TBBlackListRadius.Text));
 
             TBBlackList.AppendText(pos + Environment.NewLine);
@@ -2591,23 +2635,30 @@ namespace Quester.Profile
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void QuestCompletedButton_Click(object sender, EventArgs e)
         {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-
-            foreach (TreeNode tr in _questParentNode.Nodes)
+            try
             {
-                if ((string) tr.Tag == "Quest")
+                Memory.WowMemory.GameFrameLock();
+                foreach (TreeNode tr in _questParentNode.Nodes)
                 {
-                    int questId = _profile.Quests[_questParentNode.Nodes.IndexOf(tr)].Id;
-
-                    if (nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId))
+                    if ((string) tr.Tag == "Quest")
                     {
-                        tr.BackColor = Color.Green;
+                        int questId = _profile.Quests[_questParentNode.Nodes.IndexOf(tr)].Id;
+
+                        if (tr.BackColor == Color.Green)
+                            continue;
+                        tr.BackColor = nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId) ? Color.Green : Color.Red;
                     }
-                    else
-                        tr.BackColor = Color.Red;
                 }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("private void QuestCompletedButton_Click(object sender, EventArgs e): " + ex);
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
@@ -2810,59 +2861,64 @@ namespace Quester.Profile
             }
             else
             {
-                string oName = Interaction.InputBox("Input Object Name:", "Import Object ID");
-                if (oName != string.Empty)
+                string oName = "";
+                if (
+                    nManager.Helpful.Forms.DeveloperToolsMainFrame.InputBox("Input Object Name:", "Import Object ID",
+                        ref oName) != DialogResult.OK)
+                    return;
+                var npc = new Npc();
+
+                List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(oName);
+
+                if (gameObjects.Count > 0)
                 {
-                    var npc = new Npc();
-
-                    List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(oName);
-
-                    if (gameObjects.Count > 0)
+                    WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects, true);
+                    if (gameObject.IsValid)
                     {
-                        WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects, true);
-                        if (gameObject.IsValid)
+                        npc.Entry = gameObject.Entry;
+                        npc.Position = gameObject.Position;
+                        npc.Name = gameObject.Name;
+                        npc.Faction = UnitRelation.GetObjectRacialFaction(gameObject.Faction);
+                        npc.ContinentIdInt = Usefuls.ContinentId;
+                    }
+                }
+
+                if (npc.Entry <= 0)
+                {
+                    List<WoWUnit> units = ObjectManager.GetWoWUnitByName(oName);
+                    if (units.Count > 0)
+                    {
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(units, true, true, true);
+                        if (unit.IsValid)
                         {
-                            npc.Entry = gameObject.Entry;
-                            npc.Position = gameObject.Position;
-                            npc.Name = gameObject.Name;
-                            npc.Faction = UnitRelation.GetObjectRacialFaction(gameObject.Faction);
+                            npc.Entry = unit.Entry;
+                            npc.Position = unit.Position;
+                            npc.Name = unit.Name;
+                            npc.Faction = UnitRelation.GetObjectRacialFaction(unit.Faction);
                             npc.ContinentIdInt = Usefuls.ContinentId;
                         }
                     }
-
-                    if (npc.Entry <= 0)
+                }
+                if (npc.Entry <= 0)
+                {
+                    WoWGameObject gameObject =
+                        ObjectManager.GetNearestWoWGameObject(ObjectManager.GetObjectWoWGameObject(), true);
+                    if (gameObject.IsValid)
                     {
-                        List<WoWUnit> units = ObjectManager.GetWoWUnitByName(oName);
-                        if (units.Count > 0)
-                        {
-                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(units, true, true, true);
-                            if (unit.IsValid)
-                            {
-                                npc.Entry = unit.Entry;
-                                npc.Position = unit.Position;
-                                npc.Name = unit.Name;
-                                npc.Faction = UnitRelation.GetObjectRacialFaction(unit.Faction);
-                                npc.ContinentIdInt = Usefuls.ContinentId;
-                            }
-                        }
+                        npc.Entry = gameObject.Entry;
+                        npc.Position = gameObject.Position;
+                        npc.Name = gameObject.Name;
+                        npc.Faction = UnitRelation.GetObjectRacialFaction(gameObject.Faction);
+                        npc.ContinentIdInt = Usefuls.ContinentId;
+                        MessageBox.Show(
+                            string.Format(
+                                @"Unable to find by name. However, we've loaded the closest GameObject instead: {0} ({1}), distance: {2}",
+                                npc.Name, npc.Entry, gameObject.GetDistance));
                     }
-                    if (npc.Entry <= 0)
-                    {
-                        WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetObjectWoWGameObject(), true);
-                        if (gameObject.IsValid)
-                        {
-                            npc.Entry = gameObject.Entry;
-                            npc.Position = gameObject.Position;
-                            npc.Name = gameObject.Name;
-                            npc.Faction = UnitRelation.GetObjectRacialFaction(gameObject.Faction);
-                            npc.ContinentIdInt = Usefuls.ContinentId;
-                            MessageBox.Show(string.Format(@"Unable to find by name. However, we've loaded the closest GameObject instead: {0} ({1}), distance: {2}", npc.Name, npc.Entry, gameObject.GetDistance));
-                        }
-                    }
-                    if (npc.Entry > 0)
-                    {
-                        TBObjEntry.AppendText(npc.Entry + Environment.NewLine);
-                    }
+                }
+                if (npc.Entry > 0)
+                {
+                    TBObjEntry.AppendText(npc.Entry + Environment.NewLine);
                 }
             }
         }
@@ -2940,7 +2996,8 @@ namespace Quester.Profile
                 _profile.Quests.RemoveAt(TreeView.SelectedNode.Index);
                 TreeView.SelectedNode.Remove();
             }
-            else if ((string) TreeView.SelectedNode.Tag == "Objective")
+            else if ((string) TreeView.SelectedNode.Tag == "Objective" ||
+                     (string) TreeView.SelectedNode.Tag == "NewObjective")
             {
                 _profile.Quests[TreeView.SelectedNode.Parent.Index].Objectives.RemoveAt(TreeView.SelectedNode.Index);
                 TreeView.SelectedNode.Remove();
@@ -2976,7 +3033,8 @@ namespace Quester.Profile
                 TreeView.SelectedNode.Parent.Nodes.Insert(TreeView.SelectedNode.Index + insertIdxTreeView, newObjNode);
 
                 var newObjective = new QuestObjective();
-                _profile.Quests[TreeView.SelectedNode.Parent.Index].Objectives.Insert(TreeView.SelectedNode.Index - insertIdxProfile, newObjective);
+                _profile.Quests[TreeView.SelectedNode.Parent.Index].Objectives.Insert(
+                    TreeView.SelectedNode.Index - insertIdxProfile, newObjective);
             }
         }
 
@@ -2984,7 +3042,8 @@ namespace Quester.Profile
         {
             int questId = 0;
 
-            if (TreeView.SelectedNode != null && (string) TreeView.SelectedNode.Tag != "NPCs" && (string) TreeView.SelectedNode.Tag != "Quests" && (string) TreeView.SelectedNode.Tag != "NPC")
+            if (TreeView.SelectedNode != null && (string) TreeView.SelectedNode.Tag != "NPCs" &&
+                (string) TreeView.SelectedNode.Tag != "Quests" && (string) TreeView.SelectedNode.Tag != "NPC")
             {
                 if ((string) TreeView.SelectedNode.Tag == "Quest")
                 {
@@ -2992,10 +3051,13 @@ namespace Quester.Profile
                 }
                 else if ((string) TreeView.SelectedNode.Tag == "Objective")
                 {
-                    QuestObjective obj = _profile.Quests[TreeView.SelectedNode.Parent.Index].Objectives[TreeView.SelectedNode.Index];
+                    QuestObjective obj =
+                        _profile.Quests[TreeView.SelectedNode.Parent.Index].Objectives[TreeView.SelectedNode.Index];
                     if (obj.Objective.ToString() == "PickUpQuest")
                     {
-                        questId = _profile.Quests[TreeView.SelectedNode.Parent.Index].Objectives[TreeView.SelectedNode.Index].QuestId;
+                        questId =
+                            _profile.Quests[TreeView.SelectedNode.Parent.Index].Objectives[TreeView.SelectedNode.Index]
+                                .QuestId;
                     }
                     else
                     {

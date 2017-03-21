@@ -59,7 +59,7 @@ namespace Quester.Profile
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.TabPageQuest = new System.Windows.Forms.TabPage();
             this.ButtonQuestImpotTurnInID = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.QuestCompletedButton = new System.Windows.Forms.Button();
             this.label40 = new System.Windows.Forms.Label();
             this.TBQuestAutoAcceptIDs = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -200,6 +200,7 @@ namespace Quester.Profile
             this.TNBControlMenu = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.UcXmlRichTextBox1 = new nManager.Helpful.Forms.UserControls.UCXmlRichTextBox();
             this.CBObjIsBonusObjective = new System.Windows.Forms.CheckBox();
+            this.CBObjIgnoreAllFight = new System.Windows.Forms.CheckBox();
             this.ContextMenuStrip.SuspendLayout();
             this.PanelNPC.SuspendLayout();
             this.PanelSimpleQuest.SuspendLayout();
@@ -457,7 +458,7 @@ namespace Quester.Profile
             // TabPageQuest
             // 
             this.TabPageQuest.Controls.Add(this.ButtonQuestImpotTurnInID);
-            this.TabPageQuest.Controls.Add(this.button1);
+            this.TabPageQuest.Controls.Add(this.QuestCompletedButton);
             this.TabPageQuest.Controls.Add(this.label40);
             this.TabPageQuest.Controls.Add(this.TBQuestAutoAcceptIDs);
             this.TabPageQuest.Controls.Add(this.label39);
@@ -519,14 +520,14 @@ namespace Quester.Profile
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(116, 428);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 37);
-            this.button1.TabIndex = 88;
-            this.button1.Text = "Show Quest Completed";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.QuestCompletedButton.Location = new System.Drawing.Point(116, 428);
+            this.QuestCompletedButton.Margin = new System.Windows.Forms.Padding(2);
+            this.QuestCompletedButton.Name = "QuestCompletedButton";
+            this.QuestCompletedButton.Size = new System.Drawing.Size(142, 37);
+            this.QuestCompletedButton.TabIndex = 88;
+            this.QuestCompletedButton.Text = "Show Quest Completed";
+            this.QuestCompletedButton.UseVisualStyleBackColor = true;
+            this.QuestCompletedButton.Click += new System.EventHandler(this.QuestCompletedButton_Click);
             // 
             // label40
             // 
@@ -1219,6 +1220,7 @@ namespace Quester.Profile
             // 
             // PanelObjAll
             // 
+            this.PanelObjAll.Controls.Add(this.CBObjIgnoreAllFight);
             this.PanelObjAll.Controls.Add(this.CBObjIsBonusObjective);
             this.PanelObjAll.Controls.Add(this.CBObjDismissPet);
             this.PanelObjAll.Controls.Add(this.CBObjIgnoreItemNotUsable);
@@ -1308,11 +1310,11 @@ namespace Quester.Profile
             // 
             this.CBObjIgnoreFight.AutoSize = true;
             this.CBObjIgnoreFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreFight.Location = new System.Drawing.Point(82, 296);
+            this.CBObjIgnoreFight.Location = new System.Drawing.Point(85, 296);
             this.CBObjIgnoreFight.Name = "CBObjIgnoreFight";
-            this.CBObjIgnoreFight.Size = new System.Drawing.Size(82, 17);
+            this.CBObjIgnoreFight.Size = new System.Drawing.Size(79, 17);
             this.CBObjIgnoreFight.TabIndex = 87;
-            this.CBObjIgnoreFight.Text = "Ignore Fight";
+            this.CBObjIgnoreFight.Text = "IgnoreFight";
             this.CBObjIgnoreFight.UseVisualStyleBackColor = true;
             // 
             // CBObjForceTravelToQuestZone
@@ -2013,6 +2015,17 @@ namespace Quester.Profile
             this.CBObjIsBonusObjective.Text = "IsBonusObjective";
             this.CBObjIsBonusObjective.UseVisualStyleBackColor = true;
             // 
+            // CBObjIgnoreAllFight
+            // 
+            this.CBObjIgnoreAllFight.AutoSize = true;
+            this.CBObjIgnoreAllFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBObjIgnoreAllFight.Location = new System.Drawing.Point(-1, 296);
+            this.CBObjIgnoreAllFight.Name = "CBObjIgnoreAllFight";
+            this.CBObjIgnoreAllFight.Size = new System.Drawing.Size(90, 17);
+            this.CBObjIgnoreAllFight.TabIndex = 93;
+            this.CBObjIgnoreAllFight.Text = "IgnoreAllFight";
+            this.CBObjIgnoreAllFight.UseVisualStyleBackColor = true;
+            // 
             // SimpleProfileEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2205,7 +2218,7 @@ namespace Quester.Profile
         internal TextBox TBBlackList;
         internal Button ButtonBlackListAdd;
         private nManager.Helpful.Forms.UserControls.TnbControlMenu TNBControlMenu;
-        internal Button button1;
+        internal Button QuestCompletedButton;
         internal CheckBox CBObjIgnoreFight;
         internal Label label45;
         internal TextBox TBObjLuaMacro;
@@ -2226,5 +2239,6 @@ namespace Quester.Profile
         private nManager.Helpful.Forms.UserControls.UCXmlRichTextBox UcXmlRichTextBox1;
         internal Button ButtonObjImportGPSExtraPoint;
         internal CheckBox CBObjIsBonusObjective;
+        internal CheckBox CBObjIgnoreAllFight;
     }
 }
