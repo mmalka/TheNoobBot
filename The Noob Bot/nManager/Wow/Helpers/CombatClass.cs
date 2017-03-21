@@ -138,7 +138,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return (_obj != null);
+                    return _worker != null && _worker.IsAlive;
                 }
                 catch (Exception exception)
                 {
@@ -150,6 +150,8 @@ namespace nManager.Wow.Helpers
 
         public static void LoadCombatClass()
         {
+            if (_worker != null && _worker.IsAlive)
+                return;
             Thread spellBook = new Thread(LoadCombatClassThread) {Name = "Load Combat Class"};
             spellBook.Start();
         }

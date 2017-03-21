@@ -103,7 +103,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return (_obj != null);
+                    return _worker != null && _worker.IsAlive;
                 }
                 catch (Exception exception)
                 {
@@ -115,6 +115,8 @@ namespace nManager.Wow.Helpers
 
         public static void LoadHealerClass()
         {
+            if (_worker != null && _worker.IsAlive)
+                return;
             Thread spellBook = new Thread(LoadHealerClassThread) {Name = "Load Healer Class"};
             spellBook.Start();
         }
