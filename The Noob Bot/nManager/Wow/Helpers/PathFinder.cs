@@ -240,15 +240,18 @@ namespace nManager.Wow.Helpers
 
                 if (!resultSuccess && failedPolyref)
                 {
+                    Logging.WriteDebug("Reloading PathFinder...");
                     _pather.Dispose();
                     _pather = new Pather(continentNameMpq);
+                    locList = ShortPath ? _pather.FindPathSimple(from, to, out resultSuccess, out failedPolyref, true) : _pather.FindPath(from, to, out resultSuccess, out failedPolyref);
+                    if (addFromAndStart && resultSuccess)
+                        locList.Add(to);
                 }
 
                 // Clean list:
                 for (int i = 0; i <= locList.Count - 2; i++)
                 {
-                    if (locList[i].DistanceTo(locList[i + 1]) < 0.5 ||
-                        (locList[i + 1].X == 0.0f || locList[i + 1].Y == 0.0f || locList[i + 1].Z == 0.0f))
+                    if (locList[i].DistanceTo(locList[i + 1]) < 0.5 || !locList[i + 1].IsValid)
                     {
                         locList.RemoveAt(i + 1);
                         i--;
