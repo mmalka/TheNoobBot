@@ -62,6 +62,26 @@ namespace nManager.Wow.Class
             Type = "None";
         }
 
+        public Point(string v)
+        {
+            var value = v.Split(';');
+            X = Others.ToSingle(value[0]);
+            Y = Others.ToSingle(value[1]);
+            Z = Others.ToSingle(value[2]);
+            switch (value[3].ToLower())
+            {
+                case "swimming":
+                    Type = "Swimming";
+                    break;
+                case "flying":
+                    Type = "Flying";
+                    break;
+                default:
+                    Type = "None";
+                    break;
+            }
+        }
+
         public override string ToString()
         {
             return string.Format("{0} ; {1} ; {2} ; {3}", X, Y, Z, Type);
