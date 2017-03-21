@@ -506,15 +506,29 @@ namespace The_Noob_Bot
 
         private void QuestToolLabel_Click(object sender, EventArgs e)
         {
-            var t = new Thread(QuestToolThread) {Name = "QuestToolForm"};
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
+            try
+            {
+                var t = new Thread(QuestToolThread) {Name = "QuestToolForm"};
+                t.SetApartmentState(ApartmentState.STA);
+                t.Start();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("private void QuestToolLabel_Click(object sender, EventArgs e): " + ex);
+            }
         }
 
         private void QuestToolThread()
         {
-            var f = new Quester.Profile.SimpleProfileEditor {TopMost = true};
-            f.ShowDialog();
+            try
+            {
+                var f = new Quester.Profile.SimpleProfileEditor {TopMost = true};
+                f.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("private void QuestToolThread(): " + ex);
+            }
         }
 
         private void MainPanelTimer_Tick(object sender, EventArgs e)
