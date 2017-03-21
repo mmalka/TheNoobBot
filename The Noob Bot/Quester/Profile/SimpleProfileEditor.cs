@@ -19,6 +19,8 @@ using nManager.Wow.Patchables;
 using Keybindings = nManager.Wow.Enums.Keybindings;
 using Math = System.Math;
 using Point = nManager.Wow.Class.Point;
+using Quester.Profile;
+using Quest = Quester.Profile.Quest;
 
 namespace Quester.Profile
 {
@@ -111,7 +113,7 @@ namespace Quester.Profile
 
                 quester.Name = TBNpcName.Text;
                 quester.Entry = Others.ToInt32(TBNpcId.Text);
-                quester.Position = new Point(float.Parse(TBNpcPosition.Text.Split(';')[0]), float.Parse(TBNpcPosition.Text.Split(';')[1]), float.Parse(TBNpcPosition.Text.Split(';')[2]));
+                quester.Position = new Point(TBNpcPosition.Text);
                 quester.Faction = (Npc.FactionType) CBNpcFaction.SelectedValue;
                 quester.Type = (Npc.NpcType) CBNpcType.SelectedValue;
                 quester.ContinentId = TBNpcContinentId.Text;
@@ -124,7 +126,7 @@ namespace Quester.Profile
                 {
                     Name = TBNpcName.Text,
                     Entry = Others.ToInt32(TBNpcId.Text),
-                    Position = new Point(float.Parse(TBNpcPosition.Text.Split(';')[0]), float.Parse(TBNpcPosition.Text.Split(';')[1]), float.Parse(TBNpcPosition.Text.Split(';')[2])),
+                    Position = new Point(TBNpcPosition.Text),
                     Faction = (Npc.FactionType) CBNpcFaction.SelectedValue,
                     Type = (Npc.NpcType) CBNpcType.SelectedValue,
                     ContinentId = TBNpcContinentId.Text
@@ -379,8 +381,7 @@ namespace Quester.Profile
                             objective.ExtraFloat = Others.ToSingle(TBObjExtraFloat.Text);
                             objective.ExtraString = TBObjExtraString.Text;
                             if (TBObjExtraPoint.Text.Trim() != string.Empty)
-                                objective.ExtraPoint = new Point(float.Parse(TBObjExtraPoint.Text.Split(';')[0]), float.Parse(TBObjExtraPoint.Text.Split(';')[1]),
-                                    float.Parse(TBObjExtraPoint.Text.Split(';')[2]));
+                                objective.ExtraPoint = new Point(TBObjExtraPoint.Text);
                             //objective.Keys = (Keybindings)CBObjPressKeys.SelectedValue;
                             break;
                         case "TravelTo":
@@ -459,6 +460,7 @@ namespace Quester.Profile
                     objective.DeactivateMount = CBObjDeactivateMount.Checked;
                     objective.IgnoreItemNotUsable = CBObjIgnoreItemNotUsable.Checked;
                     objective.DismissPet = CBObjDismissPet.Checked;
+                    objective.IsBonusObjective = CBObjIsBonusObjective.Checked;
 
                     if (_displayXml)
                     {
@@ -626,8 +628,7 @@ namespace Quester.Profile
                             newObjective.ExtraFloat = Others.ToSingle(TBObjExtraFloat.Text);
                             newObjective.ExtraString = TBObjExtraString.Text;
                             if (TBObjExtraPoint.Text.Trim() != string.Empty)
-                                newObjective.ExtraPoint = new Point(float.Parse(TBObjExtraPoint.Text.Split(';')[0]), float.Parse(TBObjExtraPoint.Text.Split(';')[1]),
-                                    float.Parse(TBObjExtraPoint.Text.Split(';')[2]));
+                                newObjective.ExtraPoint = new Point(TBObjExtraPoint.Text);
                             //newObjective.Keys = (Keybindings)CBObjPressKeys.SelectedValue;
                             break;
                         case "TravelTo":
@@ -691,6 +692,8 @@ namespace Quester.Profile
                     newObjective.DeactivateMount = CBObjDeactivateMount.Checked;
                     newObjective.IgnoreItemNotUsable = CBObjIgnoreItemNotUsable.Checked;
                     newObjective.DismissPet = CBObjDismissPet.Checked;
+                    newObjective.IsBonusObjective = CBObjIsBonusObjective.Checked;
+
                     Quest lastSelQuestx = _profile.Quests[_lastSelectedQuest.Index];
 
                     lastSelQuestx.Objectives.Add(newObjective);
@@ -802,7 +805,7 @@ namespace Quester.Profile
 
                     if (CBQuestWQ.Checked)
                     {
-                        quest.WorldQuestLocation = new Point(float.Parse(TBQuestWQ.Text.Split(';')[0]), float.Parse(TBQuestWQ.Text.Split(';')[1]), float.Parse(TBQuestWQ.Text.Split(';')[2]));
+                        quest.WorldQuestLocation = new Point(TBQuestWQ.Text);
                     }
                     else
                     {
@@ -893,7 +896,7 @@ namespace Quester.Profile
 
                         if (CBQuestWQ.Checked)
                         {
-                            newQuest.WorldQuestLocation = new Point(float.Parse(TBQuestWQ.Text.Split(';')[0]), float.Parse(TBQuestWQ.Text.Split(';')[1]), float.Parse(TBQuestWQ.Text.Split(';')[2]));
+                            newQuest.WorldQuestLocation = new Point(TBQuestWQ.Text);
                         }
                         else
                         {
@@ -1216,6 +1219,7 @@ namespace Quester.Profile
             CBObjIsDead.Checked = false;
             CBObjAllowPlayerControlled.Checked = false;
             CBObjIgnoreBlackList.Checked = false;
+            CBObjIsBonusObjective.Checked = false;
             CBObjIgnoreFight.Checked = false;
             CBObjIgnoreNotSelectable.Checked = false;
             CBObjForceTravelToQuestZone.Checked = false;
@@ -1608,6 +1612,7 @@ namespace Quester.Profile
             CBObjDeactivateMount.Checked = qObjective.DeactivateMount;
             CBObjIgnoreItemNotUsable.Checked = qObjective.IgnoreItemNotUsable;
             CBObjDismissPet.Checked = qObjective.DismissPet;
+            CBObjIsBonusObjective.Checked = qObjective.IsBonusObjective;
 
             CBObjType.SelectedValueChanged -= CBObjType_SelectedValueChanged;
             CBObjType.SelectedValue = cbSelectValue;
@@ -1905,6 +1910,7 @@ namespace Quester.Profile
                     case "BloodElf":
                     case "Draenei":
                     case "Worgen":
+                    case "PandarenNeutral":
                     case "PandarenAliance":
                     case "PandarenHorde":
                         int raceValue = Convert.ToInt32(string.Format("{0:D}", Enum.Parse(typeof (WoWRace), st)));
@@ -2101,6 +2107,10 @@ namespace Quester.Profile
                     TBObjCompletedScript.Enabled = true;
                     TBObjEntry.Enabled = true;
                     TBObjLuaMacro.Enabled = true;
+                    TBObjExtraFloat.Enabled = true;
+                    TBObjExtraInt.Enabled = true;
+                    TBObjExtraPoint.Enabled = true;
+                    TBObjExtraString.Enabled = true;
                     break;
                 case "TravelTo":
                     TBObjPosition.Enabled = true;
@@ -2554,7 +2564,7 @@ namespace Quester.Profile
                         var blr = new QuesterBlacklistRadius
                         {
                             Position = new Point(st),
-                            Radius = float.Parse(st.Split(';')[3])
+                            Radius = Others.ToSingle(st.Split(';')[3])
                         };
                         _profile.Blackspots.Add(blr);
                     }
@@ -2803,14 +2813,55 @@ namespace Quester.Profile
                 string oName = Interaction.InputBox("Input Object Name:", "Import Object ID");
                 if (oName != string.Empty)
                 {
-                    WoWGameObject wowGo = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByName(oName));
-                    if (wowGo.Entry > 0)
+                    var npc = new Npc();
+
+                    List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(oName);
+
+                    if (gameObjects.Count > 0)
                     {
-                        //	if (TBObjEntry.Lines.Count() > 0) {
-                        TBObjEntry.AppendText(wowGo.Entry + Environment.NewLine);
-                        //} else {
-                        //TBObjEntry.AppendText(wowGo.Entry.ToString());
-                        //}
+                        WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects, true);
+                        if (gameObject.IsValid)
+                        {
+                            npc.Entry = gameObject.Entry;
+                            npc.Position = gameObject.Position;
+                            npc.Name = gameObject.Name;
+                            npc.Faction = UnitRelation.GetObjectRacialFaction(gameObject.Faction);
+                            npc.ContinentIdInt = Usefuls.ContinentId;
+                        }
+                    }
+
+                    if (npc.Entry <= 0)
+                    {
+                        List<WoWUnit> units = ObjectManager.GetWoWUnitByName(oName);
+                        if (units.Count > 0)
+                        {
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(units, true, true, true);
+                            if (unit.IsValid)
+                            {
+                                npc.Entry = unit.Entry;
+                                npc.Position = unit.Position;
+                                npc.Name = unit.Name;
+                                npc.Faction = UnitRelation.GetObjectRacialFaction(unit.Faction);
+                                npc.ContinentIdInt = Usefuls.ContinentId;
+                            }
+                        }
+                    }
+                    if (npc.Entry <= 0)
+                    {
+                        WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetObjectWoWGameObject(), true);
+                        if (gameObject.IsValid)
+                        {
+                            npc.Entry = gameObject.Entry;
+                            npc.Position = gameObject.Position;
+                            npc.Name = gameObject.Name;
+                            npc.Faction = UnitRelation.GetObjectRacialFaction(gameObject.Faction);
+                            npc.ContinentIdInt = Usefuls.ContinentId;
+                            MessageBox.Show(string.Format(@"Unable to find by name. However, we've loaded the closest GameObject instead: {0} ({1}), distance: {2}", npc.Name, npc.Entry, gameObject.GetDistance));
+                        }
+                    }
+                    if (npc.Entry > 0)
+                    {
+                        TBObjEntry.AppendText(npc.Entry + Environment.NewLine);
                     }
                 }
             }

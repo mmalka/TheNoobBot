@@ -102,6 +102,7 @@ namespace Quester.Profile
             this.TBQuestMinLvl = new System.Windows.Forms.TextBox();
             this.Label16 = new System.Windows.Forms.Label();
             this.TabPageObjectives = new System.Windows.Forms.TabPage();
+            this.ButtonObjImportGPSExtraPoint = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
             this.TBObjExtraFloat = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
@@ -198,6 +199,7 @@ namespace Quester.Profile
             this.ButtonSaveXML = new System.Windows.Forms.Button();
             this.TNBControlMenu = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.UcXmlRichTextBox1 = new nManager.Helpful.Forms.UserControls.UCXmlRichTextBox();
+            this.CBObjIsBonusObjective = new System.Windows.Forms.CheckBox();
             this.ContextMenuStrip.SuspendLayout();
             this.PanelNPC.SuspendLayout();
             this.PanelSimpleQuest.SuspendLayout();
@@ -943,6 +945,7 @@ namespace Quester.Profile
             // 
             // TabPageObjectives
             // 
+            this.TabPageObjectives.Controls.Add(this.ButtonObjImportGPSExtraPoint);
             this.TabPageObjectives.Controls.Add(this.label49);
             this.TabPageObjectives.Controls.Add(this.TBObjExtraFloat);
             this.TabPageObjectives.Controls.Add(this.label48);
@@ -993,6 +996,17 @@ namespace Quester.Profile
             this.TabPageObjectives.TabIndex = 1;
             this.TabPageObjectives.Text = "Objectives";
             this.TabPageObjectives.UseVisualStyleBackColor = true;
+            // 
+            // ButtonObjImportGPSExtraPoint
+            // 
+            this.ButtonObjImportGPSExtraPoint.Location = new System.Drawing.Point(246, 240);
+            this.ButtonObjImportGPSExtraPoint.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonObjImportGPSExtraPoint.Name = "ButtonObjImportGPSExtraPoint";
+            this.ButtonObjImportGPSExtraPoint.Size = new System.Drawing.Size(23, 19);
+            this.ButtonObjImportGPSExtraPoint.TabIndex = 101;
+            this.ButtonObjImportGPSExtraPoint.Text = "Import From Game";
+            this.ButtonObjImportGPSExtraPoint.UseVisualStyleBackColor = true;
+            this.ButtonObjImportGPSExtraPoint.Click += new System.EventHandler(this.ButtonObjImportGPSExtraPoint_Click);
             // 
             // label49
             // 
@@ -1205,6 +1219,7 @@ namespace Quester.Profile
             // 
             // PanelObjAll
             // 
+            this.PanelObjAll.Controls.Add(this.CBObjIsBonusObjective);
             this.PanelObjAll.Controls.Add(this.CBObjDismissPet);
             this.PanelObjAll.Controls.Add(this.CBObjIgnoreItemNotUsable);
             this.PanelObjAll.Controls.Add(this.ButtonObjImportCursorItemID);
@@ -1987,6 +2002,17 @@ namespace Quester.Profile
             this.UcXmlRichTextBox1.Text = "";
             this.UcXmlRichTextBox1.Xml = "";
             // 
+            // CBObjIsBonusObjective
+            // 
+            this.CBObjIsBonusObjective.AutoSize = true;
+            this.CBObjIsBonusObjective.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBObjIsBonusObjective.Location = new System.Drawing.Point(55, 432);
+            this.CBObjIsBonusObjective.Name = "CBObjIsBonusObjective";
+            this.CBObjIsBonusObjective.Size = new System.Drawing.Size(109, 17);
+            this.CBObjIsBonusObjective.TabIndex = 92;
+            this.CBObjIsBonusObjective.Text = "IsBonusObjective";
+            this.CBObjIsBonusObjective.UseVisualStyleBackColor = true;
+            // 
             // SimpleProfileEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2198,5 +2224,7 @@ namespace Quester.Profile
         internal Label label46;
         internal TextBox TBObjExtraString;
         private nManager.Helpful.Forms.UserControls.UCXmlRichTextBox UcXmlRichTextBox1;
+        internal Button ButtonObjImportGPSExtraPoint;
+        internal CheckBox CBObjIsBonusObjective;
     }
 }
