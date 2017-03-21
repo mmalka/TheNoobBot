@@ -8842,18 +8842,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4305</Entry>
-    <Name>Kriggon Talsone</Name>
-    <Position>
-      <X>-11504.3369</X>
-      <Y>1748.63635</Y>
-      <Z>2.05351257</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>4552</Entry>
     <Name>Eunice Burch</Name>
     <Position>
@@ -14919,18 +14907,6 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Innkeeper</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>8934</Entry>
-    <Name>Christopher Hewen</Name>
-    <Position>
-      <X>-10632.6436</X>
-      <Y>1188.77515</Y>
-      <Z>34.85568</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -37294,18 +37270,6 @@
     <Faction>Horde</Faction>
     <Type>Innkeeper</Type>
     <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>43948</Entry>
-    <Name>Private Jackson</Name>
-    <Position>
-      <X>-10912.7</X>
-      <Y>1540.76</Y>
-      <Z>54.7071381</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>43948</Entry>

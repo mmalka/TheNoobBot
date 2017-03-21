@@ -81,6 +81,9 @@
       <QuestLevel>90</QuestLevel>
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>35933</int>
+      </NeedQuestCompletedId>
       <PickUp>78558</PickUp>
       <TurnIn>78558</TurnIn>
       <Objectives>
@@ -91,10 +94,11 @@
           <Entry>
             <int>233056</int>
           </Entry>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <Position>
-            <X>4167.366</X>
-            <Y>-2281.594</Y>
-            <Z>59.87671</Z>
+            <X>4167.166</X>
+            <Y>-2287.997</Y>
+            <Z>59.66972</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -104,10 +108,11 @@
           <Entry>
             <int>233057</int>
           </Entry>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <Position>
-            <X>3964.796</X>
-            <Y>-2283.616</Y>
-            <Z>59.87628</Z>
+            <X>3964.84</X>
+            <Y>-2288.063</Y>
+            <Z>59.87707</Z>
           </Position>
         </QuestObjective>
       </Objectives>
@@ -119,7 +124,7 @@
       <MinLevel>90</MinLevel>
       <MaxLevel>100</MaxLevel>
       <NeedQuestCompletedId>
-        <int>35933</int>
+        <int>34392</int>
       </NeedQuestCompletedId>
       <PickUp>78558</PickUp>
       <TurnIn>78558</TurnIn>
@@ -474,13 +479,14 @@
           <InternalQuestId>35240</InternalQuestId>
           <Count>1</Count>
           <Entry>
-            <int>229353</int>
+            <int>229350</int>
           </Entry>
           <Position>
-            <X>3968.945</X>
-            <Y>-2638.899</Y>
-            <Z>55.38497</Z>
+            <X>3970.07</X>
+            <Y>-2636.422</Y>
+            <Z>55.02633</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -535,16 +541,17 @@
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>2</InternalIndex>
-          <InternalQuestId>34421</InternalQuestId>
+          <InternalQuestId>35240</InternalQuestId>
           <Count>1</Count>
           <Entry>
-            <int>229352</int>
+            <int>229325</int>
           </Entry>
           <Position>
-            <X>3835.104</X>
-            <Y>-2524.132</Y>
-            <Z>66.01324</Z>
+            <X>3834.516</X>
+            <Y>-2524.291</Y>
+            <Z>66.10084</Z>
           </Position>
+          <WaitMs>2000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
