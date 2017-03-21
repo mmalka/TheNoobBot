@@ -618,7 +618,7 @@ namespace nManager.Wow.Helpers
                         ObjectManager.ObjectManager.Me.Position.Z + 2.5f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
                         ObjectManager.ObjectManager.Me.Position.Z + 2.5f);
-                    if (ObjectManager.ObjectManager.Me.IsMounted && !TraceLine.TraceLineGo(_distmountAttempt, inFront))
+                    if (ObjectManager.ObjectManager.Me.IsMounted && !Usefuls.IsFlying && !TraceLine.TraceLineGo(_distmountAttempt, inFront))
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
                         Usefuls.DisMount();
@@ -656,6 +656,19 @@ namespace nManager.Wow.Helpers
                 Logging.WriteDebug("UnStuck - lastPost = " + lastPost);
                 for (int i = 0; i < 8; i++)
                 {
+                    if (i > 3)
+                    {
+                        if (ObjectManager.ObjectManager.Me.IsMounted && !Usefuls.IsFlying)
+                        {
+                            Logging.WriteNavigator("UnStuck - Dismounting.");
+                            Usefuls.DisMount();
+                            _canRemount = new Timer(8000);
+                            _canRemount.Reset();
+                            IsUnStuck = false;
+                            StuckCount++;
+                            return;
+                        }
+                    }
                     Logging.WriteDebug("UnStuck - UnStuck attempt " + i + " started.");
                     int j = Others.Random(1, 8);
 
