@@ -10,6 +10,7 @@ using System.Xml;
 using System.Xml.Linq;
 using nManager;
 using nManager.Helpful;
+using nManager.Wow;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
