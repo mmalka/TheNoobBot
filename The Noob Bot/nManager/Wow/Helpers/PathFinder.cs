@@ -233,9 +233,16 @@ namespace nManager.Wow.Helpers
                 if (loadAllTile)
                     _pather.LoadAllTiles();
 
-                locList = ShortPath ? _pather.FindPathSimple(from, to, out resultSuccess, true) : _pather.FindPath(from, to, out resultSuccess);
+                bool failedPolyref;
+                locList = ShortPath ? _pather.FindPathSimple(from, to, out resultSuccess, out failedPolyref, true) : _pather.FindPath(from, to, out resultSuccess, out failedPolyref);
                 if (addFromAndStart && resultSuccess)
                     locList.Add(to);
+
+                if (!resultSuccess && failedPolyref)
+                {
+                    _pather.Dispose();
+                    _pather = new Pather(continentNameMpq);
+                }
 
                 // Clean list:
                 for (int i = 0; i <= locList.Count - 2; i++)

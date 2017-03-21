@@ -619,7 +619,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 try
                 {
                     bool b;
-                    return FindPathSimple(startVec, endVec, out b, true);
+                    bool p;
+                    return FindPathSimple(startVec, endVec, out b, out p, true);
                 }
                 catch (Exception exception)
                 {
@@ -636,7 +637,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 try
                 {
                     bool b;
-                    return FindPath(startVec, endVec, out b);
+                    bool p;
+                    return FindPath(startVec, endVec, out b, out p);
                 }
                 catch (Exception exception)
                 {
@@ -646,11 +648,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        public List<Point> FindPath(Point startVec, Point endVec, out bool resultSuccess)
+        public List<Point> FindPath(Point startVec, Point endVec, out bool resultSuccess, out bool failpolyref)
         {
             lock (_threadLocker)
             {
-                List<Point> path = FindPathSimple(startVec, endVec, out resultSuccess);
+                List<Point> path = FindPathSimple(startVec, endVec, out resultSuccess, out failpolyref);
                 if (path.Count < 2)
                 {
                     resultSuccess = false;
@@ -664,7 +666,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 {
                     int limit = (int) (path.Count*0.80f);
                     List<Point> path2;
-                    path2 = FindPathSimple(path[limit], endVec, out resultSuccess);
+                    path2 = FindPathSimple(path[limit], endVec, out resultSuccess, out failpolyref);
 
                     ndiff = (endVec - path2[path2.Count - 1]).Magnitude;
                     if (ndiff < diff)
@@ -683,12 +685,13 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        public List<Point> FindPathSimple(Point startVec, Point endVec, out bool resultSuccess, bool ShortPath = false)
+        public List<Point> FindPathSimple(Point startVec, Point endVec, out bool resultSuccess, out bool failedPolyref, bool ShortPath = false)
         {
             lock (_threadLocker)
             {
                 try
                 {
+                    failedPolyref = false;
                     resultSuccess = true;
                     float[] extents = new Point(4.5f, 200.0f, 4.5f).ToFloatArray();
                     float[] start = startVec.ToRecast().ToFloatArray();
@@ -702,11 +705,17 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                     dtPolyRef startRef = _query.FindNearestPolygon(start, extents, Filter);
                     if (startRef == 0)
+                    {
+                        failedPolyref = true;
                         Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
+                    }
 
                     dtPolyRef endRef = _query.FindNearestPolygon(end, extents, Filter);
                     if (endRef == 0)
+                    {
+                        failedPolyref = true;
                         Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for end (" + endVec + ")");
+                    }
 
                     if (startRef == 0 || endRef == 0)
                         return new List<Point>();
@@ -752,6 +761,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 {
                     Logging.WriteError("FindPath(Point startVec, Point endVec, out bool resultSuccess): " + exception);
                     resultSuccess = false;
+                    failedPolyref = false;
                 }
                 return new List<Point>();
             }
