@@ -225,6 +225,11 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public QuestGiverStatus QuestGiverStatus
+        {
+            get { return (QuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
+        }
+
         internal T GetDescriptor<T>(Descriptors.ObjectFields field) where T : struct
         {
             try

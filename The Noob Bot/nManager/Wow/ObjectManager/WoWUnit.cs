@@ -2805,11 +2805,6 @@ namespace nManager.Wow.ObjectManager
             get { return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags); }
         }
 
-        public UnitQuestGiverStatus UnitQuestGiverStatus
-        {
-            get { return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
-        }
-
         public UnitFlightMasterStatus UnitFlightMasteStatus
         {
             get { return (UnitFlightMasterStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.FlightMasterStatus); }
@@ -2822,8 +2817,8 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     return IsValid && IsNpcQuestGiver &&
-                           (UnitQuestGiverStatus == UnitQuestGiverStatus.TurnIn || UnitQuestGiverStatus == UnitQuestGiverStatus.TurnInInvisible
-                            || UnitQuestGiverStatus == UnitQuestGiverStatus.TurnInRepeatable || UnitQuestGiverStatus == UnitQuestGiverStatus.LowLevelTurnInRepeatable);
+                           (QuestGiverStatus == QuestGiverStatus.TurnIn || QuestGiverStatus == QuestGiverStatus.TurnInInvisible
+                            || QuestGiverStatus == QuestGiverStatus.TurnInRepeatable || QuestGiverStatus == QuestGiverStatus.LowLevelTurnInRepeatable);
                 }
                 catch (Exception e)
                 {
@@ -2840,8 +2835,8 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     return IsValid && IsNpcQuestGiver &&
-                           (UnitQuestGiverStatus == UnitQuestGiverStatus.Available || UnitQuestGiverStatus == UnitQuestGiverStatus.AvailableRepeatable
-                            || UnitQuestGiverStatus == UnitQuestGiverStatus.LowLevelAvailable || UnitQuestGiverStatus == UnitQuestGiverStatus.LowLevelAvailableRepeatable);
+                           (QuestGiverStatus == QuestGiverStatus.Available || QuestGiverStatus == QuestGiverStatus.AvailableRepeatable
+                            || QuestGiverStatus == QuestGiverStatus.LowLevelAvailable || QuestGiverStatus == QuestGiverStatus.LowLevelAvailableRepeatable);
                 }
                 catch (Exception e)
                 {

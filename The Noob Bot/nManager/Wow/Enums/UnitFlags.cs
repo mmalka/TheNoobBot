@@ -120,7 +120,7 @@ namespace nManager.Wow.Enums
         Negative = 0x0080,
     }
 
-    public enum UnitQuestGiverStatus
+    public enum QuestGiverStatus
     {
         None = 0,
         Unavailable = 1,

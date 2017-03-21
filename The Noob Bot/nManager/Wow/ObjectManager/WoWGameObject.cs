@@ -742,6 +742,42 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool CanTurnIn
+        {
+            get
+            {
+                try
+                {
+                    return IsValid && GOType == WoWGameObjectType.Questgiver &&
+                           (QuestGiverStatus == QuestGiverStatus.TurnIn || QuestGiverStatus == QuestGiverStatus.TurnInInvisible || QuestGiverStatus == QuestGiverStatus.TurnInRepeatable ||
+                            QuestGiverStatus == QuestGiverStatus.LowLevelTurnInRepeatable);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWGameObject > CanTurnIn: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool HasQuests
+        {
+            get
+            {
+                try
+                {
+                    return IsValid && GOType == WoWGameObjectType.Questgiver &&
+                           (QuestGiverStatus == QuestGiverStatus.Available || QuestGiverStatus == QuestGiverStatus.AvailableRepeatable || QuestGiverStatus == QuestGiverStatus.LowLevelAvailable ||
+                            QuestGiverStatus == QuestGiverStatus.LowLevelAvailableRepeatable);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWGameObject > HasQuests: " + e);
+                    return false;
+                }
+            }
+        }
+
         public T GetDescriptor<T>(Descriptors.GameObjectFields field) where T : struct
         {
             try
