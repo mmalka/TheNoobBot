@@ -106,7 +106,7 @@ namespace nManager.Helpful.Forms
 
                 if (gameObjects.Count > 0)
                 {
-                    WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
+                    WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects, true);
                     if (gameObject.IsValid)
                     {
                         npc.Entry = gameObject.Entry;
@@ -121,7 +121,7 @@ namespace nManager.Helpful.Forms
                     List<WoWUnit> units = ObjectManager.GetWoWUnitByName(searchString);
                     if (units.Count > 0)
                     {
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(units);
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(units, true, true, true);
                         if (unit.IsValid)
                         {
                             npc.Entry = unit.Entry;
