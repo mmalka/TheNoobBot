@@ -368,7 +368,7 @@ namespace nManager.Helpful.Forms
                     if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver))
                     {
                         var questStatusFlag =
-                            (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
+                            (QuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                         if (questStatusFlag > 0x0)
                         {
                             questStatusText = "Quest Giver Status: " + questStatusFlag + Environment.NewLine;

@@ -390,6 +390,11 @@ namespace nManager.Wow.Helpers
                 npc.Position = mNpc.Position;
             else if (mNpc.IsValid)
                 nManagerSetting.AddBlackList(npc.Guid, 60*1000);
+            WoWGameObject mObj = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), ignoreBlacklist);
+            if (mObj.HasQuests)
+                npc.Position = mObj.Position;
+            else if (mObj.IsValid)
+                nManagerSetting.AddBlackList(npc.Guid, 60 * 1000);
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 800f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
