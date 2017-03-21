@@ -1664,9 +1664,10 @@ namespace nManager.Wow.Helpers
 
 
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
+            var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(Target.Guid);
             if (!InMovement &&
                 (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
-                 TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS)))
+                 tmpNpc is WoWUnit && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS)))
             {
                 if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly) // Then we are > ~180 of the target
                 {
@@ -1696,9 +1697,10 @@ namespace nManager.Wow.Helpers
             // We are in movement and want to update the path if necessary
             if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InInevitableCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
+                tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(Target.Guid);
                 // Out of range of the position
                 if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
-                    TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS))
+                    tmpNpc is WoWUnit && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS))
                 {
                     baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
                     if (LongMove.IsLongMove) // we are in longmove
