@@ -427,6 +427,12 @@ namespace nManager.Wow.Class
             Z = v.Z;
         }
 
+        public Vector3 LerpByDistance(Vector3 end, float distanceFromEnd)
+        {
+            Vector3 p = distanceFromEnd*Normalize(this - end) + end;
+            return p;
+        }
+
         public static readonly Vector3 origin = new Vector3(0, 0, 0);
         public static readonly Vector3 xAxis = new Vector3(1, 0, 0);
         public static readonly Vector3 yAxis = new Vector3(0, 1, 0);
