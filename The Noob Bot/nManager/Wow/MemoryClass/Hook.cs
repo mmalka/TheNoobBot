@@ -213,12 +213,14 @@ namespace nManager.Wow.MemoryClass
         {
             lock (Locker)
             {
-                _lockRequests--;
-                if (_lockRequests <= 0 || _lockRequests > 10)
+                if (_lockRequests > 0)
                 {
                     Memory.WriteByte(_mLocked, 0);
                     _lockRequests = 0;
                 }
+                _lockRequests--;
+                if (_lockRequests < 0)
+                    _lockRequests = 0;
             }
         }
 
