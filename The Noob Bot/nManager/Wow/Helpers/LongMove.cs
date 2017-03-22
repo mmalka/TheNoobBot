@@ -18,6 +18,7 @@ namespace nManager.Wow.Helpers
 
         private static Point _pointLongMove = new Point();
         private static Timer RegenPath = new Timer(0);
+        private static Thread _longMoveThread;
 
         public static bool IsLongMove
         {
@@ -28,9 +29,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (_longMoveThread != null && _longMoveThread.IsAlive && _pointLongMove.DistanceTo(point) < 0.0001f)
+                    return;
                 _pointLongMove = point;
-                Thread worker2 = new Thread(LongMoveGo) {IsBackground = true, Name = "LongMove"};
-                worker2.Start();
+                _longMoveThread = new Thread(LongMoveGo) { IsBackground = true, Name = "LongMove" };
+                _longMoveThread.Start();
                 Thread.Sleep(100);
             }
             catch (Exception exception)
