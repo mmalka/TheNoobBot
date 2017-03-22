@@ -27,7 +27,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 1.0f;
+    internal static float Version = 1.01f;
 
     #region ICombatClass Members
 
@@ -517,6 +517,10 @@ public class HunterMarksmanship
 
     private void Pet()
     {
+        // Skip if Pet Management isn't possible
+        if (!MountTask.CanManagePet)
+            return;
+
         Usefuls.SleepGlobalCooldown();
 
         try
@@ -1236,11 +1240,16 @@ public class HunterBeastMastery
 
     private void Pet()
     {
+        // Skip if Pet Management isn't possible
+        if (!MountTask.CanManagePet)
+            return;
+
         Usefuls.SleepGlobalCooldown();
 
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
 
             // Dismiss Pet when nessecary
             if (Quest.GetSetDismissPet)
@@ -1936,6 +1945,10 @@ public class HunterSurvival
 
     private void Pet()
     {
+        // Skip if Pet Management isn't possible
+        if (!MountTask.CanManagePet)
+            return;
+
         Usefuls.SleepGlobalCooldown();
 
         try

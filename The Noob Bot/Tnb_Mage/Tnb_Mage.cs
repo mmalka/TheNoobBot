@@ -27,7 +27,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 1.01f;
+    internal static float Version = 1.02f;
 
     #region ICombatClass Members
 
@@ -1639,6 +1639,10 @@ public class MageFrost
     // For Summoning permanent Pets (always return after Casting)
     private void Pet()
     {
+        // Skip if Pet Management isn't possible
+        if (!MountTask.CanManagePet)
+            return;
+
         Usefuls.SleepGlobalCooldown();
 
         try

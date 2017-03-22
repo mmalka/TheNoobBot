@@ -28,7 +28,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 1.02f;
+    internal static float Version = 1.03f;
 
     #region ICombatClass Members
 
@@ -425,6 +425,10 @@ public class WarlockAffliction
     // For Summoning permanent Pets (always return after Casting)
     private bool Pet()
     {
+        // Skip if Pet Management isn't possible
+        if (!MountTask.CanManagePet)
+            return false;
+
         Usefuls.SleepGlobalCooldown();
 
         try
@@ -1258,6 +1262,10 @@ public class WarlockDemonology
     // For Summoning permanent Pets (always return after Casting)
     private bool Pet()
     {
+        // Skip if Pet Management isn't possible
+        if (!MountTask.CanManagePet)
+            return false;
+
         Usefuls.SleepGlobalCooldown();
 
         try
@@ -2050,6 +2058,10 @@ public class WarlockDestruction
     // For Summoning permanent Pets (always return after Casting)
     private bool Pet()
     {
+        // Skip if Pet Management isn't possible
+        if (!MountTask.CanManagePet)
+            return false;
+
         Usefuls.SleepGlobalCooldown();
 
         try
@@ -2270,6 +2282,9 @@ public class WarlockDestruction
                 (ObjectManager.Target.GetUnitInSpellRange(10f) >= 4 ||
                  (!LordofFlamesTrait.HaveBuff || !LordofFlamesBuff.HaveBuff)))
             {
+                Logging.WriteFileOnly("Souls Shards: " + ObjectManager.Me.SoulShards +
+                    ", is on Cooldown: " + SpellManager.IsSpellOnCooldown(SummonDoomguard.Id, SummonDoomguard.CategoryId, SummonDoomguard.StartRecoveryCategoryId) +
+                    ", remaining Cooldown: " + SpellManager.TimeLeftOnSpellCooldownLUA(SummonDoomguard.Id));
                 SummonInfernal.CastAtPosition(ObjectManager.Target.Position);
                 return;
             }
@@ -2277,6 +2292,9 @@ public class WarlockDestruction
             if (MySettings.UseSummonDoomguard && ObjectManager.Me.SoulShards >= 1 &&
                 SummonDoomguard.IsSpellUsable && SummonDoomguard.IsHostileDistanceGood)
             {
+                Logging.WriteFileOnly("Souls Shards: " + ObjectManager.Me.SoulShards +
+                    ", is on Cooldown: " + SpellManager.IsSpellOnCooldown(SummonDoomguard.Id, SummonDoomguard.CategoryId, SummonDoomguard.StartRecoveryCategoryId) +
+                    ", remaining Cooldown: " + SpellManager.TimeLeftOnSpellCooldownLUA(SummonDoomguard.Id));
                 SummonDoomguard.Cast();
                 return;
             }
