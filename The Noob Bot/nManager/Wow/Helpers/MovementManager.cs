@@ -1213,9 +1213,9 @@ namespace nManager.Wow.Helpers
                     if (ObjectManager.ObjectManager.Me.InTransport)
                     {
                         var t = new WoWObject(ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid).GetBaseAddress);
-                        if (t.Type == WoWObjectType.GameObject)
+                        if (t.Type == WoWObjectType.GameObject && t is WoWGameObject)
                         {
-                            var o = new WoWGameObject(t.GetBaseAddress);
+                            var o = t as WoWGameObject;
                             if (o.IsValid)
                             {
                                 Vector3 altVector3 = position.TransformInvert(o);
@@ -1223,19 +1223,10 @@ namespace nManager.Wow.Helpers
                             }
                         }
                     }
-                    if (altPoint.IsValid)
+                    if (ClickToMove.GetClickToMovePosition().DistanceTo(altPoint.IsValid ? altPoint : position) > 1 || ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
                     {
-                        if (ClickToMove.GetClickToMovePosition().DistanceTo(altPoint) > 1 ||
-                            ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
-                            ClickToMove.CGPlayer_C__ClickToMove(altPoint.X, altPoint.Y, altPoint.Z, 0,
-                                (int) ClickToMoveType.Move, 0.5f);
-                    }
-                    else
-                    {
-                        if (ClickToMove.GetClickToMovePosition().DistanceTo(position) > 1 ||
-                            ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
-                            ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0,
-                                (int) ClickToMoveType.Move, 0.5f);
+                        ClickToMove.CGPlayer_C__ClickToMove(altPoint.IsValid ? altPoint.X : position.X, altPoint.IsValid ? altPoint.Y : position.Y, altPoint.IsValid ? altPoint.Z : position.Z, 0,
+                            (int) ClickToMoveType.Move, 0.5f);
                     }
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
