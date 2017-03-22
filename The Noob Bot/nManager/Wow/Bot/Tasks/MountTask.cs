@@ -35,8 +35,41 @@ namespace nManager.Wow.Bot.Tasks
         private static string _groundMount;
         private static string _flyMount;
         public static bool SettingsHasChanged;
-        private static Timer dismountTimer = new Timer(0);
+        private static Timer _flyDismountTimer = new Timer(0);
+        public static Timer DismountTimer = new Timer(5000);
         public static bool AllowMounting = true;
+
+        public static bool HaveSpaceToMount()
+        {
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                Single degree = 0;
+                Point pos = ObjectManager.ObjectManager.Me.Position;
+
+                while (degree < 360)
+                {
+                    //Calculate position on a circle 60 degrees at a time and check if we can go there
+                    var x = (float) (pos.X + 2f*System.Math.Cos(Helpful.Math.DegreeToRadian(degree)));
+                    var y = (float) (pos.Y + 2f*System.Math.Sin(Helpful.Math.DegreeToRadian(degree)));
+                    var currTarget = new Point(x, y, pos.Z + 3f);
+                    if (TraceLine.TraceLineGo(currTarget, pos, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                        return false;
+                    degree += 60f; // check 6 angles arrounds 0° > 60° > 120° > 180° > 240° > 300°
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("public static bool HaveSpaceToMount(): " + e);
+                return true;
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
+        }
 
         public static MountCapacity GetMountCapacity()
         {
@@ -99,6 +132,9 @@ namespace nManager.Wow.Bot.Tasks
 
             if (ObjectManager.ObjectManager.Me.HaveBuff(ObjectManager.WoWUnit.CombatMount))
                 return MountCapacity.Feet;
+
+            if (!HaveSpaceToMount())
+                return MountCapacity.Feet; // mount later if we don't have enough space at the moment.
 
             // Wherever we are if we have an aquatic mount and are swimming
             if (((ObjectManager.ObjectManager.Me.Level >= 20 && Skill.GetValue(SkillLine.Riding) > 0) || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 18)) &&
@@ -427,7 +463,12 @@ namespace nManager.Wow.Bot.Tasks
 
         public static bool JustDismounted()
         {
-            return !dismountTimer.IsReady;
+            return !_flyDismountTimer.IsReady;
+        }
+
+        public static bool CanManagePet
+        {
+            get { return DismountTimer.IsReady; }
         }
 
         public static void DismountMount(bool stopMove = true)
@@ -450,7 +491,7 @@ namespace nManager.Wow.Bot.Tasks
                             Land();
                         Usefuls.DisMount();
                         if (flying)
-                            dismountTimer = new Timer(5000);
+                            _flyDismountTimer = new Timer(5000);
                         Thread.Sleep(200 + Usefuls.Latency);
                     }
                 }

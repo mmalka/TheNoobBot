@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
@@ -894,6 +895,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                MountTask.DismountTimer.Reset();
                 Lua.RunMacroText(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.DruidMountId()) ? "/cancelform" : "/dismount");
             }
             catch (Exception e)
@@ -1110,8 +1112,8 @@ namespace nManager.Wow.Helpers
             while (degree < 360) //Search for safe rez point, if no safe point found, just rez and get killed again!
             {
                 //Calculate position on a circle 15degrees at a time and check if we can go there
-                float x = (float) (posCorpse.X + 30f*System.Math.Cos(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
-                float y = (float) (posCorpse.Y + 30f*System.Math.Sin(Convert.ToDouble(Helpful.Math.DegreeToRadian(degree))));
+                float x = (float) (posCorpse.X + 30f*System.Math.Cos(Helpful.Math.DegreeToRadian(degree)));
+                float y = (float) (posCorpse.Y + 30f*System.Math.Sin(Helpful.Math.DegreeToRadian(degree)));
                 rezPos = new Point(x, y, PathFinder.GetZPosition(x, y));
 
                 if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) < 36.0f && !nManagerSetting.IsBlackListedZone(rezPos))
