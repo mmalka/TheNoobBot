@@ -449,7 +449,7 @@ namespace nManager.Wow.Bot.States
                                 Point destination = qPOI.MiddlePoint;
                                 _AntiPingPong = false;
                                 Logging.Write("Stuck, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
-                                MountTask.Mount();
+                                MountTask.Mount(true, true);
                                 MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                                 return;
                             }
@@ -672,7 +672,7 @@ namespace nManager.Wow.Bot.States
                                 if (!badres)
                                 {
                                     Logging.Write("Flying to shortcut the path");
-                                    MountTask.Mount();
+                                    MountTask.Mount(true, true);
                                     if (Usefuls.IsFlying) // Failsafe: in case we are indoor don't try
                                     {
                                         points = new List<Point>();

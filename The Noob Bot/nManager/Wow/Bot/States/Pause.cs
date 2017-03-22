@@ -102,7 +102,7 @@ namespace nManager.Wow.Bot.States
                 if (MountTask.GetMountCapacity() == MountCapacity.Fly)
                 {
                     if (!ObjectManager.ObjectManager.Me.IsMounted)
-                        MountTask.Mount(false);
+                        MountTask.Mount(false, true);
                     // should be mounted here..
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                     {

@@ -8,6 +8,7 @@ using nManager.Wow.Bot.States;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.MemoryClass;
 using nManager.Wow.ObjectManager;
 using CSharpMath = System.Math;
 using Math = nManager.Helpful.Math;
@@ -306,10 +307,7 @@ namespace nManager.Wow.Helpers
 
                         if (_loop || Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                         {
-                            if (nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground && MountTask.GetMountCapacity() != MountCapacity.Swimm)
-                                MountTask.MountingGroundMount(false);
-                            else
-                                MountTask.Mount(false);
+                            MountTask.Mount(false);
                             if (Usefuls.IsFlying)
                             {
                                 var tmpList = new List<Point>();
@@ -1172,9 +1170,7 @@ namespace nManager.Wow.Helpers
                             else if (!ObjectManager.ObjectManager.Me.IsMounted || MountTask.OnAquaticMount() && !Usefuls.IsSwimming)
                             {
                                 // We are not mounted, or we are on our Aquatic turtle and wanna go back to normal mount.
-                                if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && mountCapacity >= MountCapacity.Ground)
-                                    MountTask.MountingGroundMount(false);
-                                else
+                                if (!Usefuls.IsSwimming)
                                     MountTask.Mount(false);
                             }
                         }
@@ -1670,10 +1666,10 @@ namespace nManager.Wow.Helpers
 
             uint baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
             if (doMount && !InMovement && baseAddress <= 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
-                Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
-                MountTask.Mount();
+                (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - SpecialRange) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                MountTask.Mount(false, true);
             if (doMount && !InMovement && baseAddress > 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 60f)
-                MountTask.Mount();
+                MountTask.Mount(false, true);
 
 
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
@@ -1682,7 +1678,7 @@ namespace nManager.Wow.Helpers
                 (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
                  tmpNpc is WoWUnit && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS)))
             {
-                if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly) // Then we are > ~180 of the target
+                if (baseAddress == 0 && (MountTask.GetMountCapacity() == MountCapacity.Fly || Usefuls.IsFlying)) // Then we are > ~180 of the target
                 {
                     Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
                     LongMove.LongMoveByNewThread(Target.Position);

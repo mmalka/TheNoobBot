@@ -4,6 +4,7 @@ using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using Math = nManager.Helpful.Math;
 using Timer = nManager.Helpful.Timer;
 
@@ -78,7 +79,20 @@ namespace nManager.Wow.Helpers
                 while (Products.Products.IsStarted && (ObjectManager.ObjectManager.Me.IsMounted || MountTask.GetMountCapacity() == MountCapacity.Feet) &&
                        ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f && _used && _usedLoop)
                 {
-                    if (MountTask.GetMountCapacity() <= MountCapacity.Ground)
+                    bool forceGround = false;
+                    if (Usefuls.IsFlying)
+                    {
+                        if (_pointLongMove.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 60)
+                        {
+                            Point p = ObjectManager.ObjectManager.Me.Position.LerpByDistance(_pointLongMove, 3f) as Point;
+                            if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, p, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                            {
+                                MountTask.DismountMount();
+                                forceGround = true;
+                            }
+                        }
+                    }
+                    if (MountTask.GetMountCapacity() <= MountCapacity.Ground || forceGround)
                     {
                         if (RegenPath.IsReady && ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f)
                         {
@@ -190,7 +204,7 @@ namespace nManager.Wow.Helpers
                         {
                             MovementsAction.Descend(false);
                             MovementsAction.Ascend(false);
-                            MountTask.Mount(false);
+                            MountTask.Mount(false, true);
                             MovementsAction.Ascend(true);
                             Thread.Sleep(1300);
                             MovementsAction.Ascend(false);

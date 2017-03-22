@@ -219,24 +219,35 @@ namespace nManager.Wow.Bot.Tasks
             return _spellAquaMount.HaveBuff;
         }
 
+        private static readonly object MountLocker = new object();
+
         public static void Mount(bool stopMove = true, bool bypassForcedGround = false)
         {
-            switch (GetMountCapacity())
+            lock (MountLocker)
             {
-                case MountCapacity.Fly:
-                    if (!bypassForcedGround && nManagerSetting.CurrentSetting.UseGroundMount)
+                switch (GetMountCapacity())
+                {
+                    case MountCapacity.Fly:
+                        if (!bypassForcedGround && nManagerSetting.CurrentSetting.UseGroundMount)
+                        {
+                            if (ObjectManager.ObjectManager.Me.IsMounted)
+                                return;
+                            MountingGroundMount(stopMove);
+                        }
+                        else
+                            MountingFlyingMount(stopMove);
+                        break;
+                    case MountCapacity.Swimm:
+                        MountingAquaticMount(stopMove);
+                        break;
+                    case MountCapacity.Ground:
+                        if (ObjectManager.ObjectManager.Me.IsMounted && !OnAquaticMount())
+                            return;
                         MountingGroundMount(stopMove);
-                    else
-                        MountingFlyingMount(stopMove);
-                    break;
-                case MountCapacity.Swimm:
-                    MountingAquaticMount(stopMove);
-                    break;
-                case MountCapacity.Ground:
-                    MountingGroundMount(stopMove);
-                    break;
-                default:
-                    return;
+                        break;
+                    default:
+                        return;
+                }
             }
         }
 
