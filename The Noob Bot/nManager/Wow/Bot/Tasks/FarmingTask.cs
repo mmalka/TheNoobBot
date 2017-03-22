@@ -70,7 +70,7 @@ namespace nManager.Wow.Bot.Tasks
 
                     while (node.IsValid && Products.Products.IsStarted &&
                            !ObjectManager.ObjectManager.Me.IsDeadMe &&
-                           !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
+                           !(ObjectManager.ObjectManager.Me.InInevitableCombat) &&
                            !timer.IsReady)
                     {
                         if (!landing)
@@ -96,6 +96,9 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
                             }
+
+                            if (!ObjectManager.ObjectManager.Me.IsMounted)
+                                return;
                             if (!noDirectPath)
                                 landing = true;
                         }
@@ -104,6 +107,9 @@ namespace nManager.Wow.Bot.Tasks
                             ObjectManager.ObjectManager.Me.Position.DistanceZ(node.Position) >= 5.0f && !toMine)
                         {
                             toMine = true;
+
+                            if (!ObjectManager.ObjectManager.Me.IsMounted)
+                                return;
                             zT = node.Position.Z + 1.5f;
                             MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
                             if (node.GetDistance > 3.0f && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, node.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
@@ -195,6 +201,8 @@ namespace nManager.Wow.Bot.Tasks
                         else if (!ObjectManager.ObjectManager.Me.GetMove)
                         {
                             Thread.Sleep(50);
+                            if (!ObjectManager.ObjectManager.Me.IsMounted)
+                                return;
                             MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
                         }
                         if (States.Farming.PlayerNearest(node))
@@ -242,7 +250,7 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Fly)
                                 {
                                     if (!MountTask.OnFlyMount())
-                                        MountTask.Mount();
+                                        MountTask.Mount(true, true);
                                     else
                                         MountTask.Takeoff();
                                     Fly(nodes);
