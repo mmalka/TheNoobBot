@@ -126,6 +126,8 @@ namespace Quester.Profile
             this.TBObjInternalIndex = new System.Windows.Forms.TextBox();
             this.ButtonObjDumpIndex = new System.Windows.Forms.Button();
             this.PanelObjAll = new System.Windows.Forms.Panel();
+            this.CBObjIgnoreAllFight = new System.Windows.Forms.CheckBox();
+            this.CBObjIsBonusObjective = new System.Windows.Forms.CheckBox();
             this.CBObjDismissPet = new System.Windows.Forms.CheckBox();
             this.CBObjIgnoreItemNotUsable = new System.Windows.Forms.CheckBox();
             this.ButtonObjImportCursorItemID = new System.Windows.Forms.Button();
@@ -199,8 +201,7 @@ namespace Quester.Profile
             this.ButtonSaveXML = new System.Windows.Forms.Button();
             this.TNBControlMenu = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.UcXmlRichTextBox1 = new nManager.Helpful.Forms.UserControls.UCXmlRichTextBox();
-            this.CBObjIsBonusObjective = new System.Windows.Forms.CheckBox();
-            this.CBObjIgnoreAllFight = new System.Windows.Forms.CheckBox();
+            this.ButtonObjHotSpotsPlayerPosRelative = new System.Windows.Forms.Button();
             this.ContextMenuStrip.SuspendLayout();
             this.PanelNPC.SuspendLayout();
             this.PanelSimpleQuest.SuspendLayout();
@@ -518,7 +519,7 @@ namespace Quester.Profile
             this.ButtonQuestImpotTurnInID.UseVisualStyleBackColor = true;
             this.ButtonQuestImpotTurnInID.Click += new System.EventHandler(this.ButtonQuestImpotTurnInID_Click);
             // 
-            // button1
+            // QuestCompletedButton
             // 
             this.QuestCompletedButton.Location = new System.Drawing.Point(116, 428);
             this.QuestCompletedButton.Margin = new System.Windows.Forms.Padding(2);
@@ -946,6 +947,7 @@ namespace Quester.Profile
             // 
             // TabPageObjectives
             // 
+            this.TabPageObjectives.Controls.Add(this.ButtonObjHotSpotsPlayerPosRelative);
             this.TabPageObjectives.Controls.Add(this.ButtonObjImportGPSExtraPoint);
             this.TabPageObjectives.Controls.Add(this.label49);
             this.TabPageObjectives.Controls.Add(this.TBObjExtraFloat);
@@ -1083,12 +1085,12 @@ namespace Quester.Profile
             // 
             // ButtonObjHotSpotsTargetPos
             // 
-            this.ButtonObjHotSpotsTargetPos.Location = new System.Drawing.Point(278, 403);
+            this.ButtonObjHotSpotsTargetPos.Location = new System.Drawing.Point(311, 403);
             this.ButtonObjHotSpotsTargetPos.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonObjHotSpotsTargetPos.Name = "ButtonObjHotSpotsTargetPos";
-            this.ButtonObjHotSpotsTargetPos.Size = new System.Drawing.Size(94, 36);
+            this.ButtonObjHotSpotsTargetPos.Size = new System.Drawing.Size(61, 36);
             this.ButtonObjHotSpotsTargetPos.TabIndex = 92;
-            this.ButtonObjHotSpotsTargetPos.Text = "Add HotSpot Target.Pos";
+            this.ButtonObjHotSpotsTargetPos.Text = "Add HS Target.Pos";
             this.ButtonObjHotSpotsTargetPos.UseVisualStyleBackColor = true;
             this.ButtonObjHotSpotsTargetPos.Click += new System.EventHandler(this.ButtonObjHotSpotsTargetPos_Click);
             // 
@@ -1261,6 +1263,28 @@ namespace Quester.Profile
             this.PanelObjAll.Size = new System.Drawing.Size(168, 454);
             this.PanelObjAll.TabIndex = 14;
             this.PanelObjAll.Visible = false;
+            // 
+            // CBObjIgnoreAllFight
+            // 
+            this.CBObjIgnoreAllFight.AutoSize = true;
+            this.CBObjIgnoreAllFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBObjIgnoreAllFight.Location = new System.Drawing.Point(-1, 296);
+            this.CBObjIgnoreAllFight.Name = "CBObjIgnoreAllFight";
+            this.CBObjIgnoreAllFight.Size = new System.Drawing.Size(90, 17);
+            this.CBObjIgnoreAllFight.TabIndex = 93;
+            this.CBObjIgnoreAllFight.Text = "IgnoreAllFight";
+            this.CBObjIgnoreAllFight.UseVisualStyleBackColor = true;
+            // 
+            // CBObjIsBonusObjective
+            // 
+            this.CBObjIsBonusObjective.AutoSize = true;
+            this.CBObjIsBonusObjective.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBObjIsBonusObjective.Location = new System.Drawing.Point(55, 432);
+            this.CBObjIsBonusObjective.Name = "CBObjIsBonusObjective";
+            this.CBObjIsBonusObjective.Size = new System.Drawing.Size(109, 17);
+            this.CBObjIsBonusObjective.TabIndex = 92;
+            this.CBObjIsBonusObjective.Text = "IsBonusObjective";
+            this.CBObjIsBonusObjective.UseVisualStyleBackColor = true;
             // 
             // CBObjDismissPet
             // 
@@ -1590,12 +1614,12 @@ namespace Quester.Profile
             // 
             // ButtonObjHotSpotsPlayerPos
             // 
-            this.ButtonObjHotSpotsPlayerPos.Location = new System.Drawing.Point(187, 403);
+            this.ButtonObjHotSpotsPlayerPos.Location = new System.Drawing.Point(184, 403);
             this.ButtonObjHotSpotsPlayerPos.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonObjHotSpotsPlayerPos.Name = "ButtonObjHotSpotsPlayerPos";
-            this.ButtonObjHotSpotsPlayerPos.Size = new System.Drawing.Size(87, 36);
+            this.ButtonObjHotSpotsPlayerPos.Size = new System.Drawing.Size(61, 36);
             this.ButtonObjHotSpotsPlayerPos.TabIndex = 71;
-            this.ButtonObjHotSpotsPlayerPos.Text = "Add HotSpot Me.Pos";
+            this.ButtonObjHotSpotsPlayerPos.Text = "Add HS Me.Pos";
             this.ButtonObjHotSpotsPlayerPos.UseVisualStyleBackColor = true;
             this.ButtonObjHotSpotsPlayerPos.Click += new System.EventHandler(this.ButtonObjHotSpots_Click);
             // 
@@ -2004,27 +2028,16 @@ namespace Quester.Profile
             this.UcXmlRichTextBox1.Text = "";
             this.UcXmlRichTextBox1.Xml = "";
             // 
-            // CBObjIsBonusObjective
+            // ButtonObjHotSpotsPlayerPosRelative
             // 
-            this.CBObjIsBonusObjective.AutoSize = true;
-            this.CBObjIsBonusObjective.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIsBonusObjective.Location = new System.Drawing.Point(55, 432);
-            this.CBObjIsBonusObjective.Name = "CBObjIsBonusObjective";
-            this.CBObjIsBonusObjective.Size = new System.Drawing.Size(109, 17);
-            this.CBObjIsBonusObjective.TabIndex = 92;
-            this.CBObjIsBonusObjective.Text = "IsBonusObjective";
-            this.CBObjIsBonusObjective.UseVisualStyleBackColor = true;
-            // 
-            // CBObjIgnoreAllFight
-            // 
-            this.CBObjIgnoreAllFight.AutoSize = true;
-            this.CBObjIgnoreAllFight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBObjIgnoreAllFight.Location = new System.Drawing.Point(-1, 296);
-            this.CBObjIgnoreAllFight.Name = "CBObjIgnoreAllFight";
-            this.CBObjIgnoreAllFight.Size = new System.Drawing.Size(90, 17);
-            this.CBObjIgnoreAllFight.TabIndex = 93;
-            this.CBObjIgnoreAllFight.Text = "IgnoreAllFight";
-            this.CBObjIgnoreAllFight.UseVisualStyleBackColor = true;
+            this.ButtonObjHotSpotsPlayerPosRelative.Location = new System.Drawing.Point(247, 403);
+            this.ButtonObjHotSpotsPlayerPosRelative.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonObjHotSpotsPlayerPosRelative.Name = "ButtonObjHotSpotsPlayerPosRelative";
+            this.ButtonObjHotSpotsPlayerPosRelative.Size = new System.Drawing.Size(61, 36);
+            this.ButtonObjHotSpotsPlayerPosRelative.TabIndex = 102;
+            this.ButtonObjHotSpotsPlayerPosRelative.Text = "Add HS PosAbs";
+            this.ButtonObjHotSpotsPlayerPosRelative.UseVisualStyleBackColor = true;
+            this.ButtonObjHotSpotsPlayerPosRelative.Click += new System.EventHandler(this.ButtonObjHotSpotsPlayerPosRelative_Click);
             // 
             // SimpleProfileEditor
             // 
@@ -2240,5 +2253,6 @@ namespace Quester.Profile
         internal Button ButtonObjImportGPSExtraPoint;
         internal CheckBox CBObjIsBonusObjective;
         internal CheckBox CBObjIgnoreAllFight;
+        internal Button ButtonObjHotSpotsPlayerPosRelative;
     }
 }

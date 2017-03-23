@@ -10,8 +10,8 @@ using System.Xml;
 using System.Xml.Linq;
 using nManager;
 using nManager.Helpful;
-using nManager.Wow;
 using nManager.Wow.Class;
+using nManager.Wow;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
@@ -2321,7 +2321,6 @@ namespace Quester.Profile
 
             if (GetSelectedObjectiveTypeName() == "InteractWith" && ObjectManager.Target.IsValid)
             {
-
                 TBObjPosition.Text = ObjectManager.Target.Position.ToString();
                 TBObjEntry.Text = ObjectManager.Target.Entry.ToString();
                 TBObjCount.Text = "1";
@@ -2649,7 +2648,9 @@ namespace Quester.Profile
 
                         if (tr.BackColor == Color.Green)
                             continue;
-                        tr.BackColor = nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId) ? Color.Green : Color.Red;
+                        tr.BackColor = nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId)
+                            ? Color.Green
+                            : Color.Red;
                     }
                 }
             }
@@ -2835,6 +2836,11 @@ namespace Quester.Profile
         private void ButtonObjHotSpotsTargetPos_Click(object sender, EventArgs e)
         {
             LBObjHotspots.Items.Add(ObjectManager.Target.Position);
+        }
+
+        private void ButtonObjHotSpotsPlayerPosRelative_Click(object sender, EventArgs e)
+        {
+            LBObjHotspots.Items.Add(ObjectManager.Me.PositionAbsolute);
         }
 
         private void ButtonQuestHorde_Click(object sender, EventArgs e)
@@ -3080,7 +3086,6 @@ namespace Quester.Profile
                 nManager.Wow.Helpers.Quest.DumpInternalIndexForQuestId(questId);
             }
         }
-
         #endregion
     }
 
