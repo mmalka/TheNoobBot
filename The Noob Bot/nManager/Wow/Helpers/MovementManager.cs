@@ -1669,13 +1669,13 @@ namespace nManager.Wow.Helpers
                 (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
                  tmpNpc is WoWUnit && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS)))
             {
-                if (baseAddress == 0 && (MountTask.GetMountCapacity() == MountCapacity.Fly || Usefuls.IsFlying)) // Then we are > ~180 of the target
+                List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
+                if ((patherResult && Math.DistanceListPoint(points) > 200f || !patherResult) && baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly || Usefuls.IsFlying)
                 {
                     Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
                     LongMove.LongMoveByNewThread(Target.Position);
                     return 0;
                 }
-                List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                 if (!patherResult && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 300 || points.Count < 2))
                 {
                     // Give a chance to the bot to come closer if it's far away, unless the path is really short or innexistant.
