@@ -20,5 +20,6 @@ namespace nManager.Wow.Helpers
         public List<Point> Points; // The path should work both ways.
         [DefaultValue(true)] public bool RoundTrip = true;
         [DefaultValue(false)] public bool AllowFar = false;
+        [DefaultValue(false)] public bool UseMount = false;
     }
 }

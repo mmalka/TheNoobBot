@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Windows.Forms;
@@ -299,8 +300,8 @@ namespace nManager.Wow.Bot.States
                         }
                         else
                             transportEntrance = (oneWayTravel.Key is Portal) || (oneWayTravel.Key is CustomPath) ? oneWayTravel.Key.APoint : oneWayTravel.Key.AOutsidePoint;
-                        
-                        
+
+
                         int liftEntranceContinentId = departureLift.ArrivalIsA ? departureLift.BContinentId : departureLift.AContinentId;
                         int transportEntranceContinentId = oneWayTravel.Key.ArrivalIsA ? oneWayTravel.Key.BContinentId : oneWayTravel.Key.AContinentId;
                         KeyValuePair<Transport, float> taxiToTransport = GetBestDirectWayTaxi(TravelFrom, transportEntrance, TravelFromContinentId, transportEntranceContinentId);
@@ -309,7 +310,8 @@ namespace nManager.Wow.Bot.States
                         {
                             taxiToLift = GetBestDirectWayTaxi(TravelFrom, liftEntrance, TravelFromContinentId, liftEntranceContinentId);
                         }
-                        List<Point> wayToEntrance = PathFinder.FindPath(TravelFrom, liftEntrance != null && liftEntrance.IsValid ? liftEntrance : transportEntrance, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out succes);
+                        List<Point> wayToEntrance = PathFinder.FindPath(TravelFrom, liftEntrance != null && liftEntrance.IsValid ? liftEntrance : transportEntrance,
+                            Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out succes);
                         if (succes)
                         {
                             distWithoutTaxi = Math.DistanceListPoint(wayToEntrance);
@@ -531,8 +533,8 @@ namespace nManager.Wow.Bot.States
                 var customPath = selectedTransport as CustomPath;
                 if (!failed)
                     Logging.Write("Going to CustomPath " + customPath.Name + " (" + customPath.Id + ") to travel.");
-                List<Point> pathToPortal = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint);
-                MovementManager.Go(pathToPortal);
+                List<Point> pathToCustomPath = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint);
+                MovementManager.Go(pathToCustomPath);
                 bool loop = true;
                 while (loop)
                 {
@@ -740,9 +742,6 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.DismountMount();
-
                     if ((customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint).DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
                     {
                         bool validArrivalPath;
@@ -769,15 +768,48 @@ namespace nManager.Wow.Bot.States
                         reversedPath.Reverse(); // we don't want to mess up with the saved original path.
                         path = reversedPath;
                     }
-                    MountTask.DismountMount();
+                    if (path.Count > 0)
+                    {
+                        Point firstPoint = path[0];
+                        if (customPath.UseMount && (PathFinder.GetZPosition(firstPoint) + 20) < firstPoint.Z)
+                        {
+                            // fly path?
+                            if (MountTask.GetMountCapacity() >= MountCapacity.Fly)
+                            {
+                                MountTask.Mount(true, true);
+                                MountTask.Takeoff();
+                            }
+                        }
+                        else if (customPath.UseMount)
+                        {
+                            MountTask.Mount();
+                        }
+                    }
+                    bool allowMounting = true;
+                    if (!customPath.UseMount)
+                    {
+                        if (MountTask.AllowMounting)
+                        {
+                            MountTask.AllowMounting = false;
+                        }
+                        else
+                        {
+                            allowMounting = false;
+                        }
+                        MountTask.DismountMount();
+                    }
                     Thread.Sleep(500);
                     MovementManager.Go(path);
                     while (MovementManager.InMovement)
                     {
                         if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        {
                             return false;
+                        }
                         Thread.Sleep(150);
                     }
+                    if (!customPath.UseMount && allowMounting)
+                        MountTask.AllowMounting = true;
                     loop = false;
                 }
             }
