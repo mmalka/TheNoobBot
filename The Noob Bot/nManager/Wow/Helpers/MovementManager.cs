@@ -1665,9 +1665,9 @@ namespace nManager.Wow.Helpers
 
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
             var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(Target.Guid);
-            if (!InMovement &&
-                (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
-                 tmpNpc is WoWUnit && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS)))
+            if (!InMovement && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
+                                Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
+                                TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS)))
             {
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                 if ((patherResult && Math.DistanceListPoint(points) > 200f || !patherResult) && baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly || Usefuls.IsFlying)
@@ -1700,7 +1700,8 @@ namespace nManager.Wow.Helpers
                 tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(Target.Guid);
                 // Out of range of the position
                 if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
-                    tmpNpc is WoWUnit && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS))
+                    Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
+                    TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS))
                 {
                     baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
                     if (LongMove.IsLongMove) // we are in longmove
