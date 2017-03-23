@@ -32,7 +32,7 @@ namespace nManager.Wow.Helpers
                 if (_longMoveThread != null && _longMoveThread.IsAlive && _pointLongMove.DistanceTo(point) < 0.0001f)
                     return;
                 _pointLongMove = point;
-                _longMoveThread = new Thread(LongMoveGo) { IsBackground = true, Name = "LongMove" };
+                _longMoveThread = new Thread(LongMoveGo) {IsBackground = true, Name = "LongMove"};
                 _longMoveThread.Start();
                 Thread.Sleep(100);
             }
@@ -78,6 +78,7 @@ namespace nManager.Wow.Helpers
                 Point pTemps = ObjectManager.ObjectManager.Me.Position;
 
                 Timer timerSit = new Timer(2500);
+                bool flyingPathFinder = false;
 
                 while (Products.Products.IsStarted && (ObjectManager.ObjectManager.Me.IsMounted || MountTask.GetMountCapacity() == MountCapacity.Feet) &&
                        ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f && _used && _usedLoop)
@@ -85,13 +86,77 @@ namespace nManager.Wow.Helpers
                     bool forceGround = false;
                     if (Usefuls.IsFlying)
                     {
-                        if (_pointLongMove.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 60)
+                        Point pos = ObjectManager.ObjectManager.Me.Position;
+                        if (point.DistanceTo2D(pos) <= 60 || flyingPathFinder && point.DistanceTo2D(pos) <= 110)
                         {
-                            Point p = ObjectManager.ObjectManager.Me.Position.LerpByDistance(_pointLongMove, 3f) as Point;
-                            if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, p, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                            Point p = new Point(ObjectManager.ObjectManager.Me.Position.LerpByDistance(point, 3f));
+                            bool failed = false;
+                            Point targetPoint = new Point();
+                            if (p.IsValid && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, p, CGWorldFrameHitFlags.HitTestAllButLiquid))
                             {
-                                MountTask.DismountMount();
-                                forceGround = true;
+                                if ((point.DistanceTo2D(pos) <= 60 || flyingPathFinder && point.DistanceTo2D(pos) <= 110) && pTemps.Z > point.Z)
+                                {
+                                    float degree = 0f;
+                                    bool doContinue = false;
+                                    while (degree < 360) //Search for safe rez point, if no safe point found, just rez and get killed again!
+                                    {
+                                        //Calculate position on a circle 15degrees at a time and check if we can go there
+                                        float x = (float) (pos.X + 50f*System.Math.Cos(Math.DegreeToRadian(degree)));
+                                        float y = (float) (pos.Y + 50f*System.Math.Sin(Math.DegreeToRadian(degree)));
+                                        Point topPoint = new Point(x, y, pos.Z);
+                                        Point bottomPoint = new Point(x, y, PathFinder.GetZPosition(x, y));
+                                        if (!TraceLine.TraceLineGo(topPoint, new Point(topPoint.LerpByDistance(point, 3f)), CGWorldFrameHitFlags.HitTestAllButLiquid))
+                                        {
+                                            targetPoint = topPoint;
+                                            MovementManager.MoveTo(targetPoint);
+                                            Thread.Sleep(2500);
+                                            flyingPathFinder = true;
+                                            doContinue = true;
+                                            break;
+                                            // we want to go to topPoint and directly go to point.
+                                        }
+                                        else if (!TraceLine.TraceLineGo(topPoint, bottomPoint, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                                        {
+                                            bool success;
+                                            PathFinder.FindPath(bottomPoint, point, Usefuls.ContinentNameMpq, out success);
+                                            if (success)
+                                            {
+                                                targetPoint = topPoint;
+                                                MovementManager.MoveTo(targetPoint);
+                                                Thread.Sleep(2500);
+                                                flyingPathFinder = true;
+                                                break;
+                                                // we want to go to topPoint then dismount down to bottomPoint, then findPath to target.
+                                            }
+                                        }
+                                        degree += 20;
+                                        if (degree >= 360f)
+                                            failed = true;
+                                    }
+                                    if (doContinue)
+                                    {
+                                        Thread.Sleep(1000);
+                                        continue;
+                                    }
+                                }
+                                if (!failed)
+                                {
+                                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(targetPoint) > 5f)
+                                    {
+                                        Thread.Sleep(2500);
+                                    }
+                                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(targetPoint) > 5f)
+                                        continue;
+                                    MountTask.DismountMount();
+                                    _used = false;
+                                    _usedLoop = false;
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                MovementManager.MoveTo(p);
+                                flyingPathFinder = false;
                             }
                         }
                     }
