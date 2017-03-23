@@ -64,22 +64,42 @@ namespace nManager.Wow.Class
 
         public Point(string v)
         {
-            var value = v.Split(';');
-            X = Others.ToSingle(value[0]);
-            Y = Others.ToSingle(value[1]);
-            Z = Others.ToSingle(value[2]);
-            switch (value[3].ToLower())
+            string[] value = v.Split(';');
+            if (!v.Contains(";") || value.Length < 3)
             {
-                case "swimming":
-                    Type = "Swimming";
-                    break;
-                case "flying":
-                    Type = "Flying";
-                    break;
-                default:
-                    Type = "None";
-                    break;
+                X = 0f;
+                Y = 0f;
+                Z = 0f;
             }
+            else
+            {
+                X = Others.ToSingle(value[0]);
+                Y = Others.ToSingle(value[1]);
+                Z = Others.ToSingle(value[2]);
+                if (X == 0 || Y == 0 || Z == 0)
+                {
+                    X = 0f;
+                    Y = 0f;
+                    Z = 0f;
+                }
+            }
+            if (value.Length >= 4)
+            {
+                switch (value[3].ToLower())
+                {
+                    case "swimming":
+                        Type = "Swimming";
+                        break;
+                    case "flying":
+                        Type = "Flying";
+                        break;
+                    default:
+                        Type = "None";
+                        break;
+                }
+            }
+            else
+                Type = "None";
         }
 
         public override string ToString()
