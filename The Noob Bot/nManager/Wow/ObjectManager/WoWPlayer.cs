@@ -222,6 +222,8 @@ namespace nManager.Wow.ObjectManager
                             int itemDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Durability);
                             if (itemDurability == 0)
                                 brokenItems++;
+                            if (itemDurability == 0 && o is WoWItem && (o as WoWItem).GetItemInfo.ItemType == "Weapon")
+                                brokenItems++; // count twice a broken mainhand
                             durabilitys += itemDurability;
                             maxDurabilitys += itemMaxDurability;
                         }

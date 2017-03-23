@@ -236,15 +236,14 @@ namespace The_Noob_Bot
                 }
                 var items = new List<string>();
                 List<WoWItem> itemsBag = Bag.GetBagItem();
-                if (nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
-                    nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0 ||
+                if (nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0 ||
                     itemsBag != null && itemsBag.Count > 0)
                 {
                     for (int i = 0; i < itemsBag.Count; i++)
                     {
                         WoWItem item = itemsBag[i];
                         var iteminfo = new ItemInfo(item.Entry);
-                        if (iteminfo.ItemRarity > 0)
+                        if (iteminfo.ItemRarity > 0 && iteminfo.ItemType != "Tradeskill")
                             items.Add(item.Name);
                     }
 
@@ -254,10 +253,6 @@ namespace The_Noob_Bot
                         Logging.Write(nManager.Translate.Get(nManager.Translate.Id.SwitchDxError1));
                         Logging.Write(nManager.Translate.Get(nManager.Translate.Id.SwitchDxError2));
                     }
-                }
-                if (nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0)
-                {
-                    nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(items);
                 }
                 if (nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
                 {
