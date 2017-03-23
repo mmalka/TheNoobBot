@@ -577,7 +577,7 @@ namespace nManager.Wow.Bot.States
 
         private int OnComparison(Npc n1, Npc n2)
         {
-            return n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position));
+            return n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n2.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position));
         }
 
         private bool NeedFoodSupplies()
