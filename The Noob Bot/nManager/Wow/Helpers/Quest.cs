@@ -386,15 +386,11 @@ namespace nManager.Wow.Helpers
             Point me = ObjectManager.ObjectManager.Me.Position;
             WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry, true), false, ignoreBlacklist, true);
             // We have the NPC in memory and he is closer than the QuesterDB entry. (some Npc moves)
-            if (mNpc.HasQuests)
+            if (mNpc.IsValid && mNpc.HasQuests)
                 npc.Position = mNpc.Position;
-            else if (mNpc.IsValid && mNpc.GetDistance < 30f)
-                nManagerSetting.AddBlackList(npc.Guid, 60*1000);
             WoWGameObject mObj = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), ignoreBlacklist);
-            if (mObj.HasQuests)
+            if (mObj.IsValid && mObj.HasQuests)
                 npc.Position = mObj.Position;
-            else if (mObj.IsValid && mObj.GetDistance < 30f)
-                nManagerSetting.AddBlackList(npc.Guid, 60*1000);
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 800f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
@@ -420,26 +416,26 @@ namespace nManager.Wow.Helpers
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true, 0f, ignoreBlacklist); // can pick up quest on dead NPC.
+            if (MovementManager.InMovement)
+                return;
+            _travelDisabled = false; // reset travel
             if (baseAddress > 0)
             {
                 var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(npc.Guid);
                 if (tmpNpc is WoWUnit)
                 {
                     var unitTest = tmpNpc as WoWUnit;
-                    if (unitTest.IsValid && unitTest.GetDistance < 30f && !unitTest.HasQuests)
+                    if (unitTest.IsValid && unitTest.GetDistance < 20f && !unitTest.HasQuests)
                     {
                         _travelDisabled = false; // reset travel
-                        nManagerSetting.AddBlackList(unitTest.Guid, 60000);
+                        nManagerSetting.AddBlackList(unitTest.Guid, 30000);
                         Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance +
-                                      ") does not have any available quest for the moment. Blacklisting it one minute.");
+                                      ") does not have any available quest for the moment. Blacklisting it for 30 seconds.");
                         cancelPickUp = true;
                         return;
                     }
                 }
             }
-            if (MovementManager.InMovement)
-                return;
-            _travelDisabled = false; // reset travel
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
@@ -531,11 +527,11 @@ namespace nManager.Wow.Helpers
                 forceTravel = true;
             Point me = ObjectManager.ObjectManager.Me.Position;
             WoWUnit mNpc = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(npc.Entry, true), false, ignoreBlacklist, true);
-            if (mNpc.CanTurnIn)
+            if (mNpc.IsValid && mNpc.CanTurnIn)
                 npc.Position = mNpc.Position;
-            if (mNpc.IsValid && !mNpc.CanTurnIn)
-                nManagerSetting.AddBlackList(mNpc.Guid, 20*1000);
-
+            WoWGameObject mObj = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), ignoreBlacklist);
+            if (mObj.IsValid && mObj.CanTurnIn)
+                npc.Position = mObj.Position;
             bool bypassTravel = false;
             if (me.DistanceTo(npc.Position) <= 800f)
                 PathFinder.FindPath(npc.Position, out bypassTravel);
@@ -561,24 +557,25 @@ namespace nManager.Wow.Helpers
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true, 0f, ignoreBlacklist);
+            if (MovementManager.InMovement)
+                return;
+
             if (baseAddress > 0)
             {
                 var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(npc.Guid);
                 if (tmpNpc is WoWUnit)
                 {
                     var unitTest = tmpNpc as WoWUnit;
-                    if (unitTest.IsValid && unitTest.GetDistance < 30f && !unitTest.CanTurnIn)
+                    if (unitTest.IsValid && unitTest.GetDistance < 20f && !unitTest.CanTurnIn)
                     {
                         _travelDisabled = false; // reset travel
-                        nManagerSetting.AddBlackList(unitTest.Guid, 60000);
+                        nManagerSetting.AddBlackList(unitTest.Guid, 30000);
                         Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance +
-                                      ") cannot TurnIn any quest right now. Blacklisting it one minute.");
+                                      ") cannot TurnIn any quest right now. Blacklisting it for 30 seconds.");
                         return;
                     }
                 }
             }
-            if (MovementManager.InMovement)
-                return;
             _travelDisabled = false; // reset travel
             ItemInfo equip = null;
             //End target finding based on QuestGiver.
