@@ -619,7 +619,7 @@ namespace nManager.Wow.Helpers
                     if (ObjectManager.ObjectManager.Me.IsMounted && !Usefuls.IsFlying && !TraceLine.TraceLineGo(_distmountAttempt, inFront))
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
-                        Usefuls.DisMount();
+                        MountTask.DismountMount();
                         _canRemount = new Timer(8000);
                         _canRemount.Reset();
                         IsUnStuck = false;
@@ -659,7 +659,7 @@ namespace nManager.Wow.Helpers
                         if (ObjectManager.ObjectManager.Me.IsMounted && !Usefuls.IsFlying)
                         {
                             Logging.WriteNavigator("UnStuck - Dismounting.");
-                            Usefuls.DisMount();
+                            MountTask.DismountMount();
                             _canRemount = new Timer(8000);
                             _canRemount.Reset();
                             IsUnStuck = false;
