@@ -374,7 +374,7 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.GameFrameLock();
                 foreach (var item in listItems)
                 {
-                    if (item.GetItemInfo.ItemType == "Tradeskill" && !reagentsItems.Contains(item.Name))
+                    if (item.GetItemInfo.ItemType == "Tradeskill" && !reagentsItems.Contains(item.Name) && !item.Name.Contains("\""))
                         reagentsItems.Add(item.Name);
                 }
             }
@@ -394,7 +394,7 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.GameFrameLock();
                 foreach (var item in listItems)
                 {
-                    if (item.GetItemInfo.ItemType == "Quest" && !questsItems.Contains(item.Name))
+                    if (item.GetItemInfo.ItemType == "Quest" && !questsItems.Contains(item.Name) && item.GetItemInfo.ItemRarity == (uint) WoWItemQuality.Common && !item.Name.Contains("\""))
                         questsItems.Add(item.Name);
                 }
             }
