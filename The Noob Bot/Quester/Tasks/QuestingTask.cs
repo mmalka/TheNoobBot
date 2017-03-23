@@ -369,7 +369,8 @@ namespace Quester.Tasks
         {
             if (questObjective == null)
                 return;
-
+            if (questObjective.WaitMs == 0)
+                questObjective.WaitMs = Usefuls.Latency;
             MountTask.AllowMounting = !questObjective.DeactivateMount;
             if (questObjective.DismissPet)
                 Quest.GetSetDismissPet = true;
@@ -873,8 +874,7 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        if (questObjective.WaitMs > 0)
-                            Thread.Sleep(questObjective.WaitMs);
+                        Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
                     }
                 }
@@ -955,21 +955,21 @@ namespace Quester.Tasks
                         MountTask.DismountMount();
                         MovementManager.StopMove();
                         Interact.InteractWith(baseAddress);
-                        Thread.Sleep(Usefuls.Latency);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         while (ObjectManager.Me.IsCast)
                         {
                             Thread.Sleep(Usefuls.Latency);
                         }
+                        Thread.Sleep(250 + Usefuls.Latency);
 
                         if (questObjective.GossipOptionsInteractWith != 0)
                         {
-                            Thread.Sleep(250 + Usefuls.Latency);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                             Thread.Sleep(250 + Usefuls.Latency);
                         }
                         if (Others.IsFrameVisible("StaticPopup1Button1"))
                             Lua.RunMacroText("/click StaticPopup1Button1");
-                        if (ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+                        if (ObjectManager.Me.InInevitableCombat)
                             return;
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
@@ -1074,9 +1074,10 @@ namespace Quester.Tasks
             // EQUIP ITEM
             if (questObjective.Objective == Objective.EquipItem)
             {
-                if (ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombat)
+                if (ObjectManager.Me.InInevitableCombat)
                     return;
                 ItemsManager.EquipItemByName(ItemsManager.GetItemNameById(questObjective.EquipItemId));
+                Thread.Sleep(questObjective.WaitMs);
                 questObjective.IsObjectiveCompleted = true;
             }
 
@@ -1136,10 +1137,9 @@ namespace Quester.Tasks
 
                         MovementManager.Go(PathFinder.FindPath(unit.Position));
                         Thread.Sleep(500 + Usefuls.Latency);
-                        while (MovementManager.InMovement && unit.IsValid &&
-                               ObjectManager.Me.Position.DistanceTo(unit.Position) > 4)
+                        while (MovementManager.InMovement && unit.IsValid && ObjectManager.Me.Position.DistanceTo(unit.Position) > 4)
                         {
-                            if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
+                            if (ObjectManager.Me.IsDeadMe || ObjectManager.Me.InInevitableCombat)
                                 return;
                             Thread.Sleep(Usefuls.Latency);
                         }
@@ -1155,6 +1155,7 @@ namespace Quester.Tasks
             {
                 Usefuls.EjectVehicle();
                 Thread.Sleep(250 + Usefuls.Latency);
+                Thread.Sleep(questObjective.WaitMs);
             }
 
             // PRESS KEY
@@ -1187,8 +1188,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.ClickOnTerrain)
             {
                 ClickOnTerrain.ClickOnly(questObjective.Position);
-                if (questObjective.WaitMs > 0)
-                    Thread.Sleep(questObjective.WaitMs);
+                Thread.Sleep(questObjective.WaitMs);
                 questObjective.IsObjectiveCompleted = true;
                 Quest.GetSetIgnoreFight = false;
             }
@@ -1388,7 +1388,7 @@ namespace Quester.Tasks
                 {
                     if (!nManagerSetting.CurrentSetting.DontSellTheseItems.Contains(ItemsManager.GetItemNameById(questObjective.CollectItemId)))
                         nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetItemNameById(questObjective.CollectItemId));
-                    Interact.InteractWith(baseAddress);
+                    Interact.InteractWith(baseAddress, true);
                     Thread.Sleep(250 + Usefuls.Latency);
                     if (target.SelectGossipOption != 0)
                     {

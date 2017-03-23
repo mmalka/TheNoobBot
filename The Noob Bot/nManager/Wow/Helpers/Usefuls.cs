@@ -309,7 +309,7 @@ namespace nManager.Wow.Helpers
                 catch (Exception e)
                 {
                     Logging.WriteError("Latency: " + e);
-                    return 0;
+                    return 1;
                 }
             }
         }
