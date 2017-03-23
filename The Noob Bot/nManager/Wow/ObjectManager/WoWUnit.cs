@@ -49,6 +49,27 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public Point PositionAbsolute
+        {
+            get
+            {
+                var ret =
+                    new Point(
+                        Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                          (uint) Addresses.UnitField.UNIT_FIELD_X),
+                        Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                          (uint) Addresses.UnitField.UNIT_FIELD_Y),
+                        Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                          (uint) Addresses.UnitField.UNIT_FIELD_Z));
+
+                if (IsSwimming)
+                    ret.Type = "Swimming";
+                if (IsAboveGround)
+                    ret.Type = "Flying";
+                return ret;
+            }
+        }
+
         public override Point Position
         {
             get
