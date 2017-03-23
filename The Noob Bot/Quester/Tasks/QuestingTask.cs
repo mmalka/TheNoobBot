@@ -1386,6 +1386,8 @@ namespace Quester.Tasks
                     return;
                 if (baseAddress > 0)
                 {
+                    if (!nManagerSetting.CurrentSetting.DontSellTheseItems.Contains(ItemsManager.GetItemNameById(questObjective.CollectItemId)))
+                        nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetItemNameById(questObjective.CollectItemId));
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(250 + Usefuls.Latency);
                     if (target.SelectGossipOption != 0)
@@ -1400,14 +1402,12 @@ namespace Quester.Tasks
                     int amount = questObjective.CollectCount - ItemsManager.GetItemCount(questObjective.CollectItemId);
                     if (amount <= 0)
                     {
-                        nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetItemNameById(questObjective.CollectItemId));
                         questObjective.IsObjectiveCompleted = true;
                     }
                     Vendor.BuyItem(ItemsManager.GetItemNameById(questObjective.CollectItemId), amount);
                     Thread.Sleep(questObjective.WaitMs == 0 ? 2000 + Usefuls.Latency : questObjective.WaitMs);
                     if (ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     {
-                        nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetItemNameById(questObjective.CollectItemId));
                         questObjective.IsObjectiveCompleted = true;
                     }
                 }
