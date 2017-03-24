@@ -68,11 +68,7 @@ namespace meshBuilderGui
             try
             {
                 string continentInternalName = mapname;
-                var wdt = new WDT("World\\Maps\\" + continentInternalName + "\\" + continentInternalName + ".wdt");
-                if (!wdt.IsValid)
-                    return;
-
-                if (wdt.IsGlobalModel)
+                if (mapname == "AllianceGunship")
                 {
                     _dungeonBuilder = new DungeonBuilder(continentInternalName, meshTB.Text);
                     _dungeonBuilder.OnProgress += OnProgress;
@@ -81,37 +77,50 @@ namespace meshBuilderGui
                 }
                 else
                 {
-                    int startX = startXBox.Text.Length > 0 ? int.Parse(startXBox.Text) : 0;
-                    int startY = startYBox.Text.Length > 0 ? int.Parse(startYBox.Text) : 0;
-                    int countX = countXBox.Text.Length > 0 ? int.Parse(countXBox.Text) : (64 - startX);
-                    int countY = countYBox.Text.Length > 0 ? int.Parse(countYBox.Text) : (64 - startY);
-                    if (countX > (64 - startX))
-                        countX = 64 - startX;
-                    if (countY > (64 - startY))
-                        countY = 64 - startY;
+                    var wdt = new WDT("World\\Maps\\" + continentInternalName + "\\" + continentInternalName + ".wdt");
+                    if (!wdt.IsValid)
+                        return;
 
-                    if (_buildIndex != -1) // We are building everything, then no limits
+                    if (wdt.IsGlobalModel)
                     {
-                        startX = 0;
-                        startY = 0;
-                        countX = 64;
-                        countY = 64;
+                        _dungeonBuilder = new DungeonBuilder(continentInternalName, meshTB.Text);
+                        _dungeonBuilder.OnProgress += OnProgress;
+                        _builder = null;
+                        _lastProgressX = 0;
                     }
+                    else
+                    {
+                        int startX = startXBox.Text.Length > 0 ? int.Parse(startXBox.Text) : 0;
+                        int startY = startYBox.Text.Length > 0 ? int.Parse(startYBox.Text) : 0;
+                        int countX = countXBox.Text.Length > 0 ? int.Parse(countXBox.Text) : (64 - startX);
+                        int countY = countYBox.Text.Length > 0 ? int.Parse(countYBox.Text) : (64 - startY);
+                        if (countX > (64 - startX))
+                            countX = 64 - startX;
+                        if (countY > (64 - startY))
+                            countY = 64 - startY;
 
-                    startXBox.Text = startX.ToString();
-                    startXBox.ReadOnly = true;
-                    startYBox.Text = startY.ToString();
-                    startYBox.ReadOnly = true;
-                    countXBox.Text = countX.ToString();
-                    countXBox.ReadOnly = true;
-                    countYBox.Text = countY.ToString();
-                    countYBox.ReadOnly = true;
+                        if (_buildIndex != -1) // We are building everything, then no limits
+                        {
+                            startX = 0;
+                            startY = 0;
+                            countX = 64;
+                            countY = 64;
+                        }
 
-                    _builder = new ContinentBuilder(continentInternalName, meshTB.Text, startX, startY, countX, countY);
-                    _builder.OnTileEvent += OnTileEvent;
-                    _dungeonBuilder = null;
+                        startXBox.Text = startX.ToString();
+                        startXBox.ReadOnly = true;
+                        startYBox.Text = startY.ToString();
+                        startYBox.ReadOnly = true;
+                        countXBox.Text = countX.ToString();
+                        countXBox.ReadOnly = true;
+                        countYBox.Text = countY.ToString();
+                        countYBox.ReadOnly = true;
+
+                        _builder = new ContinentBuilder(continentInternalName, meshTB.Text, startX, startY, countX, countY);
+                        _builder.OnTileEvent += OnTileEvent;
+                        _dungeonBuilder = null;
+                    }
                 }
-
                 _buildStarted = true;
             }
             catch (Exception ex)
@@ -306,6 +315,8 @@ namespace meshBuilderGui
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Scenario, MapType.ADTType);
             foreach (WoWMap.MapDbcRecord m in l0)
                 strl.Add(m.MapMPQName());
+            strl.Add("------- Alliance Gunship Deephome -------");
+            strl.Add("AllianceGunship");
             /*strl.Add("------- Small Scenarios -------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Scenario, MapType.WDTOnlyType);
             foreach (MapEntry m in l0)

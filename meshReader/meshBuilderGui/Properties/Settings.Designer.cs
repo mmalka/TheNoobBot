@@ -12,7 +12,7 @@ namespace meshBuilderGui.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -22,8 +22,29 @@ namespace meshBuilderGui.Properties {
                 return defaultInstance;
             }
         }
-
-        public string MeshesPath = @"X:\Meshes\7.0.3\";
-        public string WoWPath = @"X:\World of Warcraft\";
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("X:\\World of Warcraft\\")]
+        public string WoWPath {
+            get {
+                return ((string)(this["WoWPath"]));
+            }
+            set {
+                this["WoWPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("X:\\Meshes\\7.0\\")]
+        public string MeshesPath {
+            get {
+                return ((string)(this["MeshesPath"]));
+            }
+            set {
+                this["MeshesPath"] = value;
+            }
+        }
     }
 }

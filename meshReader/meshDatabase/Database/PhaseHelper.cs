@@ -30,6 +30,8 @@ namespace meshDatabase.Database
 
         public static int GetMapIdByName(string search)
         {
+            if (search == "AllianceGunship")
+                return 123456;
             Initialize();
 
             var entry = _entries.FirstOrDefault(e => e.MapName() == search || e.MapMPQName() == search);

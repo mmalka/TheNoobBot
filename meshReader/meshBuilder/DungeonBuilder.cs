@@ -72,15 +72,23 @@ namespace meshBuilder
                 // In case 2 builder are trying to create the same file
                 return null;
             }
-            var wdt = new WDT("World\\maps\\" + Dungeon + "\\" + Dungeon + ".wdt");
-            if (!wdt.IsGlobalModel || !wdt.IsValid)
-                return null;
-
             InitializeProgress(12);
 
-            Geometry = new Geometry {Transform = true};
-            var model = new WorldModelRoot(wdt.ModelFile);
-            Geometry.AddDungeon(model, wdt.ModelDefinition);
+            Geometry = new Geometry { Transform = true };
+
+            if (Dungeon == "AllianceGunship")
+            {
+                // hardcode for AllianceGunship in Deephome.
+                Geometry.AddAllianceGunShip();
+            }
+            else
+            {
+                var wdt = new WDT("World\\maps\\" + Dungeon + "\\" + Dungeon + ".wdt");
+                if (!wdt.IsGlobalModel || !wdt.IsValid)
+                    return null;
+                                var model = new WorldModelRoot(wdt.ModelFile);
+                Geometry.AddDungeon(model, wdt.ModelDefinition);
+            }
 
             CompleteWorkUnit();
 

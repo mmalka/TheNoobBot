@@ -119,6 +119,14 @@ namespace meshBuilder
             AddData(verts, tris);
         }
 
+        public void AddAllianceGunShip()
+        {
+            var verts = new List<Vector3>();
+            var tris = new List<Triangle<uint>>();
+            WorldModelHandler.GetAllianceGunshipModelGeometry(verts, tris, GameObjectHelper.GetFullFileNameFromDisplayId(8254));
+            AddData(verts, tris);
+        }
+
         public void AddAdt(ADT data)
         {
             foreach (var mc in data.MapChunks)

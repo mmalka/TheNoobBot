@@ -177,6 +177,36 @@ namespace meshReader.Game.ADT
             }
         }
 
+        public static void GetAllianceGunshipModelGeometry(List<Vector3> vertices, List<Triangle<uint>> triangles, string fileId)
+        {
+            var wmo = new WorldModelRoot(fileId); // no caching, we load it only once
+            if (wmo.DoodadInstances.Count <= 0)
+                return;
+            foreach (var group in wmo.Groups)
+            {
+                if ((group.Flags & 0x80) != 0) // Here is a group of triangles that mess-up the WMO
+                    continue;
+                int vertOffset = vertices.Count;
+                if (group.Triangles != null)
+                {
+                    bool one = false;
+                    for (int i = 0; i < group.Triangles.Length; i++)
+                    {
+                        // includes all triangles for AllianceGunship
+                        var tri = group.Triangles[i];
+                        triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint)(tri.V0 + vertOffset),
+                            (uint)(tri.V1 + vertOffset),
+                            (uint)(tri.V2 + vertOffset)));
+                        one = true;
+                    }
+                    if (one)
+                        vertices.AddRange(group.Vertices);
+                }
+
+            }
+        }
+
+
         public static void InsertModelGeometry(List<Vector3> vertices, List<Triangle<uint>> triangles, WorldModelDefinition def, WorldModelRoot root)
         {
             var transformation = Transformation.GetTransformation(def);
