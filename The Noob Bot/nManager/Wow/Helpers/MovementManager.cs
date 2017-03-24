@@ -1210,10 +1210,10 @@ namespace nManager.Wow.Helpers
                         Thread.Sleep(100);
                     }
                     var altPoint = new Point();
-                    if (ObjectManager.ObjectManager.Me.InTransport)
+                    if (ObjectManager.ObjectManager.Me.InTransport && Usefuls.ContinentId != 123456)
                     {
-                        var t = new WoWObject(ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid).GetBaseAddress);
-                        if (t.Type == WoWObjectType.GameObject && t is WoWGameObject)
+                        var t = ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid);
+                        if (t is WoWGameObject)
                         {
                             var o = t as WoWGameObject;
                             if (o.IsValid)

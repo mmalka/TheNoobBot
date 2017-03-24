@@ -435,8 +435,10 @@ namespace nManager.Helpful.Forms
                 InformationArea.Text = "";
                 if (ObjectManager.Me.IsValid)
                 {
+                    string fakeContinentId = "Fake Map name: " + Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) + " (" + Usefuls.ContinentId + ")";
                     InformationArea.Text =
                         "Internal Map name: " + Usefuls.ContinentNameMpqByContinentId(Usefuls.RealContinentId) + " (" + Usefuls.RealContinentId + ")" + Environment.NewLine +
+                        ((Usefuls.ContinentId != Usefuls.RealContinentId) ? fakeContinentId + Environment.NewLine : "") + 
                         "" + ObjectManager.Me.Position + Environment.NewLine +
                         "" + Environment.NewLine +
                         "" + Environment.NewLine +

@@ -874,7 +874,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                     // check if this is a dungeon and initialize our mesh accordingly
                     WoWMap map = WoWMap.FromMPQName(continent);
-                    if (map.Record.MapType == WoWMap.MapType.WDTOnlyType)
+                    if (map.Record.MapType == WoWMap.MapType.WDTOnlyType || continent == "AllianceGunship")
                     {
                         string dungeonPath = GetDungeonPath();
                         if (!File.Exists(_meshPath + "\\" + dungeonPath))

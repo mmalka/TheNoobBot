@@ -104,7 +104,7 @@ namespace nManager.Wow.ObjectManager
                         ret.Type = "Swimming";
                     if (IsAboveGround)
                         ret.Type = "Flying";
-                    if (InTransport)
+                    if (InTransport && Usefuls.ContinentId != 123456)
                     {
                         var t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
                         if (t.Type == WoWObjectType.GameObject)

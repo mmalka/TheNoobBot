@@ -114,7 +114,7 @@ namespace nManager.Wow.ObjectManager
                     }
 
                     CUSTOM */
-                    if (ObjectManager.Me.InTransport)
+                    if (ObjectManager.Me.InTransport && Usefuls.ContinentId != 123456)
                     {
                         var t = new WoWObject(ObjectManager.GetObjectByGuid(ObjectManager.Me.TransportGuid).GetBaseAddress);
                         if (t.Type == WoWObjectType.GameObject)

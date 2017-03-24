@@ -470,6 +470,8 @@ namespace nManager.Wow.Helpers
                     return 646;
                 case "Pandaria":
                     return 870;
+                case "AllianceGunship":
+                    return 123456;
                 default:
                     WoWMap map = WoWMap.FromMPQName(name);
                     return (int) map.Record.Id;
@@ -486,6 +488,8 @@ namespace nManager.Wow.Helpers
                     return "Maelstrom";
                 case 870: // HawaiiMainLand => Pandaria
                     return "Pandaria";
+                case 123456:
+                    return "AllianceGunship";
                 default:
                     WoWMap map = WoWMap.FromId(cId);
                     return map.MapMPQName;
@@ -494,6 +498,8 @@ namespace nManager.Wow.Helpers
 
         public static string ContinentNameMpqByContinentId(int cId)
         {
+            if (cId == 123456)
+                return "AllianceGunship";
             WoWMap map = WoWMap.FromId(cId);
             return map.MapMPQName;
         }
@@ -520,6 +526,11 @@ namespace nManager.Wow.Helpers
             {
                 if (_continentId == 1116 || _continentId == 0 || _continentId == 1 || _continentId == 530 || _continentId == 870)
                     return _continentId;
+                if (_continentId == 646)
+                {
+                    var go = ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid) as WoWGameObject;
+                    return (go != null && go.IsValid && go.Entry == 204018) ? 123456 : 646;
+                }
                 return Garrison.GarrisonMapIdList.Contains(_continentId) ? 1116 : _continentId;
             }
             set { _continentId = value; }
