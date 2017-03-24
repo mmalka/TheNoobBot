@@ -140,9 +140,13 @@ namespace meshReader.Game.ADT
                                 bool one = false;
                                 for (int i = 0; i < group.Triangles.Length; i++)
                                 {
-                                    // only include collidable triangles
-                                    if ((group.TriangleFlags[i] & 0x04) == 0 && group.TriangleMaterials[i] != 0xFF)
-                                        continue;
+                                    // the commented code exclude "non-collidable triangles" so adding them anyway is not breaking a path
+                                    // it's just adding more bytes into the mesh, but...
+                                    // fact is removing them can remove "ground" in some big gameobject, creating holes in the meshes.
+                                    // so that's why it's now commented.
+                                    // // only include collidable triangles
+                                    //if ((group.TriangleFlags[i] & 0x04) == 0 && group.TriangleMaterials[i] != 0xFF)
+                                        //continue;
                                     var tri = group.Triangles[i];
                                     triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
                                         (uint) (tri.V1 + vertOffset),
