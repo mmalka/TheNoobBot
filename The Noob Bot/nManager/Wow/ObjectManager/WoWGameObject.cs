@@ -114,18 +114,43 @@ namespace nManager.Wow.ObjectManager
                     }
 
                     CUSTOM */
-                    return
-                        new Point(
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint) Addresses.GameObject.GAMEOBJECT_FIELD_X),
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint) Addresses.GameObject.GAMEOBJECT_FIELD_Y),
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint) Addresses.GameObject.GAMEOBJECT_FIELD_Z));
+                    if (ObjectManager.Me.InTransport)
+                    {
+                        var t = new WoWObject(ObjectManager.GetObjectByGuid(ObjectManager.Me.TransportGuid).GetBaseAddress);
+                        if (t.Type == WoWObjectType.GameObject)
+                        {
+                            var o = new WoWGameObject(t.GetBaseAddress);
+                            if (o.IsValid)
+                            {
+                                Vector3 posAbsolute = PositionAbsolute.Transform(o.WorldMatrix);
+                                var pos = new Point(posAbsolute.X, posAbsolute.Y, posAbsolute.Z);
+                                return pos;
+                            }
+                        }
+                    }
+                    return PositionAbsolute;
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > Position: " + e);
+                }
+                return new Point();
+            }
+        }
+
+        public Point PositionAbsolute
+        {
+            get
+            {
+                try
+                {
+                    return new Point(Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.GameObject.GAMEOBJECT_FIELD_X),
+                        Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.GameObject.GAMEOBJECT_FIELD_Y),
+                        Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.GameObject.GAMEOBJECT_FIELD_Z));
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObjectFields > PositionAbsolute: " + e);
                 }
                 return new Point();
             }
