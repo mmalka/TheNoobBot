@@ -52,8 +52,24 @@ namespace meshReader.Game.WMO
             }
             else
             {
-                Groups = new List<WorldModelGroup>(0);
-                // Not sure how to extract groups from file with no clear path.
+                var chunk = Data.GetChunkByName("GFID");
+                if (chunk == null)
+                    return;
+                var stream = chunk.GetStream();
+                var r = new BinaryReader(stream);
+                Groups = new List<WorldModelGroup>((int)Header.CountGroups);
+                for (int i = 0; i < Header.CountGroups; i++)
+                {
+                    try
+                    {
+                        uint fileIdGroup = r.ReadUInt32();
+                        Groups.Add(new WorldModelGroup(fileIdGroup.ToString(), i));
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        // ignore missing groups
+                    }
+                }
             }
         }
 

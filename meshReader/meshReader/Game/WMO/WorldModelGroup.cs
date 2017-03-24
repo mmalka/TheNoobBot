@@ -23,10 +23,18 @@ namespace meshReader.Game.WMO
         public bool HasLiquidData { get; private set; }
         public LiquidHeader LiquidDataHeader { get; private set; }
         public LiquidData LiquidDataGeometry { get; private set; }
+        public static System.Collections.Generic.List<uint> groupFileIds { get; private set; }
         
         public WorldModelGroup(string path, int groupIndex)
         {
-            Data = new ChunkedData(path);
+            uint fileId;
+            uint.TryParse(path, out fileId);
+            if (fileId <= 0)
+            {
+                Data = new ChunkedData(path);
+            }
+            else
+                Data = new ChunkedData(fileId);
             GroupIndex = groupIndex;
 
             var mainChunk = Data.GetChunkByName("MOGP");
