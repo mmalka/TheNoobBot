@@ -9,9 +9,9 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.CSharp;
+using nManager.Annotations;
 using nManager.Helpful;
 using nManager.Wow.ObjectManager;
-using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
@@ -23,7 +23,43 @@ namespace nManager.Wow.Helpers
         private static Thread _worker;
         private static string _pathToHealerClassFile = "";
         private static string _threadName = "";
-        private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
+        [UsedImplicitly] private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
+        private static Thread _healerClassLoader;
+        private static readonly object HealerClassLocker = new object();
+
+        public static float GetRange
+        {
+            get
+            {
+                try
+                {
+                    if (_instanceFromOtherAssembly != null)
+                        return _instanceFromOtherAssembly.Range < 5.0f ? 5.0f : _instanceFromOtherAssembly.Range;
+                    return 5.0f;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("HealerClass > GetRange: " + exception);
+                    return 5.0f;
+                }
+            }
+        }
+
+        public static bool IsAliveHealerClass
+        {
+            get
+            {
+                try
+                {
+                    return _worker != null && _worker.IsAlive;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("IsAliveHealerClass: " + exception);
+                    return false;
+                }
+            }
+        }
 
         public static bool InRange(WoWUnit unit)
         {
@@ -79,46 +115,15 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static float GetRange
-        {
-            get
-            {
-                try
-                {
-                    if (_instanceFromOtherAssembly != null)
-                        return _instanceFromOtherAssembly.Range < 5.0f ? 5.0f : _instanceFromOtherAssembly.Range;
-                    return 5.0f;
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("HealerClass > GetRange: " + exception);
-                    return 5.0f;
-                }
-            }
-        }
-
-        public static bool IsAliveHealerClass
-        {
-            get
-            {
-                try
-                {
-                    return _worker != null && _worker.IsAlive;
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("IsAliveHealerClass: " + exception);
-                    return false;
-                }
-            }
-        }
-
         public static void LoadHealerClass()
         {
-            if (_worker != null && _worker.IsAlive)
-                return;
-            Thread spellBook = new Thread(LoadHealerClassThread) {Name = "Load Healer Class"};
-            spellBook.Start();
+            lock (HealerClassLocker)
+            {
+                if (_worker != null && _worker.IsAlive || _healerClassLoader != null && _healerClassLoader.IsAlive)
+                    return;
+                _healerClassLoader = new Thread(LoadHealerClassThread) {Name = "Load Healer Class"};
+                _healerClassLoader.Start();
+            }
         }
 
         public static void LoadHealerClassThread()
@@ -127,13 +132,13 @@ namespace nManager.Wow.Helpers
             {
                 if (nManagerSetting.CurrentSetting.HealerClass != "")
                 {
-                    string __pathToHealerClassFile = Application.StartupPath + "\\HealerClasses\\" +
-                                                     nManagerSetting.CurrentSetting.HealerClass;
-                    string fileExt = __pathToHealerClassFile.Substring(__pathToHealerClassFile.Length - 3);
+                    string pathToHealerClassFile = Application.StartupPath + "\\HealerClasses\\" +
+                                                   nManagerSetting.CurrentSetting.HealerClass;
+                    string fileExt = pathToHealerClassFile.Substring(pathToHealerClassFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadHealerClass(__pathToHealerClassFile, false, false, false);
+                        LoadHealerClass(pathToHealerClassFile, false, false, false);
                     else
-                        LoadHealerClass(__pathToHealerClassFile);
+                        LoadHealerClass(pathToHealerClassFile);
                 }
                 else
                     Logging.Write("No custom class selected");
@@ -146,7 +151,7 @@ namespace nManager.Wow.Helpers
 
         public static void LoadHealerClass(string pathToHealerClassFile, bool settingOnly = false,
             bool resetSettings = false,
-            bool CSharpFile = true)
+            bool cSharpFile = true)
         {
             try
             {
@@ -160,10 +165,10 @@ namespace nManager.Wow.Helpers
                 _assembly = null;
                 _obj = null;
 
-                if (CSharpFile)
+                if (cSharpFile)
                 {
                     CodeDomProvider cc = new CSharpCodeProvider();
-                    CompilerParameters cp = new CompilerParameters();
+                    var cp = new CompilerParameters();
                     IEnumerable<string> assemblies = AppDomain.CurrentDomain
                         .GetAssemblies()
                         .Where(
@@ -230,15 +235,18 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (_instanceFromOtherAssembly != null)
+                lock (HealerClassLocker)
                 {
-                    _instanceFromOtherAssembly.Dispose();
-                }
-                if (_worker != null)
-                {
-                    if (_worker.IsAlive)
+                    if (_instanceFromOtherAssembly != null)
                     {
-                        _worker.Abort();
+                        _instanceFromOtherAssembly.Dispose();
+                    }
+                    if (_worker != null)
+                    {
+                        if (_worker.IsAlive)
+                        {
+                            _worker.Abort();
+                        }
                     }
                 }
             }

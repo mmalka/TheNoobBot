@@ -9,27 +9,31 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.CSharp;
+using nManager.Annotations;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
+using Math = System.Math;
 
 namespace nManager.Wow.Helpers
 {
     public class CombatClass
     {
+        // ReSharper disable InconsistentNaming
         private const float BASE_MELEERANGE_OFFSET = 1.33f;
         private const float MIN_ATTACK_DISTANCE = 4f;
+// ReSharper restore InconsistentNaming
         private static ICombatClass _instanceFromOtherAssembly;
         private static Assembly _assembly;
         private static object _obj;
         private static Thread _worker;
         private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
-        private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
+        [UsedImplicitly] private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
         private static Thread _combatClassLoader;
         private static readonly object CombatClassLocker = new object();
 
-        private static bool isMeleeClass
+        private static bool IsMeleeClass
         {
             get { return GetRange <= 5.0f; }
         }
@@ -100,26 +104,26 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static float CombatDistance(WoWUnit unit, bool MeleeSpell = true)
+        private static float CombatDistance(WoWUnit unit, bool meleeSpell = true)
         {
             float reach = unit.GetCombatReach + ObjectManager.ObjectManager.Me.GetCombatReach;
-            if (MeleeSpell)
+            if (meleeSpell)
                 reach += BASE_MELEERANGE_OFFSET;
-            if (MeleeSpell && reach < MIN_ATTACK_DISTANCE)
+            if (meleeSpell && reach < MIN_ATTACK_DISTANCE)
                 reach = MIN_ATTACK_DISTANCE;
             return reach;
         }
 
         public static bool InMeleeRange(WoWUnit unit)
         {
-            return unit.GetDistance < CombatDistance(unit, true) - 0.2f;
+            return unit.GetDistance < CombatDistance(unit) - 0.2f;
         }
 
         public static bool InRange(WoWUnit unit)
         {
             if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                 return HealerClass.InRange(unit);
-            return unit.GetDistance < CombatDistance(unit) + (isMeleeClass ? -1f : GetRange);
+            return unit.GetDistance < CombatDistance(unit) + (IsMeleeClass ? -1f : GetRange);
         }
 
         public static bool InAggroRange(WoWUnit unit)
@@ -138,12 +142,8 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                float reach;
-                if (maxRange <= 5.0f) // Melee spell
-                    reach = CombatDistance(unit, true);
-                else
-                    reach = CombatDistance(unit, false);
-                return distance <= reach + maxRange && (minRange == 0f || distance >= reach + minRange);
+                float reach = maxRange <= 5.0f ? CombatDistance(unit) : CombatDistance(unit, false);
+                return distance <= reach + maxRange && (Math.Abs(minRange) < 0.001 || distance >= reach + minRange);
             }
             catch (Exception exception)
             {
@@ -174,20 +174,20 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                string __pathToCombatClassFile;
                 if (nManagerSetting.CurrentSetting.CombatClass != "")
                 {
+                    string pathToCombatClassFile;
                     if (nManagerSetting.CurrentSetting.CombatClass == "OfficialTnbClassSelector")
                     {
-                        __pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\OfficialTnbClassSelector\\Tnb_" + ObjectManager.ObjectManager.Me.WowClass + "Rotations.dll";
+                        pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\OfficialTnbClassSelector\\Tnb_" + ObjectManager.ObjectManager.Me.WowClass + "Rotations.dll";
                     }
                     else
-                        __pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\" + nManagerSetting.CurrentSetting.CombatClass;
-                    string fileExt = __pathToCombatClassFile.Substring(__pathToCombatClassFile.Length - 3);
+                        pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\" + nManagerSetting.CurrentSetting.CombatClass;
+                    string fileExt = pathToCombatClassFile.Substring(pathToCombatClassFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCombatClass(__pathToCombatClassFile, false, false, false);
+                        LoadCombatClass(pathToCombatClassFile, false, false, false);
                     else
-                        LoadCombatClass(__pathToCombatClassFile);
+                        LoadCombatClass(pathToCombatClassFile);
                 }
                 else
                     Logging.Write("No custom class selected");
@@ -200,7 +200,7 @@ namespace nManager.Wow.Helpers
 
         public static void LoadCombatClass(string pathToCombatClassFile, bool settingOnly = false,
             bool resetSettings = false,
-            bool CSharpFile = true)
+            bool cSharpFile = true)
         {
             try
             {
@@ -214,7 +214,7 @@ namespace nManager.Wow.Helpers
                 _assembly = null;
                 _obj = null;
 
-                if (CSharpFile)
+                if (cSharpFile)
                 {
                     CodeDomProvider cc = new CSharpCodeProvider();
                     var cp = new CompilerParameters();
