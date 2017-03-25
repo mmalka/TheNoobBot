@@ -168,6 +168,7 @@
     <Compile Include="Plugins\Plugins.cs" />
     <Compile Include="Products\IProduct.cs" />
     <Compile Include="Products\Products.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
