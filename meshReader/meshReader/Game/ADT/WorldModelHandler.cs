@@ -12,7 +12,6 @@ using SlimMath;
 
 namespace meshReader.Game.ADT
 {
-    
     public class WorldModelHandler : ObjectDataHandler
     {
         private readonly HashSet<uint> _drawn = new HashSet<uint>();
@@ -21,7 +20,7 @@ namespace meshReader.Game.ADT
 
         public List<Vector3> Vertices { get; private set; }
         public List<Triangle<uint>> Triangles { get; private set; }
-        
+
         public WorldModelHandler(ADT source)
             : base(source)
         {
@@ -34,10 +33,7 @@ namespace meshReader.Game.ADT
 
         private bool IsSane
         {
-            get
-            {
-                return _definitions != null && _paths != null;
-            }
+            get { return _definitions != null && _paths != null; }
         }
 
         protected override void ProcessInternal(ChunkedData subChunks)
@@ -52,7 +48,7 @@ namespace meshReader.Game.ADT
             if (stream.Length < wmoReferencesChunk.Offset + wmoReferencesChunk.Length)
                 return;
             var reader = new BinaryReader(stream);
-            var refCount = (int)(wmoReferencesChunk.Length / 4);
+            var refCount = (int) (wmoReferencesChunk.Length / 4);
             for (int i = 0; i < refCount; i++)
             {
                 int index = reader.ReadInt32();
@@ -76,7 +72,10 @@ namespace meshReader.Game.ADT
                     {
                         model = new WorldModelRoot(path);
                     }
-                    catch { continue; }
+                    catch
+                    {
+                        continue;
+                    }
                     Cache.WorldModel.Insert(path, model);
                 }
 
@@ -146,7 +145,7 @@ namespace meshReader.Game.ADT
                                     // so that's why it's now commented.
                                     // // only include collidable triangles
                                     //if ((group.TriangleFlags[i] & 0x04) == 0 && group.TriangleMaterials[i] != 0xFF)
-                                        //continue;
+                                    //continue;
                                     var tri = group.Triangles[i];
                                     triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
                                         (uint) (tri.V1 + vertOffset),
@@ -157,7 +156,6 @@ namespace meshReader.Game.ADT
                                     vertices.AddRange(group.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
                             }
                         }
-
                     }
                 }
                 else // .M2
@@ -198,15 +196,14 @@ namespace meshReader.Game.ADT
                     {
                         // includes all triangles for AllianceGunship
                         var tri = group.Triangles[i];
-                        triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint)(tri.V0 + vertOffset),
-                            (uint)(tri.V1 + vertOffset),
-                            (uint)(tri.V2 + vertOffset)));
+                        triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
+                            (uint) (tri.V1 + vertOffset),
+                            (uint) (tri.V2 + vertOffset)));
                         one = true;
                     }
                     if (one)
                         vertices.AddRange(group.Vertices);
                 }
-
             }
         }
 
@@ -229,9 +226,9 @@ namespace meshReader.Game.ADT
                         if ((group.TriangleFlags[i] & 0x04) != 0 && group.TriangleMaterials[i] != 0xFF)
                             continue;
                         var tri = group.Triangles[i];
-                        triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint)(tri.V0 + vertOffset),
-                                                         (uint)(tri.V1 + vertOffset),
-                                                         (uint)(tri.V2 + vertOffset)));
+                        triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
+                            (uint) (tri.V1 + vertOffset),
+                            (uint) (tri.V2 + vertOffset)));
                         one = true;
                     }
                     if (one)
@@ -242,14 +239,14 @@ namespace meshReader.Game.ADT
             if (def.DoodadSet >= 0 && def.DoodadSet < root.DoodadSets.Count)
             {
                 var set = root.DoodadSets[def.DoodadSet];
-                var instances = new List<DoodadInstance>((int)set.CountInstances);
+                var instances = new List<DoodadInstance>((int) set.CountInstances);
                 for (uint i = set.FirstInstanceIndex; i < (set.CountInstances + set.FirstInstanceIndex); i++)
                 {
                     if (i >= root.DoodadInstances.Count)
                         break;
-                    instances.Add(root.DoodadInstances[(int)i]);
+                    instances.Add(root.DoodadInstances[(int) i]);
                 }
-                
+
                 foreach (var instance in instances)
                 {
                     var model = Cache.Model.Get(instance.File);
@@ -266,7 +263,7 @@ namespace meshReader.Game.ADT
                     vertices.AddRange(model.Vertices.Select(vert => Vector3.TransformCoordinate(vert, doodadTransformation)));
                     foreach (var tri in model.Triangles)
                         triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
-                                                         (uint) (tri.V1 + vertOffset), (uint) (tri.V2 + vertOffset)));
+                            (uint) (tri.V1 + vertOffset), (uint) (tri.V2 + vertOffset)));
                 }
             }
 
@@ -282,20 +279,19 @@ namespace meshReader.Game.ADT
                         if (!group.LiquidDataGeometry.ShouldRender(x, y))
                             continue;
 
-                        var vertOffset = (uint)vertices.Count;
+                        var vertOffset = (uint) vertices.Count;
                         vertices.Add(GetLiquidVert(transformation, group.LiquidDataHeader.BaseLocation,
-                                                   group.LiquidDataGeometry.HeightMap[x, y], x, y));
+                            group.LiquidDataGeometry.HeightMap[x, y], x, y));
                         vertices.Add(GetLiquidVert(transformation, group.LiquidDataHeader.BaseLocation,
-                                                   group.LiquidDataGeometry.HeightMap[x + 1, y], x + 1, y));
+                            group.LiquidDataGeometry.HeightMap[x + 1, y], x + 1, y));
                         vertices.Add(GetLiquidVert(transformation, group.LiquidDataHeader.BaseLocation,
-                                                   group.LiquidDataGeometry.HeightMap[x, y + 1], x, y + 1));
+                            group.LiquidDataGeometry.HeightMap[x, y + 1], x, y + 1));
                         vertices.Add(GetLiquidVert(transformation, group.LiquidDataHeader.BaseLocation,
-                                                   group.LiquidDataGeometry.HeightMap[x + 1, y + 1], x + 1, y + 1));
+                            group.LiquidDataGeometry.HeightMap[x + 1, y + 1], x + 1, y + 1));
 
                         triangles.Add(new Triangle<uint>(TriangleType.Water, vertOffset, vertOffset + 2, vertOffset + 1));
                         triangles.Add(new Triangle<uint>(TriangleType.Water, vertOffset + 2, vertOffset + 3,
-                                                         vertOffset + 1));
-
+                            vertOffset + 1));
                     }
                 }
             }
@@ -307,7 +303,7 @@ namespace meshReader.Game.ADT
                 basePosition.Z = 0.0f;
 
             return Vector3.TransformCoordinate(basePosition + new Vector3(x * Constant.UnitSize, y * Constant.UnitSize, height),
-                                     transformation);
+                transformation);
         }
 
         private void ReadDefinitions()
@@ -317,7 +313,7 @@ namespace meshReader.Game.ADT
                 return;
 
             const int definitionSize = 64;
-            var definitionCount = (int) (chunk.Length/definitionSize);
+            var definitionCount = (int) (chunk.Length / definitionSize);
             _definitions = new List<WorldModelDefinition>(definitionCount);
             var stream = chunk.GetStream();
             for (int i = 0; i < definitionCount; i++)
@@ -331,7 +327,7 @@ namespace meshReader.Game.ADT
             var mwmo0 = Source.ObjectData.GetChunkByName("MWMO");
             if (!(mwid0 == null || mwmo0 == null))
             {
-                var paths = (int)(mwid0.Length / 4);
+                var paths = (int) (mwid0.Length / 4);
                 _paths = new List<string>(paths);
                 for (int i = 0; i < paths; i++)
                 {
@@ -357,30 +353,31 @@ namespace meshReader.Game.ADT
             public ushort DoodadSet;
             public ushort NameSet;
 
-            public float Scale { get { return 1.0f; } }
+            public float Scale
+            {
+                get { return 1.0f; }
+            }
 
             public static WorldModelDefinition Read(Stream s)
             {
                 var r = new BinaryReader(s);
                 var ret = new WorldModelDefinition
-                              {
-                                  MwidIndex = r.ReadUInt32(),
-                                  UniqueId = r.ReadUInt32(),
-                                  Position = Vector3Helper.Read(s),
-                                  Rotation = Vector3Helper.Read(s),
-                                  UpperExtents = Vector3Helper.Read(s),
-                                  LowerExtents = Vector3Helper.Read(s),
-                                  Flags = r.ReadUInt16(),
-                                  DoodadSet = r.ReadUInt16(),
-                                  NameSet = r.ReadUInt16()
-                              };
+                {
+                    MwidIndex = r.ReadUInt32(),
+                    UniqueId = r.ReadUInt32(),
+                    Position = Vector3Helper.Read(s),
+                    Rotation = Vector3Helper.Read(s),
+                    UpperExtents = Vector3Helper.Read(s),
+                    LowerExtents = Vector3Helper.Read(s),
+                    Flags = r.ReadUInt16(),
+                    DoodadSet = r.ReadUInt16(),
+                    NameSet = r.ReadUInt16()
+                };
                 // discard some padding
                 r.ReadUInt16();
                 //r.ReadUInt32();
                 return ret;
             }
         }
-
     }
-
 }

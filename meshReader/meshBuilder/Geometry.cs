@@ -11,7 +11,6 @@ using RecastLayer;
 
 namespace meshBuilder
 {
-
     public class Geometry
     {
         public List<Vector3> Vertices { get; private set; }
@@ -27,8 +26,8 @@ namespace meshBuilder
 
         public void CalculateBoundingBox(out float[] min, out float[] max)
         {
-            min = new []{float.MaxValue, float.MaxValue, float.MaxValue};
-            max = new []{float.MinValue, float.MinValue, float.MinValue};
+            min = new[] {float.MaxValue, float.MaxValue, float.MaxValue};
+            max = new[] {float.MinValue, float.MinValue, float.MinValue};
 
             foreach (var vert in Vertices)
             {
@@ -86,14 +85,14 @@ namespace meshBuilder
 
                 foreach (var tri in Triangles)
                 {
-                    stream.WriteLine("f " + (tri.V0+1) + " " + (tri.V1 + 1) + " " + (tri.V2 + 1));
+                    stream.WriteLine("f " + (tri.V0 + 1) + " " + (tri.V1 + 1) + " " + (tri.V2 + 1));
                 }
             }
         }
-        
+
         public void AddData(IEnumerable<Vector3> verts, IEnumerable<Triangle<uint>> tris)
         {
-            var vertOffset = (uint)Vertices.Count;
+            var vertOffset = (uint) Vertices.Count;
             foreach (var vert in verts)
             {
                 Vertices.Add(Transform ? vert.ToRecast() : vert);
@@ -115,7 +114,7 @@ namespace meshBuilder
         {
             var verts = new List<Vector3>();
             var tris = new List<Triangle<uint>>();
-            WorldModelHandler.InsertGameObjectModelGeometry(verts, tris, GameObjectHelper.GetFullFileNameFromDisplayId(go.Model), go.Transformation/*, go.Rotations*/);
+            WorldModelHandler.InsertGameObjectModelGeometry(verts, tris, GameObjectHelper.GetFullFileNameFromDisplayId(go.Model), go.Transformation /*, go.Rotations*/);
             AddData(verts, tris);
         }
 
@@ -157,9 +156,9 @@ namespace meshBuilder
             for (int i = 0; i < Triangles.Count; i++)
             {
                 var tri = Triangles[i];
-                triangles[(i * 3) + 0] = (int)tri.V0;
-                triangles[(i * 3) + 1] = (int)tri.V1;
-                triangles[(i * 3) + 2] = (int)tri.V2;
+                triangles[(i * 3) + 0] = (int) tri.V0;
+                triangles[(i * 3) + 1] = (int) tri.V1;
+                triangles[(i * 3) + 2] = (int) tri.V2;
             }
             areas = new byte[Triangles.Count];
             for (int i = 0; i < Triangles.Count; i++)
@@ -167,15 +166,14 @@ namespace meshBuilder
                 switch (Triangles[i].Type)
                 {
                     case TriangleType.Water:
-                        areas[i] = (byte)PolyArea.Water;
+                        areas[i] = (byte) PolyArea.Water;
                         break;
 
                     default:
-                        areas[i] = (byte)PolyArea.Terrain;
+                        areas[i] = (byte) PolyArea.Terrain;
                         break;
                 }
             }
         }
     }
-
 }

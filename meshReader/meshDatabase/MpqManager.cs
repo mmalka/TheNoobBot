@@ -9,7 +9,6 @@ using System.Windows.Forms;
 
 namespace meshDatabase
 {
-
     public static class MpqManager
     {
         public static string gameDir = null;
@@ -25,14 +24,12 @@ namespace meshDatabase
         {
             string path = "DBFilesClient\\" + name + ".db2";
             return new DB5Reader(Mpq.GetFile(path));
-
         }
 
         public static DBC GetDBC(string name)
         {
             string path = "DBFilesClient\\" + name + ".db2";
             return new DBC(Mpq.GetFile(path));
-
         }
 
         public static ulong GetHashByDataId(int dataId)

@@ -65,10 +65,10 @@ namespace meshBuilder
             var origin = meshReader.Game.World.Origin;
             bmin = new float[3];
             bmax = new float[3];
-            bmin[0] = origin[0] + (Constant.TileSize*i*Constant.Division);
-            bmin[2] = origin[2] + (Constant.TileSize*j*Constant.Division);
-            bmax[0] = origin[0] + (Constant.TileSize*(i + 1)*Constant.Division);
-            bmax[2] = origin[2] + (Constant.TileSize*(j + 1)*Constant.Division);
+            bmin[0] = origin[0] + (Constant.TileSize * i * Constant.Division);
+            bmin[2] = origin[2] + (Constant.TileSize * j * Constant.Division);
+            bmax[0] = origin[0] + (Constant.TileSize * (i + 1) * Constant.Division);
+            bmax[2] = origin[2] + (Constant.TileSize * (j + 1) * Constant.Division);
         }
 
         private void CalculateTileBounds(out float[] bmin, out float[] bmax, bool forBaseTile = false, int i = 0, int j = 0)
@@ -78,17 +78,17 @@ namespace meshBuilder
             bmax = new float[3];
             if (forBaseTile || Constant.Division == 1)
             {
-                bmin[0] = origin[0] + (Constant.TileSize*X);
-                bmin[2] = origin[2] + (Constant.TileSize*Y);
-                bmax[0] = origin[0] + (Constant.TileSize*(X + 1));
-                bmax[2] = origin[2] + (Constant.TileSize*(Y + 1));
+                bmin[0] = origin[0] + (Constant.TileSize * X);
+                bmin[2] = origin[2] + (Constant.TileSize * Y);
+                bmax[0] = origin[0] + (Constant.TileSize * (X + 1));
+                bmax[2] = origin[2] + (Constant.TileSize * (Y + 1));
             }
             else
             {
-                bmin[0] = origin[0] + (Constant.TileSize*X*Constant.Division) + (Constant.TileSize*i);
-                bmin[2] = origin[2] + (Constant.TileSize*Y*Constant.Division) + (Constant.TileSize*j);
-                bmax[0] = origin[0] + (Constant.TileSize*X*Constant.Division) + (Constant.TileSize*(i + 1));
-                bmax[2] = origin[2] + (Constant.TileSize*Y*Constant.Division) + (Constant.TileSize*(j + 1));
+                bmin[0] = origin[0] + (Constant.TileSize * X * Constant.Division) + (Constant.TileSize * i);
+                bmin[2] = origin[2] + (Constant.TileSize * Y * Constant.Division) + (Constant.TileSize * j);
+                bmax[0] = origin[0] + (Constant.TileSize * X * Constant.Division) + (Constant.TileSize * (i + 1));
+                bmax[2] = origin[2] + (Constant.TileSize * Y * Constant.Division) + (Constant.TileSize * (j + 1));
             }
         }
 
@@ -125,9 +125,9 @@ namespace meshBuilder
                 float sum = 0;
                 foreach (var t in geo.Triangles)
                 {
-                    sum += geo.Vertices[(int)t.V0].X + geo.Vertices[(int)t.V0].Y + geo.Vertices[(int)t.V0].Z;
-                    sum += geo.Vertices[(int)t.V1].X + geo.Vertices[(int)t.V1].Y + geo.Vertices[(int)t.V1].Z;
-                    sum += geo.Vertices[(int)t.V2].X + geo.Vertices[(int)t.V2].Y + geo.Vertices[(int)t.V2].Z;
+                    sum += geo.Vertices[(int) t.V0].X + geo.Vertices[(int) t.V0].Y + geo.Vertices[(int) t.V0].Z;
+                    sum += geo.Vertices[(int) t.V1].X + geo.Vertices[(int) t.V1].Y + geo.Vertices[(int) t.V1].Z;
+                    sum += geo.Vertices[(int) t.V2].X + geo.Vertices[(int) t.V2].Y + geo.Vertices[(int) t.V2].Z;
                 }
                 return true;
             }
@@ -227,10 +227,10 @@ namespace meshBuilder
                 long cur = 0;
             #endif
             // add border
-            bbMin[0] -= Config.BorderSize*Config.CellSize;
-            bbMin[2] -= Config.BorderSize*Config.CellSize;
-            bbMax[0] += Config.BorderSize*Config.CellSize;
-            bbMax[2] += Config.BorderSize*Config.CellSize;
+            bbMin[0] -= Config.BorderSize * Config.CellSize;
+            bbMin[2] -= Config.BorderSize * Config.CellSize;
+            bbMax[0] += Config.BorderSize * Config.CellSize;
+            bbMax[2] += Config.BorderSize * Config.CellSize;
 
             // get raw geometry - lots of slowness here
             float[] vertices;
@@ -257,7 +257,7 @@ namespace meshBuilder
             bbMax[1] = MaxHeight;
 
             Heightfield hf;
-            int width = Config.TileWidth + (Config.BorderSize*2);
+            int width = Config.TileWidth + (Config.BorderSize * 2);
             if (!Context.CreateHeightfield(out hf, width, width, bbMin, bbMax, Config.CellSize, Config.CellHeight))
                 throw new OutOfMemoryException("CreateHeightfield ran out of memory");
 
@@ -411,8 +411,8 @@ namespace meshBuilder
                     UserID = 1,
                 };
                 connections.Add(conn);
-                from = new SlimDX.Vector3(1661.302f,4727.02f,139.4618f);
-                to = new SlimDX.Vector3(1669.568f,4733.722f,138.7087f);
+                from = new SlimDX.Vector3(1661.302f, 4727.02f, 139.4618f);
+                to = new SlimDX.Vector3(1669.568f, 4733.722f, 138.7087f);
                 conn = new OffMeshConnection
                 {
                     AreaId = PolyArea.Road,
@@ -479,7 +479,7 @@ namespace meshBuilder
 
             byte[] tileData;
             if (!Detour.CreateNavMeshData(out tileData, pmesh, dmesh,
-                X*Constant.Division + i, Y*Constant.Division + j, tilebMin, tilebMax,
+                X * Constant.Division + i, Y * Constant.Division + j, tilebMin, tilebMax,
                 Config.WorldWalkableHeight, Config.WorldWalkableRadius,
                 Config.WorldWalkableClimb, Config.CellSize,
                 Config.CellHeight, Config.BuildBvTree,

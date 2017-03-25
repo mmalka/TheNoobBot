@@ -8,7 +8,6 @@ using SlimDX;
 
 namespace meshDatabase.Database
 {
-
     public static class GameObjectHelper
     {
         private static DB5Reader _gameobjectDisplayInfo;
@@ -19,7 +18,7 @@ namespace meshDatabase.Database
         private static Dictionary<int, string> _cache;
         private static BinaryReader[] _cachedGameobjectDisplayInfoRows;
         private static GameobjectDisplayInfoEntry.GameobjectDisplayInfoDb2Record[] _cachedGameobjectDisplayInfoRecords;
-    
+
         public static void Initialize()
         {
             if (_initialized)
@@ -68,7 +67,6 @@ namespace meshDatabase.Database
                 return displayInfoEntry.DataId.ToString();
             else
                 return path;
-
         }
 
         // Alliance Fief maps lvl1, 2, 3 then Horde ones
@@ -87,11 +85,11 @@ namespace meshDatabase.Database
             string filter = (IsFiefMap(mapId) ? "gt.type in (1,2,5,19,44)" : "gt.type in (1,2,5,7,8,19,22,23,38,44,46)");
             //filter = "gt.type not in (0,38)";
             string query = "select go.entry, gt.model, " +
-                "go.m11, go.m12, go.m13, go.m14, go.m21, go.m22, go.m23, go.m24, go.m31, go.m32, go.m33, go.m34, go.m41, go.m42, go.m43, go.m44, gt.type" +
-                //", go.r0, go.r1, go.r2" +
-                " from gameobject go left join gameobject_template gt on go.entry=gt.entry where go.map=" + mapId + (filter.Length != 0 ? " and " + filter : "") +
-                " and go.x >= " + bbmin.X.ToString(System.Globalization.CultureInfo.InvariantCulture) + " and go.x <= " + bbmax.X.ToString(System.Globalization.CultureInfo.InvariantCulture) + " " +
-                " and go.y >= " + bbmin.Y.ToString(System.Globalization.CultureInfo.InvariantCulture) + " and go.y <= " + bbmax.Y.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";";
+                           "go.m11, go.m12, go.m13, go.m14, go.m21, go.m22, go.m23, go.m24, go.m31, go.m32, go.m33, go.m34, go.m41, go.m42, go.m43, go.m44, gt.type" +
+                           //", go.r0, go.r1, go.r2" +
+                           " from gameobject go left join gameobject_template gt on go.entry=gt.entry where go.map=" + mapId + (filter.Length != 0 ? " and " + filter : "") +
+                           " and go.x >= " + bbmin.X.ToString(System.Globalization.CultureInfo.InvariantCulture) + " and go.x <= " + bbmax.X.ToString(System.Globalization.CultureInfo.InvariantCulture) + " " +
+                           " and go.y >= " + bbmin.Y.ToString(System.Globalization.CultureInfo.InvariantCulture) + " and go.y <= " + bbmax.Y.ToString(System.Globalization.CultureInfo.InvariantCulture) + ";";
             //System.Console.WriteLine(query);
             MySqlDataReader result;
             MySqlCommand cmd;
@@ -736,9 +734,9 @@ namespace meshDatabase.Database
             List<GameObject> returnResult = new List<GameObject>();
             string filter = "gt.type in (1,2,5,7,8,19,22,23,43)";
             string query = "select go.entry, gt.model, " +
-                "go.m11, go.m12, go.m13, go.m14, go.m21, go.m22, go.m23, go.m24, go.m31, go.m32, go.m33, go.m34, go.m41, go.m42, go.m43, go.m44" +
-                //", go.r0, go.r1, go.r2" +
-                " from gameobject go left join gameobject_template gt on go.entry=gt.entry where go.map=" + mapId + (filter.Length != 0 ? " and " + filter : "") + ";";
+                           "go.m11, go.m12, go.m13, go.m14, go.m21, go.m22, go.m23, go.m24, go.m31, go.m32, go.m33, go.m34, go.m41, go.m42, go.m43, go.m44" +
+                           //", go.r0, go.r1, go.r2" +
+                           " from gameobject go left join gameobject_template gt on go.entry=gt.entry where go.map=" + mapId + (filter.Length != 0 ? " and " + filter : "") + ";";
             //System.Console.WriteLine(query);
             var cmd = new MySqlCommand(query, _myConn);
             MySqlDataReader result = cmd.ExecuteReader();
