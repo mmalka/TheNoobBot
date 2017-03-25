@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Management.Instrumentation;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -29,6 +31,22 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (Usefuls.ContinentId == 123456)
+                {
+                    var obj = ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid);
+                    if (obj is WoWGameObject)
+                    {
+                        var ship = obj as WoWGameObject;
+                        if (from.DistanceTo(new Point()) < 100f)
+                        {
+                            from = new Point(from.TransformInvert(ship));
+                        }
+                        if (to.DistanceTo(new Point()) < 100f)
+                        {
+                            to = new Point(to.TransformInvert(ship));
+                        }
+                    }
+                }
                 if (from.X != 0 && from.Y != 0 && to.X != 0 && to.Y != 0)
                 {
                     // cache:
@@ -72,11 +90,6 @@ namespace nManager.Wow.Helpers
 
                     string[] asm = new[]
                     {
-                        /*"call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                        "test eax, eax",
-                        "je @out",*/
                         "call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
