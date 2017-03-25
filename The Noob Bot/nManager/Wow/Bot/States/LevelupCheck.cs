@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using nManager.FiniteStateMachine;
+using nManager.Helpful;
 using nManager.Wow.Helpers;
 
 namespace nManager.Wow.Bot.States
@@ -50,13 +51,14 @@ namespace nManager.Wow.Bot.States
                     _lastLevel = ObjectManager.ObjectManager.Me.Level;
 
                 // Update the SpellBook and eventually the talents on level-ups.
-                return _lastLevel != ObjectManager.ObjectManager.Me.Level;
+                return _lastLevel < ObjectManager.ObjectManager.Me.Level;
             }
         }
 
         public override void Run()
         {
             _lastLevel = ObjectManager.ObjectManager.Me.Level;
+            Logging.Write("Congratulations: Player is now level " + _lastLevel);
             if (ObjectManager.ObjectManager.Me.Level >= 15 && nManagerSetting.CurrentSetting.AutoAssignTalents)
                 Talent.DoTalents(); // First talent at level 15.
             SpellManager.UpdateSpellBook(); // It also reset Combat/Healer classes.

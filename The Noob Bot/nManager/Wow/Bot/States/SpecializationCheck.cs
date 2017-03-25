@@ -31,21 +31,18 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InCombat ||
+                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid || ObjectManager.ObjectManager.Me.InCombat ||
                     !Products.Products.IsStarted)
                     return false;
 
                 uint lastLevel = LevelupCheck.GetLastLevel;
-                if (lastLevel <= 0 || lastLevel != ObjectManager.ObjectManager.Me.Level)
+                if (lastLevel <= 0 || lastLevel < ObjectManager.ObjectManager.Me.Level)
                     return false;
                 // It's the job of the state LevelupCheck.
 
                 // Update the SpellBook and the Talents on Specialization changes.
-                return _lastSpecialization != ObjectManager.ObjectManager.Me.WowSpecialization();
+                var currSpec = ObjectManager.ObjectManager.Me.WowSpecialization();
+                return currSpec != WoWSpecialization.None && _lastSpecialization != currSpec;
             }
         }
 
