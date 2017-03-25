@@ -59,6 +59,9 @@
         ///<summary>Draenor</summary>
         Draenor = 1116,
 
+        ///<summary>AllianceGunship</summary>
+        AllianceGunship = 123456,
+
         None = 9999999,
     }
 }

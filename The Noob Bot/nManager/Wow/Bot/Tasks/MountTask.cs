@@ -183,8 +183,7 @@ namespace nManager.Wow.Bot.Tasks
 
                     // We are in Azeroth/Kalimdor/Deptholm with "Flight Master's License" aura
                     if (_flightMasterLicense &&
-                        (cont == ContinentId.Azeroth || cont == ContinentId.Kalimdor ||
-                         cont == ContinentId.Maelstrom))
+                        (cont == ContinentId.Azeroth || cont == ContinentId.Kalimdor || cont == ContinentId.Maelstrom || cont == ContinentId.AllianceGunship))
                         return MountCapacity.Fly;
 
                     // We are in Outland and Expert Flying or better
