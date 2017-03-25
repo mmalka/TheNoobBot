@@ -14009,7 +14009,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>103.496796</Z>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -14045,6 +14045,18 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>103.496796</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>-417.438171</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -14058,18 +14070,6 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>-166.801468</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -23110,7 +23110,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -23122,7 +23122,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -39057,12 +39057,56 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>39427</Entry>
+    <Name>Jadi Falaryn</Name>
+    <Position>
+      <X>5638.73633</X>
+      <Y>-2446.96875</Y>
+      <Z>1527.03333</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>39429</Entry>
+    <Name>Oomla Whitehorn</Name>
+    <Position>
+      <X>5646.03662</X>
+      <Y>-2444.712</Y>
+      <Z>1527.16052</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>39432</Entry>
+    <Name>Takrik Ragehowl</Name>
+    <Position>
+      <X>5297.529</X>
+      <Y>-2209.842</Y>
+      <Z>1263.78418</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>39432</Entry>
     <Name>Takrik Ragehowl</Name>
     <Position>
       <X>5349.751</X>
       <Y>-2137.14233</Y>
       <Z>1280.52</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>39433</Entry>
+    <Name>Ian Duran</Name>
+    <Position>
+      <X>5309.59131</X>
+      <Y>-2207.87158</Y>
+      <Z>1263.78394</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -39163,6 +39207,17 @@
       <X>4551.66064</X>
       <Y>-3982.54</Y>
       <Z>944.0265</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>39622</Entry>
+    <Name>Spirit of Lo'Gosh</Name>
+    <Position>
+      <X>5144.75</X>
+      <Y>-2302.02</Y>
+      <Z>1278.532</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -39550,6 +39605,28 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>40093</Entry>
+    <Name>Subjugated Inferno Lord</Name>
+    <Position>
+      <X>4861.006</X>
+      <Y>-1597.324</Y>
+      <Z>1315.32507</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>40093</Entry>
+    <Name>Subjugated Inferno Lord</Name>
+    <Position>
+      <X>5118.64</X>
+      <Y>-1440.1731</Y>
+      <Z>1345.66235</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>40096</Entry>
     <Name>Scout Larandia</Name>
     <Position>
@@ -39597,6 +39674,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>40123</Entry>
+    <Name>Twilight Overseer</Name>
+    <Position>
+      <X>5610.79834</X>
+      <Y>-2811.30127</Y>
+      <Z>1515.96179</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>40129</Entry>
     <Name>Lost Apprentice</Name>
     <Position>
@@ -39628,6 +39717,19 @@
       <Y>-3339.158</Y>
       <Z>1555.58691</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>40178</Entry>
+    <Name>Alysra</Name>
+    <Position>
+      <X>5702.513</X>
+      <Y>-3142.20313</Y>
+      <Z>1593.84277</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -40298,6 +40400,17 @@
       <X>-6092.55</X>
       <Y>-4693.51</Y>
       <Z>93.66983</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>41068</Entry>
+    <Name>Mysterious Winged Spirit</Name>
+    <Position>
+      <X>4941.11</X>
+      <Y>-2642.19</Y>
+      <Z>1427.692</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -42169,6 +42282,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>42684</Entry>
+    <Name>Stormcaller Mylra</Name>
+    <Position>
+      <X>48.7155647</X>
+      <Y>11.3266163</Y>
+      <Z>40.4234619</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>AllianceGunship</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>42708</Entry>
     <Name>Jessup McCree</Name>
     <Position>
@@ -42486,6 +42611,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Maelstrom</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43082</Entry>
+    <Name>First Mate Moody</Name>
+    <Position>
+      <X>28.9031</X>
+      <Y>7.92859</Y>
+      <Z>23.2815819</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>AllianceGunship</ContinentId>
   </Npc>
   <Npc>
     <Entry>43095</Entry>
@@ -44480,6 +44616,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>45042</Entry>
+    <Name>Thrall</Name>
+    <Position>
+      <X>852.306</X>
+      <Y>1038.92</Y>
+      <Z>-5.39753437</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>MaelstromZone</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>45043</Entry>
     <Name>Peak Grindstone</Name>
     <Position>
@@ -46348,6 +46496,17 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>46987</Entry>
+    <Name>Vision of Ysera</Name>
+    <Position>
+      <X>5351.8</X>
+      <Y>-2135.54</Y>
+      <Z>1281.52</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>47005</Entry>
@@ -54959,6 +55118,17 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
+      <Z>593.3703</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>72447</Entry>
+    <Name>Chronalis</Name>
+    <Position>
+      <X>2890.49658</X>
+      <Y>627.434</Y>
       <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
@@ -54971,17 +55141,6 @@
       <X>2890.49658</X>
       <Y>627.434</Y>
       <Z>706.5976</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72447</Entry>
-    <Name>Chronalis</Name>
-    <Position>
-      <X>2890.49658</X>
-      <Y>627.434</Y>
-      <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -71578,6 +71737,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>106250</Entry>
+    <Name>Keeper Remulos</Name>
+    <Position>
+      <X>5528.0625</X>
+      <Y>-3498.67017</Y>
+      <Z>1560.82092</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>106271</Entry>
