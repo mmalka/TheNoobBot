@@ -4,7 +4,6 @@ using SlimDX;
 
 namespace meshReader.Game.WMO
 {
-    
     public class DoodadInstance
     {
         public uint FileOffset;
@@ -24,7 +23,7 @@ namespace meshReader.Game.WMO
             var ret = new DoodadInstance();
             uint OffsetAndFlag = r.ReadUInt32();
             ret.FileOffset = OffsetAndFlag & 0x00FFFFFF;
-            ret.Flags = (ushort)(OffsetAndFlag >> 24);
+            ret.Flags = (ushort) (OffsetAndFlag >> 24);
             ret.Position = Vector3Helper.Read(s);
             ret.QuatX = r.ReadSingle();
             ret.QuatY = r.ReadSingle();
@@ -35,5 +34,4 @@ namespace meshReader.Game.WMO
             return ret;
         }
     }
-
 }

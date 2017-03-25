@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-    
     public abstract class DungeonMeshTest
     {
         protected Pather Pather;
@@ -29,5 +28,4 @@ namespace meshReaderTest
             Console.WriteLine("Memory: " + (Pather.MemoryPressure / 1024) + "kB");
         }
     }
-
 }

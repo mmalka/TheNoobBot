@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace meshDatabase.Database
 {
-    
     public class WorldMapArea
     {
         public int Id { get; private set; }
@@ -60,7 +59,5 @@ namespace meshDatabase.Database
             x = (int)Math.Floor(32 - (BMax[0] / tileSize));
             y = (int)Math.Floor(32 - (BMax[1] / tileSize));
         }*/
-
     }
-
 }

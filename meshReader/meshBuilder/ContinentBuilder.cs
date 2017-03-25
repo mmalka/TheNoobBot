@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace meshBuilder
 {
-    
     public enum TileEventType
     {
         StartedBuild,
@@ -64,7 +63,7 @@ namespace meshBuilder
             TileMap = new WDT("World\\Maps\\" + continent + "\\" + continent + ".wdt");
         }
 
-        private string GetTileNameAndPath(int x, int y, int i=0, int j=0)
+        private string GetTileNameAndPath(int x, int y, int i = 0, int j = 0)
         {
 #pragma warning disable 162
             if (Constant.Division != 1)
@@ -84,7 +83,7 @@ namespace meshBuilder
             return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".none";
         }
 
-        private void SaveTile(int x, int y, byte[] data, int i=0, int j=0)
+        private void SaveTile(int x, int y, byte[] data, int i = 0, int j = 0)
         {
 #pragma warning disable 162
             if (Constant.Division != 1)
@@ -208,11 +207,11 @@ namespace meshBuilder
             if (!Directory.Exists(_meshDir + Continent))
                 Directory.CreateDirectory(_meshDir + Continent);
 
-            _timeStart = (int)Environment.TickCount;
+            _timeStart = (int) Environment.TickCount;
             // Start mesh creation
-            for (int y = StartY; y < (StartY+CountY); y++)
+            for (int y = StartY; y < (StartY + CountY); y++)
             {
-                for (int x = StartX; x < (StartX+CountX); x++)
+                for (int x = StartX; x < (StartX + CountX); x++)
                 {
                     _doneTiles[x, y] = 0;
                     // Get if tile is alreay Build

@@ -105,7 +105,6 @@ namespace meshBuilderGui
                     }
                     catch (FileNotFoundException)
                     {
-
                     }
                 }
             }

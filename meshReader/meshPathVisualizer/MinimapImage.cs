@@ -5,7 +5,6 @@ using meshReader.Game.Miscellaneous;
 
 namespace meshPathVisualizer
 {
-    
     public class MinimapImage
     {
         public Bitmap Result { get; private set; }
@@ -23,8 +22,8 @@ namespace meshPathVisualizer
             Result = new Bitmap(width, height);
             TilesX = endX - startX + 1;
             TilesY = endY - startY + 1;
-            TileWidth = width/TilesX;
-            TileHeight = height/TilesY;
+            TileWidth = width / TilesX;
+            TileHeight = height / TilesY;
             StartTileX = startX;
             StartTileY = startY;
         }
@@ -81,7 +80,5 @@ namespace meshPathVisualizer
 
             return b;
         }
-
     }
-
 }

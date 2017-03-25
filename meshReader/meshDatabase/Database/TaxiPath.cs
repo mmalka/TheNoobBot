@@ -4,7 +4,6 @@ namespace meshDatabase.Database
 {
     public class TaxiPath
     {
-
         [StructLayout(LayoutKind.Sequential)]
         public struct TaxiPathDb2Record
         {

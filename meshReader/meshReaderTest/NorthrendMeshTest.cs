@@ -7,11 +7,9 @@ using RecastLayer;
 
 namespace meshReaderTest
 {
-
     [TestFixture]
     public class NorthrendMeshTest : MeshTest
     {
-
         [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WowPath)
         {
@@ -78,7 +76,7 @@ namespace meshReaderTest
             TryPath(WestfallBrigade, ZimTorga, out walkHops, true);
             WriteFile("WestfallBrigade-ZimTorga.xml", walkHops, ZimTorga);
 
-            Console.WriteLine("Zim'Torga -> K3");  // fails
+            Console.WriteLine("Zim'Torga -> K3"); // fails
             TryPath(ZimTorga, K3, out walkHops, true);
             WriteFile("ZimTorga-K3.xml", walkHops, K3);
 
@@ -94,6 +92,5 @@ namespace meshReaderTest
             TryPath(Valgard, MoakiHarbor, out walkHops, true);
             WriteFile("Valgard-MoakiHarbor.xml", walkHops, MoakiHarbor);
         }
-
     }
 }

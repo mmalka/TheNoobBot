@@ -4,7 +4,6 @@ using SlimDX;
 
 namespace meshDatabase.Database
 {
-    
     public class TaxiNode
     {
         [StructLayout(LayoutKind.Sequential)]
@@ -41,13 +40,14 @@ namespace meshDatabase.Database
                 }
                 return "";
             }
+
             public bool IsValid()
             {
                 return IsHorde() || IsAlliance();
             }
         }
-        public static readonly int[] KnownAllianceMounts = new[] { 308, 541, 3837 };
-        public static readonly int[] KnownHordeMounts = new[] { 2224, 3574 };
-    }
 
+        public static readonly int[] KnownAllianceMounts = new[] {308, 541, 3837};
+        public static readonly int[] KnownHordeMounts = new[] {2224, 3574};
+    }
 }

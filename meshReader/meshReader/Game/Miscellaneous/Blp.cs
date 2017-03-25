@@ -8,7 +8,6 @@ using meshDatabase;
 
 namespace meshReader.Game.Miscellaneous
 {
-
     public class BlpData
     {
         public string Magic;
@@ -87,17 +86,17 @@ namespace meshReader.Game.Miscellaneous
             if (_cache[mipLevel] != null)
                 return _cache[mipLevel];
 
-            var width = (int)(Data.Width / Math.Pow(2.0, mipLevel));
-            var height = (int)(Data.Height / Math.Pow(2.0, mipLevel));
+            var width = (int) (Data.Width / Math.Pow(2.0, mipLevel));
+            var height = (int) (Data.Height / Math.Pow(2.0, mipLevel));
             var source = new byte[(height * width) * 4];
             if (Data.Compression == 1)
             {
                 for (int i = 0; i < (height * width); i++)
                 {
                     uint num4 = Data.Pallette[Data.RawData[mipLevel][i]];
-                    source[i * 4] = (byte)(num4 & 0xff);
-                    source[(i * 4) + 1] = (byte)((num4 & 0xff00) >> 8);
-                    source[(i * 4) + 2] = (byte)((num4 & 0xff0000) >> 0x10);
+                    source[i * 4] = (byte) (num4 & 0xff);
+                    source[(i * 4) + 1] = (byte) ((num4 & 0xff00) >> 8);
+                    source[(i * 4) + 2] = (byte) ((num4 & 0xff0000) >> 0x10);
                     if (Data.AlphaDepth == 8)
                     {
                         source[(i * 4) + 3] = Data.RawData[mipLevel][(width * height) + i];
@@ -113,14 +112,14 @@ namespace meshReader.Game.Miscellaneous
                     {
                         int num6 = (j * 4) * 8;
                         byte num7 = Data.RawData[mipLevel][(width * height) + j];
-                        source[num6 + 3] = (byte)(num7 & 1);
-                        source[num6 + 7] = (byte)(num7 & 2);
-                        source[num6 + 11] = (byte)(num7 & 4);
-                        source[num6 + 15] = (byte)(num7 & 8);
-                        source[num6 + 0x13] = (byte)(num7 & 0x10);
-                        source[num6 + 0x17] = (byte)(num7 & 0x20);
-                        source[num6 + 0x1b] = (byte)(num7 & 0x40);
-                        source[num6 + 0x1f] = (byte)(num7 & 0x80);
+                        source[num6 + 3] = (byte) (num7 & 1);
+                        source[num6 + 7] = (byte) (num7 & 2);
+                        source[num6 + 11] = (byte) (num7 & 4);
+                        source[num6 + 15] = (byte) (num7 & 8);
+                        source[num6 + 0x13] = (byte) (num7 & 0x10);
+                        source[num6 + 0x17] = (byte) (num7 & 0x20);
+                        source[num6 + 0x1b] = (byte) (num7 & 0x40);
+                        source[num6 + 0x1f] = (byte) (num7 & 0x80);
                         for (int k = 3; k < 0x20; k += 4)
                         {
                             if (source[num6 + k] > 0)
@@ -216,22 +215,26 @@ namespace meshReader.Game.Miscellaneous
                         for (int num21 = 0; num21 < 4; num21++)
                         {
                             int index = ((((m * 4) + num21) * width) * 4) + (n * 0x10);
-                            var buffer2 = new[] { (byte)(Data.RawData[mipLevel][(num15 + 4) + num21] & 3), (byte)((Data.RawData[mipLevel][(num15 + 4) + num21] & 12) >> 2), (byte)((Data.RawData[mipLevel][(num15 + 4) + num21] & 0x30) >> 4), (byte)((Data.RawData[mipLevel][(num15 + 4) + num21] & 0xc0) >> 6) };
-                            source[index] = (byte)numArray3[buffer2[0]];
-                            source[index + 1] = (byte)numArray2[buffer2[0]];
-                            source[index + 2] = (byte)numArray[buffer2[0]];
+                            var buffer2 = new[]
+                            {
+                                (byte) (Data.RawData[mipLevel][(num15 + 4) + num21] & 3), (byte) ((Data.RawData[mipLevel][(num15 + 4) + num21] & 12) >> 2),
+                                (byte) ((Data.RawData[mipLevel][(num15 + 4) + num21] & 0x30) >> 4), (byte) ((Data.RawData[mipLevel][(num15 + 4) + num21] & 0xc0) >> 6)
+                            };
+                            source[index] = (byte) numArray3[buffer2[0]];
+                            source[index + 1] = (byte) numArray2[buffer2[0]];
+                            source[index + 2] = (byte) numArray[buffer2[0]];
                             source[index + 3] = 0xff;
-                            source[index + 4] = (byte)numArray3[buffer2[1]];
-                            source[index + 5] = (byte)numArray2[buffer2[1]];
-                            source[index + 6] = (byte)numArray[buffer2[1]];
+                            source[index + 4] = (byte) numArray3[buffer2[1]];
+                            source[index + 5] = (byte) numArray2[buffer2[1]];
+                            source[index + 6] = (byte) numArray[buffer2[1]];
                             source[index + 7] = 0xff;
-                            source[index + 8] = (byte)numArray3[buffer2[2]];
-                            source[index + 9] = (byte)numArray2[buffer2[2]];
-                            source[index + 10] = (byte)numArray[buffer2[2]];
+                            source[index + 8] = (byte) numArray3[buffer2[2]];
+                            source[index + 9] = (byte) numArray2[buffer2[2]];
+                            source[index + 10] = (byte) numArray[buffer2[2]];
                             source[index + 11] = 0xff;
-                            source[index + 12] = (byte)numArray3[buffer2[3]];
-                            source[index + 13] = (byte)numArray2[buffer2[3]];
-                            source[index + 14] = (byte)numArray[buffer2[3]];
+                            source[index + 12] = (byte) numArray3[buffer2[3]];
+                            source[index + 13] = (byte) numArray2[buffer2[3]];
+                            source[index + 14] = (byte) numArray[buffer2[3]];
                             source[index + 15] = 0xff;
                             if ((Data.AlphaDepth == 1) && (num11 <= num12))
                             {
@@ -256,21 +259,21 @@ namespace meshReader.Game.Miscellaneous
                             {
                                 if (Data.OtherAlpha != 7)
                                 {
-                                    numArray4[0] = (byte)(Data.RawData[mipLevel][num15 - (8 - (num21 * 2))] & 15);
-                                    numArray4[1] = (byte)(Data.RawData[mipLevel][num15 - (8 - (num21 * 2))] & 240);
-                                    numArray4[2] = (byte)(Data.RawData[mipLevel][num15 - (7 - (num21 * 2))] & 15);
-                                    numArray4[3] = (byte)(Data.RawData[mipLevel][num15 - (7 - (num21 * 2))] & 240);
-                                    source[index + 3] = (byte)(numArray4[0] | (numArray4[0] << 4));
-                                    source[index + 7] = (byte)(numArray4[1] | (numArray4[1] >> 4));
-                                    source[index + 11] = (byte)(numArray4[2] | (numArray4[2] << 4));
-                                    source[index + 15] = (byte)(numArray4[3] | (numArray4[3] >> 4));
+                                    numArray4[0] = (byte) (Data.RawData[mipLevel][num15 - (8 - (num21 * 2))] & 15);
+                                    numArray4[1] = (byte) (Data.RawData[mipLevel][num15 - (8 - (num21 * 2))] & 240);
+                                    numArray4[2] = (byte) (Data.RawData[mipLevel][num15 - (7 - (num21 * 2))] & 15);
+                                    numArray4[3] = (byte) (Data.RawData[mipLevel][num15 - (7 - (num21 * 2))] & 240);
+                                    source[index + 3] = (byte) (numArray4[0] | (numArray4[0] << 4));
+                                    source[index + 7] = (byte) (numArray4[1] | (numArray4[1] >> 4));
+                                    source[index + 11] = (byte) (numArray4[2] | (numArray4[2] << 4));
+                                    source[index + 15] = (byte) (numArray4[3] | (numArray4[3] >> 4));
                                 }
                                 else
                                 {
                                     for (int num23 = 0; num23 < 4; num23++)
                                     {
                                         ulong num24 = (num13 & num14) >> (((num21 * 4) + num23) * 3);
-                                        source[(index + 3) + (num23 * 4)] = (byte)numArray4[(int)((IntPtr)(num24 & 7L))];
+                                        source[(index + 3) + (num23 * 4)] = (byte) numArray4[(int) ((IntPtr) (num24 & 7L))];
                                         num14 = num14 << 3;
                                     }
                                 }
@@ -291,5 +294,4 @@ namespace meshReader.Game.Miscellaneous
             return bitmap;
         }
     }
-
 }

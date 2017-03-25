@@ -3,13 +3,12 @@ using System.Linq;
 
 namespace meshDatabase.Database
 {
-    
     public static class PhaseHelper
     {
         public static DB5Reader _map;
         private static bool _initialized;
         private static IEnumerable<WoWMap.MapDbcRecord> _entries;
-        private static List<int> _blacklistedMaps = new List<int>(new int[] { 930, 995, 1187 });
+        private static List<int> _blacklistedMaps = new List<int>(new int[] {930, 995, 1187});
 
         public static void Initialize()
         {
@@ -55,7 +54,7 @@ namespace meshDatabase.Database
             Initialize();
 
             WoWMap.MapDbcRecord root = _entries.FirstOrDefault(entry => entry.MapMPQName() == internalMapName);
-            
+
             return _entries.Where(entry => entry.IsPhase && entry.PhaseParent == root.Id).ToList();
         }
 
@@ -91,5 +90,4 @@ namespace meshDatabase.Database
             return entry.MapMPQName();
         }
     }
-
 }

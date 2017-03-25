@@ -3,7 +3,6 @@ using SlimDX;
 
 namespace meshPather
 {
-
     public static class Utility
     {
         public static bool HasSucceeded(this DetourStatus status)
@@ -28,17 +27,17 @@ namespace meshPather
 
         public static float[] ToFloatArray(this Vector3 v)
         {
-            return new[] { v.X, v.Y, v.Z };
+            return new[] {v.X, v.Y, v.Z};
         }
 
         public static float[] ToWoW(this float[] v)
         {
-            return new[]{-v[2], -v[0], v[1]};
+            return new[] {-v[2], -v[0], v[1]};
         }
 
         public static float[] ToRecast(this float[] v)
         {
-            return new[] { -v[1], v[2], -v[0] };
+            return new[] {-v[1], v[2], -v[0]};
         }
 
         public static Vector3 ToWoW(this Vector3 v)
@@ -51,12 +50,11 @@ namespace meshPather
             return new Vector3(-v.Y, v.Z, -v.X);
         }
 
-        public static float[] Origin = new[] { -17066.666f, 0, -17066.666f };
+        public static float[] Origin = new[] {-17066.666f, 0, -17066.666f};
 
         public static float TileSize
         {
-            get { return 533f + (1 / (float)3); }
+            get { return 533f + (1 / (float) 3); }
         }
     }
-
 }

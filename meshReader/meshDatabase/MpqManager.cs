@@ -40,7 +40,7 @@ namespace meshDatabase
             return Mpq.GetHashByDataId(dataId);
         }
 
-        public static string GeFullNameByDataId(int dataId)
+        public static string GetFullNameByDataId(int dataId)
         {
             return Mpq.GeFullNameByDataId(dataId);
         }

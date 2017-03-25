@@ -92,7 +92,7 @@ namespace meshDatabase
             while (i < 9)
             {
                 if ((mask & 1 << i) != 0)
-                    res += (ulong) reader.ReadByte() << (i*8);
+                    res += (ulong) reader.ReadByte() << (i * 8);
                 i++;
             }
             return res;
@@ -189,9 +189,9 @@ namespace meshDatabase
         /// <returns></returns>
         public static T ReadStruct<T>(this BinaryReader reader) where T : struct
         {
-            byte[] rawData = reader.ReadBytes(Marshal.SizeOf(typeof (T)));
+            byte[] rawData = reader.ReadBytes(Marshal.SizeOf(typeof(T)));
             GCHandle handle = GCHandle.Alloc(rawData, GCHandleType.Pinned);
-            T returnObject = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof (T));
+            T returnObject = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
             handle.Free();
             return returnObject;
         }
@@ -317,7 +317,7 @@ namespace meshDatabase
 
                 int i32 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    i32 |= (b[i] << i*8);
+                    i32 |= (b[i] << i * 8);
 
                 return i32;
             }
@@ -340,7 +340,7 @@ namespace meshDatabase
 
                 uint u32 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    u32 |= ((uint) b[i] << i*8);
+                    u32 |= ((uint) b[i] << i * 8);
 
                 return u32;
             }
@@ -363,7 +363,7 @@ namespace meshDatabase
 
                 long i64 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    i64 |= ((long) b[i] << i*8);
+                    i64 |= ((long) b[i] << i * 8);
 
                 return i64;
             }
@@ -386,7 +386,7 @@ namespace meshDatabase
 
                 ulong u64 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    u64 |= ((ulong) b[i] << i*8);
+                    u64 |= ((ulong) b[i] << i * 8);
 
                 return u64;
             }

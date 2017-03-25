@@ -18,7 +18,10 @@ namespace CASCExplorer
     {
         private readonly List<Dictionary<string, string>> Data = new List<Dictionary<string, string>>();
 
-        public int Count { get { return Data.Count; } }
+        public int Count
+        {
+            get { return Data.Count; }
+        }
 
         public Dictionary<string, string> this[int index]
         {
@@ -45,7 +48,7 @@ namespace CASCExplorer
                 if (string.IsNullOrWhiteSpace(line) || line.StartsWith("#")) // skip empty lines and comments
                     continue;
 
-                string[] tokens = line.Split(new char[] { '|' });
+                string[] tokens = line.Split(new char[] {'|'});
 
                 if (lineNum == 0) // keys
                 {
@@ -53,7 +56,7 @@ namespace CASCExplorer
 
                     for (int i = 0; i < tokens.Length; ++i)
                     {
-                        fields[i] = tokens[i].Split(new char[] { '!' })[0].Replace(" ", "");
+                        fields[i] = tokens[i].Split(new char[] {'!'})[0].Replace(" ", "");
                     }
                 }
                 else // values
@@ -98,12 +101,12 @@ namespace CASCExplorer
                 if (string.IsNullOrWhiteSpace(line) || line.StartsWith("#")) // skip empty lines and comments
                     continue;
 
-                string[] tokens = line.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] tokens = line.Split(new char[] {'='}, StringSplitOptions.RemoveEmptyEntries);
 
                 if (tokens.Length != 2)
                     throw new Exception("KeyValueConfig: tokens.Length != 2");
 
-                var values = tokens[1].Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var values = tokens[1].Trim().Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                 var valuesList = values.ToList();
                 result.Data.Add(tokens[0].Trim(), valuesList);
             }
@@ -131,7 +134,7 @@ namespace CASCExplorer
 
         public static CASCConfig LoadOnlineStorageConfig(string product, string region, bool useCurrentBuild = false)
         {
-            var config = new CASCConfig { OnlineMode = true };
+            var config = new CASCConfig {OnlineMode = true};
 
             config.Region = region;
             config.Product = product;
@@ -204,7 +207,7 @@ namespace CASCExplorer
 
         public static CASCConfig LoadLocalStorageConfig(string basePath)
         {
-            var config = new CASCConfig { OnlineMode = false, BasePath = basePath };
+            var config = new CASCConfig {OnlineMode = false, BasePath = basePath};
 
             config.GameType = CASCGame.DetectLocalGame(basePath);
 
@@ -268,7 +271,10 @@ namespace CASCExplorer
 
         public int ActiveBuild { get; set; }
 
-        public string BuildName { get { return GetActiveBuild()?["Version"] ?? _VersionsData[_versionsIndex]["VersionsName"]; } }
+        public string BuildName
+        {
+            get { return GetActiveBuild()?["Version"] ?? _VersionsData[_versionsIndex]["VersionsName"]; }
+        }
 
         public string Product { get; private set; }
 

@@ -55,7 +55,7 @@ namespace CASCExplorer
                 byte[] bits = stream.ReadBytes(numMaskBytes);
 
                 for (int j = 0; j < numMaskBytes; j++)
-                    bits[j] = (byte)((bits[j] * 0x0202020202 & 0x010884422010) % 1023);
+                    bits[j] = (byte) ((bits[j] * 0x0202020202 & 0x010884422010) % 1023);
 
                 tag.Bits = new BitArray(bits);
 
@@ -73,7 +73,7 @@ namespace CASCExplorer
 
                 entry.Tags = Tags.FindAll(tag => tag.Bits[i]);
 
-                worker?.ReportProgress((int)((i + 1) / (float)numFiles * 100));
+                worker?.ReportProgress((int) ((i + 1) / (float) numFiles * 100));
             }
         }
 

@@ -43,10 +43,12 @@ namespace MPQ
         {
             return _casc.FileExists(path);
         }
+
         public static bool FileExists(uint fileId)
         {
             return _casc.FileExists(fileId);
         }
+
         public static bool FileExists(ulong hash)
         {
             return _casc.FileExists(hash);
@@ -87,8 +89,9 @@ namespace MPQ
 
         public static Stream GetFile(uint fileDataId)
         {
-            return _casc.OpenFile((int)fileDataId); // warp uint AND int so we never have issues; (else it consider it a ulong)
+            return _casc.OpenFile((int) fileDataId); // warp uint AND int so we never have issues; (else it consider it a ulong)
         }
+
         public static Stream GetFile(int fileDataId)
         {
             return _casc.OpenFile(fileDataId);

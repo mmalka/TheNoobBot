@@ -135,14 +135,14 @@ namespace meshBuilderGui
             button1.Enabled = false;
             button1.Text = "Building...";
             populate.Enabled = false;
-            
-            _buildThread = new Thread(RunBuild) {IsBackground = true}; 
+
+            _buildThread = new Thread(RunBuild) {IsBackground = true};
             _buildThread.Start();
         }
 
         void OnProgress(object sender, ProgressEvent e)
         {
-            var bars = (int)Math.Floor(64*e.Completion);
+            var bars = (int) Math.Floor(64 * e.Completion);
             for (int i = _lastProgressX; i < bars; i++)
             {
                 for (int y = 0; y < 64; y++)
@@ -160,9 +160,9 @@ namespace meshBuilderGui
             {
                 if (_builder != null)
                 {
-                    _builder.Build(); 
+                    _builder.Build();
                 }
-                else if (_dungeonBuilder != null)  
+                else if (_dungeonBuilder != null)
                 {
                     var mesh = _dungeonBuilder.Build();
                     if (mesh != null)
@@ -191,7 +191,7 @@ namespace meshBuilderGui
                 case TileEventType.FailedBuild:
                     buildDisplay1.MarkFailed(e.X, e.Y);
                     break;
-                    //I added this
+                //I added this
                 case TileEventType.AlreadyBuilt:
                     buildDisplay1.MarkAlreadyBuilt(e.X, e.Y);
                     break;
@@ -279,9 +279,9 @@ namespace meshBuilderGui
             }
 
             // SpellList dumper (keep commented to avoid fileException when opening severals builder at once, but it's very fast)
-            
+
             //MpqManager.DumpSpellList(); // dumps all spells into directory/spell.txt
-            
+
             // End of SpellListDumper
 
             // Doing them one by one to be able to add some separators
@@ -337,6 +337,5 @@ namespace meshBuilderGui
             button1.Enabled = true;
             continentNameCB.SelectedIndex = 2;
         }
-
     }
 }

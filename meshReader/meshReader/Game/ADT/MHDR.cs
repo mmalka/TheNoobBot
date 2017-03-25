@@ -2,7 +2,6 @@
 
 namespace meshReader.Game.ADT
 {
-
     public class MHDR
     {
         public uint Flags;
@@ -43,5 +42,4 @@ namespace meshReader.Game.ADT
             unused4 = r.ReadUInt32();
         }
     }
-
 }

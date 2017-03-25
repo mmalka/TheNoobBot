@@ -27,10 +27,10 @@ namespace meshDatabase
 
         public static T ByteToType<T>(BinaryReader reader)
         {
-            byte[] bytes = reader.ReadBytes(Marshal.SizeOf(typeof (T)));
+            byte[] bytes = reader.ReadBytes(Marshal.SizeOf(typeof(T)));
 
             GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            T theStructure = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof (T));
+            T theStructure = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
             handle.Free();
 
             return theStructure;
@@ -89,10 +89,10 @@ namespace meshDatabase
 
             using (reader)
             {
-                long recordsOffset = HeaderSize + (HasIndexTable ? FieldsCount - 1 : FieldsCount)*4;
+                long recordsOffset = HeaderSize + (HasIndexTable ? FieldsCount - 1 : FieldsCount) * 4;
                 long eof = reader.BaseStream.Length;
                 long copyTablePos = eof - CopyTableSize;
-                long indexTablePos = copyTablePos - (HasIndexTable ? recordsCount*4 : 0);
+                long indexTablePos = copyTablePos - (HasIndexTable ? recordsCount * 4 : 0);
                 long stringTablePos = indexTablePos - (IsSparseTable ? 0 : StringTableSize);
 
                 // Index table
@@ -148,7 +148,7 @@ namespace meshDatabase
 
                     for (int i = 0; i < recordsCount; i++)
                     {
-                        reader.BaseStream.Position = recordsOffset + i*RecordSize;
+                        reader.BaseStream.Position = recordsOffset + i * RecordSize;
 
                         byte[] recordBytes = reader.ReadBytes(RecordSize);
 
@@ -168,7 +168,7 @@ namespace meshDatabase
                             int id = 0;
 
                             for (int j = 0; j < numBytes; j++)
-                                id |= (recordBytes[offset + j] << (j*8));
+                                id |= (recordBytes[offset + j] << (j * 8));
 
                             Lookup.Add(id, recordBytes);
                         }
@@ -401,7 +401,7 @@ namespace meshDatabase
                     }
 
                     // padding at the end of the row
-                    long rem = ms.Position%4;
+                    long rem = ms.Position % 4;
                     if (rem != 0)
                         ms.Position += (4 - rem);
                 }

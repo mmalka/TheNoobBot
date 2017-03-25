@@ -50,7 +50,7 @@ namespace CASCExplorer
 
     public unsafe struct MD5Hash
     {
-        public fixed byte Value[16];
+        public fixed byte Value [16];
     }
 
     public struct RootEntry
@@ -79,8 +79,8 @@ namespace CASCExplorer
             {
                 int count = stream.ReadInt32();
 
-                ContentFlags contentFlags = (ContentFlags)stream.ReadUInt32();
-                LocaleFlags localeFlags = (LocaleFlags)stream.ReadUInt32();
+                ContentFlags contentFlags = (ContentFlags) stream.ReadUInt32();
+                LocaleFlags localeFlags = (LocaleFlags) stream.ReadUInt32();
 
                 if (localeFlags == LocaleFlags.None)
                     throw new Exception("block.LocaleFlags == LocaleFlags.None");
@@ -136,7 +136,7 @@ namespace CASCExplorer
                     FileDataStoreReverse.Add(hash, fileDataId);
                 }
 
-                worker?.ReportProgress((int)(stream.BaseStream.Position / (float)stream.BaseStream.Length * 100));
+                worker?.ReportProgress((int) (stream.BaseStream.Position / (float) stream.BaseStream.Length * 100));
             }
         }
 
@@ -145,8 +145,8 @@ namespace CASCExplorer
         public override IEnumerable<KeyValuePair<ulong, RootEntry>> GetAllEntries()
         {
             foreach (var set in RootData)
-                foreach (var entry in set.Value)
-                    yield return new KeyValuePair<ulong, RootEntry>(set.Key, entry);
+            foreach (var entry in set.Value)
+                yield return new KeyValuePair<ulong, RootEntry>(set.Key, entry);
         }
 
         public override IEnumerable<RootEntry> GetAllEntries(ulong hash)
@@ -248,7 +248,7 @@ namespace CASCExplorer
                             CASCFile.FileNames[fileHash] = fileNameFull;
                         }
 
-                        worker?.ReportProgress((int)(fs.Position / (float)fs.Length * 100));
+                        worker?.ReportProgress((int) (fs.Position / (float) fs.Length * 100));
                     }
 
                     Logger.WriteLine("WowRootHandler: loaded {0} valid file names", CASCFile.FileNames.Count);
@@ -369,7 +369,7 @@ namespace CASCExplorer
                         else
                             dirData[""][fileHash] = file;
 
-                        worker?.ReportProgress((int)(sr.BaseStream.Position / (float)sr.BaseStream.Length * 100));
+                        worker?.ReportProgress((int) (sr.BaseStream.Position / (float) sr.BaseStream.Length * 100));
                     }
 
                     bw.Write(dirData.Count); // count of dirs

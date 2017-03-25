@@ -23,12 +23,12 @@
 
 static void *rcAllocDefault(size_t size, rcAllocHint)
 {
-	return malloc(size);
+return malloc(size);
 }
 
 static void rcFreeDefault(void *ptr)
 {
-	free(ptr);
+free(ptr);
 }
 
 static rcAllocFunc* sRecastAllocFunc = rcAllocDefault;
@@ -37,14 +37,14 @@ static rcFreeFunc* sRecastFreeFunc = rcFreeDefault;
 /// @see rcAlloc, rcFree
 void rcAllocSetCustom(rcAllocFunc *allocFunc, rcFreeFunc *freeFunc)
 {
-	sRecastAllocFunc = allocFunc ? allocFunc : rcAllocDefault;
-	sRecastFreeFunc = freeFunc ? freeFunc : rcFreeDefault;
+sRecastAllocFunc = allocFunc ? allocFunc : rcAllocDefault;
+sRecastFreeFunc = freeFunc ? freeFunc : rcFreeDefault;
 }
 
 /// @see rcAllocSetCustom
 void* rcAlloc(size_t size, rcAllocHint hint)
 {
-	return sRecastAllocFunc(size, hint);
+return sRecastAllocFunc(size, hint);
 }
 
 /// @par
@@ -55,8 +55,8 @@ void* rcAlloc(size_t size, rcAllocHint hint)
 /// @see rcAllocSetCustom
 void rcFree(void* ptr)
 {
-	if (ptr)
-		sRecastFreeFunc(ptr);
+if (ptr)
+sRecastFreeFunc(ptr);
 }
 
 /// @class rcIntArray
@@ -75,12 +75,12 @@ void rcFree(void* ptr)
 /// avoiding auto-resizing during use.
 void rcIntArray::doResize(int n)
 {
-	if (!m_cap) m_cap = n;
-	while (m_cap < n) m_cap *= 2;
-	int* newData = (int*)rcAlloc(m_cap*sizeof(int), RC_ALLOC_TEMP);
-	rcAssert(newData);
-	if (m_size && newData) memcpy(newData, m_data, m_size*sizeof(int));
-	rcFree(m_data);
-	m_data = newData;
+if (!m_cap) m_cap = n;
+while (m_cap < n) m_cap *= 2;
+int* newData = (int*)rcAlloc(m_cap*sizeof(int), RC_ALLOC_TEMP);
+rcAssert(newData);
+if (m_size && newData) memcpy(newData, m_data, m_size*sizeof(int));
+rcFree(m_data);
+m_data = newData;
 }
 

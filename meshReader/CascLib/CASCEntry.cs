@@ -161,22 +161,22 @@ namespace CASCExplorer
                     result = Path.GetExtension(Name).CompareTo(Path.GetExtension(other.Name));
                     break;
                 case 2:
-                    {
-                        var e1 = casc.Root.GetEntries(Hash);
-                        var e2 = casc.Root.GetEntries(other.Hash);
-                        var flags1 = e1.Any() ? e1.First().LocaleFlags : LocaleFlags.None;
-                        var flags2 = e2.Any() ? e2.First().LocaleFlags : LocaleFlags.None;
-                        result = flags1.CompareTo(flags2);
-                    }
+                {
+                    var e1 = casc.Root.GetEntries(Hash);
+                    var e2 = casc.Root.GetEntries(other.Hash);
+                    var flags1 = e1.Any() ? e1.First().LocaleFlags : LocaleFlags.None;
+                    var flags2 = e2.Any() ? e2.First().LocaleFlags : LocaleFlags.None;
+                    result = flags1.CompareTo(flags2);
+                }
                     break;
                 case 3:
-                    {
-                        var e1 = casc.Root.GetEntries(Hash);
-                        var e2 = casc.Root.GetEntries(other.Hash);
-                        var flags1 = e1.Any() ? e1.First().ContentFlags : ContentFlags.None;
-                        var flags2 = e2.Any() ? e2.First().ContentFlags : ContentFlags.None;
-                        result = flags1.CompareTo(flags2);
-                    }
+                {
+                    var e1 = casc.Root.GetEntries(Hash);
+                    var e2 = casc.Root.GetEntries(other.Hash);
+                    var flags1 = e1.Any() ? e1.First().ContentFlags : ContentFlags.None;
+                    var flags2 = e2.Any() ? e2.First().ContentFlags : ContentFlags.None;
+                    result = flags1.CompareTo(flags2);
+                }
                     break;
                 case 4:
                     var size1 = GetSize(casc);

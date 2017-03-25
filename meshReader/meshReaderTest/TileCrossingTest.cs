@@ -7,11 +7,9 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-    
     [TestFixture]
     public class TileCrossingTest
     {
-
         [Ignore("Should be explicitly tested only - takes 4+ minutes since it generates tile navmesh data")]
         public void CrossingTest()
         {
@@ -38,7 +36,7 @@ namespace meshReaderTest
             var pather = new Pather("X:\\Meshes\\Azeroth");
             Assert.IsTrue(pather.LoadTile(dataA));
             Assert.IsTrue(pather.LoadTile(dataB));
-            
+
             // and try pathing, coords from AzerothMeshTest -> TileCrossing which is a non-building version of this
             var start = new Vector3(-9467.8f, 64.2f, 55.9f);
             var end = new Vector3(-9248.9f, -93.35f, 70.3f);
@@ -47,9 +45,7 @@ namespace meshReaderTest
             // check result
             Assert.IsNotNull(path);
             Assert.Greater(path.Count, 0);
-            Assert.Less((end - path[path.Count-1].Location).Length(), 3f);
+            Assert.Less((end - path[path.Count - 1].Location).Length(), 3f);
         }
-
     }
-
 }

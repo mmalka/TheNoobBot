@@ -17,7 +17,7 @@ namespace meshDatabase
 
         public static DBFilesClient Load(string path)
         {
-            XmlSerializer deser = new XmlSerializer(typeof (DBFilesClient));
+            XmlSerializer deser = new XmlSerializer(typeof(DBFilesClient));
             using (var fs = new FileStream(path, FileMode.Open))
             {
                 DBFilesClient cat = (DBFilesClient) deser.Deserialize(fs);
@@ -33,7 +33,7 @@ namespace meshDatabase
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            XmlSerializer ser = new XmlSerializer(typeof (DBFilesClient));
+            XmlSerializer ser = new XmlSerializer(typeof(DBFilesClient));
             XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
             namespaces.Add(string.Empty, string.Empty);
             using (var fs = new FileStream(db.File, FileMode.Create))

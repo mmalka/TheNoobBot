@@ -4,7 +4,6 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-    
     [TestFixture]
     public class ADTTest
     {
@@ -15,10 +14,9 @@ namespace meshReaderTest
             var test = new ADT("World\\maps\\Northrend\\Northrend_43_29.adt");
             test.Read();
 
-            Assert.AreEqual(test.MapChunks.Length, 16*16);
+            Assert.AreEqual(test.MapChunks.Length, 16 * 16);
             Assert.IsNotNull(test.DoodadHandler.Vertices);
             Assert.IsNotNull(test.DoodadHandler.Triangles);
         }
     }
-
 }

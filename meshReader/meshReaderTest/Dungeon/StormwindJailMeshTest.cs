@@ -4,11 +4,9 @@ using NUnit.Framework;
 
 namespace meshReaderTest.Dungeon
 {
-
     [TestFixture]
     public class StormwindJailMeshTest : DungeonMeshTest
     {
-
         [OneTimeSetUp]
         public void Initialize()
         {
@@ -32,7 +30,5 @@ namespace meshReaderTest.Dungeon
         {
             TryPath(new Vector3(-0.8f, -25.2f, -74.4f).ToWoW(), new Vector3(-1.2f, -24.9f, -165.2f).ToWoW());
         }
-
     }
-
 }

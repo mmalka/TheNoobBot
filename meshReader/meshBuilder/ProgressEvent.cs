@@ -2,7 +2,6 @@
 
 namespace meshBuilder
 {
-    
     public class ProgressEvent : EventArgs
     {
         public int CompletedWork { get; private set; }
@@ -10,7 +9,7 @@ namespace meshBuilder
 
         public float Completion
         {
-            get { return TotalWork > 0 ? (CompletedWork/(float) TotalWork) : 1f; }
+            get { return TotalWork > 0 ? (CompletedWork / (float) TotalWork) : 1f; }
         }
 
         public ProgressEvent(int completed, int total)
@@ -19,5 +18,4 @@ namespace meshBuilder
             TotalWork = total;
         }
     }
-
 }

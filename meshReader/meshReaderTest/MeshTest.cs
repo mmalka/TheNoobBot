@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-    
     public abstract class MeshTest
     {
         protected Pather Pather;
@@ -21,14 +20,14 @@ namespace meshReaderTest
             TryPath(start, end, out path, true);
             if (path == null || path.Count == 0)
             {
-                path.Add(new Hop { Type = HopType.Waypoint, Location = start });
+                path.Add(new Hop {Type = HopType.Waypoint, Location = start});
                 return 0;
             }
             float diff = (end - path[path.Count - 1].Location).Length();
             float ndiff = 5f;
             while (ndiff < diff)
             {
-                int limit = (int)(path.Count * 0.80f);
+                int limit = (int) (path.Count * 0.80f);
 
                 System.Collections.Generic.List<Hop> path2;
                 TryPath(path[limit].Location, end, out path2, true);
@@ -79,7 +78,7 @@ namespace meshReaderTest
                 length += (result[i].Location - result[i + 1].Location).Length();
 
             Console.WriteLine("Total distance flying : " + (end - start).Length() + ", walking : " + length);
-            Console.WriteLine("Distance to end : "+(end - result[result.Count - 1].Location).Length());
+            Console.WriteLine("Distance to end : " + (end - result[result.Count - 1].Location).Length());
 /*            foreach (var hop in result)
             {
                 float tx, ty;
@@ -93,5 +92,4 @@ namespace meshReaderTest
             return length;
         }
     }
-
 }

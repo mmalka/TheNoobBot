@@ -2,7 +2,6 @@
 
 namespace meshBuilder
 {
-
     public abstract class ProgressTracker
     {
         public event EventHandler<ProgressEvent> OnProgress;
@@ -30,5 +29,4 @@ namespace meshBuilder
             CompletedWork = 0;
         }
     }
-
 }

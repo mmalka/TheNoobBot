@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+
 //using System.Net.Http;
 //using System.Net.Http.Headers;
 
@@ -48,7 +49,7 @@ namespace CASCExplorer
                 else
                     handler.OpenIndexFile(archive, i);
 
-                worker?.ReportProgress((int)((i + 1) / (float)config.Archives.Count * 100));
+                worker?.ReportProgress((int) ((i + 1) / (float) config.Archives.Count * 100));
             }
 
             return handler;
@@ -160,7 +161,7 @@ namespace CASCExplorer
             HttpWebRequest req = WebRequest.CreateHttp(url);
             //req.Headers[HttpRequestHeader.Range] = string.Format("bytes={0}-{1}", entry.Offset, entry.Offset + entry.Size - 1);
             req.AddRange(entry.Offset, entry.Offset + entry.Size - 1);
-            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponseAsync().Result)
+            using (HttpWebResponse resp = (HttpWebResponse) req.GetResponseAsync().Result)
             {
                 MemoryStream ms = new MemoryStream(entry.Size);
                 resp.GetResponseStream().CopyBytes(ms, entry.Size);
@@ -212,7 +213,7 @@ namespace CASCExplorer
             //}
 
             HttpWebRequest req = WebRequest.CreateHttp(url);
-            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponseAsync().Result)
+            using (HttpWebResponse resp = (HttpWebResponse) req.GetResponseAsync().Result)
             {
                 MemoryStream ms = new MemoryStream();
                 resp.GetResponseStream().CopyTo(ms);

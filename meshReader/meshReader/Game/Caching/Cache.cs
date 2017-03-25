@@ -5,7 +5,6 @@ using System;
 
 namespace meshReader.Game.Caching
 {
-
     public static class Cache
     {
         public static GenericCache<MDX.Model> Model = new GenericCache<Model>();
@@ -18,5 +17,4 @@ namespace meshReader.Game.Caching
             WorldModel.Clear();
         }
     }
-
 }

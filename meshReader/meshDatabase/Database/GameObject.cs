@@ -9,7 +9,9 @@ namespace meshDatabase.Database
         public Matrix Transformation { get; set; }
         //public Vector3 Rotations { get; set; }
 
-        public GameObject() { }
+        public GameObject()
+        {
+        }
 
         public GameObject(GameObject go2)
         {
@@ -19,10 +21,7 @@ namespace meshDatabase.Database
 
         public Vector3 Coordinates
         {
-            get
-            {
-                return new Vector3(Transformation.M14, Transformation.M24, Transformation.M34);
-            }
+            get { return new Vector3(Transformation.M14, Transformation.M24, Transformation.M34); }
         }
     }
 }

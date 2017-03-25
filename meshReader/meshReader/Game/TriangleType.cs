@@ -1,6 +1,5 @@
 ﻿namespace meshReader.Game
 {
-    
     public enum TriangleType : byte
     {
         Unknown,
@@ -9,5 +8,4 @@
         Doodad,
         Wmo
     }
-
 }

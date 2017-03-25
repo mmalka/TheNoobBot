@@ -13,7 +13,7 @@ namespace meshDatabase
         private static BinaryReader[] _cachedMapRows;
 
         // Small list of unused map which have nor flags, nor type able to filter them
-        private static List<uint> _blacklistedMaps = new List<uint>(new uint[] { 930, 995, 1187 });
+        private static List<uint> _blacklistedMaps = new List<uint>(new uint[] {930, 995, 1187});
 
         private static DB5Reader mapDB2;
 
@@ -192,15 +192,16 @@ namespace meshDatabase
             public byte PhaseParent;
             public byte field3A_0;
             public byte field3A_1;
-            
+
             public bool IsPhase
             {
                 get { return PhaseParent > 1; }
             }
+
             public string MapMPQName()
             {
                 string strValue;
-                if (PhaseHelper._map.StringTable != null && PhaseHelper._map.StringTable.TryGetValue((int)MPQDirectoryNameOffset, out strValue))
+                if (PhaseHelper._map.StringTable != null && PhaseHelper._map.StringTable.TryGetValue((int) MPQDirectoryNameOffset, out strValue))
                 {
                     return strValue;
                 }
@@ -212,7 +213,7 @@ namespace meshDatabase
             public string MapName()
             {
                 string strValue;
-                if (PhaseHelper._map.StringTable != null && PhaseHelper._map.StringTable.TryGetValue((int)MapNameOffset, out strValue))
+                if (PhaseHelper._map.StringTable != null && PhaseHelper._map.StringTable.TryGetValue((int) MapNameOffset, out strValue))
                 {
                     return strValue;
                 }
@@ -223,13 +224,13 @@ namespace meshDatabase
 
             public bool IsTestMap()
             {
-                return (Flags & (uint)MapFlags.MAP_FLAG_TEST_MAP) != 0 ||
-                       (Flags & (uint)MapFlags.MAP_FLAG_NOT_EXISTING) != 0;
+                return (Flags & (uint) MapFlags.MAP_FLAG_TEST_MAP) != 0 ||
+                       (Flags & (uint) MapFlags.MAP_FLAG_NOT_EXISTING) != 0;
             }
 
             public bool IsGarrisonMap()
             {
-                return (Flags & (uint)MapFlags.MAP_FLAG_GARRISON) != 0;
+                return (Flags & (uint) MapFlags.MAP_FLAG_GARRISON) != 0;
             }
 
             public bool IsBlacklistedMap()

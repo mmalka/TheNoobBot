@@ -10,7 +10,7 @@ namespace CASCExplorer
         {
             worker?.ReportProgress(0, "Loading \"root\"...");
 
-            string hash = Encoding.ASCII.GetString(stream.ReadBytes((int)stream.BaseStream.Length)); // what is this for?
+            string hash = Encoding.ASCII.GetString(stream.ReadBytes((int) stream.BaseStream.Length)); // what is this for?
 
             worker?.ReportProgress(100);
         }
@@ -33,7 +33,6 @@ namespace CASCExplorer
 
         public override void LoadListFile(string path, BackgroundWorkerEx worker = null)
         {
-
         }
 
         protected override CASCFolder CreateStorageTree()
@@ -58,7 +57,6 @@ namespace CASCExplorer
 
         public override void Dump()
         {
-
         }
     }
 }

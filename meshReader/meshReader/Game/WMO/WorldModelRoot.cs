@@ -57,7 +57,7 @@ namespace meshReader.Game.WMO
                     return;
                 var stream = chunk.GetStream();
                 var r = new BinaryReader(stream);
-                Groups = new List<WorldModelGroup>((int)Header.CountGroups);
+                Groups = new List<WorldModelGroup>((int) Header.CountGroups);
                 for (int i = 0; i < Header.CountGroups; i++)
                 {
                     try
@@ -80,8 +80,8 @@ namespace meshReader.Game.WMO
                 return;
 
             var stream = chunk.GetStream();
-            Debug.Assert(chunk.Length/32 == Header.CountSets);
-            DoodadSets = new List<DoodadSet>((int)Header.CountSets);
+            Debug.Assert(chunk.Length / 32 == Header.CountSets);
+            DoodadSets = new List<DoodadSet>((int) Header.CountSets);
             for (int i = 0; i < Header.CountSets; i++)
                 DoodadSets.Add(DoodadSet.Read(stream));
         }
@@ -94,12 +94,12 @@ namespace meshReader.Game.WMO
                 return;
 
             const int instanceSize = 40;
-            var countInstances = (int) (chunk.Length/instanceSize);
+            var countInstances = (int) (chunk.Length / instanceSize);
             DoodadInstances = new List<DoodadInstance>(countInstances);
             for (int i = 0; i < countInstances; i++)
             {
                 var stream = chunk.GetStream();
-                stream.Seek(instanceSize*i, SeekOrigin.Current);
+                stream.Seek(instanceSize * i, SeekOrigin.Current);
                 var instance = DoodadInstance.Read(stream);
                 var nameStream = nameChunk.GetStream();
                 if (instance.FileOffset >= nameChunk.Length)
@@ -128,7 +128,7 @@ namespace meshReader.Game.WMO
                 return;
 
             const int materialSize = 64;
-            var countMaterials = (int)(chunk.Length / materialSize);
+            var countMaterials = (int) (chunk.Length / materialSize);
             Materials = new List<WorldModelMaterialTexture>(countMaterials);
             for (int i = 0; i < countMaterials; i++)
             {

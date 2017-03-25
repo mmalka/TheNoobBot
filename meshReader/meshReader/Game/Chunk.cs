@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace meshReader.Game
 {
-
     public class Chunk
     {
         private readonly Stream _sharedStream;
@@ -37,7 +36,7 @@ namespace meshReader.Game
                 else
                     matched = 0;
                 if (matched == 4)
-                    return (int)(stream.Position - 4);
+                    return (int) (stream.Position - 4);
             }
             return -1;
         }
@@ -48,5 +47,4 @@ namespace meshReader.Game
             return _sharedStream;
         }
     }
-
 }

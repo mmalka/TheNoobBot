@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace meshReaderTest
 {
-    
     [TestFixture]
     public class WMOTest
     {
@@ -33,5 +32,4 @@ namespace meshReaderTest
             Assert.IsFalse(verts.Any(v => float.IsNaN(v.X) || float.IsNaN(v.Y) || float.IsNaN(v.Z)));
         }
     }
-
 }

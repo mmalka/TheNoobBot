@@ -1,6 +1,5 @@
 ﻿namespace meshReader.Game.ADT
 {
-    
     public abstract class ObjectDataHandler
     {
         public ADT Source { get; private set; }
@@ -24,11 +23,10 @@
             var ourChunk = Source.ObjectData.Chunks[firstIndex + chunk.Index];
             if (ourChunk.Length == 0)
                 return;
-            var subChunks = new ChunkedData(ourChunk.GetStream(), (int)ourChunk.Length, 2);
+            var subChunks = new ChunkedData(ourChunk.GetStream(), (int) ourChunk.Length, 2);
             ProcessInternal(subChunks);
         }
 
         protected abstract void ProcessInternal(ChunkedData subChunks);
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace meshPather
 {
-    
     public enum HopType
     {
         Waypoint,
@@ -19,5 +18,4 @@ namespace meshPather
         /// </summary>
         public string FlightTarget { get; set; }
     }
-
 }

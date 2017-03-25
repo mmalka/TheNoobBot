@@ -2,7 +2,6 @@
 
 namespace meshReader.Game.Caching
 {
-
     public class GenericCache<T> where T : class
     {
         public const int FlushLimit = 1000;
@@ -29,5 +28,4 @@ namespace meshReader.Game.Caching
             _items.Clear();
         }
     }
-
 }

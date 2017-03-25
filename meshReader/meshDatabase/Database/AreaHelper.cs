@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace meshDatabase.Database
 {
-    
     public static class AreaHelper
     {
         private static bool _initialized;
@@ -39,5 +38,4 @@ namespace meshDatabase.Database
             return _data.FirstOrDefault(d => d.Area == id);
         }
     }
-
 }

@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace meshReader.Game.ADT
 {
-
     public class ADT
     {
         public ChunkedData ObjectData { get; private set; }
@@ -56,5 +55,4 @@ namespace meshReader.Game.ADT
                 WorldModelHandler.ProcessMapChunk(mapChunk);
         }
     }
-
 }

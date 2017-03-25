@@ -1,4 +1,4 @@
-﻿using System; 
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,10 @@ namespace CASCExplorer
         private byte[] m_data;
         private DB5Reader m_reader;
 
-        public byte[] Data { get { return m_data; } }
+        public byte[] Data
+        {
+            get { return m_data; }
+        }
 
         public DB5Row(DB5Reader reader, byte[] data)
         {
@@ -43,7 +46,7 @@ namespace CASCExplorer
                 case TypeCode.SByte:
                     if (meta.Bits != 0x18)
                         throw new Exception("TypeCode.SByte Unknown meta.Bits");
-                    value = (sbyte)m_data[meta.Offset + bytesCount * arrayIndex];
+                    value = (sbyte) m_data[meta.Offset + bytesCount * arrayIndex];
                     break;
                 case TypeCode.Int16:
                     if (meta.Bits != 0x10)
@@ -94,7 +97,7 @@ namespace CASCExplorer
                     throw new Exception("Unknown TypeCode " + code);
             }
 
-            return (T)value;
+            return (T) value;
         }
     }
 
@@ -107,7 +110,7 @@ namespace CASCExplorer
     public class DB5Reader : IEnumerable<KeyValuePair<int, DB5Row>>
     {
         private const int HeaderSize = 48;
-        private const uint DB5FmtSig = 0x35424457;          // WDB5
+        private const uint DB5FmtSig = 0x35424457; // WDB5
 
         public int RecordsCount { get; private set; }
         public int FieldsCount { get; private set; }
@@ -124,7 +127,9 @@ namespace CASCExplorer
 
         private Dictionary<int, DB5Row> m_index = new Dictionary<int, DB5Row>();
 
-        public DB5Reader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open)) { }
+        public DB5Reader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open))
+        {
+        }
 
         public DB5Reader(Stream stream)
         {

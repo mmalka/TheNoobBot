@@ -30,13 +30,13 @@ namespace CASCExplorer
                     while (m_reader.StringTable[start + len] != 0)
                         len++;
                     retVal = Encoding.UTF8.GetString(m_reader.StringTable, start, len);
-                    return (T)retVal;
+                    return (T) retVal;
                 case TypeCode.Int32:
                     retVal = BitConverter.ToInt32(m_data, field * 4);
-                    return (T)retVal;
+                    return (T) retVal;
                 case TypeCode.Single:
                     retVal = BitConverter.ToSingle(m_data, field * 4);
-                    return (T)retVal;
+                    return (T) retVal;
                 default:
                     return default(T);
             }
@@ -46,7 +46,7 @@ namespace CASCExplorer
     public class DB2Reader : IEnumerable<KeyValuePair<int, DB2Row>>
     {
         private const int HeaderSize = 48;
-        private const uint DB2FmtSig = 0x32424457;          // WDB2
+        private const uint DB2FmtSig = 0x32424457; // WDB2
 
         public int RecordsCount { get; private set; }
         public int FieldsCount { get; private set; }
@@ -60,7 +60,9 @@ namespace CASCExplorer
 
         readonly Dictionary<int, DB2Row> m_index = new Dictionary<int, DB2Row>();
 
-        public DB2Reader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open)) { }
+        public DB2Reader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open))
+        {
+        }
 
         public DB2Reader(Stream stream)
         {
@@ -82,22 +84,22 @@ namespace CASCExplorer
                 StringTableSize = reader.ReadInt32();
 
                 // WDB2 specific fields
-                uint tableHash = reader.ReadUInt32();   // new field in WDB2
-                uint build = reader.ReadUInt32();       // new field in WDB2
-                uint unk1 = reader.ReadUInt32();        // new field in WDB2
+                uint tableHash = reader.ReadUInt32(); // new field in WDB2
+                uint build = reader.ReadUInt32(); // new field in WDB2
+                uint unk1 = reader.ReadUInt32(); // new field in WDB2
 
                 if (build > 12880) // new extended header
                 {
-                    int MinId = reader.ReadInt32();     // new field in WDB2
-                    int MaxId = reader.ReadInt32();     // new field in WDB2
-                    int locale = reader.ReadInt32();    // new field in WDB2
-                    int unk5 = reader.ReadInt32();      // new field in WDB2
+                    int MinId = reader.ReadInt32(); // new field in WDB2
+                    int MaxId = reader.ReadInt32(); // new field in WDB2
+                    int locale = reader.ReadInt32(); // new field in WDB2
+                    int unk5 = reader.ReadInt32(); // new field in WDB2
 
                     if (MaxId != 0)
                     {
-                        var diff = MaxId - MinId + 1;   // blizzard is weird people...
-                        reader.ReadBytes(diff * 4);     // an index for rows
-                        reader.ReadBytes(diff * 2);     // a memory allocation bank
+                        var diff = MaxId - MinId + 1; // blizzard is weird people...
+                        reader.ReadBytes(diff * 4); // an index for rows
+                        reader.ReadBytes(diff * 2); // a memory allocation bank
                     }
                 }
 

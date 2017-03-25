@@ -7,7 +7,6 @@ using System.Text;
 
 namespace meshReader.Game.ADT
 {
-
     public class MapChunk
     {
         public ADT ADT { get; private set; }
@@ -18,10 +17,7 @@ namespace meshReader.Game.ADT
 
         public int Index
         {
-            get
-            {
-                return (int)(Header.IndexX + (16*Header.IndexY));
-            }
+            get { return (int) (Header.IndexX + (16 * Header.IndexY)); }
         }
 
         public MapChunk(ADT adt, Chunk chunk)
@@ -46,11 +42,11 @@ namespace meshReader.Game.ADT
                     if (Header.HasHole(x, y))
                         continue;
 
-                    var topLeft = (byte)((17*y) + x);
-                    var topRight = (byte)((17*y) + x + 1);
-                    var bottomLeft = (byte)((17*(y + 1)) + x);
-                    var bottomRight = (byte)((17*(y + 1)) + x + 1);
-                    var center = (byte)((17*y) + 9 + x);
+                    var topLeft = (byte) ((17 * y) + x);
+                    var topRight = (byte) ((17 * y) + x + 1);
+                    var bottomLeft = (byte) ((17 * (y + 1)) + x);
+                    var bottomRight = (byte) ((17 * (y + 1)) + x + 1);
+                    var center = (byte) ((17 * y) + 9 + x);
 
                     var triangleType = TriangleType.Terrain;
                     if (ADT.LiquidHandler != null && ADT.LiquidHandler.MCNKData != null)
@@ -80,18 +76,18 @@ namespace meshReader.Game.ADT
             var reader = new BinaryReader(s);
             for (int j = 0; j < 17; j++)
             {
-                int values = j%2 != 0 ? 8 : 9;
+                int values = j % 2 != 0 ? 8 : 9;
                 for (int i = 0; i < values; i++)
                 {
                     var vertice = new Vector3
-                                      {
-                                          X = Header.Position.X - (j*(Constant.UnitSize*0.5f)),
-                                          Y = Header.Position.Y - (i*Constant.UnitSize),
-                                          Z = Header.Position.Z + reader.ReadSingle()
-                                      };
+                    {
+                        X = Header.Position.X - (j * (Constant.UnitSize * 0.5f)),
+                        Y = Header.Position.Y - (i * Constant.UnitSize),
+                        Z = Header.Position.Z + reader.ReadSingle()
+                    };
 
                     if (values == 8)
-                        vertice.Y -= Constant.UnitSize*0.5f;
+                        vertice.Y -= Constant.UnitSize * 0.5f;
 
                     Vertices[vertIndex++] = vertice;
                 }
@@ -140,14 +136,17 @@ namespace meshReader.Game.ADT
             public uint OffsetMCLV;
             public uint unused;
             // Computed data
-            public byte[] HighResHoles { get { return BitConverter.GetBytes(HighResHoleL + ((ulong)HighResHoleH << 32)); } } // 0x14
+            public byte[] HighResHoles
+            {
+                get { return BitConverter.GetBytes(HighResHoleL + ((ulong) HighResHoleH << 32)); }
+            } // 0x14
             public uint MCVTDataOffsetComputed;
 
             public void Read(Stream s)
             {
                 var r = new BinaryReader(s);
                 var startingOffset = s.Position;
-                Flags = (MapChunkHeaderFlags)r.ReadUInt32();
+                Flags = (MapChunkHeaderFlags) r.ReadUInt32();
                 IndexX = r.ReadUInt32();
                 IndexY = r.ReadUInt32();
                 Layers = r.ReadUInt32();
@@ -194,8 +193,9 @@ namespace meshReader.Game.ADT
                     sig = r.ReadUInt32();
                     size = r.ReadUInt32();
                 }
-                MCVTDataOffsetComputed = (uint)(s.Position - startingOffset);
+                MCVTDataOffsetComputed = (uint) (s.Position - startingOffset);
             }
+
             public byte[] Holes
             {
                 get
@@ -206,6 +206,7 @@ namespace meshReader.Game.ADT
                         return TransformToHighRes(LowResHoles);
                 }
             }
+
             private static byte[] TransformToHighRes(ushort holes)
             {
                 var ret = new byte[8];
@@ -215,16 +216,16 @@ namespace meshReader.Game.ADT
                     {
                         int holeIdxL = (i / 2) * 4 + (j / 2);
                         if (((holes >> holeIdxL) & 1) == 1)
-                            ret[i] |= (byte)(1 << j);
+                            ret[i] |= (byte) (1 << j);
                     }
                 }
                 return ret;
             }
+
             public bool HasHole(int col, int row)
             {
                 return ((Holes[row] >> col) & 1) == 1;
             }
         }
     }
-
 }

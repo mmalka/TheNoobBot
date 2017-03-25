@@ -5,10 +5,8 @@ using SlimMath;
 
 namespace meshReader.Game
 {
-    
     public static class Transformation
     {
-        
         public interface IDefinition
         {
             Vector3 Position { get; }
@@ -23,13 +21,13 @@ namespace meshReader.Game
                 translation = Matrix.Identity;
             else
                 translation = Matrix.Translation(-(def.Position.Z - Constant.MaxXY),
-                                                       -(def.Position.X - Constant.MaxXY), def.Position.Y);
+                    -(def.Position.X - Constant.MaxXY), def.Position.Y);
 
             var rotation = Matrix.RotationX(MathHelper.DegreesToRadians(def.Rotation.Z)) *
                            Matrix.RotationY(MathHelper.DegreesToRadians(def.Rotation.X)) * Matrix.RotationZ(MathHelper.DegreesToRadians(def.Rotation.Y + 180));
 
             if (def.Scale < 1.0f || def.Scale > 1.0f)
-                return (Matrix.Scaling(new Vector3(def.Scale,def.Scale,def.Scale))*rotation)*translation;
+                return (Matrix.Scaling(new Vector3(def.Scale, def.Scale, def.Scale)) * rotation) * translation;
             return rotation * translation;
         }
 
@@ -45,5 +43,4 @@ namespace meshReader.Game
             return scale * quatRotation * translation * rootTransformation;
         }
     }
-
 }

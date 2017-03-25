@@ -4,7 +4,6 @@ using SlimDX;
 
 namespace meshReader.Game.MDX
 {
-
     public class ModelHeader
     {
         public byte[] Magic;
@@ -127,5 +126,4 @@ namespace meshReader.Game.MDX
             OffsetBoundingNormals = r.ReadUInt32();
         }
     }
-
 }

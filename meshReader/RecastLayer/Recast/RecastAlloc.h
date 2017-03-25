@@ -25,8 +25,8 @@
 /// memory is expected to be used.
 enum rcAllocHint
 {
-	RC_ALLOC_PERM,		///< Memory will persist after a function call.
-	RC_ALLOC_TEMP		///< Memory used temporarily within a function.
+RC_ALLOC_PERM, ///< Memory will persist after a function call.
+RC_ALLOC_TEMP ///< Memory used temporarily within a function.
 };
 
 /// A memory allocation function.
@@ -62,85 +62,85 @@ void rcFree(void* ptr);
 /// A simple dynamic array of integers.
 class rcIntArray
 {
-	int* m_data;
-	int m_size, m_cap;
+int* m_data;
+int m_size, m_cap;
 
-	void doResize(int n);
-	
-	// Explicitly disabled copy constructor and copy assignment operator.
-	rcIntArray(const rcIntArray&);
-	rcIntArray& operator=(const rcIntArray&);
+void doResize(int n);
+
+// Explicitly disabled copy constructor and copy assignment operator.
+rcIntArray(const rcIntArray&);
+rcIntArray& operator=(const rcIntArray&);
 
 public:
-	/// Constructs an instance with an initial array size of zero.
-	rcIntArray() : m_data(0), m_size(0), m_cap(0) {}
+/// Constructs an instance with an initial array size of zero.
+rcIntArray() : m_data(0), m_size(0), m_cap(0) {}
 
-	/// Constructs an instance initialized to the specified size.
-	///  @param[in]		n	The initial size of the integer array.
-	rcIntArray(int n) : m_data(0), m_size(0), m_cap(0) { resize(n); }
-	~rcIntArray() { rcFree(m_data); }
+/// Constructs an instance initialized to the specified size.
+///  @param[in]		n	The initial size of the integer array.
+rcIntArray(int n) : m_data(0), m_size(0), m_cap(0) { resize(n); }
+~rcIntArray() { rcFree(m_data); }
 
-	/// Specifies the new size of the integer array.
-	///  @param[in]		n	The new size of the integer array.
-	void resize(int n)
-	{
-		if (n > m_cap)
-			doResize(n);
-		
-		m_size = n;
-	}
+/// Specifies the new size of the integer array.
+///  @param[in]		n	The new size of the integer array.
+void resize(int n)
+{
+if (n > m_cap)
+doResize(n);
 
-	/// Push the specified integer onto the end of the array and increases the size by one.
-	///  @param[in]		item	The new value.
-	void push(int item) { resize(m_size+1); m_data[m_size-1] = item; }
+m_size = n;
+}
 
-	/// Returns the value at the end of the array and reduces the size by one.
-	///  @return The value at the end of the array.
-	int pop()
-	{
-		if (m_size > 0)
-			m_size--;
-		
-		return m_data[m_size];
-	}
+/// Push the specified integer onto the end of the array and increases the size by one.
+///  @param[in]		item	The new value.
+void push(int item) { resize(m_size+1); m_data[m_size-1] = item; }
 
-	/// The value at the specified array index.
-	/// @warning Does not provide overflow protection.
-	///  @param[in]		i	The index of the value.
-	const int& operator[](int i) const { return m_data[i]; }
+/// Returns the value at the end of the array and reduces the size by one.
+///  @return The value at the end of the array.
+int pop()
+{
+if (m_size > 0)
+m_size--;
 
-	/// The value at the specified array index.
-	/// @warning Does not provide overflow protection.
-	///  @param[in]		i	The index of the value.
-	int& operator[](int i) { return m_data[i]; }
+return m_data[m_size];
+}
 
-	/// The current size of the integer array.
-	int size() const { return m_size; }
+/// The value at the specified array index.
+/// @warning Does not provide overflow protection.
+///  @param[in]		i	The index of the value.
+const int& operator[](int i) const { return m_data[i]; }
+
+/// The value at the specified array index.
+/// @warning Does not provide overflow protection.
+///  @param[in]		i	The index of the value.
+int& operator[](int i) { return m_data[i]; }
+
+/// The current size of the integer array.
+int size() const { return m_size; }
 };
 
 /// A simple helper class used to delete an array when it goes out of scope.
 /// @note This class is rarely if ever used by the end user.
 template<class T> class rcScopedDelete
 {
-	T* ptr;
+T* ptr;
 public:
 
-	/// Constructs an instance with a null pointer.
-	inline rcScopedDelete() : ptr(0) {}
+/// Constructs an instance with a null pointer.
+inline rcScopedDelete() : ptr(0) {}
 
-	/// Constructs an instance with the specified pointer.
-	///  @param[in]		p	An pointer to an allocated array.
-	inline rcScopedDelete(T* p) : ptr(p) {}
-	inline ~rcScopedDelete() { rcFree(ptr); }
+/// Constructs an instance with the specified pointer.
+///  @param[in]		p	An pointer to an allocated array.
+inline rcScopedDelete(T* p) : ptr(p) {}
+inline ~rcScopedDelete() { rcFree(ptr); }
 
-	/// The root array pointer.
-	///  @return The root array pointer.
-	inline operator T*() { return ptr; }
-	
+/// The root array pointer.
+///  @return The root array pointer.
+inline operator T*() { return ptr; }
+
 private:
-	// Explicitly disabled copy constructor and copy assignment operator.
-	rcScopedDelete(const rcScopedDelete&);
-	rcScopedDelete& operator=(const rcScopedDelete&);
+// Explicitly disabled copy constructor and copy assignment operator.
+rcScopedDelete(const rcScopedDelete&);
+rcScopedDelete& operator=(const rcScopedDelete&);
 };
 
 #endif

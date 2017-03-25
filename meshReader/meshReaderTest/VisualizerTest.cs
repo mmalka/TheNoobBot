@@ -8,7 +8,6 @@ using RecastLayer;
 
 namespace meshReaderTest
 {
-    
     [TestFixture]
     public class VisualizerTest : MeshTest
     {
@@ -28,9 +27,9 @@ namespace meshReaderTest
         public void TestMinimapImage()
         {
             float x, y;
-            Pather.GetWoWTileByLocation(new[] { -8020, 1515, -1.5f }.ToRecast(), out x, out y);
+            Pather.GetWoWTileByLocation(new[] {-8020, 1515, -1.5f}.ToRecast(), out x, out y);
 
-            var image = new MinimapImage("Azeroth", 256, 256, (int)x, (int)x, (int)y, (int)y);
+            var image = new MinimapImage("Azeroth", 256, 256, (int) x, (int) x, (int) y, (int) y);
             image.Generate();
             image.Result.Save("MinimapImageTest.png", ImageFormat.Png);
         }
@@ -46,14 +45,14 @@ namespace meshReaderTest
 
             string ipath = iBaseMeshesPath + "Draenor";
             Pather = new Pather(@ipath, MockConnectionHandler);
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 4);
-            Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Danger, 20);
+            Pather.Filter.SetAreaCost((int) PolyArea.Water, 4);
+            Pather.Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Road, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Danger, 20);
 
             double l;
             PathImage image;
-            
+
             System.Console.WriteLine("Test Draenor...");
             l = TryHugePath(pop, TelaariNagran, out path);
             image = new PathImage(Pather.Continent, 128 * 11, 128 * 4, path);
@@ -72,14 +71,14 @@ namespace meshReaderTest
 
             string ipath = iBaseMeshesPath + "Kalimdor";
             Pather = new Pather(@ipath, MockConnectionHandler);
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 4);
-            Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Danger, 20);
+            Pather.Filter.SetAreaCost((int) PolyArea.Water, 4);
+            Pather.Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Road, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Danger, 20);
 
             double l;
             PathImage image;
-            
+
             System.Console.WriteLine("Test Orgrimar...");
             l = TryHugePath(bas, haut, out path);
             image = new PathImage(Pather.Continent, 128 * 1, 128 * 1, path);
@@ -87,7 +86,6 @@ namespace meshReaderTest
             image.Result.Save("TestOrgrimmar.png", ImageFormat.Png);
             System.Console.WriteLine("Test Orgrimmar Length : " + l);
             System.Console.WriteLine("--------------------------------------------");
-
         }
 
         [Test]
@@ -108,14 +106,14 @@ namespace meshReaderTest
             // Kalimdor
             string ipath = iBaseMeshesPath + "Azeroth";
             Pather = new Pather(@ipath, MockConnectionHandler);
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 4);
-            Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Danger, 20);
+            Pather.Filter.SetAreaCost((int) PolyArea.Water, 4);
+            Pather.Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Road, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Danger, 20);
 
             double l;
             PathImage image;
-            
+
             /*TryPath(IronForgeFly, LocModanCityFly, out path, true);
 
             Assert.NotNull(path);
@@ -196,7 +194,7 @@ namespace meshReaderTest
             image.Result.Save("IronForgeMalTerre.png", ImageFormat.Png);
             System.Console.WriteLine("IronForge-MalTerre Length : " + l);
             System.Console.WriteLine("--------------------------------------------");
-            
+
             // And the final one, the biggest, the best, the .... I am the best ^^
 
             System.Console.WriteLine("Booty-MalTerre...");
@@ -213,7 +211,5 @@ namespace meshReaderTest
                 return false;
             return true;
         }
-
     }
-
 }

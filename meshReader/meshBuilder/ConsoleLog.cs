@@ -3,7 +3,6 @@ using RecastLayer;
 
 namespace meshBuilder
 {
-
     public class ConsoleLog : BaseLog
     {
         public override void ResetLog()
@@ -25,5 +24,4 @@ namespace meshBuilder
             Console.WriteLine("[Recast] Timer started: " + label);
         }
     }
-
 }

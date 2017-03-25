@@ -7,7 +7,6 @@ using RecastLayer;
 
 namespace meshReaderTest
 {
-    
     [TestFixture]
     public class AzerothMeshTest : MeshTest
     {
@@ -35,7 +34,7 @@ namespace meshReaderTest
                 file.WriteLine("      <Z>{0}</Z>", path[i].Location.Z);
                 file.WriteLine("    </Point>");
             }
-            if (limit ==0 && !target.Equals(path[path.Count - 1].Location))
+            if (limit == 0 && !target.Equals(path[path.Count - 1].Location))
             {
                 file.WriteLine("    <Point>");
                 file.WriteLine("      <X>{0}</X>", target.X);
@@ -83,16 +82,16 @@ namespace meshReaderTest
 
             Pather = new Pather(@iMeshesPath, MockConnectionHandler);
             // costs settings
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 4);
-            Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Danger, 20);
+            Pather.Filter.SetAreaCost((int) PolyArea.Water, 4);
+            Pather.Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Road, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Danger, 20);
             //Pather.LoadAllTiles();
-            
+
             Console.WriteLine("Northshire -> Goldshire");
             TryPath(NorthShire, Goldshire, out walkHops, true);
             WriteFile("Northshire-Goldshire.xml", walkHops, Goldshire);
-            
+
             // works
             /*
             Console.WriteLine("Northshire -> Westfall");
@@ -194,7 +193,7 @@ namespace meshReaderTest
             TryPath(Goldshire, IronForgeFly, out walkHops, true);
             if ((IronForgeFly - walkHops[walkHops.Count - 1].Location).Length() > 5f)
             {
-                int limit = (int)(walkHops.Count * 0.75f);
+                int limit = (int) (walkHops.Count * 0.75f);
                 Console.WriteLine("Incomplete result of {0} node, restarting at node {1}", walkHops.Count, limit);
                 WriteFile("Goldshire-Ironforge.xml", walkHops, IronForgeFly); //, limit);
                 TryPath(walkHops[limit].Location, IronForgeFly, out walkHops, true);
@@ -206,7 +205,6 @@ namespace meshReaderTest
             Console.WriteLine("Goldshire -> Ironforge by fly");
             TryPath(Goldshire, IronForgeFly, out walkHops, true);
             WriteFile("Goldshire-Ironforge_byFly.xml", walkHops, IronForgeFly);*/
-            
         }
 
 
@@ -302,18 +300,18 @@ namespace meshReaderTest
         [Test]
         public void TestRoadPriorization()
         {
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 10);
-            Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Water, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Terrain, 10);
+            Pather.Filter.SetAreaCost((int) PolyArea.Road, 1);
             var roadLength = TryPath(new Vector3(-8949.918f, -133.572f, 83.589f), new Vector3(-8957.4f, 517.3f, 96.3f));
             Console.WriteLine("Path length on road: " + roadLength);
 
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Water, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Road, 1);
             var normalLength = TryPath(new Vector3(-8949.918f, -133.572f, 83.589f), new Vector3(-8957.4f, 517.3f, 96.3f));
             Console.WriteLine("Shortest possible path: " + normalLength);
-            
+
             Assert.IsTrue(roadLength > normalLength);
         }
 
@@ -329,5 +327,4 @@ namespace meshReaderTest
             TryPath(new Vector3(1676.7f, 1678.1f, 121.6f), new Vector3(1843.5f, 1641.2f, 97.6f));
         }
     }
-
 }

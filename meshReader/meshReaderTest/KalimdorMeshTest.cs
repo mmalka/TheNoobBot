@@ -3,11 +3,9 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-
     [TestFixture]
     public class KalidmorMeshTest : MeshTest
     {
-
         [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WowPath)
         {
@@ -57,5 +55,4 @@ namespace meshReaderTest
             TryPath(new Vector3(1379.4f, -4370.25f, 26f), new Vector3(1688.5f, -3905.2f, 51.3f));
         }
     }
-
 }

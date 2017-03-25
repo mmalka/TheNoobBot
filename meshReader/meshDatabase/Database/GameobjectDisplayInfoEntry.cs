@@ -3,7 +3,6 @@ using SlimDX;
 
 namespace meshDatabase.Database
 {
-
     public class GameobjectDisplayInfoEntry
     {
         [StructLayout(LayoutKind.Sequential)]
@@ -31,6 +30,5 @@ namespace meshDatabase.Database
             LowerBound = new Vector3(rec.GetFloat(12), rec.GetFloat(13), rec.GetFloat(14));
             HigherBound = new Vector3(rec.GetFloat(15), rec.GetFloat(16), rec.GetFloat(17));
         }
-
     }
 }

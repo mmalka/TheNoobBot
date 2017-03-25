@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-
     [TestFixture]
     public class WDTTest
     {
@@ -41,7 +40,7 @@ namespace meshReaderTest
             var wdt = new WDT(@"World\maps\Northrend\Northrend.wdt");
             Assert.IsTrue(wdt.IsValid);
         }
-        
+
         [Test]
         public void TestWorldModelContinent()
         {
@@ -52,5 +51,4 @@ namespace meshReaderTest
             Assert.IsNotNull(wdt.ModelDefinition);
         }
     }
-
 }

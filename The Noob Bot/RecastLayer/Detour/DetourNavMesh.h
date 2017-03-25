@@ -70,7 +70,7 @@ static const int DT_VERTS_PER_POLYGON = 6;
 static const int DT_NAVMESH_MAGIC = 'D'<<24 | 'N'<<16 | 'A'<<8 | 'V';
 
 /// A version number used to detect compatibility of navigation tile data.
-static const int DT_NAVMESH_VERSION = 735;
+static const int DT_NAVMESH_VERSION = 740;
 
 /// A magic number used to detect the compatibility of navigation tile states.
 static const int DT_NAVMESH_STATE_MAGIC = 'D'<<24 | 'N'<<16 | 'M'<<8 | 'S';

@@ -6,7 +6,6 @@ using meshPather;
 
 namespace meshPathVisualizer
 {
-    
     public class PathImage
     {
         public MinimapImage Background { get; private set; }
@@ -60,13 +59,13 @@ namespace meshPathVisualizer
 
                 tX -= minX;
                 tY -= minY;
-                points[i] = new PointF(tX*Background.TileWidth, tY*Background.TileHeight);
+                points[i] = new PointF(tX * Background.TileWidth, tY * Background.TileHeight);
             }
             graphics.SmoothingMode = SmoothingMode.HighQuality;
             if (points.Length >= 2)
                 graphics.DrawLines(new Pen(Color.Red, 4f), points);
             foreach (var point in points)
-                graphics.DrawEllipse(new Pen(Color.Black, 1f), point.X - (6f/2), point.Y - (6f/2), 6, 6);
+                graphics.DrawEllipse(new Pen(Color.Black, 1f), point.X - (6f / 2), point.Y - (6f / 2), 6, 6);
             graphics.Dispose();
 
             // and wrap up the result
@@ -83,7 +82,5 @@ namespace meshPathVisualizer
             }
             graphics.Dispose();
         }
-
     }
-
 }

@@ -4,11 +4,9 @@ using NUnit.Framework;
 
 namespace meshReaderTest.Dungeon
 {
- 
     [TestFixture]
     public class WailingCavernsMeshTest : DungeonMeshTest
     {
-        
         [OneTimeSetUp]
         public void Initialize()
         {
@@ -26,7 +24,5 @@ namespace meshReaderTest.Dungeon
         {
             TryPath(new Vector3(-135.2f, -76.9f, 130.6f).ToWoW(), new Vector3(57.7f, -66.2f, 11.3f).ToWoW());
         }
-
     }
-
 }

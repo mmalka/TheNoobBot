@@ -12,6 +12,5 @@
             FileName = rec.GetString(1);
             FilePath = rec.GetString(2);
         }
-
     }
 }

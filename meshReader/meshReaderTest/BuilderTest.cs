@@ -5,11 +5,9 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-    
     [TestFixture]
     public class BuilderTest
     {
-        
         [Test]
         public void FlightmasterTest()
         {
@@ -17,7 +15,5 @@ namespace meshReaderTest
             builder.PrepareData(new ConsoleLog());
             builder.Build();
         }
-
     }
-
 }

@@ -5,7 +5,6 @@ using SlimDX;
 
 namespace meshReader.Game.WMO
 {
-    
     public class WorldModelGroup
     {
         public ChunkedData Data { get; private set; }
@@ -24,7 +23,7 @@ namespace meshReader.Game.WMO
         public LiquidHeader LiquidDataHeader { get; private set; }
         public LiquidData LiquidDataGeometry { get; private set; }
         public static System.Collections.Generic.List<uint> groupFileIds { get; private set; }
-        
+
         public WorldModelGroup(string path, int groupIndex)
         {
             uint fileId;
@@ -43,7 +42,7 @@ namespace meshReader.Game.WMO
                 return;
             var stream = mainChunk.GetStream();
             stream.Seek(firstSub, SeekOrigin.Begin);
-            SubData = new ChunkedData(stream, (int)(mainChunk.Length - firstSub));
+            SubData = new ChunkedData(stream, (int) (mainChunk.Length - firstSub));
 
             ReadBoundingBox();
             ReadMaterials();
@@ -59,7 +58,7 @@ namespace meshReader.Game.WMO
             if (chunk == null)
                 return;
 
-            var normalCount = (int) (chunk.Length/12);
+            var normalCount = (int) (chunk.Length / 12);
             Debug.Assert(normalCount == Vertices.Length);
             Normals = new Vector3[normalCount];
             var stream = chunk.GetStream();
@@ -93,10 +92,10 @@ namespace meshReader.Game.WMO
             {
                 var r = new BinaryReader(s);
                 var ret = new LiquidData
-                              {
-                                  HeightMap = new float[header.CountXVertices,header.CountYVertices],
-                                  RenderFlags = new byte[header.Width,header.Height]
-                              };
+                {
+                    HeightMap = new float[header.CountXVertices, header.CountYVertices],
+                    RenderFlags = new byte[header.Width, header.Height]
+                };
 
                 for (int y = 0; y < header.CountYVertices; y++)
                 {
@@ -148,7 +147,7 @@ namespace meshReader.Game.WMO
             if (chunk == null)
                 return;
 
-            var verticeCount = (int) (chunk.Length/12);
+            var verticeCount = (int) (chunk.Length / 12);
             Vertices = new Vector3[verticeCount];
             var stream = chunk.GetStream();
             for (int i = 0; i < verticeCount; i++)
@@ -161,7 +160,7 @@ namespace meshReader.Game.WMO
             if (chunk == null)
                 return;
 
-            var triangleCount = (int) (chunk.Length/6);
+            var triangleCount = (int) (chunk.Length / 6);
             Debug.Assert(triangleCount == TriangleFlags.Length);
             var r = new BinaryReader(chunk.GetStream());
             Triangles = new Triangle<ushort>[triangleCount];
@@ -176,7 +175,7 @@ namespace meshReader.Game.WMO
                 return;
 
             var stream = chunk.GetStream();
-            var triangleCount = (int)(chunk.Length/2);
+            var triangleCount = (int) (chunk.Length / 2);
             TriangleFlags = new byte[triangleCount];
             TriangleMaterials = new byte[triangleCount];
             for (int i = 0; i < triangleCount; i++)
@@ -200,7 +199,5 @@ namespace meshReader.Game.WMO
             BoundingBox[0] = Vector3Helper.Read(stream);
             BoundingBox[1] = Vector3Helper.Read(stream);
         }
-
     }
-
 }

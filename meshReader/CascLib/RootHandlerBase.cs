@@ -28,7 +28,7 @@ namespace CASCExplorer
 
         protected abstract CASCFolder CreateStorageTree();
 
-        private static readonly char[] PathDelimiters = new char[] { '/', '\\' };
+        private static readonly char[] PathDelimiters = new char[] {'/', '\\'};
 
         protected void CreateSubTree(CASCFolder root, ulong filehash, string file)
         {

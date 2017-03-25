@@ -5,7 +5,6 @@ using RecastLayer;
 
 namespace meshBuilder
 {
-
     /// <summary>
     /// This is mostly to handle running the timers
     /// </summary>
@@ -57,5 +56,4 @@ namespace meshBuilder
         protected abstract void OnTimerStopped(TimerLabel label);
         protected abstract void OnTimerStarted(TimerLabel label);
     }
-
 }

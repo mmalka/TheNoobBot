@@ -8,7 +8,6 @@ using System.IO;
 
 namespace meshReaderTest
 {
-
     [TestFixture]
     public class PandariaMeshTest : MeshTest
     {
@@ -64,14 +63,14 @@ namespace meshReaderTest
             System.Collections.Generic.List<Hop> walkHops;
 
             var Place01 = new Vector3(1044.314f, -1238.926f, 179.1343f); // Triger the load of tile 34_30
-            var Place02 = new Vector3(1044.677f, -1049.89f, 210.6527f);  // Trigger the load of tile 33_30
+            var Place02 = new Vector3(1044.677f, -1049.89f, 210.6527f); // Trigger the load of tile 33_30
 
             Pather = new Pather(@iMeshesPath, MockConnectionHandler);
             // costs settings
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 4);
-            Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Danger, 20);
+            Pather.Filter.SetAreaCost((int) PolyArea.Water, 4);
+            Pather.Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Road, 1);
+            Pather.Filter.SetAreaCost((int) PolyArea.Danger, 20);
             Console.WriteLine("Place01 -> Place02");
             TryPath(Place01, Place02, out walkHops, true);
             WriteFile("Place01-Place02.xml", walkHops, Place02);
@@ -89,7 +88,5 @@ namespace meshReaderTest
                 return false;
             return true;
         }
-    
     }
 }
-

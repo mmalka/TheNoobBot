@@ -7,7 +7,6 @@ using SlimDX;
 
 namespace meshReader.Game.ADT
 {
-    
     public class DoodadHandler : ObjectDataHandler
     {
         private readonly HashSet<uint> _drawn = new HashSet<uint>();
@@ -16,7 +15,7 @@ namespace meshReader.Game.ADT
 
         public List<Vector3> Vertices { get; private set; }
         public List<Triangle<uint>> Triangles { get; private set; }
-        
+
         public DoodadHandler(ADT adt)
             : base(adt)
         {
@@ -35,10 +34,7 @@ namespace meshReader.Game.ADT
 
         private bool IsSane
         {
-            get
-            {
-                return _definitions != null && _paths != null;
-            }
+            get { return _definitions != null && _paths != null; }
         }
 
         protected override void ProcessInternal(ChunkedData subChunks)
@@ -51,8 +47,8 @@ namespace meshReader.Game.ADT
                 return;
             var stream = doodadReferencesChunk.GetStream();
             var reader = new BinaryReader(stream);
-            var refCount = (int)(doodadReferencesChunk.Length/4);
-            
+            var refCount = (int) (doodadReferencesChunk.Length / 4);
+
             for (int i = 0; i < refCount; i++)
             {
                 int index = reader.ReadInt32();
@@ -81,9 +77,9 @@ namespace meshReader.Game.ADT
 
                 // some weak heuristic to save memory allocation time
                 if (Vertices == null)
-                    Vertices = new List<Vector3>((int)(refCount * model.Vertices.Length * 0.2));
+                    Vertices = new List<Vector3>((int) (refCount * model.Vertices.Length * 0.2));
                 if (Triangles == null)
-                    Triangles = new List<Triangle<uint>>((int)(refCount * model.Triangles.Length * 0.2));
+                    Triangles = new List<Triangle<uint>>((int) (refCount * model.Triangles.Length * 0.2));
 
                 InsertModelGeometry(doodad, model);
             }
@@ -92,22 +88,22 @@ namespace meshReader.Game.ADT
         private void InsertModelGeometry(DoodadDefinition def, Model model)
         {
             var transformation = Transformation.GetTransformation(def);
-            var vertOffset = (uint)Vertices.Count;
+            var vertOffset = (uint) Vertices.Count;
             foreach (var vert in model.Vertices)
                 Vertices.Add(Vector3.TransformCoordinate(vert, transformation));
             foreach (var tri in model.Triangles)
                 Triangles.Add(new Triangle<uint>(TriangleType.Doodad, tri.V0 + vertOffset, tri.V1 + vertOffset, tri.V2 + vertOffset));
         }
-        
+
         // TODO: this is so fucking idiotic because data and id share the same stream
         private void ReadDoodadPaths(Chunk id, Chunk data)
         {
-            int paths = (int)id.Length/4;
+            int paths = (int) id.Length / 4;
             _paths = new List<string>(paths);
             for (int i = 0; i < paths; i++)
             {
                 var r = new BinaryReader(id.GetStream());
-                r.BaseStream.Seek(i*4, SeekOrigin.Current);
+                r.BaseStream.Seek(i * 4, SeekOrigin.Current);
                 uint offset = r.ReadUInt32();
                 var dataStream = data.GetStream();
                 dataStream.Seek(offset + data.Offset, SeekOrigin.Begin);
@@ -126,10 +122,7 @@ namespace meshReader.Game.ADT
 
             public float Scale
             {
-                get
-                {
-                    return DecimalScale/1024.0f;
-                }
+                get { return DecimalScale / 1024.0f; }
             }
 
             public void Read(Stream s)
@@ -146,7 +139,7 @@ namespace meshReader.Game.ADT
 
         private void ReadDoodadDefinitions(Chunk c)
         {
-            int count = (int)c.Length/36;
+            int count = (int) c.Length / 36;
             _definitions = new List<DoodadDefinition>(count);
 
             var stream = c.GetStream();
@@ -157,7 +150,5 @@ namespace meshReader.Game.ADT
                 _definitions.Add(def);
             }
         }
-
     }
-
 }

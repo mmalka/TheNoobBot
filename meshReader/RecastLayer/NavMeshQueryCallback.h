@@ -6,11 +6,11 @@ using namespace System;
 namespace DetourLayer
 {
 
-	public interface class NavMeshQueryCallback
-	{
-		void PathfinderUpdate(array<float>^ best);
-		void Log(String^ text);
-	};
+public interface class NavMeshQueryCallback
+{
+void PathfinderUpdate(array<float>^ best);
+void Log(String^ text);
+};
 
 }
 

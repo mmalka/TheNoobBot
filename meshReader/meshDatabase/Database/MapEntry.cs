@@ -48,23 +48,23 @@
 
         public bool IsGarrisonMap
         {
-            get { return (Flags & (uint)MapFlag.MAP_FLAG_GARRISON) != 0; }
+            get { return (Flags & (uint) MapFlag.MAP_FLAG_GARRISON) != 0; }
         }
+
         public bool IsTestMap
         {
-            get { return (Flags & (uint)MapFlag.MAP_FLAG_TEST_MAP) != 0 || (Flags & (uint)MapFlag.MAP_FLAG_NOT_EXISTING) != 0; }
+            get { return (Flags & (uint) MapFlag.MAP_FLAG_TEST_MAP) != 0 || (Flags & (uint) MapFlag.MAP_FLAG_NOT_EXISTING) != 0; }
         }
 
         public MapEntry(Record rec)
         {
             Id = rec[0];
             InternalName = rec.GetString(1);
-            InstanceType = (InstanceType)rec[2];
-            Flags = (uint)rec[3];
-            MapType = (MapType)rec[5];
+            InstanceType = (InstanceType) rec[2];
+            Flags = (uint) rec[3];
+            MapType = (MapType) rec[5];
             Name = rec.GetString(6);
             PhaseParent = rec[19];
         }
-       
     }
 }

@@ -9,33 +9,74 @@ namespace CASCExplorer
     {
         private static readonly List<string> excludeFileTypes = new List<string>()
         {
-            ".ogg", ".mp3", ".wav", ".avi", ".ttf", ".blp", ".sig", ".toc", ".blob", ".anim", ".skin", ".phys"
+            ".ogg",
+            ".mp3",
+            ".wav",
+            ".avi",
+            ".ttf",
+            ".blp",
+            ".sig",
+            ".toc",
+            ".blob",
+            ".anim",
+            ".skin",
+            ".phys"
         };
 
         private static readonly List<string> extensions = new List<string>()
         {
-            ".adt", ".anim", ".avi", ".blob", ".blp", ".bls", ".bone", ".db2", ".dbc", ".html", ".ini", ".lst", ".lua", ".m2", ".mp3", ".ogg",
-            ".phys", ".sbt", ".sig", ".skin", ".tex", ".toc", ".ttf", ".txt", ".wdl", ".wdt", ".wfx", ".wmo", ".wtf", ".xml", ".xsd", ".zmp"
+            ".adt",
+            ".anim",
+            ".avi",
+            ".blob",
+            ".blp",
+            ".bls",
+            ".bone",
+            ".db2",
+            ".dbc",
+            ".html",
+            ".ini",
+            ".lst",
+            ".lua",
+            ".m2",
+            ".mp3",
+            ".ogg",
+            ".phys",
+            ".sbt",
+            ".sig",
+            ".skin",
+            ".tex",
+            ".toc",
+            ".ttf",
+            ".txt",
+            ".wdl",
+            ".wdt",
+            ".wfx",
+            ".wmo",
+            ".wtf",
+            ".xml",
+            ".xsd",
+            ".zmp"
         };
 
         private static readonly Dictionary<byte[], string> MagicNumbers = new Dictionary<byte[], string>()
         {
-            { new byte[] { 0x42, 0x4c, 0x50, 0x32 }, ".blp" },
-            { new byte[] { 0x4d, 0x44, 0x32, 0x30 }, ".m2" },
-            { new byte[] { 0x4d, 0x44, 0x32, 0x31 }, ".m2" },
-            { new byte[] { 0x53, 0x59, 0x48, 0x50 }, ".phys" },
-            { new byte[] { 0x53, 0x4b, 0x49, 0x4e }, ".skin" },
-            { new byte[] { 0x57, 0x44, 0x42, 0x43 }, ".dbc" },
-            { new byte[] { 0x57, 0x44, 0x42, 0x35 }, ".db2" },
-            { new byte[] { 0x52, 0x56, 0x58, 0x54 }, ".tex" },
-            { new byte[] { 0x4f, 0x67, 0x67, 0x53 }, ".ogg" },
-            { new byte[] { 0x48, 0x53, 0x58, 0x47 }, ".bls" },
-            { new byte[] { 0x52, 0x49, 0x46, 0x46 }, ".wav" },
-            { new byte[] { 0x44, 0x55, 0x54, 0x53 }, ".duts" },
-            { new byte[] { 0x42, 0x4B, 0x48, 0x44 }, ".bkhd" },
-            { new byte[] { 0x45, 0x45, 0x44, 0x43 }, ".eedc" },
-            { new byte[] { 0x49, 0x44, 0x33 }, ".mp3" },
-            { new byte[] { 0xff, 0xfb }, ".mp3" },
+            {new byte[] {0x42, 0x4c, 0x50, 0x32}, ".blp"},
+            {new byte[] {0x4d, 0x44, 0x32, 0x30}, ".m2"},
+            {new byte[] {0x4d, 0x44, 0x32, 0x31}, ".m2"},
+            {new byte[] {0x53, 0x59, 0x48, 0x50}, ".phys"},
+            {new byte[] {0x53, 0x4b, 0x49, 0x4e}, ".skin"},
+            {new byte[] {0x57, 0x44, 0x42, 0x43}, ".dbc"},
+            {new byte[] {0x57, 0x44, 0x42, 0x35}, ".db2"},
+            {new byte[] {0x52, 0x56, 0x58, 0x54}, ".tex"},
+            {new byte[] {0x4f, 0x67, 0x67, 0x53}, ".ogg"},
+            {new byte[] {0x48, 0x53, 0x58, 0x47}, ".bls"},
+            {new byte[] {0x52, 0x49, 0x46, 0x46}, ".wav"},
+            {new byte[] {0x44, 0x55, 0x54, 0x53}, ".duts"},
+            {new byte[] {0x42, 0x4B, 0x48, 0x44}, ".bkhd"},
+            {new byte[] {0x45, 0x45, 0x44, 0x43}, ".eedc"},
+            {new byte[] {0x49, 0x44, 0x33}, ".mp3"},
+            {new byte[] {0xff, 0xfb}, ".mp3"},
         };
 
         private CASCHandler CASC;
@@ -77,7 +118,7 @@ namespace CASCExplorer
                     if (state == 1 && IsAlphaNum(b) || state == 2 && IsAlphaNum(b) || state == 3 && IsAlphaNum(b)) // alpha
                     {
                         state = 2;
-                        sb.Append((char)b);
+                        sb.Append((char) b);
 
                         if (sb.Length > 10)
                         {
@@ -98,21 +139,21 @@ namespace CASCExplorer
                     else if (state == 2 && IsFileDelim(b)) // delimiter
                     {
                         state = 3;
-                        sb.Append((char)b);
+                        sb.Append((char) b);
                     }
                     else if (state == 2 && b == 46) // dot
                     {
                         state = 4;
-                        sb.Append((char)b);
+                        sb.Append((char) b);
                     }
                     else if (state == 4 && IsAlphaNum(b)) // extension
                     {
                         state = 5;
-                        sb.Append((char)b);
+                        sb.Append((char) b);
                     }
                     else if (state == 5 && IsAlphaNum(b)) // extension
                     {
-                        sb.Append((char)b);
+                        sb.Append((char) b);
                     }
                     else if (state == 5 && !IsFileChar(b)) // accept
                     {
@@ -168,7 +209,8 @@ namespace CASCExplorer
                 }
             }
             catch
-            { }
+            {
+            }
             return string.Empty;
         }
     }

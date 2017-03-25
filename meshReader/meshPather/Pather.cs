@@ -30,7 +30,7 @@ namespace meshPather
         public Danger(Vector3 loc, int levelDifference, float factor)
         {
             Location = loc;
-            Radius = levelDifference*3.5f + 10;
+            Radius = levelDifference * 3.5f + 10;
             Radius *= factor;
             if (levelDifference < 0)
                 Radius = -Radius;
@@ -114,12 +114,12 @@ namespace meshPather
                 return _meshPath + "\\" + Continent + "_" + x + "_" + y + ".tile";
             else
             {
-                int baseX = (int) (x/Division);
-                int baseY = (int) (y/Division);
-                float offsetI = (x*(Utility.TileSize/Division)) - (baseX*Utility.TileSize);
-                float offsetJ = (y*(Utility.TileSize/Division)) - (baseY*Utility.TileSize);
-                int i = (int) Math.Round(offsetI/(Utility.TileSize/Division));
-                int j = (int) Math.Round(offsetJ/(Utility.TileSize/Division));
+                int baseX = (int) (x / Division);
+                int baseY = (int) (y / Division);
+                float offsetI = (x * (Utility.TileSize / Division)) - (baseX * Utility.TileSize);
+                float offsetJ = (y * (Utility.TileSize / Division)) - (baseY * Utility.TileSize);
+                int i = (int) Math.Round(offsetI / (Utility.TileSize / Division));
+                int j = (int) Math.Round(offsetJ / (Utility.TileSize / Division));
                 return _meshPath + "\\" + Continent + "_" + baseX + "_" + baseY + "_" + i + j + ".tile";
             }
 #pragma warning restore 162
@@ -138,14 +138,14 @@ namespace meshPather
 
         public static void GetWoWTileByLocation(float[] loc, out float x, out float y)
         {
-            x = (loc[0] - Utility.Origin[0])/Utility.TileSize;
-            y = (loc[2] - Utility.Origin[2])/Utility.TileSize;
+            x = (loc[0] - Utility.Origin[0]) / Utility.TileSize;
+            y = (loc[2] - Utility.Origin[2]) / Utility.TileSize;
         }
 
         public static void GetTileByLocation(float[] loc, out float x, out float y)
         {
-            x = (loc[0] - Utility.Origin[0])/(Utility.TileSize/Division);
-            y = (loc[2] - Utility.Origin[2])/(Utility.TileSize/Division);
+            x = (loc[0] - Utility.Origin[0]) / (Utility.TileSize / Division);
+            y = (loc[2] - Utility.Origin[2]) / (Utility.TileSize / Division);
         }
 
         public void LoadAllTiles()
@@ -173,8 +173,8 @@ namespace meshPather
             //int thirdx, thirdy;
 
             for (int i = -1; i < 2; i++)
-                for (int j = -1; j < 2; j++)
-                    LoadTile(x + i, y + j);
+            for (int j = -1; j < 2; j++)
+                LoadTile(x + i, y + j);
             /*if (tx < x + 0.5f)
                 thirdx = x - 1;
             else
@@ -319,8 +319,8 @@ namespace meshPather
             if (status.HasFailed() || (finalPath == null || pathFlags == null || pathRefs == null))
                 throw new NavMeshException(status, "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
 
-            var ret = new List<Hop>(finalPath.Length/3);
-            for (int i = 0; i < (finalPath.Length/3); i++)
+            var ret = new List<Hop>(finalPath.Length / 3);
+            for (int i = 0; i < (finalPath.Length / 3); i++)
             {
                 if (pathFlags[i].HasFlag(StraightPathFlag.OffMeshConnection))
                 {
@@ -354,7 +354,7 @@ namespace meshPather
                     var hop = new Hop
                     {
                         Location =
-                            new Vector3(finalPath[(i*3) + 0], finalPath[(i*3) + 1], finalPath[(i*3) + 2]).
+                            new Vector3(finalPath[(i * 3) + 0], finalPath[(i * 3) + 1], finalPath[(i * 3) + 2]).
                                 ToWoW(),
                         Type = HopType.Waypoint
                     };
@@ -430,7 +430,7 @@ namespace meshPather
                 IsDungeon = true;
             } //                       20 = 1048575, 28 = toomuch 
             else //                       15bits = 32767  9bits
-                status = _mesh.Initialize(150000, 512*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
+                status = _mesh.Initialize(150000, 512 * Division * Division, Utility.Origin, Utility.TileSize / Division, Utility.TileSize / Division);
 
             if (status.HasFailed())
                 throw new NavMeshException(status, "Failed to initialize the mesh");

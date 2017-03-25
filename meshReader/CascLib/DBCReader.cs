@@ -11,7 +11,10 @@ namespace CASCExplorer
         private byte[] m_data;
         private DBCReader m_reader;
 
-        public byte[] Data { get { return m_data; } }
+        public byte[] Data
+        {
+            get { return m_data; }
+        }
 
         public DBCRow(DBCReader reader, byte[] data)
         {
@@ -30,13 +33,13 @@ namespace CASCExplorer
                     while (m_reader.StringTable[start + len] != 0)
                         len++;
                     retVal = Encoding.UTF8.GetString(m_reader.StringTable, start, len);
-                    return (T)retVal;
+                    return (T) retVal;
                 case TypeCode.Int32:
                     retVal = BitConverter.ToInt32(m_data, field * 4);
-                    return (T)retVal;
+                    return (T) retVal;
                 case TypeCode.Single:
                     retVal = BitConverter.ToSingle(m_data, field * 4);
-                    return (T)retVal;
+                    return (T) retVal;
                 default:
                     return default(T);
             }
@@ -46,7 +49,7 @@ namespace CASCExplorer
     class DBCReader : IEnumerable<KeyValuePair<int, DBCRow>>
     {
         private const uint HeaderSize = 20;
-        private const uint DBCFmtSig = 0x43424457;          // WDBC
+        private const uint DBCFmtSig = 0x43424457; // WDBC
 
         public int RecordsCount { get; private set; }
         public int FieldsCount { get; private set; }
@@ -58,11 +61,16 @@ namespace CASCExplorer
         private readonly DBCRow[] m_rows;
         private readonly byte[] m_stringTable;
 
-        public byte[] StringTable { get { return m_stringTable; } }
+        public byte[] StringTable
+        {
+            get { return m_stringTable; }
+        }
 
         Dictionary<int, DBCRow> m_index = new Dictionary<int, DBCRow>();
 
-        public DBCReader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open)) { }
+        public DBCReader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open))
+        {
+        }
 
         public DBCReader(Stream stream)
         {

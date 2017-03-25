@@ -25,7 +25,7 @@ namespace CASCExplorer
         {
             uint hash = FnvOffset32;
 
-            uint* ptr = (uint*)&toHash;
+            uint* ptr = (uint*) &toHash;
 
             for (int i = 0; i < 4; i++)
             {
@@ -33,7 +33,7 @@ namespace CASCExplorer
                 hash *= FnvPrime32;
             }
 
-            return unchecked((int)hash);
+            return unchecked((int) hash);
         }
     }
 }

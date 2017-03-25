@@ -28,15 +28,15 @@ namespace CASCExplorer
         public uint unk_1; // size?
         public uint unk_2;
         public uint unk_3;
-        public MD5Hash indexContentKey;    // Content key of the Package Index
+        public MD5Hash indexContentKey; // Content key of the Package Index
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public struct PackageIndex
     {
-        public long recordsOffset;                  // Offset to GZIP compressed records chunk, read (recordsSize + numRecords) bytes here
+        public long recordsOffset; // Offset to GZIP compressed records chunk, read (recordsSize + numRecords) bytes here
         public ulong unkOffset_0;
-        public long depsOffset;                     // Offset to dependencies chunk, read numDeps * uint here
+        public long depsOffset; // Offset to dependencies chunk, read numDeps * uint here
         public ulong unkOffset_1;
         public uint unk_0;
         public uint numRecords;
@@ -44,10 +44,10 @@ namespace CASCExplorer
         public uint unk_1;
         public uint numDeps;
         public uint totalSize;
-        public ulong bundleKey;                     // Requires some sorcery, see Key
+        public ulong bundleKey; // Requires some sorcery, see Key
         public uint bundleSize;
         public ulong unk_2;
-        public MD5Hash bundleContentKey;            // Look this up in encoding
+        public MD5Hash bundleContentKey; // Look this up in encoding
         //PackageIndexRecord[numRecords] records;   // See recordsOffset and PackageIndexRecord
         //u32[numDeps] dependencies;                // See depsOffset
     }
@@ -55,11 +55,11 @@ namespace CASCExplorer
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public struct PackageIndexRecord
     {
-        public ulong Key;               // Requires some sorcery, see Key
-        public int Size;                // Size of asset
-        public uint Flags;              // Flags. Has 0x40000000 when in bundle, otherwise in encoding
-        public uint Offset;             // Offset into bundle
-        public MD5Hash ContentKey;      // If it doesn't have the above flag (0x40000000) look it up in encoding
+        public ulong Key; // Requires some sorcery, see Key
+        public int Size; // Size of asset
+        public uint Flags; // Flags. Has 0x40000000 when in bundle, otherwise in encoding
+        public uint Offset; // Offset into bundle
+        public MD5Hash ContentKey; // If it doesn't have the above flag (0x40000000) look it up in encoding
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
@@ -83,9 +83,9 @@ namespace CASCExplorer
         {
             worker?.ReportProgress(0, "Loading \"root\"...");
 
-            string str = Encoding.ASCII.GetString(stream.ReadBytes((int)stream.BaseStream.Length));
+            string str = Encoding.ASCII.GetString(stream.ReadBytes((int) stream.BaseStream.Length));
 
-            string[] array = str.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] array = str.Split(new[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 1; i < array.Length; i++)
             {
@@ -100,7 +100,7 @@ namespace CASCExplorer
                     MD5Hash apmMD5 = filedata[0].ToByteArray().ToMD5();
                     _rootData[apmNameHash] = new OWRootEntry()
                     {
-                        baseEntry = new RootEntry() { MD5 = apmMD5, LocaleFlags = LocaleFlags.All, ContentFlags = ContentFlags.None }
+                        baseEntry = new RootEntry() {MD5 = apmMD5, LocaleFlags = LocaleFlags.All, ContentFlags = ContentFlags.None}
                     };
 
                     CASCFile.FileNames[apmNameHash] = name;
@@ -116,7 +116,7 @@ namespace CASCExplorer
                     }
                 }
 
-                worker?.ReportProgress((int)(i / (array.Length / 100f)));
+                worker?.ReportProgress((int) (i / (array.Length / 100f)));
             }
         }
 
@@ -191,7 +191,7 @@ namespace CASCExplorer
                     }
                     _rootData[fileHash] = new OWRootEntry()
                     {
-                        baseEntry = new RootEntry() { MD5 = pkgIndexMD5, LocaleFlags = LocaleFlags.All, ContentFlags = ContentFlags.None }
+                        baseEntry = new RootEntry() {MD5 = pkgIndexMD5, LocaleFlags = LocaleFlags.All, ContentFlags = ContentFlags.None}
                     };
 
                     CASCFile.FileNames[fileHash] = fakeName;
@@ -212,7 +212,7 @@ namespace CASCExplorer
                     }
                     _rootData[fileHash] = new OWRootEntry()
                     {
-                        baseEntry = new RootEntry() { MD5 = pkgIndex.bundleContentKey, LocaleFlags = LocaleFlags.All, ContentFlags = ContentFlags.None },
+                        baseEntry = new RootEntry() {MD5 = pkgIndex.bundleContentKey, LocaleFlags = LocaleFlags.All, ContentFlags = ContentFlags.None},
                         pkgIndex = pkgIndex
                     };
 
@@ -236,7 +236,7 @@ namespace CASCExplorer
                         }
                         _rootData[fileHash] = new OWRootEntry()
                         {
-                            baseEntry = new RootEntry() { MD5 = records[k].ContentKey, LocaleFlags = LocaleFlags.All, ContentFlags = (ContentFlags)records[k].Flags },
+                            baseEntry = new RootEntry() {MD5 = records[k].ContentKey, LocaleFlags = LocaleFlags.All, ContentFlags = (ContentFlags) records[k].Flags},
                             pkgIndex = pkgIndex,
                             pkgIndexRec = records[k]
                         };
@@ -244,7 +244,7 @@ namespace CASCExplorer
                         CASCFile.FileNames[fileHash] = fakeName;
                     }
 
-                    worker?.ReportProgress((int)(++pkgCount / pkgOnePct));
+                    worker?.ReportProgress((int) (++pkgCount / pkgOnePct));
                 }
             }
 
@@ -281,7 +281,6 @@ namespace CASCExplorer
 
         public override void Dump()
         {
-
         }
     }
 

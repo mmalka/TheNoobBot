@@ -1,6 +1,5 @@
 ﻿namespace meshReader.Game
 {
-
     public struct Triangle<T>
     {
         public T V0;
@@ -17,5 +16,4 @@
             Type = type;
         }
     }
-
 }

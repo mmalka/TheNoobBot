@@ -5,7 +5,6 @@ using meshReader.Helper;
 
 namespace meshReader.Game
 {
-    
     public class WDT
     {
         public ChunkedData Data { get; private set; }
@@ -26,11 +25,11 @@ namespace meshReader.Game
         private void ReadGlobalModel()
         {
             var fileChunk = Data.GetChunkByName("MWMO");
-            var defChunk = Data.GetChunkByName("MODF");// this is null always
-            if (fileChunk == null || defChunk == null)// so this, returns...
+            var defChunk = Data.GetChunkByName("MODF"); // this is null always
+            if (fileChunk == null || defChunk == null) // so this, returns...
                 return;
 
-            IsGlobalModel = true;// IsGLobalModel needs to be true... butwhen i do step by step
+            IsGlobalModel = true; // IsGLobalModel needs to be true... butwhen i do step by step
 
             ModelDefinition = WorldModelHandler.WorldModelDefinition.Read(defChunk.GetStream());
             ModelFile = fileChunk.GetStream().ReadCString();
@@ -43,7 +42,7 @@ namespace meshReader.Game
                 return;
 
             IsValid = true;
-            TileTable = new bool[64,64];
+            TileTable = new bool[64, 64];
             var r = new BinaryReader(chunk.GetStream());
             for (int y = 0; y < 64; y++)
             {
@@ -80,5 +79,4 @@ namespace meshReader.Game
             return builder.ToString();
         }
     }
-
 }

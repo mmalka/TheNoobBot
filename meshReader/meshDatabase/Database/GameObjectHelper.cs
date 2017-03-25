@@ -62,7 +62,7 @@ namespace meshDatabase.Database
             if (displayInfoEntry.DataId == 0)
                 return string.Empty;
 
-            string path = MpqManager.GeFullNameByDataId(displayInfoEntry.DataId);
+            string path = MpqManager.GetFullNameByDataId(displayInfoEntry.DataId);
             //Console.WriteLine("path found:  " + path);
             if (path.Contains("unknown")) // the path with unknown is actually fine, but the next function will break it by adding .m2 at the end. so better go fileId.
                 return displayInfoEntry.DataId.ToString();

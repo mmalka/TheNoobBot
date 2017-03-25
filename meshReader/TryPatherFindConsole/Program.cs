@@ -23,10 +23,10 @@ namespace TryPatherFindConsole
 
             var u = new VisualizerTest();
             u.Initialize(Settings.Default.MeshesPath, Settings.Default.WoWPath);
-            u.TestPathImageWestern(); 
+            u.TestPathImageWestern();
             u.TestPathImageDraenor();
             u.TestPathImageKalimdor();
-            
+
             //var u = new NorthrendMeshTest();
             //u.Initialize(Settings.Default.MeshesPath, Settings.Default.WoWPath);
             //u.TestNeo();

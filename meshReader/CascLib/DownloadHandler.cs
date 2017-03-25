@@ -51,11 +51,11 @@ namespace CASCExplorer
                 stream.Skip(0xA);
 
                 //var entry = new DownloadEntry() { Index = i, Unk = unk };
-                var entry = new DownloadEntry() { Index = i };
+                var entry = new DownloadEntry() {Index = i};
 
                 DownloadData.Add(key, entry);
 
-                worker?.ReportProgress((int)((i + 1) / (float)numFiles * 100));
+                worker?.ReportProgress((int) ((i + 1) / (float) numFiles * 100));
             }
 
             for (int i = 0; i < numTags; i++)
@@ -67,7 +67,7 @@ namespace CASCExplorer
                 byte[] bits = stream.ReadBytes(numMaskBytes);
 
                 for (int j = 0; j < numMaskBytes; j++)
-                    bits[j] = (byte)((bits[j] * 0x0202020202 & 0x010884422010) % 1023);
+                    bits[j] = (byte) ((bits[j] * 0x0202020202 & 0x010884422010) % 1023);
 
                 tag.Bits = new BitArray(bits);
 

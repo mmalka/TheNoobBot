@@ -3,11 +3,9 @@ using NUnit.Framework;
 
 namespace meshReaderTest.Dungeon
 {
-    
     [TestFixture]
     public class RagefireMeshTest : DungeonMeshTest
     {
-        
         [OneTimeSetUp]
         public void Initialize()
         {
@@ -19,7 +17,5 @@ namespace meshReaderTest.Dungeon
         {
             TryPath(new Vector3(2.6f, -8.2f, -15f), new Vector3(-242.6f, 156.5f, -18.3f));
         }
-
     }
-
 }

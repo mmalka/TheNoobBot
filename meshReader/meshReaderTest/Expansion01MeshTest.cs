@@ -3,11 +3,9 @@ using NUnit.Framework;
 
 namespace meshReaderTest
 {
-
     [TestFixture]
     public class Expansion01MeshTest : MeshTest
     {
-
         [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WowPath)
         {
@@ -38,7 +36,5 @@ namespace meshReaderTest
         {
             TryPath(new Vector3(9335.6f, -7278f, 13.6f), new Vector3(9941.5f, -7067.2f, 47.7f));
         }
-        
     }
-
 }

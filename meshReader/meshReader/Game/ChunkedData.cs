@@ -6,7 +6,6 @@ using meshDatabase;
 
 namespace meshReader.Game
 {
-
     public class ChunkedData
     {
         public Stream Stream { get; private set; }
@@ -16,32 +15,32 @@ namespace meshReader.Game
         {
             Stream = stream;
             if (maxLength == 0)
-                maxLength = (int)stream.Length;
+                maxLength = (int) stream.Length;
             Chunks = new List<Chunk>(chunksHint);
             var reader = new BinaryReader(stream);
             var baseOffset = (uint) stream.Position;
             uint calcOffset = 0;
-            while ((calcOffset+baseOffset) < stream.Length && (calcOffset < maxLength))
+            while ((calcOffset + baseOffset) < stream.Length && (calcOffset < maxLength))
             {
                 //try
                 //{
-                    var nameBytes = reader.ReadBytes(4);
-                    var name = Encoding.ASCII.GetString(new[] { nameBytes[3], nameBytes[2], nameBytes[1], nameBytes[0] });
-                    uint length = 0;
-                    try
-                    {
-                        length = reader.ReadUInt32();
-                        calcOffset += 8;
-                    }
-                    catch
-                    {
-                        calcOffset += 6;
-                    }
-                    Chunks.Add(new Chunk(name, length, calcOffset + baseOffset, Stream));
-                    calcOffset += length;
-                    // save an extra seek at the end
-                    if ((calcOffset+baseOffset) < stream.Length && calcOffset < maxLength)
-                        stream.Seek(length, SeekOrigin.Current);
+                var nameBytes = reader.ReadBytes(4);
+                var name = Encoding.ASCII.GetString(new[] {nameBytes[3], nameBytes[2], nameBytes[1], nameBytes[0]});
+                uint length = 0;
+                try
+                {
+                    length = reader.ReadUInt32();
+                    calcOffset += 8;
+                }
+                catch
+                {
+                    calcOffset += 6;
+                }
+                Chunks.Add(new Chunk(name, length, calcOffset + baseOffset, Stream));
+                calcOffset += length;
+                // save an extra seek at the end
+                if ((calcOffset + baseOffset) < stream.Length && calcOffset < maxLength)
+                    stream.Seek(length, SeekOrigin.Current);
                 //}
                 //catch { return; }
             }
@@ -51,7 +50,7 @@ namespace meshReader.Game
             : this(MpqManager.GetFile(file), 0, chunkHint)
         {
         }
-        
+
         public ChunkedData(uint fileId, int chunkHint = 300)
             : this(MpqManager.GetFile(fileId), 0, chunkHint)
         {
@@ -70,5 +69,4 @@ namespace meshReader.Game
             return Chunks.Where(c => c.Name == name).FirstOrDefault();
         }
     }
-
 }

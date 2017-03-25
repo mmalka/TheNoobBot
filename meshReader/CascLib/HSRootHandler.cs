@@ -32,7 +32,6 @@ namespace CASCExplorer
 
         public override void LoadListFile(string path, BackgroundWorkerEx worker = null)
         {
-
         }
 
         protected override CASCFolder CreateStorageTree()
@@ -57,7 +56,6 @@ namespace CASCExplorer
 
         public override void Dump()
         {
-
         }
     }
 }

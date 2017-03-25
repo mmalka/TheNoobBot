@@ -24,12 +24,12 @@ static rcAssertFailFunc* sRecastAssertFailFunc = 0;
 
 void rcAssertFailSetCustom(rcAssertFailFunc *assertFailFunc)
 {
-	sRecastAssertFailFunc = assertFailFunc;
+sRecastAssertFailFunc = assertFailFunc;
 }
 
 rcAssertFailFunc* rcAssertFailGetCustom()
 {
-	return sRecastAssertFailFunc;
+return sRecastAssertFailFunc;
 }
 
 #endif

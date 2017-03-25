@@ -9,7 +9,6 @@ using RecastLayer;
 
 namespace meshBuilder
 {
-    
     public class DungeonBuilder : ProgressTracker
     {
         public int MapId { get; private set; }
@@ -74,7 +73,7 @@ namespace meshBuilder
             }
             InitializeProgress(12);
 
-            Geometry = new Geometry { Transform = true };
+            Geometry = new Geometry {Transform = true};
 
             if (Dungeon == "AllianceGunship")
             {
@@ -86,7 +85,7 @@ namespace meshBuilder
                 var wdt = new WDT("World\\maps\\" + Dungeon + "\\" + Dungeon + ".wdt");
                 if (!wdt.IsGlobalModel || !wdt.IsValid)
                     return null;
-                                var model = new WorldModelRoot(wdt.ModelFile);
+                var model = new WorldModelRoot(wdt.ModelFile);
                 Geometry.AddDungeon(model, wdt.ModelDefinition);
             }
 
@@ -94,7 +93,7 @@ namespace meshBuilder
 
             if (Geometry.Vertices.Count == 0 && Geometry.Triangles.Count == 0)
                 throw new InvalidOperationException("Can't build mesh with empty geometry");
-            
+
             InsertAllGameobjectGeometry(MapId);
 
             Context = new RecastContext();
@@ -191,20 +190,20 @@ namespace meshBuilder
             pmesh.MarkAll();
 
             byte[] meshData;
-            if (!Detour.CreateNavMeshData(out meshData, pmesh, dmesh, 0, 0, bmin, bmax, Config.WorldWalkableHeight, Config.WorldWalkableRadius, Config.WorldWalkableClimb, Config.CellSize, Config.CellHeight, Config.BuildBvTree, null))
+            if (
+                !Detour.CreateNavMeshData(out meshData, pmesh, dmesh, 0, 0, bmin, bmax, Config.WorldWalkableHeight, Config.WorldWalkableRadius, Config.WorldWalkableClimb, Config.CellSize, Config.CellHeight,
+                    Config.BuildBvTree, null))
             {
                 pmesh.Delete();
                 //dmesh.Delete();
                 return null;
             }
-            
+
             CompleteWorkUnit();
             pmesh.Delete();
             //dmesh.Delete();
             File.Delete(GetDungeonLockAndPath());
             return meshData;
         }
-
     }
-
 }

@@ -3,7 +3,6 @@ using System.Text;
 
 namespace meshReader.Game.WMO
 {
-
     public class DoodadSet
     {
         public string Name;
@@ -22,5 +21,4 @@ namespace meshReader.Game.WMO
             return ret;
         }
     }
-
 }

@@ -6,7 +6,6 @@ using System.Text;
 
 namespace meshDatabase.Database
 {
-
     public class Record
     {
         public Record(DBC dbc)
@@ -19,10 +18,7 @@ namespace meshDatabase.Database
 
         public int this[int index]
         {
-            get
-            {
-                return Values[index];
-            }
+            get { return Values[index]; }
         }
 
         public float GetFloat(int index)
@@ -102,5 +98,4 @@ namespace meshDatabase.Database
         public byte[] StringBlock { get; private set; }
         public bool IsFaulty { get; private set; }
     }
-
 }

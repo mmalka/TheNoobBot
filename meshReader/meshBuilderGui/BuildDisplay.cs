@@ -29,6 +29,7 @@ namespace meshBuilderGui
         {
             pictureBox1.Invoke(new Action(() => Mark(x, y, Color.Red)));
         }
+
         public void MarkAlreadyBuilt(int x, int y)
         {
             pictureBox1.Invoke(new Action(() => Mark(x, y, Color.DodgerBlue))); //Color.Blue)));
@@ -52,9 +53,9 @@ namespace meshBuilderGui
                 {
                     pictureBox1.Image = null;
                     const int offsetX = 0;
-                    int xBegin = offsetX + (tx*4);
+                    int xBegin = offsetX + (tx * 4);
                     const int offsetY = 0;
-                    int yBegin = offsetY + (ty*4);
+                    int yBegin = offsetY + (ty * 4);
 
                     for (int y = yBegin; y < (yBegin + 4); y++)
                     {
@@ -68,7 +69,6 @@ namespace meshBuilderGui
                 }
                 catch (Exception)
                 {
-                    
                 }
             }
         }

@@ -5,7 +5,6 @@ using System.Windows.Forms.VisualStyles;
 
 namespace meshDatabase.Database
 {
-
     public class TaxiData
     {
         public TaxiNode.TaxiNodesDb2Record From { get; private set; }
@@ -17,7 +16,7 @@ namespace meshDatabase.Database
             To = to;
         }
     }
-    
+
     public static class TaxiHelper
     {
         private static DB5Reader _taxiNodes;
@@ -130,5 +129,4 @@ namespace meshDatabase.Database
             return ret;
         }
     }
-
 }

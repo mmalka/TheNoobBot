@@ -6,14 +6,13 @@ using System.Linq;
 
 namespace meshReader.Game.ADT
 {
-
     public class LiquidHandler
     {
         public ADT Source { get; private set; }
         public List<Vector3> Vertices { get; private set; }
         public List<Triangle<uint>> Triangles { get; private set; }
         public MCNKLiquidData[] MCNKData { get; private set; }
- 
+
         public LiquidHandler(ADT source)
         {
             Source = source;
@@ -46,6 +45,7 @@ namespace meshReader.Game.ADT
                 var information = H2OInformation.Read(stream);
 
                 #region Get RenderMask and set heights
+
                 var heights = new float[9, 9];
                 H2ORenderMask renderMask;
                 if (information.LiquidType != 2)
@@ -56,7 +56,7 @@ namespace meshReader.Game.ADT
                     if ((renderMask.Mask.All(b => b == 0) || (information.Width == 8 && information.Height == 8)) && information.OffsetMask2 != 0)
                     {
                         stream.Seek(chunk.Offset + information.OffsetMask2, SeekOrigin.Begin);
-                        var altMask = new byte[(int)Math.Ceiling(information.Width * information.Height / 8.0f)];
+                        var altMask = new byte[(int) Math.Ceiling(information.Width * information.Height / 8.0f)];
                         stream.Read(altMask, 0, altMask.Length);
 
                         for (int mi = 0; mi < altMask.Length; mi++)
@@ -77,19 +77,21 @@ namespace meshReader.Game.ADT
                 {
                     // ocean
                     renderMask = new H2ORenderMask
-                                     {
-                                         Mask = new byte[] {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}
-                                     };
+                    {
+                        Mask = new byte[] {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}
+                    };
 
                     for (int y = 0; y < 9; y++)
-                        for (int x = 0; x < 9; x++)
-                            heights[x, y] = information.HeightLevel1;
+                    for (int x = 0; x < 9; x++)
+                        heights[x, y] = information.HeightLevel1;
                 }
+
                 #endregion
-                
+
                 MCNKData[i] = new MCNKLiquidData {Heights = heights, Mask = renderMask};
 
                 #region Create Vertices + Triangles
+
                 for (int y = information.OffsetY; y < (information.OffsetY + information.Height); y++)
                 {
                     for (int x = information.OffsetX; x < (information.OffsetX + information.Width); x++)
@@ -99,20 +101,21 @@ namespace meshReader.Game.ADT
 
                         var mapChunk = Source.MapChunks[i];
                         var location = mapChunk.Header.Position;
-                        location.Y = location.Y - (x*Constant.UnitSize);
-                        location.X = location.X - (y*Constant.UnitSize);
+                        location.Y = location.Y - (x * Constant.UnitSize);
+                        location.X = location.X - (y * Constant.UnitSize);
                         location.Z = heights[x, y];
 
-                        var vertOffset = (uint)Vertices.Count;
+                        var vertOffset = (uint) Vertices.Count;
                         Vertices.Add(location);
                         Vertices.Add(new Vector3(location.X - Constant.UnitSize, location.Y, location.Z));
                         Vertices.Add(new Vector3(location.X, location.Y - Constant.UnitSize, location.Z));
                         Vertices.Add(new Vector3(location.X - Constant.UnitSize, location.Y - Constant.UnitSize, location.Z));
 
-                        Triangles.Add(new Triangle<uint>(TriangleType.Water, vertOffset, vertOffset+2, vertOffset+1));
+                        Triangles.Add(new Triangle<uint>(TriangleType.Water, vertOffset, vertOffset + 2, vertOffset + 1));
                         Triangles.Add(new Triangle<uint>(TriangleType.Water, vertOffset + 2, vertOffset + 3, vertOffset + 1));
                     }
                 }
+
                 #endregion
             }
         }
@@ -127,11 +130,11 @@ namespace meshReader.Game.ADT
             {
                 var r = new BinaryReader(s);
                 var ret = new H2OHeader
-                              {
-                                  OffsetInformation = r.ReadUInt32(),
-                                  LayerCount = r.ReadUInt32(),
-                                  OffsetRender = r.ReadUInt32()
-                              };
+                {
+                    OffsetInformation = r.ReadUInt32(),
+                    LayerCount = r.ReadUInt32(),
+                    OffsetRender = r.ReadUInt32()
+                };
                 return ret;
             }
         }
@@ -170,18 +173,18 @@ namespace meshReader.Game.ADT
             {
                 var r = new BinaryReader(s);
                 var ret = new H2OInformation
-                              {
-                                  LiquidType = r.ReadUInt16(),
-                                  Flags = r.ReadUInt16(),
-                                  HeightLevel1 = r.ReadSingle(),
-                                  HeightLevel2 = r.ReadSingle(),
-                                  OffsetX = r.ReadByte(),
-                                  OffsetY = r.ReadByte(),
-                                  Width = r.ReadByte(),
-                                  Height = r.ReadByte(),
-                                  OffsetMask2 = r.ReadUInt32(),
-                                  OffsetHeightmap = r.ReadUInt32()
-                              };
+                {
+                    LiquidType = r.ReadUInt16(),
+                    Flags = r.ReadUInt16(),
+                    HeightLevel1 = r.ReadSingle(),
+                    HeightLevel2 = r.ReadSingle(),
+                    OffsetX = r.ReadByte(),
+                    OffsetY = r.ReadByte(),
+                    Width = r.ReadByte(),
+                    Height = r.ReadByte(),
+                    OffsetMask2 = r.ReadUInt32(),
+                    OffsetHeightmap = r.ReadUInt32()
+                };
                 return ret;
             }
         }
@@ -205,7 +208,5 @@ namespace meshReader.Game.ADT
                 return false;
             }
         }
-
     }
-
 }

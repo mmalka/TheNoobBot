@@ -82,7 +82,7 @@ namespace CASCExplorer
                 if (remaining > 0)
                     stream.BaseStream.Position += remaining;
 
-                worker?.ReportProgress((int)((i + 1) / (float)numEntriesA * 100));
+                worker?.ReportProgress((int) ((i + 1) / (float) numEntriesA * 100));
             }
 
             stream.Skip(numEntriesB * 32);

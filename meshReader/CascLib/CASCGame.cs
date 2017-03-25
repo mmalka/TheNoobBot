@@ -111,10 +111,10 @@ namespace CASCExplorer
         public static bool SupportsLocaleSelection(CASCGameType gameType)
         {
             return gameType == CASCGameType.D3 ||
-                gameType == CASCGameType.WoW ||
-                gameType == CASCGameType.HotS ||
-                gameType == CASCGameType.S2 ||
-                gameType == CASCGameType.Overwatch;
+                   gameType == CASCGameType.WoW ||
+                   gameType == CASCGameType.HotS ||
+                   gameType == CASCGameType.S2 ||
+                   gameType == CASCGameType.Overwatch;
         }
     }
 }
