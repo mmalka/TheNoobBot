@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -11,13 +12,13 @@ using Microsoft.CSharp;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
-using System.Numerics;
-using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
     public class CombatClass
     {
+        private const float BASE_MELEERANGE_OFFSET = 1.33f;
+        private const float MIN_ATTACK_DISTANCE = 4f;
         private static ICombatClass _instanceFromOtherAssembly;
         private static Assembly _assembly;
         private static object _obj;
@@ -25,12 +26,78 @@ namespace nManager.Wow.Helpers
         private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
         private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
-        private const float BASE_MELEERANGE_OFFSET = 1.33f;
-        private const float MIN_ATTACK_DISTANCE = 4f;
+        private static Thread _combatClassLoader;
+        private static readonly object CombatClassLocker = new object();
 
         private static bool isMeleeClass
         {
             get { return GetRange <= 5.0f; }
+        }
+
+        public static float GetRange
+        {
+            get
+            {
+                try
+                {
+                    if (_instanceFromOtherAssembly != null)
+                        return _instanceFromOtherAssembly.Range < 1.5f ? 1.5f : _instanceFromOtherAssembly.Range;
+                    return 1.5f;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("CombatClass > GetRange: " + exception);
+                    return 1.5f;
+                }
+            }
+        }
+
+        public static float GetAggroRange
+        {
+            get
+            {
+                try
+                {
+                    if (_instanceFromOtherAssembly != null)
+                    {
+                        if (_instanceFromOtherAssembly.AggroRange < _instanceFromOtherAssembly.Range)
+                            return _instanceFromOtherAssembly.Range;
+                        return _instanceFromOtherAssembly.AggroRange < 1.5f ? 1.5f : _instanceFromOtherAssembly.AggroRange;
+                    }
+                    return 1.5f;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("CombatClass > GetAggroRange: " + exception);
+                    return 1.5f;
+                }
+            }
+        }
+
+        public static bool IsAliveCombatClass
+        {
+            get
+            {
+                try
+                {
+                    return _worker != null && _worker.IsAlive;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("IsAliveCombatClass: " + exception);
+                    return false;
+                }
+            }
+        }
+
+        public static Spell GetLightHealingSpell
+        {
+            get
+            {
+                if (_instanceFromOtherAssembly != null && _instanceFromOtherAssembly.LightHealingSpell != null && _instanceFromOtherAssembly.LightHealingSpell.Id > 0)
+                    return _instanceFromOtherAssembly.LightHealingSpell;
+                return new Spell(0);
+            }
         }
 
         private static float CombatDistance(WoWUnit unit, bool MeleeSpell = true)
@@ -92,68 +159,15 @@ namespace nManager.Wow.Helpers
             return unit.GetDistance < 2.0f;
         }
 
-        public static float GetRange
-        {
-            get
-            {
-                try
-                {
-                    if (_instanceFromOtherAssembly != null)
-                        return _instanceFromOtherAssembly.Range < 1.5f ? 1.5f : _instanceFromOtherAssembly.Range;
-                    return 1.5f;
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("CombatClass > GetRange: " + exception);
-                    return 1.5f;
-                }
-            }
-        }
-
-        public static float GetAggroRange
-        {
-            get
-            {
-                try
-                {
-                    if (_instanceFromOtherAssembly != null)
-                    {
-                        if (_instanceFromOtherAssembly.AggroRange < _instanceFromOtherAssembly.Range)
-                            return _instanceFromOtherAssembly.Range;
-                        return _instanceFromOtherAssembly.AggroRange < 1.5f ? 1.5f : _instanceFromOtherAssembly.AggroRange;
-                    }
-                    return 1.5f;
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("CombatClass > GetAggroRange: " + exception);
-                    return 1.5f;
-                }
-            }
-        }
-
-        public static bool IsAliveCombatClass
-        {
-            get
-            {
-                try
-                {
-                    return _worker != null && _worker.IsAlive;
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("IsAliveCombatClass: " + exception);
-                    return false;
-                }
-            }
-        }
-
         public static void LoadCombatClass()
         {
-            if (_worker != null && _worker.IsAlive)
-                return;
-            Thread spellBook = new Thread(LoadCombatClassThread) {Name = "Load Combat Class"};
-            spellBook.Start();
+            lock (CombatClassLocker)
+            {
+                if (_worker != null && _worker.IsAlive || _combatClassLoader != null && _combatClassLoader.IsAlive)
+                    return;
+                _combatClassLoader = new Thread(LoadCombatClassThread) {Name = "Load Combat Class"};
+                _combatClassLoader.Start();
+            }
         }
 
         public static void LoadCombatClassThread()
@@ -203,7 +217,7 @@ namespace nManager.Wow.Helpers
                 if (CSharpFile)
                 {
                     CodeDomProvider cc = new CSharpCodeProvider();
-                    CompilerParameters cp = new CompilerParameters();
+                    var cp = new CompilerParameters();
                     IEnumerable<string> assemblies = AppDomain.CurrentDomain
                         .GetAssemblies()
                         .Where(
@@ -267,15 +281,18 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (_instanceFromOtherAssembly != null)
+                lock (CombatClassLocker)
                 {
-                    _instanceFromOtherAssembly.Dispose();
-                }
-                if (_worker != null)
-                {
-                    if (_worker.IsAlive)
+                    if (_instanceFromOtherAssembly != null)
                     {
-                        _worker.Abort();
+                        _instanceFromOtherAssembly.Dispose();
+                    }
+                    if (_worker != null)
+                    {
+                        if (_worker.IsAlive)
+                        {
+                            _worker.Abort();
+                        }
                     }
                 }
             }
@@ -341,16 +358,6 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("ShowConfigurationCombatClass(): " + exception);
-            }
-        }
-
-        public static Spell GetLightHealingSpell
-        {
-            get
-            {
-                if (_instanceFromOtherAssembly != null && _instanceFromOtherAssembly.LightHealingSpell != null && _instanceFromOtherAssembly.LightHealingSpell.Id > 0)
-                    return _instanceFromOtherAssembly.LightHealingSpell;
-                return new Spell(0);
             }
         }
     }
