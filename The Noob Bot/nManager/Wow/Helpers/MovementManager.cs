@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using nManager.Helpful;
@@ -8,7 +7,6 @@ using nManager.Wow.Bot.States;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
-using nManager.Wow.MemoryClass;
 using nManager.Wow.ObjectManager;
 using CSharpMath = System.Math;
 using Math = nManager.Helpful.Math;
@@ -137,7 +135,7 @@ namespace nManager.Wow.Helpers
                 foreach (Point inputPoint in inputPoints)
                 {
                     float curr = inputPoint.Type.ToLower() == "flying" ? PathFinder.GetZPosition(inputPoint) : inputPoint.Z;
-                    if (curr == 0)
+                    if (CSharpMath.Abs(curr) < 0.0001)
                     {
                         failCounter++;
                         continue;
@@ -943,7 +941,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (Math.DistanceListPoint(_points) != Math.DistanceListPoint(points))
+                if (CSharpMath.Abs(Math.DistanceListPoint(_points) - Math.DistanceListPoint(points)) > 0.0001)
                 {
                     _loop = false;
                     _movement = false;
@@ -985,7 +983,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 // We are returning here. We had a current point, then we return to it, or the current point is the nearest one if we just start the GoLoop on a new points list
-                if (Math.DistanceListPoint(_points) != Math.DistanceListPoint(points))
+                if (CSharpMath.Abs(Math.DistanceListPoint(_points) - Math.DistanceListPoint(points)) > 0.0001)
                 {
                     _loop = false;
                     _movement = false;
@@ -1059,6 +1057,9 @@ namespace nManager.Wow.Helpers
         private static Point _pointTo = new Point();
         private static bool _loopMoveTo;
         private static bool _lastMoveToResult = true;
+        public static Timer MountCheckTimer = new Timer(15000); // This is only for MoveToLocation mount checks. It does not replace "UnStuck._canRemount".
+        public static Timer SwimmingMountRecentlyTimer = new Timer(0); // Did we mount a swimming mount recently ?
+        private static readonly object LockStopMoveTo = new object();
 
         /// <summary>
         ///     Get if player use MoveTo().
@@ -1138,9 +1139,6 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static Timer MountCheckTimer = new Timer(15000); // This is only for MoveToLocation mount checks. It does not replace "UnStuck._canRemount".
-        public static Timer SwimmingMountRecentlyTimer = new Timer(0); // Did we mount a swimming mount recently ?
-
         private static bool MoveToLocation(Point position)
         {
             try
@@ -1212,7 +1210,7 @@ namespace nManager.Wow.Helpers
                     var altPoint = new Point();
                     if (ObjectManager.ObjectManager.Me.InTransport && Usefuls.ContinentId != 123456)
                     {
-                        var t = ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid);
+                        WoWObject t = ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid);
                         if (t is WoWGameObject)
                         {
                             var o = t as WoWGameObject;
@@ -1349,8 +1347,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("MoveTo(WoWGameObject obj): " + exception);
             }
         }
-
-        private static readonly object LockStopMoveTo = new object();
 
         /// <summary>
         ///     Stop Player.
@@ -1575,118 +1571,118 @@ namespace nManager.Wow.Helpers
         private static Npc _trakedTarget = new Npc();
         private static UInt128 _trakedTargetGuid;
 
-        public static uint UpdateTarget(ref Npc Target, out bool asMoved, bool isDead = false, bool ignoreBlacklist = false)
+        public static uint UpdateTarget(ref Npc target, out bool asMoved, bool isDead = false, bool ignoreBlacklist = false)
         {
-            List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry, isDead);
-            WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, Target.Position, false, ignoreBlacklist, true);
+            List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry(target.Entry, isDead);
+            WoWUnit targetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, target.Position, false, ignoreBlacklist, true);
             asMoved = false;
-            if (TargetIsNPC.IsValid)
+            if (targetIsNPC.IsValid)
             {
-                asMoved = Target.Position.DistanceTo(TargetIsNPC.Position) > 3;
-                Target.Position = TargetIsNPC.Position;
-                Target.Name = TargetIsNPC.Name;
-                Target.Guid = TargetIsNPC.Guid;
-                return TargetIsNPC.GetBaseAddress;
+                asMoved = target.Position.DistanceTo(targetIsNPC.Position) > 3;
+                target.Position = targetIsNPC.Position;
+                target.Name = targetIsNPC.Name;
+                target.Guid = targetIsNPC.Guid;
+                return targetIsNPC.GetBaseAddress;
             }
-            WoWGameObject TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position, ignoreBlacklist);
-            if (TargetIsGameObject.IsValid)
+            WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(target.Entry), target.Position, ignoreBlacklist);
+            if (targetIsGameObject.IsValid)
             {
-                asMoved = Target.Position.DistanceTo(TargetIsGameObject.Position) > 3;
-                Target.Position = TargetIsGameObject.Position;
-                Target.Name = TargetIsGameObject.Name;
-                Target.Guid = TargetIsGameObject.Guid;
-                return TargetIsGameObject.GetBaseAddress;
+                asMoved = target.Position.DistanceTo(targetIsGameObject.Position) > 3;
+                target.Position = targetIsGameObject.Position;
+                target.Name = targetIsGameObject.Name;
+                target.Guid = targetIsGameObject.Guid;
+                return targetIsGameObject.GetBaseAddress;
             }
-            WoWPlayer TargetIsPlayer = ObjectManager.ObjectManager.GetObjectWoWPlayer(Target.Guid);
-            if (TargetIsPlayer != null && TargetIsPlayer.IsValid)
+            WoWPlayer targetIsPlayer = ObjectManager.ObjectManager.GetObjectWoWPlayer(target.Guid);
+            if (targetIsPlayer != null && targetIsPlayer.IsValid)
             {
-                asMoved = Target.Position != TargetIsPlayer.Position;
-                Target.Position = TargetIsPlayer.Position;
-                Target.Name = TargetIsPlayer.Name;
-                Target.Guid = TargetIsPlayer.Guid;
-                return TargetIsPlayer.GetBaseAddress;
+                asMoved = target.Position != targetIsPlayer.Position;
+                target.Position = targetIsPlayer.Position;
+                target.Name = targetIsPlayer.Name;
+                target.Guid = targetIsPlayer.Guid;
+                return targetIsPlayer.GetBaseAddress;
             }
             return 0;
         }
 
-        private static void resetTimers()
+        private static void ResetTimers()
         {
             // We will setup this timer only if we compute a path ourself in FindTarget code
             _maxTimerForStuckDetection = null;
             _updatePathSpecialTimer = new Timer(2000);
         }
 
-        public static uint FindTarget(WoWGameObject Object, float SpecialRange = 0, bool doMount = true, float maxDist = 0)
+        public static uint FindTarget(WoWGameObject gObject, float specialRange = 0, bool doMount = true, float maxDist = 0, bool ignoreBlacklist = false)
         {
-            if (_trakedTargetGuid != Object.Guid)
+            if (_trakedTargetGuid != gObject.Guid)
             {
                 StopMove();
-                _trakedTarget = new Npc {Entry = Object.Entry, Position = Object.Position, Name = Object.Name};
-                _trakedTargetGuid = Object.Guid;
-                resetTimers();
+                _trakedTarget = new Npc {Entry = gObject.Entry, Position = gObject.Position, Name = gObject.Name};
+                _trakedTargetGuid = gObject.Guid;
+                ResetTimers();
             }
-            return FindTarget(ref _trakedTarget, SpecialRange, doMount, false, maxDist);
+            return FindTarget(ref _trakedTarget, specialRange, doMount, false, maxDist, ignoreBlacklist);
         }
 
-        public static uint FindTarget(WoWUnit Unit, float SpecialRange = 0, bool doMount = true)
+        public static uint FindTarget(WoWUnit unit, float specialRange = 0, bool doMount = true, float maxDist = 0, bool isDead = false, bool ignoreBlacklist = false)
         {
-            if (_trakedTargetGuid != Unit.Guid)
+            if (_trakedTargetGuid != unit.Guid)
             {
                 StopMove();
-                _trakedTarget = new Npc {Entry = Unit.Entry, Position = Unit.Position, Name = Unit.Name};
-                _trakedTargetGuid = Unit.Guid;
-                resetTimers();
+                _trakedTarget = new Npc {Entry = unit.Entry, Position = unit.Position, Name = unit.Name};
+                _trakedTargetGuid = unit.Guid;
+                ResetTimers();
             }
-            return FindTarget(ref _trakedTarget, SpecialRange, doMount);
+            return FindTarget(ref _trakedTarget, specialRange, doMount, isDead, maxDist, ignoreBlacklist);
         }
 
-        public static uint FindTarget(WoWPlayer Player, float SpecialRange = 0, bool doMount = true)
+        public static uint FindTarget(WoWPlayer player, float specialRange = 0, bool doMount = true, float maxDist = 0, bool isDead = false, bool ignoreBlacklist = false)
         {
-            if (_trakedTargetGuid != Player.Guid)
+            if (_trakedTargetGuid != player.Guid)
             {
-                _trakedTarget = new Npc {Entry = Player.Entry, Position = Player.Position, Name = Player.Name, Guid = Player.Guid};
-                _trakedTargetGuid = Player.Guid;
-                resetTimers();
+                _trakedTarget = new Npc {Entry = player.Entry, Position = player.Position, Name = player.Name, Guid = player.Guid};
+                _trakedTargetGuid = player.Guid;
+                ResetTimers();
             }
-            return FindTarget(ref _trakedTarget, SpecialRange, doMount);
+            return FindTarget(ref _trakedTarget, specialRange, doMount, isDead, maxDist, ignoreBlacklist);
         }
 
-        public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0, bool ignoreBlacklist = false)
+        public static uint FindTarget(ref Npc target, float specialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0, bool ignoreBlacklist = false)
         {
             bool patherResult, requiresUpdate;
 
-            uint baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
-            if (doMount && !InMovement && baseAddress <= 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
-                (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - SpecialRange) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+            uint baseAddress = UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
+            if (doMount && !InMovement && baseAddress <= 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
+                (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - specialRange) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount(false, true);
-            if (doMount && !InMovement && baseAddress > 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 60f)
+            if (doMount && !InMovement && baseAddress > 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 60f)
                 MountTask.Mount(false, true);
 
 
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
-            var tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(Target.Guid);
-            if (!InMovement && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
-                                Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
-                                TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS)))
+            WoWObject tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(target.Guid);
+            if (!InMovement && (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (specialRange > 0 ? specialRange : new Random().NextDouble()*2f + 2.5f) ||
+                                target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
+                                TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, target.Position, CGWorldFrameHitFlags.HitTestLOS)))
             {
-                List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
+                List<Point> points = PathFinder.FindPath(target.Position, out patherResult);
                 if ((patherResult && Math.DistanceListPoint(points) > 200f || !patherResult) && baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly || Usefuls.IsFlying)
                 {
-                    Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
-                    LongMove.LongMoveByNewThread(Target.Position);
+                    Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(target.Position));
+                    LongMove.LongMoveByNewThread(target.Position);
                     return 0;
                 }
-                if (!patherResult && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 300 || points.Count < 2))
+                if (!patherResult && (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 300 || points.Count < 2))
                 {
                     // Give a chance to the bot to come closer if it's far away, unless the path is really short or innexistant.
                     // PathFinder cannot always generate very long path.
-                    Logging.Write("No path found for " + Target.Name + ", abort FindTarget.");
+                    Logging.Write("No path found for " + target.Name + ", abort FindTarget.");
                     return 0;
                 }
                 if (maxDist > 0 && Math.DistanceListPoint(points) > maxDist)
                     return 0;
-                if (Target.Guid == 0)
-                    Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
+                if (target.Guid == 0)
+                    Logging.Write("Looking for " + target.Name + " (" + target.Entry + ").");
                 float groundDistance = Math.DistanceListPoint(points);
                 _cacheTargetAddress = baseAddress;
                 _updatePathSpecialTimer = new Timer(2000);
@@ -1697,13 +1693,13 @@ namespace nManager.Wow.Helpers
             // We are in movement and want to update the path if necessary
             if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InInevitableCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
-                tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(Target.Guid);
+                tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(target.Guid);
                 // Out of range of the position
-                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f) ||
-                    Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
-                    TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Target.Position, CGWorldFrameHitFlags.HitTestLOS))
+                if (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (specialRange > 0 ? specialRange : new Random().NextDouble()*2f + 2.5f) ||
+                    target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
+                    TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, target.Position, CGWorldFrameHitFlags.HitTestLOS))
                 {
-                    baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
+                    baseAddress = UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
                     if (LongMove.IsLongMove) // we are in longmove
                     {
                         if (baseAddress == 0) // we don't have the target in our radar
@@ -1714,8 +1710,8 @@ namespace nManager.Wow.Helpers
                     {
                         // We are not in longmove but we don't have the target and we can fly, let's longmove then
                         StopMove();
-                        Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
-                        LongMove.LongMoveByNewThread(Target.Position);
+                        Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(target.Position));
+                        LongMove.LongMoveByNewThread(target.Position);
                         return 0;
                     }
                     if (baseAddress != 0 && baseAddress != _cacheTargetAddress)
@@ -1727,9 +1723,9 @@ namespace nManager.Wow.Helpers
                     if (requiresUpdate && _updatePathSpecialTimer.IsReady)
                     {
                         _updatePathSpecialTimer = new Timer(2000);
-                        List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
+                        List<Point> points = PathFinder.FindPath(target.Position, out patherResult);
                         if (!patherResult)
-                            points.Add(Target.Position);
+                            points.Add(target.Position);
                         _maxTimerForStuckDetection = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 4000);
                         Go(points);
                         return baseAddress;
@@ -1737,13 +1733,13 @@ namespace nManager.Wow.Helpers
                     // If _maxTimerForStuckDetection is null, this means we did not manage the pathfinder to go to the target, so we don't manage the stuck either
                     if (_maxTimerForStuckDetection != null && _maxTimerForStuckDetection.IsReady)
                     {
-                        WoWGameObject TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry),
-                            Target.Position, ignoreBlacklist);
-                        WoWUnit TargetIsUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position, false, ignoreBlacklist, true);
-                        if (TargetIsUnit.IsValid)
-                            nManagerSetting.AddBlackList(TargetIsUnit.Guid, 60000);
-                        else if (TargetIsGameObject.IsValid)
-                            nManagerSetting.AddBlackList(TargetIsGameObject.Guid, 60000);
+                        WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(target.Entry),
+                            target.Position, ignoreBlacklist);
+                        WoWUnit targetIsUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(target.Entry), target.Position, false, ignoreBlacklist, true);
+                        if (targetIsUnit.IsValid)
+                            nManagerSetting.AddBlackList(targetIsUnit.Guid, 60000);
+                        else if (targetIsGameObject.IsValid)
+                            nManagerSetting.AddBlackList(targetIsGameObject.Guid, 60000);
                         StopMove();
                     }
                 }
@@ -1751,10 +1747,10 @@ namespace nManager.Wow.Helpers
                 {
                     // Ready or not we are near enough of the target
                     StopMove();
-                    return UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
+                    return UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
                 }
             }
-            return UpdateTarget(ref Target, out requiresUpdate, isDead, ignoreBlacklist);
+            return UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
         }
 
         #endregion
