@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="DetourLayer.cpp" />
     <ClCompile Include="Detour\DetourAlloc.cpp" />
+    <ClCompile Include="Detour\DetourAssert.cpp" />
     <ClCompile Include="Detour\DetourCommon.cpp" />
     <ClCompile Include="Detour\DetourNavMesh.cpp" />
     <ClCompile Include="Detour\DetourNavMeshBuilder.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Recast\Recast.cpp" />
     <ClCompile Include="Recast\RecastAlloc.cpp" />
     <ClCompile Include="Recast\RecastArea.cpp" />
+    <ClCompile Include="Recast\RecastAssert.cpp" />
     <ClCompile Include="Recast\RecastContour.cpp" />
     <ClCompile Include="Recast\RecastFilter.cpp" />
     <ClCompile Include="Recast\RecastLayers.cpp" />

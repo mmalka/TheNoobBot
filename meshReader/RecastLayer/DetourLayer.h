@@ -1418,8 +1418,11 @@ exit:
 			pin_ptr<float> centerPointer = &center[0];
 			pin_ptr<float> extentsPointer = &extents[0];
 			dtPolyRef ret;
-			if (_query->findNearestPoly(centerPointer, extentsPointer, filter->GetNativeObject(), &ret, 0) != DT_SUCCESS)
+			dtStatus result = _query->findNearestPoly(centerPointer, extentsPointer, filter->GetNativeObject(), &ret, 0);
+			if (result != DT_SUCCESS)
+			{
 				return 0;
+			}
 			return ret;
 		}
 
@@ -1466,13 +1469,33 @@ exit:
 			return (DetourStatus)status;
 		}
 
+        DetourStatus FindLocalPath(dtPolyRef startRef, dtPolyRef endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
+        {
+            pin_ptr<float> startPosPointer = &startPos[0];
+            pin_ptr<float> endPosPointer = &endPos[0];
+            int hops;
+            dtPolyRef* hopBuffer = new dtPolyRef[44];
+            dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 44);
+            if (dtStatusSucceed(status))
+            {
+                polyRefHops = gcnew array<dtPolyRef>(hops);
+                for (int i = 0; i < hops; i++)
+                    polyRefHops[i] = hopBuffer[i];
+                delete[] hopBuffer;
+                return (DetourStatus)status;
+            }
+
+            delete[] hopBuffer;
+            return (DetourStatus)status;
+        }
+
 		DetourStatus FindPath(dtPolyRef startRef, dtPolyRef endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
 		{
 			pin_ptr<float> startPosPointer = &startPos[0];
 			pin_ptr<float> endPosPointer = &endPos[0];
 			int hops;
-            dtPolyRef* hopBuffer = new dtPolyRef[4096];
-            dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 4096);
+			dtPolyRef* hopBuffer = new dtPolyRef[4096];
+			dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 4096);
 			if (dtStatusSucceed(status))
 			{
 				polyRefHops = gcnew array<dtPolyRef>(hops);
