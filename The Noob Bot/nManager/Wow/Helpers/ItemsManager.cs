@@ -272,15 +272,18 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (ItemSpellCache.ContainsKey(entry))
-                    return ItemSpellCache[entry];
-                string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + ",_ = GetItemSpell(" + entry + ")");
-                string sResult = Lua.GetLocalizedText(randomString);
-                if (sResult != string.Empty && sResult != "nil")
+                lock (ItemSpellCache)
                 {
-                    ItemSpellCache.Add(entry, sResult);
-                    return sResult;
+                    if (ItemSpellCache.ContainsKey(entry))
+                        return ItemSpellCache[entry];
+                    string randomString = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomString + ",_ = GetItemSpell(" + entry + ")");
+                    string sResult = Lua.GetLocalizedText(randomString);
+                    if (sResult != string.Empty && sResult != "nil")
+                    {
+                        ItemSpellCache.Add(entry, sResult);
+                        return sResult;
+                    }
                 }
             }
             catch (Exception exception)
