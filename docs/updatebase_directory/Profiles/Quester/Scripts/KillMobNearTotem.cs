@@ -1,5 +1,5 @@
 /*Kill mob near totem
-VALUE HARDCODED Modify to use Extra! TODO
+Use ExtraInt for totem ID and AllowPlayerControlled
  */
 
 WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
@@ -43,7 +43,7 @@ if (unit.IsValid && !nManagerSetting.IsBlackListedZone(unit.Position) && !nManag
 		MountTask.DismountMount();
 	}
 	
-	WoWUnit totem = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(25987, questObjective.IsDead),questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
+	WoWUnit totem = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.ExtraInt, questObjective.IsDead),questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
 	questObjective.AllowPlayerControlled);
 	
 	//Place totem if its not there

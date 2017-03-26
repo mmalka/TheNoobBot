@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="ReleaseCandidate">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Gidwin Goldbraids</Name>
@@ -1451,6 +1452,11 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1659.007</X>
+            <Y>-5325.866</Y>
+            <Z>74.26167</Z>
+          </Position>
           <NpcEntry>16112</NpcEntry>
           <QuestName>Scarlet Salvage</QuestName>
           <QuestId>27614</QuestId>
@@ -1807,6 +1813,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>45400</int>
           </Entry>
@@ -1824,6 +1831,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>28621</int>
           </Entry>

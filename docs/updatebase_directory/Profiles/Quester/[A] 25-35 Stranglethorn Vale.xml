@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile Author="Neo2003" DevelopmentStatus="Outdated">
+<QuesterProfile Author="Zwox" ExtraCredits="Arasal" DevelopmentStatus="ReleaseCandidate">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Rebels Without a Clue</Name>
@@ -438,6 +439,13 @@
               <Z>1.701574</Z>
             </Point>
           </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42736</NpcEntry>
+          <QuestName>Favored Skull</QuestName>
+          <QuestId>26745</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -2232,7 +2240,7 @@
       <MinLevel>20</MinLevel>
       <MaxLevel>45</MaxLevel>
       <NeedQuestCompletedId>
-        <int>26822</int>
+        <int>26819</int>
       </NeedQuestCompletedId>
       <PickUp>44083</PickUp>
       <TurnIn>44084</TurnIn>
@@ -2942,21 +2950,21 @@
       <Objectives />
     </Quest>
     <Quest>
-      <Name>Der Baron muss davon erfahren</Name>
+      <Name>The Baron Must Be Told</Name>
       <RaceMask>2098253</RaceMask>
       <Id>26611</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>45</MaxLevel>
       <NeedQuestCompletedId>
-        <int>26617</int>
+        <int>26610</int>
       </NeedQuestCompletedId>
       <PickUp>2490</PickUp>
       <TurnIn>2496</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
-      <Name>Einzelheiten des Angriffs</Name>
+      <Name>Details of the Attack</Name>
       <RaceMask>2098253</RaceMask>
       <Id>26612</Id>
       <QuestLevel>20</QuestLevel>
@@ -2989,6 +2997,11 @@
               <X>-14601.64</X>
               <Y>322.3834</Y>
               <Z>2.53409</Z>
+            </Point>
+            <Point>
+              <X>-14677.6279</X>
+              <Y>492.7505</Y>
+              <Z>2.10491157</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
@@ -3066,7 +3079,7 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Auf Tuchfühlung mit den Blutsegeln</Name>
+      <Name>Getting In With the Bloodsail</Name>
       <RaceMask>2098253</RaceMask>
       <Id>26624</Id>
       <QuestLevel>20</QuestLevel>
@@ -3079,24 +3092,16 @@
       <TurnIn>43504</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>51000</WaitMs>
-          <TaxiEntry>2859</TaxiEntry>
-          <FlightDestinationX>0.42901211977005</FlightDestinationX>
-          <FlightDestinationY>0.10170485079288</FlightDestinationY>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43504</NpcEntry>
-          <QuestName>Auf Tuchfühlung mit den Blutsegeln</QuestName>
+          <QuestName>Getting In With the Bloodsail</QuestName>
           <QuestId>26624</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Feststellung Eurer Loyalität</Name>
+      <Name>Seeing Where Your Loyalties Lie</Name>
       <RaceMask>2098253</RaceMask>
       <Id>26629</Id>
       <QuestLevel>20</QuestLevel>
@@ -3109,22 +3114,16 @@
       <TurnIn>43504</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>55000</WaitMs>
-          <TaxiEntry>43043</TaxiEntry>
-          <FlightDestinationX>0.40992534160614</FlightDestinationX>
-          <FlightDestinationY>0.071423612535</FlightDestinationY>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2487</NpcEntry>
-          <QuestName>Sieht doch wie ein Taurenpirat aus</QuestName>
+          <QuestName>Looks Like a Tauren Pirate to Me</QuestName>
           <QuestId>26630</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <InternalIndex>2</InternalIndex>
+          <InternalQuestId>26630</InternalQuestId>
+          <Count>1</Count>
           <Entry>
             <int>2663</int>
           </Entry>
@@ -3138,6 +3137,8 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <InternalIndex>3</InternalIndex>
+          <InternalQuestId>26630</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>43505</int>
@@ -3152,33 +3153,9 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26630</InternalQuestId>
           <Count>1</Count>
-          <Entry>
-            <int>43505</int>
-          </Entry>
-          <Position>
-            <X>-14402.9</X>
-            <Y>399.231</Y>
-            <Z>27.93304</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>2487</int>
-          </Entry>
-          <Position>
-            <X>-14444.71</X>
-            <Y>486.8149</Y>
-            <Z>28.72323</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
-          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
           <Entry>
             <int>2487</int>
           </Entry>
@@ -3192,30 +3169,26 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2487</NpcEntry>
-          <QuestName>Sieht doch wie ein Taurenpirat aus</QuestName>
+          <QuestName>Looks Like a Tauren Pirate to Me</QuestName>
           <QuestId>26630</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>51000</WaitMs>
-          <TaxiEntry>2859</TaxiEntry>
-          <FlightDestinationX>0.42901211977005</FlightDestinationX>
-          <FlightDestinationY>0.10170485079288</FlightDestinationY>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-14001.87</X>
+            <Y>378.541</Y>
+            <Z>30.79993</Z>
+          </Position>
           <NpcEntry>43504</NpcEntry>
-          <QuestName>Feststellung Eurer Loyalität</QuestName>
+          <QuestName>Seeing Where Your Loyalties Lie</QuestName>
           <QuestId>26629</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Euer erster Tag als Pirat</Name>
+      <Name>Your First Day as a Pirate</Name>
       <RaceMask>2098253</RaceMask>
       <Id>26631</Id>
       <QuestLevel>20</QuestLevel>

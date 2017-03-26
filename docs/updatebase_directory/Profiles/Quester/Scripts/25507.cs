@@ -1,7 +1,5 @@
-/* Use Item On Mob Interact With Object
-Exemple of use : You have to use an item on a mob then kill. After killing it, a object spawn that you have to pickup (interact with) (IE: Quest 10226)
-IgnoreFight is recommended or the bot will start fighting the mob before using the item!!!
-*/
+/* Use Item With HotSpots
+Check if there is HotSpots in the objective */
 
 try
 {
@@ -13,49 +11,83 @@ try
 		return false;
 	}
 
+	WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 	WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
 		questObjective.AllowPlayerControlled);
 	Point pos = ObjectManager.Me.Position; /* Initialize or getting an error */
-	int q = QuestID; /* not used but otherwise getting warning QuestID not used */
+	//int q = QuestID; /* not used but otherwise getting warning QuestID not used */
 	uint baseAddress = 0;
 
 	/* If Entry found continue, otherwise continue checking around HotSpots */
-	if (unit.IsValid && (!nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid) || questObjective.IgnoreBlackList))
+	if ((unit.IsValid && (!nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid) || questObjective.IgnoreBlackList )) ||
+		(node.IsValid && (!nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid) || questObjective.IgnoreBlackList)))
 	{
+		if(nManager.Wow.Helpers.PathFinder.FindPath(node.IsValid ? node.Position : unit.Position).Count <= 0)
+		{
+			nManagerSetting.AddBlackList(node.IsValid ? node.Guid : unit.Guid, 30*1000);
+			return false;
+		}
 		if (questObjective.IgnoreFight)
 			nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 		/* Entry found, GoTo */
-		
+		if (node.IsValid)
+		{
+			unit = new WoWUnit(0);
+			baseAddress = MovementManager.FindTarget(node, questObjective.Range);
+		}
 		if (unit.IsValid)
 		{
+			node = new WoWGameObject(0);
 			baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
 		}
 		Thread.Sleep(500);
 		
-		//Pre Select Target
-		if (unit.IsValid && unit.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != unit.Guid)
-		{
-			ObjectManager.Me.Target = unit.Guid;
-			//Interact.InteractWith(unit.GetBaseAddress);
-		}
+	
 			
 		if (MovementManager.InMovement)
 			return false;
 		if (questObjective.IgnoreNotSelectable)
 		{
-			if (unit.IsValid && unit.GetDistance > questObjective.Range)
+			if ((node.IsValid && node.GetDistance > questObjective.Range) || (unit.IsValid && unit.GetDistance > questObjective.Range))
 				return false;
 		}
 		else
 		{
 			if (baseAddress <= 0)
 				return false;
-			if (baseAddress > 0 && (unit.IsValid && unit.GetDistance > questObjective.Range))
+			if (baseAddress > 0 && ((node.IsValid && node.GetDistance > questObjective.Range) || (unit.IsValid && unit.GetDistance > questObjective.Range)))
 				return false;
 			
 		}
 
-		if (unit.IsValid)
+		/* Target Reached */
+		MovementManager.StopMove();
+		MountTask.DismountMount();
+		
+		//Pre Select Target
+		if (node.IsValid && node.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != node.Guid)
+		{
+			Interact.InteractWith(node.GetBaseAddress);
+		}
+		else if (unit.IsValid && unit.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != unit.Guid)
+		{	
+			Lua.LuaDoString("ClearTarget()");
+			
+			if(questObjective.ExtraString == "InteractWith")
+			{
+				Interact.InteractWith(unit.GetBaseAddress);
+			}
+			else
+			{
+				ObjectManager.Me.Target = unit.Guid;
+			}
+		}
+		
+		if (node.IsValid)
+		{
+			MovementManager.Face(node);
+		}
+		else if (unit.IsValid)
 		{
 			MovementManager.Face(unit);
 		}
@@ -68,35 +100,40 @@ try
 
 		if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
 			return false;
-
+		
+		
 		ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
 
-		Thread.Sleep(Usefuls.Latency + 150);
-
+		Thread.Sleep(Usefuls.Latency + 250);
+		
 		/* Wait for the Use Item cast to be finished, if any */
-		while (ObjectManager.Me.IsCast)
+		while (ObjectManager.Me.IsCasting)
 		{
 			Thread.Sleep(Usefuls.Latency);
 		}
-	
-		nManager.Wow.Helpers.Fight.StartFight(unit.Guid);
 		
-		if(!unit.IsDead)
-			return false;
+		Thread.Sleep(Usefuls.Latency + 250);
+		
+		while(unit.IsHostile)
+		{		
+			Thread.Sleep(Usefuls.Latency + 250);
+		}
+		
+		if (node.IsValid)
+		{
+			nManagerSetting.AddBlackList(node.Guid, 30*1000);
+		}
+		else if (unit.IsValid)
+		{
 			
-		Thread.Sleep(1000);
-		
-		WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(183933));
-		
-		Interact.InteractWith(node.GetBaseAddress);
-		
-		/* Wait for the Interact with cast to be finished, if any */
-		while (ObjectManager.Me.IsCast)
-		{
-			Thread.Sleep(Usefuls.Latency);
+			Interact.InteractWith(unit.GetBaseAddress); //Interact With Unit to Attack it
+			/* Wait for the Use Item cast to be finished, if any */
+			while (ObjectManager.Me.IsCasting)
+			{
+				Thread.Sleep(Usefuls.Latency);
+			}
+			nManagerSetting.AddBlackList(unit.Guid, 30*1000);
 		}
-		
-		nManagerSetting.AddBlackList(unit.Guid, 30*1000);
 
 		/* Wait if necessary */
 		if (questObjective.WaitMs > 0)

@@ -21,7 +21,6 @@ if (unit.IsValid)
 				return false;
 			if(unit.InCombat)
 				break; //Exit loop to kill unit target
-			Logging.Write("TROP LOIN");
 			Thread.Sleep(500);
 			//Refresh unit
 		//	unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
@@ -30,10 +29,9 @@ if (unit.IsValid)
 	}
 	
 	MovementManager.Go(PathFinder.FindPath(ObjectManager.Me.Position,questObjective.Position));
-	Logging.Write("GO");
+	
 	while(MovementManager.InMovement && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > 5f && unit.IsValid && !unit.IsDead && !unit.InCombat)
 	{	
-		Logging.Write("IN WHILE");
 		if(unit.Position.DistanceTo(ObjectManager.Me.Position) >=30)
 			return false;
 		if (ObjectManager.Me.IsDeadMe)

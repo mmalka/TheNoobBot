@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Threat of the Winterfall</Name>
@@ -90,15 +91,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>9298</NpcEntry>
-          <QuestName>Threat of the Winterfall</QuestName>
-          <QuestId>28460</QuestId>
+          <QuestName>Mystery Goo</QuestName>
+          <QuestId>28467</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>9298</NpcEntry>
-          <QuestName>Mystery Goo</QuestName>
-          <QuestId>28467</QuestId>
+          <QuestName>Threat of the Winterfall</QuestName>
+          <QuestId>28460</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -109,6 +110,9 @@
       <QuestLevel>50</QuestLevel>
       <MinLevel>47</MinLevel>
       <MaxLevel>60</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28460</int>
+      </NeedQuestCompletedId>
       <PickUp>9298</PickUp>
       <TurnIn>9298</TurnIn>
       <Objectives>
@@ -164,15 +168,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>9298</NpcEntry>
-          <QuestName>Winterfall Runners</QuestName>
-          <QuestId>28469</QuestId>
+          <QuestName>Scalding Signs</QuestName>
+          <QuestId>28530</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>9298</NpcEntry>
-          <QuestName>Scalding Signs</QuestName>
-          <QuestId>28530</QuestId>
+          <QuestName>Winterfall Runners</QuestName>
+          <QuestId>28469</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -183,6 +187,9 @@
       <QuestLevel>50</QuestLevel>
       <MinLevel>47</MinLevel>
       <MaxLevel>60</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28469</int>
+      </NeedQuestCompletedId>
       <PickUp>9298</PickUp>
       <TurnIn>9298</TurnIn>
       <Objectives>
@@ -205,32 +212,28 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>9298</NpcEntry>
-          <QuestName>High Chief Winterfall</QuestName>
-          <QuestId>28470</QuestId>
+          <NpcEntry>10307</NpcEntry>
+          <QuestName>Strange Life Forces</QuestName>
+          <QuestId>28656</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>10307</NpcEntry>
-          <QuestName>Strange Life Forces</QuestName>
-          <QuestId>28656</QuestId>
+          <NpcEntry>9298</NpcEntry>
+          <QuestName>The Final Piece</QuestName>
+          <QuestId>28471</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>9298</NpcEntry>
+          <QuestName>High Chief Winterfall</QuestName>
+          <QuestId>28470</QuestId>
         </QuestObjective>
       </Objectives>
       <AutoAccept>
         <int>28656</int>
       </AutoAccept>
-    </Quest>
-    <Quest>
-      <Name>The Final Piece</Name>
-      <RaceMask>18875469</RaceMask>
-      <Id>28471</Id>
-      <QuestLevel>50</QuestLevel>
-      <MinLevel>47</MinLevel>
-      <MaxLevel>60</MaxLevel>
-      <ItemPickUp>12842</ItemPickUp>
-      <TurnIn>9298</TurnIn>
-      <Objectives />
     </Quest>
     <Quest>
       <Name>Words of the High Chief</Name>
@@ -239,16 +242,23 @@
       <QuestLevel>50</QuestLevel>
       <MinLevel>47</MinLevel>
       <MaxLevel>60</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28471</int>
+      </NeedQuestCompletedId>
       <PickUp>9298</PickUp>
       <TurnIn>10920</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
       <Name>The Ruins of Kel'Theril</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>28479</Id>
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28472</int>
+      </NeedQuestCompletedId>
       <PickUp>10920</PickUp>
       <TurnIn>48658</TurnIn>
       <Objectives />
@@ -260,6 +270,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28479</int>
+      </NeedQuestCompletedId>
       <PickUp>48658</PickUp>
       <TurnIn>48658</TurnIn>
       <Objectives>
@@ -294,6 +307,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28513</int>
+      </NeedQuestCompletedId>
       <PickUp>48658</PickUp>
       <TurnIn>48659</TurnIn>
       <Objectives />
@@ -305,6 +321,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28534</int>
+      </NeedQuestCompletedId>
       <PickUp>48659</PickUp>
       <TurnIn>48659</TurnIn>
       <Objectives>
@@ -334,6 +353,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28518</int>
+      </NeedQuestCompletedId>
       <PickUp>48659</PickUp>
       <TurnIn>48660</TurnIn>
       <Objectives />
@@ -345,6 +367,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28535</int>
+      </NeedQuestCompletedId>
       <PickUp>48660</PickUp>
       <TurnIn>48660</TurnIn>
       <Objectives>
@@ -374,6 +399,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28519</int>
+      </NeedQuestCompletedId>
       <PickUp>48660</PickUp>
       <TurnIn>10920</TurnIn>
       <Objectives />
@@ -385,6 +413,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28536</int>
+      </NeedQuestCompletedId>
       <PickUp>10920</PickUp>
       <TurnIn>10920</TurnIn>
       <Objectives>
@@ -414,6 +445,9 @@
       <QuestLevel>51</QuestLevel>
       <MinLevel>48</MinLevel>
       <MaxLevel>61</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28537</int>
+      </NeedQuestCompletedId>
       <PickUp>10920</PickUp>
       <TurnIn>50366</TurnIn>
       <Objectives />
@@ -425,6 +459,9 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28848</int>
+      </NeedQuestCompletedId>
       <PickUp>11191</PickUp>
       <TurnIn>48965</TurnIn>
       <Objectives />
@@ -436,6 +473,9 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28609</int>
+      </NeedQuestCompletedId>
       <PickUp>48965</PickUp>
       <TurnIn>48965</TurnIn>
       <Objectives>
@@ -470,16 +510,23 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28610</int>
+      </NeedQuestCompletedId>
       <PickUp>48965</PickUp>
       <TurnIn>11191</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
       <Name>Kilram's Boast</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>28624</Id>
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28618</int>
+      </NeedQuestCompletedId>
       <PickUp>11192</PickUp>
       <TurnIn>48965</TurnIn>
       <Objectives />
@@ -491,6 +538,9 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28624</int>
+      </NeedQuestCompletedId>
       <PickUp>48965</PickUp>
       <TurnIn>48965</TurnIn>
       <Objectives>
@@ -530,6 +580,9 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28625</int>
+      </NeedQuestCompletedId>
       <PickUp>48965</PickUp>
       <TurnIn>11192</TurnIn>
       <Objectives />
@@ -541,6 +594,9 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28626</int>
+      </NeedQuestCompletedId>
       <PickUp>11193</PickUp>
       <TurnIn>48965</TurnIn>
       <Objectives />
@@ -552,6 +608,9 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28627</int>
+      </NeedQuestCompletedId>
       <PickUp>48965</PickUp>
       <TurnIn>48965</TurnIn>
       <Objectives>
@@ -649,13 +708,6 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>48965</NpcEntry>
-          <QuestName>Fresh From The Hills</QuestName>
-          <QuestId>28632</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>10305</NpcEntry>
           <QuestName>Are We There, Yeti?</QuestName>
           <QuestId>28629</QuestId>
@@ -667,6 +719,13 @@
           <QuestName>The Perfect Horns</QuestName>
           <QuestId>28631</QuestId>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>48965</NpcEntry>
+          <QuestName>Fresh From The Hills</QuestName>
+          <QuestId>28632</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -676,6 +735,9 @@
       <QuestLevel>52</QuestLevel>
       <MinLevel>49</MinLevel>
       <MaxLevel>62</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28632</int>
+      </NeedQuestCompletedId>
       <PickUp>10305</PickUp>
       <TurnIn>10305</TurnIn>
       <Objectives>
@@ -725,6 +787,9 @@
       <QuestLevel>53</QuestLevel>
       <MinLevel>50</MinLevel>
       <MaxLevel>63</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28722</int>
+      </NeedQuestCompletedId>
       <PickUp>48965</PickUp>
       <TurnIn>11079</TurnIn>
       <Objectives />
@@ -736,6 +801,9 @@
       <QuestLevel>53</QuestLevel>
       <MinLevel>50</MinLevel>
       <MaxLevel>63</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28674</int>
+      </NeedQuestCompletedId>
       <PickUp>11079</PickUp>
       <TurnIn>11079</TurnIn>
       <Objectives>
@@ -900,25 +968,42 @@
           <QuestName>Out of Harm's Way</QuestName>
           <QuestId>28701</QuestId>
         </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>49396</NpcEntry>
-          <QuestName>Where There's Smoke, There's Delicious Meat</QuestName>
-          <QuestId>28718</QuestId>
-        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Fresh Frostsabers</Name>
+      <Name>Where There's Smoke, There's Delicious Meat</Name>
       <RaceMask>18875469</RaceMask>
-      <Id>28640</Id>
+      <Id>28718</Id>
+      <QuestLevel>53</QuestLevel>
+      <MinLevel>51</MinLevel>
+      <MaxLevel>63</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28701</int>
+      </NeedQuestCompletedId>
+      <PickUp>49402</PickUp>
+      <TurnIn>49396</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>You Gotta Have Eggs</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>28828</Id>
       <QuestLevel>53</QuestLevel>
       <MinLevel>50</MinLevel>
       <MaxLevel>63</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28701</int>
+      </NeedQuestCompletedId>
       <PickUp>49396</PickUp>
       <TurnIn>49396</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>49396</NpcEntry>
+          <QuestName>Fresh Frostsabers</QuestName>
+          <QuestId>28640</QuestId>
+        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <NpcEntry>49396</NpcEntry>
@@ -940,7 +1025,6 @@
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>28828</InternalQuestId>
           <Entry>
             <int>207293</int>
           </Entry>
@@ -963,6 +1047,7 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>28640</InternalQuestId>
           <Count>15</Count>
           <Entry>
             <int>7431</int>
@@ -1160,13 +1245,14 @@
           </Entry>
           <Hotspots>
             <Point>
-              <X>7118.711</X>
-              <Y>-4620.884</Y>
-              <Z>638.1654</Z>
+              <X>7118.905</X>
+              <Y>-4644.132</Y>
+              <Z>638.964</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1221,16 +1307,23 @@
       <QuestLevel>54</QuestLevel>
       <MinLevel>51</MinLevel>
       <MaxLevel>64</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28640</int>
+      </NeedQuestCompletedId>
       <PickUp>50366</PickUp>
       <TurnIn>10929</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
       <Name>Altered Beasts</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>28837</Id>
       <QuestLevel>54</QuestLevel>
       <MinLevel>51</MinLevel>
       <MaxLevel>64</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28847</int>
+      </NeedQuestCompletedId>
       <PickUp>10929</PickUp>
       <TurnIn>10929</TurnIn>
       <Objectives>
@@ -1266,6 +1359,9 @@
       <QuestLevel>54</QuestLevel>
       <MinLevel>51</MinLevel>
       <MaxLevel>64</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28837</int>
+      </NeedQuestCompletedId>
       <PickUp>10929</PickUp>
       <TurnIn>10929</TurnIn>
       <Objectives>
@@ -1285,17 +1381,82 @@
             </Point>
           </Hotspots>
         </QuestObjective>
+      </Objectives>
+      <AutoComplete>
+        <int>28838</int>
+      </AutoComplete>
+    </Quest>
+    <Quest>
+      <Name>Razor Beak and Antlers Pointy</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>28829</Id>
+      <QuestLevel>54</QuestLevel>
+      <MinLevel>53</MinLevel>
+      <MaxLevel>64</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28838</int>
+      </NeedQuestCompletedId>
+      <PickUp>50263</PickUp>
+      <TurnIn>50263</TurnIn>
+      <Objectives>
         <QuestObjective>
-          <Objective>PickUpQuest</Objective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>2</InternalIndex>
+          <InternalQuestId>28839</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>207423</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>50263</NpcEntry>
-          <QuestName>Razor Beak and Antlers Pointy</QuestName>
-          <QuestId>28829</QuestId>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <Position>
+            <X>5612.375</X>
+            <Y>-5027.177</Y>
+            <Z>808.2142</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>3</InternalIndex>
+          <InternalQuestId>28839</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>207422</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <Position>
+            <X>5470.808</X>
+            <Y>-4976.972</Y>
+            <Z>850.514</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>28839</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>207421</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <Position>
+            <X>5752.427</X>
+            <Y>-4989.627</Y>
+            <Z>809.6396</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>28829</InternalQuestId>
           <Count>12</Count>
           <Entry>
             <int>7453</int>
@@ -1321,60 +1482,7 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>2</InternalIndex>
-          <InternalQuestId>28839</InternalQuestId>
-          <Entry>
-            <int>207423</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>5612.375</X>
-              <Y>-5027.177</Y>
-              <Z>808.2142</Z>
-            </Point>
-          </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>3</InternalIndex>
-          <InternalQuestId>28839</InternalQuestId>
-          <Entry>
-            <int>207422</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>5470.808</X>
-              <Y>-4976.972</Y>
-              <Z>850.514</Z>
-            </Point>
-          </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>28839</InternalQuestId>
-          <Entry>
-            <int>207421</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>5760.875</X>
-              <Y>-4992.805</Y>
-              <Z>809.1088</Z>
-            </Point>
-          </Hotspots>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1383,13 +1491,27 @@
           <QuestName>Razor Beak and Antlers Pointy</QuestName>
           <QuestId>28829</QuestId>
         </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>50263</NpcEntry>
-          <QuestName>Chips off the Old Block</QuestName>
-          <QuestId>28830</QuestId>
-        </QuestObjective>
+      </Objectives>
+      <AutoComplete>
+        <int>28839</int>
+      </AutoComplete>
+      <AutoAccept>
+        <int>28839</int>
+      </AutoAccept>
+    </Quest>
+    <Quest>
+      <Name>Chips off the Old Block</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>28830</Id>
+      <QuestLevel>54</QuestLevel>
+      <MinLevel>53</MinLevel>
+      <MaxLevel>64</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28829</int>
+      </NeedQuestCompletedId>
+      <PickUp>50263</PickUp>
+      <TurnIn>50263</TurnIn>
+      <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -1400,7 +1522,6 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>28830</InternalQuestId>
           <Count>8</Count>
           <Entry>
             <int>50258</int>
@@ -1482,24 +1603,19 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>50263</NpcEntry>
-          <QuestName>Chips off the Old Block</QuestName>
-          <QuestId>28830</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>10929</NpcEntry>
           <QuestName>Winterwater</QuestName>
           <QuestId>28840</QuestId>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>50263</NpcEntry>
+          <QuestName>Chips off the Old Block</QuestName>
+          <QuestId>28830</QuestId>
+        </QuestObjective>
       </Objectives>
-      <AutoComplete>
-        <int>28838</int>
-        <int>28839</int>
-      </AutoComplete>
       <AutoAccept>
-        <int>28839</int>
         <int>28840</int>
       </AutoAccept>
     </Quest>
@@ -1510,9 +1626,40 @@
       <QuestLevel>55</QuestLevel>
       <MinLevel>52</MinLevel>
       <MaxLevel>65</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28830</int>
+      </NeedQuestCompletedId>
       <PickUp>10929</PickUp>
       <TurnIn>10929</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>10929</NpcEntry>
+          <QuestName>The Arcane Storm Within</QuestName>
+          <QuestId>28841</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>28841</InternalQuestId>
+          <Count>5</Count>
+          <Entry>
+            <int>50291</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>6145.122</X>
+              <Y>-4275.528</Y>
+              <Z>656.1419</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>66060</UseItemId>
+          <WaitMs>500</WaitMs>
+          <Range>10</Range>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
@@ -1534,177 +1681,40 @@
           <Count>1</Count>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>66061</UseItemId>
-          <Position>
-            <X>5903.632</X>
-            <Y>-4064.707</Y>
-            <Z>595.291</Z>
-          </Position>
           <WaitMs>500</WaitMs>
           <Range>3</Range>
         </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>The Arcane Storm Within</Name>
-      <RaceMask>18875469</RaceMask>
-      <Id>28841</Id>
-      <QuestLevel>55</QuestLevel>
-      <MinLevel>52</MinLevel>
-      <MaxLevel>65</MaxLevel>
-      <PickUp>10929</PickUp>
-      <TurnIn>10929</TurnIn>
-      <Objectives>
         <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>6145.122</X>
-            <Y>-4275.528</Y>
-            <Z>656.1419</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>10929</NpcEntry>
+          <QuestName>The Arcane Storm Within</QuestName>
+          <QuestId>28841</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>6205.238</X>
-            <Y>-4252.757</Y>
-            <Z>656.0859</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>6138.797</X>
-            <Y>-4240.025</Y>
-            <Z>653.3453</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>6183.521</X>
-            <Y>-4176.871</Y>
-            <Z>642.1508</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>6154.602</X>
-            <Y>-4161.603</Y>
-            <Z>642.1126</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>6098.133</X>
-            <Y>-4210.318</Y>
-            <Z>631.7573</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>6032.775</X>
-            <Y>-4207.666</Y>
-            <Z>628.4199</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>5961.969</X>
-            <Y>-4195.561</Y>
-            <Z>613.8506</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>5912.535</X>
-            <Y>-4190.741</Y>
-            <Z>608.0933</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>50291</int>
-          </Entry>
-          <UseItemId>66060</UseItemId>
-          <Position>
-            <X>5965.856</X>
-            <Y>-4139.421</Y>
-            <Z>608.0642</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>10</Range>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>10929</NpcEntry>
+          <QuestName>Umbranse's Deliverance</QuestName>
+          <QuestId>28842</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
   </Quests>
+  <Blackspots>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>7062.819</X>
+        <Y>-3842.42</Y>
+        <Z>734.4006</Z>
+      </Position>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>7076.359</X>
+        <Y>-3844.108</Y>
+        <Z>699.015</Z>
+      </Position>
+    </QuesterBlacklistRadius>
+  </Blackspots>
 </QuesterProfile>

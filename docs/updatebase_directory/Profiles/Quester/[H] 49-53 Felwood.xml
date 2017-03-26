@@ -1135,6 +1135,12 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(28220) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(28220) || nManager.Wow.Helpers.Quest.GetQuestCompleted(28220);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>28220</InternalQuestId>

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
+  <Questers />
   <Quests>
     <Quest>
-      <Name>Seaside Salvage</Name>
+      <Name>Puddle Stomping</Name>
       <RaceMask>18875469</RaceMask>
-      <Id>25048</Id>
+      <Id>25049</Id>
       <QuestLevel>45</QuestLevel>
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
@@ -15,25 +16,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>38535</NpcEntry>
-          <QuestName>Puddle Stomping</QuestName>
-          <QuestId>25049</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>7823</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-7191.36</X>
-            <Y>-3767.524</Y>
-            <Z>9.025499</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
+          <QuestName>Seaside Salvage</QuestName>
+          <QuestId>25048</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25048</InternalQuestId>
           <Entry>
             <int>202198</int>
           </Entry>
@@ -56,7 +45,6 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>25049</InternalQuestId>
           <Count>8</Count>
           <Entry>
             <int>39022</int>
@@ -90,10 +78,120 @@
           <QuestName>Puddle Stomping</QuestName>
           <QuestId>25049</QuestId>
         </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Seaside Salvage</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>24906</Id>
+      <QuestLevel>45</QuestLevel>
+      <MinLevel>42</MinLevel>
+      <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25049</int>
+      </NeedQuestCompletedId>
+      <PickUp>38535</PickUp>
+      <TurnIn>38535</TurnIn>
+      <Objectives>
         <QuestObjective>
-          <Objective>MessageBox</Objective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>202198</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>7</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>-7543.656</X>
+              <Y>-3873.991</Y>
+              <Z>-0.5687146</Z>
+            </Point>
+            <Point>
+              <X>-7622.592</X>
+              <Y>-3984.501</Y>
+              <Z>-1.554045</Z>
+            </Point>
+          </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Message>Manually Do Rocket Rescue!</Message>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Rocket Rescue</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>25050</Id>
+      <QuestLevel>45</QuestLevel>
+      <MinLevel>42</MinLevel>
+      <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>24906</int>
+      </NeedQuestCompletedId>
+      <PickUp>38535</PickUp>
+      <TurnIn>38535</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>40604</int>
+          </Entry>
+          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25050) || nManager.Wow.Helpers.Quest.GetQuestCompleted(25050)) { return true;} if(!ObjectManager.Me.InTransport) { return false;} return true;</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-7093.449</X>
+            <Y>-3906.568</Y>
+            <Z>10.94117</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>5</Count>
+          <Entry>
+            <int>38571</int>
+          </Entry>
+          <Script>=24910-Balloon.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <LuaMacro>/click OverrideActionBarButton1</LuaMacro>
+          <WaitMs>1500</WaitMs>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>40</Count>
+          <Entry>
+            <int>40583</int>
+          </Entry>
+          <Script>=24910-Balloon.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <LuaMacro>/click OverrideActionBarButton2</LuaMacro>
+          <WaitMs>1500</WaitMs>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseLuaMacro</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <LuaMacro>/click OverrideActionBarButton6</LuaMacro>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>60000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-7209.735</X>
+            <Y>-3760.221</Y>
+            <Z>9.139611</Z>
+          </Position>
+          <NpcEntry>38534</NpcEntry>
+          <QuestName>Rocket Rescue</QuestName>
+          <QuestId>24910</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -104,12 +202,16 @@
       <QuestLevel>45</QuestLevel>
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25050</int>
+      </NeedQuestCompletedId>
       <PickUp>39178</PickUp>
       <TurnIn>39178</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>1</Count>
+          <Objective>KillMobUseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
           <Entry>
             <int>5419</int>
           </Entry>
@@ -141,20 +243,9 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>5419</int>
-          </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>52715</UseItemId>
-          <Position>
-            <X>-7572.496</X>
-            <Y>-3771.137</Y>
-            <Z>5.679812</Z>
-          </Position>
-          <IsDead>true</IsDead>
+          <WaitMs>1000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -165,12 +256,16 @@
       <QuestLevel>45</QuestLevel>
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25112</int>
+      </NeedQuestCompletedId>
       <PickUp>39178</PickUp>
       <TurnIn>39178</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>1</Count>
+          <Objective>KillMobUseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>12</Count>
           <Entry>
             <int>5429</int>
           </Entry>
@@ -196,18 +291,59 @@
               <Z>53.72023</Z>
             </Point>
           </Hotspots>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItemAOE</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>5429</int>
-          </Entry>
           <UseItemId>52715</UseItemId>
-          <IsDead>true</IsDead>
         </QuestObjective>
       </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Blisterpaw Butchery</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>25115</Id>
+      <QuestLevel>45</QuestLevel>
+      <MinLevel>42</MinLevel>
+      <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25111</int>
+      </NeedQuestCompletedId>
+      <PickUp>39178</PickUp>
+      <TurnIn>39178</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMobUseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>5426</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-7185.41</X>
+              <Y>-3578.625</Y>
+              <Z>10.98704</Z>
+            </Point>
+            <Point>
+              <X>-7115.016</X>
+              <Y>-3367.09</Y>
+              <Z>10.75937</Z>
+            </Point>
+          </Hotspots>
+          <UseItemId>52715</UseItemId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Sandsorrow Watch</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>25091</Id>
+      <QuestLevel>45</QuestLevel>
+      <MinLevel>42</MinLevel>
+      <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25115</int>
+      </NeedQuestCompletedId>
+      <PickUp>39178</PickUp>
+      <TurnIn>7804</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Blood to Thrive</Name>
@@ -216,6 +352,9 @@
       <QuestLevel>45</QuestLevel>
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25091</int>
+      </NeedQuestCompletedId>
       <PickUp>38927</PickUp>
       <TurnIn>38927</TurnIn>
       <Objectives>
@@ -250,6 +389,11 @@
               <X>-7081.303</X>
               <Y>-3045.188</Y>
               <Z>10.70518</Z>
+            </Point>
+            <Point>
+              <X>-7218.1665</X>
+              <Y>-3281.153</Y>
+              <Z>11.4333363</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
@@ -308,6 +452,9 @@
       <QuestLevel>45</QuestLevel>
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25021</int>
+      </NeedQuestCompletedId>
       <PickUp>38927</PickUp>
       <TurnIn>38927</TurnIn>
       <Objectives>
@@ -336,6 +483,7 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -359,6 +507,7 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -383,6 +532,9 @@
       <QuestLevel>45</QuestLevel>
       <MinLevel>42</MinLevel>
       <MaxLevel>55</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25025</int>
+      </NeedQuestCompletedId>
       <PickUp>38927</PickUp>
       <TurnIn>38927</TurnIn>
       <Objectives>
@@ -417,6 +569,9 @@
       <QuestLevel>46</QuestLevel>
       <MinLevel>43</MinLevel>
       <MaxLevel>56</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25026</int>
+      </NeedQuestCompletedId>
       <PickUp>38927</PickUp>
       <TurnIn>7804</TurnIn>
       <Objectives>
@@ -457,6 +612,9 @@
       <QuestLevel>46</QuestLevel>
       <MinLevel>43</MinLevel>
       <MaxLevel>56</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25032</int>
+      </NeedQuestCompletedId>
       <PickUp>38535</PickUp>
       <TurnIn>38704</TurnIn>
       <Objectives />
@@ -468,6 +626,9 @@
       <QuestLevel>46</QuestLevel>
       <MinLevel>43</MinLevel>
       <MaxLevel>56</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25121</int>
+      </NeedQuestCompletedId>
       <PickUp>38704</PickUp>
       <TurnIn>38704</TurnIn>
       <Objectives>
@@ -499,6 +660,7 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -534,9 +696,9 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>51547</UseItemId>
           <Position>
-            <X>-8085.648</X>
-            <Y>-5258.544</Y>
-            <Z>0.6801505</Z>
+            <X>-8088.021</X>
+            <Y>-5245.176</Y>
+            <Z>2.460372</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -569,13 +731,6 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>38704</NpcEntry>
-          <QuestName>Dead Man's Chest</QuestName>
-          <QuestId>25052</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>38704</NpcEntry>
           <QuestName>To The Ground!</QuestName>
           <QuestId>25053</QuestId>
         </QuestObjective>
@@ -586,6 +741,13 @@
           <QuestName>Lootin' Plunder</QuestName>
           <QuestId>25054</QuestId>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>38704</NpcEntry>
+          <QuestName>Dead Man's Chest</QuestName>
+          <QuestId>25052</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -595,6 +757,9 @@
       <QuestLevel>46</QuestLevel>
       <MinLevel>43</MinLevel>
       <MaxLevel>56</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25052</int>
+      </NeedQuestCompletedId>
       <PickUp>38704</PickUp>
       <TurnIn>38704</TurnIn>
       <Objectives>
@@ -677,6 +842,9 @@
       <QuestLevel>46</QuestLevel>
       <MinLevel>43</MinLevel>
       <MaxLevel>56</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26886</int>
+      </NeedQuestCompletedId>
       <PickUp>38704</PickUp>
       <TurnIn>38704</TurnIn>
       <Objectives>
@@ -705,6 +873,9 @@
       <QuestLevel>46</QuestLevel>
       <MinLevel>43</MinLevel>
       <MaxLevel>56</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25166</int>
+      </NeedQuestCompletedId>
       <PickUp>38704</PickUp>
       <TurnIn>38706</TurnIn>
       <Objectives />
@@ -716,6 +887,9 @@
       <QuestLevel>47</QuestLevel>
       <MinLevel>44</MinLevel>
       <MaxLevel>57</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26889</int>
+      </NeedQuestCompletedId>
       <PickUp>38706</PickUp>
       <TurnIn>38706</TurnIn>
       <Objectives>
@@ -749,6 +923,11 @@
               <Y>-3822.899</Y>
               <Z>15.56812</Z>
             </Point>
+            <Point>
+              <X>-8587.742</X>
+              <Y>-4240.877</Y>
+              <Z>13.70632</Z>
+            </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -778,6 +957,11 @@
               <Y>-3822.899</Y>
               <Z>15.56812</Z>
             </Point>
+            <Point>
+              <X>-8587.742</X>
+              <Y>-4240.877</Y>
+              <Z>13.70632</Z>
+            </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -805,6 +989,9 @@
       <QuestLevel>47</QuestLevel>
       <MinLevel>44</MinLevel>
       <MaxLevel>57</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>24932</int>
+      </NeedQuestCompletedId>
       <PickUp>38706</PickUp>
       <TurnIn>38706</TurnIn>
       <Objectives>
@@ -898,30 +1085,44 @@
       <QuestLevel>47</QuestLevel>
       <MinLevel>44</MinLevel>
       <MaxLevel>57</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>24933</int>
+      </NeedQuestCompletedId>
       <PickUp>38706</PickUp>
       <TurnIn>38706</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>MessageBox</Objective>
-          <Message>Disable Use Mount!!!</Message>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
+          <Objective>CSharpScript</Objective>
           <Count>1</Count>
           <Entry>
             <int>5451</int>
           </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8759.242</X>
+              <Y>-3999.694</Y>
+              <Z>11.42102</Z>
+            </Point>
+            <Point>
+              <X>-8914.859</X>
+              <Y>-3795.039</Y>
+              <Z>10.70159</Z>
+            </Point>
+            <Point>
+              <X>-8997.453</X>
+              <Y>-4040.64038</Y>
+              <Z>11.3046627</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <ScriptConditionIsComplete>return nManager.Wow.ObjectManager.ObjectManager.Me.HaveBuff(72681);</ScriptConditionIsComplete>
           <UseItemId>52031</UseItemId>
-          <Position>
-            <X>-8785.501</X>
-            <Y>-3961.123</Y>
-            <Z>10.00313</Z>
-          </Position>
-          <IgnoreFight>true</IgnoreFight>
           <Range>20</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <DeactivateMount>true</DeactivateMount>
           <Position>
             <X>-8690.023</X>
             <Y>-4073.714</Y>
@@ -937,13 +1138,12 @@
       <QuestLevel>47</QuestLevel>
       <MinLevel>44</MinLevel>
       <MaxLevel>57</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>24951</int>
+      </NeedQuestCompletedId>
       <PickUp>38706</PickUp>
       <TurnIn>38706</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>MessageBox</Objective>
-          <Message>NEED Fix Vehicle! Mounting inside vehicle and Ignore Fight</Message>
-        </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <Entry>
@@ -962,6 +1162,14 @@
         <QuestObjective>
           <Objective>PressKey</Objective>
           <Count>1</Count>
+          <ScriptConditionIsComplete>return !ObjectManager.Target.IsValid || ObjectManager.Target.GetDistance &gt; 6f || ObjectManager.Target.Entry != 11811;</ScriptConditionIsComplete>
+          <WaitMs>3000</WaitMs>
+          <OnlyInVehicule>true</OnlyInVehicule>
+          <Keys>MOVEBACKWARD</Keys>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PressKey</Objective>
+          <Count>1</Count>
           <Position>
             <X>-9239.902</X>
             <Y>-4005.98</Y>
@@ -969,6 +1177,7 @@
           </Position>
           <WaitMs>1000</WaitMs>
           <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
           <OnlyInVehicule>true</OnlyInVehicule>
           <Keys>ACTIONBUTTON2</Keys>
         </QuestObjective>
@@ -981,6 +1190,9 @@
       <QuestLevel>47</QuestLevel>
       <MinLevel>44</MinLevel>
       <MaxLevel>57</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>24953</int>
+      </NeedQuestCompletedId>
       <PickUp>11811</PickUp>
       <TurnIn>39059</TurnIn>
       <Objectives />
@@ -992,6 +1204,9 @@
       <QuestLevel>48</QuestLevel>
       <MinLevel>45</MinLevel>
       <MaxLevel>58</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25061</int>
+      </NeedQuestCompletedId>
       <PickUp>39059</PickUp>
       <TurnIn>39059</TurnIn>
       <Objectives>
@@ -1074,6 +1289,9 @@
       <QuestLevel>48</QuestLevel>
       <MinLevel>45</MinLevel>
       <MaxLevel>58</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25060</int>
+      </NeedQuestCompletedId>
       <PickUp>39059</PickUp>
       <TurnIn>39059</TurnIn>
       <Objectives>
@@ -1113,6 +1331,9 @@
       <QuestLevel>48</QuestLevel>
       <MinLevel>45</MinLevel>
       <MaxLevel>58</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25063</int>
+      </NeedQuestCompletedId>
       <PickUp>39059</PickUp>
       <TurnIn>39059</TurnIn>
       <Objectives>
@@ -1142,23 +1363,12 @@
       <QuestLevel>48</QuestLevel>
       <MinLevel>45</MinLevel>
       <MaxLevel>58</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25065</int>
+      </NeedQuestCompletedId>
       <PickUp>39059</PickUp>
-      <TurnIn>39059</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>40827</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-9494.665</X>
-            <Y>-2952.675</Y>
-            <Z>12.82685</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
-        </QuestObjective>
-      </Objectives>
+      <TurnIn>40109</TurnIn>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Ancient Obstacles</Name>
@@ -1167,6 +1377,9 @@
       <QuestLevel>49</QuestLevel>
       <MinLevel>46</MinLevel>
       <MaxLevel>59</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28881</int>
+      </NeedQuestCompletedId>
       <PickUp>40109</PickUp>
       <TurnIn>40109</TurnIn>
       <Objectives>
@@ -1249,13 +1462,6 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40109</NpcEntry>
-          <QuestName>Ancient Obstacles</QuestName>
-          <QuestId>25420</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>40109</NpcEntry>
           <QuestName>Fragments of Language</QuestName>
           <QuestId>25565</QuestId>
         </QuestObjective>
@@ -1266,6 +1472,13 @@
           <QuestName>Laying Claim</QuestName>
           <QuestId>25559</QuestId>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>40109</NpcEntry>
+          <QuestName>Ancient Obstacles</QuestName>
+          <QuestId>25420</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -1275,6 +1488,9 @@
       <QuestLevel>49</QuestLevel>
       <MinLevel>46</MinLevel>
       <MaxLevel>59</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25420</int>
+      </NeedQuestCompletedId>
       <PickUp>40109</PickUp>
       <TurnIn>202474</TurnIn>
       <Objectives />
@@ -1286,6 +1502,9 @@
       <QuestLevel>49</QuestLevel>
       <MinLevel>46</MinLevel>
       <MaxLevel>59</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25566</int>
+      </NeedQuestCompletedId>
       <PickUp>202474</PickUp>
       <TurnIn>202474</TurnIn>
       <Objectives>
@@ -1307,9 +1526,62 @@
       <QuestLevel>49</QuestLevel>
       <MinLevel>46</MinLevel>
       <MaxLevel>59</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25070</int>
+      </NeedQuestCompletedId>
       <PickUp>202474</PickUp>
       <TurnIn>40109</TurnIn>
       <Objectives />
     </Quest>
   </Quests>
+  <Blackspots>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-7992.932</X>
+        <Y>-5211.386</Y>
+        <Z>1.553892</Z>
+      </Position>
+      <Radius>4</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-8016.856</X>
+        <Y>-5201.758</Y>
+        <Z>13.76997</Z>
+      </Position>
+      <Radius>10</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-8082.546</X>
+        <Y>-5329.165</Y>
+        <Z>7.592986</Z>
+      </Position>
+      <Radius>7</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-8040.47</X>
+        <Y>-5335.08</Y>
+        <Z>8.163423</Z>
+      </Position>
+      <Radius>15</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-9258.106</X>
+        <Y>-2948.418</Y>
+        <Z>12.11264</Z>
+      </Position>
+      <Radius>10</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-9751.089</X>
+        <Y>-2751.847</Y>
+        <Z>11.26937</Z>
+      </Position>
+      <Radius>10</Radius>
+    </QuesterBlacklistRadius>
+  </Blackspots>
 </QuesterProfile>

@@ -2016,7 +2016,7 @@
           <Objective>UseItem</Objective>
           <InternalQuestId>9932</InternalQuestId>
           <Count>1</Count>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9932) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9932);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(18396, false), false,false,true).IsValid || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9932) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9932);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>25658</UseItemId>
           <Position>
@@ -2171,23 +2171,14 @@
           <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
-              <X>-990.9518</X>
-              <Y>8471.672</Y>
-              <Z>40.24749</Z>
-            </Point>
-            <Point>
-              <X>-873.8028</X>
-              <Y>8371.037</Y>
-              <Z>26.14653</Z>
-            </Point>
-            <Point>
-              <X>-818.4583</X>
-              <Y>8271.797</Y>
-              <Z>32.42641</Z>
+              <X>-968.507446</X>
+              <Y>8486.137</Y>
+              <Z>45.2020073</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>

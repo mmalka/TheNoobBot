@@ -10,11 +10,13 @@ if(wowUnit.IsValid)
 	{
 		return false;
 	}
-	MovementManager.StopMove();
+	MountTask.DismountMount();
 	Thread.Sleep(300);
 		
-	while(!wowUnit.IsTrivial)
+	while(!wowUnit.IsElite)
 	{
+	    if (ObjectManager.Me.IsDead)
+		   break;
 		MovementManager.Face(wowUnit);
 		Thread.Sleep(500);
 		Interact.InteractWith(wowUnit.GetBaseAddress);
@@ -28,8 +30,6 @@ if(wowUnit.IsValid)
 }
 else if (!MovementManager.InMovement && questObjective.Hotspots.Count > 0)
 {
-	// Mounting Mount
-	MountTask.Mount();
 	// Need GoTo Zone:
 	if (questObjective.Hotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.Hotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
 	{

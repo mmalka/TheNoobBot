@@ -13341,6 +13341,30 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>4949.67725</X>
+      <Y>-1875.74829</Y>
+      <Z>1326.19556</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>4949.67725</X>
+      <Y>-1875.74829</Y>
+      <Z>1326.19556</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>5309.94531</X>
       <Y>4570.58154</Y>
       <Z>717.108948</Z>
@@ -36497,6 +36521,18 @@
     <Entry>43547</Entry>
     <Name>Mirala Fawnsinger</Name>
     <Position>
+      <X>5302.53</X>
+      <Y>-2215.02</Y>
+      <Z>1263.59338</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43547</Entry>
+    <Name>Mirala Fawnsinger</Name>
+    <Position>
       <X>5351.92</X>
       <Y>-2108.88</Y>
       <Z>1280.5199</Z>
@@ -37773,6 +37809,30 @@
     <Faction>Alliance</Faction>
     <Type>Innkeeper</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44178</Entry>
+    <Name>Sweet Gary Guns</Name>
+    <Position>
+      <X>-14972.3965</X>
+      <Y>266.680573</Y>
+      <Z>13.751009</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44178</Entry>
+    <Name>Sweet Gary Guns</Name>
+    <Position>
+      <X>-14972.3965</X>
+      <Y>266.680573</Y>
+      <Z>13.751009</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>44178</Entry>
@@ -66150,9 +66210,8 @@
     <Position>
       <X>1060.35083</X>
       <Y>638.3412</Y>
-      <Z>-45.8378639</Z>
+      <Z>-45.83787</Z>
     </Position>
-    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Maelstrom</ContinentId>
   </Npc>

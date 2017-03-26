@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="Completed">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Threat of the Winterfall</Name>
@@ -1480,6 +1481,7 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>

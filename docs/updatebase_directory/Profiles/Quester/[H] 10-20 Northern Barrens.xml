@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile Author="Zwox" DevelopmentStatus="Untested">
+<QuesterProfile Author="Zwox" ExtraCredits="Arasal" DevelopmentStatus="Untested">
   <Questers>
     <Npc>
       <Entry>3337</Entry>

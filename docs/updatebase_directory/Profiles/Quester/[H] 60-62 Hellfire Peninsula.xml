@@ -1663,13 +1663,13 @@
           <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
         <QuestObjective>
-          <Objective>KillMob</Objective>
+          <Objective>KillMobUseItem</Objective>
+          <InternalIndex>1</InternalIndex>
           <InternalQuestId>9361</InternalQuestId>
+          <Count>8</Count>
           <Entry>
             <int>16863</int>
           </Entry>
-          <CollectItemId>23270</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-1006.468</X>
@@ -1692,19 +1692,10 @@
               <Z>25.84659</Z>
             </Point>
           </Hotspots>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.ItemsManager.GetItemCount(23270) &gt;= 8 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9361) || nManager.Wow.Helpers.Quest.GetQuestCompleted(9361);</ScriptConditionIsComplete>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>9361</InternalQuestId>
-          <Count>8</Count>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>23268</UseItemId>
-          <WaitMs>2300</WaitMs>
-          <Range>3</Range>
+          <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>

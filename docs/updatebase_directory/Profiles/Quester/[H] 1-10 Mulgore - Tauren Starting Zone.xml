@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<QuesterProfile Author="Zwox" DevelopmentStatus="Untested">
+<QuesterProfile Author="Zwox" ExtraCredits="Arasal" DevelopmentStatus="Untested">
+  <Questers />
   <Quests>
     <Quest>
       <Name>The First Step</Name>
@@ -692,16 +693,7 @@
       </NeedQuestCompletedId>
       <PickUp>40809</PickUp>
       <TurnIn>8359</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>55000</WaitMs>
-          <TaxiEntry>40809</TaxiEntry>
-          <FlightDestinationX>0.44947782158852</FlightDestinationX>
-          <FlightDestinationY>0.43848767876625</FlightDestinationY>
-        </QuestObjective>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Tal the Wind Rider Master</Name>
@@ -729,16 +721,7 @@
       </NeedQuestCompletedId>
       <PickUp>2995</PickUp>
       <TurnIn>3079</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>55000</WaitMs>
-          <TaxiEntry>2995</TaxiEntry>
-          <FlightDestinationX>0.46627235412598</FlightDestinationX>
-          <FlightDestinationY>0.39319884777069</FlightDestinationY>
-        </QuestObjective>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Mazzranache</Name>
@@ -1214,14 +1197,6 @@
       <TurnIn>36648</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>55000</WaitMs>
-          <TaxiEntry>40809</TaxiEntry>
-          <FlightDestinationX>0.44947782158852</FlightDestinationX>
-          <FlightDestinationY>0.43848767876625</FlightDestinationY>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>36648</NpcEntry>
@@ -1243,14 +1218,6 @@
       <PickUp>207323</PickUp>
       <TurnIn>3337</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>UseFlightPath</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>270000</WaitMs>
-          <TaxiEntry>2995</TaxiEntry>
-          <FlightDestinationX>0.64653903245926</FlightDestinationX>
-          <FlightDestinationY>0.49876403808594</FlightDestinationY>
-        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>

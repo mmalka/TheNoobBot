@@ -45,9 +45,14 @@ if(questObjective.IgnoreItemNotUsable)
     nManagerSetting.CurrentSetting.UseGroundMount = false;
 }
 
-if (questObjective.IgnoreFight)
+if(questObjective.IgnoreFight)
     nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;    
-    
+
+if(ObjectManager.Pet.IsValid && ObjectManager.Pet.IsAlive && questObjective.DismissPet)
+{
+	Spell Dismiss = new Spell("Dismiss Pet");
+	Dismiss.Cast();
+}
 Thread.Sleep(200);
 if (unit.IsValid)
 {
@@ -73,6 +78,7 @@ if (unit.IsValid)
 }
 else
 {
+
     MovementManager.Go(new List<Point> { reference, questObjective.Hotspots[questObjective.CollectCount] });
 
     while (MovementManager.InMovement)
