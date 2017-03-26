@@ -2035,7 +2035,7 @@ namespace Quester.Profile
             this.ButtonObjHotSpotsPlayerPosRelative.Name = "ButtonObjHotSpotsPlayerPosRelative";
             this.ButtonObjHotSpotsPlayerPosRelative.Size = new System.Drawing.Size(61, 36);
             this.ButtonObjHotSpotsPlayerPosRelative.TabIndex = 102;
-            this.ButtonObjHotSpotsPlayerPosRelative.Text = "Add HS PosAbs";
+            this.ButtonObjHotSpotsPlayerPosRelative.Text = "Add HS Me.PosAbs";
             this.ButtonObjHotSpotsPlayerPosRelative.UseVisualStyleBackColor = true;
             this.ButtonObjHotSpotsPlayerPosRelative.Click += new System.EventHandler(this.ButtonObjHotSpotsPlayerPosRelative_Click);
             // 

@@ -21,6 +21,7 @@ using Math = System.Math;
 using Point = nManager.Wow.Class.Point;
 using Quester.Profile;
 using Quest = Quester.Profile.Quest;
+using Objective = Quester.Profile.Objective;
 
 namespace Quester.Profile
 {
@@ -2640,17 +2641,40 @@ namespace Quester.Profile
             try
             {
                 Memory.WowMemory.GameFrameLock();
-                foreach (TreeNode tr in _questParentNode.Nodes)
-                {
-                    if ((string) tr.Tag == "Quest")
-                    {
-                        int questId = _profile.Quests[_questParentNode.Nodes.IndexOf(tr)].Id;
+                int questId = 0;
 
-                        if (tr.BackColor == Color.Green)
+                foreach (TreeNode qtr in _questParentNode.Nodes)
+                {
+                    Application.DoEvents();
+
+                    if ((string) qtr.Tag == "Quest")
+                    {
+                        questId = _profile.Quests[_questParentNode.Nodes.IndexOf(qtr)].Id;
+
+                        if (qtr.BackColor == Color.Green)
                             continue;
-                        tr.BackColor = nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId)
-                            ? Color.Green
-                            : Color.Red;
+                        qtr.BackColor = nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId) ? Color.Green : nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(questId) ? Color.Yellow : Color.Red;
+
+                        foreach (TreeNode otr in qtr.Nodes)
+                        {
+                            if ((string) otr.Tag == "Objective")
+                            {
+                                QuestObjective qoTemp = _profile.Quests[_questParentNode.Nodes.IndexOf(qtr)].Objectives[qtr.Nodes.IndexOf(otr)];
+
+                                if (otr.BackColor == Color.Green)
+                                    continue;
+
+                                questId = (qoTemp.Objective == Objective.PickUpQuest || qoTemp.Objective == Objective.TurnInQuest) ? qoTemp.QuestId : qoTemp.InternalQuestId;
+
+                                if (questId > 0)
+                                {
+                                    otr.BackColor = nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId)
+                                        ? Color.Green
+                                        : nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(questId) ? Color.Yellow : Color.Red;
+                                }
+                            }
+                            questId = 0;
+                        }
                     }
                 }
             }
@@ -3086,6 +3110,7 @@ namespace Quester.Profile
                 nManager.Wow.Helpers.Quest.DumpInternalIndexForQuestId(questId);
             }
         }
+
         #endregion
     }
 
