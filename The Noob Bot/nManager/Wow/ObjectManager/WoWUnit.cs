@@ -2577,8 +2577,8 @@ namespace nManager.Wow.ObjectManager
 
                 if (levelAboveUnit <= 0)
                     return false;
-                if (levelAboveUnit <= 2 && UnitClassification == UnitClassification.Elite)
-                    return false;
+                if (levelAboveUnit <= 2 && IsElite)
+                    return false; // We only have 2 more level and it's an elite => still a hell of a fight.
                 if (levelAboveUnit > 3 && UnitClassification == UnitClassification.Trivial)
                     return true;
                 if (levelAboveUnit < 5)
