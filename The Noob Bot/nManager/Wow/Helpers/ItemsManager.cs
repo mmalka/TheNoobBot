@@ -388,6 +388,26 @@ namespace nManager.Wow.Helpers
             return reagentsItems;
         }
 
+        public static List<WoWItem> GetAllFoodItems()
+        {
+            List<WoWItem> reagentsItems = new List<WoWItem>();
+            var listItems = ObjectManager.ObjectManager.GetObjectWoWItem();
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                foreach (var item in listItems)
+                {
+                    if (item.GetItemInfo.ItemType == "Consumable" && item.GetItemInfo.ItemSubType == "Food & Drink" && !reagentsItems.Contains(item) && !item.Name.Contains("\""))
+                        reagentsItems.Add(item);
+                }
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
+            return reagentsItems;
+        }
+
         public static List<string> GetAllQuestsItems()
         {
             List<string> questsItems = new List<string>();

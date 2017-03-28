@@ -481,6 +481,11 @@ namespace nManager.Wow.Bot.Tasks
             get { return DismountTimer.IsReady; }
         }
 
+        public static bool CanUseSpeedModifiers
+        {
+            get { return true; } // todo: code that.
+        }
+
         public static void DismountMount(bool stopMove = true)
         {
             try
