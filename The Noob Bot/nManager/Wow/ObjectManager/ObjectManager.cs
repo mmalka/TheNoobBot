@@ -252,7 +252,12 @@ namespace nManager.Wow.ObjectManager
                             WoWObject obj = null;
                             // Add the object based on it's *actual* type. Note: WoW's Object descriptors for OBJECT_FIELD_TYPE
                             // is a bitmask. We want to use the type at 0x14, as it's an 'absolute' type.
-
+                            if (localPlayerGuid == objGuid)
+                            {
+                                // wowplayer either not part of the list or bugged
+                                Me.UpdateBaseAddress((uint)currentObject);
+                                obj = new WoWPlayer((uint)currentObject);
+                            }
                             switch (objType)
                             {
                                     // Belive it or not, the base Object class is hardly used in WoW.
@@ -270,10 +275,6 @@ namespace nManager.Wow.ObjectManager
                                     break;
                                 case WoWObjectType.Player:
                                     // Keep the static reference to the local player updated... at all times.
-                                    if (localPlayerGuid == objGuid)
-                                    {
-                                        Me.UpdateBaseAddress((uint) currentObject);
-                                    }
                                     obj = new WoWPlayer((uint) currentObject);
                                     break;
                                 case WoWObjectType.GameObject:
