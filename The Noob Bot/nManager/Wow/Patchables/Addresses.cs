@@ -263,7 +263,7 @@
             WoWTextCaller = 0x0741207, // WoWCallingMule, "call edx, rt" address.
             CTMChecker = 0x34179A,
             CTMChecker2 = 0x550F49,
-            RetFromFunctionBelow = 0x1A59FF,
+            RetFromFunctionBelow = 0x1A5DB6,
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = 0xD88F40, // Script_IsStereoVideoAvailable

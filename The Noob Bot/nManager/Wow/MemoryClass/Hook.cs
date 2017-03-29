@@ -86,11 +86,11 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("pushad");
             fasm.AddLine("pushfd");
 
-            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            /*fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
             fasm.AddLine("mov eax, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff1 + "]");
             fasm.AddLine("mov esi, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "]");
             fasm.AddLine("mov [" + _mSavedAntiban + "], esi");
-            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], eax");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], eax");*/
 
             fasm.AddLine("mov eax, [{0}]", _mLocked);
             fasm.AddLine("@execution:");
@@ -119,9 +119,9 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("push 0");
             fasm.AddLine("add esp, 4");
 
-            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            /*fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
             fasm.AddLine("mov esi, [" + _mSavedAntiban + "]");
-            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], esi");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], esi");*/
 
             fasm.AddLine("popfd");
             fasm.AddLine("popad");
