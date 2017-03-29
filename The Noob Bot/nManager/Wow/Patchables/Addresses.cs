@@ -113,7 +113,7 @@
         {
             petGUID = 0xFB2168, // petGUIDFOUND
             playerName = 0x1020580, // GetPlayerName 
-            RetrieveCorpseWindow = 0xF3ED8C, // RetrieveCorpseWindowFOUND
+            RetrieveCorpseWindow = 0xF3ED90, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
             SkillValue = 0x200,
             SkillMaxValue = 0x400,
@@ -140,10 +140,11 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_FIELD_X = 0xAF8, // found with a ugly while
+            UNIT_FIELD_X = 0xAD8, // found with a ugly while
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
+            UNIT_VELOCITY = 0x8C,
             CastingSpellID = 0x104C, // Script_UnitCastingInfo
             CastingSpellStartTime = 0x1078,
             CastingSpellEndTime = 0x107C,
@@ -157,7 +158,7 @@
             CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
             CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
 
-            TransportGUID = 0xAE8, // ?// CGUnit_C__HasVehicleTransport // ?? ?? findable with while inside an elevator
+            TransportGUID = 0xAC8, // ?// CGUnit_C__HasVehicleTransport // ?? ?? findable with while inside an elevator
             DBCacheRow = 0xC68, // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
             CachedName = 0x80, // end of CGUnit_C::GetCreatureRank

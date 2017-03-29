@@ -106,7 +106,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return (WoWObjectType) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.ObjectManager.objectTYPE);
+                    return (WoWObjectType) Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint) Addresses.ObjectManager.objectTYPE);
                 }
                 catch (Exception e)
                 {

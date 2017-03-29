@@ -247,7 +247,7 @@ namespace nManager.Wow.ObjectManager
                         UInt128 objGuid = Memory.WowMemory.Memory.ReadUInt128((uint) currentObject + (uint) Addresses.ObjectManager.objectGUID);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
-                            var objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + (uint) Addresses.ObjectManager.objectTYPE);
+                            var objType = (WoWObjectType) Memory.WowMemory.Memory.ReadByte((uint) currentObject + (uint) Addresses.ObjectManager.objectTYPE);
 
                             WoWObject obj = null;
                             // Add the object based on it's *actual* type. Note: WoW's Object descriptors for OBJECT_FIELD_TYPE
