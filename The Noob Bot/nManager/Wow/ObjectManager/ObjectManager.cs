@@ -615,7 +615,7 @@ namespace nManager.Wow.ObjectManager
                         continue;
                     if (!ignorenotSelectable && a.NotSelectable)
                         continue;
-                    if (a.IsTapped && (!a.IsTapped || !a.IsTappedByMe))
+                    if (a.IsTapped)
                         continue;
                     if (a.PlayerControlled && !allowPlayerControlled)
                         continue;

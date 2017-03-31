@@ -204,7 +204,7 @@ namespace nManager.Wow.Bot.States
             else if (_unit.IsDead)
             {
                 Statistics.Kills++;
-                if (Products.Products.ProductName == "Quester" && (!_unit.IsTapped || (_unit.IsTapped && _unit.IsTappedByMe)))
+                if (Products.Products.ProductName == "Quester" && !_unit.IsTapped)
                     Quest.KilledMobsToCount.Add(_unit.Entry); // we may update a quest requiring killing this unit
 
                 if (ObjectManager.ObjectManager.GetNumberAttackPlayer() <= 0)

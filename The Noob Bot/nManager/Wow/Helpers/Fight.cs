@@ -155,7 +155,7 @@ namespace nManager.Wow.Helpers
                         return 0;
 
                     // Cancel fight if the mob was tapped by another player
-                    if (targetNpc.IsTapped && !targetNpc.IsTappedByMe)
+                    if (targetNpc.IsTapped)
                         return 0;
 
                     // Target Pos Verif

@@ -70,7 +70,7 @@ namespace nManager.Wow.Bot.States
                     // Note: This code handle Grinder's "target selection".
                 }
 
-                if (_unit.IsTapped && !_unit.IsTappedByMe)
+                if (_unit.IsTapped)
                     return false;
                 if (!nManagerSetting.IsBlackListedZone(_unit.Position) &&
                     _unit.GetDistance < nManagerSetting.CurrentSetting.GatheringSearchRadius &&

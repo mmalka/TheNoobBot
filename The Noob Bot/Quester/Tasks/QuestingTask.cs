@@ -462,7 +462,7 @@ namespace Quester.Tasks
                     {
                         // allow to target non blacklisted corpse.
                         wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, true), false, false, questObjective.AllowPlayerControlled);
-                        if (!wowUnit.IsTappedByMe)
+                        if (wowUnit.IsTapped)
                             wowUnit = new WoWUnit(0);
                     }
                 }
@@ -531,7 +531,7 @@ namespace Quester.Tasks
                     if (wowUnit.IsDead)
                     {
                         Statistics.Kills++;
-                        if (questObjective.Objective == Objective.KillMob && (!wowUnit.IsTapped || (wowUnit.IsTapped && wowUnit.IsTappedByMe)))
+                        if (questObjective.Objective == Objective.KillMob && !wowUnit.IsTapped)
                         {
                             questObjective.CurrentCount++;
                         }
@@ -544,7 +544,7 @@ namespace Quester.Tasks
                         Fight.StopFight();
                         if (questObjective.Objective == Objective.KillMobUseItem)
                         {
-                            if (wowUnit.IsTapped && (!wowUnit.IsTapped || !wowUnit.IsTappedByMe))
+                            if (wowUnit.IsTapped)
                                 return;
                             questObjective.CurrentCount++;
                             if (wowUnit.GetDistance > questObjective.Range)
