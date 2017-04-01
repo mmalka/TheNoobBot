@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 23420
+    ///   Offset and Pointer for Wow 23857
     /// </summary>
     public static class Addresses
     {
@@ -83,15 +83,15 @@
         /// </summary>
         public enum GameInfo
         {
-            GetTime = 0xD75CC0, //FrameTime::GetCurTimeMs
+            GetTime = 0xD75CC0, //FrameTime__GetCurTimeMs
             buildWoWVersionString = 0xDCAAC0, // buildWoWVersionStringFOUND
-            gameState = 0xF3DE92, // Script_IsPlayerInWorld
+            gameState = 0xF3DE96, // Script_IsPlayerInWorld
             isLoading = 0xD690F0, //isLoadingFOUND
             AreaId = 0xCF6FE8, // AreaIdFOUND - AreaIdFOUNDCall // to review changes
             SubAreaId = AreaId + 4, // AreaId + 4 bytes
             MapTextureId = 0xCFFFA8, //MapTextureIdFOUND
-            zoneMap = 0xF3E0B4, // Script_GetZoneText
-            subZoneMap = 0xF3E0BC, // Script_GetSubZoneText 
+            zoneMap = 0xF3E0B8, // Script_GetZoneText
+            subZoneMap = 0xF3E0C0, // Script_GetSubZoneText 
 
             // saving
             TextBoxActivated = 0xBBE9AC, // ?// 18414
@@ -113,7 +113,7 @@
         {
             petGUID = 0xFB2138, // petGUIDFOUND
             playerName = 0x1020550, // GetPlayerName 
-            RetrieveCorpseWindow = 0xF3ED60, // RetrieveCorpseWindowFOUND
+            RetrieveCorpseWindow = 0xF3ED64, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
             SkillValue = 0x200,
             SkillMaxValue = 0x400,
@@ -128,7 +128,7 @@
         /// </summary>
         public enum EventsListener
         {
-            EventsCount = 0xD75FD0, // EventSystem2
+            EventsCount = 0xFB0E54, // EventSystem2
             BaseEvents = EventsCount + 0x4,
             EventOffsetName = 0x18,
             EventOffsetCount = 0x48,
@@ -233,7 +233,7 @@
             chatBufferStart = 0xF3F660,
             NextMessage = 0x17E8,
             msgFormatedChat = 0x65,
-            chatBufferPos = 0xF990C0,
+            chatBufferPos = 0xFF990C0,
         }
 
         /// <summary>
@@ -260,10 +260,10 @@
         /// </summary>
         public enum FunctionWow
         {
-            WoWTextCaller = 0x07415A7, // WoWCallingMule, "call edx, rt" address.
-            CTMChecker = 0x341EE9,
-            CTMChecker2 = 0x551049,
-            RetFromFunctionBelow = 0x1A5E88,
+            WoWTextCaller = 0x07415E7, // WoWCallingMule, "call edx, rt" address.
+            CTMChecker = 0x341FB9,
+            CTMChecker2 = 0x550B85,
+            RetFromFunctionBelow = 0x1A5DE3,
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = 0xD88F20, // Script_IsStereoVideoAvailable
@@ -271,15 +271,15 @@
             SpellCheckerOff2 = 0xE48,
             SpellFixer = 0x10E2C3, // ???
             // E38EF0 vs EC3450
-            ClntObjMgrGetActivePlayerObj = 0x8DD24,
-            FrameScript_ExecuteBuffer = 0xB2E9E,
-            CGPlayer_C__ClickToMove = 0x32FEC0, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x32A65C,
-            WowClientDB2__GetRowPointer = 0x21AB1B,
-            CGWorldFrame__Intersect = 0x64358C,
-            Spell_C_HandleTerrainClick = 0x2DC0B3,
+            ClntObjMgrGetActivePlayerObj = 0x8DD5A,
+            FrameScript_ExecuteBuffer = 0xB2E28,
+            CGPlayer_C__ClickToMove = 0x32FE34, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x32A5C0,
+            WowClientDB2__GetRowPointer = 0x21AA3F,
+            CGWorldFrame__Intersect = 0x6434BF,
+            Spell_C_HandleTerrainClick = 0x2DBE18,
             CGUnit_C__Interact = 0x5341D,
-            strlen = 0x7BA800, // ida _strlen
+            strlen = 0x7BA7C0, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
@@ -320,10 +320,10 @@
         /// </summary>
         public enum ActivateSettings
         {
-            AutoInteract_Activate_Pointer = 0xF3DEB8, // CGUnit_C__CanAutoInteract
-            AutoDismount_Activate_Pointer = 0xF3DEC0, // Cvars+b7
-            AutoLoot_Activate_Pointer = 0xF3DED8, // CGGameUI__IsAutoLooting
-            AutoSelfCast_Activate_Pointer = 0xF3DEE4, // Cvars+2A8
+            AutoInteract_Activate_Pointer = 0xF3DEBC, // CGUnit_C__CanAutoInteract
+            AutoDismount_Activate_Pointer = 0xF3DEC4, // Cvars+b7
+            AutoLoot_Activate_Pointer = 0xF3DEDC, // CGGameUI__IsAutoLooting
+            AutoSelfCast_Activate_Pointer = 0xF3DEE8, // Cvars+2A8
             Activate_Offset = 0x34,
         }
 
