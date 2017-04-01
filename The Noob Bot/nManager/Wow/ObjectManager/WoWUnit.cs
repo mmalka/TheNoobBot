@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -2355,6 +2356,14 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+                    /*for (int i = 0; i < 3000; i++)
+                    {
+                        if (ObjectManager.GetWoWGameObjectByEntry(181689)[0].Guid == Memory.WowMemory.Memory.ReadUInt128(GetBaseAddress + (uint)i))
+                        {
+                            Logging.Write("found at i " + i.ToString("X"));
+                        }
+                        Thread.Sleep(1);
+                    }*/
                     return Memory.WowMemory.Memory.ReadUInt128(GetBaseAddress + (uint) Addresses.UnitField.TransportGUID);
                 }
                 catch (Exception e)

@@ -99,6 +99,7 @@ namespace nManager.Wow.Enums
         Lootable = 0x4,
         TrackUnit = 0x8,
         Tapped = 0x10,
+        TappedByMe = 0x20,
         SpecialInfo = 0x20, // Unknown Flag.
         Dead = 0x40,
         ReferAFriendLinked = 0x80,
