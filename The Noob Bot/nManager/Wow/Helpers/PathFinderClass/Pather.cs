@@ -653,7 +653,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             lock (_threadLocker)
             {
                 List<Point> path = FindPathSimple(startVec, endVec, out resultSuccess, out failpolyref);
-                if (path.Count < 2)
+                if (path == null ||path.Count < 2)
                 {
                     resultSuccess = false;
                     return new List<Point>();
@@ -667,7 +667,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     int limit = (int) (path.Count*0.80f);
                     List<Point> path2;
                     path2 = FindPathSimple(path[limit], endVec, out resultSuccess, out failpolyref);
-
+                    if (path2 == null)
+                    {
+                        resultSuccess = false;
+                        return new List<Point>();
+                    }
                     ndiff = (endVec - path2[path2.Count - 1]).Magnitude;
                     if (ndiff < diff)
                     {
