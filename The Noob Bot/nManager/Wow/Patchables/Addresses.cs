@@ -128,7 +128,7 @@
         /// </summary>
         public enum EventsListener
         {
-            EventsCount = 0xFB0E54, // EventSystem2
+            EventsCount = 0xD75FD0, // EventSystem
             BaseEvents = EventsCount + 0x4,
             EventOffsetName = 0x18,
             EventOffsetCount = 0x48,
@@ -350,7 +350,7 @@
         {
             AuraTable1 = 0x1190,
             AuraTable2 = 0x880,
-            AuraSize = 0x80, // size 0x58 + 0x24 + 0x4 beginning
+            AuraSize = 0x88, // useful size 0x58 § v2 = 136 * a2;
 
             AuraStructCreatorGuid = 0x48, // read 16 bytes (GUID)
             AuraStructSpellId = AuraStructCreatorGuid + 16, // read 4 bytes (UINT)
