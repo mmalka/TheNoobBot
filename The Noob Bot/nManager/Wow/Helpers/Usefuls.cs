@@ -1033,7 +1033,7 @@ namespace nManager.Wow.Helpers
 
             // The below code use LUA to get a key that is not binded in World of Warcraft.
             // It will then press it and let WoW handle the "LastHardwareAction + UpdatePlayerAFK" task at once.
-            if (String.IsNullOrEmpty(AfkKeyPress))
+            if (String.IsNullOrEmpty(AfkKeyPress) || AfkKeyPress == "B")
             {
                 Thread.Sleep(10);
                 AfkKeyPress = Keybindings.GetAFreeKey(true);
