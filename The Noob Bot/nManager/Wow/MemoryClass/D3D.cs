@@ -78,6 +78,7 @@ namespace nManager.Wow.MemoryClass
         }
 
         public static byte[] OriginalBytes { get; set; }
+        public static byte[] OriginalBytesDX { get; set; }
 
         //public static string[] OriginalOpcode = new[] { "mov edi,edi", "push ebp", "mov ebp,esp" };
     }

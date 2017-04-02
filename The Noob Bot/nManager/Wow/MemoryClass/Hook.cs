@@ -8,6 +8,7 @@ using Fasm;
 using nManager.Helpful;
 using nManager.Wow.MemoryClass.Magic;
 using nManager.Wow.Patchables;
+using SlimDX.Direct3D11;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.MemoryClass
@@ -25,6 +26,7 @@ namespace nManager.Wow.MemoryClass
         private readonly BlackMagic _memory = new BlackMagic();
         public bool AllowReHook = false;
         internal uint JumpAddress;
+        internal uint JumpAddressDX;
 
         /// <summary>
         ///     Thread Hooked
@@ -32,11 +34,14 @@ namespace nManager.Wow.MemoryClass
         public bool ThreadHooked;
 
         private uint _mExecuteRequested;
+        private uint _mExecuteRequestedDX;
         private uint _mInjectionCode;
         private uint _mSavedAntiban;
         private uint _mLocked;
+        private uint _mLockedDX;
         private uint _mResult;
         private uint _mTrampoline;
+        private uint _mTrampolineDX;
         private byte[] _mZeroBytesInjectionCodes;
 
         /// <summary>
@@ -73,6 +78,58 @@ namespace nManager.Wow.MemoryClass
             }
         }
 
+        private void CreateTrampolineDX()
+        {
+            _mTrampolineDX = Memory.AllocateMemory(0x1000);
+
+            Console.WriteLine("m_trampoline : " + _mTrampolineDX.ToString("X"));
+
+            var fasm = new ManagedFasm(Memory.ProcessHandle);
+
+            fasm.SetMemorySize(0x1000);
+            fasm.SetPassLimit(100);
+            fasm.AddLine("pushad");
+            fasm.AddLine("pushfd");
+            fasm.AddLine("mov eax, [{0}]", _mLockedDX);
+            fasm.AddLine("@execution:");
+
+            fasm.AddLine("mov eax, [{0}]", _mExecuteRequestedDX);
+            fasm.AddLine("test eax, eax");
+            fasm.AddLine("je @lockcheck");
+            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            fasm.AddLine("mov eax, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff1 + "]");
+            fasm.AddLine("mov esi, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "]");
+            fasm.AddLine("mov [" + _mSavedAntiban + "], esi");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], eax");
+            fasm.AddLine("call {0}", _mInjectionCode);
+            fasm.AddLine("mov [" + _mResult + "], eax");
+            fasm.AddLine("mov edx, {0}", (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker));
+            fasm.AddLine("call " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.WoWTextCaller));
+            fasm.AddLine("push happilyeverafter");
+            fasm.AddLine("push " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.RetFromFunctionBelow));
+            fasm.AddLine("jmp " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker2));
+            fasm.AddLine("happilyeverafter:");
+            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            fasm.AddLine("mov esi, [" + _mSavedAntiban + "]");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], esi");
+            fasm.AddLine("xor eax, eax");
+            fasm.AddLine("mov [" + _mExecuteRequestedDX + "], eax");
+
+            fasm.AddLine("@lockcheck:");
+
+            fasm.AddLine("mov eax, [{0}]", _mLockedDX);
+            fasm.AddLine("test eax, eax");
+            fasm.AddLine("jne @execution");
+            fasm.AddLine("push 0");
+            fasm.AddLine("add esp, 4");
+            fasm.AddLine("popfd");
+            fasm.AddLine("popad");
+
+            Memory.WriteBytes(_mTrampolineDX, D3D.OriginalBytesDX);
+            fasm.AddLine("jmp " + (JumpAddressDX + D3D.OriginalBytesDX.Length));
+            fasm.Inject((uint) (_mTrampolineDX + D3D.OriginalBytesDX.Length));
+        }
+
         private void CreateTrampoline()
         {
             _mTrampoline = Memory.AllocateMemory(0x1000);
@@ -83,14 +140,9 @@ namespace nManager.Wow.MemoryClass
 
             fasm.SetMemorySize(0x1000);
             fasm.SetPassLimit(100);
+            fasm.AddLine("call {0}", Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ReturnFunc);
             fasm.AddLine("pushad");
             fasm.AddLine("pushfd");
-
-            /*fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
-            fasm.AddLine("mov eax, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff1 + "]");
-            fasm.AddLine("mov esi, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "]");
-            fasm.AddLine("mov [" + _mSavedAntiban + "], esi");
-            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], eax");*/
 
             fasm.AddLine("mov eax, [{0}]", _mLocked);
             fasm.AddLine("@execution:");
@@ -110,25 +162,11 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("test eax, eax");
             fasm.AddLine("jne @execution");
 
-            fasm.AddLine("mov edx, {0}", (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker));
-            fasm.AddLine("call " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.WoWTextCaller));
-            fasm.AddLine("push happilyeverafter");
-            fasm.AddLine("push " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.RetFromFunctionBelow));
-            fasm.AddLine("jmp " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker2));
-            fasm.AddLine("happilyeverafter:");
-            fasm.AddLine("push 0");
-            fasm.AddLine("add esp, 4");
-
-            /*fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
-            fasm.AddLine("mov esi, [" + _mSavedAntiban + "]");
-            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], esi");*/
-
             fasm.AddLine("popfd");
             fasm.AddLine("popad");
 
             fasm.AddLine("jmp " + (JumpAddress + D3D.OriginalBytes.Length));
-            Memory.WriteBytes(_mTrampoline, D3D.OriginalBytes);
-            fasm.Inject(_mTrampoline + (uint) D3D.OriginalBytes.Length);
+            fasm.Inject(_mTrampoline);
         }
 
         public uint InjectAndExecute(string[] asm)
@@ -183,6 +221,22 @@ namespace nManager.Wow.MemoryClass
                 myStack = myStack.Substring(0, myStack.Length - 4);
                 return myStack;
             }
+        }
+
+        public void ApplyDX()
+        {
+            var fasm = new ManagedFasm(Memory.ProcessHandle);
+
+            fasm.SetMemorySize(0x1000);
+            fasm.SetPassLimit(100);
+
+            fasm.AddLine("jmp " + _mTrampolineDX);
+            if (D3D.OriginalBytesDX.Length > 5)
+                fasm.AddLine("nop");
+            if (D3D.OriginalBytesDX.Length > 6)
+                fasm.AddLine("nop");
+
+            fasm.Inject(JumpAddressDX);
         }
 
         public void Apply()
@@ -290,8 +344,9 @@ namespace nManager.Wow.MemoryClass
 
                         // Get address of EndScene
                         JumpAddress = GetJumpAdresse();
+                        JumpAddressDX = GetJumpAdresseDX();
 
-                        if (Memory.ReadByte(JumpAddress) == 0xE9)
+                        if (Memory.ReadByte(JumpAddress) == 0xE9 || Memory.ReadByte(JumpAddressDX) == 0xE9)
                         {
                             DisposeHooking();
                         }
@@ -312,16 +367,19 @@ namespace nManager.Wow.MemoryClass
                                 Logging.WriteFileOnly("Hooking Informations: " + bytes);
 
                                 D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5); // WinXP - Win7, with standards graphic drivers.
-                                if (D3D.OriginalBytes[0] == 0x55)
-                                    D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 6); // WinXP - Win7, with specific graphic drivers.
-                                else if (D3D.OriginalBytes[0] == 0x6A)
-                                    D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
+                                D3D.OriginalBytesDX = Memory.ReadBytes(JumpAddressDX, 5); // WinXP - Win7, with standards graphic drivers.
+                                if (D3D.OriginalBytesDX[0] == 0x55)
+                                    D3D.OriginalBytesDX = Memory.ReadBytes(JumpAddressDX, 6); // WinXP - Win7, with specific graphic drivers.
+                                else if (D3D.OriginalBytesDX[0] == 0x6A)
+                                    D3D.OriginalBytesDX = Memory.ReadBytes(JumpAddressDX, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
                             }
                             //_mLockRequested = Memory.AllocateMemory(0x4);
                             _mLocked = Memory.AllocateMemory(0x4);
+                            _mLockedDX = Memory.AllocateMemory(0x4);
                             _mResult = Memory.AllocateMemory(0x4);
                             _mSavedAntiban = Memory.AllocateMemory(0x4);
                             _mExecuteRequested = Memory.AllocateMemory(0x4);
+                            _mExecuteRequestedDX = Memory.AllocateMemory(0x4);
 
                             _mZeroBytesInjectionCodes = new byte[0x1000];
                             for (int i = 0; i < 0x1000; i++)
@@ -331,7 +389,9 @@ namespace nManager.Wow.MemoryClass
 
                             _mInjectionCode = Memory.AllocateMemory(_mZeroBytesInjectionCodes.Length);
                             CreateTrampoline();
+                            CreateTrampolineDX();
                             Apply();
+                            ApplyDX();
                         }
                         catch (Exception e)
                         {
@@ -367,6 +427,19 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
+                return Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.GetTargetInfo;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetJumpAdresse(): " + e);
+            }
+            return 0;
+        }
+
+        private uint GetJumpAdresseDX()
+        {
+            try
+            {
                 if (D3D.IsD3D11(Memory.ProcessId))
                     return D3D.D3D11Adresse();
                 return D3D.D3D9Adresse(Memory.ProcessId);
@@ -389,17 +462,18 @@ namespace nManager.Wow.MemoryClass
                     return;
                 // Get address of EndScene:
                 JumpAddress = GetJumpAdresse();
+                JumpAddressDX = GetJumpAdresseDX();
 
                 if (Memory.ReadByte(JumpAddress) == 0xE9)
                 {
                     lock (Locker)
                     {
                         // Restore origine endscene:
-                        if (D3D.OriginalBytes == null)
+                        if (D3D.OriginalBytesDX == null)
                         {
-                            D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
+                            D3D.OriginalBytesDX = Memory.ReadBytes(JumpAddress, 5);
                             byte[] wrongdata = {0, 0, 0, 0, 0};
-                            if (D3D.OriginalBytes == wrongdata)
+                            if (D3D.OriginalBytesDX == wrongdata)
                             {
                                 Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
                                 Logging.Write("An error is detected, you must switch the DirectX version used by your WoW client !");
@@ -410,13 +484,13 @@ namespace nManager.Wow.MemoryClass
                             // on the first hooking, we add 0 nop if 5bytes reading, 1nop if 6 bytes, 2nop if 7 bytes,
                             // that's why we need to read 9 here to be able to detect the 7bytes hooking.
                             // nop = 144, if there is no nop, that mean we are in a normal 5bytes mode.
-                            byte[] getBytes = Memory.ReadBytes(JumpAddress, 9);
+                            byte[] getBytes = Memory.ReadBytes(JumpAddressDX, 9);
                             if (getBytes[5] != 144 && getBytes[6] != 144)
-                                D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236}; // WinXP/WinVista/Win7
+                                D3D.OriginalBytesDX = new byte[] {139, 255, 85, 139, 236}; // WinXP/WinVista/Win7
                             else if (getBytes[5] == 144 && getBytes[6] != 144)
-                                D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8}; // Some graphic drivers
+                                D3D.OriginalBytesDX = new byte[] {85, 139, 236, 139, 69, 8}; // Some graphic drivers
                             else if (getBytes[5] == 144 && getBytes[6] == 144)
-                                D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115}; // Win8
+                                D3D.OriginalBytesDX = new byte[] {106, 20, 184, 12, 154, 68, 115}; // Win8
                                 // the 2 lasts bytes of the Win8 way seems to be differents on differents computers.
                             else
                             {
@@ -436,7 +510,9 @@ namespace nManager.Wow.MemoryClass
                                 Pulsator.Dispose(true);
                             }
                         }
+                        D3D.OriginalBytes = new byte[] {0xE8, 0x71, 0xCF, 0x0D, 0x00};
                         Remove(JumpAddress, D3D.OriginalBytes);
+                        Remove(JumpAddressDX, D3D.OriginalBytesDX);
                     }
                 }
             }

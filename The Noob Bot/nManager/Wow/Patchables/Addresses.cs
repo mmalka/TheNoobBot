@@ -162,8 +162,8 @@
             DBCacheRow = 0xC68, // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
             CachedName = 0x80, // end of CGUnit_C::GetCreatureRank
-            CachedTypeFlag = 0x24, 
-            CachedQuestItem1 = 0x3C, 
+            CachedTypeFlag = 0x24,
+            CachedQuestItem1 = 0x3C,
             CachedModelId1 = 0x6C, // 
             CachedUnitClassification = 0x2C, // Script_UnitClassification + 0x3C (CGUnit_C::GetCreatureRank) ??
             CachedIsBoss = 0x60,
@@ -217,7 +217,7 @@
             KnownAllSpells = SpellBookNumSpells - 0x4, // found via SpellBookNumSpells - 4
             SpellBookNumSpells = 0xF9C5DC, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xF9C628 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xF9C628 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0xF9C6D4, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
@@ -260,6 +260,8 @@
         /// </summary>
         public enum FunctionWow
         {
+            GetTargetInfo = 0xAC08E, // our hook address in ida: RenderingMessage
+            ReturnFunc = 0x189004, // the function call of our hook: OnHookFunction
             WoWTextCaller = 0x07415E7, // WoWCallingMule, "call edx, rt" address.
             CTMChecker = 0x341FB9,
             CTMChecker2 = 0x550B85,

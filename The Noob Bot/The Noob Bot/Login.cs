@@ -179,7 +179,6 @@ namespace The_Noob_Bot
                 LoginButton.Enabled = false;
                 RefreshButton.Enabled = false;
                 LoginServer.CheckServerIsOnline();
-                MessageBox.Show(@"Blizzard is currently very active in the Anti-Bot fight and this version of the bot may be detected at that very moment in time.", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
                 while (!LoginServer.IsOnlineserver)
                 {
                     Thread.Sleep(10);
@@ -212,6 +211,8 @@ namespace The_Noob_Bot
                         LoginButton_Click(new object(), new EventArgs());
                     }
                 }
+                else
+                    MessageBox.Show(@"Blizzard is currently very active in the Anti-Bot fight and it may not be wise to use the bot at that very moment in time.", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
                 /* End AutoStart code */
             }
             catch (Exception ex)
