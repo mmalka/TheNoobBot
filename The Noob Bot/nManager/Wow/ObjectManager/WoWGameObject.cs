@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
@@ -114,9 +115,10 @@ namespace nManager.Wow.ObjectManager
                     }
 
                     CUSTOM */
-                    if (ObjectManager.Me.InTransport && Usefuls.ContinentId != 123456)
+                    if (InTransport && TransportGuid != Guid && Usefuls.ContinentId != 123456)
                     {
-                        var t = new WoWObject(ObjectManager.GetObjectByGuid(ObjectManager.Me.TransportGuid).GetBaseAddress);
+                        // get all gameobject relative to that transport
+                        var t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
                         if (t.Type == WoWObjectType.GameObject)
                         {
                             var o = new WoWGameObject(t.GetBaseAddress);
@@ -135,6 +137,51 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("GameObjectFields > Position: " + e);
                 }
                 return new Point();
+            }
+        }
+
+        public UInt128 TransportGuid
+        {
+            get
+            {
+                try
+                {
+                    /*if (Entry != 164760)
+                        return Memory.WowMemory.Memory.ReadUInt128(GetBaseAddress + (uint)Addresses.GameObject.TransportGUID);
+                    UInt128 myTransport = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(176310)).Guid;
+                    for (int i = 0; i < 3000; i++)
+                    {
+                        UInt128 currGuid = Memory.WowMemory.Memory.ReadUInt128(GetBaseAddress + (uint) i);
+                        if (myTransport - currGuid < 1000)
+                        {
+                            bool match = currGuid == myTransport;
+                            Logging.Write("TransportGUID: " + currGuid + ", i" + i.ToString("x8") + ", 100% match: " + match);
+                        }
+                        Thread.Sleep(1);
+                    }*/
+                    return Memory.WowMemory.Memory.ReadUInt128(GetBaseAddress + (uint) Addresses.GameObject.TransportGUID);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWObject > TransportGuid: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public bool InTransport
+        {
+            get
+            {
+                try
+                {
+                    return (TransportGuid > 0);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWObject > InTransport: " + e);
+                    return false;
+                }
             }
         }
 

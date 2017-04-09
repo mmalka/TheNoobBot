@@ -180,6 +180,7 @@
             GAMEOBJECT_FIELD_R = GAMEOBJECT_FIELD_X + 0x10,
             PackedRotationQuaternion = 0x148, // GetQuaternionOffset => UnpackQuaternion
             TransformationMatrice = 0x270, // GetMatrixOffset  ((this + 0x270), 0x40u) ??
+            TransportGUID = 0x128, // GO TransportGUID
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
             CachedIconName = 0x08,
             CachedCastBarCaption = 0xC,
