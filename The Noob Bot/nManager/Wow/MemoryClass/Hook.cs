@@ -510,8 +510,13 @@ namespace nManager.Wow.MemoryClass
                                 Pulsator.Dispose(true);
                             }
                         }
-                        D3D.OriginalBytes = new byte[] {0xE8, 0x71, 0xCF, 0x0D, 0x00};
-                        Remove(JumpAddress, D3D.OriginalBytes);
+                        //D3D.OriginalBytes = new byte[] {0xE8, 0x71, 0xCF, 0x0D, 0x00};
+                        //Remove(JumpAddress, D3D.OriginalBytes);
+                        var fasm = new ManagedFasm(Memory.ProcessHandle);
+                        fasm.SetMemorySize(0x1000);
+                        fasm.SetPassLimit(100);
+                        fasm.AddLine("call {0}", Wow.Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ReturnFunc);
+                        fasm.Inject(JumpAddress);
                         Remove(JumpAddressDX, D3D.OriginalBytesDX);
                     }
                 }
