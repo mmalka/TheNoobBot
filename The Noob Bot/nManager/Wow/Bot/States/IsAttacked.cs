@@ -152,7 +152,8 @@ namespace nManager.Wow.Bot.States
                     // this should fix bot being attacked from AoE by monster that does not target him.
                 }
 
-                if (!nManagerSetting.CurrentSetting.DontPullMonsters)
+                // Currently disabled until we fix UnitReaction.
+                if (false && !nManagerSetting.CurrentSetting.DontPullMonsters)
                 {
                     if (_strikeFirstThread == null || !_strikeFirstThread.IsAlive)
                     {
