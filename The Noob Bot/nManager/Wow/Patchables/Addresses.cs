@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 23911
+    ///   Offset and Pointer for Wow 23937
     /// </summary>
     public static class Addresses
     {
@@ -44,7 +44,7 @@
 
         public enum Party
         {
-            PartyOffset = 0xF9C89C, // Script_SendChatMessage First offset/4th block
+            PartyOffset = 0xF9C898, // Script_SendChatMessage First offset/4th block
             NumOfPlayers = 0xC8, // Script_GetNumGroupMembers
             NumOfPlayersSuBGroup = 0xCC, // NumOFPlayers+4
             PlayerGuid = 0x10,
@@ -196,8 +196,8 @@
         public enum Battleground
         {
             StatPvp = 0xD00294, // StatPvpFOUND inside first call in Script_InActiveBattlefield
-            PvpExitWindow = 0xFAB4FC, // Script_GetBattlefieldWinner
-            MaxBattlegroundId = 0xFABDF8, // Script_GetMaxBattlefieldID
+            PvpExitWindow = 0xFAB540, // Script_GetBattlefieldWinner
+            MaxBattlegroundId = 0xFAB3C0, // Script_GetMaxBattlefieldID
         }
 
         /// <summary>
@@ -261,12 +261,12 @@
         /// </summary>
         public enum FunctionWow
         {
-            GetTargetInfo = 0xAC5D1, // our hook address in ida: RenderingMessage
-            ReturnFunc = 0x1896B2, // the function call of our hook: OnHookFunction
-            WoWTextCaller = 0x0741AC7, // WoWCallingMule, "call edx, rt" address.
-            CTMChecker = 0x341E65,
-            CTMChecker2 = 0x551B6E,
-            RetFromFunctionBelow = 0x1A60D8,
+            GetTargetInfo = 0xAC516, // our hook address in ida: RenderingMessage
+            ReturnFunc = 0x18941A, // the function call of our hook: OnHookFunction
+            WoWTextCaller = 0x0741C17, // WoWCallingMule, "call edx, rt" address.
+            CTMChecker = 0x342083,
+            CTMChecker2 = 0x5517EA,
+            RetFromFunctionBelow = 0x1A5E2C,
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = Hooking.DX_DEVICE, // IsSpellKnown
@@ -274,15 +274,15 @@
             SpellCheckerOff2 = 0xE64,
             //SpellFixer = 0x10E2C3, // IsSpellKnown
             // E38EF0 vs EC3450
-            ClntObjMgrGetActivePlayerObj = 0x8DDD5,
-            FrameScript_ExecuteBuffer = 0xB3387,
-            CGPlayer_C__ClickToMove = 0x32FE03, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x32A59C,
-            WowClientDB2__GetRowPointer = 0x21AFD7,
-            CGWorldFrame__Intersect = 0x643930,
-            Spell_C_HandleTerrainClick = 0x2DBE08,
+            ClntObjMgrGetActivePlayerObj = 0x8DD9E,
+            FrameScript_ExecuteBuffer = 0xB3296,
+            CGPlayer_C__ClickToMove = 0x330000, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x32A783,
+            WowClientDB2__GetRowPointer = 0x21AB98,
+            CGWorldFrame__Intersect = 0x643AA3,
+            Spell_C_HandleTerrainClick = 0x2DC22D,
             CGUnit_C__Interact = 0x5340E,
-            strlen = 0x7BAD80, // ida _strlen
+            strlen = 0x7BAF20, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
@@ -337,7 +337,7 @@
         {
             QuestGiverStatus = 0xEC, //overlooked with cheat engine with baseaddress of 3 NPCs.
             FlightMasterStatus = 0xF0,
-            QuestId = 0xFD06FC, // Script_GetQuestID
+            QuestId = 0xFD110C, // Script_GetQuestID
             // TODO Retrieve unknown Quests offsets
             /*ActiveQuests = 0x0,
             SelectedQuestId = 0x0,
