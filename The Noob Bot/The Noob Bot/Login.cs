@@ -211,8 +211,8 @@ namespace The_Noob_Bot
                         LoginButton_Click(new object(), new EventArgs());
                     }
                 }
-                else
-                    MessageBox.Show(@"Blizzard is currently very active in the Anti-Bot fight and it may not be wise to use the bot at that very moment in time.", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
+                //else
+                //    MessageBox.Show(@"Blizzard is currently very active in the Anti-Bot fight and it may not be wise to use the bot at that very moment in time.", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
                 /* End AutoStart code */
             }
             catch (Exception ex)
