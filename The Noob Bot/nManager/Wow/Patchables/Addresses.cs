@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 23937
+    ///   Offset and Pointer for Wow 24015
     /// </summary>
     public static class Addresses
     {
@@ -261,12 +261,12 @@
         /// </summary>
         public enum FunctionWow
         {
-            GetTargetInfo = 0xAC516, // our hook address in ida: RenderingMessage
-            ReturnFunc = 0x18941A, // the function call of our hook: OnHookFunction
-            WoWTextCaller = 0x0741C17, // WoWCallingMule, "call edx, rt" address.
-            CTMChecker = 0x342083,
-            CTMChecker2 = 0x5517EA,
-            RetFromFunctionBelow = 0x1A5E2C,
+            GetTargetInfo = 0xAC531, // our hook address in ida: RenderingMessage
+            ReturnFunc = 0x189458, // the function call of our hook: OnHookFunction
+            WoWTextCaller = 0x0741E77, // WoWCallingMule, "call edx, rt" address.
+            CTMChecker = 0x341EE4,
+            CTMChecker2 = 0x551AF4,
+            RetFromFunctionBelow = 0x1A6226,
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = Hooking.DX_DEVICE, // IsSpellKnown
@@ -274,15 +274,15 @@
             SpellCheckerOff2 = 0xE64,
             //SpellFixer = 0x10E2C3, // IsSpellKnown
             // E38EF0 vs EC3450
-            ClntObjMgrGetActivePlayerObj = 0x8DD9E,
+            ClntObjMgrGetActivePlayerObj = 0x8DE09,
             FrameScript_ExecuteBuffer = 0xB3296,
-            CGPlayer_C__ClickToMove = 0x330000, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x32A783,
-            WowClientDB2__GetRowPointer = 0x21AB98,
-            CGWorldFrame__Intersect = 0x643AA3,
-            Spell_C_HandleTerrainClick = 0x2DC22D,
-            CGUnit_C__Interact = 0x5340E,
-            strlen = 0x7BAF20, // ida _strlen
+            CGPlayer_C__ClickToMove = 0x32FDCF, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x32A57E,
+            WowClientDB2__GetRowPointer = 0x21B012,
+            CGWorldFrame__Intersect = 0x643BBD,
+            Spell_C_HandleTerrainClick = 0x2DC05B,
+            CGUnit_C__Interact = 0x5341D,
+            strlen = 0x7BB0C0, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
@@ -337,7 +337,7 @@
         {
             QuestGiverStatus = 0xEC, //overlooked with cheat engine with baseaddress of 3 NPCs.
             FlightMasterStatus = 0xF0,
-            QuestId = 0xFD110C, // Script_GetQuestID
+            QuestId = 0xFD1110, // Script_GetQuestID
             // TODO Retrieve unknown Quests offsets
             /*ActiveQuests = 0x0,
             SelectedQuestId = 0x0,
