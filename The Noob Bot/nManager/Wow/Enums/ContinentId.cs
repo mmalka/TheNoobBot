@@ -62,6 +62,9 @@
         ///<summary>AllianceGunship</summary>
         AllianceGunship = 123456,
 
+        ///<summary>Troll Raid</summary>
+        BrokenIsles = 1220,
+
         None = 9999999,
     }
 }

@@ -28,6 +28,7 @@ namespace nManager.Wow.Bot.Tasks
         private static bool _coldWeather;
         private static bool _flightMasterLicense;
         private static bool _dreaneorFly;
+        private static bool _brokenIslesFly;
         private static Spell _spellAquaMount = new Spell(0);
         private static Spell _spellGroundMount = new Spell(0);
         private static Spell _spellFlyMount = new Spell(0);
@@ -112,7 +113,9 @@ namespace nManager.Wow.Bot.Tasks
                 _coldWeather = coldWeather.KnownSpell;
                 Spell flightMasterLicense = new Spell(90267);
                 _flightMasterLicense = flightMasterLicense.KnownSpell;
-                _dreaneorFly = ObjectManager.ObjectManager.Me.Level >= 90 && Usefuls.IsCompletedAchievement(10018, false); // Draenor Pathfinder (account wide)
+                _dreaneorFly = Usefuls.IsCompletedAchievement(10018, false); // Draenor Pathfinder (account wide)
+
+                _brokenIslesFly = Usefuls.IsCompletedAchievement(11446, false); // Broken Isles Pathfinder, Part Two (account wide)
 
                 _startupCheck = false;
                 SettingsHasChanged = false;
@@ -168,6 +171,9 @@ namespace nManager.Wow.Bot.Tasks
                     Usefuls.IsFlyableArea && !nManagerSetting.CurrentSetting.DeactivateFlyingMount)
                 {
                     ContinentId cont = (ContinentId) Usefuls.ContinentId;
+
+                    if (_brokenIslesFly && cont == ContinentId.BrokenIsles)
+                        return MountCapacity.Fly;
 
                     // We are in Draenor and we have the achievement
                     if (_dreaneorFly && (cont == ContinentId.Draenor || Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) == "TanaanJungle"))
