@@ -96,11 +96,11 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("mov eax, [{0}]", _mExecuteRequestedDX);
             fasm.AddLine("test eax, eax");
             fasm.AddLine("je @lockcheck");
-            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            /*fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
             fasm.AddLine("mov eax, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff1 + "]");
             fasm.AddLine("mov esi, [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "]");
             fasm.AddLine("mov [" + _mSavedAntiban + "], esi");
-            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], eax");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], eax");*/
             fasm.AddLine("call {0}", _mInjectionCode);
             fasm.AddLine("mov [" + _mResult + "], eax");
             fasm.AddLine("mov edx, {0}", (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker));
@@ -109,9 +109,9 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("push " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.RetFromFunctionBelow));
             fasm.AddLine("jmp " + (uint) (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CTMChecker2));
             fasm.AddLine("happilyeverafter:");
-            fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
+            /*fasm.AddLine("mov ebx, [{0}]", (Wow.Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.SpellChecker));
             fasm.AddLine("mov esi, [" + _mSavedAntiban + "]");
-            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], esi");
+            fasm.AddLine("mov [ebx+" + (uint) Addresses.FunctionWow.SpellCheckerOff2 + "], esi");*/
             fasm.AddLine("xor eax, eax");
             fasm.AddLine("mov [" + _mExecuteRequestedDX + "], eax");
 
