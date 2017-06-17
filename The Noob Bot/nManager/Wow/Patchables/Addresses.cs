@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 24330
+    ///   Offset and Pointer for Wow 24367
     /// </summary>
     public static class Addresses
     {
@@ -261,12 +261,12 @@
         /// </summary>
         public enum FunctionWow
         {
-            GetTargetInfo = 0xADF9F, // our hook address in ida: RenderingMessage
-            ReturnFunc = 0x18BE65, // the function call of our hook: OnHookFunction
-            WoWTextCaller = 0x073ECD7, // WoWCallingMule, "call edx, rt" address.
-            CTMChecker = 0x33457A,
-            CTMChecker2 = 0x61D1A2,
-            RetFromFunctionBelow = 0x1A8E55,
+            GetTargetInfo = 0xADCF7, // our hook address in ida: RenderingMessage
+            ReturnFunc = 0x18BFB7, // the function call of our hook: OnHookFunction
+            WoWTextCaller = 0x073EDB7, // WoWCallingMule, "call edx, rt" address.
+            CTMChecker = 0x334523,
+            CTMChecker2 = 0x61D08D,
+            RetFromFunctionBelow = 0x1A8F6C,
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = Hooking.DX_DEVICE, // IsSpellKnown
@@ -274,15 +274,15 @@
             SpellCheckerOff2 = 0xE64,
             //SpellFixer = 0x10E2C3, // IsSpellKnown
             // E38EF0 vs EC3450
-            ClntObjMgrGetActivePlayerObj = 0x8F94E,
-            FrameScript_ExecuteBuffer = 0xB59AC,
-            CGPlayer_C__ClickToMove = 0x322336, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x31C80D,
-            WowClientDB2__GetRowPointer = 0x221065,
-            CGWorldFrame__Intersect = 0x63E455,
-            Spell_C_HandleTerrainClick = 0x2CCF9F,
+            ClntObjMgrGetActivePlayerObj = 0x8F988,
+            FrameScript_ExecuteBuffer = 0xB5708,
+            CGPlayer_C__ClickToMove = 0x32229C, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x31C78C,
+            WowClientDB2__GetRowPointer = 0x2212A7,
+            CGWorldFrame__Intersect = 0x63E1A0,
+            Spell_C_HandleTerrainClick = 0x2CCECB,
             CGUnit_C__Interact = 0x5403E,
-            strlen = 0x7B7EF0, // ida _strlen
+            strlen = 0x7B8030, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
