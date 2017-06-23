@@ -79,7 +79,16 @@ namespace BinDiffTrimmer
             {
                 foreach (string s in lines)
                 {
-                    var trimmed = s.Split(' ').ToList();
+                    var noSpace = s.Replace(" *", "");
+                    noSpace = noSpace.Replace(" &", "");
+                    noSpace = noSpace.Replace(" const", "");
+                    noSpace = noSpace.Replace(" constructor ", "");
+                    noSpace = noSpace.Replace("`", "");
+                    noSpace = noSpace.Replace("`", "");
+                    noSpace = noSpace.Replace("default ", "");
+                    noSpace = noSpace.Replace(" closure", "");
+                    noSpace = noSpace.Replace(" (", "");
+                    var trimmed = noSpace.Split(' ').ToList();
 
                     for (int i = trimmed.Count - 1; i >= 0; i--)
                     {
