@@ -60,53 +60,53 @@ namespace DescriptorsDump
                 s_conversationDynamicData = _memory.ReadUInt(dwStartFunc + 0x1 + 0x1CE);
 
 
-                const int g_baseObjDescriptors = 0xEB9CC8;
+                const int g_baseObjDescriptors = 0xEBDFB8;
                 s_objectDescriptors = g_baseObjDescriptors;
 
-                const int g_baseItemDescriptors = 0xEB9D58;
+                const int g_baseItemDescriptors = 0xEBE048;
                 s_itemDescriptors = g_baseItemDescriptors;
 
-                const int g_baseContainerDescriptors = 0xEBA0E8;
+                const int g_baseContainerDescriptors = 0xEBE3E0;
                 s_containerDescriptors = g_baseContainerDescriptors;
 
-                const int g_baseUnitDescriptors = 0xEBA7B8;
+                const int g_baseUnitDescriptors = 0xEBEAB0;
                 s_unitDescriptors = g_baseUnitDescriptors;
 
-                const int g_basePlayerDescriptors = 0xE9D618;
+                const int g_basePlayerDescriptors = 0xEBF428;
                 s_playerDescriptors = g_basePlayerDescriptors;
 
-                const int g_baseGameObjectDescriptors = 0xEAA0D0;
+                const int g_baseGameObjectDescriptors = 0xECBEE0;
                 s_gameobjectDescriptors = g_baseGameObjectDescriptors;
 
-                const int g_baseDynamicObjectDescriptors = 0xEAA1E0;
+                const int g_baseDynamicObjectDescriptors = 0xECBFE8;
                 s_dynamicObjectDescriptors = g_baseDynamicObjectDescriptors;
 
-                const int g_baseCorpseDescriptors = 0xEAA250;
+                const int g_baseCorpseDescriptors = 0xECC058;
                 s_corpseDescriptors = g_baseCorpseDescriptors;
 
-                const int g_baseAreaTriggerDescriptors = 0xEAA490;
+                const int g_baseAreaTriggerDescriptors = 0xECC298;
                 s_areaTriggerDescriptors = g_baseAreaTriggerDescriptors;
 
-                const int g_baseSceneObjectDescriptors = 0xEAA560;
+                const int g_baseSceneObjectDescriptors = 0xECC368;
                 s_sceneObjectDescriptors = g_baseSceneObjectDescriptors;
 
-                const int g_baseConversationDescriptors = 0xEAA1D4;
+                const int g_baseConversationDescriptors = 0xEBE3D4;
                 s_itemDynamicData = g_baseConversationDescriptors;
 
-                const int g_baseItemDynamicDescriptors = 0xEBA0C4;
+                const int g_baseItemDynamicDescriptors = 0xEBE3B4;
                 s_unitDynamicData = g_baseItemDynamicDescriptors;
 
-                const int g_baseUnitDynamicDescriptors = 0xEBB118;
+                const int g_baseUnitDynamicDescriptors = 0xEBF410;
                 s_playerDynamicData = g_baseUnitDynamicDescriptors;
 
-                const int g_basePlayerDynamicDescriptors = 0xEAA068;
+                const int g_basePlayerDynamicDescriptors = 0xECBE78;
                 s_conversationData = g_basePlayerDynamicDescriptors;
 
-                const int g_baseGameObjectDynamicDescriptors = 0xEAA1CC;
+                const int g_baseGameObjectDynamicDescriptors = 0xECBFDC;
                 s_conversationDynamicData = g_baseGameObjectDynamicDescriptors;
 
 
-                const int g_baseConversationDynamicDescriptors = 0xEAA5B4;
+                const int g_baseConversationDynamicDescriptors = 0xECC3BC;
                 if (s_objectDescriptors <= 0 || s_itemDescriptors <= 0 || s_containerDescriptors <= 0 || s_unitDescriptors <= 0 || s_playerDescriptors <= 0 || s_gameobjectDescriptors <= 0 || s_dynamicObjectDescriptors <= 0 || s_corpseDescriptors <= 0 || s_areaTriggerDescriptors <= 0 || s_sceneObjectDescriptors <= 0 || s_itemDynamicData <= 0 || s_unitDynamicData <= 0 || s_playerDynamicData <= 0 || s_conversationData <= 0 || s_conversationDynamicData <= 0)
                 {
                     _memory.Close();

@@ -261,12 +261,12 @@
         /// </summary>
         public enum FunctionWow
         {
-            GetTargetInfo = 0xADCF7, // our hook address in ida: RenderingMessage
-            ReturnFunc = 0x18BFB7, // the function call of our hook: OnHookFunction
-            WoWTextCaller = 0x073EDB7, // WoWCallingMule, "call edx, rt" address.
-            CTMChecker = 0x3345C3,
-            CTMChecker2 = 0x61D0C7,
-            RetFromFunctionBelow = 0x1A8F6C,
+            GetTargetInfo = 0xADCD1, // our hook address in ida: RenderingMessage
+            ReturnFunc = 0x18BF68, // the function call of our hook: OnHookFunction
+            WoWTextCaller = 0x073ED57, // WoWCallingMule, "call edx, rt" address.
+            CTMChecker = 0x33441A,
+            CTMChecker2 = 0x61CFE7,
+            RetFromFunctionBelow = 0x1A8F1D,
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = Hooking.DX_DEVICE, // IsSpellKnown
@@ -276,13 +276,13 @@
             // E38EF0 vs EC3450
             ClntObjMgrGetActivePlayerObj = 0x8F988,
             FrameScript_ExecuteBuffer = 0xB5708,
-            CGPlayer_C__ClickToMove = 0x32233C, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x31C82D,
-            WowClientDB2__GetRowPointer = 0x2212A7,
-            CGWorldFrame__Intersect = 0x63E1D7,
-            Spell_C_HandleTerrainClick = 0x2CCF51,
+            CGPlayer_C__ClickToMove = 0x322193, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x31C682,
+            WowClientDB2__GetRowPointer = 0x2211FF,
+            CGWorldFrame__Intersect = 0x63E101,
+            Spell_C_HandleTerrainClick = 0x2CCE1D,
             CGUnit_C__Interact = 0x5403E,
-            strlen = 0x7B8030, // ida _strlen
+            strlen = 0x7B7FD0, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
