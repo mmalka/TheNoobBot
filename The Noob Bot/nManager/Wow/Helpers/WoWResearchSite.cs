@@ -11,7 +11,7 @@ namespace nManager.Wow.Helpers
     {
         private ResearchSiteDb2Record _rSiteDB2Record0;
 
-        private static DB5Reader _rSiteDB2;
+        private static DB6Reader _rSiteDB2;
         private static ResearchSiteDb2Record[] _cachedRecords;
         private static BinaryReader[] _cachedResearchSiteRows;
 
@@ -30,9 +30,9 @@ namespace nManager.Wow.Helpers
                 {
                     var table = definitions.First();
                     if (Usefuls.GetClientLanguage().Length == 4)
-                        _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\" + Usefuls.GetClientLanguage() + @"\ResearchSite.db2", table) as DB5Reader;
+                        _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\" + Usefuls.GetClientLanguage() + @"\ResearchSite.db2", table) as DB6Reader;
                     else
-                        _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\AllWoW\ResearchSite.db2", table) as DB5Reader;
+                        _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\AllWoW\ResearchSite.db2", table) as DB6Reader;
                     if (_cachedResearchSiteRows == null || _cachedRecords == null)
                     {
                         if (_rSiteDB2 != null)
@@ -41,7 +41,7 @@ namespace nManager.Wow.Helpers
                             _cachedRecords = new ResearchSiteDb2Record[_cachedResearchSiteRows.Length];
                             for (int i = 0; i < _cachedResearchSiteRows.Length - 1; i++)
                             {
-                                _cachedRecords[i] = DB5Reader.ByteToType<ResearchSiteDb2Record>(_cachedResearchSiteRows[i]);
+                                _cachedRecords[i] = DB6Reader.ByteToType<ResearchSiteDb2Record>(_cachedResearchSiteRows[i]);
                             }
                         }
                     }

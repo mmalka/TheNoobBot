@@ -14,7 +14,7 @@ namespace nManager.Wow.Helpers
     {
         [CompilerGenerated] private static SpellCategoriesDbcRecord _spellCategoriesDB2Record0;
 
-        private static DB5Reader _spellCategoriesDb2;
+        private static DB6Reader _spellCategoriesDb2;
         private static SpellCategoriesDbcRecord[] _cachedRecords;
 
         private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
@@ -31,7 +31,7 @@ namespace nManager.Wow.Helpers
                 if (definitions.Count() == 1)
                 {
                     var table = definitions.First();
-                    _spellCategoriesDb2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\SpellCategories.db2", table) as DB5Reader;
+                    _spellCategoriesDb2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\SpellCategories.db2", table) as DB6Reader;
                     if (_cachedSpellCategoriesRows == null || _cachedRecords == null)
                     {
                         if (_spellCategoriesDb2 != null)
@@ -40,7 +40,7 @@ namespace nManager.Wow.Helpers
                             _cachedRecords = new SpellCategoriesDbcRecord[_cachedSpellCategoriesRows.Length];
                             for (int i = 0; i < _cachedSpellCategoriesRows.Length - 1; i++)
                             {
-                                _cachedRecords[i] = DB5Reader.ByteToType<SpellCategoriesDbcRecord>(_cachedSpellCategoriesRows[i]);
+                                _cachedRecords[i] = DB6Reader.ByteToType<SpellCategoriesDbcRecord>(_cachedSpellCategoriesRows[i]);
                             }
                         }
                     }

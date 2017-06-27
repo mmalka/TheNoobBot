@@ -14,7 +14,7 @@ namespace nManager.Wow.Helpers
     {
         [CompilerGenerated] private FactionTemplateDbcRecord factionTemplateDbcRecord_0;
         [CompilerGenerated] private uint uint_0;
-        private static DB5Reader factionTemplateDB2;
+        private static DB6Reader factionTemplateDB2;
         private static BinaryReader[] _cachedFactionTemplateRows;
         private static FactionTemplateDbcRecord[] _cachedRecords;
 
@@ -32,7 +32,7 @@ namespace nManager.Wow.Helpers
                 if (definitions.Count() == 1)
                 {
                     var table = definitions.First();
-                    factionTemplateDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\FactionTemplate.db2", table) as DB5Reader;
+                    factionTemplateDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\FactionTemplate.db2", table) as DB6Reader;
                     if (_cachedFactionTemplateRows == null)
                     {
                         if (factionTemplateDB2 != null)
@@ -41,7 +41,7 @@ namespace nManager.Wow.Helpers
                             _cachedRecords = new FactionTemplateDbcRecord[_cachedFactionTemplateRows.Length];
                             for (int i = 0; i < _cachedFactionTemplateRows.Length - 1; i++)
                             {
-                                _cachedRecords[i] = DB5Reader.ByteToType<FactionTemplateDbcRecord>(_cachedFactionTemplateRows[i]);
+                                _cachedRecords[i] = DB6Reader.ByteToType<FactionTemplateDbcRecord>(_cachedFactionTemplateRows[i]);
                             }
                         }
                     }

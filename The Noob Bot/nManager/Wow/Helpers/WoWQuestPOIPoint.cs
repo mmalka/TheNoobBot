@@ -17,7 +17,7 @@ namespace nManager.Wow.Helpers
         private Point _center = new Point(0, 0, 0);
         private bool _middlePointSet;
 
-        private static DB5Reader _questPOIPointDB2;
+        private static DB6Reader _questPOIPointDB2;
         private static QuestPOIPointDb2Record[] _cachedRecords;
         private static BinaryReader[] _cachedQuestPOIPointRows;
 
@@ -35,7 +35,7 @@ namespace nManager.Wow.Helpers
                 if (definitions.Count() == 1)
                 {
                     var table = definitions.First();
-                    _questPOIPointDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\QuestPOIPoint.db2", table) as DB5Reader;
+                    _questPOIPointDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\QuestPOIPoint.db2", table) as DB6Reader;
                     if (_cachedQuestPOIPointRows == null)
                     {
                         if (_questPOIPointDB2 != null)
@@ -44,7 +44,7 @@ namespace nManager.Wow.Helpers
                             _cachedRecords = new QuestPOIPointDb2Record[_cachedQuestPOIPointRows.Length];
                             for (int i = 0; i < _cachedQuestPOIPointRows.Length - 1; i++)
                             {
-                                _cachedRecords[i] = DB5Reader.ByteToType<QuestPOIPointDb2Record>(_cachedQuestPOIPointRows[i]);
+                                _cachedRecords[i] = DB6Reader.ByteToType<QuestPOIPointDb2Record>(_cachedQuestPOIPointRows[i]);
                             }
                         }
                     }

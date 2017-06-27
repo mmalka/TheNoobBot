@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
         // Small list of unused map which have nor flags, nor type able to filter them
         private static List<uint> _blacklistedMaps = new List<uint>(new uint[] {930, 995, 1187});
 
-        private static DB5Reader mapDB2;
+        private static DB6Reader mapDB2;
 
         private static void init()
         {
@@ -34,7 +34,7 @@ namespace nManager.Wow.Helpers
                 if (definitions.Count() == 1)
                 {
                     var table = definitions.First();
-                    mapDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Map.db2", table) as DB5Reader;
+                    mapDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Map.db2", table) as DB6Reader;
                     if (_cachedMapRows == null || _cachedRecords == null)
                     {
                         if (mapDB2 != null)
@@ -43,7 +43,7 @@ namespace nManager.Wow.Helpers
                             _cachedRecords = new MapDbcRecord[_cachedMapRows.Length];
                             for (int i = 0; i < _cachedMapRows.Length - 1; i++)
                             {
-                                _cachedRecords[i] = DB5Reader.ByteToType<MapDbcRecord>(_cachedMapRows[i]);
+                                _cachedRecords[i] = DB6Reader.ByteToType<MapDbcRecord>(_cachedMapRows[i]);
                             }
                         }
                     }

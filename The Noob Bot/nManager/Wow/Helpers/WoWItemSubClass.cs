@@ -10,7 +10,7 @@ namespace nManager.Wow.Helpers
     {
         private ItemSubClassDbcRecord _rItemSubClassRec0;
 
-        private static DB5Reader _itemSubClassDB2;
+        private static DB6Reader _itemSubClassDB2;
 
         private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
         {
@@ -26,7 +26,7 @@ namespace nManager.Wow.Helpers
                 if (definitions.Count() == 1)
                 {
                     var table = definitions.First();
-                    _itemSubClassDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\ItemSubClass.db2", table) as DB5Reader;
+                    _itemSubClassDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\ItemSubClass.db2", table) as DB6Reader;
                     Logging.Write(_itemSubClassDB2.FileName + " loaded with " + _itemSubClassDB2.RecordsCount + " entries.");
                 }
                 else
@@ -43,7 +43,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < _itemSubClassDB2.RecordsCount - 1; i++)
             {
-                tempItemSubClassDb2Record = DB5Reader.ByteToType<ItemSubClassDbcRecord>(_itemSubClassDB2.Rows.ElementAt(i));
+                tempItemSubClassDb2Record = DB6Reader.ByteToType<ItemSubClassDbcRecord>(_itemSubClassDB2.Rows.ElementAt(i));
                 if (tempItemSubClassDb2Record.LongName() == name && tempItemSubClassDb2Record.ClassId == iClass)
                 {
                     found = true;

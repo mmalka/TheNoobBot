@@ -11,7 +11,7 @@ namespace nManager.Wow.Helpers
     {
         private readonly LockDbcRecord _lockDBCRecord0;
 
-        private static DB5Reader _lockDB2;
+        private static DB6Reader _lockDB2;
 
         private static void Init()
         {
@@ -27,7 +27,7 @@ namespace nManager.Wow.Helpers
                 if (definitions.Count() == 1)
                 {
                     var table = definitions.First();
-                    _lockDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Lock.db2", table) as DB5Reader;
+                    _lockDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Lock.db2", table) as DB6Reader;
                     Logging.Write(_lockDB2.FileName + " loaded with " + _lockDB2.RecordsCount + " entries.");
                 }
                 else
@@ -44,7 +44,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < _lockDB2.RecordsCount - 1; i++)
             {
-                tempLockDbcRecord = DB5Reader.ByteToType<LockDbcRecord>(_lockDB2.Rows.ElementAt(i));
+                tempLockDbcRecord = DB6Reader.ByteToType<LockDbcRecord>(_lockDB2.Rows.ElementAt(i));
                 if (tempLockDbcRecord.Id == id)
                 {
                     found = true;
