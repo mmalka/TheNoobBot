@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 24415
+    ///   Offset and Pointer for Wow 24430
     /// </summary>
     public static class Addresses
     {
@@ -261,7 +261,7 @@
         /// </summary>
         public enum FunctionWow
         {
-            GetTargetInfo = 0xADCD1, // our hook address in ida: RenderingMessage
+            GetTargetInfo = 0xADCF7, // our hook address in ida: RenderingMessage
             ReturnFunc = 0x18BF68, // the function call of our hook: OnHookFunction
             WoWTextCaller = 0x073ED57, // WoWCallingMule, "call edx, rt" address.
             CTMChecker = 0x33441A,

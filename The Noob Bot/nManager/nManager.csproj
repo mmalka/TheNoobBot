@@ -218,6 +218,7 @@
     <Compile Include="Wow\Helpers\DB2.cs" />
     <Compile Include="Wow\Helpers\Db2Caller.cs" />
     <Compile Include="Wow\Helpers\DB5Reader.cs" />
+    <Compile Include="Wow\Helpers\DB6Reader.cs" />
     <Compile Include="Wow\Helpers\DBCExtensions.cs" />
     <Compile Include="Wow\Helpers\DBCReader.cs">
       <SubType>Code</SubType>
