@@ -42,8 +42,7 @@
 
         public enum ContainerFields
         {
-            Slots = 0x55,
-            NumSlots = 0xE5,
+            NumSlots = 0x55,
         };
 
         public enum UnitFields

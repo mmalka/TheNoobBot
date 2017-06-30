@@ -60,53 +60,53 @@ namespace DescriptorsDump
                 s_conversationDynamicData = _memory.ReadUInt(dwStartFunc + 0x1 + 0x1CE);
 
 
-                const int g_baseObjDescriptors = 0xEBDFB8;
+                const int g_baseObjDescriptors = 0xEBEFF0; // CGObjectData
                 s_objectDescriptors = g_baseObjDescriptors;
 
-                const int g_baseItemDescriptors = 0xEBE048;
+                const int g_baseItemDescriptors = 0xEBF080; // CGItemData
                 s_itemDescriptors = g_baseItemDescriptors;
 
-                const int g_baseContainerDescriptors = 0xEBE3E0;
+                const int g_baseContainerDescriptors = 0xEBFAD8; // CGContainerData
                 s_containerDescriptors = g_baseContainerDescriptors;
 
-                const int g_baseUnitDescriptors = 0xEBEAB0;
+                const int g_baseUnitDescriptors = 0xEBFAE8; // CGUnitData
                 s_unitDescriptors = g_baseUnitDescriptors;
 
-                const int g_basePlayerDescriptors = 0xEBF428;
+                const int g_basePlayerDescriptors = 0xEC0460; // CGPlayerData
                 s_playerDescriptors = g_basePlayerDescriptors;
 
-                const int g_baseGameObjectDescriptors = 0xECBEE0;
+                const int g_baseGameObjectDescriptors = 0xECCF18; // CGGameObjectData
                 s_gameobjectDescriptors = g_baseGameObjectDescriptors;
 
-                const int g_baseDynamicObjectDescriptors = 0xECBFE8;
+                const int g_baseDynamicObjectDescriptors = 0xECD020; // CGDynamicObjectData
                 s_dynamicObjectDescriptors = g_baseDynamicObjectDescriptors;
 
-                const int g_baseCorpseDescriptors = 0xECC058;
+                const int g_baseCorpseDescriptors = 0xECD090; // CGCorpseData
                 s_corpseDescriptors = g_baseCorpseDescriptors;
 
-                const int g_baseAreaTriggerDescriptors = 0xECC298;
+                const int g_baseAreaTriggerDescriptors = 0xECD2D0; // CGAreaTriggerData
                 s_areaTriggerDescriptors = g_baseAreaTriggerDescriptors;
 
-                const int g_baseSceneObjectDescriptors = 0xECC368;
+                const int g_baseSceneObjectDescriptors = 0xECD3A0; // CGSceneObjectData
                 s_sceneObjectDescriptors = g_baseSceneObjectDescriptors;
 
-                const int g_baseConversationDescriptors = 0xEBE3D4;
+                const int g_baseConversationDescriptors = 0xEBF40C; // CGConversationData
                 s_itemDynamicData = g_baseConversationDescriptors;
 
-                const int g_baseItemDynamicDescriptors = 0xEBE3B4;
+                const int g_baseItemDynamicDescriptors = 0xEBF3EC; // CGItemDynamicData
                 s_unitDynamicData = g_baseItemDynamicDescriptors;
 
-                const int g_baseUnitDynamicDescriptors = 0xEBF410;
+                const int g_baseUnitDynamicDescriptors = 0xEC0448; // CGUnitDynamicData
                 s_playerDynamicData = g_baseUnitDynamicDescriptors;
 
-                const int g_basePlayerDynamicDescriptors = 0xECBE78;
+                const int g_basePlayerDynamicDescriptors = 0xECCEB0; // CGPlayerDynamicData
                 s_conversationData = g_basePlayerDynamicDescriptors;
 
-                const int g_baseGameObjectDynamicDescriptors = 0xECBFDC;
+                const int g_baseGameObjectDynamicDescriptors = 0xECD014; // CGGameObjectDynamicData
                 s_conversationDynamicData = g_baseGameObjectDynamicDescriptors;
 
 
-                const int g_baseConversationDynamicDescriptors = 0xECC3BC;
+                const int g_baseConversationDynamicDescriptors = 0xECD3F4; // CGConversationDynamicData
                 if (s_objectDescriptors <= 0 || s_itemDescriptors <= 0 || s_containerDescriptors <= 0 || s_unitDescriptors <= 0 || s_playerDescriptors <= 0 || s_gameobjectDescriptors <= 0 || s_dynamicObjectDescriptors <= 0 || s_corpseDescriptors <= 0 || s_areaTriggerDescriptors <= 0 || s_sceneObjectDescriptors <= 0 || s_itemDynamicData <= 0 || s_unitDynamicData <= 0 || s_playerDynamicData <= 0 || s_conversationData <= 0 || s_conversationDynamicData <= 0)
                 {
                     _memory.Close();
