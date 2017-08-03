@@ -21,7 +21,7 @@ if(ObjectManager.Me.Position.DistanceTo(questObjective.Position) >= 5f)
 else
 {
 	
-	WoWUnit itemPlaced = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(26678, questObjective.IsDead),questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
+	WoWUnit itemPlaced = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.ExtraInt, questObjective.IsDead),questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
 		questObjective.AllowPlayerControlled);
 		
 	//Place item if its not there

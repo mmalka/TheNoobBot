@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Vesper" ExtraCredits="Arasal" DevelopmentStatus="Outdated">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Reclaiming Sunstrider Isle</Name>
@@ -7,7 +8,7 @@
       <Id>8325</Id>
       <QuestLevel>1</QuestLevel>
       <MinLevel>1</MinLevel>
-      <MaxLevel>4</MaxLevel>
+      <MaxLevel>5</MaxLevel>
       <PickUp>15278</PickUp>
       <TurnIn>15278</TurnIn>
       <Objectives>
@@ -38,7 +39,7 @@
       <Id>8326</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
-      <MaxLevel>6</MaxLevel>
+      <MaxLevel>7</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
       </NeedQuestCompletedId>
@@ -69,7 +70,7 @@
       <Id>37443</Id>
       <QuestLevel>4</QuestLevel>
       <MinLevel>2</MinLevel>
-      <MaxLevel>7</MaxLevel>
+      <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
         <int>8326</int>
       </NeedQuestCompletedId>
@@ -130,9 +131,9 @@
       <Name>The Shrine of Dath'Remar</Name>
       <RaceMask>512</RaceMask>
       <Id>37442</Id>
-      <QuestLevel>1</QuestLevel>
+      <QuestLevel>2</QuestLevel>
       <MinLevel>2</MinLevel>
-      <MaxLevel>7</MaxLevel>
+      <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
         <int>8326</int>
       </NeedQuestCompletedId>
@@ -158,7 +159,7 @@
       <Id>37440</Id>
       <QuestLevel>4</QuestLevel>
       <MinLevel>2</MinLevel>
-      <MaxLevel>7</MaxLevel>
+      <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
       </NeedQuestCompletedId>
@@ -189,7 +190,7 @@
       <Id>37439</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
-      <MaxLevel>6</MaxLevel>
+      <MaxLevel>7</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
       </NeedQuestCompletedId>
@@ -212,7 +213,7 @@
       <Id>8327</Id>
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
-      <MaxLevel>6</MaxLevel>
+      <MaxLevel>7</MaxLevel>
       <NeedQuestCompletedId>
         <int>8326</int>
       </NeedQuestCompletedId>
@@ -226,7 +227,7 @@
       <Id>8334</Id>
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
-      <MaxLevel>7</MaxLevel>
+      <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
         <int>8327</int>
       </NeedQuestCompletedId>
@@ -271,7 +272,7 @@
       <Id>8335</Id>
       <QuestLevel>5</QuestLevel>
       <MinLevel>1</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <NeedQuestCompletedId>
         <int>8334</int>
       </NeedQuestCompletedId>
@@ -347,7 +348,7 @@
       <Id>8338</Id>
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>8</MaxLevel>
       <ItemPickUp>20483</ItemPickUp>
       <TurnIn>15297</TurnIn>
       <Objectives />
@@ -358,7 +359,7 @@
       <Id>8347</Id>
       <QuestLevel>5</QuestLevel>
       <MinLevel>4</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <NeedQuestCompletedId>
         <int>8335</int>
       </NeedQuestCompletedId>
@@ -428,7 +429,7 @@
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>15403</NpcEntry>
+          <NpcEntry>180918</NpcEntry>
           <QuestName>Wanted: Thaelis the Hungerer</QuestName>
           <QuestId>8468</QuestId>
         </QuestObjective>
@@ -483,6 +484,27 @@
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>16924</NpcEntry>
+          <QuestName>Wanted: Thaelis the Hungerer</QuestName>
+          <QuestId>8468</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>15403</NpcEntry>
+          <QuestName>Unstable Mana Crystals</QuestName>
+          <QuestId>8463</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>15418</NpcEntry>
+          <QuestName>Major Malfunction</QuestName>
+          <QuestId>8472</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -494,6 +516,8 @@
       <MaxLevel>11</MaxLevel>
       <NeedQuestCompletedId>
         <int>8472</int>
+        <int>8468</int>
+        <int>8463</int>
       </NeedQuestCompletedId>
       <PickUp>15403</PickUp>
       <TurnIn>15401</TurnIn>
@@ -662,7 +686,7 @@
       <Id>9066</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>4</MinLevel>
-      <MaxLevel>11</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <NeedQuestCompletedId>
         <int>9064</int>
       </NeedQuestCompletedId>
@@ -748,15 +772,30 @@
             <Y>-6686.105</Y>
             <Z>22.45436</Z>
           </Position>
-          <WaitMs>8000</WaitMs>
+          <WaitMs>12000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
-          <Objective>KillMob</Objective>
+          <Objective>MoveTo</Objective>
           <Count>1</Count>
+          <Position>
+            <X>9289.28</X>
+            <Y>-6657.645</Y>
+            <Z>31.82896</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <WaitMs>15000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>15420</int>
           </Entry>
+          <CollectItemId>20764</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>9298.899</X>
@@ -764,6 +803,7 @@
               <Z>22.42825</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -773,7 +813,7 @@
       <Id>8884</Id>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>13</MaxLevel>
       <PickUp>15920</PickUp>
       <TurnIn>15920</TurnIn>
       <Objectives>
@@ -791,6 +831,16 @@
               <Y>-5900.252</Y>
               <Z>0.6823175</Z>
             </Point>
+            <Point>
+              <X>9045.6</X>
+              <Y>-5791.51563</Y>
+              <Z>0.8808077</Z>
+            </Point>
+            <Point>
+              <X>9013.369</X>
+              <Y>-5756.13965</Y>
+              <Z>0.475515366</Z>
+            </Point>
           </Hotspots>
         </QuestObjective>
       </Objectives>
@@ -801,7 +851,7 @@
       <Id>8885</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>5</MinLevel>
-      <MaxLevel>14</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <NeedQuestCompletedId>
         <int>8884</int>
       </NeedQuestCompletedId>
@@ -898,7 +948,7 @@
       <Id>8475</Id>
       <QuestLevel>6</QuestLevel>
       <MinLevel>4</MinLevel>
-      <MaxLevel>11</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <PickUp>15416</PickUp>
       <TurnIn>15416</TurnIn>
       <Objectives>
@@ -957,7 +1007,7 @@
       <Id>9395</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>8</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <PickUp>16210</PickUp>
       <TurnIn>16144</TurnIn>
       <Objectives />
@@ -968,7 +1018,7 @@
       <Id>9067</Id>
       <QuestLevel>9</QuestLevel>
       <MinLevel>7</MinLevel>
-      <MaxLevel>14</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <NeedQuestCompletedId>
         <int>9395</int>
       </NeedQuestCompletedId>
@@ -977,6 +1027,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>BuyItem</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>16442</int>
           </Entry>
@@ -991,6 +1042,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>BuyItem</Objective>
+          <InternalIndex>2</InternalIndex>
           <Entry>
             <int>16443</int>
           </Entry>
@@ -1005,6 +1057,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>BuyItem</Objective>
+          <InternalIndex>3</InternalIndex>
           <Entry>
             <int>16444</int>
           </Entry>
@@ -1819,29 +1872,24 @@
       <TurnIn>16362</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseItem</Objective>
+          <Objective>CSharpScript</Objective>
+          <InternalQuestId>8490</InternalQuestId>
           <Count>1</Count>
+          <Entry>
+            <int>17086</int>
+          </Entry>
+          <Script>=DefendPlacedItem.cs</Script>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(8490) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(8490);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <AllowPlayerControlled>true</AllowPlayerControlled>
           <UseItemId>22693</UseItemId>
           <Position>
             <X>8275.916</X>
             <Y>-7215.937</Y>
             <Z>137.7881</Z>
           </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>12</Count>
-          <Entry>
-            <int>17086</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>8271.103</X>
-              <Y>-7207.351</Y>
-              <Z>138.5031</Z>
-            </Point>
-          </Hotspots>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <ExtraInt>16364</ExtraInt>
         </QuestObjective>
       </Objectives>
     </Quest>

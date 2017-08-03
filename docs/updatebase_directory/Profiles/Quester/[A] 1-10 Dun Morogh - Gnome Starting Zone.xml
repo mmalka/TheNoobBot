@@ -1390,19 +1390,26 @@
       <TurnIn>42353</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseItem</Objective>
+          <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
-          <Count>999</Count>
+          <Count>5</Count>
           <Entry>
             <int>42291</int>
           </Entry>
+          <Hotspots>
+            <Point>
+              <X>-5331.707</X>
+              <Y>237.3903</Y>
+              <Z>386.1113</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreNotSelectable>true</IgnoreNotSelectable>
           <UseItemId>58203</UseItemId>
-          <Position>
-            <X>-5331.707</X>
-            <Y>237.3903</Y>
-            <Z>386.1113</Z>
-          </Position>
+          <WaitMs>2000</WaitMs>
           <IgnoreFight>true</IgnoreFight>
+          <Range>9</Range>
         </QuestObjective>
       </Objectives>
     </Quest>

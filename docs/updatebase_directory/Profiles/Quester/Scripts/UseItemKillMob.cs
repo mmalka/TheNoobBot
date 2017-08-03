@@ -40,29 +40,35 @@ try
 			//Interact.InteractWith(unit.GetBaseAddress);
 		}
 			
-		/*if (MovementManager.InMovement)
-			return false;*/
-		if (questObjective.IgnoreNotSelectable)
+		if(unit.IsValid && unit.GetDistance < questObjective.Range)
 		{
-			if (unit.IsValid && unit.GetDistance > questObjective.Range)
-				return false;
+			Logging.Write("TARGET REACHED");
+			/* Target Reached */
+			MovementManager.StopMove();
+			MountTask.DismountMount();
 		}
 		else
 		{
-			if (baseAddress <= 0)
+			if (MovementManager.InMovement)
 				return false;
-			if (baseAddress > 0 && (unit.IsValid && unit.GetDistance > questObjective.Range))
-				return false;
-			
+			if (questObjective.IgnoreNotSelectable)
+			{
+				if (unit.IsValid && unit.GetDistance > questObjective.Range)
+					return false;
+			}
+			else
+			{
+				if (baseAddress <= 0)
+					return false;
+				if (baseAddress > 0 && (unit.IsValid && unit.GetDistance > questObjective.Range))
+					return false;
+				
+			}
 		}
-
+		
 		MovementManager.Face(unit);
 		
 		Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
-
-		/* Target Reached */
-		MovementManager.StopMove();
-		MountTask.DismountMount();
 
 		if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
 			return false;

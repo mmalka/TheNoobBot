@@ -1,19 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="ReleaseCandidate">
-  <Questers>
-    <Npc>
-      <Entry>7783</Entry>
-      <Name>Loramus Thalipedes</Name>
-      <Position>
-        <X>-11220.29</X>
-        <Y>-3475.865</Y>
-        <Z>9.681964</Z>
-      </Position>
-      <Faction>Alliance</Faction>
-      <Type>QuestGiver</Type>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-  </Questers>
+  <Questers />
   <Quests>
     <Quest>
       <Name>Futile Pride</Name>
@@ -1281,7 +1268,7 @@
             <Y>-3427.072</Y>
             <Z>16.35807</Z>
           </Position>
-          <WaitMs>111</WaitMs>
+          <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>

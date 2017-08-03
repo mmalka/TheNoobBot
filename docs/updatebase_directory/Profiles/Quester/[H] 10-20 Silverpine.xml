@@ -1224,9 +1224,9 @@
           <Count>1</Count>
           <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(27423) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27423) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27423);</ScriptConditionIsComplete>
           <Position>
-            <X>-1205.428</X>
-            <Y>1128.434</Y>
-            <Z>31.51239</Z>
+            <X>-1226.149</X>
+            <Y>1122.462</Y>
+            <Z>35.19347</Z>
           </Position>
         </QuestObjective>
         <QuestObjective>
@@ -1539,6 +1539,16 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TravelTo</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>294.7967</X>
+            <Y>374.08</Y>
+            <Z>-65.33366</Z>
+          </Position>
+          <ContinentId>0</ContinentId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>

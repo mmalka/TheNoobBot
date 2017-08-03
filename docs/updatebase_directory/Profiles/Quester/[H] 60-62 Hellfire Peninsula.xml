@@ -2001,7 +2001,29 @@
     </Quest>
     <Quest>
       <Name>Falcon Watch</Name>
-      <RaceMask>33555378</RaceMask>
+      <RaceMask>512</RaceMask>
+      <Id>9499</Id>
+      <QuestLevel>62</QuestLevel>
+      <MinLevel>59</MinLevel>
+      <MaxLevel>72</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9405</int>
+      </NeedQuestCompletedId>
+      <PickUp>16577</PickUp>
+      <TurnIn>16789</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>16789</NpcEntry>
+          <QuestName>Falcon Watch</QuestName>
+          <QuestId>9498</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Falcon Watch</Name>
+      <RaceMask>33554866</RaceMask>
       <Id>9498</Id>
       <QuestLevel>62</QuestLevel>
       <MinLevel>59</MinLevel>

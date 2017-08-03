@@ -586,7 +586,7 @@
             <Y>-2879.272</Y>
             <Z>6.596821</Z>
           </Position>
-          <WaitMs>8000</WaitMs>
+          <WaitMs>18000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -603,6 +603,7 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreBlackList>true</IgnoreBlackList>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -774,6 +775,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>40593</int>

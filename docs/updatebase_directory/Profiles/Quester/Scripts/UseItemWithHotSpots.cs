@@ -30,6 +30,7 @@ try
 		if (questObjective.IgnoreFight)
 			nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 		/* Entry found, GoTo */
+	
 		if (node.IsValid)
 		{
 			unit = new WoWUnit(0);
@@ -43,26 +44,31 @@ try
 		Thread.Sleep(500);
 		
 	
-			
-		if (MovementManager.InMovement)
-			return false;
-		if (questObjective.IgnoreNotSelectable)
+		if((node.IsValid && node.GetDistance < questObjective.Range) || (unit.IsValid && unit.GetDistance < questObjective.Range))
 		{
-			if ((node.IsValid && node.GetDistance > questObjective.Range) || (unit.IsValid && unit.GetDistance > questObjective.Range))
-				return false;
+			Logging.Write("TARGET REACHED");
+			/* Target Reached */
+			MovementManager.StopMove();
+			MountTask.DismountMount();
 		}
 		else
 		{
-			if (baseAddress <= 0)
+			if (MovementManager.InMovement)
 				return false;
-			if (baseAddress > 0 && ((node.IsValid && node.GetDistance > questObjective.Range) || (unit.IsValid && unit.GetDistance > questObjective.Range)))
-				return false;
-			
+			if (questObjective.IgnoreNotSelectable)
+			{
+				if ((node.IsValid && node.GetDistance > questObjective.Range) || (unit.IsValid && unit.GetDistance > questObjective.Range))
+					return false;
+			}
+			else
+			{
+				if (baseAddress <= 0)
+					return false;
+				if (baseAddress > 0 && ((node.IsValid && node.GetDistance > questObjective.Range) || (unit.IsValid && unit.GetDistance > questObjective.Range)))
+					return false;
+				
+			}
 		}
-
-		/* Target Reached */
-		MovementManager.StopMove();
-		MountTask.DismountMount();
 		
 		//Pre Select Target
 		if (node.IsValid && node.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != node.Guid)
@@ -114,13 +120,13 @@ try
 
 		if (node.IsValid)
 		{
-			nManagerSetting.AddBlackList(node.Guid, 30*1000);
+			nManagerSetting.AddBlackList(node.Guid, 60*1000);
 		}
 		else if (unit.IsValid)
 		{
 			
 			Interact.InteractWith(unit.GetBaseAddress); //Interact With Unit to Attack it
-			nManagerSetting.AddBlackList(unit.Guid, 30*1000);
+			nManagerSetting.AddBlackList(unit.Guid, 60*1000);
 		}
 
 		/* Wait if necessary */

@@ -1410,6 +1410,8 @@
             <Y>-3031.237</Y>
             <Z>28.5221</Z>
           </Position>
+          <IgnoreFight>true</IgnoreFight>
+          <Range>10</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>

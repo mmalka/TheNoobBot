@@ -771,6 +771,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>40593</int>

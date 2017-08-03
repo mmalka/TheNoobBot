@@ -2196,12 +2196,13 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
           <AllowPlayerControlled>true</AllowPlayerControlled>
-          <UseItemId>36738</UseItemId>
+          <UseItemId>36738</UseItemId>          
           <Position>
             <X>4036.576</X>
             <Y>2244.057</Y>
             <Z>151.1675</Z>
           </Position>
+          <ExtraInt>26678</ExtraInt>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>

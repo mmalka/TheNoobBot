@@ -158,6 +158,7 @@
           </Hotspots>
           <Script>=InteractWithHotSpots.cs</Script>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <Position>
             <X>-824.065</X>
             <Y>138.9954</Y>
@@ -1065,7 +1066,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>48218</int>
@@ -1084,6 +1084,13 @@
           <Objective>Wait</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>30000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>48218</NpcEntry>
+          <QuestName>*Gurgle* HELP! *Gurgle*</QuestName>
+          <QuestId>28345</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1269,7 +1276,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
-          <ScriptConditionIsComplete>return !ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(48503, false), false, false,true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(48503, false), false, false,true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip);</ScriptConditionIsComplete>
           <WaitMs>5000</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1286,6 +1293,7 @@
             </Point>
           </Hotspots>
           <AllowPlayerControlled>true</AllowPlayerControlled>
+          <WaitMs>1500</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
