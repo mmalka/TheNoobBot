@@ -164,7 +164,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if ((looted || !wowUnit.IsLootable))
                                 {
-                                    if (wowUnit.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT))
+                                    if (wowUnit.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT) || wowUnit.Entry == 112052 || wowUnit.Entry == 113646)
                                     {
                                         int myHerbalismLevel = Skill.GetValue(SkillLine.Herbalism);
                                         if (myHerbalismLevel <= 0)
