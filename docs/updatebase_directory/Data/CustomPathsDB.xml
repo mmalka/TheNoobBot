@@ -1335,5 +1335,68 @@
         </Point>
       </Points>
     </CustomPath>
+	<CustomPath Id="30" Name="Deepholm - Silvermarsh cave" Faction="Neutral" AContinentId="646" BContinentId="646">
+      <APoint>
+		<X>668.9626</X>
+		<Y>-638.782</Y>
+		<Z>10.08762</Z>
+      </APoint>
+      <BPoint>
+		<X>674.1556</X>
+		<Y>-666.8079</Y>
+		<Z>9.364597</Z>
+      </BPoint>
+      <Points>
+		<Point>
+		 <X>668.9626</X>
+		 <Y>-638.782</Y>
+		 <Z>10.08762</Z>
+		</Point>
+		<Point>
+		 <X>674.1556</X>
+		 <Y>-666.8079</Y>
+		 <Z>9.364597</Z>
+		</Point>
+      </Points>
+    </CustomPath>
+	<CustomPath Id="31" Name="Wetlands, The Lost Fleet" Faction="Neutral" AContinentId="0" BContinentId="0">
+      <APoint>
+        <X>-2957.283</X>
+        <Y>-1017.713</Y>
+        <Z>10.19577</Z>
+      </APoint>
+      <BPoint>
+        <X>-2808.252</X>
+        <Y>-1010.817</Y>
+        <Z>3.252348</Z>
+      </BPoint>
+      <Points>
+        <Point>
+          <X>-2895.174</X>
+          <Y>-1028.358</Y>
+          <Z>1.37171</Z>
+        </Point>
+        <Point>
+          <X>-2859.248</X>
+          <Y>-1016.783</Y>
+          <Z>-1.250833</Z>
+        </Point>
+        <Point>
+          <X>-2826.425</X>
+          <Y>-1005.009</Y>
+          <Z>-1.226449</Z>
+        </Point>              
+        <Point>
+          <X>-2819.792</X>
+          <Y>-1004.844</Y>
+          <Z>-0.8436303</Z>
+        </Point>
+        <Point>
+          <X>-2808.252</X>
+          <Y>-1010.817</Y>
+          <Z>3.252348</Z>
+        </Point>
+      </Points>
+    </CustomPath> 
   </Items>
 </CustomPaths>

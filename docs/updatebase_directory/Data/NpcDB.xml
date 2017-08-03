@@ -2177,7 +2177,7 @@
     <Position>
       <X>-4822.432</X>
       <Y>-2659.40527</Y>
-      <Z>327.1293</Z>
+      <Z>327.1292</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -5655,6 +5655,30 @@
     <Entry>3291</Entry>
     <Name>Greishan Ironstove</Name>
     <Position>
+      <X>-5788.717</X>
+      <Y>-2624.61475</Y>
+      <Z>320.8353</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
+      <X>-5725.355</X>
+      <Y>-2703.54688</Y>
+      <Z>348.0383</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
       <X>-5687.505</X>
       <Y>-2767.69556</Y>
       <Z>362.460754</Z>
@@ -5667,9 +5691,69 @@
     <Entry>3291</Entry>
     <Name>Greishan Ironstove</Name>
     <Position>
+      <X>-5487.571</X>
+      <Y>-2871.83838</Y>
+      <Z>353.634857</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
       <X>-5366.349</X>
       <Y>-2936.02856</Y>
       <Z>327.55777</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
+      <X>-5360.87451</X>
+      <Y>-2860.01074</Y>
+      <Z>340.002869</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
+      <X>-5283.444</X>
+      <Y>-2878.83765</Y>
+      <Z>338.7314</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
+      <X>-5062.69043</X>
+      <Y>-2819.086</Y>
+      <Z>327.41153</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3291</Entry>
+    <Name>Greishan Ironstove</Name>
+    <Position>
+      <X>-4971.45947</X>
+      <Y>-2774.18335</Y>
+      <Z>325.647156</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -11832,6 +11916,30 @@
   </Npc>
   <Npc>
     <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-5324.63867</X>
+      <Y>-3778.92358</Y>
+      <Z>310.1145</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-5324.63867</X>
+      <Y>-3778.92358</Y>
+      <Z>310.1145</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
     <Name>Gardien des âmes</Name>
     <Position>
       <X>-4875.29</X>
@@ -12269,6 +12377,30 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>854.005</X>
+      <Y>638.446</Y>
+      <Z>-68.22756</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Maelstrom</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>854.005</X>
+      <Y>638.446</Y>
+      <Z>-68.22756</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Maelstrom</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -13558,6 +13690,30 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>9683.938</X>
+      <Y>953.230042</Y>
+      <Z>1291.717</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>9683.938</X>
+      <Y>953.230042</Y>
+      <Z>1291.717</Z>
+      <Type>Flying</Type>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>6566</Entry>
@@ -35481,6 +35637,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>41478</Entry>
+    <Name>Snow Tracker Wolf</Name>
+    <Position>
+      <X>-5292.62939</X>
+      <Y>-972.791138</Y>
+      <Z>390.6775</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>41490</Entry>
     <Name>Donald Dealright</Name>
     <Position>
@@ -38620,7 +38788,7 @@
     <Position>
       <X>-11020.7</X>
       <Y>-3416.35</Y>
-      <Z>65.35782</Z>
+      <Z>65.3577957</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -38762,7 +38930,7 @@
     <Position>
       <X>-11806.4</X>
       <Y>-3227.13</Y>
-      <Z>-30.32678</Z>
+      <Z>-30.3264275</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -45245,6 +45413,30 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>53568</Entry>
+    <Name>Dun Morogh Chicken</Name>
+    <Position>
+      <X>-5202.879</X>
+      <Y>-723.2285</Y>
+      <Z>443.517334</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>53568</Entry>
+    <Name>Dun Morogh Chicken</Name>
+    <Position>
+      <X>-5200.03</X>
+      <Y>-798.517456</Y>
+      <Z>422.734</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>53641</Entry>
     <Name>Allison Potts</Name>
     <Position>
@@ -51078,43 +51270,7 @@
       <Z>10.0869493</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>76110</Entry>
-    <Name>Helga Hammerdin</Name>
-    <Position>
-      <X>-11289.9658</X>
-      <Y>-3627.79517</Y>
-      <Z>10.0869493</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>76111</Entry>
-    <Name>Enohar Tonnebière</Name>
-    <Position>
-      <X>-11284.9395</X>
-      <Y>-3090.39575</Y>
-      <Z>4.464341</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>76117</Entry>
-    <Name>Quartermaster Rindelle</Name>
-    <Position>
-      <X>-11259.9775</X>
-      <Y>-3624.95483</Y>
-      <Z>12.4838877</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
