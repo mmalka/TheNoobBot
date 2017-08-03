@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 24461
+    ///   Offset and Pointer for Wow 24742
     /// </summary>
     public static class Addresses
     {
@@ -89,7 +89,7 @@
             isLoading = 0xD89390, //isLoadingFOUND
             AreaId = 0xD16EB0, //?CF6FE8, // AreaIdFOUND - AreaIdFOUNDCall // to review changes
             SubAreaId = AreaId + 4, // AreaId + 4 bytes
-            MapTextureId = 0xD20178, //MapTextureIdFOUND
+            MapTextureId = 0xD20170, //MapTextureIdFOUND
             zoneMap = 0xFBC3A8, // Script_GetZoneText
             subZoneMap = 0xFBC3AC, // Script_GetSubZoneText 
 
@@ -100,7 +100,7 @@
 
         public enum TargetSystem
         {
-            PtrToVMT = 0xD1F1B8, // Script_TargetNearest or any target related script
+            PtrToVMT = 0xD1F1B0, // Script_TargetNearest or any target related script
             Focus = 0x80, // to find manually
             Target = 0x28,
             //TargetTarget = 0x0,
@@ -195,7 +195,7 @@
         /// </summary>
         public enum Battleground
         {
-            StatPvp = 0xD20464, // StatPvpFOUND inside first call in Script_InActiveBattlefield
+            StatPvp = 0xD2045C, // StatPvpFOUND inside first call in Script_InActiveBattlefield
             PvpExitWindow = 0xFCFDF0, // Script_GetBattlefieldWinner
             MaxBattlegroundId = 0xFCFC70, // Script_GetMaxBattlefieldID
         }
@@ -243,7 +243,7 @@
         public enum ClickToMove
         {
             CTM = 0xEE5FC8, // CGUnit_C__IsAutoTracking / CGPlayer_C__ClickToMove
-            CTM_X = CTM + 0x28, // to Check
+            CTM_X = CTM + 0x28,
             CTM_Y = CTM_X + 0x4,
             CTM_Z = CTM_Y + 0x4,
         }
@@ -261,12 +261,12 @@
         /// </summary>
         public enum FunctionWow
         {
-            GetTargetInfo = 0xAE0F6, // our hook address in ida: RenderingMessage
-            ReturnFunc = 0x18C3CF, // the function call of our hook: OnHookFunction
-            WoWTextCaller = 0x73F757, // WoWCallingMule, "call edx, rt" address.
-            CTMChecker = 0x334E05,
-            CTMChecker2 = 0x61DB10,
-            RetFromFunctionBelow = 0x1A8FBE,
+            GetTargetInfo = 0xADE24, // our hook address in ida: RenderingMessage
+            ReturnFunc = 0x18BCF0, // the function call of our hook: OnHookFunction
+            WoWTextCaller = 0x73F487, // WoWCallingMule, "call edx, rt" address.
+            CTMChecker = 0x334789,
+            CTMChecker2 = 0x61D6E4,
+            RetFromFunctionBelow = 0x1A8C84,
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = Hooking.DX_DEVICE, // IsSpellKnown
@@ -274,15 +274,15 @@
             SpellCheckerOff2 = 0xE64,
             //SpellFixer = 0x10E2C3, // IsSpellKnown
             // E38EF0 vs EC3450
-            ClntObjMgrGetActivePlayerObj = 0x8F969,
-            FrameScript_ExecuteBuffer = 0xB5A34,
-            CGPlayer_C__ClickToMove = 0x322C1F, // alias CGUnit_C__InitializeTrackingState
-            FrameScript__GetLocalizedText = 0x31D109,
-            WowClientDB2__GetRowPointer = 0x221073,
-            CGWorldFrame__Intersect = 0x63ED1D,
-            Spell_C_HandleTerrainClick = 0x2CD7F2,
+            ClntObjMgrGetActivePlayerObj = 0x8F94D,
+            FrameScript_ExecuteBuffer = 0xB5839,
+            CGPlayer_C__ClickToMove = 0x322512, // alias CGUnit_C__InitializeTrackingState
+            FrameScript__GetLocalizedText = 0x31C9FC,
+            WowClientDB2__GetRowPointer = 0x220DFA,
+            CGWorldFrame__Intersect = 0x63EC0D,
+            Spell_C_HandleTerrainClick = 0x2CD0A5,
             CGUnit_C__Interact = 0x5403E,
-            strlen = 0x7B8980, // ida _strlen
+            strlen = 0x7B86F0, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
