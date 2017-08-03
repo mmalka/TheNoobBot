@@ -265,14 +265,13 @@ public class MageArcane
     #region Utility Spells
 
     //private readonly Spell Blink = new Spell("Blink");
-    private readonly Spell ConjureRefreshment = new Spell(190336);
+    //private readonly Spell ConjureRefreshment = new Spell(190336);
     //private readonly Spell Counterspell = new Spell("Counterspell");
     //private readonly Spell Displacement = new Spell("Displacement");
     private readonly Spell IceFloes = new Spell("Ice Floes");
     //private readonly Spell Polymorph = new Spell("Polymorph");
     //private readonly Spell Spellsteal = new Spell("Spellsteal");
     //private readonly Spell SlowFall = new Spell("Slow Fall");
-    //private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
 
     #endregion
 
@@ -346,14 +345,6 @@ public class MageArcane
                 ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
                 Main.InternalLightHealingSpell.CastOnSelf();
-                return;
-            }
-            //Cast Conjure Refreshment
-            if (MySettings.UseConjureRefreshment && ConjureRefreshment.IsSpellUsable && !Party.IsInGroup() &&
-                ItemsManager.GetItemCount(ItemsManager.GetItemNameById(80610)) == 0 &&
-                ItemsManager.GetItemCount(ItemsManager.GetItemNameById(113509)) == 0)
-            {
-                ConjureRefreshment.Cast();
                 return;
             }
         }
@@ -701,7 +692,6 @@ public class MageArcane
         public int UseSlowBelowPercentage = 0;
 
         /* Utility Spells */
-        public bool UseConjureRefreshment = true;
         public bool UseIceFloes = true;
 
         /* Game Settings */
@@ -744,7 +734,6 @@ public class MageArcane
             AddControlInWinForm("Use Ice Block", "UseIceBlockBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Slow", "UseSlowBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Utility Spells */
-            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Utility Spells");
             AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
@@ -853,13 +842,12 @@ public class MageFire
     #region Utility Spells
 
     //private readonly Spell Blink = new Spell("Blink");
-    private readonly Spell ConjureRefreshment = new Spell(190336);
+    //private readonly Spell ConjureRefreshment = new Spell(190336);
     //private readonly Spell Counterspell = new Spell("Counterspell");
     private readonly Spell IceFloes = new Spell("Ice Floes");
     //private readonly Spell Shimmer = new Spell("Shimmer");
     //private readonly Spell Spellsteal = new Spell("Spellsteal");
     //private readonly Spell SlowFall = new Spell("Slow Fall");
-    //private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
 
     #endregion
 
@@ -933,14 +921,6 @@ public class MageFire
                 ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
                 Main.InternalLightHealingSpell.CastOnSelf();
-                return;
-            }
-            //Cast Conjure Refreshment
-            if (MySettings.UseConjureRefreshment && ConjureRefreshment.IsSpellUsable && !Party.IsInGroup() &&
-                ItemsManager.GetItemCount(ItemsManager.GetItemNameById(80610)) == 0 &&
-                ItemsManager.GetItemCount(ItemsManager.GetItemNameById(113509)) == 0)
-            {
-                ConjureRefreshment.Cast();
                 return;
             }
         }
@@ -1276,7 +1256,6 @@ public class MageFire
 
 
         /* Utility Spells */
-        public bool UseConjureRefreshment = true;
         public bool UseIceFloes = true;
 
         /* Game Settings */
@@ -1317,7 +1296,6 @@ public class MageFire
             AddControlInWinForm("Use Ice Barrier", "UseIceBarrierBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Ice Block", "UseIceBlockBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Utility Spells */
-            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Utility Spells");
             AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
@@ -1435,7 +1413,7 @@ public class MageFrost
     #region Utility Spells
 
     //private readonly Spell Blink = new Spell("Blink");
-    private readonly Spell ConjureRefreshment = new Spell(190336);
+    //private readonly Spell ConjureRefreshment = new Spell(190336);
     //private readonly Spell Counterspell = new Spell("Counterspell");
     private readonly Spell Freeze = new Spell("Freeze"); //No GCD
     private readonly Spell IceFloes = new Spell("Ice Floes");
@@ -1443,7 +1421,6 @@ public class MageFrost
     //private readonly Spell Spellsteal = new Spell("Spellsteal");
     private readonly Spell SummonWaterElemental = new Spell(31687);
     //private readonly Spell SlowFall = new Spell("Slow Fall");
-    //private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
 
     #endregion
 
@@ -1517,14 +1494,6 @@ public class MageFrost
                 ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
                 Main.InternalLightHealingSpell.CastOnSelf();
-                return;
-            }
-            //Cast Conjure Refreshment
-            if (MySettings.UseConjureRefreshment && ConjureRefreshment.IsSpellUsable && !Party.IsInGroup() &&
-                ItemsManager.GetItemCount(ItemsManager.GetItemNameById(80610)) == 0 &&
-                ItemsManager.GetItemCount(ItemsManager.GetItemNameById(113509)) == 0)
-            {
-                ConjureRefreshment.Cast();
                 return;
             }
         }
@@ -1967,7 +1936,6 @@ public class MageFrost
         public int UseIceBlockBelowPercentage = 10;
 
         /* Utility Spells */
-        public bool UseConjureRefreshment = true;
         public bool UseIceFloes = true;
         public bool UseSummonWaterElemental = true;
 
@@ -2012,7 +1980,6 @@ public class MageFrost
             AddControlInWinForm("Use Ice Barrier", "UseIceBarrierBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Ice Block", "UseIceBlockBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Utility Spells */
-            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Utility Spells");
             AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Utility Spells");
             AddControlInWinForm("Use Summon Water Elemental", "UseSummonWaterElemental", "Utility Spells");
             /* Game Settings */

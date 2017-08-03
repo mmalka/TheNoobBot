@@ -28,7 +28,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
-    internal static float Version = 1.0f;
+    internal static string Version = "7.2.5.b";
 
     #region ICombatClass Members
 
@@ -178,7 +178,7 @@ public class Main : ICombatClass
             FieldInfo field = mySettings.GetType().GetFields(bindingFlags)[i];
             Logging.WriteDebug(field.Name + " = " + field.GetValue(mySettings));
         }
-        Logging.WriteDebug("Loaded " + ObjectManager.Me.WowSpecialization() + " Combat Class " + Version.ToString("0.0###"));
+        Logging.WriteDebug("Loaded " + ObjectManager.Me.WowSpecialization() + " Combat Class " + Version);
 
         // Last field is intentionnally ommited because it's a backing field.
     }
@@ -219,12 +219,12 @@ public class RogueAssassination
     private readonly Spell ElaboratePlanning = new Spell(193640);
     private readonly Spell Nightstalker = new Spell("Nightstalker");
     private readonly Spell Subterfuge = new Spell("Subterfuge");
+    private readonly Spell ToxicBlade = new Spell("Toxic Blade");
 
     #endregion
 
     #region Buffs
 
-    private readonly Spell AgonizingPoison = new Spell("Agonizing Poison"); //No GCD
     private readonly Spell CripplingPoison = new Spell("Crippling Poison"); //No GCD
     private readonly Spell DeadlyPoison = new Spell("Deadly Poison"); //No GCD
     private readonly Spell LeechingPoison = new Spell("Leeching Poison"); //No GCD
@@ -251,6 +251,7 @@ public class RogueAssassination
     private readonly Spell Garrote = new Spell("Garrote");
     private readonly Spell Mutilate = new Spell("Mutilate");
     private readonly Spell Hemorrhage = new Spell("Hemorrhage");
+    private readonly Spell PoisonedKnife = new Spell("Poisoned Knife");
     private readonly Spell Rupture = new Spell("Rupture");
     private readonly Spell SinisterStrike = new Spell("Sinister Strike");
 
@@ -360,11 +361,13 @@ public class RogueAssassination
                 }
             }
             //Stealth
-            if (MySettings.UseStealth && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
+            if (MySettings.UseStealthOOC && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
             {
                 StealthBuff.Cast();
                 return;
             }
+            if (ApplyPoison())
+                return;
         }
         else
         {
@@ -389,17 +392,22 @@ public class RogueAssassination
         }
 
         if (StealthBuff.HaveBuff)
+        {
             Stealth();
+            Pull();
+        }
         else
         {
             Healing();
             Defensive();
             AggroManagement();
             Offensive();
+            Pull();
             Rotation();
         }
     }
 
+    // For stealthed Spells (only return if a Cast triggered Global Cooldown)
     private void Stealth()
     {
         Usefuls.SleepGlobalCooldown();
@@ -408,43 +416,32 @@ public class RogueAssassination
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //1. Cast Rupture when
-            if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
-                //you have max combo points and you have the Nightstalker Talent
-                GetFreeComboPoints() == 0 && Nightstalker.HaveBuff)
-            {
-                Rupture.Cast();
-                return;
-            }
-            //2. Cast Garrote when
-            if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
-                //you have the Nightstalker or Subterfuge Talent
-                !Garrote.TargetHaveBuffFromMe && (Nightstalker.HaveBuff || Subterfuge.HaveBuff))
-            {
-                Garrote.Cast();
-                return;
-            }
-            //3. Cast Mutilate.
-            if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood
-                //you have the Nightstalker
-                && Nightstalker.HaveBuff)
-            {
-                Mutilate.Cast();
-                return;
-            }
-            //4. Cast Cheap Shot when
-            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood &&
-                //the target is stunnable
-                ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
-            {
-                CheapShot.Cast();
-                return;
-            }
-            //5. Cast Garrote
+            //Maintain Garrote when
             if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
                 !Garrote.TargetHaveBuffFromMe)
             {
                 Garrote.Cast();
+                return;
+            }
+            //Cast Rupture when you have max combo points and Nightstalker talent
+            if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
+                GetFreeComboPoints() == 0 && Nightstalker.HaveBuff)
+            {
+                RuptureHasExsanguinateBuff = false;
+                Rupture.Cast();
+                return;
+            }
+            //Cast Mutilate.
+            if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood)
+            {
+                Mutilate.Cast();
+                return;
+            }
+            //Cast Cheap Shot when the target is stunnable
+            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood &&
+                ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
+            {
+                CheapShot.Cast();
                 return;
             }
         }
@@ -454,8 +451,25 @@ public class RogueAssassination
         }
     }
 
+    // For Pull Logic
+    private void Pull()
+    {
+        if (!ObjectManager.Target.InCombat &&
+            ObjectManager.Me.Position.DistanceTo2D(ObjectManager.Target.Position) <= 10 &&
+            ObjectManager.Me.Position.DistanceZ(ObjectManager.Target.Position) >= 20)
+        {
+            //Cast Poisoned Knife
+            if (MySettings.UsePoisonedKnifeToPull && PoisonedKnife.IsSpellUsable &&
+                ObjectManager.Me.Energy >= 40 && PoisonedKnife.IsHostileDistanceGood)
+            {
+                PoisonedKnife.Cast();
+                return;
+            }
+        }
+    }
+
     // For Self-Healing Spells (always return after Casting)
-    private bool Healing()
+    private void Healing()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -467,16 +481,15 @@ public class RogueAssassination
             if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
                 GiftoftheNaaru.Cast();
-                return true;
+                return;
             }
             //Crimson Vial
             if (ObjectManager.Me.HealthPercent < MySettings.UseCrimsonVialBelowPercentage &&
                 CrimsonVial.IsSpellUsable && ObjectManager.Me.Energy >= 30)
             {
                 CrimsonVial.Cast();
-                return true;
+                return;
             }
-            return false;
         }
         finally
         {
@@ -485,7 +498,7 @@ public class RogueAssassination
     }
 
     // For Defensive Buffs and Livesavers (always return after Casting)
-    private bool Defensive()
+    private void Defensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -501,7 +514,7 @@ public class RogueAssassination
                     if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
                     {
                         WarStomp.Cast();
-                        return true;
+                        return;
                     }
                 }
                 //Mitigate Damage
@@ -509,14 +522,14 @@ public class RogueAssassination
                 {
                     Stoneform.Cast();
                     DefensiveTimer = new Timer(1000*8);
-                    return true;
+                    return;
                 }
                 if (ObjectManager.Me.HealthPercent < MySettings.UseFeintBelowPercentage &&
                     Feint.IsSpellUsable && ObjectManager.Me.Energy >= 20)
                 {
                     Feint.Cast();
                     DefensiveTimer = new Timer(1000*5);
-                    return true;
+                    return;
                 }
             }
             //Mitigate Damage in Emergency Situations
@@ -525,16 +538,15 @@ public class RogueAssassination
             {
                 CloakofShadows.Cast();
                 DefensiveTimer = new Timer(1000*5);
-                return true;
+                return;
             }
             //Evasion
             if (ObjectManager.Me.HealthPercent < MySettings.UseEvasionBelowPercentage && Evasion.IsSpellUsable)
             {
                 Evasion.Cast();
                 DefensiveTimer = new Timer(1000*10);
-                return true;
+                return;
             }
-            return false;
         }
         finally
         {
@@ -543,7 +555,7 @@ public class RogueAssassination
     }
 
     // For Spots (always return after Casting)
-    private bool AggroManagement()
+    private void AggroManagement()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -551,10 +563,9 @@ public class RogueAssassination
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Cast Tricks of the Trade on Tank when
-            if (ObjectManager.Me.HealthPercent < MySettings.UseTricksoftheTradeBelowPercentage && TricksoftheTrade.IsSpellUsable
-                //you are in a Group and
-                && Party.IsInGroup())
+            //Cast Tricks of the Trade on Tank when you are in a Group and
+            if (ObjectManager.Me.HealthPercent < MySettings.UseTricksoftheTradeBelowPercentage &&
+                TricksoftheTrade.IsSpellUsable && Party.IsInGroup())
             {
                 WoWPlayer tank = new WoWPlayer(0);
                 foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
@@ -572,9 +583,13 @@ public class RogueAssassination
                 }
                 //the Tank has more than 20% Health
                 if (tank.HealthPercent > 20 && CombatClass.InSpellRange(tank, TricksoftheTrade.MinRangeFriend, TricksoftheTrade.MaxRangeFriend))
+                {
+                    Logging.WriteFight("Casting Tricks of the Trade on " + tank.Name + ".");
                     TricksoftheTrade.Cast(false, true, false, tank.GetUnitId());
+                }
+                //else
+                //    Logging.WriteFight("Couldn't cast Tricks of the Trade on " + tank.Name + ". (" + tank.HealthPercent + "% Health, " + tank.GetDistance + " distance)");
             }
-            return false;
         }
         finally
         {
@@ -583,7 +598,7 @@ public class RogueAssassination
     }
 
     // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
-    private bool Offensive()
+    private void Offensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -592,28 +607,8 @@ public class RogueAssassination
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Apply Poisons
-            if (!AgonizingPoison.HaveBuff)
-            {
-                if (MySettings.UseAgonizingPoison && AgonizingPoison.IsSpellUsable)
-                {
-                    AgonizingPoison.CastOnSelf();
-                }
-                if (MySettings.UseDeadlyPoison && DeadlyPoison.IsSpellUsable && !DeadlyPoison.HaveBuff)
-                {
-                    DeadlyPoison.CastOnSelf();
-                }
-            }
-            if (!LeechingPoison.HaveBuff)
-            {
-                if (MySettings.UseLeechingPoison && LeechingPoison.IsSpellUsable)
-                {
-                    LeechingPoison.CastOnSelf();
-                }
-                if (MySettings.UseCripplingPoison && CripplingPoison.IsSpellUsable && !CripplingPoison.HaveBuff)
-                {
-                    CripplingPoison.CastOnSelf();
-                }
-            }
+            if (ApplyPoison())
+                return;
 
             if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
             {
@@ -633,7 +628,6 @@ public class RogueAssassination
             {
                 BloodFury.Cast();
             }
-            return false;
         }
         finally
         {
@@ -659,9 +653,8 @@ public class RogueAssassination
                 KidneyShot.Cast();
                 return;
             }
-            //Cast Exsanguinate when
+            //Cast Exsanguinate when Kingsbane Dot is up
             if (MySettings.UseExsanguinate && Exsanguinate.IsSpellUsable && Exsanguinate.IsHostileDistanceGood &&
-                //Kingsbane Dot is up
                 Kingsbane.TargetHaveBuff)
             {
                 GarroteHasExsanguinateBuff = true;
@@ -669,44 +662,9 @@ public class RogueAssassination
                 Exsanguinate.Cast();
                 return;
             }
-            //Cast Marked for Death (when talented) when
-            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
-                //you have 5 free combo points.
-                GetFreeComboPoints() >= 5)
-            {
-                MarkedforDeath.Cast();
-                return;
-            }
 
-            //1. Maintain Rupture when
+            //1. Maintain Rupture when you have max combo points
             if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
-                //you have 3+ combo points and Rupture isn't on the target.
-                ObjectManager.Me.ComboPoint >= 3 && !Rupture.TargetHaveBuffFromMe)
-            {
-                //it won't reset Exsanguinate
-                if (!Rupture.TargetHaveBuffFromMe || !RuptureHasExsanguinateBuff)
-                {
-                    RuptureHasExsanguinateBuff = false;
-                    Rupture.Cast();
-                    return;
-                }
-            }
-            //2. Activate Vendetta on the primary target when it is off cooldown.
-            if (MySettings.UseVendetta && Vendetta.IsSpellUsable && Vendetta.IsHostileDistanceGood)
-            {
-                Vendetta.Cast();
-            }
-            //3. Activate Vanish when you aren't in stealth and
-            if (MySettings.UseVanish && Vanish.IsSpellUsable && !StealthBuff.HaveBuff &&
-                //you have max combo points
-                GetFreeComboPoints() == 0) // && !SpellManager.GetAllSpellsOnCooldown.Exists(entry => entry.SpellId == 1856))
-            {
-                Vanish.Cast();
-                return;
-            }
-            //1b. Maintain Rupture when
-            if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
-                //you have max combo points and it has 8 or less seconds remaining
                 GetFreeComboPoints() == 0 && ObjectManager.Target.UnitAura(Rupture.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 8000)
             {
                 //it won't reset Exsanguinate
@@ -717,9 +675,28 @@ public class RogueAssassination
                     return;
                 }
             }
+            //2. Activate Vendetta on the primary target when it is off cooldown and you have spent all your Energy.
+            if (MySettings.UseVendetta && Vendetta.IsSpellUsable && Vendetta.IsHostileDistanceGood &&
+                ObjectManager.Me.Energy < 55)
+            {
+                Vendetta.Cast();
+            }
+            //Cast Marked for Death (when talented) when you have 5 free combo points.
+            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && GetFreeComboPoints() >= 5 &&
+                MarkedforDeath.IsHostileDistanceGood)
+            {
+                MarkedforDeath.Cast();
+                return;
+            }
+            //3. Activate Vanish when you aren't in stealth and you have max combo points or no Nightstalker Talent
+            if (MySettings.UseVanish && Vanish.IsSpellUsable &&
+                (GetFreeComboPoints() == 0 || !Nightstalker.HaveBuff)) // && !SpellManager.GetAllSpellsOnCooldown.Exists(entry => entry.SpellId == 1856))
+            {
+                Vanish.Cast();
+                return;
+            }
             //4. Maintain Garrote Dot when it is off cooldown and
             if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
-                //it has 6 or less seconds remaining
                 ObjectManager.Target.UnitAura(Garrote.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 6000)
             {
                 //it won't reset Exsanguinate
@@ -730,39 +707,63 @@ public class RogueAssassination
                     return;
                 }
             }
-            //5. Cast Kingsbane when it is off cooldown.
+            //6. Cast Kingsbane when it is off cooldown.
             if (MySettings.UseKingsbane && Kingsbane.IsSpellUsable && Kingsbane.IsHostileDistanceGood)
             {
-                Kingsbane.Cast();
-                return;
+                //5. Maintain Envenom when you have max combo points
+                if (GetFreeComboPoints() == 0 && !Envenom.HaveBuff)
+                {
+                    //Pool Energy
+                    if (ObjectManager.Me.EnergyPercentage < MySettings.PoolEnergyForKingsbane)
+                        return;
+
+                    if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable &&
+                        DeathfromAbove.IsHostileDistanceGood)
+                    {
+                        DeathfromAbove.Cast();
+                        return;
+                    }
+                    if (MySettings.UseEnvenom && Envenom.IsSpellUsable && Envenom.IsHostileDistanceGood)
+                    {
+                        Envenom.Cast();
+                        return;
+                    }
+                }
+                else if (Envenom.HaveBuff)
+                {
+                    Kingsbane.Cast();
+                    return;
+                }
             }
-            //Cast Death from Above when
-            if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable && DeathfromAbove.IsHostileDistanceGood &&
-                //you have max combo points and Elaborate Planning isn't up and
-                GetFreeComboPoints() == 0 && !ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Id).IsValid &&
-                //Envenom isn't up
-                !Envenom.HaveBuff)
+            //Cast Toxic Blade (when talented) when you have 1 free combo point. (poison check would waste performance)
+            if (MySettings.UseToxicBlade && ToxicBlade.IsSpellUsable && ToxicBlade.IsHostileDistanceGood &&
+                GetFreeComboPoints() >= 1 && (!MySettings.UseKingsbane || !Kingsbane.IsSpellUsable))
             {
-                DeathfromAbove.Cast();
+                ToxicBlade.Cast();
                 return;
             }
-            //6. Cast Envenom when
-            if (MySettings.UseEnvenom && Envenom.IsSpellUsable && Envenom.IsHostileDistanceGood &&
-                //you have max combo points and Elaborate Planning isn't up and
-                GetFreeComboPoints() == 0 && !ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Id).IsValid &&
-                //Envenom isn't up
-                !Envenom.HaveBuff)
+            //7. Maintain Envenom when you have max combo points
+            if (GetFreeComboPoints() == 0 && !Envenom.HaveBuff)
             {
-                Envenom.Cast();
-                return;
+                if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable &&
+                    DeathfromAbove.IsHostileDistanceGood)
+                {
+                    DeathfromAbove.Cast();
+                    return;
+                }
+                if (MySettings.UseEnvenom && Envenom.IsSpellUsable && Envenom.IsHostileDistanceGood)
+                {
+                    Envenom.Cast();
+                    return;
+                }
             }
-            //7. Cast Eviscerate
-            if (MySettings.UseEviscerate && Eviscerate.IsSpellUsable && GetFreeComboPoints() == 0 &&
+            // Cast Eviscerate
+            /*if (MySettings.UseEviscerate && Eviscerate.IsSpellUsable && GetFreeComboPoints() == 0 &&
                 ObjectManager.Me.Energy >= 35 && Eviscerate.IsHostileDistanceGood)
             {
                 Eviscerate.Cast();
                 return;
-            }
+            }*/
             //8. Cast Fan of Knives when it hits 3+ targets 
             if (MySettings.UseFanofKnives && FanofKnives.IsSpellUsable && ObjectManager.Me.GetUnitInSpellRange(10f) >= 3)
             {
@@ -770,22 +771,49 @@ public class RogueAssassination
                 return;
             }
             //9. Cast Mutilate.
-            if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood)
+            if (MySettings.UseMutilate && GetFreeComboPoints() > 0)
             {
-                Mutilate.Cast();
-                return;
-            }
-            //10. Cast Sinister Strike.
-            if (MySettings.UseMutilate && !Mutilate.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood)
-            {
-                SinisterStrike.Cast();
-                return;
+                if (Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood)
+                {
+                    Mutilate.Cast();
+                    return;
+                }
+                if (!Mutilate.KnownSpell && SinisterStrike.IsSpellUsable &&
+                    SinisterStrike.IsHostileDistanceGood)
+                {
+                    SinisterStrike.Cast();
+                    return;
+                }
             }
         }
         finally
         {
             Memory.WowMemory.GameFrameUnLock();
         }
+    }
+
+    // Applies Poison
+    private bool ApplyPoison()
+    {
+        if (MySettings.UseDeadlyPoison && DeadlyPoison.IsSpellUsable && !DeadlyPoison.HaveBuff)
+        {
+            DeadlyPoison.CastOnSelf();
+            return true;
+        }
+        if (!LeechingPoison.HaveBuff)
+        {
+            if (MySettings.UseLeechingPoison && LeechingPoison.IsSpellUsable)
+            {
+                LeechingPoison.CastOnSelf();
+                return true;
+            }
+            if (MySettings.UseCripplingPoison && CripplingPoison.IsSpellUsable && !CripplingPoison.HaveBuff)
+            {
+                CripplingPoison.CastOnSelf();
+                return true;
+            }
+        }
+        return false;
     }
 
     // Checks free combo points before capping
@@ -809,13 +837,13 @@ public class RogueAssassination
         public int UseWarStompBelowPercentage = 50;
 
         /* Poisons */
-        public bool UseAgonizingPoison = true;
         public bool UseCripplingPoison = true;
         public bool UseDeadlyPoison = true;
         public bool UseLeechingPoison = true;
 
         /* Artifact Spells */
         public bool UseKingsbane = true;
+        public int PoolEnergyForKingsbane = 50;
 
         /* Offensive Spells */
         public bool UseDeathfromAbove = true;
@@ -825,10 +853,12 @@ public class RogueAssassination
         public bool UseFanofKnives = true;
         public bool UseGarrote = true;
         public bool UseMutilate = true;
+        public bool UsePoisonedKnifeToPull = true;
         public bool UseRupture = true;
 
         /* Offensive Cooldowns */
         public bool UseMarkedforDeath = true;
+        public bool UseToxicBlade = true;
         public bool UseVanish = true;
         public bool UseVendetta = true;
 
@@ -836,7 +866,7 @@ public class RogueAssassination
         public int UseCloakofShadowsBelowPercentage = 0;
         public int UseEvasionBelowPercentage = 10;
         public int UseFeintBelowPercentage = 0;
-        public int UseTricksoftheTradeBelowPercentage = 100;
+        public int UseTricksoftheTradeBelowPercentage = 30;
 
         /* Healing Spells */
         public int UseCrimsonVialBelowPercentage = 70;
@@ -846,6 +876,7 @@ public class RogueAssassination
         public int UseKidneyShotAboveComboPoints = 10;
         public bool UseSprint = true;
         public bool UseStealth = true;
+        public bool UseStealthOOC = true;
 
         /* Game Settings */
         public bool UseTrinketOne = true;
@@ -863,12 +894,12 @@ public class RogueAssassination
             AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Poisons */
-            AddControlInWinForm("Use Agonizing Poison", "UseAgonizingPoison", "Poisons");
             AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Poisons");
             AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Poisons");
             AddControlInWinForm("Use Leeching Poison", "UseLeechingPoison", "Poisons");
             /* Artifact Spells */
             AddControlInWinForm("Use Kingsbane", "UseKingsbane", "Artifact Spells");
+            AddControlInWinForm("Pool for Kingsbane", "PoolEnergyForKingsbane", "Offensive Spells", "AbovePercentage", "Energy");
             /* Offensive Spells */
             AddControlInWinForm("Use Death from Above", "UseDeathfromAbove", "Offensive Spells");
             AddControlInWinForm("Use Envenom", "UseEnvenom", "Offensive Spells");
@@ -877,9 +908,11 @@ public class RogueAssassination
             AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spells");
             AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spells");
             AddControlInWinForm("Use Mutilate", "UseMutilate", "Offensive Spells");
+            AddControlInWinForm("Use Poisoned Knife to Pull", "UsePoisonedKnifeToPull", "Offensive Spells");
             AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spells");
             /* Offensive Cooldowns */
             AddControlInWinForm("Use Marked for Death", "UseMarkedforDeath", "Offensive Cooldowns");
+            AddControlInWinForm("Use Toxic Blade", "UseToxicBlade", "Offensive Cooldowns");
             AddControlInWinForm("Use Vanish", "UseVanish", "Offensive Cooldowns");
             AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldowns");
             /* Defensive Spells */
@@ -894,6 +927,7 @@ public class RogueAssassination
             AddControlInWinForm("Use Kidney Shot", "UseKidneyShotAboveComboPoints", "Offensive Spells", "AbovePercentage", "Combo Points");
             AddControlInWinForm("Use Sprint", "UseSprint", "Utility Spells");
             AddControlInWinForm("Use Stealth", "UseStealth", "Utility Spells");
+            AddControlInWinForm("Use Stealth out of combat", "UseStealthOOC", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -954,7 +988,9 @@ public class RogueOutlaw
     private readonly Spell Broadsides = new Spell(193356);
     private readonly Spell BuriedTreasure = new Spell(199600);
     private readonly Spell GrandMelee = new Spell(193358);
+    private readonly Spell GreenskinsWaterloggedWristcuffs = new Spell(209423);
     private readonly Spell JollyRoger = new Spell(199603);
+    private readonly Spell MasterAssassinsInitiative = new Spell(235027);
     private readonly Spell Opportunity = new Spell(195627);
     private readonly Spell SharkInfestedWaters = new Spell(193357);
     private readonly Spell TrueBearing = new Spell(193359);
@@ -969,6 +1005,7 @@ public class RogueOutlaw
 
     #region Offensive Spells
 
+    private readonly Spell Ambush = new Spell("Ambush");
     private readonly Spell BetweentheEyes = new Spell("Between the Eyes");
     private readonly Spell BladeFlurry = new Spell("Blade Flurry");
     private readonly Spell DeathfromAbove = new Spell("Death from Above");
@@ -1087,7 +1124,7 @@ public class RogueOutlaw
                 }
             }
             //Stealth
-            if (MySettings.UseStealth && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
+            if (MySettings.UseStealthOOC && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
             {
                 StealthBuff.Cast();
                 return;
@@ -1114,14 +1151,70 @@ public class RogueOutlaw
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        Healing();
-        if (Defensive() || Offensive())
-            return;
-        Rotation();
+
+        if (StealthBuff.HaveBuff)
+        {
+            Stealth();
+            Pull();
+        }
+        else
+        {
+            Healing();
+            Defensive();
+            AggroManagement();
+            Offensive();
+            Pull();
+            Rotation();
+        }
+    }
+
+    // For stealthed Spells (only return if a Cast triggered Global Cooldown)
+    private void Stealth()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Cast Cheap Shot when the target is stunnable
+            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood &&
+                ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
+            {
+                CheapShot.Cast();
+                return;
+            }
+            //Cast Ambush
+            if (MySettings.UseAmbush && Ambush.IsSpellUsable && Ambush.IsHostileDistanceGood)
+            {
+                Ambush.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Pull Logic
+    private void Pull()
+    {
+        if (!ObjectManager.Target.InCombat &&
+            ObjectManager.Me.Position.DistanceTo2D(ObjectManager.Target.Position) <= 10 &&
+            ObjectManager.Me.Position.DistanceZ(ObjectManager.Target.Position) >= 20)
+        {
+            //Cast Pistol Shot
+            if (MySettings.UsePistolShotToPull && PistolShot.IsSpellUsable && PistolShot.IsHostileDistanceGood)
+            {
+                PistolShot.Cast();
+                return;
+            }
+        }
     }
 
     // For Self-Healing Spells (always return after Casting)
-    private bool Healing()
+    private void Healing()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1133,16 +1226,15 @@ public class RogueOutlaw
             if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
                 GiftoftheNaaru.Cast();
-                return true;
+                return;
             }
             //Crimson Vial
             if (ObjectManager.Me.HealthPercent < MySettings.UseCrimsonVialBelowPercentage &&
                 CrimsonVial.IsSpellUsable && ObjectManager.Me.Energy >= 30)
             {
                 CrimsonVial.Cast();
-                return true;
+                return;
             }
-            return false;
         }
         finally
         {
@@ -1151,7 +1243,7 @@ public class RogueOutlaw
     }
 
     // For Defensive Buffs and Livesavers (always return after Casting)
-    private bool Defensive()
+    private void Defensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1167,7 +1259,7 @@ public class RogueOutlaw
                     if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
                     {
                         WarStomp.Cast();
-                        return true;
+                        return;
                     }
                 }
                 //Mitigate Damage
@@ -1175,14 +1267,14 @@ public class RogueOutlaw
                 {
                     Stoneform.Cast();
                     DefensiveTimer = new Timer(1000*8);
-                    return true;
+                    return;
                 }
                 if (ObjectManager.Me.HealthPercent < MySettings.UseFeintBelowPercentage &&
                     Feint.IsSpellUsable && ObjectManager.Me.Energy >= 20)
                 {
                     Feint.Cast();
                     DefensiveTimer = new Timer(1000*5);
-                    return true;
+                    return;
                 }
             }
             //Mitigate Damage in Emergency Situations
@@ -1191,16 +1283,56 @@ public class RogueOutlaw
             {
                 CloakofShadows.Cast();
                 DefensiveTimer = new Timer(1000*5);
-                return true;
+                return;
             }
             //Riposte
             if (ObjectManager.Me.HealthPercent < MySettings.UseRiposteBelowPercentage && Riposte.IsSpellUsable)
             {
                 Riposte.Cast();
                 DefensiveTimer = new Timer(1000*10);
-                return true;
+                return;
             }
-            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Spots (always return after Casting)
+    private void AggroManagement()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Cast Tricks of the Trade on Tank when you are in a Group and
+            if (ObjectManager.Me.HealthPercent < MySettings.UseTricksoftheTradeBelowPercentage &&
+                TricksoftheTrade.IsSpellUsable && Party.IsInGroup())
+            {
+                WoWPlayer tank = new WoWPlayer(0);
+                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
+                {
+                    if (playerInMyParty <= 0)
+                        continue;
+                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
+                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                        continue;
+                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                        continue;
+                    if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && tank != currentPlayer)
+                        tank = currentPlayer;
+                }
+                //the Tank has more than 20% Health
+                if (tank.HealthPercent > 20 && CombatClass.InSpellRange(tank, TricksoftheTrade.MinRangeFriend, TricksoftheTrade.MaxRangeFriend))
+                {
+                    Logging.WriteFight("Casting Tricks of the Trade on " + tank.Name + ".");
+                    TricksoftheTrade.Cast(false, true, false, tank.GetUnitId());
+                }
+            }
         }
         finally
         {
@@ -1209,7 +1341,7 @@ public class RogueOutlaw
     }
 
     // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
-    private bool Offensive()
+    private void Offensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1235,23 +1367,6 @@ public class RogueOutlaw
             {
                 BloodFury.Cast();
             }
-            //Cast Vanish
-            if (MySettings.UseVanish && Vanish.IsSpellUsable)
-            {
-                Vanish.Cast();
-                return true;
-            }
-            //Toggle Blade Flurry when
-            if (MySettings.UseBladeFlurry && BladeFlurry.IsSpellUsable &&
-                //it is disabled and multiple enemies are stacked
-                ((!BladeFlurry.HaveBuff && ObjectManager.Me.GetUnitInSpellRange(5f) > 1) ||
-                 //it is enabled and there aren't multiple enmies stacked
-                 (BladeFlurry.HaveBuff && ObjectManager.Me.GetUnitInSpellRange(5f) <= 1)))
-            {
-                BladeFlurry.Cast();
-                return true;
-            }
-            return false;
         }
         finally
         {
@@ -1268,97 +1383,89 @@ public class RogueOutlaw
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Cast Cheap Shot when
-            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 40 && CheapShot.IsHostileDistanceGood &&
-                //the target is stunnable and you are stealthed
-                ObjectManager.Target.IsStunnable && StealthBuff.HaveBuff)
+            //Cast Vanish on Cooldown
+            if (MySettings.UseVanish && Vanish.IsSpellUsable)
             {
-                CheapShot.Cast();
+                Vanish.Cast();
                 return;
             }
-            //1. Apply Roll the Bones when
-            if (MySettings.UseRolltheBones && RolltheBones.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 25 &&
-                //you have max combo points and
-                GetFreeComboPoints() == 0 &&
+
+            //1. Toggle Blade Flurry when
+            if (MySettings.UseBladeFlurry && BladeFlurry.IsSpellUsable &&
+                //it is disabled and multiple enemies are stacked
+                ((!BladeFlurry.HaveBuff && ObjectManager.Me.GetUnitInSpellRange(5f) > 1) ||
+                 //it is enabled and there aren't multiple enmies stacked
+                 (BladeFlurry.HaveBuff && ObjectManager.Me.GetUnitInSpellRange(5f) <= 1)))
+            {
+                BladeFlurry.Cast();
+                return;
+            }
+            //2. Apply Roll the Bones when you have max combo points and
+            if (MySettings.UseRolltheBones && RolltheBones.IsSpellUsable && GetFreeComboPoints() == 0 &&
                 //you don't have the True Bearing Buff and less then 2 different Roll the Bones Buffs
                 !TrueBearing.HaveBuff && GetRolltheBonesBuffs() < 2)
             {
                 RolltheBones.Cast();
                 return;
             }
-            //2. Maintain Ghostly Strike when
-            if (MySettings.UseGhostlyStrike && GhostlyStrike.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 30 && GhostlyStrike.IsHostileDistanceGood &&
+            //3. Maintain Ghostly Strike when
+            if (MySettings.UseGhostlyStrike && GhostlyStrike.IsSpellUsable && GhostlyStrike.IsHostileDistanceGood &&
                 !GhostlyStrike.TargetHaveBuff)
             {
                 GhostlyStrike.Cast();
                 return;
             }
-            //3. Activate Adrenaline Rush
+            //4. Activate Adrenaline Rush
             if (MySettings.UseAdrenalineRush && AdrenalineRush.IsSpellUsable)
             {
                 AdrenalineRush.Cast();
                 return;
             }
-            //4. Activate Curse of the Dreadblades
+            //5. Activate Curse of the Dreadblades
             if (MySettings.UseCurseoftheDreadblades && CurseoftheDreadblades.IsSpellUsable)
             {
                 CurseoftheDreadblades.Cast();
                 return;
             }
-            //5. Cast Marked for Death (when talented) when
-            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
-                //you have 5 free combo points.
-                GetFreeComboPoints() >= 5)
+            //6. Cast Marked for Death (when talented) when you have 5 free combo points.
+            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && GetFreeComboPoints() >= 5 &&
+                MarkedforDeath.IsHostileDistanceGood)
             {
                 MarkedforDeath.Cast();
                 return;
             }
-            //6. Cast Death from Above (when talented) when
-            if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 25 && DeathfromAbove.IsHostileDistanceGood &&
-                //you have max combo points and
-                GetFreeComboPoints() == 0 &&
-                //Adrenaline Rush is not active.
-                !AdrenalineRush.HaveBuff)
+            if (GetFreeComboPoints() == 0)
             {
-                DeathfromAbove.Cast();
-                return;
+                //7. Cast Between the Eyes when you have max combo points and you have a Legendary Proc
+                if (MySettings.UseBetweentheEyes && BetweentheEyes.IsSpellUsable && BetweentheEyes.IsHostileDistanceGood &&
+                    (GreenskinsWaterloggedWristcuffs.HaveBuff || MasterAssassinsInitiative.HaveBuff))
+                {
+                    BetweentheEyes.Cast();
+                    return;
+                }
+                //8. Cast Run Through when you have max combo points
+                // Ignore Death from Above when Adrenaline Rush is active.
+                if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable && DeathfromAbove.IsHostileDistanceGood &&
+                    !AdrenalineRush.HaveBuff)
+                {
+                    DeathfromAbove.Cast();
+                    return;
+                }
+                if (MySettings.UseRunThrough && RunThrough.IsSpellUsable && RunThrough.IsHostileDistanceGood)
+                {
+                    RunThrough.Cast();
+                    return;
+                }
             }
-            //7. Cast Run Through when
-            if (MySettings.UseRunThrough && RunThrough.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 35 && RunThrough.IsHostileDistanceGood &&
-                //you have max combo points
-                GetFreeComboPoints() == 0)
-            {
-                RunThrough.Cast();
-                return;
-            }
-            //8. Cast Between the Eyes when
-            if (MySettings.UseBetweentheEyes && BetweentheEyes.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 35 && BetweentheEyes.IsHostileDistanceGood &&
-                //you have max combo points
-                GetFreeComboPoints() == 0)
-            {
-                BetweentheEyes.Cast();
-                return;
-            }
-            //9. Cast Pistol Shot when
-            if (MySettings.UsePistolShot && PistolShot.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 40 && PistolShot.IsHostileDistanceGood &&
-                //your combo points aren't capping and
-                GetFreeComboPoints() > 0 &&
-                //you have an Opportunity proc.
-                Opportunity.HaveBuff)
+            //9. Cast Pistol Shot when your combo points aren't capping and you have an Opportunity proc.
+            if (MySettings.UsePistolShot && PistolShot.IsSpellUsable && GetFreeComboPoints() > 0 &&
+                PistolShot.IsHostileDistanceGood && Opportunity.HaveBuff)
             {
                 PistolShot.Cast();
                 return;
             }
             //10. Cast Saber Slash
-            if (MySettings.UseSaberSlash && SaberSlash.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 50 && SaberSlash.IsHostileDistanceGood)
+            if (MySettings.UseSaberSlash && SaberSlash.IsSpellUsable && SaberSlash.IsHostileDistanceGood)
             {
                 SaberSlash.Cast();
                 return;
@@ -1405,11 +1512,13 @@ public class RogueOutlaw
         public bool UseCurseoftheDreadblades = true;
 
         /* Offensive Spells */
+        public bool UseAmbush = true;
         public bool UseBetweentheEyes = true;
         public bool UseBladeFlurry = true;
         public bool UseDeathfromAbove = true;
         public bool UseGhostlyStrike = true;
         public bool UsePistolShot = true;
+        public bool UsePistolShotToPull = true;
         public bool UseRolltheBones = true;
         public bool UseRunThrough = true;
         public bool UseSaberSlash = true;
@@ -1432,6 +1541,7 @@ public class RogueOutlaw
         public bool UseCheapShot = true;
         public bool UseSprint = true;
         public bool UseStealth = true;
+        public bool UseStealthOOC = true;
 
         /* Game Settings */
         public bool UseTrinketOne = true;
@@ -1451,11 +1561,13 @@ public class RogueOutlaw
             /* Artifact Spells */
             AddControlInWinForm("Use Curse of the Dreadblades", "UseCurseoftheDreadblades", "Artifact Spells");
             /* Offensive Spells */
+            AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spells");
             AddControlInWinForm("Use Between the Eyes", "UseBetweentheEyes", "Offensive Spells");
             AddControlInWinForm("Use Blade Flurry", "UseBladeFlurry", "Offensive Spells");
             AddControlInWinForm("Use Death from Above", "UseDeathfromAbove", "Offensive Spells");
             AddControlInWinForm("Use Ghostly Strike", "UseGhostlyStrike", "Offensive Spells");
             AddControlInWinForm("Use Pistol Shot", "UsePistolShot", "Offensive Spells");
+            AddControlInWinForm("Use Pistol Shot to Pull", "UsePistolShotToPull", "Offensive Spells");
             AddControlInWinForm("Use Roll the Bones", "UseRolltheBones", "Offensive Spells");
             AddControlInWinForm("Use Run Through", "UseRunThrough", "Offensive Spells");
             AddControlInWinForm("Use Saber Slash", "UseSaberSlash", "Offensive Spells");
@@ -1474,6 +1586,7 @@ public class RogueOutlaw
             AddControlInWinForm("Use Cheap Shot", "UseCheapShot", "Utility Spells");
             AddControlInWinForm("Use Sprint", "UseSprint", "Utility Spells");
             AddControlInWinForm("Use Stealth", "UseStealth", "Utility Spells");
+            AddControlInWinForm("Use Stealth out of combat", "UseStealthOOC", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -1545,6 +1658,7 @@ public class RogueSubtlety
     private readonly Spell Nightblade = new Spell("Nightblade");
     private readonly Spell Shadowstrike = new Spell("Shadowstrike");
     private readonly Spell ShurikenStorm = new Spell("Shuriken Storm");
+    private readonly Spell ShurikenToss = new Spell("Shuriken Toss");
     private readonly Spell SymbolsofDeath = new Spell("Symbols of Death"); //No GCD
 
     #endregion
@@ -1654,7 +1768,7 @@ public class RogueSubtlety
                 }
             }
             //Stealth
-            if (MySettings.UseStealth && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
+            if (MySettings.UseStealthOOC && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
             {
                 StealthBuff.Cast();
                 return;
@@ -1681,15 +1795,91 @@ public class RogueSubtlety
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        Healing();
-        Defensive();
-        AggroManagement();
-        Offensive();
-        Rotation();
+        if (StealthBuff.HaveBuff || ShadowDance.HaveBuff)
+        {
+            Stealth();
+            Pull();
+        }
+        else
+        {
+            Healing();
+            Defensive();
+            AggroManagement();
+            Offensive();
+            Pull();
+            Rotation();
+        }
+    }
+
+    // For stealthed Spells (only return if a Cast triggered Global Cooldown)
+    private void Stealth()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            // Generate Combo Points
+            if (GetFreeComboPoints() >= 1)
+            {
+                if (ObjectManager.Me.GetUnitInSpellRange(10f) >= 3)
+                {
+                    // Cast Shuriken Storm
+                    if (MySettings.UseShurikenStorm && ShurikenStorm.IsSpellUsable &&
+                        ShurikenStorm.IsHostileDistanceGood)
+                    {
+                        ShurikenStorm.Cast();
+                        return;
+                    }
+                }
+                else
+                {
+                    // Cast Shadowstrike
+                    if (MySettings.UseShadowstrike && Shadowstrike.IsSpellUsable &&
+                        Shadowstrike.IsHostileDistanceGood)
+                    {
+                        Shadowstrike.Cast();
+                        return;
+                    }
+                }
+            }
+            // Consume Combo Points
+            else
+            {
+                // Cast Eviscerate
+                if (MySettings.UseEviscerate && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood)
+                {
+                    Eviscerate.Cast();
+                    return;
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Pull Logic
+    private void Pull()
+    {
+        if (!ObjectManager.Target.InCombat &&
+            ObjectManager.Me.Position.DistanceTo2D(ObjectManager.Target.Position) <= 10 &&
+            ObjectManager.Me.Position.DistanceZ(ObjectManager.Target.Position) >= 20)
+        {
+            //Cast Shuriken Toss
+            if (MySettings.UseShurikenTossToPull && ShurikenToss.IsSpellUsable &&
+                ObjectManager.Me.Energy >= 40 && ShurikenToss.IsHostileDistanceGood)
+            {
+                ShurikenToss.Cast();
+                return;
+            }
+        }
     }
 
     // For Self-Healing Spells (always return after Casting)
-    private bool Healing()
+    private void Healing()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1701,16 +1891,15 @@ public class RogueSubtlety
             if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
                 GiftoftheNaaru.Cast();
-                return true;
+                return;
             }
             //Crimson Vial
             if (ObjectManager.Me.HealthPercent < MySettings.UseCrimsonVialBelowPercentage &&
                 CrimsonVial.IsSpellUsable && ObjectManager.Me.Energy >= 30)
             {
                 CrimsonVial.Cast();
-                return true;
+                return;
             }
-            return false;
         }
         finally
         {
@@ -1719,7 +1908,7 @@ public class RogueSubtlety
     }
 
     // For Defensive Buffs and Livesavers (always return after Casting)
-    private bool Defensive()
+    private void Defensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1735,7 +1924,7 @@ public class RogueSubtlety
                     if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
                     {
                         WarStomp.Cast();
-                        return true;
+                        return;
                     }
                 }
                 //Mitigate Damage
@@ -1743,14 +1932,14 @@ public class RogueSubtlety
                 {
                     Stoneform.Cast();
                     DefensiveTimer = new Timer(1000*8);
-                    return true;
+                    return;
                 }
                 if (ObjectManager.Me.HealthPercent < MySettings.UseFeintBelowPercentage &&
                     Feint.IsSpellUsable && ObjectManager.Me.Energy >= 20)
                 {
                     Feint.Cast();
                     DefensiveTimer = new Timer(1000*5);
-                    return true;
+                    return;
                 }
             }
             //Mitigate Damage in Emergency Situations
@@ -1759,16 +1948,15 @@ public class RogueSubtlety
             {
                 CloakofShadows.Cast();
                 DefensiveTimer = new Timer(1000*5);
-                return true;
+                return;
             }
             //Evasion
             if (ObjectManager.Me.HealthPercent < MySettings.UseEvasionBelowPercentage && Evasion.IsSpellUsable)
             {
                 Evasion.Cast();
                 DefensiveTimer = new Timer(1000*10);
-                return true;
+                return;
             }
-            return false;
         }
         finally
         {
@@ -1777,7 +1965,7 @@ public class RogueSubtlety
     }
 
     // For Spots (always return after Casting)
-    private bool AggroManagement()
+    private void AggroManagement()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1785,10 +1973,9 @@ public class RogueSubtlety
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Cast Tricks of the Trade on Tank when
-            if (ObjectManager.Me.HealthPercent < MySettings.UseTricksoftheTradeBelowPercentage && TricksoftheTrade.IsSpellUsable
-                //you are in a Group and
-                && Party.IsInGroup())
+            //Cast Tricks of the Trade on Tank when you are in a Group and
+            if (ObjectManager.Me.HealthPercent < MySettings.UseTricksoftheTradeBelowPercentage &&
+                TricksoftheTrade.IsSpellUsable && Party.IsInGroup())
             {
                 WoWPlayer tank = new WoWPlayer(0);
                 foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
@@ -1806,9 +1993,11 @@ public class RogueSubtlety
                 }
                 //the Tank has more than 20% Health
                 if (tank.HealthPercent > 20 && CombatClass.InSpellRange(tank, TricksoftheTrade.MinRangeFriend, TricksoftheTrade.MaxRangeFriend))
+                {
+                    Logging.WriteFight("Casting Tricks of the Trade on " + tank.Name + ".");
                     TricksoftheTrade.Cast(false, true, false, tank.GetUnitId());
+                }
             }
-            return false;
         }
         finally
         {
@@ -1817,7 +2006,7 @@ public class RogueSubtlety
     }
 
     // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
-    private bool Offensive()
+    private void Offensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1843,43 +2032,6 @@ public class RogueSubtlety
             {
                 BloodFury.Cast();
             }
-            //Apply Symbols of Death
-            if (MySettings.UseSymbolsofDeath && SymbolsofDeath.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 35 && !SymbolsofDeath.HaveBuff)
-            {
-                SymbolsofDeath.Cast();
-                return true;
-            }
-            //Cast Vanish when you aren't in stealth
-            if (MySettings.UseVanish && Vanish.IsSpellUsable && !StealthBuff.HaveBuff)
-            {
-                Vanish.Cast();
-                return true;
-            }
-            //Apply Shadow Dance when you aren't in stealth and
-            if (MySettings.UseShadowDance && ShadowDance.IsSpellUsable && !StealthBuff.HaveBuff &&
-                //it has 2 or more charges
-                ShadowDance.GetSpellCharges >= 2)
-            {
-                ShadowDance.Cast();
-            }
-            //Cast Shadow Blades when
-            if (MySettings.UseShadowBlades && ShadowBlades.IsSpellUsable &&
-                //you have 4 or more free combo points.
-                GetFreeComboPoints() >= 4)
-            {
-                ShadowBlades.Cast();
-                return true;
-            }
-            //Cast Marked for Death (when talented) when
-            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
-                //you have 5 free combo points.
-                GetFreeComboPoints() >= 5)
-            {
-                MarkedforDeath.Cast();
-                return true;
-            }
-            return false;
         }
         finally
         {
@@ -1896,90 +2048,116 @@ public class RogueSubtlety
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Cast Kidney Shot when you have X combo points and
+            //Cast Kidney Shot when you have X combo points and the target is stunnable and probably not stunned
             if (ObjectManager.Me.ComboPoint > MySettings.UseKidneyShotAboveComboPoints && KidneyShot.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 25 && KidneyShot.IsHostileDistanceGood &&
-                //the target is stunnable and probably not stunned
-                ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
+                KidneyShot.IsHostileDistanceGood && ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
             {
                 KidneyShot.Cast();
                 return;
             }
-            //Cast Goremaw's Bite when
+
+            //1. Maintain Symbols of Death
+            if (MySettings.UseSymbolsofDeath && SymbolsofDeath.IsSpellUsable && !SymbolsofDeath.HaveBuff)
+            {
+                SymbolsofDeath.Cast();
+                return;
+            }
+
+            //2. Maintain Nightblade
+            if (MySettings.UseNightblade && Nightblade.IsSpellUsable && GetFreeComboPoints() == 0 &&
+                Nightblade.IsHostileDistanceGood && !Nightblade.TargetHaveBuffFromMe)
+            {
+                Nightblade.Cast();
+                return;
+            }
+
+            //3. Activate Shadow Blades when
+            if (MySettings.UseShadowBlades && ShadowBlades.IsSpellUsable &&
+                //you have 4 or more free combo points.
+                GetFreeComboPoints() >= 4)
+            {
+                ShadowBlades.Cast();
+                return;
+            }
+
+            //Cast Marked for Death (when talented) when you have 5 free combo points.
+            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && GetFreeComboPoints() >= 5 &&
+                MarkedforDeath.IsHostileDistanceGood)
+            {
+                MarkedforDeath.Cast();
+                return;
+            }
+
+            //4. Enter Shadow Dance when you aren't in stealth and it has 2 or more charges or you have high energy.
+            if (MySettings.UseShadowDance && ShadowDance.IsSpellUsable &&
+                (ShadowDance.GetSpellCharges >= 2 || ObjectManager.Me.Energy >= 75))
+            {
+                ShadowDance.Cast();
+                return;
+            }
+
+            //5. Activate Vanish when you aren't in stealth
+            if (MySettings.UseVanish && Vanish.IsSpellUsable)
+            {
+                Vanish.Cast();
+                return;
+            }
+
+            //6. Cast Goremaw's Bite when you have 3 or more free combo points and you aren't capping energy.
             if (MySettings.UseGoremawsBite && GoremawsBite.IsSpellUsable && GoremawsBite.IsHostileDistanceGood &&
-                //you have 3 or more free combo points and
-                GetFreeComboPoints() >= 3 &&
-                //you aren't capping energy
-                ObjectManager.Me.EnergyPercentage < 100)
+                GetFreeComboPoints() >= 3 && ObjectManager.Me.EnergyPercentage < 100)
             {
                 GoremawsBite.Cast();
                 return;
             }
 
-            //Generate combo points if they aren't capping.
-            if (GetFreeComboPoints() > 0)
+            // Spend combo points if they are capping.
+            if (GetFreeComboPoints() == 0)
             {
-                //Cast Shuriken Storm when
-                if (MySettings.UseShurikenStorm && ShurikenStorm.IsSpellUsable && ShurikenStorm.IsHostileDistanceGood &&
-                    //you haves 2 or more targets
-                    ObjectManager.Me.GetUnitInSpellRange(10f) >= 2)
-                {
-                    ShurikenStorm.Cast();
-                    return;
-                }
-                //Cast Shadowstrike (only usable in Stelth or Shadow Dance)
-                if (MySettings.UseShadowstrike && Shadowstrike.IsSpellUsable &&
-                    ObjectManager.Me.Energy >= 40 && Shadowstrike.IsHostileDistanceGood)
-                {
-                    Shadowstrike.Cast();
-                    return;
-                }
-                //Cast Gloomblade/Backstap
-                if (MySettings.UseGloomblade && Gloomblade.IsSpellUsable &&
-                    ObjectManager.Me.Energy >= 35 && Gloomblade.IsHostileDistanceGood)
-                {
-                    Gloomblade.Cast();
-                    return;
-                }
-                else if (MySettings.UseBackstap && Backstab.IsSpellUsable &&
-                         ObjectManager.Me.Energy >= 35 && Backstab.IsHostileDistanceGood)
-                {
-                    Backstab.Cast();
-                    return;
-                }
-            }
-            //Spend combo points if they are capping.
-            else
-            {
-                //Apply Enveloping Shadows when
-                if (MySettings.UseEnvelopingShadows && EnvelopingShadows.IsSpellUsable && EnvelopingShadows.IsHostileDistanceGood &&
-                    //you don't have the Buff
-                    EnvelopingShadows.HaveBuff)
+                // Maintain Enveloping Shadows
+                if (MySettings.UseEnvelopingShadows && EnvelopingShadows.IsSpellUsable && !EnvelopingShadows.HaveBuff)
                 {
                     EnvelopingShadows.Cast();
                     return;
                 }
-                //Apply Nightblade when
-                if (MySettings.UseNightblade && Nightblade.IsSpellUsable &&
-                    ObjectManager.Me.Energy >= 25 && Nightblade.IsHostileDistanceGood &&
-                    //your target don't have the Dot
-                    !Nightblade.TargetHaveBuffFromMe)
+                //7. Cast Eviscerate
+                if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable && DeathfromAbove.IsHostileDistanceGood)
                 {
-                    Nightblade.Cast();
+                    DeathfromAbove.Cast();
                     return;
                 }
-                //Cast Eviscerate
-                if (MySettings.UseEviscerate && Eviscerate.IsSpellUsable &&
-                    ObjectManager.Me.Energy >= 35 && Eviscerate.IsHostileDistanceGood)
+                if (MySettings.UseEviscerate && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood)
                 {
                     Eviscerate.Cast();
                     return;
                 }
-                //4. Cast Death from Above
-                if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable &&
-                    ObjectManager.Me.Energy >= 25 && DeathfromAbove.IsHostileDistanceGood)
+            }
+            //8. Generate combo points if they aren't capping.
+            else
+            {
+                // Cast Shuriken Storm when you haves 2 or more targets
+                if (MySettings.UseShurikenStorm && ShurikenStorm.IsSpellUsable &&
+                    ShurikenStorm.IsHostileDistanceGood && ObjectManager.Me.GetUnitInSpellRange(10f) >= 2)
                 {
-                    DeathfromAbove.Cast();
+                    ShurikenStorm.Cast();
+                    return;
+                }
+                // Cast Shadowstrike
+                if (MySettings.UseShadowstrike && Shadowstrike.IsSpellUsable &&
+                    Shadowstrike.IsHostileDistanceGood)
+                {
+                    Shadowstrike.Cast();
+                    return;
+                }
+                // Cast Gloomblade/Backstap
+                if (MySettings.UseGloomblade && Gloomblade.IsSpellUsable && Gloomblade.IsHostileDistanceGood)
+                {
+                    Gloomblade.Cast();
+                    return;
+                }
+                else if (MySettings.UseBackstap && Backstab.IsSpellUsable && Backstab.IsHostileDistanceGood)
+                {
+                    Backstab.Cast();
                     return;
                 }
             }
@@ -2022,6 +2200,7 @@ public class RogueSubtlety
         public bool UseNightblade = true;
         public bool UseShadowstrike = true;
         public bool UseShurikenStorm = true;
+        public bool UseShurikenTossToPull = true;
 
         /* Offensive Cooldowns */
         public bool UseMarkedforDeath = true;
@@ -2044,6 +2223,7 @@ public class RogueSubtlety
         public int UseKidneyShotAboveComboPoints = 10;
         public bool UseSprint = true;
         public bool UseStealth = true;
+        public bool UseStealthOOC = true;
 
         /* Game Settings */
         public bool UseTrinketOne = true;
@@ -2071,6 +2251,7 @@ public class RogueSubtlety
             AddControlInWinForm("Use Nightblade", "UseNightblade", "Offensive Spells");
             AddControlInWinForm("Use Shadowstrike", "UseShadowstrike", "Offensive Spells");
             AddControlInWinForm("Use Shuriken Storm", "UseShurikenStorm", "Offensive Spells");
+            AddControlInWinForm("Use Shuriken Toss to Pull", "UseShurikenTossToPull", "Offensive Spells");
             /* Offensive Cooldowns */
             AddControlInWinForm("Use Marked for Death", "UseMarkedforDeath", "Offensive Cooldowns");
             AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldowns");
@@ -2089,6 +2270,7 @@ public class RogueSubtlety
             AddControlInWinForm("Use Kidney Shot", "UseKidneyShotAboveComboPoints", "Offensive Spells", "AbovePercentage", "Combo Points");
             AddControlInWinForm("Use Sprint", "UseSprint", "Utility Spells");
             AddControlInWinForm("Use Stealth", "UseStealth", "Utility Spells");
+            AddControlInWinForm("Use Stealth out of combat", "UseStealthOOC", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
