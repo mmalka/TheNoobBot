@@ -1379,11 +1379,6 @@ namespace nManager.Wow.ObjectManager
                             return true;
                         return Health <= 1 || UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
                     }
-
-                    if (Usefuls.ContinentId == 1676)
-                    {
-                        return UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
-                    }
                     return Health <= 0 || UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
                 }
                 catch (Exception e)
