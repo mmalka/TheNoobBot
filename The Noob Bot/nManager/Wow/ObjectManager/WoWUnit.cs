@@ -160,13 +160,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public long Health
+        public int Health
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<long>(Descriptors.UnitFields.Health);
+                    return GetDescriptor<int>(Descriptors.UnitFields.Health);
                 }
                 catch (Exception e)
                 {
@@ -176,13 +176,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public long MaxHealth
+        public int MaxHealth
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<long>(Descriptors.UnitFields.MaxHealth);
+                    return GetDescriptor<int>(Descriptors.UnitFields.MaxHealth);
                 }
                 catch (Exception e)
                 {
@@ -1378,6 +1378,11 @@ namespace nManager.Wow.ObjectManager
                         if (HaveBuff(_ghostSpells))
                             return true;
                         return Health <= 1 || UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
+                    }
+
+                    if (Usefuls.ContinentId == 1676)
+                    {
+                        return UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
                     }
                     return Health <= 0 || UnitDynamicFlags.HasFlag(UnitDynamicFlags.Dead);
                 }
