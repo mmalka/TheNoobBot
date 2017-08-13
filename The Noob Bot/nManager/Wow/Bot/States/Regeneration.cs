@@ -107,7 +107,9 @@ namespace nManager.Wow.Bot.States
         }
 
         private Spell _mageConjureSpell;
-        private List<int> _mageFoodList = new List<int> {65499, 43523, 43518, 65517, 65516, 65515, 65500};
+        private int _mageConjureCount = 0;
+        private bool _mageConjureActive = true;
+        private List<int> _mageFoodList = new List<int> {65499, 43523, 43518, 65517, 65516, 65515, 65500, 80610, 113509};
 
         private int GetBestMageFoodInBags()
         {
@@ -126,6 +128,7 @@ namespace nManager.Wow.Bot.States
             }
             return targetItem;
         }
+
         public override void Run()
         {
             #region Player
@@ -153,28 +156,27 @@ namespace nManager.Wow.Bot.States
                     }
                 }
 
-                if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Mage)
+                if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Mage && _mageConjureActive)
                 {
-                    if (_mageConjureSpell.IsSpellUsable)
-                    {
-                        _mageConjureSpell.Cast(true);
-                        Thread.Sleep(300);
-                    }
                     int targetItem = GetBestMageFoodInBags();
                     while (targetItem <= 0)
                     {
                         if (_mageConjureSpell.IsSpellUsable)
                         {
+                            _mageConjureCount++;
                             _mageConjureSpell.Cast(true);
                             Thread.Sleep(300);
-                        } 
+                        }
                         Thread.Sleep(1000);
                         targetItem = GetBestMageFoodInBags();
+                        if (_mageConjureCount > 4)
+                            _mageConjureActive = false;
                         if (ObjectManager.ObjectManager.Me.InInevitableCombat)
                             return;
                     }
                     if (targetItem > 0)
                     {
+                        _mageConjureCount = 0;
                         Logging.Write("Health regeneration started: Mage Food mode");
                         EatOrDrink(ItemsManager.GetItemNameById(targetItem));
                         Logging.Write("Health regeneration done: Mage Food mode");
