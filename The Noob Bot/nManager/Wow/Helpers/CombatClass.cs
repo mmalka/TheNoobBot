@@ -142,8 +142,6 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                if (unit.IsAboveGround && Usefuls.ContinentId == 1676 && unit.Position.DistanceTo(new Point("6600.0 ; -795.0 ; 1665.0 ; Flying")) <= 20)
-                    distance = (distance/3);
                 float reach = maxRange <= 5.0f ? CombatDistance(unit) : CombatDistance(unit, false);
                 return distance <= reach + maxRange && (Math.Abs(minRange) < 0.001 || distance >= reach + minRange);
             }
