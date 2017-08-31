@@ -35,21 +35,6 @@ namespace nManager.Wow.MemoryClass
         private uint m_Injected;
         private readonly uint m_WndProcFunction;
         private readonly uint m_OriginalWndProc;
-        private Thread wndProcThread;
-
-        public void WndProcChecker()
-        {
-            while (true)
-            {
-                if (m_WindowHandle != Memory.WowProcess.MainWindowHandle)
-                {
-                    Dispose();
-                    var process = new RemoteProcess((uint) Memory.WowProcess.ProcessId);
-                    Memory.WowProcess.Executor = new WndProcExecutor2(process, Memory.WowProcess.MainWindowHandle);
-                    break;
-                }
-            }
-        }
 
         public WndProcExecutor(BlackMagic memory)
         {
@@ -129,9 +114,6 @@ namespace nManager.Wow.MemoryClass
                     LuaTest(l_RemoteProcess, l_WndProcExecutor, "print(\"Hello world motha !\")");
 
                 }*/
-
-                wndProcThread = new Thread(WndProcChecker);
-                wndProcThread.Start();
                 /*var t = new MyMemory.RemoteProcess((uint)Memory.WowProcess.ProcessId);
                 var remoteM = t.MemoryManager.AllocateMemory(0x1000);
                 var ptrInject = (uint)remoteM.Pointer; //memory.AllocateMemory(0x500);

@@ -3,8 +3,10 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 using MyMemory;
 using MyMemory.Memory;
+using nManager.Helpful;
 
 namespace nManager.Wow.MemoryClass
 {
@@ -31,6 +33,24 @@ namespace nManager.Wow.MemoryClass
         private readonly RemoteAllocatedMemory m_Data;
         private readonly IntPtr m_WndProcFunction;
         private readonly IntPtr m_OriginalWndProc;
+        private Thread wndProcThread;
+
+        public void WndProcChecker()
+        {
+            while (true)
+            {
+                if (m_WindowHandle != Memory.WowProcess.MainWindowHandle)
+                {
+                    if (Memory.WowProcess != null && Memory.WowProcess.ProcessExist())
+                    {
+                        Dispose();
+                        var process = new RemoteProcess((uint) Memory.WowProcess.ProcessId);
+                        Memory.WowProcess.Executor = new WndProcExecutor2(process, Memory.WowProcess.MainWindowHandle);
+                    }
+                    break;
+                }
+            }
+        }
 
         public WndProcExecutor2(RemoteProcess p_Process, IntPtr p_Windowhandle)
         {
@@ -91,6 +111,9 @@ namespace nManager.Wow.MemoryClass
 
             var m_Data2 = m_Process.MemoryManager.AllocateMemory(0x1000);
             m_Process.Yasm.InjectAndExecute(l_Mnemonics, m_Data2.Pointer);
+
+            wndProcThread = new Thread(WndProcChecker);
+            wndProcThread.Start();
             //m_Process.Yasm.InjectAndExecute(l_Mnemonics);
         }
 
@@ -122,13 +145,11 @@ namespace nManager.Wow.MemoryClass
         /// <param name="p_Mnemonics"></param>
         /// <param name="p_BufferSize"></param>
         /// <returns></returns>
-        public IntPtr Call(string[] p_Mnemonics,
-            uint p_BufferSize = 0x1000)
+        public IntPtr Call(string[] p_Mnemonics, uint p_BufferSize = 0x1000)
         {
             using (var l_Buffer = m_Process.MemoryManager.AllocateMemory(p_BufferSize))
             {
-                m_Process.Yasm.Inject(p_Mnemonics,
-                    l_Buffer.Pointer);
+                m_Process.Yasm.Inject(p_Mnemonics, l_Buffer.Pointer);
 
                 return Call(l_Buffer.Pointer);
             }
@@ -145,9 +166,9 @@ namespace nManager.Wow.MemoryClass
         {
             using (var l_ResultBuffer = m_Process.MemoryManager.AllocateMemory((uint) IntPtr.Size))
             {
-                SendMessage(m_WindowHandle,
-                    (uint) m_CustomMessageCode, p_Function, l_ResultBuffer.Pointer);
+                SendMessage(m_WindowHandle, (uint) m_CustomMessageCode, p_Function, l_ResultBuffer.Pointer);
 
+                Console.WriteLine(Hook.CurrentCallStack);
                 return l_ResultBuffer.Read<IntPtr>();
             }
         }

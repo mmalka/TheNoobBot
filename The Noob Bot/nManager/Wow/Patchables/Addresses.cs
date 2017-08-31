@@ -274,7 +274,7 @@
             SpellCheckerOff2 = 0xE64,
             //SpellFixer = 0x10E2C3, // IsSpellKnown
             // E38EF0 vs EC3450
-            ClntObjMgrGetActivePlayerObj = 0x171997,
+            ClntObjMgrGetActivePlayerObj = 0x644511,
             FrameScript_ExecuteBuffer = 0x1A290D,
             CGPlayer_C__ClickToMove = 0x46CF76, // alias CGUnit_C__InitializeTrackingState
             FrameScript__GetLocalizedText = 0x46DF07,

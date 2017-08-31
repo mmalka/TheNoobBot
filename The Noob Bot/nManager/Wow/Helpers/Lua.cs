@@ -95,11 +95,11 @@ namespace nManager.Wow.Helpers
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                         "test eax, eax",
                         "je @out",*/
-                        "call " +
+                        /*"call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                         "test eax, eax",
-                        "je @out"
+                        "je @out"*/
                     };
 
                     tempsAsm.AddRange(asm);
@@ -173,11 +173,11 @@ namespace nManager.Wow.Helpers
                     ,
                     "test eax, eax",
                     "je @out",*/
-                    "call " +
+                    /*"call " +
                     (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                     "test eax, eax",
                     "je @out",
-                    "mov ecx, eax",
+                    "mov ecx, eax",*/
                     "push -1",
                     "mov edx, " + luaGetLocalizedTextSpace + "",
                     "push edx",
