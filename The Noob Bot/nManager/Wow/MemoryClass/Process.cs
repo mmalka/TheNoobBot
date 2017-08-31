@@ -28,6 +28,9 @@ namespace nManager.Wow.MemoryClass
         /// </summary>
         public uint WowModule { get; internal set; }
 
+
+        public WndProcExecutor2 Executor { get; internal set; }
+
         /// <summary>
         /// Gets or sets the process handle.
         /// </summary>
