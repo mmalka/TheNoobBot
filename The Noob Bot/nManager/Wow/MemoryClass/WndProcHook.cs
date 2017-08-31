@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using Fasm;
 using MyMemory;
 using nManager.Helpful;
 using nManager.Wow.MemoryClass.Magic;
 using nManager.Wow.Patchables;
+using SlimDX.DirectWrite;
 
 namespace nManager.Wow.MemoryClass
 {
@@ -33,6 +35,21 @@ namespace nManager.Wow.MemoryClass
         private uint m_Injected;
         private readonly uint m_WndProcFunction;
         private readonly uint m_OriginalWndProc;
+        private Thread wndProcThread;
+
+        public void WndProcChecker()
+        {
+            while (true)
+            {
+                if (m_WindowHandle != Memory.WowProcess.MainWindowHandle)
+                {
+                    Dispose();
+                    var process = new RemoteProcess((uint) Memory.WowProcess.ProcessId);
+                    Memory.WowProcess.Executor = new WndProcExecutor2(process, Memory.WowProcess.MainWindowHandle);
+                    break;
+                }
+            }
+        }
 
         public WndProcExecutor(BlackMagic memory)
         {
@@ -78,7 +95,7 @@ namespace nManager.Wow.MemoryClass
                 fasm.AddLine("push edx"); // Msg
                 fasm.AddLine("push ecx"); // Hwnd
                 fasm.AddLine("push eax"); // WndProc original
-                
+
                 //fasm.AddLine("call " + l_CallWindowProcW); // Call the original WndProc
                 fasm.AddLine("retn 0x14");
 
@@ -102,7 +119,7 @@ namespace nManager.Wow.MemoryClass
                 var ptrInject = memory.AllocateMemory(0x500);
                 fasm2.InjectAndExecute(ptrInject);
 
-                var l_Process = System.Diagnostics.Process.GetProcessesByName("Wow").First();
+                /*var l_Process = System.Diagnostics.Process.GetProcessesByName("Wow").First();
                 Console.WriteLine("Using process : " + l_Process.Id + ", window " + l_Process.MainWindowHandle + "");
 
                 using (RemoteProcess l_RemoteProcess = new RemoteProcess((uint)l_Process.Id))
@@ -111,7 +128,10 @@ namespace nManager.Wow.MemoryClass
 
                     LuaTest(l_RemoteProcess, l_WndProcExecutor, "print(\"Hello world motha !\")");
 
-                }
+                }*/
+
+                wndProcThread = new Thread(WndProcChecker);
+                wndProcThread.Start();
                 /*var t = new MyMemory.RemoteProcess((uint)Memory.WowProcess.ProcessId);
                 var remoteM = t.MemoryManager.AllocateMemory(0x1000);
                 var ptrInject = (uint)remoteM.Pointer; //memory.AllocateMemory(0x500);
@@ -121,14 +141,13 @@ namespace nManager.Wow.MemoryClass
                 
                 var th = t.ThreadsManager.CreateRemoteThread((IntPtr) ptrInject, IntPtr.Zero, Enumerations.ThreadCreationFlags.Run);
                 */
-
             }
             catch (Exception e)
             {
                 Logging.WriteError(e.ToString());
             }
         }
-        
+
         /// <summary>
         /// Example that call FrameScript__ExecuteBuffer
         /// </summary>
@@ -140,7 +159,7 @@ namespace nManager.Wow.MemoryClass
             var l_FrameScript__ExecuteBuffer = p_Process.ModulesManager.MainModule.BaseAddress + 0x1A118F;
             var l_LuaBufferUTF8 = Encoding.UTF8.GetBytes(p_Lua);
 
-            using (var l_RemoteBuffer = p_Process.MemoryManager.AllocateMemory((uint)l_LuaBufferUTF8.Length + 1))
+            using (var l_RemoteBuffer = p_Process.MemoryManager.AllocateMemory((uint) l_LuaBufferUTF8.Length + 1))
             {
                 l_RemoteBuffer.WriteBytes(l_LuaBufferUTF8);
 
