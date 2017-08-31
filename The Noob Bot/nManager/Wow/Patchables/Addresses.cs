@@ -140,7 +140,7 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_FIELD_X = 0xAD8, // found with a ugly while
+            UNIT_FIELD_X = 0xAE8, // found with a ugly while
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,

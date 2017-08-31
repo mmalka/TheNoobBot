@@ -86,7 +86,7 @@ namespace nManager.Wow.ObjectManager
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress + i),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 4),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 8));
-                        if (pt.X > 1800 && pt.X < 2000 && pt.Z > 70 && pt.Z < 90)
+                        if (pt.X > 10300 && pt.X < 10400 && pt.Z > 20 && pt.Z < 80)
                             if (!(pt.X.ToString().Contains("E") || pt.Y.ToString().Contains("E") || pt.Z.ToString().Contains("E")))
                                 Logging.Write(pt + " with i = "+ i);
                         i += 4;
