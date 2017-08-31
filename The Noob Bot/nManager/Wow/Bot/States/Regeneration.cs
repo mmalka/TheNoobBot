@@ -107,7 +107,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private Spell _mageConjureSpell;
-        private int _mageConjureCount = 0;
+        private int _mageConjureCount;
         private bool _mageConjureActive = true;
         private List<int> _mageFoodList = new List<int> {65499, 43523, 43518, 65517, 65516, 65515, 65500, 80610, 113509};
 

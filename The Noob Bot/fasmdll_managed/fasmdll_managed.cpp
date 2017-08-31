@@ -194,7 +194,7 @@ namespace Fasm
 			throw ex;
 		}
 
-		hThread = CreateRemoteThread((HANDLE)(hProcess.ToInt32()), NULL, 0, (LPTHREAD_START_ROUTINE)dwAddress, (void *)dwParameter, 0, NULL);
+		hThread = CreateRemoteThread((HANDLE)(hProcess.ToPointer()), NULL, 0, (LPTHREAD_START_ROUTINE)dwAddress, (void *)dwParameter, 0, NULL);
 		if (hThread == NULL)
 			throw gcnew Exception("Remote thread failed.");
 

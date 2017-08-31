@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>nManager</RootNamespace>
     <AssemblyName>nManager</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -28,6 +28,7 @@
     </DocumentationFile>
     <NoWarn>1591</NoWarn>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,6 +39,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +51,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>..\The Noob Bot\bin\Release\</OutputPath>
@@ -57,8 +60,17 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="fasmdll_managed, Version=1.0.6452.5801, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\The Noob Bot\bin\Release\fasmdll_managed.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMemory-x86, Version=1.0.5741.4133, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\The Noob Bot\bin\Release\MyMemory-x86.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -351,6 +363,8 @@
     <Compile Include="Wow\MemoryClass\Magic\Static Classes\Win32Imports.cs" />
     <Compile Include="Wow\MemoryClass\Process.cs" />
     <Compile Include="Wow\MemoryClass\Usefuls.cs" />
+    <Compile Include="Wow\MemoryClass\WndProc2.cs" />
+    <Compile Include="Wow\MemoryClass\WndProcHook.cs" />
     <Compile Include="Wow\ObjectManager\ObjectManager.cs" />
     <Compile Include="Wow\ObjectManager\Pulsator.cs" />
     <Compile Include="Wow\ObjectManager\WoWAreaTrigger.cs" />
@@ -473,10 +487,6 @@
     <None Include="Resources\backgroundCustomSettings.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\fasmdll_managed\fasmdll_managed.vcxproj">
-      <Project>{61d8cf34-1fd7-4a01-bec1-1a8e8050a9c6}</Project>
-      <Name>fasmdll_managed</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RecastLayer\RecastLayer.vcxproj">
       <Project>{88abd3da-803d-4d83-9894-f669b8cfaead}</Project>
       <Name>RecastLayer</Name>
