@@ -168,7 +168,7 @@ namespace nManager.Wow.MemoryClass
             {
                 SendMessage(m_WindowHandle, (uint) m_CustomMessageCode, p_Function, l_ResultBuffer.Pointer);
 
-                Console.WriteLine(Hook.CurrentCallStack);
+                //Console.WriteLine(Hook.CurrentCallStack);
                 return l_ResultBuffer.Read<IntPtr>();
             }
         }
