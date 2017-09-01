@@ -69,7 +69,7 @@
     </Reference>
     <Reference Include="MyMemory-x86, Version=1.0.5741.4133, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\The Noob Bot\bin\Release\MyMemory-x86.dll</HintPath>
+      <HintPath>..\..\docs\updatebase_directory\MyMemory-x86.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
