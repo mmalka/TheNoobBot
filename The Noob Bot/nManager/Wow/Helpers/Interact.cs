@@ -65,19 +65,8 @@ namespace nManager.Wow.Helpers
 
         public static void InteractWithBeta(uint baseAddress)
         {
-            if (baseAddress > 0)
-            {
-                WoWObject to = new WoWObject(baseAddress);
-                if (!to.IsValid)
-                    return;
-                if (to.Guid <= 0)
-                    return;
-                if (to.Type == WoWObjectType.Unit)
-                    ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
-                        ObjectManager.ObjectManager.Me.Position.Z, to.Guid, (Int32) ClickToMoveType.NpcInteract, 0.5f);
-                else
-                    InteractWith(baseAddress);
-            }
+            Logging.WriteError("public static void InteractWithBeta(uint baseAddress) is depreciated.");
+            InteractWith(baseAddress);
         }
 
         public static void Repop()
