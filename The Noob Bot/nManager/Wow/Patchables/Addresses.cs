@@ -158,7 +158,7 @@
             CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
             CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
 
-            TransportGUID = 0xAC8, // CGUnit_C__HasVehicleTransport // findable with while inside an elevator
+            TransportGUID = 0xAD8, // CGUnit_C__HasVehicleTransport // findable with while inside an elevator
             DBCacheRow = 0xC68, // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
             CachedName = 0x80, // end of CGUnit_C::GetCreatureRank
@@ -274,9 +274,10 @@
             SpellCheckerOff2 = 0xE64,
             //SpellFixer = 0x10E2C3, // IsSpellKnown
             // E38EF0 vs EC3450
-            ClntObjMgrGetActivePlayerObj = 0x644511,
+            ClntObjMgrGetActivePlayerObj = 0x171997,
             FrameScript_ExecuteBuffer = 0x1A290D,
-            CGPlayer_C__ClickToMove = 0x46CF76, // alias CGUnit_C__InitializeTrackingState
+            CGPlayer_C__MoveTo = 0x004842CC,
+            CGPlayer_C__ClickToMove = 0x473D57, // alias CGUnit_C__InitializeTrackingState // to match...
             FrameScript__GetLocalizedText = 0x46DF07,
             WowClientDB2__GetRowPointer = 0x3372C1,
             CGWorldFrame__Intersect = 0x8098D9,

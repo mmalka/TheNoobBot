@@ -27,10 +27,10 @@ namespace nManager.Wow.Helpers
                         (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                         "test eax, eax",
                         "je @out", */
-                        "call " +
+                        /*"call " +
                         (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                         "test eax, eax",
-                        "je @out",
+                        "je @out",*/
                         "mov ecx, " + baseAddress,
                         "call " + VTable,
                         "mov eax, " + result_Codecave,

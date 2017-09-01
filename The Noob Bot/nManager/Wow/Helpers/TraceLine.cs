@@ -90,20 +90,18 @@ namespace nManager.Wow.Helpers
 
                     string[] asm = new[]
                     {
-                        "call " +
+                        /*"call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                         "test eax, eax",
-                        "je @out",
+                        "je @out",*/
                         "push " + 0,
                         "push " + (uint) hitFlags,
                         "push " + distance,
                         "push " + result,
                         "push " + start,
                         "push " + end,
-                        "call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.CGWorldFrame__Intersect),
+                        "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGWorldFrame__Intersect),
                         "mov [" + resultRet + "], al",
                         "add esp, " + (uint) 0x18,
                         "@out:",

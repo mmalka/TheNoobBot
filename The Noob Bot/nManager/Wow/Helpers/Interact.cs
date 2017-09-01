@@ -14,6 +14,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (!Usefuls.InGame && !Usefuls.IsLoading)
+                    return;
                 Usefuls.UpdateLastHardwareAction();
                 if (baseAddress > 0)
                 {
@@ -34,13 +36,13 @@ namespace nManager.Wow.Helpers
                         ,
                         "test eax, eax",
                         "je @out",*/
-                        "call " +
+                        /*"call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                         "test eax, eax",
-                        "je @out",
+                        "je @out",*/
                         "push " + codecaveGUID,
-                        "mov ecx, eax",
+                        "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress,
                         "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__Interact),
                         "add esp, 4",
                         "@out:",

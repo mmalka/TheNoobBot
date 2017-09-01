@@ -10,11 +10,45 @@ namespace nManager.Wow.Helpers
     {
         private static Vector3 cache = new Vector3();
 
+        public static void CGPlayer_C__MoveTo(Vector3 point)
+        {
+                if (!Usefuls.InGame && !Usefuls.IsLoading)
+                    return;
+                Usefuls.UpdateLastHardwareAction();
+                if (!point.IsValid)
+                    return;
+
+                // Allocate Memory:
+                uint posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                Memory.WowMemory.Memory.WriteFloat(posCodecave, point.X);
+                Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x4, point.Y);
+                Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x8, point.Z);
+                string[] asm = new[]
+                {
+                    "push " + posCodecave,
+                    "mov ecx, "+ ObjectManager.ObjectManager.Me.GetBaseAddress,
+                    "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__MoveTo),
+                    "retn"
+                };
+
+                Memory.WowMemory.InjectAndExecute(asm);
+                Memory.WowMemory.Memory.FreeMemory(posCodecave);
+                if (cache != point)
+                {
+                    Logging.WriteNavigator("MoveTo(" + point + ")");
+                    cache = point;
+                }
+        }
+
         public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, UInt128 guid, Int32 action,
             Single precision)
         {
             try
             {
+                CGPlayer_C__MoveTo(new Vector3(x, y, z));
+                return;
+                if (!Usefuls.InGame && !Usefuls.IsLoading)
+                    return;
                 Usefuls.UpdateLastHardwareAction();
                 if (x == 0 && y == 0 && z == 0 && guid == 0)
                     return;
@@ -42,24 +76,29 @@ namespace nManager.Wow.Helpers
                     ,
                     "test eax, eax",
                     "je @out",*/
-                    "call " +
-                    (Memory.WowProcess.WowModule +
-                     (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                    /*"call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                     "test eax, eax",
-                    "je @out",
+                    "je @out",*/
                     "mov edx, [" + precisionCodecave + "]",
                     "push edx",
                     "push " + posCodecave,
                     "push " + guidCodecave,
                     "push " + action,
-                    "mov ecx, eax",
+                    "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress,
                     "call " +
                     (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove),
                     "@out:",
                     "retn"
                 };
 
-                Memory.WowMemory.InjectAndExecute(asm);
+                string[] asmz = new[]
+                {
+                    "mov eax, 5",
+                    "mov ["+ (Memory.WowProcess.WowModule + 0x10D0824) + "], eax",
+                    "retn"
+                };
+
+                Memory.WowMemory.InjectAndExecute(asmz);
                 Memory.WowMemory.Memory.FreeMemory(posCodecave);
                 Memory.WowMemory.Memory.FreeMemory(guidCodecave);
                 Memory.WowMemory.Memory.FreeMemory(precisionCodecave);

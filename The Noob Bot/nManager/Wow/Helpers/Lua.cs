@@ -174,10 +174,11 @@ namespace nManager.Wow.Helpers
                     "test eax, eax",
                     "je @out",*/
                     /*"call " +
-                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                    (
+                     * ),
                     "test eax, eax",
-                    "je @out",
-                    "mov ecx, eax",*/
+                    "je @out",*/
+                    "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress,
                     "push -1",
                     "mov edx, " + luaGetLocalizedTextSpace + "",
                     "push edx",
