@@ -159,7 +159,7 @@
             CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
 
             TransportGUID = 0xAD8, // CGUnit_C__HasVehicleTransport // findable with while inside an elevator
-            DBCacheRow = 0xC68, // CGUnit_C__GetUnitName
+            DBCacheRow = 0xC78, // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
             CachedName = 0x80, // end of CGUnit_C::GetCreatureRank
             CachedTypeFlag = 0x24,
