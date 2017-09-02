@@ -80,6 +80,26 @@ namespace nManager.Wow.Helpers
                             BaseAddress = currentAuraPtr,
                             AuraSpellId = auraSpellId,
                         };
+                        /*if (auraSpellId == 158188)
+                        {
+                            Logging.WriteDebug("=== Stealth ===");
+                            string memoryDump = "";
+                            var bytesDump = Memory.WowMemory.Memory.ReadBytes(currentAuraPtr, 0x98);
+                            foreach (byte b in bytesDump)
+                            {
+                                memoryDump = memoryDump + " " + b;
+                            }
+                            Logging.WriteDebug("Memory Dump: " + memoryDump);
+                            Logging.WriteDebug(currUnitAura.ToString());
+                            Logging.WriteDebug("Me.Guid: " + ObjectManager.ObjectManager.Me.Guid);
+
+                            memoryDump = "";
+                            foreach (byte b in ObjectManager.ObjectManager.Me.Guid.ToByteArray())
+                            {
+                                memoryDump = memoryDump + " " + b;
+                            }
+                            Logging.WriteDebug("Guid Bytes: " + memoryDump);
+                        }*/
                         unitAuras.Auras.Add(currUnitAura);
                     }
                 }

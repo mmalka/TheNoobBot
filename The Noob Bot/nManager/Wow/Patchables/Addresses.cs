@@ -354,10 +354,11 @@
         {
             AuraTable1 = 0x11A8,
             AuraTable2 = 0x980,
-            AuraSize = 0x98, // useful size 0x58 § v2 = 136 * a2;
+            AuraSize = 0x98, // useful size 0x68 § v2 = 136 * a2;
 
-            AuraStructCreatorGuid = 0x68, // read 16 bytes (GUID)
-            AuraStructSpellId = AuraStructCreatorGuid + 16, // read 4 bytes (UINT)
+            AuraStructCreatorGuid = 0x48, // read 16 bytes (GUID)
+            AuraStructUnkwnonGuid = AuraStructCreatorGuid + 16, // read 16 bytes (GUID)
+            AuraStructSpellId = AuraStructUnkwnonGuid + 16, // read 4 bytes (UINT)
             AuraStructFlag = AuraStructSpellId + 4, // read 1 byte
             AuraStructMask = AuraStructFlag + 1, // read 4 bytes
             AuraStructCount = AuraStructMask + 4, // read 1 byte
