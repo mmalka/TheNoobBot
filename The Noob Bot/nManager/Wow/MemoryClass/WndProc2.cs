@@ -49,6 +49,7 @@ namespace nManager.Wow.MemoryClass
                     }
                     break;
                 }
+                Thread.Sleep(5000);
             }
         }
 
