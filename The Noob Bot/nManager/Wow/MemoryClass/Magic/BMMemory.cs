@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using nManager.Helpful;
@@ -9,6 +10,33 @@ namespace nManager.Wow.MemoryClass.Magic
     public sealed partial class BlackMagic
     {
         #region WriteMemory
+
+        /// <summary>
+        /// Writes a value to another process' memory.
+        /// </summary>
+        /// <param name="dwAddress">Address at which value will be written.</param>
+        /// <param name="value">Value that will be written to memory.</param>
+        /// <returns>Returns true on success, false on failure.</returns>
+        public bool Write<T>(uint dwAddress, T value)
+        {
+            var size = Marshal.SizeOf(typeof(T));
+            var writePtr = Memory.WowMemory.Memory.AllocateMemory(size);
+            if (writePtr <= 0)
+                return false;
+            if (!SMemory.WriteObject(this.m_hProcess, writePtr, value, value.GetType()))
+                return false;
+            string[] mWrite =
+            {
+                "mov esi, "+ writePtr,
+                "mov edi," + dwAddress,
+                "mov ecx," + size,
+                "rep movsb",
+                "retn"
+            };
+            bool success = Memory.WowProcess.Executor.Call(mWrite) != IntPtr.Zero;
+            Memory.WowMemory.Memory.FreeMemory(writePtr);
+            return success;
+        }
 
         /// <summary>
         /// Writes a value to another process' memory.
