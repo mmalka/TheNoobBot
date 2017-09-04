@@ -160,13 +160,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int Health
+        public long Health
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.UnitFields.Health);
+                    return GetDescriptor<long>(Descriptors.UnitFields.Health);
                 }
                 catch (Exception e)
                 {
@@ -176,13 +176,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int MaxHealth
+        public long MaxHealth
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.UnitFields.MaxHealth);
+                    return GetDescriptor<long>(Descriptors.UnitFields.MaxHealth);
                 }
                 catch (Exception e)
                 {
@@ -198,7 +198,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var tempHealth = (Int64) Health;
+                    var tempHealth = Health;
                     float p = (tempHealth*100/(float) MaxHealth);
                     if (p > 100 || p < 0)
                     {
