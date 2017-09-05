@@ -43,7 +43,8 @@ namespace nManager.Wow.MemoryClass
                 {
                     if (Memory.WowProcess != null && Memory.WowProcess.ProcessExist())
                     {
-                        Dispose();
+                        if (Memory.WowProcess.Executor != null)
+                            Memory.WowProcess.Executor.Dispose();
                         var process = new RemoteProcess((uint) Memory.WowProcess.ProcessId);
                         Memory.WowProcess.Executor = new WndProcExecutor2(process, Memory.WowProcess.MainWindowHandle);
                     }
