@@ -46,7 +46,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (!notInGameMode && !Usefuls.InGame && !Usefuls.IsLoading)
+                if (!notInGameMode && (!Usefuls.InGame || Usefuls.IsLoading))
                 {
                     Memory.WowMemory.GameFrameUnLock();
                     return;

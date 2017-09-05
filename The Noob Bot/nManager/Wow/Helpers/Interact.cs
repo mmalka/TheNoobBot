@@ -14,7 +14,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (!Usefuls.InGame && !Usefuls.IsLoading)
+                if (!Usefuls.InGame || Usefuls.IsLoading)
                     return;
                 Usefuls.UpdateLastHardwareAction();
                 if (baseAddress > 0)
