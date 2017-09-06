@@ -197,6 +197,8 @@ namespace nManager.Wow.Helpers
 
                 // Inject the shit
                 uint stringLength = Memory.WowMemory.InjectAndExecute(asm);
+                /*if (stringLength == 0)
+                    return "NO_RESULT";*/
                 uint retPtr = Memory.WowMemory.Memory.ReadUInt(pString);
                 string sResult = "";
                 if (retPtr > 0)

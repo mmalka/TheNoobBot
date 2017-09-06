@@ -174,6 +174,8 @@ namespace nManager.Wow.MemoryClass
         {
             lock (Locker)
             {
+                if (!Helpers.Usefuls.InGame || Helpers.Usefuls.IsLoading)
+                    return 0;
                 return (uint) Wow.Memory.WowProcess.Executor.Call(asm);
                 if (!ThreadHooked)
                     return 0;
