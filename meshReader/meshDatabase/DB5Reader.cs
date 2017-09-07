@@ -14,10 +14,10 @@ namespace meshDatabase
         public short Offset;
     }
 
-    public class DB5Reader : meshDatabase.IClientDBReader
+    public class DB6Reader : IClientDBReader
     {
-        private const int HeaderSize = 48;
-        public const uint DB5FmtSig = 0x35424457; // WDB5
+        private const int HeaderSize = 56;
+        public const uint DB6FmtSig = 0x36424457; // WDB6
         private List<ColumnMeta> columnMeta;
 
         public int RecordsCount
@@ -69,18 +69,22 @@ namespace meshDatabase
         public int Locale { get; private set; }
         public int CopyTableSize { get; private set; }
         public int IdIndex { get; private set; }
+        public int TotalFieldsCount { get; private set; }
+        public int CommonDataSize { get; private set; }
         public string FileName { get; private set; }
 
-        public DB5Reader(string fileName) : this(new FileStream(fileName, FileMode.Open))
+        public DB6Reader(string fileName)
+            : this(new FileStream(fileName, FileMode.Open))
         {
             FileName = fileName;
         }
 
-        public DB5Reader(Stream stream) : this(new BinaryReader(stream, Encoding.UTF8))
+        public DB6Reader(Stream stream)
+            : this(new BinaryReader(stream, Encoding.UTF8))
         {
         }
 
-        public DB5Reader(BinaryReader reader, bool headerOnly = false)
+        public DB6Reader(BinaryReader reader, bool headerOnly = false)
         {
             int recordsCount = ReadHeader(reader);
 
@@ -214,7 +218,7 @@ namespace meshDatabase
                 throw new InvalidDataException(string.Format("File {0} is corrupted!", FileName));
             }
 
-            if (reader.ReadUInt32() != DB5FmtSig)
+            if (reader.ReadUInt32() != DB6FmtSig)
             {
                 throw new InvalidDataException(string.Format("File {0} isn't valid DB2 file!", FileName));
             }
@@ -233,6 +237,8 @@ namespace meshDatabase
             CopyTableSize = reader.ReadInt32();
             ushort flags = reader.ReadUInt16();
             IdIndex = reader.ReadUInt16();
+            TotalFieldsCount = reader.ReadInt32();
+            CommonDataSize = reader.ReadInt32();
 
             IsSparseTable = (flags & 0x1) != 0;
             HasIndexTable = (flags & 0x4) != 0;
@@ -255,240 +261,7 @@ namespace meshDatabase
 
         public void Save(DataTable table, Table def, string path)
         {
-            int IDColumn = table.Columns.IndexOf(table.PrimaryKey[0]);
-            var rows = table.Rows.Cast<DataRow>();
-            var idValues = rows.Select(r => (int) r[IDColumn]);
 
-            DataRowComparer comparer = new DataRowComparer();
-            comparer.IdColumnIndex = IDColumn;
-
-            var uniqueRows = rows.Distinct(comparer).ToArray();
-            var copyRows = rows.GroupBy(r => r, comparer).Where(g => g.Count() > 1).Select(g => new {Key = g.Key, Copies = g.Where(r => r != g.Key).ToArray()}).ToArray();
-
-            int minId = idValues.Min();
-            int maxId = idValues.Max();
-
-            using (var fs = new FileStream(path, FileMode.Create))
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                bw.Write(DB5FmtSig); // magic
-                bw.Write(uniqueRows.Length);
-                bw.Write(HasIndexTable ? FieldsCount - 1 : FieldsCount);
-                bw.Write(RecordSize);
-                bw.Write(2); // stringTableSize placeholder
-                bw.Write(TableHash);
-                bw.Write(LayoutHash);
-                bw.Write(minId);
-                bw.Write(maxId);
-                bw.Write(Locale);
-                bw.Write(0); // CopyTableSize placeholder
-
-                ushort flags = 0;
-
-                if (HasIndexTable)
-                    flags |= 0x4;
-
-                bw.Write(flags); // flags
-
-                bw.Write((ushort) IDColumn); // IDIndex
-
-                for (int i = 0; i < columnMeta.Count; i++)
-                {
-                    if (HasIndexTable && i == 0)
-                        continue;
-
-                    bw.Write(columnMeta[i].Bits);
-                    bw.Write(HasIndexTable ? (short) (columnMeta[i].Offset - 4) : columnMeta[i].Offset);
-                }
-
-                var columnTypeCodes = table.Columns.Cast<DataColumn>().Select(c => Type.GetTypeCode(c.DataType)).ToArray();
-
-                var stringLookup = new Dictionary<string, int>();
-                stringLookup[""] = 0;
-
-                var stringTable = new MemoryStream();
-                stringTable.WriteByte(0);
-                stringTable.WriteByte(0);
-
-                var fields = def.Fields;
-                var fieldsCount = fields.Count;
-                var fieldsArraySizes = fields.Select(f => f.ArraySize).ToArray();
-
-                foreach (DataRow row in uniqueRows)
-                {
-                    int colIndex = 0;
-
-                    for (int j = 0; j < fieldsCount; j++)
-                    {
-                        if (HasIndexTable && j == 0)
-                        {
-                            colIndex++;
-                            continue;
-                        }
-
-                        int arraySize = fieldsArraySizes[j];
-
-                        for (int k = 0; k < arraySize; k++)
-                        {
-                            switch (columnTypeCodes[colIndex])
-                            {
-                                case TypeCode.Byte:
-                                    bw.Write(row.Field<byte>(colIndex));
-                                    break;
-                                case TypeCode.SByte:
-                                    bw.Write(row.Field<sbyte>(colIndex));
-                                    break;
-                                case TypeCode.Int16:
-                                    bw.Write(row.Field<short>(colIndex));
-                                    break;
-                                case TypeCode.UInt16:
-                                    bw.Write(row.Field<ushort>(colIndex));
-                                    break;
-                                case TypeCode.Int32:
-                                    int count1 = (32 - columnMeta[j].Bits) >> 3;
-                                    byte[] bytes1 = BitConverter.GetBytes(row.Field<int>(colIndex));
-                                    bw.Write(bytes1, 0, count1);
-                                    break;
-                                case TypeCode.UInt32:
-                                    int count2 = (32 - columnMeta[j].Bits) >> 3;
-                                    byte[] bytes2 = BitConverter.GetBytes(row.Field<uint>(colIndex));
-                                    bw.Write(bytes2, 0, count2);
-                                    break;
-                                case TypeCode.Int64:
-                                    int count3 = (32 - columnMeta[j].Bits) >> 3;
-                                    byte[] bytes3 = BitConverter.GetBytes(row.Field<long>(colIndex));
-                                    bw.Write(bytes3, 0, count3);
-                                    break;
-                                case TypeCode.UInt64:
-                                    int count4 = (32 - columnMeta[j].Bits) >> 3;
-                                    byte[] bytes4 = BitConverter.GetBytes(row.Field<ulong>(colIndex));
-                                    bw.Write(bytes4, 0, count4);
-                                    break;
-                                case TypeCode.Single:
-                                    bw.Write(row.Field<float>(colIndex));
-                                    break;
-                                case TypeCode.Double:
-                                    bw.Write(row.Field<double>(colIndex));
-                                    break;
-                                case TypeCode.String:
-                                    string str = row.Field<string>(colIndex);
-                                    int offset;
-                                    if (stringLookup.TryGetValue(str, out offset))
-                                    {
-                                        bw.Write(offset);
-                                    }
-                                    else
-                                    {
-                                        byte[] strBytes = Encoding.UTF8.GetBytes(str);
-                                        if (strBytes.Length == 0)
-                                        {
-                                            throw new Exception("should not happen");
-                                        }
-
-                                        stringLookup[str] = (int) stringTable.Position;
-                                        bw.Write((int) stringTable.Position);
-                                        stringTable.Write(strBytes, 0, strBytes.Length);
-                                        stringTable.WriteByte(0);
-                                    }
-                                    break;
-                                default:
-                                    throw new Exception("Unknown TypeCode " + columnTypeCodes[colIndex]);
-                            }
-
-                            colIndex++;
-                        }
-                    }
-
-                    // padding at the end of the row
-                    long rem = ms.Position % 4;
-                    if (rem != 0)
-                        ms.Position += (4 - rem);
-                }
-
-                // update stringTableSize in the header
-                long oldPos1 = ms.Position;
-                ms.Position = 0x10;
-                bw.Write((int) stringTable.Length);
-                ms.Position = oldPos1;
-
-                // write strings
-                stringTable.Position = 0;
-                stringTable.CopyTo(ms);
-
-                if (HasIndexTable)
-                {
-                    foreach (DataRow row in uniqueRows)
-                    {
-                        bw.Write(row.Field<int>(IDColumn));
-                    }
-                }
-
-                if (copyRows.Length > 0)
-                {
-                    int copyTableSize = 0;
-
-                    foreach (var copies in copyRows)
-                    {
-                        int keyIndex = copies.Key.Field<int>(IDColumn);
-                        foreach (var copy in copies.Copies)
-                        {
-                            bw.Write(copy.Field<int>(IDColumn));
-                            bw.Write(keyIndex);
-                            copyTableSize += 8;
-                        }
-                    }
-
-                    // update copyTableSize in the header
-                    long oldPos = ms.Position;
-                    ms.Position = 0x28;
-                    bw.Write(copyTableSize);
-                    ms.Position = oldPos;
-                }
-
-                // copy data to file
-                ms.Position = 0;
-                ms.CopyTo(fs);
-            }
-        }
-    }
-
-    internal class DataRowComparer : IEqualityComparer<DataRow>
-    {
-        public int IdColumnIndex { get; set; }
-
-        public bool Equals(DataRow x, DataRow y)
-        {
-            var xa = x.ItemArray;
-            var ya = y.ItemArray;
-
-            for (int i = 0; i < xa.Length; i++)
-            {
-                if (IdColumnIndex == i)
-                    continue;
-
-                if (!xa[i].Equals(ya[i]))
-                    return false;
-            }
-
-            return true;
-        }
-
-        public int GetHashCode(DataRow obj)
-        {
-            int result = 0;
-
-            var items = obj.ItemArray;
-
-            for (int i = 0; i < items.Length; i++)
-            {
-                if (IdColumnIndex == i)
-                    continue;
-
-                result ^= items[i].GetHashCode();
-            }
-
-            return result;
         }
     }
 }

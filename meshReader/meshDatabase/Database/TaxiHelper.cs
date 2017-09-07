@@ -19,15 +19,15 @@ namespace meshDatabase.Database
 
     public static class TaxiHelper
     {
-        private static DB5Reader _taxiNodes;
-        private static DB5Reader _taxiPath;
+        private static DB6Reader _taxiNodes;
+        private static DB6Reader _taxiPath;
         private static bool _initialized;
         private static BinaryReader[] _cachedTaxiNodesRows;
         private static BinaryReader[] _cachedTaxiPathRows;
         private static TaxiNode.TaxiNodesDb2Record[] _cachedTaxiNodesRecords;
         private static TaxiPath.TaxiPathDb2Record[] _cachedTaxiPathRecords;
 
-        public static DB5Reader TaxiNodesDBC
+        public static DB6Reader TaxiNodesDBC
         {
             get
             {
@@ -36,7 +36,7 @@ namespace meshDatabase.Database
             }
         }
 
-        public static DB5Reader TaxiPathDBC
+        public static DB6Reader TaxiPathDBC
         {
             get
             {
@@ -51,20 +51,20 @@ namespace meshDatabase.Database
                 return;
 
             //MpqManager.InitializeDBC();
-            _taxiNodes = MpqManager.GetDB5("TaxiNodes");
-            _taxiPath = MpqManager.GetDB5("TaxiPath");
+            _taxiNodes = MpqManager.GetDB6("TaxiNodes");
+            _taxiPath = MpqManager.GetDB6("TaxiPath");
             _cachedTaxiNodesRows = _taxiNodes.Rows.ToArray();
             _cachedTaxiPathRows = _taxiNodes.Rows.ToArray();
 
             _cachedTaxiPathRecords = new TaxiPath.TaxiPathDb2Record[_cachedTaxiPathRows.Length];
             for (int i = 0; i < _cachedTaxiPathRows.Length - 1; i++)
             {
-                _cachedTaxiPathRecords[i] = DB5Reader.ByteToType<TaxiPath.TaxiPathDb2Record>(_cachedTaxiPathRows[i]);
+                _cachedTaxiPathRecords[i] = DB6Reader.ByteToType<TaxiPath.TaxiPathDb2Record>(_cachedTaxiPathRows[i]);
             }
             _cachedTaxiNodesRecords = new TaxiNode.TaxiNodesDb2Record[_cachedTaxiNodesRows.Length];
             for (int i = 0; i < _cachedTaxiNodesRows.Length - 1; i++)
             {
-                _cachedTaxiNodesRecords[i] = DB5Reader.ByteToType<TaxiNode.TaxiNodesDb2Record>(_cachedTaxiNodesRows[i]);
+                _cachedTaxiNodesRecords[i] = DB6Reader.ByteToType<TaxiNode.TaxiNodesDb2Record>(_cachedTaxiNodesRows[i]);
             }
             _initialized = true;
         }

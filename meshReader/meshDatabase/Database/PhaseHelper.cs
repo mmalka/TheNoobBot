@@ -5,7 +5,7 @@ namespace meshDatabase.Database
 {
     public static class PhaseHelper
     {
-        public static DB5Reader _map;
+        public static DB6Reader _map;
         private static bool _initialized;
         private static IEnumerable<WoWMap.MapDbcRecord> _entries;
         private static List<int> _blacklistedMaps = new List<int>(new int[] {930, 995, 1187});
@@ -16,8 +16,8 @@ namespace meshDatabase.Database
                 return;
 
 
-            _map = MpqManager.GetDB5("Map");
-            _entries = _map.Rows.Select(DB5Reader.ByteToType<WoWMap.MapDbcRecord>);
+            _map = MpqManager.GetDB6("Map");
+            _entries = _map.Rows.Select(DB6Reader.ByteToType<WoWMap.MapDbcRecord>);
             _initialized = true;
         }
 

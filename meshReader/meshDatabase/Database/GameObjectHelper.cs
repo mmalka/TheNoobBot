@@ -10,7 +10,7 @@ namespace meshDatabase.Database
 {
     public static class GameObjectHelper
     {
-        private static DB5Reader _gameobjectDisplayInfo;
+        private static DB6Reader _gameobjectDisplayInfo;
         private static DBC _fileData;
         private static bool _initialized;
         private static IEnumerable<FileDataEntry> _filaDataEntries;
@@ -25,13 +25,13 @@ namespace meshDatabase.Database
                 return;
 
             _cache = new Dictionary<int, string>(1000);
-            _gameobjectDisplayInfo = MpqManager.GetDB5("GameobjectDisplayInfo");
+            _gameobjectDisplayInfo = MpqManager.GetDB6("GameobjectDisplayInfo");
             _cachedGameobjectDisplayInfoRows = _gameobjectDisplayInfo.Rows.ToArray();
 
             _cachedGameobjectDisplayInfoRecords = new GameobjectDisplayInfoEntry.GameobjectDisplayInfoDb2Record[_cachedGameobjectDisplayInfoRows.Length];
             for (int i = 0; i < _cachedGameobjectDisplayInfoRows.Length - 1; i++)
             {
-                _cachedGameobjectDisplayInfoRecords[i] = DB5Reader.ByteToType<GameobjectDisplayInfoEntry.GameobjectDisplayInfoDb2Record>(_cachedGameobjectDisplayInfoRows[i]);
+                _cachedGameobjectDisplayInfoRecords[i] = DB6Reader.ByteToType<GameobjectDisplayInfoEntry.GameobjectDisplayInfoDb2Record>(_cachedGameobjectDisplayInfoRows[i]);
             }
             /*_fileData = MpqManager.GetDBC("FileData");
             _filaDataEntries = _fileData.Records.Select(r => new FileDataEntry(r));*/

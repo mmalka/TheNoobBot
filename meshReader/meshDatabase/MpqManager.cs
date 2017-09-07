@@ -20,10 +20,10 @@ namespace meshDatabase
         }
 
 
-        public static DB5Reader GetDB5(string name)
+        public static DB6Reader GetDB6(string name)
         {
             string path = "DBFilesClient\\" + name + ".db2";
-            return new DB5Reader(Mpq.GetFile(path));
+            return new DB6Reader(Mpq.GetFile(path));
         }
 
         public static DBC GetDBC(string name)
