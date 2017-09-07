@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Net;
-
 //using System.Net.Http;
 
 namespace CASCExplorer
@@ -33,7 +32,7 @@ namespace CASCExplorer
 
             HttpWebRequest request = WebRequest.CreateHttp(url);
 
-            using (HttpWebResponse resp = (HttpWebResponse) request.GetResponseAsync().Result)
+            using (HttpWebResponse resp = (HttpWebResponse)request.GetResponseAsync().Result)
             using (Stream stream = resp.GetResponseStream())
             using (Stream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
@@ -46,7 +45,7 @@ namespace CASCExplorer
         {
             HttpWebRequest request = WebRequest.CreateHttp(url);
 
-            using (HttpWebResponse resp = (HttpWebResponse) request.GetResponseAsync().Result)
+            using (HttpWebResponse resp = (HttpWebResponse)request.GetResponseAsync().Result)
             using (Stream stream = resp.GetResponseStream())
             {
                 MemoryStream ms = new MemoryStream();
@@ -65,7 +64,7 @@ namespace CASCExplorer
                 HttpWebRequest request = WebRequest.CreateHttp(url);
                 request.Method = "HEAD";
 
-                using (HttpWebResponse resp = (HttpWebResponse) request.GetResponseAsync().Result)
+                using (HttpWebResponse resp = (HttpWebResponse)request.GetResponseAsync().Result)
                 {
                     return CacheMetaData.AddToCache(resp, file);
                 }
@@ -93,7 +92,7 @@ namespace CASCExplorer
 
                 done += count;
 
-                progressReporter?.ReportProgress((int) (done / (float) len * 100));
+                progressReporter?.ReportProgress((int)(done / (float)len * 100));
             } while (count > 0);
         }
     }

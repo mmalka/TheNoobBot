@@ -16,11 +16,11 @@ namespace CASCExplorer
 
         public static D3RootEntry Read(int type, BinaryReader s)
         {
-            D3RootEntry e = new D3RootEntry();
-
-            e.Type = type;
-            e.MD5 = s.Read<MD5Hash>();
-
+            D3RootEntry e = new D3RootEntry()
+            {
+                Type = type,
+                MD5 = s.Read<MD5Hash>()
+            };
             if (type == 0 || type == 1) // has SNO id
             {
                 e.SNO = s.ReadInt32();
@@ -44,15 +44,8 @@ namespace CASCExplorer
         private CoreTOCParser tocParser;
         private PackagesParser pkgParser;
 
-        public override int Count
-        {
-            get { return RootData.Count; }
-        }
-
-        public override int CountTotal
-        {
-            get { return RootData.Sum(re => re.Value.Count); }
-        }
+        public override int Count { get { return RootData.Count; } }
+        public override int CountTotal { get { return RootData.Sum(re => re.Value.Count); } }
 
         public D3RootHandler(BinaryReader stream, BackgroundWorkerEx worker, CASCHandler casc)
         {
@@ -73,9 +66,7 @@ namespace CASCExplorer
                 var entries = new List<D3RootEntry>();
                 D3RootData[name] = entries;
 
-                EncodingEntry enc;
-
-                if (!casc.Encoding.GetEntry(md5, out enc))
+                if (!casc.Encoding.GetEntry(md5, out EncodingEntry enc))
                     continue;
 
                 using (BinaryReader s = new BinaryReader(casc.OpenFile(enc.Key)))
@@ -104,25 +95,23 @@ namespace CASCExplorer
                     }
                 }
 
-                worker?.ReportProgress((int) ((j + 1) / (float) (count + 2) * 100));
+                worker?.ReportProgress((int)((j + 1) / (float)(count + 2) * 100));
             }
 
             // Parse CoreTOC.dat
             var coreTocEntry = D3RootData["Base"].Find(e => e.Name == "CoreTOC.dat");
 
-            EncodingEntry enc1;
-            casc.Encoding.GetEntry(coreTocEntry.MD5, out enc1);
+            casc.Encoding.GetEntry(coreTocEntry.MD5, out EncodingEntry enc1);
 
             using (var file = casc.OpenFile(enc1.Key))
                 tocParser = new CoreTOCParser(file);
 
-            worker?.ReportProgress((int) ((count + 1) / (float) (count + 2) * 100));
+            worker?.ReportProgress((int)((count + 1) / (float)(count + 2) * 100));
 
             // Parse Packages.dat
             var pkgEntry = D3RootData["Base"].Find(e => e.Name == "Data_D3\\PC\\Misc\\Packages.dat");
 
-            EncodingEntry enc2;
-            casc.Encoding.GetEntry(pkgEntry.MD5, out enc2);
+            casc.Encoding.GetEntry(pkgEntry.MD5, out EncodingEntry enc2);
 
             using (var file = casc.OpenFile(enc2.Key))
                 pkgParser = new PackagesParser(file);
@@ -141,19 +130,19 @@ namespace CASCExplorer
 
         public override void Dump()
         {
+
         }
 
         public override IEnumerable<KeyValuePair<ulong, RootEntry>> GetAllEntries()
         {
             foreach (var set in RootData)
-            foreach (var entry in set.Value)
-                yield return new KeyValuePair<ulong, RootEntry>(set.Key, entry);
+                foreach (var entry in set.Value)
+                    yield return new KeyValuePair<ulong, RootEntry>(set.Key, entry);
         }
 
         public override IEnumerable<RootEntry> GetAllEntries(ulong hash)
         {
-            List<RootEntry> result;
-            RootData.TryGetValue(hash, out result);
+            RootData.TryGetValue(hash, out List<RootEntry> result);
 
             if (result == null)
                 yield break;
@@ -164,15 +153,7 @@ namespace CASCExplorer
 
         public override IEnumerable<RootEntry> GetEntries(ulong hash)
         {
-            var rootInfos = GetAllEntries(hash);
-
-            if (!rootInfos.Any())
-                yield break;
-
-            var rootInfosLocale = rootInfos.Where(re => (re.LocaleFlags & Locale) != 0);
-
-            foreach (var entry in rootInfosLocale)
-                yield return entry;
+            return GetEntriesForSelectedLocale(hash);
         }
 
         private void AddFile(string pkg, D3RootEntry e)
@@ -207,12 +188,12 @@ namespace CASCExplorer
                     break;
             }
 
-            RootEntry entry = new RootEntry();
-            entry.MD5 = e.MD5;
+            RootEntry entry = new RootEntry()
+            {
+                MD5 = e.MD5
+            };
 
-            LocaleFlags locale;
-
-            if (Enum.TryParse(pkg, out locale))
+            if (Enum.TryParse(pkg, out LocaleFlags locale))
                 entry.LocaleFlags = locale;
             else
                 entry.LocaleFlags = LocaleFlags.All;
@@ -239,7 +220,7 @@ namespace CASCExplorer
                 {
                     AddFile(kv.Key, e);
 
-                    worker?.ReportProgress((int) (++i / (float) numFiles * 100));
+                    worker?.ReportProgress((int)(++i / (float)numFiles * 100));
                 }
             }
 
@@ -356,11 +337,11 @@ namespace CASCExplorer
         public unsafe struct TOCHeader
         {
             //[MarshalAs(UnmanagedType.ByValArray, SizeConst = NUM_SNO_GROUPS)]
-            public fixed int entryCounts [NUM_SNO_GROUPS];
+            public fixed int entryCounts[NUM_SNO_GROUPS];
             //[MarshalAs(UnmanagedType.ByValArray, SizeConst = NUM_SNO_GROUPS)]
-            public fixed int entryOffsets [NUM_SNO_GROUPS];
+            public fixed int entryOffsets[NUM_SNO_GROUPS];
             //[MarshalAs(UnmanagedType.ByValArray, SizeConst = NUM_SNO_GROUPS)]
-            public fixed int entryUnkCounts [NUM_SNO_GROUPS];
+            public fixed int entryUnkCounts[NUM_SNO_GROUPS];
             public int unk;
         }
 
@@ -368,74 +349,74 @@ namespace CASCExplorer
 
         readonly Dictionary<SNOGroup, string> extensions = new Dictionary<SNOGroup, string>()
         {
-            {SNOGroup.Code, ""},
-            {SNOGroup.None, ""},
-            {SNOGroup.Actor, ".acr"},
-            {SNOGroup.Adventure, ".adv"},
-            {SNOGroup.AiBehavior, ""},
-            {SNOGroup.AiState, ""},
-            {SNOGroup.AmbientSound, ".ams"},
-            {SNOGroup.Anim, ".ani"},
-            {SNOGroup.Animation2D, ".an2"},
-            {SNOGroup.AnimSet, ".ans"},
-            {SNOGroup.Appearance, ".app"},
-            {SNOGroup.Hero, ""},
-            {SNOGroup.Cloth, ".clt"},
-            {SNOGroup.Conversation, ".cnv"},
-            {SNOGroup.ConversationList, ""},
-            {SNOGroup.EffectGroup, ".efg"},
-            {SNOGroup.Encounter, ".enc"},
-            {SNOGroup.Explosion, ".xpl"},
-            {SNOGroup.FlagSet, ""},
-            {SNOGroup.Font, ".fnt"},
-            {SNOGroup.GameBalance, ".gam"},
-            {SNOGroup.Globals, ".glo"},
-            {SNOGroup.LevelArea, ".lvl"},
-            {SNOGroup.Light, ".lit"},
-            {SNOGroup.MarkerSet, ".mrk"},
-            {SNOGroup.Monster, ".mon"},
-            {SNOGroup.Observer, ".obs"},
-            {SNOGroup.Particle, ".prt"},
-            {SNOGroup.Physics, ".phy"},
-            {SNOGroup.Power, ".pow"},
-            {SNOGroup.Quest, ".qst"},
-            {SNOGroup.Rope, ".rop"},
-            {SNOGroup.Scene, ".scn"},
-            {SNOGroup.SceneGroup, ".scg"},
-            {SNOGroup.Script, ""},
-            {SNOGroup.ShaderMap, ".shm"},
-            {SNOGroup.Shaders, ".shd"},
-            {SNOGroup.Shakes, ".shk"},
-            {SNOGroup.SkillKit, ".skl"},
-            {SNOGroup.Sound, ".snd"},
-            {SNOGroup.SoundBank, ".sbk"},
-            {SNOGroup.StringList, ".stl"},
-            {SNOGroup.Surface, ".srf"},
-            {SNOGroup.Textures, ".tex"},
-            {SNOGroup.Trail, ".trl"},
-            {SNOGroup.UI, ".ui"},
-            {SNOGroup.Weather, ".wth"},
-            {SNOGroup.Worlds, ".wrl"},
-            {SNOGroup.Recipe, ".rcp"},
-            {SNOGroup.Condition, ".cnd"},
-            {SNOGroup.TreasureClass, ""},
-            {SNOGroup.Account, ""},
-            {SNOGroup.Conductor, ""},
-            {SNOGroup.TimedEvent, ""},
-            {SNOGroup.Act, ".act"},
-            {SNOGroup.Material, ".mat"},
-            {SNOGroup.QuestRange, ".qsr"},
-            {SNOGroup.Lore, ".lor"},
-            {SNOGroup.Reverb, ".rev"},
-            {SNOGroup.PhysMesh, ".phm"},
-            {SNOGroup.Music, ".mus"},
-            {SNOGroup.Tutorial, ".tut"},
-            {SNOGroup.BossEncounter, ".bos"},
-            {SNOGroup.ControlScheme, ""},
-            {SNOGroup.Accolade, ".aco"},
-            {SNOGroup.AnimTree, ".ant"},
-            {SNOGroup.Vibration, ""},
-            {SNOGroup.DungeonFinder, ""},
+            { SNOGroup.Code, "" },
+            { SNOGroup.None, "" },
+            { SNOGroup.Actor, ".acr" },
+            { SNOGroup.Adventure, ".adv" },
+            { SNOGroup.AiBehavior, "" },
+            { SNOGroup.AiState, "" },
+            { SNOGroup.AmbientSound, ".ams" },
+            { SNOGroup.Anim, ".ani" },
+            { SNOGroup.Animation2D, ".an2" },
+            { SNOGroup.AnimSet, ".ans" },
+            { SNOGroup.Appearance, ".app" },
+            { SNOGroup.Hero, "" },
+            { SNOGroup.Cloth, ".clt" },
+            { SNOGroup.Conversation, ".cnv" },
+            { SNOGroup.ConversationList, "" },
+            { SNOGroup.EffectGroup, ".efg" },
+            { SNOGroup.Encounter, ".enc" },
+            { SNOGroup.Explosion, ".xpl" },
+            { SNOGroup.FlagSet, "" },
+            { SNOGroup.Font, ".fnt" },
+            { SNOGroup.GameBalance, ".gam" },
+            { SNOGroup.Globals, ".glo" },
+            { SNOGroup.LevelArea, ".lvl" },
+            { SNOGroup.Light, ".lit" },
+            { SNOGroup.MarkerSet, ".mrk" },
+            { SNOGroup.Monster, ".mon" },
+            { SNOGroup.Observer, ".obs" },
+            { SNOGroup.Particle, ".prt" },
+            { SNOGroup.Physics, ".phy" },
+            { SNOGroup.Power, ".pow" },
+            { SNOGroup.Quest, ".qst" },
+            { SNOGroup.Rope, ".rop" },
+            { SNOGroup.Scene, ".scn" },
+            { SNOGroup.SceneGroup, ".scg" },
+            { SNOGroup.Script, "" },
+            { SNOGroup.ShaderMap, ".shm" },
+            { SNOGroup.Shaders, ".shd" },
+            { SNOGroup.Shakes, ".shk" },
+            { SNOGroup.SkillKit, ".skl" },
+            { SNOGroup.Sound, ".snd" },
+            { SNOGroup.SoundBank, ".sbk" },
+            { SNOGroup.StringList, ".stl" },
+            { SNOGroup.Surface, ".srf" },
+            { SNOGroup.Textures, ".tex" },
+            { SNOGroup.Trail, ".trl" },
+            { SNOGroup.UI, ".ui" },
+            { SNOGroup.Weather, ".wth" },
+            { SNOGroup.Worlds, ".wrl" },
+            { SNOGroup.Recipe, ".rcp" },
+            { SNOGroup.Condition, ".cnd" },
+            { SNOGroup.TreasureClass, "" },
+            { SNOGroup.Account, "" },
+            { SNOGroup.Conductor, "" },
+            { SNOGroup.TimedEvent, "" },
+            { SNOGroup.Act, ".act" },
+            { SNOGroup.Material, ".mat" },
+            { SNOGroup.QuestRange, ".qsr" },
+            { SNOGroup.Lore, ".lor" },
+            { SNOGroup.Reverb, ".rev" },
+            { SNOGroup.PhysMesh, ".phm" },
+            { SNOGroup.Music, ".mus" },
+            { SNOGroup.Tutorial, ".tut" },
+            { SNOGroup.BossEncounter, ".bos" },
+            { SNOGroup.ControlScheme, "" },
+            { SNOGroup.Accolade, ".aco" },
+            { SNOGroup.AnimTree, ".ant" },
+            { SNOGroup.Vibration, "" },
+            { SNOGroup.DungeonFinder, "" },
         };
 
         public unsafe CoreTOCParser(Stream stream)
@@ -452,7 +433,7 @@ namespace CASCExplorer
 
                         for (int j = 0; j < hdr.entryCounts[i]; j++)
                         {
-                            SNOGroup snoGroup = (SNOGroup) br.ReadInt32();
+                            SNOGroup snoGroup = (SNOGroup)br.ReadInt32();
                             int snoId = br.ReadInt32();
                             int pName = br.ReadInt32();
 
@@ -461,7 +442,7 @@ namespace CASCExplorer
                             string name = br.ReadCString();
                             br.BaseStream.Position = oldPos;
 
-                            snoDic.Add(snoId, new SNOInfo() {GroupId = snoGroup, Name = name, Ext = extensions[snoGroup]});
+                            snoDic.Add(snoId, new SNOInfo() { GroupId = snoGroup, Name = name, Ext = extensions[snoGroup] });
                         }
                     }
                 }
@@ -470,8 +451,7 @@ namespace CASCExplorer
 
         public SNOInfo GetSNO(int id)
         {
-            SNOInfo sno;
-            snoDic.TryGetValue(id, out sno);
+            snoDic.TryGetValue(id, out SNOInfo sno);
             return sno;
         }
     }
@@ -497,8 +477,7 @@ namespace CASCExplorer
 
         public string GetExtension(string partialName)
         {
-            string ext;
-            nameToExtDic.TryGetValue(partialName, out ext);
+            nameToExtDic.TryGetValue(partialName, out string ext);
             return ext;
         }
     }

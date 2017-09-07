@@ -10,8 +10,8 @@ namespace CASCExplorer
 {
     public struct MNDXHeader
     {
-        public int Signature; // 'MNDX'
-        public int HeaderVersion; // Must be <= 2
+        public int Signature;                            // 'MNDX'
+        public int HeaderVersion;                        // Must be <= 2
         public int FormatVersion;
     }
 
@@ -33,41 +33,41 @@ namespace CASCExplorer
 
     public struct NAME_FRAG
     {
-        public int ItemIndex; // Back index to various tables
-        public int NextIndex; // The following item index
-        public int FragOffs; // Higher 24 bits are 0xFFFFFF00 --> A single matching character
-        // Otherwise --> Offset to the name fragment table
+        public int ItemIndex;   // Back index to various tables
+        public int NextIndex;   // The following item index
+        public int FragOffs;    // Higher 24 bits are 0xFFFFFF00 --> A single matching character
+                                // Otherwise --> Offset to the name fragment table
     }
 
     class CASC_ROOT_ENTRY_MNDX
     {
-        public MD5Hash MD5; // Encoding key for the file
-        public int Flags; // High 8 bits: Flags, low 24 bits: package index
-        public int FileSize; // Uncompressed file size, in bytes
+        public MD5Hash MD5;         // Encoding key for the file
+        public int Flags;           // High 8 bits: Flags, low 24 bits: package index
+        public int FileSize;        // Uncompressed file size, in bytes
         public CASC_ROOT_ENTRY_MNDX Next;
     }
 
     public class PATH_STOP
     {
         public int ItemIndex { get; set; }
-        public int field_4 { get; set; }
-        public int field_8 { get; set; }
-        public int field_C { get; set; }
-        public int field_10 { get; set; }
+        public int Field_4 { get; set; }
+        public int Field_8 { get; set; }
+        public int Field_C { get; set; }
+        public int Field_10 { get; set; }
 
         public PATH_STOP()
         {
             ItemIndex = 0;
-            field_4 = 0;
-            field_8 = 0;
-            field_C = -1;
-            field_10 = -1;
+            Field_4 = 0;
+            Field_8 = 0;
+            Field_C = -1;
+            Field_10 = -1;
         }
     }
 
     class MNDXRootHandler : RootHandlerBase
     {
-        private const int CASC_MNDX_SIGNATURE = 0x58444E4D; // 'MNDX'
+        private const int CASC_MNDX_SIGNATURE = 0x58444E4D;          // 'MNDX'
         private const int CASC_MAX_MAR_FILES = 3;
 
         //[0] - package names
@@ -83,15 +83,8 @@ namespace CASCExplorer
 
         private Dictionary<ulong, RootEntry> mndxData = new Dictionary<ulong, RootEntry>();
 
-        public override int Count
-        {
-            get { return MarFiles[2].NumFiles; }
-        }
-
-        public override int CountTotal
-        {
-            get { return MarFiles[2].NumFiles; }
-        }
+        public override int Count { get { return MarFiles[2].NumFiles; } }
+        public override int CountTotal { get { return MarFiles[2].NumFiles; } }
 
         public MNDXRootHandler(BinaryReader stream, BackgroundWorkerEx worker)
         {
@@ -108,13 +101,13 @@ namespace CASCExplorer
                 var build2 = stream.ReadInt32(); // build number
             }
 
-            int MarInfoOffset = stream.ReadInt32(); // Offset of the first MAR entry info
-            int MarInfoCount = stream.ReadInt32(); // Number of the MAR info entries
-            int MarInfoSize = stream.ReadInt32(); // Size of the MAR info entry
+            int MarInfoOffset = stream.ReadInt32();                            // Offset of the first MAR entry info
+            int MarInfoCount = stream.ReadInt32();                             // Number of the MAR info entries
+            int MarInfoSize = stream.ReadInt32();                              // Size of the MAR info entry
             int MndxEntriesOffset = stream.ReadInt32();
-            int MndxEntriesTotal = stream.ReadInt32(); // Total number of MNDX root entries
-            int MndxEntriesValid = stream.ReadInt32(); // Number of valid MNDX root entries
-            int MndxEntrySize = stream.ReadInt32(); // Size of one MNDX root entry
+            int MndxEntriesTotal = stream.ReadInt32();                         // Total number of MNDX root entries
+            int MndxEntriesValid = stream.ReadInt32();                         // Number of valid MNDX root entries
+            int MndxEntrySize = stream.ReadInt32();                            // Size of one MNDX root entry
 
             if (MarInfoCount > CASC_MAX_MAR_FILES || MarInfoSize != Marshal.SizeOf<MARInfo>())
                 throw new Exception("invalid root file (1)");
@@ -163,13 +156,13 @@ namespace CASCExplorer
                 //        p[entry.Flags & 0x00FFFFFF]++;
                 //}
 
-                worker?.ReportProgress((int) ((i + 1) / (float) MndxEntriesTotal * 100));
+                worker?.ReportProgress((int)((i + 1) / (float)MndxEntriesTotal * 100));
             }
 
             //for (int i = 0; i < MndxEntriesTotal; ++i)
             //    Logger.WriteLine("{0:X8} - {1:X8} - {2}", i, mndxRootEntries[i].Flags, mndxRootEntries[i].MD5.ToHexString());
 
-            mndxRootEntriesValid = new Dictionary<int, CASC_ROOT_ENTRY_MNDX>(); // mndxRootEntries.Where(e => (e.Flags & 0x80000000) != 0).ToList();
+            mndxRootEntriesValid = new Dictionary<int, CASC_ROOT_ENTRY_MNDX>();// mndxRootEntries.Where(e => (e.Flags & 0x80000000) != 0).ToList();
 
             //var e1 = mndxRootEntries.Where(e => (e.Value.Flags & 0x80000000) != 0).ToDictionary(e => e.Key, e => e.Value);
             //var e2 = mndxRootEntries.Where(e => (e.Value.Flags & 0x40000000) != 0).ToDictionary(e => e.Key, e => e.Value);
@@ -221,9 +214,7 @@ namespace CASCExplorer
 
         public override IEnumerable<RootEntry> GetAllEntries(ulong hash)
         {
-            RootEntry rootEntry;
-
-            if (mndxData.TryGetValue(hash, out rootEntry))
+            if (mndxData.TryGetValue(hash, out RootEntry rootEntry))
                 yield return rootEntry;
         }
 
@@ -236,7 +227,8 @@ namespace CASCExplorer
             //    yield return rootEntry;
             //else
             //    yield break;
-            return GetAllEntries(hash);
+            //return GetAllEntries(hash);
+            return GetEntriesForSelectedLocale(hash);
         }
 
         private int FindMNDXPackage(string fileName)
@@ -267,9 +259,10 @@ namespace CASCExplorer
 
         private CASC_ROOT_ENTRY_MNDX FindMNDXInfo(string path, int dwPackage)
         {
-            MNDXSearchResult result = new MNDXSearchResult();
-            result.SearchMask = path.Substring(Packages[dwPackage].Length + 1).ToLower();
-
+            MNDXSearchResult result = new MNDXSearchResult()
+            {
+                SearchMask = path.Substring(Packages[dwPackage].Length + 1).ToLower()
+            };
             MARFileNameDB marFile1 = MarFiles[1];
 
             if (marFile1.FindFileInDatabase(result))
@@ -294,9 +287,10 @@ namespace CASCExplorer
 
         private CASC_ROOT_ENTRY_MNDX FindMNDXInfo2(string path, int dwPackage)
         {
-            MNDXSearchResult result = new MNDXSearchResult();
-            result.SearchMask = path;
-
+            MNDXSearchResult result = new MNDXSearchResult()
+            {
+                SearchMask = path
+            };
             MARFileNameDB marFile2 = MarFiles[2];
 
             if (marFile2.FindFileInDatabase(result))
@@ -343,9 +337,7 @@ namespace CASCExplorer
                 {
                     var localeStr = match1.Success ? match1.Value : match2.Value;
 
-                    LocaleFlags locale;
-
-                    if (!Enum.TryParse(localeStr, true, out locale))
+                    if (!Enum.TryParse(localeStr, true, out LocaleFlags locale))
                         locale = LocaleFlags.All;
 
                     PackagesLocale.Add(result.FileNameIndex, locale);
@@ -391,7 +383,7 @@ namespace CASCExplorer
 
                 //Console.WriteLine("{0:X8} - {1:X8} - {2} - {3}", result2.FileNameIndex, root.Flags, root.EncodingKey.ToHexString(), file);
 
-                worker?.ReportProgress((int) (++i / (float) MarFiles[2].NumFiles * 100));
+                worker?.ReportProgress((int)(++i / (float)MarFiles[2].NumFiles * 100));
             }
 
             //var sorted = data.OrderBy(e => e.Key);
@@ -432,12 +424,13 @@ namespace CASCExplorer
 
         public override void Dump()
         {
+
         }
     }
 
     class MARFileNameDB
     {
-        private const int CASC_MAR_SIGNATURE = 0x0052414d; // 'MAR\0'
+        private const int CASC_MAR_SIGNATURE = 0x0052414d;           // 'MAR\0'
 
         private TSparseArray Struct68_00;
         private TSparseArray FileNameIndexes;
@@ -450,10 +443,7 @@ namespace CASCExplorer
         private int NameFragIndexMask;
         private int field_214;
 
-        public int NumFiles
-        {
-            get { return FileNameIndexes.ValidItemCount; }
-        }
+        public int NumFiles { get { return FileNameIndexes.ValidItemCount; } }
 
         private byte[] table_1BA1818 =
         {
@@ -1115,7 +1105,8 @@ namespace CASCExplorer
                 // HOTS: 1957B32
                 pStruct40.ItemIndex++;
                 CollisionIndex++;
-            } while (Struct68_00.Contains(CollisionIndex));
+            }
+            while (Struct68_00.Contains(CollisionIndex));
             return false;
         }
 
@@ -1154,7 +1145,7 @@ namespace CASCExplorer
                     else
                     {
                         // HOTS: 1957BEE
-                        if (pStruct1C.SearchMask[pStruct40.CharIndex] != (byte) pNameEntry.FragOffs)
+                        if (pStruct1C.SearchMask[pStruct40.CharIndex] != (byte)pNameEntry.FragOffs)
                             return false;
                         pStruct40.CharIndex++;
                     }
@@ -1238,7 +1229,7 @@ namespace CASCExplorer
                     {
                         // HOTS: 1958DE7
                         // Insert the low 8 bits to the path being built
-                        pStruct40.Add((byte) (pNameEntry.FragOffs & 0xFF));
+                        pStruct40.Add((byte)(pNameEntry.FragOffs & 0xFF));
                     }
 
                     // HOTS: 1958E71
@@ -1309,11 +1300,11 @@ namespace CASCExplorer
                     else
                     {
                         // HOTS: 1959092
-                        if ((byte) (pNameEntry.FragOffs & 0xFF) != pStruct1C.SearchMask[pStruct40.CharIndex])
+                        if ((byte)(pNameEntry.FragOffs & 0xFF) != pStruct1C.SearchMask[pStruct40.CharIndex])
                             return false;
 
                         // Insert the low 8 bits to the path being built
-                        pStruct40.Add((byte) (pNameEntry.FragOffs & 0xFF));
+                        pStruct40.Add((byte)(pNameEntry.FragOffs & 0xFF));
                         pStruct40.CharIndex++;
                     }
 
@@ -1392,12 +1383,14 @@ namespace CASCExplorer
                 }
 
                 // HOTS: 19594b0
-                PATH_STOP PathStop = new PATH_STOP();
-                PathStop.ItemIndex = pStruct40.ItemIndex;
-                PathStop.field_4 = 0;
-                PathStop.field_8 = pStruct40.NumBytesFound;
-                PathStop.field_C = -1;
-                PathStop.field_10 = -1;
+                PATH_STOP PathStop = new PATH_STOP()
+                {
+                    ItemIndex = pStruct40.ItemIndex,
+                    Field_4 = 0,
+                    Field_8 = pStruct40.NumBytesFound,
+                    Field_C = -1,
+                    Field_10 = -1
+                };
                 pStruct40.AddPathStop(PathStop);
                 pStruct40.ItemCount = 1;
 
@@ -1421,12 +1414,14 @@ namespace CASCExplorer
                     CollisionIndex = sub_1959CB0(pLastStop.ItemIndex) + 1;
 
                     // Insert a new structure
-                    PATH_STOP PathStop = new PATH_STOP();
-                    PathStop.ItemIndex = CollisionIndex - pLastStop.ItemIndex - 1;
-                    PathStop.field_4 = CollisionIndex;
-                    PathStop.field_8 = 0;
-                    PathStop.field_C = -1;
-                    PathStop.field_10 = -1;
+                    PATH_STOP PathStop = new PATH_STOP()
+                    {
+                        ItemIndex = CollisionIndex - pLastStop.ItemIndex - 1,
+                        Field_4 = CollisionIndex,
+                        Field_8 = 0,
+                        Field_C = -1,
+                        Field_10 = -1
+                    };
                     pStruct40.AddPathStop(PathStop);
                 }
 
@@ -1434,7 +1429,7 @@ namespace CASCExplorer
                 PATH_STOP pPathStop = pStruct40.GetPathStop(pStruct40.ItemCount);
 
                 // HOTS: 19595CC
-                if (Struct68_00.Contains(pPathStop.field_4++))
+                if (Struct68_00.Contains(pPathStop.Field_4++))
                 {
                     // HOTS: 19595F2
                     pStruct40.ItemCount++;
@@ -1442,13 +1437,13 @@ namespace CASCExplorer
                     if (Struct68_D0.Contains(pPathStop.ItemIndex))
                     {
                         // HOTS: 1959617
-                        if (pPathStop.field_C == -1)
-                            pPathStop.field_C = Struct68_D0.GetItemValue(pPathStop.ItemIndex);
+                        if (pPathStop.Field_C == -1)
+                            pPathStop.Field_C = Struct68_D0.GetItemValue(pPathStop.ItemIndex);
                         else
-                            pPathStop.field_C++;
+                            pPathStop.Field_C++;
 
                         // HOTS: 1959630
-                        int FragOffs = GetNameFragmentOffsetEx(pPathStop.ItemIndex, pPathStop.field_C);
+                        int FragOffs = GetNameFragmentOffsetEx(pPathStop.ItemIndex, pPathStop.Field_C);
                         if (NextDB != null)
                         {
                             // HOTS: 1959649
@@ -1468,24 +1463,24 @@ namespace CASCExplorer
                     }
 
                     // HOTS: 19596AE
-                    pPathStop.field_8 = pStruct40.NumBytesFound;
+                    pPathStop.Field_8 = pStruct40.NumBytesFound;
 
                     // HOTS: 19596b6
                     if (FileNameIndexes.Contains(pPathStop.ItemIndex))
                     {
                         // HOTS: 19596D1
-                        if (pPathStop.field_10 == -1)
+                        if (pPathStop.Field_10 == -1)
                         {
                             // HOTS: 19596D9
-                            pPathStop.field_10 = FileNameIndexes.GetItemValue(pPathStop.ItemIndex);
+                            pPathStop.Field_10 = FileNameIndexes.GetItemValue(pPathStop.ItemIndex);
                         }
                         else
                         {
-                            pPathStop.field_10++;
+                            pPathStop.Field_10++;
                         }
 
                         // HOTS: 1959755
-                        pStruct1C.SetFindResult(pStruct40.Result, pPathStop.field_10);
+                        pStruct1C.SetFindResult(pStruct40.Result, pPathStop.Field_10);
                         return true;
                     }
                 }
@@ -1503,7 +1498,7 @@ namespace CASCExplorer
                     pPathStop.ItemIndex++;
 
                     pPathStop = pStruct40.GetPathStop(pStruct40.ItemCount - 2);
-                    int edi = pPathStop.field_8;
+                    int edi = pPathStop.Field_8;
 
                     // HOTS: 1959749
                     pStruct40.RemoveRange(edi);
@@ -1532,7 +1527,7 @@ namespace CASCExplorer
                 if ((FragmentOffset & 0xFFFFFF00) == 0xFFFFFF00)
                 {
                     // HOTS: 1958B88
-                    pStruct40.Add((byte) FragmentOffset);
+                    pStruct40.Add((byte)FragmentOffset);
                     pStruct40.ItemIndex = NameFragTable[ItemIndex].NextIndex;
                     pStruct40.CharIndex++;
                     return true;
@@ -1701,7 +1696,7 @@ namespace CASCExplorer
                 // we also need to load from the next 32-bit item
                 if (dwEndBit > 0x20)
                 {
-                    dwResult = (base[dwItemIndex + 1] << (0x20 - dwStartBit)) | (int) ((uint) base[dwItemIndex] >> dwStartBit);
+                    dwResult = (base[dwItemIndex + 1] << (0x20 - dwStartBit)) | (int)((uint)base[dwItemIndex] >> dwStartBit);
                 }
                 else
                 {
@@ -1717,14 +1712,14 @@ namespace CASCExplorer
         {
             BitsPerEntry = reader.ReadInt32();
             EntryBitMask = reader.ReadInt32();
-            TotalEntries = (int) reader.ReadInt64();
+            TotalEntries = (int)reader.ReadInt64();
         }
     }
 
     public class TSparseArray
     {
-        private int[] ItemBits; // Bit array for each item (1 = item is present)
-        private TRIPLET[] BaseValues; // Array of base values for item indexes >= 0x200
+        private int[] ItemBits;                    // Bit array for each item (1 = item is present)
+        private TRIPLET[] BaseValues;              // Array of base values for item indexes >= 0x200
         private int[] ArrayDwords_38;
         private int[] ArrayDwords_50;
 
@@ -1800,31 +1795,31 @@ namespace CASCExplorer
             // Next 3 bits contain the index to the VBR
             switch (((index >> 0x06) & 0x07) - 1)
             {
-                case 0: // Add the 1st value (7 bits)
+                case 0:     // Add the 1st value (7 bits)
                     BaseValue += (pTriplet.Value2 & 0x7F);
                     break;
 
-                case 1: // Add the 2nd value (8 bits)
+                case 1:     // Add the 2nd value (8 bits)
                     BaseValue += (pTriplet.Value2 >> 0x07) & 0xFF;
                     break;
 
-                case 2: // Add the 3rd value (8 bits)
+                case 2:     // Add the 3rd value (8 bits)
                     BaseValue += (pTriplet.Value2 >> 0x0F) & 0xFF;
                     break;
 
-                case 3: // Add the 4th value (9 bits)
+                case 3:     // Add the 4th value (9 bits)
                     BaseValue += (pTriplet.Value2 >> 0x17) & 0x1FF;
                     break;
 
-                case 4: // Add the 5th value (9 bits)
+                case 4:     // Add the 5th value (9 bits)
                     BaseValue += (pTriplet.Value3 & 0x1FF);
                     break;
 
-                case 5: // Add the 6th value (9 bits)
+                case 5:     // Add the 6th value (9 bits)
                     BaseValue += (pTriplet.Value3 >> 0x09) & 0x1FF;
                     break;
 
-                case 6: // Add the 7th value (9 bits)
+                case 6:     // Add the 7th value (9 bits)
                     BaseValue += (pTriplet.Value3 >> 0x12) & 0x1FF;
                     break;
             }
@@ -2024,9 +2019,9 @@ namespace CASCExplorer
     public class SearchBuffer
     {
         private List<byte> SearchResult = new List<byte>();
-        private List<PATH_STOP> PathStops = new List<PATH_STOP>(); // Array of path checkpoints
+        private List<PATH_STOP> PathStops = new List<PATH_STOP>();   // Array of path checkpoints
 
-        public int ItemIndex { get; set; } = 0; // Current name fragment: Index to various tables
+        public int ItemIndex { get; set; } = 0;// Current name fragment: Index to various tables
         public int CharIndex { get; set; } = 0;
         public int ItemCount { get; set; } = 0;
         public CASCSearchPhase SearchPhase { get; private set; } = CASCSearchPhase.Initializing; // 0 = initializing, 2 = searching, 4 = finished
@@ -2091,23 +2086,18 @@ namespace CASCExplorer
     public class MNDXSearchResult
     {
         private string szSearchMask;
-
-        public string SearchMask // Search mask without wildcards
+        public string SearchMask        // Search mask without wildcards
         {
             get { return szSearchMask; }
             set
             {
-                if (value == null)
-                    throw new ArgumentNullException(nameof(SearchMask));
-
                 Buffer.Init();
 
-                szSearchMask = value;
+                szSearchMask = value ?? throw new ArgumentNullException(nameof(SearchMask));
             }
         }
-
-        public string FoundPath { get; private set; } // Found path name
-        public int FileNameIndex { get; private set; } // Index of the file name
+        public string FoundPath { get; private set; }       // Found path name
+        public int FileNameIndex { get; private set; }      // Index of the file name
         public SearchBuffer Buffer { get; private set; }
 
         public MNDXSearchResult()

@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 
 namespace CASCExplorer
 {
+    [Serializable]
     class BLTEDecoderException : Exception
     {
         public BLTEDecoderException(string message) : base(message)
@@ -70,7 +71,7 @@ namespace CASCExplorer
 
         private void Parse(MD5Hash md5)
         {
-            int size = (int) _reader.BaseStream.Length;
+            int size = (int)_reader.BaseStream.Length;
 
             if (size < 8)
                 throw new BLTEDecoderException("not enough data: {0}", 8);
@@ -170,7 +171,7 @@ namespace CASCExplorer
                     Decompress(data, _memStream);
                     break;
                 default:
-                    throw new BLTEDecoderException("unknown BLTE block type {0} (0x{1:X2})!", (char) data[0], data[0]);
+                    throw new BLTEDecoderException("unknown BLTE block type {0} (0x{1:X2})!", (char)data[0], data[0]);
             }
         }
 
@@ -213,7 +214,7 @@ namespace CASCExplorer
             // magic
             for (int shift = 0, i = 0; i < sizeof(int); shift += 8, i++)
             {
-                IV[i] ^= (byte) ((index >> shift) & 0xFF);
+                IV[i] ^= (byte)((index >> shift) & 0xFF);
             }
 
             byte[] key = KeyService.GetKey(keyName);
@@ -326,16 +327,16 @@ namespace CASCExplorer
             {
                 if (disposing)
                 {
-                    if (_stream != null)
-                        _stream.Dispose();
-                    if (_reader != null)
-                        _reader.Dispose();
+                    _stream?.Dispose();
+                    _reader?.Dispose();
+                    _memStream?.Dispose();
                 }
             }
             finally
             {
                 _stream = null;
                 _reader = null;
+                _memStream = null;
 
                 base.Dispose(disposing);
             }

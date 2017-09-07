@@ -18,8 +18,8 @@ namespace CASCExplorer
         public Salsa20()
         {
             // set legal values
-            LegalBlockSizesValue = new[] {new KeySizes(512, 512, 0)};
-            LegalKeySizesValue = new[] {new KeySizes(128, 256, 128)};
+            LegalBlockSizesValue = new[] { new KeySizes(512, 512, 0) };
+            LegalKeySizesValue = new[] { new KeySizes(128, 256, 128) };
 
             // set default values
             BlockSizeValue = 512;
@@ -89,11 +89,14 @@ namespace CASCExplorer
         /// <exception cref="CryptographicException">An attempt was made to set the initialization vector to an invalid size. </exception>
         public override byte[] IV
         {
-            get { return base.IV; }
+            get
+            {
+                return base.IV;
+            }
             set
             {
                 CheckValidIV(value, "value");
-                IVValue = (byte[]) value.Clone();
+                IVValue = (byte[])value.Clone();
             }
         }
 
@@ -103,7 +106,10 @@ namespace CASCExplorer
         /// <value>The number of rounds.</value>
         public int Rounds
         {
-            get { return m_rounds; }
+            get
+            {
+                return m_rounds;
+            }
             set
             {
                 if (value != 8 && value != 12 && value != 20)
@@ -201,7 +207,7 @@ namespace CASCExplorer
 
                     int blockSize = Math.Min(64, inputCount);
                     for (int i = 0; i < blockSize; i++)
-                        outputBuffer[outputOffset + i] = (byte) (inputBuffer[inputOffset + i] ^ output[i]);
+                        outputBuffer[outputOffset + i] = (byte)(inputBuffer[inputOffset + i] ^ output[i]);
                     bytesTransformed += blockSize;
 
                     inputCount -= 64;
@@ -246,7 +252,7 @@ namespace CASCExplorer
 
             private void Hash(byte[] output, uint[] input)
             {
-                uint[] state = (uint[]) input.Clone();
+                uint[] state = (uint[])input.Clone();
 
                 for (int round = m_rounds; round > 0; round -= 2)
                 {
@@ -316,17 +322,17 @@ namespace CASCExplorer
 
             private static uint ToUInt32(byte[] input, int inputOffset)
             {
-                return unchecked((uint) (((input[inputOffset] | (input[inputOffset + 1] << 8)) | (input[inputOffset + 2] << 16)) | (input[inputOffset + 3] << 24)));
+                return unchecked((uint)(((input[inputOffset] | (input[inputOffset + 1] << 8)) | (input[inputOffset + 2] << 16)) | (input[inputOffset + 3] << 24)));
             }
 
             private static void ToBytes(uint input, byte[] output, int outputOffset)
             {
                 unchecked
                 {
-                    output[outputOffset] = (byte) input;
-                    output[outputOffset + 1] = (byte) (input >> 8);
-                    output[outputOffset + 2] = (byte) (input >> 16);
-                    output[outputOffset + 3] = (byte) (input >> 24);
+                    output[outputOffset] = (byte)input;
+                    output[outputOffset + 1] = (byte)(input >> 8);
+                    output[outputOffset + 2] = (byte)(input >> 16);
+                    output[outputOffset + 3] = (byte)(input >> 24);
                 }
             }
 

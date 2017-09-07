@@ -13,7 +13,9 @@ namespace CASCExplorer
         Hearthstone,
         Overwatch,
         Bna,
-        Client
+        Client,
+        S1,
+        WC3
     }
 
     public class CASCGame
@@ -28,6 +30,9 @@ namespace CASCExplorer
 
             if (Directory.Exists(Path.Combine(path, "Hearthstone_Data")))
                 return CASCGameType.Hearthstone;
+
+            if (File.Exists(Path.Combine(path, "Warcraft III.exe")))
+                return CASCGameType.WC3;
 
             if (Directory.Exists(Path.Combine(path, "Data")))
             {
@@ -49,8 +54,11 @@ namespace CASCExplorer
                 if (File.Exists(Path.Combine(path, "Battle.net.exe")))
                     return CASCGameType.Bna;
 
-                if (File.Exists(Path.Combine(path, "Overwatch Launcher.exe")))
+                if (File.Exists(Path.Combine(path, "Overwatch.exe")))
                     return CASCGameType.Overwatch;
+
+                if (File.Exists(Path.Combine(path, "StarCraft.exe")))
+                    return CASCGameType.S1;
             }
 
             return CASCGameType.Unknown;
@@ -63,6 +71,12 @@ namespace CASCExplorer
 
             if (uid.StartsWith("hs"))
                 return CASCGameType.Hearthstone;
+
+            if (uid.StartsWith("w3"))
+                return CASCGameType.WC3;
+
+            if (uid.StartsWith("s1"))
+                return CASCGameType.S1;
 
             if (uid.StartsWith("s2"))
                 return CASCGameType.S2;
@@ -111,10 +125,12 @@ namespace CASCExplorer
         public static bool SupportsLocaleSelection(CASCGameType gameType)
         {
             return gameType == CASCGameType.D3 ||
-                   gameType == CASCGameType.WoW ||
-                   gameType == CASCGameType.HotS ||
-                   gameType == CASCGameType.S2 ||
-                   gameType == CASCGameType.Overwatch;
+                gameType == CASCGameType.WoW ||
+                gameType == CASCGameType.HotS ||
+                gameType == CASCGameType.S2 ||
+                gameType == CASCGameType.S1 ||
+                gameType == CASCGameType.WC3 ||
+                gameType == CASCGameType.Overwatch;
         }
     }
 }

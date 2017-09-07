@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
-using System.Text;
 
 namespace CASCExplorer
 {
@@ -52,7 +50,7 @@ namespace CASCExplorer
 
     public unsafe struct MD5Hash
     {
-        public fixed byte Value [16];
+        public fixed byte Value[16];
     }
 
     public struct RootEntry
@@ -67,7 +65,7 @@ namespace CASCExplorer
         private MultiDictionary<ulong, RootEntry> RootData = new MultiDictionary<ulong, RootEntry>();
         private Dictionary<int, ulong> FileDataStore = new Dictionary<int, ulong>();
         private Dictionary<ulong, int> FileDataStoreReverse = new Dictionary<ulong, int>();
-        private Dictionary<ulong, bool> UnknownFiles = new Dictionary<ulong, bool>();
+        private HashSet<ulong> UnknownFiles = new HashSet<ulong>();
 
         public override int Count => RootData.Count;
         public override int CountTotal => RootData.Sum(re => re.Value.Count);
@@ -81,13 +79,13 @@ namespace CASCExplorer
             {
                 int count = stream.ReadInt32();
 
-                ContentFlags contentFlags = (ContentFlags) stream.ReadUInt32();
-                LocaleFlags localeFlags = (LocaleFlags) stream.ReadUInt32();
+                ContentFlags contentFlags = (ContentFlags)stream.ReadUInt32();
+                LocaleFlags localeFlags = (LocaleFlags)stream.ReadUInt32();
 
                 if (localeFlags == LocaleFlags.None)
                     throw new Exception("block.LocaleFlags == LocaleFlags.None");
 
-                if (contentFlags != ContentFlags.None && (contentFlags & (ContentFlags.LowViolence | ContentFlags.NoCompression | ContentFlags.F20000000)) == 0)
+                if (contentFlags != ContentFlags.None && (contentFlags & (ContentFlags.F00000008 | ContentFlags.F00000010 | ContentFlags.LowViolence | ContentFlags.NoCompression | ContentFlags.F20000000)) == 0)
                     throw new Exception("block.ContentFlags != ContentFlags.None");
 
                 RootEntry[] entries = new RootEntry[count];
@@ -116,11 +114,9 @@ namespace CASCExplorer
 
                     //Console.WriteLine("File: {0:X8} {1:X16} {2}", entries[i].FileDataId, hash, entries[i].MD5.ToHexString());
 
-                    ulong hash2;
-
                     int fileDataId = filedataIds[i];
 
-                    if (FileDataStore.TryGetValue(fileDataId, out hash2))
+                    if (FileDataStore.TryGetValue(fileDataId, out ulong hash2))
                     {
                         if (hash2 == hash)
                         {
@@ -138,7 +134,7 @@ namespace CASCExplorer
                     FileDataStoreReverse.Add(hash, fileDataId);
                 }
 
-                worker?.ReportProgress((int) (stream.BaseStream.Position / (float) stream.BaseStream.Length * 100));
+                worker?.ReportProgress((int)(stream.BaseStream.Position / (float)stream.BaseStream.Length * 100));
             }
         }
 
@@ -147,14 +143,13 @@ namespace CASCExplorer
         public override IEnumerable<KeyValuePair<ulong, RootEntry>> GetAllEntries()
         {
             foreach (var set in RootData)
-            foreach (var entry in set.Value)
-                yield return new KeyValuePair<ulong, RootEntry>(set.Key, entry);
+                foreach (var entry in set.Value)
+                    yield return new KeyValuePair<ulong, RootEntry>(set.Key, entry);
         }
 
         public override IEnumerable<RootEntry> GetAllEntries(ulong hash)
         {
-            List<RootEntry> result;
-            RootData.TryGetValue(hash, out result);
+            RootData.TryGetValue(hash, out List<RootEntry> result);
 
             if (result == null)
                 yield break;
@@ -189,15 +184,13 @@ namespace CASCExplorer
 
         public ulong GetHashByFileDataId(int fileDataId)
         {
-            ulong hash;
-            FileDataStore.TryGetValue(fileDataId, out hash);
+            FileDataStore.TryGetValue(fileDataId, out ulong hash);
             return hash;
         }
 
         public int GetFileDataIdByHash(ulong hash)
         {
-            int fid;
-            FileDataStoreReverse.TryGetValue(hash, out fid);
+            FileDataStoreReverse.TryGetValue(hash, out int fid);
             return fid;
         }
 
@@ -250,7 +243,7 @@ namespace CASCExplorer
                             CASCFile.FileNames[fileHash] = fileNameFull;
                         }
 
-                        worker?.ReportProgress((int) (fs.Position / (float) fs.Length * 100));
+                        worker?.ReportProgress((int)(fs.Position / (float)fs.Length * 100));
                     }
 
                     Logger.WriteLine("WowRootHandler: loaded {0} valid file names", CASCFile.FileNames.Count);
@@ -292,29 +285,6 @@ namespace CASCExplorer
             }
         }
 
-        public void DumpSpellList(CASCHandler casc)
-        {
-            if (!casc.FileExists("DBFilesClient\\Spell.db2"))
-                return;
-
-            Logger.WriteLine("WowRootHandler: loading file names from Spell.db2...");
-
-            using (var s = casc.OpenFile("DBFilesClient\\Spell.db2"))
-            {
-                DB5Reader fd = new DB5Reader(s);
-
-                var sw = new StreamWriter(System.Windows.Forms.Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
-                foreach (var row in fd)
-                {
-                    string spellName = row.Value.GetField<string>(0);
-                    uint spellId = row.Value.GetField<uint>(5);
-                    sw.Write(spellId + ";" + spellName + Environment.NewLine);
-                    //Console.WriteLine("Spell found: " + fileName + ", spellId: " + spellId);
-                }
-                sw.Close();
-            }
-        }
-
         public override void LoadListFile(string path, BackgroundWorkerEx worker = null)
         {
             if (LoadPreHashedListFile("listfile.bin", path, worker))
@@ -332,9 +302,10 @@ namespace CASCExplorer
 
                 Logger.WriteLine("WowRootHandler: loading file names...");
 
-                Dictionary<string, Dictionary<ulong, string>> dirData = new Dictionary<string, Dictionary<ulong, string>>(StringComparer.OrdinalIgnoreCase);
-                dirData[""] = new Dictionary<ulong, string>();
-
+                Dictionary<string, Dictionary<ulong, string>> dirData = new Dictionary<string, Dictionary<ulong, string>>(StringComparer.OrdinalIgnoreCase)
+                {
+                    [""] = new Dictionary<ulong, string>()
+                };
                 using (var fs = new FileStream("listfile.bin", FileMode.Create))
                 using (var bw = new BinaryWriter(fs))
                 using (var fs2 = File.Open(path, FileMode.Open))
@@ -371,7 +342,7 @@ namespace CASCExplorer
                         else
                             dirData[""][fileHash] = file;
 
-                        worker?.ReportProgress((int) (sr.BaseStream.Position / (float) sr.BaseStream.Length * 100));
+                        worker?.ReportProgress((int)(sr.BaseStream.Position / (float)sr.BaseStream.Length * 100));
                     }
 
                     bw.Write(dirData.Count); // count of dirs
@@ -422,13 +393,11 @@ namespace CASCExplorer
                 if (!rootInfosLocale.Any())
                     continue;
 
-                string file;
-
-                if (!CASCFile.FileNames.TryGetValue(rootEntry.Key, out file))
+                if (!CASCFile.FileNames.TryGetValue(rootEntry.Key, out string file))
                 {
                     file = "unknown\\" + rootEntry.Key.ToString("X16") + "_" + GetFileDataIdByHash(rootEntry.Key);
 
-                    UnknownFiles[rootEntry.Key] = true;
+                    UnknownFiles.Add(rootEntry.Key);
                 }
 
                 CreateSubTree(root, rootEntry.Key, file);
@@ -440,7 +409,7 @@ namespace CASCExplorer
             return root;
         }
 
-        public bool IsUnknownFile(ulong hash) => UnknownFiles.ContainsKey(hash);
+        public bool IsUnknownFile(ulong hash) => UnknownFiles.Contains(hash);
 
         public override void Clear()
         {
@@ -461,9 +430,7 @@ namespace CASCExplorer
         {
             foreach (var fd in RootData.OrderBy(r => GetFileDataIdByHash(r.Key)))
             {
-                string name;
-
-                if (!CASCFile.FileNames.TryGetValue(fd.Key, out name))
+                if (!CASCFile.FileNames.TryGetValue(fd.Key, out string name))
                     name = fd.Key.ToString("X16");
 
                 Logger.WriteLine("{0:D7} {1:X16} {2} {3}", GetFileDataIdByHash(fd.Key), fd.Key, fd.Value.Aggregate(LocaleFlags.None, (a, b) => a | b.LocaleFlags), name);

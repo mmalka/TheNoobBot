@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CASCExplorer
 {
@@ -28,7 +29,7 @@ namespace CASCExplorer
 
         protected abstract CASCFolder CreateStorageTree();
 
-        private static readonly char[] PathDelimiters = new char[] {'/', '\\'};
+        private static readonly char[] PathDelimiters = new char[] { '/', '\\' };
 
         protected void CreateSubTree(CASCFolder root, ulong filehash, string file)
         {
@@ -61,6 +62,19 @@ namespace CASCExplorer
 
                 folder = entry as CASCFolder;
             }
+        }
+
+        protected IEnumerable<RootEntry> GetEntriesForSelectedLocale(ulong hash)
+        {
+            var rootInfos = GetAllEntries(hash);
+
+            if (!rootInfos.Any())
+                yield break;
+
+            var rootInfosLocale = rootInfos.Where(re => (re.LocaleFlags & Locale) != 0);
+
+            foreach (var entry in rootInfosLocale)
+                yield return entry;
         }
 
         public void MergeInstall(InstallHandler install)

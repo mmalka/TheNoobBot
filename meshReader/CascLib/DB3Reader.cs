@@ -11,10 +11,7 @@ namespace CASCExplorer
         private byte[] m_data;
         private DB3Reader m_reader;
 
-        public byte[] Data
-        {
-            get { return m_data; }
-        }
+        public byte[] Data { get { return m_data; } }
 
         public DB3Row(DB3Reader reader, byte[] data)
         {
@@ -26,7 +23,7 @@ namespace CASCExplorer
         {
             object retVal;
 
-            fixed (byte* ptr = m_data)
+            fixed(byte *ptr = m_data)
             {
                 switch (Type.GetTypeCode(typeof(T)))
                 {
@@ -37,28 +34,28 @@ namespace CASCExplorer
                             retVal = str;
                         else
                             retVal = string.Empty;
-                        return (T) retVal;
+                        return (T)retVal;
                     case TypeCode.SByte:
                         retVal = ptr[offset];
-                        return (T) retVal;
+                        return (T)retVal;
                     case TypeCode.Byte:
                         retVal = ptr[offset];
-                        return (T) retVal;
+                        return (T)retVal;
                     case TypeCode.Int16:
-                        retVal = *(short*) (ptr + offset);
-                        return (T) retVal;
+                        retVal = *(short*)(ptr + offset);
+                        return (T)retVal;
                     case TypeCode.UInt16:
-                        retVal = *(ushort*) (ptr + offset);
-                        return (T) retVal;
+                        retVal = *(ushort*)(ptr + offset);
+                        return (T)retVal;
                     case TypeCode.Int32:
-                        retVal = *(int*) (ptr + offset);
-                        return (T) retVal;
+                        retVal = *(int*)(ptr + offset);
+                        return (T)retVal;
                     case TypeCode.UInt32:
-                        retVal = *(uint*) (ptr + offset);
-                        return (T) retVal;
+                        retVal = *(uint*)(ptr + offset);
+                        return (T)retVal;
                     case TypeCode.Single:
-                        retVal = *(float*) (ptr + offset);
-                        return (T) retVal;
+                        retVal = *(float*)(ptr + offset);
+                        return (T)retVal;
                     default:
                         return default(T);
                 }
@@ -69,8 +66,8 @@ namespace CASCExplorer
     public class DB3Reader : IEnumerable<KeyValuePair<int, DB3Row>>
     {
         private readonly int HeaderSize;
-        private const uint DB3FmtSig = 0x33424457; // WDB3
-        private const uint DB4FmtSig = 0x34424457; // WDB4
+        private const uint DB3FmtSig = 0x33424457;          // WDB3
+        private const uint DB4FmtSig = 0x34424457;          // WDB4
 
         public int RecordsCount { get; private set; }
         public int FieldsCount { get; private set; }
@@ -83,9 +80,7 @@ namespace CASCExplorer
 
         private SortedDictionary<int, DB3Row> m_index = new SortedDictionary<int, DB3Row>();
 
-        public DB3Reader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open))
-        {
-        }
+        public DB3Reader(string dbcFile) : this(new FileStream(dbcFile, FileMode.Open)) { }
 
         public DB3Reader(Stream stream)
         {
@@ -176,7 +171,7 @@ namespace CASCExplorer
 
                 while (reader.BaseStream.Position != stringTableEnd)
                 {
-                    int index = (int) reader.BaseStream.Position - stringTableStart;
+                    int index = (int)reader.BaseStream.Position - stringTableStart;
                     StringTable[index] = reader.ReadCString();
                 }
 
@@ -212,8 +207,7 @@ namespace CASCExplorer
 
         public DB3Row GetRow(int index)
         {
-            DB3Row row;
-            m_index.TryGetValue(index, out row);
+            m_index.TryGetValue(index, out DB3Row row);
             return row;
         }
 

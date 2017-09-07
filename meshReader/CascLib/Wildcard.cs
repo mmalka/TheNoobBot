@@ -13,7 +13,7 @@ namespace CASCExplorer
         /// </summary>
         /// <param name="pattern">The wildcard pattern to match.</param>
         public Wildcard(string pattern, bool matchStartEnd)
-            : base(WildcardToRegex(pattern, matchStartEnd))
+         : base(WildcardToRegex(pattern, matchStartEnd))
         {
         }
 
@@ -24,7 +24,7 @@ namespace CASCExplorer
         /// <param name="options">A combination of one or more
         /// <see cref="RegexOptions"/>.</param>
         public Wildcard(string pattern, bool matchStartEnd, RegexOptions options)
-            : base(WildcardToRegex(pattern, matchStartEnd), options)
+         : base(WildcardToRegex(pattern, matchStartEnd), options)
         {
         }
 

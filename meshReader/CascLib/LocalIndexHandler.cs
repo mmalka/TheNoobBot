@@ -17,6 +17,7 @@ namespace CASCExplorer
 
         private LocalIndexHandler()
         {
+
         }
 
         public static LocalIndexHandler Initialize(CASCConfig config, BackgroundWorkerEx worker)
@@ -36,7 +37,7 @@ namespace CASCExplorer
             {
                 handler.ParseIndex(idx);
 
-                worker?.ReportProgress((int) (++idxIndex / (float) idxFiles.Count * 100));
+                worker?.ReportProgress((int)(++idxIndex / (float)idxFiles.Count * 100));
             }
 
             Logger.WriteLine("LocalIndexHandler: loaded {0} indexes", handler.Count);
@@ -71,13 +72,13 @@ namespace CASCExplorer
 
                     MD5Hash key;
 
-                    fixed (byte* ptr = keyBytes)
-                        key = *(MD5Hash*) ptr;
+                    fixed (byte *ptr = keyBytes)
+                        key = *(MD5Hash*)ptr;
 
                     byte indexHigh = br.ReadByte();
                     int indexLow = br.ReadInt32BE();
 
-                    info.Index = (indexHigh << 2 | (byte) ((indexLow & 0xC0000000) >> 30));
+                    info.Index = (indexHigh << 2 | (byte)((indexLow & 0xC0000000) >> 30));
                     info.Offset = (indexLow & 0x3FFFFFFF);
 
                     //for (int j = 3; j < 8; j++)
@@ -129,11 +130,10 @@ namespace CASCExplorer
 
         public unsafe IndexEntry GetIndexInfo(MD5Hash key)
         {
-            ulong* ptr = (ulong*) &key;
+            ulong* ptr = (ulong*)&key;
             ptr[1] &= 0xFF;
 
-            IndexEntry result;
-            if (!LocalIndexData.TryGetValue(key, out result))
+            if (!LocalIndexData.TryGetValue(key, out IndexEntry result))
                 Logger.WriteLine("LocalIndexHandler: missing index: {0}", key.ToHexString());
 
             return result;

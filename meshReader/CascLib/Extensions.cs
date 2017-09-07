@@ -22,7 +22,7 @@ namespace CASCExplorer
         public static uint ReadUInt32BE(this BinaryReader reader)
         {
             byte[] val = reader.ReadBytes(4);
-            return (uint) (val[3] | val[2] << 8 | val[1] << 16 | val[0] << 24);
+            return (uint)(val[3] | val[2] << 8 | val[1] << 16 | val[0] << 24);
         }
 
         public unsafe static T Read<T>(this BinaryReader reader) where T : struct
@@ -35,13 +35,13 @@ namespace CASCExplorer
 
         public unsafe static T[] ReadArray<T>(this BinaryReader reader) where T : struct
         {
-            int numBytes = (int) reader.ReadInt64();
+            int numBytes = (int)reader.ReadInt64();
 
             byte[] result = reader.ReadBytes(numBytes);
 
             fixed (byte* ptr = result)
             {
-                T[] data = FastStruct<T>.ReadArray((IntPtr) ptr, numBytes);
+                T[] data = FastStruct<T>.ReadArray((IntPtr)ptr, numBytes);
                 reader.BaseStream.Position += (0 - numBytes) & 0x07;
                 return data;
             }
@@ -50,7 +50,7 @@ namespace CASCExplorer
         public static short ReadInt16BE(this BinaryReader reader)
         {
             byte[] val = reader.ReadBytes(2);
-            return (short) (val[1] | val[0] << 8);
+            return (short)(val[1] | val[0] << 8);
         }
 
         public static void CopyBytes(this Stream input, Stream output, int bytes)
@@ -130,17 +130,12 @@ namespace CASCExplorer
             MD5Hash other;
 
             fixed (byte* ptr = array)
-                other = *(MD5Hash*) ptr;
+                other = *(MD5Hash*)ptr;
 
-            //for (var i = 0; i < 16; ++i)
-            //    if (key.Value[i] != other.Value[i])
-            //        return false;
-
-            //return key.EqualsTo(other);
             for (int i = 0; i < 2; ++i)
             {
-                ulong keyPart = *(ulong*) (key.Value + i * 8);
-                ulong otherPart = *(ulong*) (other.Value + i * 8);
+                ulong keyPart = *(ulong*)(key.Value + i * 8);
+                ulong otherPart = *(ulong*)(other.Value + i * 8);
 
                 if (keyPart != otherPart)
                     return false;
@@ -148,17 +143,47 @@ namespace CASCExplorer
             return true;
         }
 
+        public static unsafe bool EqualsTo9(this MD5Hash key, byte[] array)
+        {
+            if (array.Length < 9)
+                return false;
+
+            MD5Hash other;
+
+            fixed (byte* ptr = array)
+                other = *(MD5Hash*)ptr;
+
+            ulong keyPart = *(ulong*)(key.Value);
+            ulong otherPart = *(ulong*)(other.Value);
+
+            if (keyPart != otherPart)
+                return false;
+
+            if (key.Value[8] != other.Value[8])
+                return false;
+
+            //for (int i = 0; i < 2; ++i)
+            //{
+            //    ulong keyPart = *(ulong*)(key.Value + i * 8);
+            //    ulong otherPart = *(ulong*)(other.Value + i * 8);
+
+            //    if (keyPart != otherPart)
+            //        return false;
+            //}
+
+            return true;
+        }
+
         public static unsafe bool EqualsTo(this MD5Hash key, MD5Hash other)
         {
             for (int i = 0; i < 2; ++i)
             {
-                ulong keyPart = *(ulong*) (key.Value + i * 8);
-                ulong otherPart = *(ulong*) (other.Value + i * 8);
+                ulong keyPart = *(ulong*)(key.Value + i * 8);
+                ulong otherPart = *(ulong*)(other.Value + i * 8);
 
                 if (keyPart != otherPart)
                     return false;
             }
-
             return true;
         }
 
@@ -168,7 +193,7 @@ namespace CASCExplorer
 
             fixed (byte* aptr = array)
             {
-                *(MD5Hash*) aptr = key;
+                *(MD5Hash*)aptr = key;
             }
 
             return array.ToHexString();
@@ -189,7 +214,7 @@ namespace CASCExplorer
 
             fixed (byte* ptr = array)
             {
-                return *(MD5Hash*) ptr;
+                return *(MD5Hash*)ptr;
             }
         }
     }
@@ -222,7 +247,7 @@ namespace CASCExplorer
         {
             var bytes = Encoding.UTF8.GetBytes(str);
             writer.Write(bytes);
-            writer.Write((byte) 0);
+            writer.Write((byte)0);
         }
 
         public static byte[] ToByteArray(this string str)
