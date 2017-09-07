@@ -561,6 +561,11 @@ namespace The_Noob_Bot
                     UnitKillsCount.Text = Statistics.Kills + " (" + Statistics.KillsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
                     DeathsCount.Text = Statistics.Deaths + " (" + Statistics.DeathsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
                     FarmsCount.Text = Statistics.Farms + " (" + Statistics.FarmsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    ProductStartedSinceLabel.Text = "Product started since : " + Others.SecToHour((Statistics.RunningTimeInSec()));
+                }
+                else if (!Products.IsStarted && ObjectManager.Me.IsValid)
+                {
+                    ProductStartedSinceLabel.Text = "";
                 }
                 if (ObjectManager.Target.IsValid)
                 {
@@ -580,7 +585,7 @@ namespace The_Noob_Bot
                 Logging.Log log = Logging.ReadLast(Logging.LogType.S);
                 LatestLog.Text = log.ToString();
                 LatestLog.ForeColor = log.Color;
-                BotStartedSinceLabel.Text = nManager.Translate.Get(nManager.Translate.Id.tnb_started_since) + @" : " + Others.SecToHour((Others.Times - LoginServer.StartTime)/1000);
+                BotStartedSinceLabel.Text = nManager.Translate.Get(nManager.Translate.Id.tnb_started_since) + @" : " + Others.SecToHour((Others.Times - LoginServer.StartTime) / 1000);
             }
             catch (Exception ex)
             {

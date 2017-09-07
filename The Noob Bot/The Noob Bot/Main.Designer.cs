@@ -86,6 +86,7 @@ namespace The_Noob_Bot
             this.ProductSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.MainSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.DevToolsLabel = new System.Windows.Forms.Label();
+            this.ProductStartedSinceLabel = new System.Windows.Forms.Label();
             this.PanelHome.SuspendLayout();
             this.PanelAccount.SuspendLayout();
             this.SuspendLayout();
@@ -151,6 +152,7 @@ namespace The_Noob_Bot
             // 
             this.PanelHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.PanelHome.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PanelHome.BackgroundImage")));
+            this.PanelHome.Controls.Add(this.ProductStartedSinceLabel);
             this.PanelHome.Controls.Add(this.BotStartedSinceLabel);
             this.PanelHome.Controls.Add(this.TargetHealth);
             this.PanelHome.Controls.Add(this.TargetName);
@@ -782,6 +784,17 @@ namespace The_Noob_Bot
             this.DevToolsLabel.MouseEnter += new System.EventHandler(this.DevToolsLabel_MouseEnter);
             this.DevToolsLabel.MouseLeave += new System.EventHandler(this.DevToolsLabel_MouseLeave);
             // 
+            // ProductStartedSinceLabel
+            // 
+            this.ProductStartedSinceLabel.AutoEllipsis = true;
+            this.ProductStartedSinceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductStartedSinceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.ProductStartedSinceLabel.Location = new System.Drawing.Point(298, 99);
+            this.ProductStartedSinceLabel.Name = "ProductStartedSinceLabel";
+            this.ProductStartedSinceLabel.Size = new System.Drawing.Size(260, 15);
+            this.ProductStartedSinceLabel.TabIndex = 50;
+            this.ProductStartedSinceLabel.Text = "Product started since :";
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -872,6 +885,7 @@ namespace The_Noob_Bot
         private TnbControlMenu MainHeader;
         private System.Windows.Forms.Label BotStartedSinceLabel;
         private System.Windows.Forms.Label DevToolsLabel;
+        private System.Windows.Forms.Label ProductStartedSinceLabel;
     }
 }
 
