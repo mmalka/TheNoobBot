@@ -179,6 +179,8 @@ namespace meshDatabase
             private int MapNameOffset;
             private int MapDescriptionHordeOffset;
             private int MapDescriptionAllianceOffset;
+            public int MapObjectiveHordeOffset;
+            public int MapObjectiveAllianceOffset;
             public ushort field28;
             public ushort field2A;
             public ushort field2C;
@@ -191,7 +193,6 @@ namespace meshDatabase
             public ExtensionId ExtensionId;
             public byte PhaseParent;
             public byte field3A_0;
-            public byte field3A_1;
 
             public bool IsPhase
             {
