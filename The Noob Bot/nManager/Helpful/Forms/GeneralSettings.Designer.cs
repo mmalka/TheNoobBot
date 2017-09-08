@@ -83,6 +83,8 @@ namespace nManager.Helpful.Forms
             this.AvailablePluginsListLabel = new System.Windows.Forms.Label();
             this.AvailablePluginsList = new System.Windows.Forms.ListBox();
             this.MountManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.DeactivateFlyingMountLabel = new System.Windows.Forms.Label();
+            this.DeactivateFlyingMount = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AquaticMountName = new System.Windows.Forms.TextBox();
             this.AquaticMountNameLabel = new System.Windows.Forms.Label();
             this.IgnoreFightIfMountedLabel = new System.Windows.Forms.Label();
@@ -274,8 +276,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.DeactivateFlyingMountLabel = new System.Windows.Forms.Label();
-            this.DeactivateFlyingMount = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.ActivateRegenerationSystemLabel = new System.Windows.Forms.Label();
+            this.ActivateRegenerationSystem = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -1031,6 +1033,30 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MountManagementPanelName.TitleText = "Ingame Mount Management - (Allow you to use Ground/Fly/Swim mount)";
             this.MountManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.UnfolderImage")));
+            // 
+            // DeactivateFlyingMountLabel
+            // 
+            this.DeactivateFlyingMountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DeactivateFlyingMountLabel.ForeColor = System.Drawing.Color.Black;
+            this.DeactivateFlyingMountLabel.Location = new System.Drawing.Point(316, 110);
+            this.DeactivateFlyingMountLabel.Name = "DeactivateFlyingMountLabel";
+            this.DeactivateFlyingMountLabel.Size = new System.Drawing.Size(154, 22);
+            this.DeactivateFlyingMountLabel.TabIndex = 25;
+            this.DeactivateFlyingMountLabel.Text = "Deactivate Flying Mount";
+            this.DeactivateFlyingMountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // DeactivateFlyingMount
+            // 
+            this.DeactivateFlyingMount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.DeactivateFlyingMount.Location = new System.Drawing.Point(475, 112);
+            this.DeactivateFlyingMount.MaximumSize = new System.Drawing.Size(60, 20);
+            this.DeactivateFlyingMount.MinimumSize = new System.Drawing.Size(60, 20);
+            this.DeactivateFlyingMount.Name = "DeactivateFlyingMount";
+            this.DeactivateFlyingMount.OffText = "OFF";
+            this.DeactivateFlyingMount.OnText = "ON";
+            this.DeactivateFlyingMount.Size = new System.Drawing.Size(60, 20);
+            this.DeactivateFlyingMount.TabIndex = 26;
+            this.DeactivateFlyingMount.Value = false;
             // 
             // AquaticMountName
             // 
@@ -2429,6 +2455,8 @@ namespace nManager.Helpful.Forms
             this.RegenerationManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.RegenerationManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.RegenerationManagementPanelName.ContentSize = new System.Drawing.Size(556, 78);
+            this.RegenerationManagementPanelName.Controls.Add(this.ActivateRegenerationSystemLabel);
+            this.RegenerationManagementPanelName.Controls.Add(this.ActivateRegenerationSystem);
             this.RegenerationManagementPanelName.Controls.Add(this.DoRegenManaIfLow);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX9);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX10);
@@ -2449,6 +2477,7 @@ namespace nManager.Helpful.Forms
             this.RegenerationManagementPanelName.Location = new System.Drawing.Point(0, 216);
             this.RegenerationManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.RegenerationManagementPanelName.MaximumSize = new System.Drawing.Size(556, 0);
+            this.RegenerationManagementPanelName.MinimumSize = new System.Drawing.Size(556, 36);
             this.RegenerationManagementPanelName.Name = "RegenerationManagementPanelName";
             this.RegenerationManagementPanelName.OrderIndex = 7;
             this.RegenerationManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
@@ -2462,7 +2491,7 @@ namespace nManager.Helpful.Forms
             // DoRegenManaIfLow
             // 
             this.DoRegenManaIfLow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.DoRegenManaIfLow.Location = new System.Drawing.Point(466, 75);
+            this.DoRegenManaIfLow.Location = new System.Drawing.Point(466, 105);
             this.DoRegenManaIfLow.MaximumSize = new System.Drawing.Size(60, 20);
             this.DoRegenManaIfLow.MinimumSize = new System.Drawing.Size(60, 20);
             this.DoRegenManaIfLow.Name = "DoRegenManaIfLow";
@@ -2476,7 +2505,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX9.BackColor = System.Drawing.Color.Transparent;
             this.labelX9.ForeColor = System.Drawing.Color.Black;
-            this.labelX9.Location = new System.Drawing.Point(394, 74);
+            this.labelX9.Location = new System.Drawing.Point(394, 104);
             this.labelX9.Name = "labelX9";
             this.labelX9.Size = new System.Drawing.Size(30, 22);
             this.labelX9.TabIndex = 25;
@@ -2486,7 +2515,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX10.BackColor = System.Drawing.Color.Transparent;
             this.labelX10.ForeColor = System.Drawing.Color.Black;
-            this.labelX10.Location = new System.Drawing.Point(312, 74);
+            this.labelX10.Location = new System.Drawing.Point(312, 101);
             this.labelX10.Name = "labelX10";
             this.labelX10.Size = new System.Drawing.Size(17, 22);
             this.labelX10.TabIndex = 24;
@@ -2495,7 +2524,7 @@ namespace nManager.Helpful.Forms
             // DrinkBeverageWhenManaIsUnderXPercent
             // 
             this.DrinkBeverageWhenManaIsUnderXPercent.ForeColor = System.Drawing.Color.Black;
-            this.DrinkBeverageWhenManaIsUnderXPercent.Location = new System.Drawing.Point(335, 77);
+            this.DrinkBeverageWhenManaIsUnderXPercent.Location = new System.Drawing.Point(335, 104);
             this.DrinkBeverageWhenManaIsUnderXPercent.Maximum = new decimal(new int[] {
             99,
             0,
@@ -2518,7 +2547,7 @@ namespace nManager.Helpful.Forms
             // BeverageName
             // 
             this.BeverageName.ForeColor = System.Drawing.Color.Black;
-            this.BeverageName.Location = new System.Drawing.Point(162, 77);
+            this.BeverageName.Location = new System.Drawing.Point(162, 104);
             this.BeverageName.Name = "BeverageName";
             this.BeverageName.Size = new System.Drawing.Size(144, 22);
             this.BeverageName.TabIndex = 22;
@@ -2527,7 +2556,7 @@ namespace nManager.Helpful.Forms
             // 
             this.BeverageNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.BeverageNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.BeverageNameLabel.Location = new System.Drawing.Point(3, 74);
+            this.BeverageNameLabel.Location = new System.Drawing.Point(3, 101);
             this.BeverageNameLabel.Name = "BeverageNameLabel";
             this.BeverageNameLabel.Size = new System.Drawing.Size(154, 22);
             this.BeverageNameLabel.TabIndex = 21;
@@ -2537,7 +2566,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX14.BackColor = System.Drawing.Color.Transparent;
             this.labelX14.ForeColor = System.Drawing.Color.Black;
-            this.labelX14.Location = new System.Drawing.Point(394, 46);
+            this.labelX14.Location = new System.Drawing.Point(394, 76);
             this.labelX14.Name = "labelX14";
             this.labelX14.Size = new System.Drawing.Size(30, 22);
             this.labelX14.TabIndex = 20;
@@ -2547,7 +2576,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX13.BackColor = System.Drawing.Color.Transparent;
             this.labelX13.ForeColor = System.Drawing.Color.Black;
-            this.labelX13.Location = new System.Drawing.Point(312, 46);
+            this.labelX13.Location = new System.Drawing.Point(312, 73);
             this.labelX13.Name = "labelX13";
             this.labelX13.Size = new System.Drawing.Size(17, 22);
             this.labelX13.TabIndex = 19;
@@ -2556,7 +2585,7 @@ namespace nManager.Helpful.Forms
             // EatFoodWhenHealthIsUnderXPercent
             // 
             this.EatFoodWhenHealthIsUnderXPercent.ForeColor = System.Drawing.Color.Black;
-            this.EatFoodWhenHealthIsUnderXPercent.Location = new System.Drawing.Point(335, 49);
+            this.EatFoodWhenHealthIsUnderXPercent.Location = new System.Drawing.Point(335, 76);
             this.EatFoodWhenHealthIsUnderXPercent.Maximum = new decimal(new int[] {
             99,
             0,
@@ -2579,7 +2608,7 @@ namespace nManager.Helpful.Forms
             // FoodName
             // 
             this.FoodName.ForeColor = System.Drawing.Color.Black;
-            this.FoodName.Location = new System.Drawing.Point(162, 49);
+            this.FoodName.Location = new System.Drawing.Point(162, 76);
             this.FoodName.Name = "FoodName";
             this.FoodName.Size = new System.Drawing.Size(144, 22);
             this.FoodName.TabIndex = 13;
@@ -2588,7 +2617,7 @@ namespace nManager.Helpful.Forms
             // 
             this.FoodNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.FoodNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.FoodNameLabel.Location = new System.Drawing.Point(3, 46);
+            this.FoodNameLabel.Location = new System.Drawing.Point(3, 73);
             this.FoodNameLabel.Name = "FoodNameLabel";
             this.FoodNameLabel.Size = new System.Drawing.Size(154, 22);
             this.FoodNameLabel.TabIndex = 12;
@@ -3572,29 +3601,28 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
             // 
-            // DeactivateFlyingMountLabel
+            // ActivateRegenerationSystemLabel
             // 
-            this.DeactivateFlyingMountLabel.BackColor = System.Drawing.Color.Transparent;
-            this.DeactivateFlyingMountLabel.ForeColor = System.Drawing.Color.Black;
-            this.DeactivateFlyingMountLabel.Location = new System.Drawing.Point(316, 110);
-            this.DeactivateFlyingMountLabel.Name = "DeactivateFlyingMountLabel";
-            this.DeactivateFlyingMountLabel.Size = new System.Drawing.Size(154, 22);
-            this.DeactivateFlyingMountLabel.TabIndex = 25;
-            this.DeactivateFlyingMountLabel.Text = "Deactivate Flying Mount";
-            this.DeactivateFlyingMountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ActivateRegenerationSystemLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateRegenerationSystemLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateRegenerationSystemLabel.Location = new System.Drawing.Point(4, 46);
+            this.ActivateRegenerationSystemLabel.Name = "ActivateRegenerationSystemLabel";
+            this.ActivateRegenerationSystemLabel.Size = new System.Drawing.Size(402, 22);
+            this.ActivateRegenerationSystemLabel.TabIndex = 46;
+            this.ActivateRegenerationSystemLabel.Text = "Activate Regeneration System (will heal/wait before moving again)";
             // 
-            // DeactivateFlyingMount
+            // ActivateRegenerationSystem
             // 
-            this.DeactivateFlyingMount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.DeactivateFlyingMount.Location = new System.Drawing.Point(475, 112);
-            this.DeactivateFlyingMount.MaximumSize = new System.Drawing.Size(60, 20);
-            this.DeactivateFlyingMount.MinimumSize = new System.Drawing.Size(60, 20);
-            this.DeactivateFlyingMount.Name = "DeactivateFlyingMount";
-            this.DeactivateFlyingMount.OffText = "OFF";
-            this.DeactivateFlyingMount.OnText = "ON";
-            this.DeactivateFlyingMount.Size = new System.Drawing.Size(60, 20);
-            this.DeactivateFlyingMount.TabIndex = 26;
-            this.DeactivateFlyingMount.Value = false;
+            this.ActivateRegenerationSystem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.ActivateRegenerationSystem.Location = new System.Drawing.Point(466, 48);
+            this.ActivateRegenerationSystem.MaximumSize = new System.Drawing.Size(60, 20);
+            this.ActivateRegenerationSystem.MinimumSize = new System.Drawing.Size(60, 20);
+            this.ActivateRegenerationSystem.Name = "ActivateRegenerationSystem";
+            this.ActivateRegenerationSystem.OffText = "OFF";
+            this.ActivateRegenerationSystem.OnText = "ON";
+            this.ActivateRegenerationSystem.Size = new System.Drawing.Size(60, 20);
+            this.ActivateRegenerationSystem.TabIndex = 47;
+            this.ActivateRegenerationSystem.Value = false;
             // 
             // GeneralSettings
             // 
@@ -3900,5 +3928,7 @@ namespace nManager.Helpful.Forms
         private TnbSwitchButton UseSafeResurrectionPoint;
         private Label DeactivateFlyingMountLabel;
         private TnbSwitchButton DeactivateFlyingMount;
+        private Label ActivateRegenerationSystemLabel;
+        private TnbSwitchButton ActivateRegenerationSystem;
     }
 }

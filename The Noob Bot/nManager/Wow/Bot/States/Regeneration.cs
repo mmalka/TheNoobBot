@@ -42,6 +42,9 @@ namespace nManager.Wow.Bot.States
                     ObjectManager.ObjectManager.Me.InCombat || Usefuls.IsFlying || !Products.Products.IsStarted)
                     return false;
 
+                if (!nManagerSetting.CurrentSetting.ActivateRegenerationSystem)
+                    return false;
+
                 if (Math.Abs(ObjectManager.ObjectManager.Me.HealthPercent) < 0.001f)
                     return false; // Workarround for the "0% HP" issue.
 

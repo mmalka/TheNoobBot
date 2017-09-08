@@ -568,6 +568,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.DontSellReagents = DontSellReagents.Value;
                 nManagerSetting.CurrentSetting.ActivateSafeResurrectionSystem = UseSafeResurrectionPoint.Value;
                 nManagerSetting.CurrentSetting.DeactivateFlyingMount = DeactivateFlyingMount.Value;
+                nManagerSetting.CurrentSetting.ActivateRegenerationSystem = ActivateRegenerationSystem.Value;
                 foreach (string s in ActivatedPluginsList.Items)
                 {
                     nManagerSetting.CurrentSetting.ActivatedPluginsList.Add(s);
@@ -712,6 +713,7 @@ namespace nManager.Helpful.Forms
                     }
                 }
                 DontSellReagents.Value = managerSetting.DontSellReagents;
+                ActivateRegenerationSystem.Value = managerSetting.ActivateRegenerationSystem;
             }
             catch (Exception ex)
             {

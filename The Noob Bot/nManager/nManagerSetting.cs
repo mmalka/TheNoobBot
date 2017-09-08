@@ -320,5 +320,6 @@ namespace nManager
         public bool ActivateSafeResurrectionSystem = true;
         public bool DontSellReagents = true;
         public bool DeactivateFlyingMount = false;
+        public bool ActivateRegenerationSystem = true;
     }
 }
