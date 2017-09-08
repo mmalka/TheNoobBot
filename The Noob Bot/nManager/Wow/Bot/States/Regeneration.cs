@@ -161,6 +161,8 @@ namespace nManager.Wow.Bot.States
                     int targetItem = GetBestMageFoodInBags();
                     while (targetItem <= 0)
                     {
+                        if (!NeedToRun)
+                            return;
                         if (_mageConjureSpell.IsSpellUsable)
                         {
                             _mageConjureCount++;
@@ -186,7 +188,7 @@ namespace nManager.Wow.Bot.States
                 if (CombatClass.GetLightHealingSpell == null)
                     return;
                 // In case we did not use food/beverage, we check if we need to heal ourself.
-                if (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
+                if (CombatClass.GetLightHealingSpell.IsSpellUsable && NeedToRun)
                 {
                     Logging.Write("Regeneration started: Light Heal mode");
                     if (ObjectManager.ObjectManager.Me.IsMounted)
@@ -194,7 +196,7 @@ namespace nManager.Wow.Bot.States
                     MovementManager.StopMove();
                     Thread.Sleep(500);
                     var timer = new Timer(10000);
-                    while (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
+                    while (CombatClass.GetLightHealingSpell.IsSpellUsable && NeedToRun)
                     {
                         Thread.Sleep(250);
                         if (ObjectManager.ObjectManager.Me.IsCasting)
@@ -208,7 +210,7 @@ namespace nManager.Wow.Bot.States
                         CombatClass.GetLightHealingSpell.CastOnSelf(true);
                     }
 
-                    Logging.Write(ObjectManager.ObjectManager.Me.HealthPercent > 85 ? "Regeneration done (success): Light Heal mode" : "Regeneration done (timer): Light Heal mode");
+                    Logging.Write(!NeedToRun ? "Regeneration done (success): Light Heal mode" : "Regeneration done (timer): Light Heal mode");
                 }
             }
             catch (Exception e)
