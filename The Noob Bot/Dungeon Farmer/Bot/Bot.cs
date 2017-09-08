@@ -37,7 +37,7 @@ namespace DungeonFarmer.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(10, "FSM DungeonFarmer");
+                Fsm.StartEngine(7, "FSM DungeonFarmer");
                 return true;
             }
             catch (Exception e)

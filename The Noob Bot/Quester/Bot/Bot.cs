@@ -199,7 +199,7 @@ namespace Quester.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(10, "FSM Quester");
+                Fsm.StartEngine(7, "FSM Quester");
                 EventsListener.HookEvent(WoWEventsType.QUEST_DETAIL, callback => Quest.AutoCompleteQuest());
                 EventsListener.HookEvent(WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest());
 
