@@ -1194,6 +1194,8 @@ namespace nManager.Wow.Helpers
 
                 while (!timerWaypoint.IsReady && Usefuls.InGame)
                 {
+                    Thread.Sleep(50);
+
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(position) <= 0.6)
                         return true;
 
@@ -1221,11 +1223,12 @@ namespace nManager.Wow.Helpers
                             }
                         }
                     }
-                    if (ClickToMove.GetClickToMovePosition().DistanceTo(altPoint.IsValid ? altPoint : position) > 1 || ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
-                    {
-                        ClickToMove.CGPlayer_C__ClickToMove(altPoint.IsValid ? altPoint.X : position.X, altPoint.IsValid ? altPoint.Y : position.Y, altPoint.IsValid ? altPoint.Z : position.Z, 0,
-                            (int) ClickToMoveType.Move, 0.5f);
-                    }
+                    /*if (ClickToMove.GetClickToMovePosition().DistanceTo(altPoint.IsValid ? altPoint : position) > 1 || ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
+                    {*/
+                    // todo find a way to read CTM Pos efficiently.
+                    ClickToMove.CGPlayer_C__ClickToMove(altPoint.IsValid ? altPoint.X : position.X, altPoint.IsValid ? altPoint.Y : position.Y, altPoint.IsValid ? altPoint.Z : position.Z, 0,
+                        (int) ClickToMoveType.Move, 0.5f);
+                    //}
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
 
@@ -1253,8 +1256,6 @@ namespace nManager.Wow.Helpers
                     }
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
-
-                    Thread.Sleep(35);
                 }
 
                 if (_loopMoveTo && _pointTo.DistanceTo(position) < 0.5f)
