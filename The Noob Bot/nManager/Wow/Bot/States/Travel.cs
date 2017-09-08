@@ -1213,6 +1213,7 @@ namespace nManager.Wow.Bot.States
             var listTransport = new List<Transport>();
             foreach (Transport transport in _availableTransports.Items)
             {
+                Thread.Sleep(5);
                 if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                     continue;
                 if (transport.AContinentId != travelToContinentId && transport.BContinentId != travelToContinentId)
@@ -1363,6 +1364,7 @@ namespace nManager.Wow.Bot.States
             uint cnt = 0;
             foreach (Taxi taxi in _availableTaxis)
             {
+                Thread.Sleep(5);
                 if (cnt >= 3) // We only check the 3 nearest taxis
                     break;
                 if (taxi.Faction != Npc.FactionType.Neutral && taxi.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
@@ -1409,6 +1411,7 @@ namespace nManager.Wow.Bot.States
             uint cnt = 0;
             for (int i = 0; i < _availableTaxis.Count; i++)
             {
+                Thread.Sleep(5);
                 Taxi taxi = CreateTaxiFromRef(_availableTaxis[i]); // this breaks the reference, so we can safely modify "EndOfPath".
                 if (cnt >= 3) // We only check the 3 nearest taxis
                     break;
@@ -1441,6 +1444,7 @@ namespace nManager.Wow.Bot.States
             var listPortal = new List<Portal>();
             foreach (Portal portal in _availablePortals.Items)
             {
+                Thread.Sleep(5);
                 if (portal.BContinentId != travelToContinentId)
                     continue;
                 if (portal.AContinentId == portal.BContinentId)
@@ -1466,6 +1470,7 @@ namespace nManager.Wow.Bot.States
             List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
             foreach (Portal portal in portals)
             {
+                Thread.Sleep(5);
                 if (portal.AContinentId != travelFromContinentId)
                     continue;
                 bool success;
@@ -1483,6 +1488,7 @@ namespace nManager.Wow.Bot.States
             var listCustomPath = new List<CustomPath>();
             foreach (CustomPath customPath in _availableCustomPaths.Items)
             {
+                Thread.Sleep(5);
                 if (customPath.Faction != Npc.FactionType.Neutral && customPath.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                     continue;
                 if (customPath.AContinentId != travelToContinentId && customPath.BContinentId != travelToContinentId)
@@ -1534,6 +1540,7 @@ namespace nManager.Wow.Bot.States
             List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId, travelFrom, travelFromContinentId);
             foreach (CustomPath customPath in customPaths)
             {
+                Thread.Sleep(5);
                 if (customPath.ArrivalIsA)
                 {
                     if (customPath.BContinentId != travelFromContinentId)
@@ -1566,6 +1573,7 @@ namespace nManager.Wow.Bot.States
             List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
             foreach (Transport transport in transports)
             {
+                Thread.Sleep(5);
                 if (transport.ArrivalIsA)
                 {
                     bool success;
@@ -1687,6 +1695,7 @@ namespace nManager.Wow.Bot.States
             List<Transport> allTransports = GetAllTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             foreach (Transport transport in allTransports)
             {
+                Thread.Sleep(5);
                 float currentTransportDistance = 0f;
                 uint currentId = 0;
                 if (transport is Taxi)

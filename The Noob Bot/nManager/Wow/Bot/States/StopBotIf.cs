@@ -211,6 +211,7 @@ namespace nManager.Wow.Bot.States
                         t2.Start();
                     }
                 }
+                Thread.Sleep(1000);
             }
         }
 

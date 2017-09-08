@@ -168,6 +168,7 @@ public static class WhisperForwarding
                         Thread.Sleep(Usefuls.Latency + 500);
                     }
                 }
+                Thread.Sleep(300);
             }
 
             Thread.Sleep(200);
