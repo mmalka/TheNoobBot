@@ -1201,6 +1201,8 @@ namespace Quester.Profile
 
         public void DisplayXMLs(object objet)
         {
+            if (objet == null)
+                return;
             var xmldoc = new XmlDocument();
             var ser = new System.Xml.Serialization.XmlSerializer(objet.GetType());
             var sww = new StringWriter();
@@ -3001,6 +3003,11 @@ namespace Quester.Profile
                 else if (_lastSelectedNpc != null)
                 {
                     objXmlToDisplay = _profile.Questers[_lastSelectedNpc.Index];
+                }
+                else
+                {
+                    if (_profile.Quests.Any())
+                        objXmlToDisplay = _profile.Quests[0];
                 }
                 DisplayXMLs(objXmlToDisplay);
             }
