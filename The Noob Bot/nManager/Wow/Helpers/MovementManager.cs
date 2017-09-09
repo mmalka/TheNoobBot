@@ -1667,7 +1667,7 @@ namespace nManager.Wow.Helpers
                                 TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, target.Position, CGWorldFrameHitFlags.HitTestLOS)))
             {
                 List<Point> points = PathFinder.FindPath(target.Position, out patherResult);
-                if ((patherResult && Math.DistanceListPoint(points) > 200f || !patherResult) && baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly || Usefuls.IsFlying)
+                if (Usefuls.IsFlying || ((patherResult && Math.DistanceListPoint(points) > 200f || !patherResult) && baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly))
                 {
                     Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(target.Position));
                     LongMove.LongMoveByNewThread(target.Position);
