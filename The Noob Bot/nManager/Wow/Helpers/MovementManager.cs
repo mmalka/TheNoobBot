@@ -426,7 +426,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    if (MountTask.GetMountCapacity() < MountCapacity.Fly)
+                    if (!Usefuls.IsFlying && MountTask.GetMountCapacity() < MountCapacity.Fly)
                         Logging.Write("This profile needs you to be able to fly.");
                     if (!Usefuls.IsFlying)
                         MountTask.MountingFlyingMount(false);
