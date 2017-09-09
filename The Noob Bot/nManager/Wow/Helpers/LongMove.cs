@@ -29,8 +29,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (_longMoveThread != null && _longMoveThread.IsAlive && _pointLongMove.DistanceTo(point) < 0.0001f)
-                    return;
+                if (_longMoveThread != null && _longMoveThread.IsAlive)
+                {
+                    Logging.WriteDebug("LongMove Thread will be aborted... oldPos: " + _pointLongMove + " newPos: " + point + " #" + _longMoveThread.ManagedThreadId + " State: " + _longMoveThread.ThreadState + " InMovement: " + MovementManager.InMovement);
+                    _longMoveThread.Abort();
+                }
                 _pointLongMove = point;
                 _longMoveThread = new Thread(LongMoveGo) {IsBackground = true, Name = "LongMove"};
                 _longMoveThread.Start();
