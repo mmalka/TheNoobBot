@@ -267,7 +267,13 @@ namespace nManager.Wow.Helpers
                             {
                                 MovementsAction.Descend(false);
                                 MovementsAction.Ascend(false);
-                                MovementManager.MoveTo(point);
+
+                                if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(point) <= 5f && ObjectManager.ObjectManager.Me.Position.DistanceZ(point) > 5f)
+                                {
+                                    MountTask.Land();
+                                }
+                                else 
+                                    MovementManager.MoveTo(point);
                             }
                         }
 
