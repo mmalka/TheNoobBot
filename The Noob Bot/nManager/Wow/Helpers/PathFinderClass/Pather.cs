@@ -710,8 +710,20 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     dtPolyRef startRef = _query.FindNearestPolygon(start, extents, Filter);
                     if (startRef == 0)
                     {
-                        failedPolyref = true;
-                        Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
+                        var startVec2 = startVec;
+                        startVec2.Z = GetZ(new Point(startVec));
+                        var st2 = startVec2.ToRecast().ToFloatArray(); ;
+                        startRef = _query.FindNearestPolygon(st2, extents, Filter);
+                        if (startRef > 0)
+                        {
+                            startVec = startVec2;
+                            start = st2;
+                        }
+                        else
+                        {
+                            failedPolyref = true;
+                            Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
+                        }
                     }
 
                     dtPolyRef endRef = _query.FindNearestPolygon(end, extents, Filter);
