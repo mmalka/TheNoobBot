@@ -785,6 +785,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 Logging.WriteDebug("UnStuckFly() started.");
+                StopMoveTo();
                 Statistics.Stucks++;
                 Logging.WriteDebug("Flying UnStuck - Statistics.Stucks updated, new value: " + Statistics.Stucks + ".");
                 Logging.WriteNavigator("UnStuck character > flying mode.");

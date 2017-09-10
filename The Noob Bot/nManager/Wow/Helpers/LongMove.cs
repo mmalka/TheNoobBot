@@ -38,6 +38,15 @@ namespace nManager.Wow.Helpers
                         Thread.Sleep(300);
                     }
                     LongMoveIsLanding = false;
+                    if (point.DistanceTo(_pointLongMove) < 0.001f)
+                    {
+                        Timer t2 = new Timer(10000);
+
+                        while (!t2.IsReady)
+                        {
+                            Thread.Sleep(300);
+                        }
+                    }
                     //Logging.WriteDebug("LongMove Thread will be aborted... oldPos: " + _pointLongMove + " newPos: " + point + " #" + _longMoveThread.ManagedThreadId + " State: " + _longMoveThread.ThreadState + " InMovement: " + MovementManager.InMovement);
                     _longMoveThread.Abort();
                 }

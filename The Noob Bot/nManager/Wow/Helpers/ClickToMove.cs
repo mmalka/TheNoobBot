@@ -9,34 +9,38 @@ namespace nManager.Wow.Helpers
     public class ClickToMove
     {
         private static Vector3 cache = new Vector3();
+        private static object thisLock = new object();
 
         public static void CGPlayer_C__MoveTo(Vector3 point)
         {
-            if (!Usefuls.InGame || Usefuls.IsLoading)
-                return;
-            Usefuls.UpdateLastHardwareAction();
-            if (!point.IsValid)
-                return;
-
-            // Allocate Memory:
-            uint posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
-            Memory.WowMemory.Memory.WriteFloat(posCodecave, point.X);
-            Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x4, point.Y);
-            Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x8, point.Z);
-            string[] asm = new[]
+            lock (thisLock)
             {
-                "push " + posCodecave,
-                "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress,
-                "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__MoveTo),
-                "retn"
-            };
+                if (!Usefuls.InGame || Usefuls.IsLoading)
+                    return;
+                Usefuls.UpdateLastHardwareAction();
+                if (!point.IsValid)
+                    return;
 
-            Memory.WowMemory.InjectAndExecute(asm);
-            Memory.WowMemory.Memory.FreeMemory(posCodecave);
-            if (cache != point)
-            {
-                Logging.WriteNavigator("MoveTo(" + point + ")");
-                cache = point;
+                // Allocate Memory:
+                uint posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                Memory.WowMemory.Memory.WriteFloat(posCodecave, point.X);
+                Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x4, point.Y);
+                Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x8, point.Z);
+                string[] asm = new[]
+                {
+                    "push " + posCodecave,
+                    "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress,
+                    "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__MoveTo),
+                    "retn"
+                };
+
+                Memory.WowMemory.InjectAndExecute(asm);
+                Memory.WowMemory.Memory.FreeMemory(posCodecave);
+                if (cache != point)
+                {
+                    Logging.WriteNavigator("MoveTo(" + point + ")");
+                    cache = point;
+                }
             }
         }
 
