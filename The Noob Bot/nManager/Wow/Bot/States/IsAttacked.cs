@@ -8,6 +8,7 @@ using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -76,7 +77,7 @@ namespace nManager.Wow.Bot.States
                 }
                 if (unit.Health > (ObjectManager.ObjectManager.Me.Health*15))
                     continue;
-                if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position))
+                if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, unit.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
                     continue;
                 if (unit.GetMove) // only decide to attack if the unit move towards us or patrol.
                     _unitToPull = unit;
