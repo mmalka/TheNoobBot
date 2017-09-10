@@ -469,7 +469,7 @@ namespace nManager.Wow.Bot.Tasks
             while (Usefuls.IsFlying && !t.IsReady)
             {
                 float z0 = ObjectManager.ObjectManager.Me.Position.Z;
-                Thread.Sleep(1000);
+                Thread.Sleep(150);
                 if (z0 == ObjectManager.ObjectManager.Me.Position.Z)
                 {
                     completeLanding = true;
