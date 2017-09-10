@@ -108,40 +108,48 @@ namespace nManager.Wow.Helpers
                                 {
                                     float degree = 0f;
                                     bool doContinue = false;
-                                    while (degree < 360) //Search for safe rez point, if no safe point found, just rez and get killed again!
+                                    try
                                     {
-                                        //Calculate position on a circle 15degrees at a time and check if we can go there
-                                        float x = (float) (pos.X + 50f*System.Math.Cos(Math.DegreeToRadian(degree)));
-                                        float y = (float) (pos.Y + 50f*System.Math.Sin(Math.DegreeToRadian(degree)));
-                                        Point topPoint = new Point(x, y, pos.Z);
-                                        Point bottomPoint = new Point(x, y, PathFinder.GetZPosition(x, y));
-                                        if (!TraceLine.TraceLineGo(topPoint, new Point(topPoint.LerpByDistance(point, 3f)), CGWorldFrameHitFlags.HitTestAllButLiquid))
+                                        LongMoveIsLanding = true;
+                                        while (degree < 360)
                                         {
-                                            targetPoint = topPoint;
-                                            MovementManager.MoveTo(targetPoint);
-                                            Thread.Sleep(2500);
-                                            flyingPathFinder = true;
-                                            doContinue = true;
-                                            break;
-                                            // we want to go to topPoint and directly go to point.
-                                        }
-                                        else if (!TraceLine.TraceLineGo(topPoint, bottomPoint, CGWorldFrameHitFlags.HitTestAllButLiquid))
-                                        {
-                                            bool success;
-                                            PathFinder.FindPath(bottomPoint, point, Usefuls.ContinentNameMpq, out success);
-                                            if (success)
+                                            //Calculate position on a circle 15degrees at a time and check if we can go there
+                                            float x = (float) (pos.X + 50f*System.Math.Cos(Math.DegreeToRadian(degree)));
+                                            float y = (float) (pos.Y + 50f*System.Math.Sin(Math.DegreeToRadian(degree)));
+                                            Point topPoint = new Point(x, y, pos.Z);
+                                            Point bottomPoint = new Point(x, y, PathFinder.GetZPosition(x, y));
+                                            if (!TraceLine.TraceLineGo(topPoint, new Point(topPoint.LerpByDistance(point, 3f)), CGWorldFrameHitFlags.HitTestAllButLiquid))
                                             {
                                                 targetPoint = topPoint;
                                                 MovementManager.MoveTo(targetPoint);
                                                 Thread.Sleep(2500);
                                                 flyingPathFinder = true;
+                                                doContinue = true;
                                                 break;
-                                                // we want to go to topPoint then dismount down to bottomPoint, then findPath to target.
+                                                // we want to go to topPoint and directly go to point.
                                             }
+                                            else if (!TraceLine.TraceLineGo(topPoint, bottomPoint, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                                            {
+                                                bool success;
+                                                PathFinder.FindPath(bottomPoint, point, Usefuls.ContinentNameMpq, out success);
+                                                if (success)
+                                                {
+                                                    targetPoint = topPoint;
+                                                    MovementManager.MoveTo(targetPoint);
+                                                    Thread.Sleep(2500);
+                                                    flyingPathFinder = true;
+                                                    break;
+                                                    // we want to go to topPoint then dismount down to bottomPoint, then findPath to target.
+                                                }
+                                            }
+                                            degree += 25;
+                                            if (degree >= 360f)
+                                                failed = true;
                                         }
-                                        degree += 20;
-                                        if (degree >= 360f)
-                                            failed = true;
+                                    }
+                                    finally
+                                    {
+                                        LongMoveIsLanding = false;
                                     }
                                     if (doContinue)
                                     {
@@ -283,7 +291,7 @@ namespace nManager.Wow.Helpers
                                     MovementManager.StopMove();
                                     MountTask.Land();
                                 }
-                                else 
+                                else
                                     MovementManager.MoveTo(point);
                             }
                         }
