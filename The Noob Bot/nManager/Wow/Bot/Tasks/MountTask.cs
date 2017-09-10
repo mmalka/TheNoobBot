@@ -462,24 +462,32 @@ namespace nManager.Wow.Bot.Tasks
 
         public static void Land(bool useLuaToLand = false)
         {
-            Logging.WriteNavigator("Landing in progress.");
-            MovementsAction.Descend(true, false, useLuaToLand);
-            Timer t = new Timer(60000);
-            bool completeLanding = false;
-            while (Usefuls.IsFlying && !t.IsReady)
+            try
             {
-                float z0 = ObjectManager.ObjectManager.Me.Position.Z;
-                Thread.Sleep(150);
-                if (z0 == ObjectManager.ObjectManager.Me.Position.Z)
+                LongMove.LongMoveIsLanding = true;
+                Logging.WriteNavigator("Landing in progress.");
+                MovementsAction.Descend(true, false, useLuaToLand);
+                Timer t = new Timer(60000);
+                bool completeLanding = false;
+                while (Usefuls.IsFlying && !t.IsReady)
                 {
-                    completeLanding = true;
-                    t.ForceReady();
+                    float z0 = ObjectManager.ObjectManager.Me.Position.Z;
+                    Thread.Sleep(250);
+                    if (z0 == ObjectManager.ObjectManager.Me.Position.Z)
+                    {
+                        completeLanding = true;
+                        t.ForceReady();
+                    }
                 }
+                if (Usefuls.IsFlying && !completeLanding)
+                    Logging.WriteDebug("Still flying after 1min of landing.");
+                Thread.Sleep(150);
+                MovementsAction.Descend(false, false, useLuaToLand);
             }
-            if (Usefuls.IsFlying && !completeLanding)
-                Logging.WriteDebug("Still flying after 1min of landing.");
-            Thread.Sleep(150);
-            MovementsAction.Descend(false, false, useLuaToLand);
+            finally
+            {
+                LongMove.LongMoveIsLanding = false;
+            }
         }
 
         public static bool JustDismounted()

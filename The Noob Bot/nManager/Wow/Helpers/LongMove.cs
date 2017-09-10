@@ -19,6 +19,7 @@ namespace nManager.Wow.Helpers
         private static Point _pointLongMove = new Point();
         private static Timer RegenPath = new Timer(0);
         private static Thread _longMoveThread;
+        public static bool LongMoveIsLanding = false;
 
         public static bool IsLongMove
         {
@@ -31,7 +32,13 @@ namespace nManager.Wow.Helpers
             {
                 if (_longMoveThread != null && _longMoveThread.IsAlive)
                 {
-                    Logging.WriteDebug("LongMove Thread will be aborted... oldPos: " + _pointLongMove + " newPos: " + point + " #" + _longMoveThread.ManagedThreadId + " State: " + _longMoveThread.ThreadState + " InMovement: " + MovementManager.InMovement);
+                    Timer t = new Timer(25000);
+                    while (LongMoveIsLanding && !t.IsReady)
+                    {
+                        Thread.Sleep(300);
+                    }
+                    LongMoveIsLanding = false;
+                    //Logging.WriteDebug("LongMove Thread will be aborted... oldPos: " + _pointLongMove + " newPos: " + point + " #" + _longMoveThread.ManagedThreadId + " State: " + _longMoveThread.ThreadState + " InMovement: " + MovementManager.InMovement);
                     _longMoveThread.Abort();
                 }
                 _pointLongMove = point;
@@ -268,8 +275,12 @@ namespace nManager.Wow.Helpers
                                 MovementsAction.Descend(false);
                                 MovementsAction.Ascend(false);
 
-                                if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(point) <= 5f && ObjectManager.ObjectManager.Me.Position.DistanceZ(point) > 5f)
+                                if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(point) <= 5f && ObjectManager.ObjectManager.Me.Position.DistanceZ(point) > 2f)
                                 {
+                                    MovementsAction.Descend(false);
+                                    MovementsAction.Ascend(false);
+                                    MovementManager.StopMove();
+                                    MovementManager.StopMove();
                                     MountTask.Land();
                                 }
                                 else 
@@ -297,6 +308,8 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
+                MovementsAction.Descend(false);
+                MovementsAction.Ascend(false);
                 Logging.WriteError("LongMove > LongMoveGo(Point point): " + exception);
                 _used = false;
                 _usedLoop = false;
