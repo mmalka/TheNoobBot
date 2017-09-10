@@ -75,7 +75,7 @@ namespace nManager.Wow.Bot.Tasks
                     {
                         if (!landing)
                         {
-                            bool noDirectPath = TraceLine.TraceLineGo(aboveNode);
+                            bool noDirectPath = TraceLine.TraceLineGo(aboveNode, ObjectManager.ObjectManager.Me.Position, CGWorldFrameHitFlags.HitTestAllButLiquid);
                             zT = noDirectPath ? ObjectManager.ObjectManager.Me.Position.Z : aboveNode.Z;
 
                             if (ObjectManager.ObjectManager.Me.Position.Z < aboveNode.Z)
