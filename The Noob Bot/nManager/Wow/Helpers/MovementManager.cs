@@ -426,7 +426,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    if (!Usefuls.IsFlying && !Usefuls.IsSwimming && MountTask.GetMountCapacity() < MountCapacity.Fly)
+                    if (!Usefuls.IsFlying && !Usefuls.IsSwimming && !ObjectManager.ObjectManager.Me.InCombatBlizzard && MountTask.GetMountCapacity() < MountCapacity.Fly)
                         Logging.Write("This profile needs you to be able to fly.");
                     if (!Usefuls.IsFlying)
                         MountTask.MountingFlyingMount(false);
@@ -456,11 +456,16 @@ namespace nManager.Wow.Helpers
                         }
                         if (!ObjectManager.ObjectManager.Me.IsMounted)
                             return;
+                        int druidCombatCheck = 0;
                         while (MountTask.OnFlyMount() && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
                             MovementsAction.Ascend(true);
                             Thread.Sleep(200);
                             MovementsAction.Ascend(false);
+                            if (ObjectManager.ObjectManager.Me.InCombatBlizzard && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.DruidMountId()))
+                                druidCombatCheck++;
+                            if (druidCombatCheck > 8)
+                                break;
                         }
 
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 15 && _movement)
