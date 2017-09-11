@@ -58,21 +58,21 @@ namespace Fisherbot.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 100});
-                Fsm.AddState(new Resurrect {Priority = 14});
-                Fsm.AddState(new IsAttacked {Priority = 13});
-                Fsm.AddState(new ToTown {Priority = 12});
-                Fsm.AddState(new Looting {Priority = 11});
-                Fsm.AddState(new Travel {Priority = 10});
-                Fsm.AddState(new Regeneration {Priority = 9});
-                Fsm.AddState(new SpecializationCheck {Priority = 8});
-                Fsm.AddState(new LevelupCheck {Priority = 7});
-                Fsm.AddState(new Trainers {Priority = 6});
-                Fsm.AddState(new MillingState {Priority = 5});
-                Fsm.AddState(new ProspectingState {Priority = 4});
-                Fsm.AddState(new Farming {Priority = 3});
-                Fsm.AddState(new FisherbotState {Priority = 2});
-                Fsm.AddState(new MovementLoop {Priority = 1, PathLoop = Profile.Points});
+                Fsm.AddState(new Pause {Priority = 200});
+                Fsm.AddState(new Resurrect {Priority = 140});
+                Fsm.AddState(new IsAttacked {Priority = 130});
+                Fsm.AddState(new ToTown {Priority = 120});
+                Fsm.AddState(new Looting {Priority = 110});
+                Fsm.AddState(new Travel {Priority = 100});
+                Fsm.AddState(new Regeneration {Priority = 90});
+                Fsm.AddState(new SpecializationCheck {Priority = 80});
+                Fsm.AddState(new LevelupCheck {Priority = 70});
+                Fsm.AddState(new Trainers {Priority = 60});
+                Fsm.AddState(new MillingState {Priority = 50});
+                Fsm.AddState(new ProspectingState {Priority = 40});
+                Fsm.AddState(new Farming {Priority = 30});
+                Fsm.AddState(new FisherbotState {Priority = 20});
+                Fsm.AddState(new MovementLoop {Priority = 10, PathLoop = Profile.Points});
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

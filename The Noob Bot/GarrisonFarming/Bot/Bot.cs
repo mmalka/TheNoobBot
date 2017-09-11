@@ -26,18 +26,18 @@ namespace GarrisonFarming.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 100});
-                Fsm.AddState(new Resurrect {Priority = 11});
-                Fsm.AddState(new IsAttacked {Priority = 10});
-                Fsm.AddState(new Regeneration {Priority = 9});
-                Fsm.AddState(new ToTown {Priority = 8});
-                Fsm.AddState(new Looting {Priority = 7});
-                Fsm.AddState(new SpecializationCheck {Priority = 6});
-                Fsm.AddState(new LevelupCheck {Priority = 5});
-                Fsm.AddState(new Farming {Priority = 4});
-                Fsm.AddState(new GarrisonState {Priority = 3});
+                Fsm.AddState(new Pause {Priority = 200});
+                Fsm.AddState(new Resurrect {Priority = 110});
+                Fsm.AddState(new IsAttacked {Priority = 100});
+                Fsm.AddState(new Regeneration {Priority = 90});
+                Fsm.AddState(new ToTown {Priority = 80});
+                Fsm.AddState(new Looting {Priority = 70});
+                Fsm.AddState(new SpecializationCheck {Priority = 60});
+                Fsm.AddState(new LevelupCheck {Priority = 50});
+                Fsm.AddState(new Farming {Priority = 40});
+                Fsm.AddState(new GarrisonState {Priority = 30});
                 /* 2
-                 * SendFollowerOnDuty
+                 * SendFollowerOnDuty - Plugins?
                  */
                 Fsm.AddState(new Idle {Priority = 0});
                 Fsm.States.Sort();

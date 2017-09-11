@@ -20,10 +20,10 @@ namespace Damage_Dealer.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 5});
-                Fsm.AddState(new FightHostileTargetDamageDealerOnly {Priority = 3});
-                Fsm.AddState(new SpecializationCheck {Priority = 2});
-                Fsm.AddState(new LevelupCheck {Priority = 1});
+                Fsm.AddState(new Pause {Priority = 200});
+                Fsm.AddState(new FightHostileTargetDamageDealerOnly {Priority = 30});
+                Fsm.AddState(new SpecializationCheck {Priority = 20});
+                Fsm.AddState(new LevelupCheck {Priority = 10});
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
