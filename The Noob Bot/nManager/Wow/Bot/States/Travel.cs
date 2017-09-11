@@ -798,6 +798,25 @@ namespace nManager.Wow.Bot.States
                         }
                         MountTask.DismountMount();
                     }
+                    if (customPath.ForceFlying && !Usefuls.IsFlying)
+                    {
+                        if (!MountTask.OnFlyMount())
+                        {
+                            if (MountTask.GetMountCapacity() >= MountCapacity.Fly)
+                            {
+                                MountTask.Mount(true, true);
+                                MountTask.Takeoff();
+                            }
+                        }
+                        else
+                            MountTask.Takeoff();
+                        Thread.Sleep(1000);
+                        if (!Usefuls.IsFlying || ObjectManager.ObjectManager.Me.InCombatBlizzard)
+                        {
+                            Logging.Write("This CustomPath requires you to fly, but you can't at the moment, releasing travel.");
+                            return false;
+                        }
+                    }
                     Thread.Sleep(500);
                     MovementManager.Go(path);
                     while (MovementManager.InMovement)

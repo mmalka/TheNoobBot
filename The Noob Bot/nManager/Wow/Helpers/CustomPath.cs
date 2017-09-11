@@ -21,5 +21,6 @@ namespace nManager.Wow.Helpers
         [DefaultValue(true)] public bool RoundTrip = true;
         [DefaultValue(false)] public bool AllowFar = false;
         [DefaultValue(false)] public bool UseMount = false;
+        [DefaultValue(false)] public bool ForceFlying = false;
     }
 }
