@@ -771,7 +771,7 @@ namespace nManager.Wow.Bot.States
                     if (path.Count > 0)
                     {
                         Point firstPoint = path[0];
-                        if (customPath.UseMount && (PathFinder.GetZPosition(firstPoint) + 20) < firstPoint.Z)
+                        if (customPath.UseMount && (customPath.ForceFlying || ((PathFinder.GetZPosition(firstPoint) + 20) < firstPoint.Z)))
                         {
                             // fly path?
                             if (MountTask.GetMountCapacity() >= MountCapacity.Fly)
