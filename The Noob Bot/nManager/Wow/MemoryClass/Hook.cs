@@ -480,7 +480,8 @@ namespace nManager.Wow.MemoryClass
             {
                 if (!Memory.IsProcessOpen)
                     return;
-                Wow.Memory.WowProcess.Executor.Dispose();
+                if (Wow.Memory.WowProcess.Executor != null)
+                    Wow.Memory.WowProcess.Executor.Dispose();
                 ThreadHooked = false;
                 /*
                 // Get address of EndScene:
