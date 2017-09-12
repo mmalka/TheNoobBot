@@ -81,3 +81,5 @@ meshReader/meshReader - 2013.opensdf
 meshReader/meshReader.VC.opendb
 meshReader/meshReader.VC.db
 meshReader/meshReader.VC.VC.opendb
+docs/updatebase_directory/Plugins/TnbAntiDrowning.dll
+docs/updatebase_directory/Plugins/TnbAntiDrowning.cs
