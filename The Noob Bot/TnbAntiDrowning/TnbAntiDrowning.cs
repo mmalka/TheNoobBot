@@ -10,6 +10,7 @@ using System.Windows.Forms.VisualStyles;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Plugins;
+using nManager.Products;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
@@ -174,14 +175,22 @@ public static class MyStatePlugin
     public static string Description = "Will attempt to go back to the surface in case of drowning.";
     private static readonly MyPluginSettings MySettings = MyPluginSettings.GetSettings();
     private static Spell DruidMountSpell = new Spell("Travel Form");
-    
+
     public static bool NeedToRun()
     {
+        if (!Usefuls.InGame ||
+            Usefuls.IsLoading ||
+            ObjectManager.Me.IsDeadMe ||
+            !ObjectManager.Me.IsValid ||
+            ObjectManager.Me.InInevitableCombat ||
+            !Products.IsStarted)
+            return false;
+
         if (Usefuls.IsSwimming && ObjectManager.Me.BreathPercentage < 20)
             return true;
         return false;
         /*
-        if (!Usefuls.IsSwimming || DrowningPercentage >= 20) 
+        if (!Usefuls.IsSwimming || ObjectManager.Me.BreathPercentage >= 20) 
             return false;
         if (ObjectManager.Me.WowClass == WoWClass.Druid && DruidMountSpell.IsSpellUsable)
             return true;
@@ -212,7 +221,7 @@ public static class MyStatePlugin
     {
         if (ObjectManager.Me.BreathPercentage >= 95)
             return;
-        if (ObjectManager.Me.WowClass == WoWClass.Druid && !DruidMountSpell.IsSpellUsable)
+        if (ObjectManager.Me.WowClass == WoWClass.Druid && DruidMountSpell.IsSpellUsable)
         {
             DruidMountSpell.Cast();
             var timerRegen = new Timer(5000);
