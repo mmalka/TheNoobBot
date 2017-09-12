@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Plugins;
+using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Class;
+using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
+using Timer = nManager.Helpful.Timer;
+using Point = nManager.Wow.Class.Point;
+using ObjectManager = nManager.Wow.ObjectManager.ObjectManager;
 
 #region Interface Implementation - Edition Expert only
 
@@ -147,7 +158,7 @@ public static class MyStatePlugin
      * 
      * Grinder Example
      * Pause 200 > SelectProfileState 150 > Resurrect 140 > IsAttacked 130 > Regeneration 120 > ToTown 110 > Looting 100 > Travel 90 > SpecializationCheck 80
-     * LevelupCheck 70 > Trainers 60 > MillingState 50 > ProspectingState 40 > Grinding > Farming 20 > MovementLoop 10 > Idle 0
+     * LevelupCheck 70 > Trainers 60 > MillingState 50 > ProspectingState 40 > Grinding 30 > Farming 20 > MovementLoop 10 > Idle 0
      * The bot wont accept your plugin if the priority is above 199 or below 1.
      * 
      * Remember that you must not stuck the bot into the Run() code. You must make sure that your code can be called severals time in a row while performing
@@ -162,14 +173,67 @@ public static class MyStatePlugin
     public static int StatePriority = 31; // Have more priority than grinding itself, but will still resurrect/fight before doing that code.
     public static string Description = "Will attempt to go back to the surface in case of drowning.";
     private static readonly MyPluginSettings MySettings = MyPluginSettings.GetSettings();
-
+    private static Spell DruidMountSpell = new Spell("Travel Form");
+    
     public static bool NeedToRun()
     {
+        if (Usefuls.IsSwimming && ObjectManager.Me.BreathPercentage < 20)
+            return true;
         return false;
+        /*
+        if (!Usefuls.IsSwimming || DrowningPercentage >= 20) 
+            return false;
+        if (ObjectManager.Me.WowClass == WoWClass.Druid && DruidMountSpell.IsSpellUsable)
+            return true;
+        for (int i = 5; i <= 80; i+=5)
+        {
+            i = 15;
+            Point posAbove = ObjectManager.Me.Position;
+            posAbove.Z += i;
+            if (TraceLine.TraceLineGo(ObjectManager.Me.Position, posAbove))
+            {
+                bool hitAllButLiquid = TraceLine.TraceLineGo(ObjectManager.Me.Position, posAbove, CGWorldFrameHitFlags.HitTestAllButLiquid);
+                bool hitOnlyLiquid = TraceLine.TraceLineGo(ObjectManager.Me.Position, posAbove, CGWorldFrameHitFlags.HitTestLiquid);
+                if (hitAllButLiquid && !hitOnlyLiquid)
+                {
+                    // We hit something that is not water line first. We cannot go out of water from this position.
+                    return false;
+                }
+                if (hitOnlyLiquid)
+                    return true;
+            }
+            Thread.Sleep(100);
+        }
+        return true;
+        */
     }
 
     public static void Run()
     {
+        if (ObjectManager.Me.BreathPercentage >= 95)
+            return;
+        if (ObjectManager.Me.WowClass == WoWClass.Druid && !DruidMountSpell.IsSpellUsable)
+        {
+            DruidMountSpell.Cast();
+            var timerRegen = new Timer(5000);
+            while (ObjectManager.Me.BreathPercentage < 95 && !timerRegen.IsReady)
+            {
+                Thread.Sleep(50);
+            }
+        }
+        else
+        {
+            Logging.WritePlugin("Trying to reach the surface...", Name);
+            MovementManager.StopMove();
+            MovementsAction.Ascend(true);
+            Timer timerSurface = new Timer(40000);
+            while (ObjectManager.Me.BreathPercentage < 95 && !timerSurface.IsReady)
+            {
+                Thread.Sleep(50);
+            }
+            Thread.Sleep(150);
+            MovementsAction.Ascend(false);
+        }
     }
 
     public static void Init()
@@ -177,10 +241,7 @@ public static class MyStatePlugin
         /*
          * You can use this area to do some logging or stuff.
          */
-        if (MySettings.ExampleUInt == 1)
-        {
-            // example of settings...
-        }
+        Logging.WritePlugin("Loaded TnbAntiDrowning with BreathPercentage tolerance at " + MySettings.BreathPercentage + ".", Name);
     }
 
     public static void ResetConfiguration()
@@ -206,12 +267,12 @@ public static class MyStatePlugin
     [Serializable]
     public class MyPluginSettings : Settings
     {
-        public uint ExampleUInt = 100;
+        public uint BreathPercentage = 100;
 
         public MyPluginSettings()
         {
-            ConfigWinForm("Example Title");
-            AddControlInWinForm("Example Label", "ExampleUInt", "Example Title");
+            ConfigWinForm("Anti Drowning Settings");
+            AddControlInWinForm("Going to surface when", "BreathPercentage", "Example Title", "BelowPercentage");
         }
 
         public static MyPluginSettings CurrentSetting { get; set; }

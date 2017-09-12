@@ -8,6 +8,7 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
+using Math = System.Math;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.ObjectManager
@@ -2919,6 +2920,29 @@ namespace nManager.Wow.ObjectManager
         public bool IsSwimming
         {
             get { return MovementStatus.HasFlag(MovementFlags.Swimming); }
+        }
+
+        public int BreathPercentage
+        {
+            get
+            {
+                float breathLeft = BreathLeft;
+                if (Math.Abs(breathLeft) < 0.001 || breathLeft > 179000)
+                    return 100;
+                if (breathLeft < 0)
+                    return 0;
+                var breath = (int)(breathLeft/180000*100);
+                return breath;
+            }
+        }
+
+        public float BreathLeft
+        {
+            get
+            {
+                string randomString = Others.GetRandomString(Others.Random(5, 10));
+                return Others.ToSingle(Lua.LuaDoString(randomString + " = GetMirrorTimerProgress('BREATH')", randomString));
+            }
         }
 
         public bool IsFlying
