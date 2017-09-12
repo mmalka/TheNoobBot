@@ -5,9 +5,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.CSharp;
+using nManager.FiniteStateMachine;
 using nManager.Helpful;
 
 namespace nManager.Plugins
@@ -15,6 +17,7 @@ namespace nManager.Plugins
     public class Plugins
     {
         public static List<Plugin> ListLoadedPlugins = new List<Plugin>();
+        public static List<State> ListLoadedStatePlugins = new List<State>();
 
         public static void ReLoadPlugins()
         {
@@ -52,6 +55,8 @@ namespace nManager.Plugins
                 Logging.WriteError("DisposePlugins(): " + e);
             }
             ListLoadedPlugins.Clear();
+            if (!Products.Products.IsStarted)
+                ListLoadedStatePlugins.Clear();
         }
     }
 
@@ -145,9 +150,9 @@ namespace nManager.Plugins
                     }
                     _assembly = cr.CompiledAssembly;
                     _obj = _assembly.CreateInstance("Main", true);
-                    if (!(_obj is IPlugins))
+                    if (!(_obj is IPlugins) && !(_obj is State))
                     {
-                        Logging.WriteError("The plugin doesn't implement IPlugins or have a different namespace than \"Main\". Path: " + PathToPluginFile);
+                        Logging.WriteError("The plugin doesn't implement neither IPlugins nor State or have a different namespace than \"Main\". Path: " + PathToPluginFile);
                         return;
                     }
                 }
@@ -155,13 +160,15 @@ namespace nManager.Plugins
                 {
                     _assembly = Assembly.LoadFrom(PathToPluginFile);
                     _obj = _assembly.CreateInstance("Main", false);
-                    if (!(_obj is IPlugins))
+                    if (!(_obj is IPlugins) && !(_obj is State))
                     {
-                        Logging.WriteError("The plugin doesn't implement IPlugins or have a different namespace than \"Main\". Path: " + PathToPluginFile);
+                        Logging.WriteError("The plugin doesn't implement neither IPlugins nor State or have a different namespace than \"Main\". Path: " + PathToPluginFile);
                         return;
                     }
                 }
-                if (_assembly != null)
+                if (_assembly == null)
+                    return;
+                if (_obj is IPlugins)
                 {
                     _instanceFromOtherAssembly = _obj as IPlugins;
                     foreach (Plugin plugin in Plugins.ListLoadedPlugins)
@@ -183,10 +190,31 @@ namespace nManager.Plugins
                         _instanceFromOtherAssembly.ShowConfiguration();
                         return;
                     }
-                    _worker = onlyCheckVersion
-                        ? new Thread(_instanceFromOtherAssembly.CheckFields) {IsBackground = true, Name = _threadName}
-                        : new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
-                    _worker.Start();
+                    if (onlyCheckVersion)
+                    {
+                        _worker = new Thread(_instanceFromOtherAssembly.CheckFields) {IsBackground = true, Name = _threadName};
+                        _worker.Start();
+                    }
+                    else
+                    {
+                        if (_instanceFromOtherAssembly is State)
+                        {
+                            if (Products.Products.IsStarted)
+                                return;
+                            State _statePlugin = _instanceFromOtherAssembly as State;
+                            if (_statePlugin.Priority <= 0 || _statePlugin.Priority > 199)
+                            {
+                                Logging.WriteError("The State plugin doesn't uses a valid priority, must be within 1 and 199. Path: " + PathToPluginFile);
+                                return;
+                            }
+                            Plugins.ListLoadedStatePlugins.Add(_instanceFromOtherAssembly as State);
+                        }
+                        else
+                        {
+                            _worker = new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
+                            _worker.Start();
+                        }
+                    }
                 }
             }
             catch (Exception exception)
@@ -201,6 +229,8 @@ namespace nManager.Plugins
             {
                 if (_instanceFromOtherAssembly != null)
                 {
+                    if (Products.Products.IsStarted && _instanceFromOtherAssembly is State)
+                        return;
                     _instanceFromOtherAssembly.Dispose();
                 }
                 if (_worker != null)
@@ -218,9 +248,12 @@ namespace nManager.Plugins
             }
             finally
             {
-                _instanceFromOtherAssembly = null;
-                _assembly = null;
-                _obj = null;
+                if (!Products.Products.IsStarted || !(_instanceFromOtherAssembly is State))
+                {
+                    _instanceFromOtherAssembly = null;
+                    _assembly = null;
+                    _obj = null;
+                }
             }
         }
 

@@ -276,6 +276,7 @@ namespace nManager.Products
                     Fsm.AddState(new Idle {Priority = 1});
                     Fsm.States.Sort();
                     Fsm.StartEngine(1);
+
                     return true;
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
@@ -40,6 +41,12 @@ namespace GarrisonFarming.Bot
                  * SendFollowerOnDuty - Plugins?
                  */
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
+
                 Fsm.States.Sort();
                 Fsm.StartEngine(5, "FSM GarrisonFarming");
 

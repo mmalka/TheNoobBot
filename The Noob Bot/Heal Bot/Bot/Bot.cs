@@ -1,6 +1,7 @@
 using System;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 
@@ -26,6 +27,11 @@ namespace Heal_Bot.Bot
                 Fsm.AddState(new LevelupCheck {Priority = 20});
                 /*Fsm.AddState(new HealFriendlyTarget { Priority = 1 });*/
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6, "FSM HealBot");

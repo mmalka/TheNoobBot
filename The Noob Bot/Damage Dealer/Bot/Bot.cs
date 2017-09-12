@@ -1,6 +1,7 @@
 using System;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 
@@ -25,6 +26,11 @@ namespace Damage_Dealer.Bot
                 Fsm.AddState(new SpecializationCheck {Priority = 20});
                 Fsm.AddState(new LevelupCheck {Priority = 10});
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(12, "FSM Damage Dealer");

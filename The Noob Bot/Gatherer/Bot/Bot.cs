@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
@@ -61,6 +62,11 @@ namespace Gatherer.Bot
                 Fsm.AddState(new Farming {Priority = 20});
                 Fsm.AddState(new MovementLoop {Priority = 10, PathLoop = Profile.Points});
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(7, "FSM Gatherer");

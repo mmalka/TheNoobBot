@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using nManager.Plugins;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Enums;
 using Quester.Profile;
@@ -196,6 +197,11 @@ namespace Quester.Bot
                 Fsm.AddState(new QuesterState {Priority = 20});
                 Fsm.AddState(new MovementLoop {Priority = 10});
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(7, "FSM Quester");

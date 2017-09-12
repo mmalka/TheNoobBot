@@ -6,6 +6,7 @@ using Grinder.Profile;
 using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
@@ -76,22 +77,27 @@ namespace Grinder.Bot
                 Fsm.States.Clear();
 
                 Fsm.AddState(new Pause {Priority = 200});
-                Fsm.AddState(new SelectProfileState {Priority = 140});
-                Fsm.AddState(new Resurrect {Priority = 130});
-                Fsm.AddState(new IsAttacked {Priority = 120});
-                Fsm.AddState(new Regeneration {Priority = 110});
-                Fsm.AddState(new ToTown {Priority = 100});
-                Fsm.AddState(new Looting {Priority = 90});
-                Fsm.AddState(new Travel {Priority = 80});
-                Fsm.AddState(new SpecializationCheck {Priority = 70});
-                Fsm.AddState(new LevelupCheck {Priority = 60});
-                Fsm.AddState(new Trainers {Priority = 50});
-                Fsm.AddState(new MillingState {Priority = 40});
-                Fsm.AddState(new ProspectingState {Priority = 30});
+                Fsm.AddState(new SelectProfileState {Priority = 150});
+                Fsm.AddState(new Resurrect {Priority = 140});
+                Fsm.AddState(new IsAttacked {Priority = 130});
+                Fsm.AddState(new Regeneration {Priority = 120});
+                Fsm.AddState(new ToTown {Priority = 110});
+                Fsm.AddState(new Looting {Priority = 100});
+                Fsm.AddState(new Travel {Priority = 90});
+                Fsm.AddState(new SpecializationCheck {Priority = 80});
+                Fsm.AddState(new LevelupCheck {Priority = 70});
+                Fsm.AddState(new Trainers {Priority = 60});
+                Fsm.AddState(new MillingState {Priority = 50});
+                Fsm.AddState(new ProspectingState {Priority = 40});
                 Fsm.AddState(Grinding);
                 Fsm.AddState(new Farming {Priority = 20});
                 Fsm.AddState(MovementLoop);
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(7, "FSM Grinder");

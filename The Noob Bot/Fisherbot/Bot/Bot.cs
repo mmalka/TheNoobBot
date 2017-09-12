@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Fisherbot.Profile;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
@@ -74,6 +75,11 @@ namespace Fisherbot.Bot
                 Fsm.AddState(new FisherbotState {Priority = 20});
                 Fsm.AddState(new MovementLoop {Priority = 10, PathLoop = Profile.Points});
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(7, "FSM Fisherbot");

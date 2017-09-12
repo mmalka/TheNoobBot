@@ -1,6 +1,7 @@
 ﻿using System;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 
@@ -40,6 +41,11 @@ namespace Battlegrounder.Bot
                 Fsm.AddState(new BattlegrounderQueueing {Priority = 20});
                 Fsm.AddState(MovementLoop);
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(7, "FSM Battlegrounder");

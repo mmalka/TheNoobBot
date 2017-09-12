@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
@@ -55,6 +56,11 @@ namespace Archaeologist.Bot
                     CrateRestored = ArchaeologistSetting.CurrentSetting.CrateRestored
                 });
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(7, "FSM Archaeologist");

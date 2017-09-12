@@ -1,6 +1,7 @@
 ﻿using System;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 
@@ -35,6 +36,11 @@ namespace DungeonFarmer.Bot
                 Fsm.AddState(new Farming {Priority = 20});
                 Fsm.AddState(new DungeonFarming {Priority = 10,});
                 Fsm.AddState(new Idle {Priority = 0});
+
+                foreach (var statePlugin in Plugins.ListLoadedStatePlugins)
+                {
+                    Fsm.AddState(statePlugin);
+                }
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(7, "FSM DungeonFarmer");
