@@ -1760,6 +1760,22 @@ namespace nManager.Wow.Helpers
             return UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
         }
 
+        public static bool GoToLocationFindTarget(Point position, float specialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0, bool ignoreBlacklist = false)
+        {
+            Npc target = new Npc
+            {
+                Entry = 0,
+                Position = position,
+                Name = position.ToString(),
+                ContinentIdInt = Usefuls.ContinentId,
+                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+            };
+            FindTarget(ref target, specialRange, doMount, isDead, maxDist, ignoreBlacklist);
+            if (InMovement)
+                return false;
+            return position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= (specialRange > 0 ? specialRange : 5f);
+        }
+
         #endregion
 
         #region Melee Control System
