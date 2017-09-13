@@ -72,7 +72,12 @@ namespace nManager.Wow.Helpers
         {
             if (questId == -1)
                 return false;
-            return FinishedQuestSet.Contains(questId);
+            if (FinishedQuestSet.Contains(questId))
+                return true;
+            if (!IsQuestFlaggedCompletedLUA(questId)) return false;
+            Logging.WriteDebug("GetQuestCompleted but not in FinishedQuestSet yet. qId: " + questId);
+            FinishedQuestSet.Add(questId);
+            return true;
         }
 
         public static void SelectGossipOption(int GossipOption)
@@ -340,6 +345,7 @@ namespace nManager.Wow.Helpers
 
         public static void InteractTarget(ref Npc npc, uint baseAddress)
         {
+            MovementManager.StopMove();
             WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
             Interact.InteractWith(baseAddress);
             if (targetIsGameObject.IsValid)
@@ -354,6 +360,7 @@ namespace nManager.Wow.Helpers
                 Lua.LuaDoString("TargetUnit(\"" + npc.Name + "\")");
                 Thread.Sleep(Usefuls.Latency + 500);
                 Interact.InteractWith(ObjectManager.ObjectManager.Target.GetBaseAddress);
+                Thread.Sleep(Usefuls.Latency + 500);
             }
         }
 
@@ -687,6 +694,10 @@ namespace nManager.Wow.Helpers
                 Thread.Sleep(Usefuls.Latency + 500);
             }
             CloseWindow();
+            if (!GetLogQuestId().Contains(questId))
+            {
+                FinishedQuestSet.Add(questId);
+            }
         }
 
         public static void DumpInternalIndexForQuestId(int questId)
