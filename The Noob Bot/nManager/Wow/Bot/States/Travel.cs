@@ -1531,10 +1531,24 @@ namespace nManager.Wow.Bot.States
                 {
                     if (customPath.AContinentId == customPath.BContinentId && travelTo.DistanceTo(customPath.APoint) > distanceToTravel + 1000f)
                         continue;
+                    // Arrival Is A
                     PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                     if (success && customPath.RoundTrip)
                     {
                         customPath.ArrivalIsA = true;
+                        listCustomPath.Add(customPath);
+                        continue;
+                    }
+                    // Arrival Is A failed path, let's check if we have a valid path from B.
+                    if (customPath.BContinentId != travelToContinentId || customPath.AContinentId != travelFromContinentId)
+                        continue;
+
+                    if ((customPath.APoint.DistanceTo(travelTo) + 100) < customPath.BPoint.DistanceTo(travelTo))
+                        continue;
+                    PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success)
+                    {
+                        customPath.ArrivalIsA = false;
                         listCustomPath.Add(customPath);
                     }
                 }
@@ -1542,10 +1556,24 @@ namespace nManager.Wow.Bot.States
                 {
                     if (customPath.AContinentId == customPath.BContinentId && travelTo.DistanceTo(customPath.BPoint) > distanceToTravel + 1000f)
                         continue;
+                    // Arrival Is B
                     PathFinder.FindPath(customPath.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                     if (success)
                     {
                         customPath.ArrivalIsA = false;
+                        listCustomPath.Add(customPath);
+                        continue;
+                    }
+                    // Arrival Is B failed path, let's check if we have a valid path from A.
+                    if (customPath.AContinentId != travelToContinentId || customPath.BContinentId != travelFromContinentId)
+                        continue;
+
+                    if ((customPath.BPoint.DistanceTo(travelTo) + 100) < customPath.APoint.DistanceTo(travelTo))
+                        continue;
+                    PathFinder.FindPath(customPath.APoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success)
+                    {
+                        customPath.ArrivalIsA = true;
                         listCustomPath.Add(customPath);
                     }
                 }
