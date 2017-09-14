@@ -777,7 +777,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 {
                     Logging.WriteError("FindPath(Point startVec, Point endVec, out bool resultSuccess): " + exception);
                     resultSuccess = false;
-                    failedPolyref = false;
+                    failedPolyref = true;
                 }
                 return new List<Point>();
             }
