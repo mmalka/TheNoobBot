@@ -11,11 +11,11 @@
     </Translation>
     <Translation>
       <Id>Please_select_game_Process_and_connect_to_the_game</Id>
-      <Text>Bitte wählen Sie den Spielprozess und verbinden Sie mit dem Spiel.</Text>
+      <Text>Bitte Spielprozess auswählen und verbinden.</Text>
     </Translation>
     <Translation>
       <Id>Stop</Id>
-      <Text>Stop</Text>
+      <Text>Stopp</Text>
     </Translation>
     <Translation>
       <Id>Please_connect_to_the_game</Id>
@@ -23,11 +23,11 @@
     </Translation>
     <Translation>
       <Id>The_Game_is_currently_used_by_TheNoobBot_or_contains_traces</Id>
-      <Text>Das Spiel wird zurzeit von TheNoobBot verwendet oder enthält Spuren des letzten Gebrauchs. Bist du sicher dass du fortfahren möchstest?</Text>
+      <Text>Das Spiel wird zur Zeit von TheNoobBot verwendet oder enthält Spuren des letzten Gebrauchs.</Text>
     </Translation>
     <Translation>
       <Id>If_no_others_session_of_TheNoobBot_is_currently_active</Id>
-      <Text>Wenn keine sonstigen Sitzungen von TheNoobBot aktiv sind, musst du dass Spiel neu Starten um Programmfehler zu vermeiden.</Text>
+      <Text>Wenn sonst keine Sitzungen von TheNoobBot aktiv sind, musst du dass Spiel neu starten um Programmfehler zu vermeiden.</Text>
     </Translation>
     <Translation>
       <Id>Use_this_Game</Id>
@@ -55,7 +55,7 @@
     </Translation>
     <Translation>
       <Id>In_use</Id>
-      <Text>In verwendung</Text>
+      <Text>In Verwendung</Text>
     </Translation>
     <Translation>
       <Id>User_Name</Id>
@@ -75,7 +75,7 @@
     </Translation>
     <Translation>
       <Id>Launch_Tnb</Id>
-      <Text>Start TNB</Text>
+      <Text>Starte TNB</Text>
     </Translation>
     <Translation>
       <Id>Refresh</Id>
@@ -87,23 +87,23 @@
     </Translation>
     <Translation>
       <Id>User_name_or_Password_error</Id>
-      <Text>Benutzername oder Passwort Falsch</Text>
+      <Text>Benutzername oder Passwort falsch</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_password__go_to_this_address_if_you_have_forget_your_password</Id>
-      <Text>Passwort fehlerhaft! Bitte gehe auf http://thenoobbot.com/ um ein Passwort zu bekommen falls du es verloren hast.</Text>
+      <Text>Passwort fehlerhaft! Bitte gehe auf http://thenoobbot.com/ wenn du dein Passwort vergessen hast.</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot</Id>
-      <Text>Anmeldedaten Falsch. Bitte klicke auf Registrieren wenn du einen Account erstellen willst und TNB kaufen willst.</Text>
+      <Text>Benutzername falsch. Bitte klicke auf Registrieren wenn du einen Account erstellen willst und TNB kaufen willst.</Text>
     </Translation>
     <Translation>
       <Id>Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help</Id>
-      <Text>Bitte schaue nach ob dein Antivirus TNB blockt. Besuche die TNB Webseite wenn du Hilfe benötigst.</Text>
+      <Text>Bitte deaktiviere testweise din Antivirus-Porgramm. Besuche die TNB Webseite wenn du Hilfe benötigst.</Text>
     </Translation>
     <Translation>
       <Id>Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here</Id>
-      <Text>Das Abonnement ist abgelaufen. Erneuere dein Abo wenn du TNB weiter ohne einschränkungen nutzen willst.</Text>
+      <Text>Das Abonnement ist abgelaufen. Erneuere dein Abo wenn du TNB weiter ohne Einschränkungen nutzen willst.</Text>
     </Translation>
     <Translation>
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
@@ -115,11 +115,11 @@
     </Translation>
     <Translation>
       <Id>LatestUpdateDescription</Id>
-      <Text>Aktuelle Versions Beschreibung</Text>
+      <Text>Aktuelle Versionsbeschreibung</Text>
     </Translation>
     <Translation>
       <Id>ConfirmUpdate</Id>
-      <Text>Willst du TheNoobBot jetz Aktualisieren?</Text>
+      <Text>Willst du TheNoobBot jetzt aktualisieren?</Text>
     </Translation>
     <Translation>
       <Id>LatestUpdateTitle</Id>
@@ -131,11 +131,11 @@
     </Translation>
     <Translation>
       <Id>TheNoobBotServerIsOffline</Id>
-      <Text>TheNoobBot's Server scheinen Offline zu sein, versuchen Sie Ihren Anti-virus oder Ihre Firewall zu deaktivieren und probieren Sie den Vorgang nochmals. Tipp: Diese Version von TNB könnte von unseren Servern geblockt werden, da es bei dieser Verdächtige Spiel Aktivität festgestellt worden ist. Sie können auf unserer Website oder in unserem Forum überprüfen, ob eine neue Version verfügbar ist</Text>
+      <Text>Der TheNoobBot Server scheint offline zu sein. Versuche deinen Anti-virus oder die Firewall zu deaktivieren und probiere es erneut. Tipp: Diese Version von TNB könnte von unseren Servern geblockt werden, da verdächtige Programmlaktivität festgestellt worden ist. Du kannst auf unserer Website oder in unserem Forum prüfen, ob eine neue Version verfügbar ist.</Text>
     </Translation>
     <Translation>
       <Id>WoWIsReducedError</Id>
-      <Text>Du hast WoW minimiert! Damit TheNoobBot Funktioniert darf WoW nicht minimiert werden!</Text>
+      <Text>Du hast WoW minimiert! Damit TheNoobBot funktioniert darf WoW nicht minimiert werden!</Text>
     </Translation>
     <Translation>
       <Id>Information</Id>
@@ -155,7 +155,7 @@
     </Translation>
     <Translation>
       <Id>Subscription_time_left</Id>
-      <Text>Abonnement Zeit verbleibend</Text>
+      <Text>Abonnementzeit verbleibend</Text>
     </Translation>
     <Translation>
       <Id>Tnb_online</Id>
@@ -171,11 +171,11 @@
     </Translation>
     <Translation>
       <Id>XP_HR</Id>
-      <Text>XP/std</Text>
+      <Text>XP/h</Text>
     </Translation>
     <Translation>
       <Id>Honor_HR</Id>
-      <Text>Ehre/std</Text>
+      <Text>Ehre/h</Text>
     </Translation>
     <Translation>
       <Id>Loots</Id>
@@ -195,7 +195,7 @@
     </Translation>
     <Translation>
       <Id>hr</Id>
-      <Text>std</Text>
+      <Text>h</Text>
     </Translation>
     <Translation>
       <Id>Game_Informations</Id>
@@ -207,7 +207,7 @@
     </Translation>
     <Translation>
       <Id>Target_Name</Id>
-      <Text>Ziel Name</Text>
+      <Text>Zielname</Text>
     </Translation>
     <Translation>
       <Id>Health</Id>
@@ -215,11 +215,11 @@
     </Translation>
     <Translation>
       <Id>Last_log</Id>
-      <Text>Letzter log</Text>
+      <Text>Letztes Log</Text>
     </Translation>
     <Translation>
       <Id>Maximize_window</Id>
-      <Text>Maximier Fenster</Text>
+      <Text>Fenster maximieren</Text>
     </Translation>
     <Translation>
       <Id>WEBSITE</Id>
@@ -231,11 +231,11 @@
     </Translation>
     <Translation>
       <Id>Target_Level</Id>
-      <Text>Ziel Level</Text>
+      <Text>Zielstufe</Text>
     </Translation>
     <Translation>
       <Id>Target_Health</Id>
-      <Text>Ziel Gesundheit</Text>
+      <Text>Zielgesundheit</Text>
     </Translation>
     <Translation>
       <Id>Account_Informations</Id>
@@ -263,7 +263,7 @@
     </Translation>
     <Translation>
       <Id>Player_Name</Id>
-      <Text>Spieler Name</Text>
+      <Text>Spielername</Text>
     </Translation>
     <Translation>
       <Id>Product</Id>
@@ -283,7 +283,7 @@
     </Translation>
     <Translation>
       <Id>Smelting_zone_not_found_in</Id>
-      <Text>Verhüttung Zone nicht gefunden in</Text>
+      <Text>Verhüttungszone nicht gefunden in</Text>
     </Translation>
     <Translation>
       <Id>No_setting_for_this_product</Id>
@@ -295,7 +295,7 @@
     </Translation>
     <Translation>
       <Id>Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List</Id>
-      <Text>Bitte füge Gegenstände zum Mahlen hinzu 'Allgemeine Einstellungen' -&gt; 'Plündern' -&gt; 'Mahlliste'</Text>
+      <Text>Bitte füge Gegenstände zum Mahlen hinzu in 'Allgemeine Einstellungen' -&gt; 'Plündern' -&gt; 'Mahlliste'</Text>
     </Translation>
     <Translation>
       <Id>Convertion_finish</Id>
@@ -315,27 +315,27 @@
     </Translation>
     <Translation>
       <Id>Profiles_Converters</Id>
-      <Text>Profile Konvertieren</Text>
+      <Text>Profile Konvertierer</Text>
     </Translation>
     <Translation>
       <Id>Record_Way</Id>
-      <Text>Weg aufnehmen</Text>
+      <Text>Pfad aufzeichnen</Text>
     </Translation>
     <Translation>
       <Id>Stop_Record_Way</Id>
-      <Text>Weg aufnehmen stoppen</Text>
+      <Text>Pfadaufzeichnung stoppen</Text>
     </Translation>
     <Translation>
       <Id>Name_Empty</Id>
-      <Text>Name Leer</Text>
+      <Text>Name leer</Text>
     </Translation>
     <Translation>
       <Id>NPCNotFound</Id>
-      <Text>Kein NPC oder Objekt gefunden. Überzeuge dich dass du die Richtige Sprache gewählt hast.</Text>
+      <Text>Kein NPC oder Objekt gefunden. Überzeuge dich, dass du die richtige Sprache gewählt hast.</Text>
     </Translation>
     <Translation>
       <Id>Separation_distance_record</Id>
-      <Text>Abstands Aufnahme</Text>
+      <Text>Aufzeichnungs-Abstand</Text>
     </Translation>
     <Translation>
       <Id>Del</Id>
@@ -347,7 +347,7 @@
     </Translation>
     <Translation>
       <Id>Add_Target_to_Npc_list</Id>
-      <Text>Füge Ziel zur NPC liste hinzu</Text>
+      <Text>Füge Ziel zur NPC-Liste hinzu</Text>
     </Translation>
     <Translation>
       <Id>Load</Id>
@@ -363,7 +363,7 @@
     </Translation>
     <Translation>
       <Id>List_Zones</Id>
-      <Text>Liste Zonen</Text>
+      <Text>Zonen auflisten</Text>
     </Translation>
     <Translation>
       <Id>Add_Zone</Id>
@@ -375,15 +375,15 @@
     </Translation>
     <Translation>
       <Id>Zone_Name</Id>
-      <Text>Zone Name</Text>
+      <Text>Name der Zone</Text>
     </Translation>
     <Translation>
       <Id>Player_Lvl</Id>
-      <Text>Spieler LvL</Text>
+      <Text>Spielerstufe</Text>
     </Translation>
     <Translation>
       <Id>Min</Id>
-      <Text>Mindestens</Text>
+      <Text>Minuten</Text>
     </Translation>
     <Translation>
       <Id>Max</Id>
@@ -391,7 +391,7 @@
     </Translation>
     <Translation>
       <Id>Target_Lvl</Id>
-      <Text>Ziel LvL</Text>
+      <Text>Zielstufe</Text>
     </Translation>
     <Translation>
       <Id>Add_Target</Id>
@@ -407,11 +407,11 @@
     </Translation>
     <Translation>
       <Id>Target_Ids</Id>
-      <Text>ID der Ziele</Text>
+      <Text>IDs der Ziele</Text>
     </Translation>
     <Translation>
       <Id>Nodes</Id>
-      <Text>nodes</Text>
+      <Text>Nodes</Text>
     </Translation>
     <Translation>
       <Id>Load_Profile</Id>
@@ -439,7 +439,7 @@
     </Translation>
     <Translation>
       <Id>Weapon_Name</Id>
-      <Text>Waffe Name</Text>
+      <Text>Waffenname</Text>
     </Translation>
     <Translation>
       <Id>If_special__If_empty__default_items_is_used</Id>
@@ -447,7 +447,7 @@
     </Translation>
     <Translation>
       <Id>Profile_Creator</Id>
-      <Text>Profil Erstellen</Text>
+      <Text>Profil erstellen</Text>
     </Translation>
     <Translation>
       <Id>Precision_Mode__fish_school</Id>
@@ -463,11 +463,11 @@
     </Translation>
     <Translation>
       <Id>Survey_spell_not_found__stopping_tnb</Id>
-      <Text>Zauber 'Untersuchung' nicht gefunden, TNB wird gestoppt.</Text>
+      <Text>Zauber 'Untersuchen' nicht gefunden, TNB wird gestoppt.</Text>
     </Translation>
     <Translation>
       <Id>SolvingEveryXMinutes</Id>
-      <Text>Solving Every X Minutes</Text>
+      <Text>Artefakte lösen alle X Minuten</Text>
     </Translation>
     <Translation>
       <Id>MaxTryByDigsite</Id>
@@ -487,7 +487,7 @@
     </Translation>
     <Translation>
       <Id>Debug</Id>
-      <Text>Fehlersuche</Text>
+      <Text>Debug</Text>
     </Translation>
     <Translation>
       <Id>Navigator</Id>
@@ -543,7 +543,7 @@
     </Translation>
     <Translation>
       <Id>Song_if_New_Whisper</Id>
-      <Text>Sound bei flüstern</Text>
+      <Text>Sound beim Flüstern</Text>
     </Translation>
     <Translation>
       <Id>Security</Id>
@@ -563,7 +563,7 @@
     </Translation>
     <Translation>
       <Id>Record_whisper_in_Log_file</Id>
-      <Text>Schreibe flüster in Log file</Text>
+      <Text>Anflüstern im Log protokollieren</Text>
     </Translation>
     <Translation>
       <Id>Blockages</Id>
@@ -571,7 +571,7 @@
     </Translation>
     <Translation>
       <Id>If_Player_Teleported</Id>
-      <Text>Wenn Spieler Teleportiert</Text>
+      <Text>Wenn Spieler teleportiert wurde</Text>
     </Translation>
     <Translation>
       <Id>Pause_tnb_if_Nearby_Player</Id>
@@ -579,11 +579,11 @@
     </Translation>
     <Translation>
       <Id>If_reached______Honor_Points</Id>
-      <Text>Wenn 4000 Ehren Punkte erreicht sind</Text>
+      <Text>Wenn 4000 Ehrenpunkte erreicht sind</Text>
     </Translation>
     <Translation>
       <Id>If_Whisper_bigger_or_equal_to</Id>
-      <Text>Wenn flüster länger oder gleich lang wie</Text>
+      <Text>Wenn Anzahl Anflüstern erreicht wurde</Text>
     </Translation>
     <Translation>
       <Id>If_full_Bag</Id>
@@ -603,23 +603,23 @@
     </Translation>
     <Translation>
       <Id>Mail_Purple_items</Id>
-      <Text>Verschicke Violette Gegenstände</Text>
+      <Text>Verschicke Epic Gegenstände</Text>
     </Translation>
     <Translation>
       <Id>Mail_Blue_items</Id>
-      <Text>Verschicke Blaue Gegenstände</Text>
+      <Text>Verschicke Rare Gegenstände</Text>
     </Translation>
     <Translation>
       <Id>Mail_Green_items</Id>
-      <Text>Verschicke Grüne Gegenstände</Text>
+      <Text>Verschicke seltene Gegenstände</Text>
     </Translation>
     <Translation>
       <Id>Mail_White_items</Id>
-      <Text>Verschicke Weiße Gegenstände</Text>
+      <Text>Verschicke weiße Gegenstände</Text>
     </Translation>
     <Translation>
       <Id>Mail_Gray_items</Id>
-      <Text>Verschicke Graue Gegenstände</Text>
+      <Text>Verschicke graue Gegenstände</Text>
     </Translation>
     <Translation>
       <Id>Subject</Id>
@@ -631,11 +631,11 @@
     </Translation>
     <Translation>
       <Id>Do_not_Mail_List__one_item_by_line</Id>
-      <Text>'Sende nicht' Liste(ein Gegenstand pro Zeile)</Text>
+      <Text>Folgendes NICHT versenden (ein Gegenstand pro Zeile):</Text>
     </Translation>
     <Translation>
       <Id>NPCsRepairSellBuyPanelName</Id>
-      <Text>Händler (Verkaufen der Kaufen)</Text>
+      <Text>Reparieren - Kaufen und Verkaufen</Text>
     </Translation>
     <Translation>
       <Id>Force_Sell_List__one_item_by_line</Id>
@@ -643,23 +643,23 @@
     </Translation>
     <Translation>
       <Id>Sell_Purple_items</Id>
-      <Text>Verkaufe Violette Gegenstände</Text>
+      <Text>Verkaufe Epic Items</Text>
     </Translation>
     <Translation>
       <Id>Sell_Blue_items</Id>
-      <Text>Verkaufe Blaue Gegenstände</Text>
+      <Text>Verkaufe rare Items</Text>
     </Translation>
     <Translation>
       <Id>Sell_Green_items</Id>
-      <Text>Verkaufe Grüne Gegenstände</Text>
+      <Text>Verkaufe seltene Items</Text>
     </Translation>
     <Translation>
       <Id>Sell_White_items</Id>
-      <Text>Verkaufe Weiße Gegenstände</Text>
+      <Text>Verkaufe weiße Items</Text>
     </Translation>
     <Translation>
       <Id>Sell_Gray_items</Id>
-      <Text>Verkaufe Graue Gegenstände</Text>
+      <Text>Verkaufe graue Items</Text>
     </Translation>
     <Translation>
       <Id>Selling</Id>
@@ -699,15 +699,15 @@
     </Translation>
     <Translation>
       <Id>LootingFarmingManagementPanelName</Id>
-      <Text>Plünder &amp;&amp; Farm optionen</Text>
+      <Text>Plünder &amp;&amp; Farm Optionen</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_only_in_town</Id>
-      <Text>Sondieren nur in Stadt</Text>
+      <Text>Sondiere nur in der Stadt</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_Every__in_minute</Id>
-      <Text>Sondieren jede (Minuten)</Text>
+      <Text>Sondieren alle X Minuten</Text>
     </Translation>
     <Translation>
       <Id>Prospecting</Id>
@@ -715,7 +715,7 @@
     </Translation>
     <Translation>
       <Id>Prospecting_list__one_item_by_line</Id>
-      <Text>Sondierliste (ein Gegenstand pro Zeile)</Text>
+      <Text>Sondierliste (ein Item pro Zeile)</Text>
     </Translation>
     <Translation>
       <Id>Milling_only_in_town</Id>
@@ -731,19 +731,19 @@
     </Translation>
     <Translation>
       <Id>Milling_list__one_item_by_line</Id>
-      <Text>Mahlen Liste (ein Gegenstand pro Zeile)</Text>
+      <Text>Mahlen-Liste - ein Item pro Zeile</Text>
     </Translation>
     <Translation>
       <Id>Smelting</Id>
-      <Text>Verhüttung</Text>
+      <Text>Erze verhütten</Text>
     </Translation>
     <Translation>
       <Id>Don_t_harvest</Id>
-      <Text>Nicht Ernten</Text>
+      <Text>Folgende IDs nicht sammeln</Text>
     </Translation>
     <Translation>
       <Id>Harvest_During_Long_Move</Id>
-      <Text>Ernten während langen Bewegungen</Text>
+      <Text>Farme während Reisen</Text>
     </Translation>
     <Translation>
       <Id>Ninja</Id>
@@ -751,31 +751,31 @@
     </Translation>
     <Translation>
       <Id>Search_Radius</Id>
-      <Text>Suchradius</Text>
+      <Text>Suchradius beim Farmen</Text>
     </Translation>
     <Translation>
       <Id>Max_Units_Near</Id>
-      <Text>Maximale Einheiten in Nähe</Text>
+      <Text>Maximale Mobs in Nähe</Text>
     </Translation>
     <Translation>
       <Id>Harvest_Herbs</Id>
-      <Text>Ernte Kräuter</Text>
+      <Text>Kräuter sammeln</Text>
     </Translation>
     <Translation>
       <Id>Harvest_Minerals</Id>
-      <Text>Ernte Mineralien</Text>
+      <Text>Minen abbauen</Text>
     </Translation>
     <Translation>
       <Id>Skin_Mobs</Id>
-      <Text>Kürschner Monster</Text>
+      <Text>Mobs kürschnern</Text>
     </Translation>
     <Translation>
       <Id>Loot_Chests</Id>
-      <Text>Plünder Truhen</Text>
+      <Text>Truhen plündern</Text>
     </Translation>
     <Translation>
       <Id>Harvest_Avoid_Players_Radius</Id>
-      <Text>Spielerradius vermeide Ernten</Text>
+      <Text>vermeide Spieler im Radius</Text>
     </Translation>
     <Translation>
       <Id>Loot_Mobs</Id>
@@ -783,15 +783,15 @@
     </Translation>
     <Translation>
       <Id>ActivateLootStatistics</Id>
-      <Text>Activate Loot Statistics</Text>
+      <Text>Loot Statistik</Text>
     </Translation>
     <Translation>
       <Id>RegenerationManagementPanelName</Id>
-      <Text>Essen / Trinken &amp;&amp; Prozent zum benutzen</Text>
+      <Text>Essen / Trinken Nutzung</Text>
     </Translation>
     <Translation>
       <Id>on</Id>
-      <Text>on</Text>
+      <Text>ein</Text>
     </Translation>
     <Translation>
       <Id>Drink</Id>
@@ -807,23 +807,23 @@
     </Translation>
     <Translation>
       <Id>Aquatic</Id>
-      <Text>WasserReittier</Text>
+      <Text>Wasser-Reittier</Text>
     </Translation>
     <Translation>
       <Id>Ignore_Fight_if_in_Gound_Mount</Id>
-      <Text>Ignoriere Kämpfe während auf Bodenreittier</Text>
+      <Text>Kein Kampf am Boden</Text>
     </Translation>
     <Translation>
       <Id>Mount_Distance</Id>
-      <Text>Reittier Distanz</Text>
+      <Text>Aufmount-Distanz</Text>
     </Translation>
     <Translation>
       <Id>Flying</Id>
-      <Text>Flügreittier</Text>
+      <Text>Flug-Reittier</Text>
     </Translation>
     <Translation>
       <Id>Ground</Id>
-      <Text>Bodenreittier</Text>
+      <Text>Boden-Reittier</Text>
     </Translation>
     <Translation>
       <Id>Use_Ground_Mount</Id>
@@ -831,7 +831,7 @@
     </Translation>
     <Translation>
       <Id>SpellManagementSystemPanelName</Id>
-      <Text>Klasse / Eigene Zauber Eigentschaften</Text>
+      <Text>Zauber, Klassen und Kampf Einstellungen</Text>
     </Translation>
     <Translation>
       <Id>Use_Spirit_Healer</Id>
@@ -839,7 +839,7 @@
     </Translation>
     <Translation>
       <Id>ActivateSkillsAutoTraining</Id>
-      <Text>Aktiviere Zauber - Automatisches Training</Text>
+      <Text>Automatisches Training</Text>
     </Translation>
     <Translation>
       <Id>OnlyTrainCurrentlyUsedSkills</Id>
@@ -851,23 +851,23 @@
     </Translation>
     <Translation>
       <Id>OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum</Id>
-      <Text>Nur Trainieren wenn man 2 mal mehr Gold hat, wie benötigt wird</Text>
+      <Text>Nur lernen wenn man 2 mal mehr Gold hat, als benötigt wird</Text>
     </Translation>
     <Translation>
       <Id>BecomeApprenticeIfNeededByProduct</Id>
-      <Text>Lehrling Trainieren wenn es für dass Produkt benötigt wird</Text>
+      <Text>Lehrling lernen, wenn es für das Produkt benötigt wird</Text>
     </Translation>
     <Translation>
       <Id>BecomeApprenticeOfSecondarySkillsWhileQuesting</Id>
-      <Text>Lehrling Trainieren der sekundären Berufe während des Questens</Text>
+      <Text>Sekundären Berufe lernen während des Questens</Text>
     </Translation>
     <Translation>
       <Id>Don_t_start_fighting</Id>
-      <Text>Vermeide Kämpfe</Text>
+      <Text>Nicht den Kampf starten</Text>
     </Translation>
     <Translation>
       <Id>Can_attack_units_already_in_fight</Id>
-      <Text>Attackiere Einheiten, die Im Kampf sind</Text>
+      <Text>Mobs angreifen, die im Kampf sind</Text>
     </Translation>
     <Translation>
       <Id>Assign_Talents</Id>
@@ -879,11 +879,11 @@
     </Translation>
     <Translation>
       <Id>HealerClass</Id>
-      <Text>Healer Class</Text>
+      <Text>Heiler Klasse</Text>
     </Translation>
     <Translation>
       <Id>CloseWithoutSaving</Id>
-      <Text>Schließen ohne speichern</Text>
+      <Text>Schließen ohne Speichern</Text>
     </Translation>
     <Translation>
       <Id>Reset_Settings</Id>
@@ -907,19 +907,19 @@
     </Translation>
     <Translation>
       <Id>VisualStudioRedistribuablePackages</Id>
-      <Text>Visual Studio 2013 Reditribuable Package is required for the PathFinder. Do you want to install it now ? (the bot will close in both case)</Text>
+      <Text>Installation von Visual Studio 2013 Reditributable ist zwingend erforderlich. Jetzt installieren? (Der Bot wird geschlossen)</Text>
     </Translation>
     <Translation>
       <Id>New_whisper</Id>
-      <Text>Neue Nachricht</Text>
+      <Text>Neue Flüsternachricht</Text>
     </Translation>
     <Translation>
       <Id>Stop_tnb_if</Id>
-      <Text>Stop TNB wenn</Text>
+      <Text>Stoppe TNB wenn</Text>
     </Translation>
     <Translation>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
-      <Text>Bitte Konfigurieren Sie ein Flugreittier in Allgemeine Einstellungen</Text>
+      <Text>Bitte konfigurieren Sie ein Flugreittier den Reittier Einstellungen</Text>
     </Translation>
     <Translation>
       <Id>ThisAquaticMountDoesNotExist</Id>
@@ -943,15 +943,15 @@
     </Translation>
     <Translation>
       <Id>UpdateRequiredCasesTitle</Id>
-      <Text>Diese Version des TNB ist nicht mit dieser WoW Version Kompatibel</Text>
+      <Text>Diese Version des TNB ist nicht mit dieser WoW Version kompatibel</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCases</Id>
-      <Text>Bitte benutze die richtige Version oder warte auf eine Aktualisierung falls sie noch nicht verfügbar ist.</Text>
+      <Text>Bitte benutze die richtige Version oder warte auf eine Aktualisierung falls diese noch nicht verfügbar ist.</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireOlderTheNoobBotTitle</Id>
-      <Text>Diese TNB Version ist höher als die WoW Version</Text>
+      <Text>Diese TNB Version ist für eine neuere WoW Version</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireOlderTheNoobBot</Id>
@@ -967,11 +967,11 @@
     </Translation>
     <Translation>
       <Id>UpdateRequiredCase1</Id>
-      <Text>Case 1: You may have a version of TheNoobBot too recent for this WoW version</Text>
+      <Text>Fall 1: Deine TheNoobBot ist zu neu für diese WoW Version</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCase2</Id>
-      <Text>Case 2: You may have a version of WoW too recent for this TheNoobBot version</Text>
+      <Text>Fall 2: Dein WoW ist zu neu für diese TheNoobBot Version - bitte unsere Homepage prüfen</Text>
     </Translation>
     <Translation>
       <Id>RunningWoWBuildDot</Id>
@@ -979,7 +979,7 @@
     </Translation>
     <Translation>
       <Id>RunningWoWBuild</Id>
-      <Text> but you are running WoW Build </Text>
+      <Text> jedoch nutzt du WoW Build </Text>
     </Translation>
     <Translation>
       <Id>PleaseDownloadOlder</Id>
@@ -1003,7 +1003,7 @@
     </Translation>
     <Translation>
       <Id>Pathing_Reverse_Direction</Id>
-      <Text>Wege Rückwarts Folgen</Text>
+      <Text>Den Pfad umkehren</Text>
     </Translation>
     <Translation>
       <Id>Settings</Id>
@@ -1011,7 +1011,7 @@
     </Translation>
     <Translation>
       <Id>ResetSettings</Id>
-      <Text>Einstellungen Zurücksetzen</Text>
+      <Text>Einstellungen zurücksetzen</Text>
     </Translation>
     <Translation>
       <Id>Please_select_an_profile</Id>
@@ -1023,11 +1023,11 @@
     </Translation>
     <Translation>
       <Id>success</Id>
-      <Text>erfolg</Text>
+      <Text>erfolgreich</Text>
     </Translation>
     <Translation>
       <Id>errors</Id>
-      <Text>fehler</Text>
+      <Text>Fehler</Text>
     </Translation>
     <Translation>
       <Id>Npc_faction_list</Id>
@@ -1047,7 +1047,7 @@
     </Translation>
     <Translation>
       <Id>Your_player_is_now_level</Id>
-      <Text>Dein Charakter ist nun Level</Text>
+      <Text>Dein Charakter ist nun Stufe</Text>
     </Translation>
     <Translation>
       <Id>level_upper</Id>
@@ -1055,7 +1055,7 @@
     </Translation>
     <Translation>
       <Id>Player_Teleported</Id>
-      <Text>Charakter Teleportiert</Text>
+      <Text>Charakter teleportiert</Text>
     </Translation>
     <Translation>
       <Id>Reached_4000_Honor_Points</Id>
@@ -1079,7 +1079,7 @@
     </Translation>
     <Translation>
       <Id>Auto_Make_Elemental</Id>
-      <Text>Erstelle Element</Text>
+      <Text>Auto Element-Erstellung</Text>
     </Translation>
     <Translation>
       <Id>Nodes_List_Manager</Id>
@@ -1087,15 +1087,15 @@
     </Translation>
     <Translation>
       <Id>Smelting_Product_Description</Id>
-      <Text>(Erz Verhütten)</Text>
+      <Text>(Erze verhütten)</Text>
     </Translation>
     <Translation>
       <Id>Milling_Product_Description</Id>
-      <Text>(Kräuter Mahlen)</Text>
+      <Text>(Kräuter mahlen)</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_Product_Description</Id>
-      <Text>(Erz Sondieren)</Text>
+      <Text>(Erz sondieren)</Text>
     </Translation>
     <Translation>
       <Id>Profiles_Converters_Product_Description</Id>
@@ -1115,15 +1115,15 @@
     </Translation>
     <Translation>
       <Id>Damage_Dealer_Product_Description</Id>
-      <Text>(SchadensverursacherBot)</Text>
+      <Text>(Schadensverursacher-Bot)</Text>
     </Translation>
     <Translation>
       <Id>Heal_Bot_Product_Description</Id>
-      <Text>(HeilungsBot dich selbst und Gruppenmitglieder - BETA)</Text>
+      <Text>(Heiler-Bot - heile Gruppenmitglieder und dich - BETA)</Text>
     </Translation>
     <Translation>
       <Id>Fisherbot_Product_Description</Id>
-      <Text>(Angeln auf Fischschwärme und stehendem Gewässer)</Text>
+      <Text>(Angeln in Fischschwärmen und in stehenden Gewässern)</Text>
     </Translation>
     <Translation>
       <Id>Battlegrounder_Product_Description</Id>
@@ -1131,7 +1131,7 @@
     </Translation>
     <Translation>
       <Id>Quester_Product_Description</Id>
-      <Text>(Questen)</Text>
+      <Text>(Questen, Leveln und Welt-Quests)</Text>
     </Translation>
     <Translation>
       <Id>Archaeologist_Product_Description</Id>
@@ -1219,51 +1219,51 @@
     </Translation>
     <Translation>
       <Id>QueueAlteracValley</Id>
-      <Text>In Alteractal Einreihen</Text>
+      <Text>Alteractal anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueWarsongGulch</Id>
-      <Text>In Kriegshymnenschlucht Einreihen</Text>
+      <Text>Kriegshymnenschlucht anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueArathiBasin</Id>
-      <Text>In Arathibecken Einreihen</Text>
+      <Text>Arathibecken anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueEyeoftheStorm</Id>
-      <Text>In Auge des Sturms Einreihen</Text>
+      <Text>Auge des Sturms anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueStrandoftheAncients</Id>
-      <Text>In Strand der Uralten Einreihen</Text>
+      <Text>Strand der Uralten anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueIsleofConquest</Id>
-      <Text>In Insel der Eroberung Einreihen</Text>
+      <Text>Insel der Eroberung anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueTwinPeaks</Id>
-      <Text>In Zwillingsgipfel Einreihen</Text>
+      <Text>Zwillingsgipfel anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueBattleforGilneas</Id>
-      <Text>In Die Schlacht um Gilneas Einreihen</Text>
+      <Text>Schlacht um Gilneas anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueRandomBattleground</Id>
-      <Text>In Zufälliges Schlachtfeld Einreihen</Text>
+      <Text>Zufälliges Schlachtfeld anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueTempleofKotmogu</Id>
-      <Text>In Tempel von Katmogu Einreihen</Text>
+      <Text>Tempel von Katmogu anmelden</Text>
     </Translation>
     <Translation>
       <Id>QueueSilvershardMines</Id>
-      <Text>In Silberbruchmine Einreihen</Text>
+      <Text>Silberbruchmine Einreihen</Text>
     </Translation>
     <Translation>
       <Id>WoW_Client_64bit</Id>
-      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please Use option: "Launch 32-bit client (instead of 64-bit)" in the Game Settings of Battle.net client.</Text>
+      <Text>Achtung: Es wurde ein laufendes WoW im 64bit Modus gefunden. TheNoobBot ist damit nicht kompatibel. Bitte die Option "32-bit Client starten" in den Spiele Einstellungen der Blizzard App aktivieren.</Text>
     </Translation>
     <Translation>
       <Id>Title_WoW_Client_64bit</Id>
@@ -1271,7 +1271,7 @@
     </Translation>
     <Translation>
       <Id>Uncap_MaxFPS</Id>
-      <Text>Maximale FPS Grenze aufheben (Empfohlen)</Text>
+      <Text>Max FPS aufheben (empfohlen)</Text>
     </Translation>
     <Translation>
       <Id>AlwaysOnTop</Id>
@@ -1279,15 +1279,15 @@
     </Translation>
     <Translation>
       <Id>No_mounts_in_settings</Id>
-      <Text>Es ist kein Boden oder Flugmount in den Allgemeinen Einstellungen gesetzt. Versuche die Einstellungen Vorzunehmen</Text>
+      <Text>Es ist kein Boden- oder Flugmount in den Reittier Einstellungen festgelegt. Bitte nachholen!</Text>
     </Translation>
     <Translation>
       <Id>AutoConfirmOnBoPItems</Id>
-      <Text>Automatisch 'Beim Aufheben Gebundene' Items Ausrüsten</Text>
+      <Text>Automatisch 'Beim Aufheben Gebundene' Items ausrüsten</Text>
     </Translation>
     <Translation>
       <Id>JoinQueue</Id>
-      <Text>In die Warteschlange einreihen</Text>
+      <Text>In der Warteschlange anmelden</Text>
     </Translation>
     <Translation>
       <Id>RequeueingInProcess</Id>
@@ -1295,7 +1295,7 @@
     </Translation>
     <Translation>
       <Id>Battleground_Ended</Id>
-      <Text>Schlachtfeld ist Beendet</Text>
+      <Text>Schlachtfeld ist beendet</Text>
     </Translation>
     <Translation>
       <Id>NotInBg</Id>
@@ -1311,27 +1311,27 @@
     </Translation>
     <Translation>
       <Id>RepairWhenDurabilityIsUnderPercent</Id>
-      <Text>Reparieren gehen wenn die Haltbarkeit unter X% ist</Text>
+      <Text>Reparieren wenn Haltbarkeit unter X% ist</Text>
     </Translation>
     <Translation>
       <Id>RequeueAfterXMinutes</Id>
-      <Text>Wiedereinreihen nach X Minuten</Text>
+      <Text>Wiederanmelden nach X Minuten</Text>
     </Translation>
     <Translation>
       <Id>ErrorMultipleQueue</Id>
-      <Text>Du kannst dich nur in 2 Schlachtfelder gleichzeitig einreihen</Text>
+      <Text>Du kannst dich nur in 2 Schlachtfelder gleichzeitig anmelden</Text>
     </Translation>
     <Translation>
       <Id>ErrorRandomQueue</Id>
-      <Text>Du kannst dich nicht in ein Zufälliges Schlachtfeld einreihen wenn du bereits in einem Spezifischen Schlachtfeld einreiht bist</Text>
+      <Text>Du kannst dich nicht in ein Zufälliges Schlachtfeld anmelden wenn du bereits in einem Spezifischen Schlachtfeld angemeldet bist</Text>
     </Translation>
     <Translation>
       <Id>ErrorSingleRandomQueue</Id>
-      <Text>Du kannst dich nicht in ein Spezifisches Schlachtfeld einreihen wenn du bereits in einem Zufälligen Schlachtfeld eingereiht bist</Text>
+      <Text>Du kannst dich nicht in ein Spezifisches Schlachtfeld anmelden wenn du bereits in einem Zufälligen Schlachtfeld anmelden bist</Text>
     </Translation>
     <Translation>
       <Id>CantDuplicateZone</Id>
-      <Text>Du kannst nicht zwei Gleiche Zonen in einem Profil haben</Text>
+      <Text>Du kannst nicht zwei gleiche Zonen in einem Profil haben</Text>
     </Translation>
     <Translation>
       <Id>CantRecordInWrongZone</Id>
@@ -1343,7 +1343,7 @@
     </Translation>
     <Translation>
       <Id>BattlegrounderTipOffMessage</Id>
-      <Text>Deine Allgemeinen Einstellungen sind nich für Schlachfelder Optimiert:</Text>
+      <Text>Deine Allgemeinen Einstellungen sind nicht für Schlachfelder optimiert:</Text>
     </Translation>
     <Translation>
       <Id>GrinderTipOffTitle</Id>
@@ -1351,7 +1351,7 @@
     </Translation>
     <Translation>
       <Id>GrinderTipOffMessage</Id>
-      <Text>Deine Allgemeinen Einstellungen sind nich für den Grinder Optimiert: </Text>
+      <Text>Deine Allgemeinen Einstellungen sind nicht für den Grinder otimiert: </Text>
     </Translation>
     <Translation>
       <Id>GathererTipOffTitle</Id>
@@ -1359,7 +1359,7 @@
     </Translation>
     <Translation>
       <Id>GathererTipOffMessage</Id>
-      <Text>Deine Allgemeinen Einstellungen sind nich für den Gatherer Optimiert: </Text>
+      <Text>Deine Allgemeinen Einstellungen sind nicht für den Gatherer optimiert: </Text>
     </Translation>
     <Translation>
       <Id>QuesterTipOffTitle</Id>
@@ -1367,7 +1367,7 @@
     </Translation>
     <Translation>
       <Id>QuesterTipOffMessage</Id>
-      <Text>Deine Allgemeinen Einstellungen sind nich für den Quester Optimiert: </Text>
+      <Text>Deine Allgemeinen Einstellungen sind nicht für den Quester Optimiert: </Text>
     </Translation>
     <Translation>
       <Id>ArchaeologistTipOffTitle</Id>
@@ -1375,11 +1375,11 @@
     </Translation>
     <Translation>
       <Id>ArchaeologistTipOffMessage</Id>
-      <Text>Deine Allgemeinen Einstellungen sind nich für den Archaeologist Optimiert: </Text>
+      <Text>Deine Allgemeinen Einstellungen sind nicht für den Archaeologist optimiert: </Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOn</Id>
-      <Text>Wir empfehlen dringend die Plünder funktion in den Allgemeinen Einstellungen zu aktivieren =&gt; Plündern &amp; Farm Optionen =&gt; Plünder Monster =&gt; JA</Text>
+      <Text>Wir empfehlen dringend die Plünder Funktion in den Allgemeinen Einstellungen zu aktivieren =&gt; Plündern &amp; Farm Optionen =&gt; Plünder Monster =&gt; JA</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOff</Id>
@@ -1395,11 +1395,11 @@
     </Translation>
     <Translation>
       <Id>TipOffSellingOnQuester</Id>
-      <Text>Wir empfehlen dringen die Verkaufen Funktion, während des Questens, in den Allgemeinen Einstellungen zu aktivieren =&gt; Händler (Verkaufen oder Kaufen) =&gt; Verkaufen =&gt; JA</Text>
+      <Text>Wir empfehlen dringend die Verkaufen Funktion, während des Questens, in den Allgemeinen Einstellungen zu aktivieren =&gt; Händler (Verkaufen oder Kaufen) =&gt; Verkaufen =&gt; JA</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingQualityQuester</Id>
-      <Text>Wir empfehlen ebenso dringend den Verkauf von Grauen, Weißen und Grünen Items zu aktivieren. Da es nicht verkauft wird wenn es nicht eingestellt wird.</Text>
+      <Text>Wir empfehlen ebenso dringend den Verkauf von Grauen, Weißen und seltenen Items zu aktivieren. Da es nicht verkauft wird wenn es nicht eingestellt wird.</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusLow</Id>
@@ -1427,7 +1427,7 @@
     </Translation>
     <Translation>
       <Id>TipOffMinimumDistanceToUseGroundMount</Id>
-      <Text>Wir empfehlen die mindest Reittier Distanz auf '30' in den Allgemeinen Einstellungen zu setzen =&gt; Reittier Optionen </Text>
+      <Text>Wir empfehlen die Mindest Aufmount-Distanz auf '30' in den Allgemeinen Einstellungen zu setzen =&gt; Reittier Optionen </Text>
     </Translation>
     <Translation>
       <Id>UseHearthstone</Id>
@@ -1443,11 +1443,11 @@
     </Translation>
     <Translation>
       <Id>UseRobot</Id>
-      <Text>Benutze Robot wenn er verfügbar ist</Text>
+      <Text>Nutze RepBot wenn verfügbar</Text>
     </Translation>
     <Translation>
       <Id>ReloggerManagementPanelName</Id>
-      <Text>AutoRelogger - (Erlaubt ein automatisches wiedereinloggen nach einem Disconnect)</Text>
+      <Text>AutoRelogger - (Erlaubt ein automatisches Wiedereinloggen nach einem Disconnect)</Text>
     </Translation>
     <Translation>
       <Id>QuesterProfileManagementSystem</Id>
@@ -1495,7 +1495,7 @@
     </Translation>
     <Translation>
       <Id>GroupedDocumentation</Id>
-      <Text>Gruppierte Profil Documentation</Text>
+      <Text>Gruppierte Profil Dokumentation</Text>
     </Translation>
     <Translation>
       <Id>RemoveGrouped</Id>
@@ -1523,7 +1523,7 @@
     </Translation>
     <Translation>
       <Id>CurrentlyGroupedProfiles</Id>
-      <Text>Derzeit Gruppierte Profile :</Text>
+      <Text>Derzeit gruppierte Profile :</Text>
     </Translation>
     <Translation>
       <Id>GroupSelectedProfile</Id>
@@ -1551,11 +1551,11 @@
     </Translation>
     <Translation>
       <Id>MoveUp</Id>
-      <Text>Nach Oben</Text>
+      <Text>Nach oben</Text>
     </Translation>
     <Translation>
       <Id>MoveDown</Id>
-      <Text>Nach Unten</Text>
+      <Text>Nach unten</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptyGroupedNew</Id>
@@ -1623,7 +1623,7 @@
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToEdit</Id>
-      <Text>Es gibt kein Einfaches Profil zu Verändern</Text>
+      <Text>Es gibt kein Einfaches Profil zu verändern</Text>
     </Translation>
     <Translation>
       <Id>AutoCloseChatFrame</Id>
@@ -1631,7 +1631,7 @@
     </Translation>
     <Translation>
       <Id>Settings_Mimesis</Id>
-      <Text>Mimesis Settings</Text>
+      <Text>Mimesis Einstellungen</Text>
     </Translation>
     <Translation>
       <Id>MasterBotIPAddress</Id>
@@ -1639,7 +1639,7 @@
     </Translation>
     <Translation>
       <Id>MasterBotIPPort</Id>
-      <Text>Port benutzt vom Master bot</Text>
+      <Text>Port benutzt vom Master Bot</Text>
     </Translation>
     <Translation>
       <Id>ActivatePartyMode</Id>
@@ -1647,7 +1647,7 @@
     </Translation>
     <Translation>
       <Id>MimesisBroadcasterSettings</Id>
-      <Text>Mimesis Anbieter - (Andere sitzungen können mit dieser Sitzung nicht starten)</Text>
+      <Text>Mimesis Anbieter - (Andere Sitzungen können mit dieser Sitzung nicht starten)</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingPortDefault</Id>
@@ -1707,7 +1707,7 @@
     </Translation>
     <Translation>
       <Id>LoginFormRefresh</Id>
-      <Text>Aktualisierung</Text>
+      <Text>Aktualisieren</Text>
     </Translation>
     <Translation>
       <Id>LoginFormWebsite</Id>
@@ -1727,7 +1727,7 @@
     </Translation>
     <Translation>
       <Id>LuaExecButton</Id>
-      <Text>LUA code durchführen</Text>
+      <Text>LUA Code ausführen</Text>
     </Translation>
     <Translation>
       <Id>GpsButton</Id>
@@ -1775,7 +1775,7 @@
     </Translation>
     <Translation>
       <Id>DigsiteName</Id>
-      <Text>Digsite's Name</Text>
+      <Text>Name der Ausgrabungsstätte</Text>
     </Translation>
     <Translation>
       <Id>Priority</Id>
@@ -1787,7 +1787,7 @@
     </Translation>
     <Translation>
       <Id>CrateRestoredArtifacts</Id>
-      <Text>Crate Restored Artifacts</Text>
+      <Text>Erstelle restauriertes Artifact</Text>
     </Translation>
     <Translation>
       <Id>LatestLogEntry</Id>
@@ -1795,27 +1795,27 @@
     </Translation>
     <Translation>
       <Id>TargetLevel</Id>
-      <Text>Ziel LvL :</Text>
+      <Text>Ziel-Stufe:</Text>
     </Translation>
     <Translation>
       <Id>TargetName</Id>
-      <Text>Ziel Name :</Text>
+      <Text>Ziel-Name:</Text>
     </Translation>
     <Translation>
       <Id>TargetHealth</Id>
-      <Text>Ziel Gesundheit :</Text>
+      <Text>Ziel-Leben:</Text>
     </Translation>
     <Translation>
       <Id>HonorPerHour</Id>
-      <Text>Ehre pro Stunde :</Text>
+      <Text>Ehre pro Std.:</Text>
     </Translation>
     <Translation>
       <Id>UnitKills</Id>
-      <Text>Einheiten Getötet :</Text>
+      <Text>Mobs getötet:</Text>
     </Translation>
     <Translation>
       <Id>XPPerHour</Id>
-      <Text>XP pro Stunde :</Text>
+      <Text>XP pro Stunde:</Text>
     </Translation>
     <Translation>
       <Id>PlayerNameChanged</Id>
@@ -1823,11 +1823,11 @@
     </Translation>
     <Translation>
       <Id>StopProduct</Id>
-      <Text>Stope Bot</Text>
+      <Text>Bot stoppen</Text>
     </Translation>
     <Translation>
       <Id>StartProduct</Id>
-      <Text>Starte Bot</Text>
+      <Text>Bot starten</Text>
     </Translation>
     <Translation>
       <Id>OnlineBots</Id>
@@ -1843,7 +1843,7 @@
     </Translation>
     <Translation>
       <Id>SwitchDxError1</Id>
-      <Text>Possible issue while botting detected, please try to switch DirectX version of your WoW client.</Text>
+      <Text>Problem beim botten erkannt, bitte versuche in WOW die DirectX Version zu wechseln.</Text>
     </Translation>
     <Translation>
       <Id>SwitchDxError2</Id>
@@ -1859,7 +1859,7 @@
     </Translation>
     <Translation>
       <Id>DevTools</Id>
-      <Text>Entwicklung Werkzeuge</Text>
+      <Text>Entwicklungs Werkzeuge</Text>
     </Translation>
     <Translation>
       <Id>Website</Id>
@@ -1867,7 +1867,7 @@
     </Translation>
     <Translation>
       <Id>WantToSubscribe</Id>
-      <Text>Willst du Abbonieren?</Text>
+      <Text>Willst du abbonieren?</Text>
     </Translation>
     <Translation>
       <Id>SelectOffer</Id>
@@ -1883,7 +1883,7 @@
     </Translation>
     <Translation>
       <Id>TimeLeft</Id>
-      <Text>Zeit Verbleibend :</Text>
+      <Text>Zeit verbleibend :</Text>
     </Translation>
     <Translation>
       <Id>SubscribeMonth</Id>
@@ -1903,23 +1903,23 @@
     </Translation>
     <Translation>
       <Id>FtGConverterLine1</Id>
-      <Text>Der Flug zu Boden Converter funktioniert mit Gatherer, Grinder und Fischerbot Profilen.</Text>
+      <Text>Der Flug-zu-Boden Konverter funktioniert mit Gatherer, Grinder und Fischerbot Profilen.</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine2</Id>
-      <Text>Es dauert einige minuten bis die Convertierung abgeschlossen ist</Text>
+      <Text>Es dauert einige Minuten bis die Konvertierung abgeschlossen ist</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine3</Id>
-      <Text>if you have issue with the generated profile, just create one by hand for this zone.</Text>
+      <Text>Wenn es Probleme mit dem erzeugten Profil gibt, erstelle bitte eines von Hand für diese Zone.</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterButton</Id>
-      <Text>Wähle ein Flugprofil aus um es zu einem Bodenprofil zu Convertieren</Text>
+      <Text>Wähle ein Flugprofil aus um es zu einem Bodenprofil zu konvertieren</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterHeaderText</Id>
-      <Text>Flug zu Boden Converter</Text>
+      <Text>Flug-zu-Boden Konverter</Text>
     </Translation>
     <Translation>
       <Id>TrackerPopUp</Id>
@@ -1935,7 +1935,7 @@
     </Translation>
     <Translation>
       <Id>HideSdkFiles</Id>
-      <Text>Hide SDK Files</Text>
+      <Text>SDK Dateien ausblenden</Text>
     </Translation>
     <Translation>
       <Id>Whisper</Id>
@@ -1943,7 +1943,7 @@
     </Translation>
     <Translation>
       <Id>GarrisonFarming_Product_Description</Id>
-      <Text>(Farm your Garrison Garden and Mine and their work orders)</Text>
+      <Text>(Garten und Mine deiner Garnison abfarmen )</Text>
     </Translation>
   </Translations>
 </Language>
