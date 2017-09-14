@@ -4,7 +4,8 @@
     <Field Name="m_ID" Type="int" IsIndex="true" />
     <Field Name="field04" Type="int" />
     <Field Name="field08" Type="int" />
-    <Field Name="field0C" Type="byte" ArraySize="4" />
+    <Field Name="field0C" Type="byte" />
+    <Field Name="field0D" Type="byte" ArraySize="3" />
   </Table>
   <Table Name="ResearchSite" Build="0">
     <Field Name="m_ID" Type="int" IsIndex="true" />
@@ -22,6 +23,8 @@
     <Field Name="m_MapNameOffset" Type="int" />
     <Field Name="m_MapDescriptionHordeOffset" Type="int" />
     <Field Name="m_MapDescriptionAllianceOffset" Type="int" />
+    <Field Name="m_MapObjectiveHordeOffset" Type="int" />
+    <Field Name="m_MapObjectiveAllianceOffset" Type="int" />
     <Field Name="field28" Type="ushort" />
     <Field Name="field2A" Type="ushort" />
     <Field Name="field2C" Type="ushort" />

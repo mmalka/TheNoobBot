@@ -71,10 +71,13 @@ namespace nManager.Wow.Helpers
         [StructLayout(LayoutKind.Sequential)]
         public struct ItemClassDB2Record
         {
-            public uint ClassId;
+            public uint m_ID;
             public uint PointerToStringTable;
             public uint ClassNameOffset;
-            public uint lastByte;
+            public byte ClassId;
+            public byte field0D_1;
+            public byte field0D_2;
+            public byte field0D_3;
 
             public string Name()
             {
