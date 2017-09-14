@@ -384,8 +384,6 @@ namespace nManager.Wow.Bot.Tasks
                     nManagerSetting.AddBlackList(CurUnit.Guid, 60*1000);
                 _curNode = null;
                 CurUnit = null;
-                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && ObjectManager.ObjectManager.Me.InCombat)
-                    Elemental.AutoMakeElemental();
             }
         }
     }

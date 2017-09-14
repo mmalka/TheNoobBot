@@ -87,8 +87,9 @@ namespace Grinder.Bot
                 Fsm.AddState(new SpecializationCheck {Priority = 80});
                 Fsm.AddState(new LevelupCheck {Priority = 70});
                 Fsm.AddState(new Trainers {Priority = 60});
-                Fsm.AddState(new MillingState {Priority = 50});
-                Fsm.AddState(new ProspectingState {Priority = 40});
+                Fsm.AddState(new AutoItemCombiner {Priority = 52});
+                Fsm.AddState(new MillingState {Priority = 51});
+                Fsm.AddState(new ProspectingState {Priority = 50});
                 Fsm.AddState(Grinding);
                 Fsm.AddState(new Farming {Priority = 20});
                 Fsm.AddState(MovementLoop);

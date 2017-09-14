@@ -191,6 +191,7 @@
     <Compile Include="Statistics.cs" />
     <Compile Include="Translate.cs" />
     <Compile Include="Wow\Bot\States\ArchaeologyStates.cs" />
+    <Compile Include="Wow\Bot\States\AutoItemCombinerState.cs" />
     <Compile Include="Wow\Bot\States\Battlegrounding.cs" />
     <Compile Include="Wow\Bot\States\DungeonFarming.cs" />
     <Compile Include="Wow\Bot\States\FightHostileTarget.cs" />
@@ -309,7 +310,6 @@
     <Compile Include="Wow\Helpers\HealerClass.cs" />
     <Compile Include="Wow\Helpers\Milling.cs" />
     <Compile Include="Wow\Helpers\NpcDB.cs" />
-    <Compile Include="Wow\Helpers\Elemental.cs" />
     <Compile Include="Wow\Helpers\EquippedItems.cs" />
     <Compile Include="Wow\Helpers\Fight.cs" />
     <Compile Include="Wow\Helpers\Interact.cs" />

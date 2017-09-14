@@ -69,8 +69,9 @@ namespace Fisherbot.Bot
                 Fsm.AddState(new SpecializationCheck {Priority = 80});
                 Fsm.AddState(new LevelupCheck {Priority = 70});
                 Fsm.AddState(new Trainers {Priority = 60});
-                Fsm.AddState(new MillingState {Priority = 50});
-                Fsm.AddState(new ProspectingState {Priority = 40});
+                Fsm.AddState(new AutoItemCombiner {Priority = 52});
+                Fsm.AddState(new MillingState {Priority = 51});
+                Fsm.AddState(new ProspectingState {Priority = 50});
                 Fsm.AddState(new Farming {Priority = 30});
                 Fsm.AddState(new FisherbotState {Priority = 20});
                 Fsm.AddState(new MovementLoop {Priority = 10, PathLoop = Profile.Points});

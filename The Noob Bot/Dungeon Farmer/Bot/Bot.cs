@@ -30,9 +30,10 @@ namespace DungeonFarmer.Bot
                 Fsm.AddState(new Regeneration {Priority = 80});
                 Fsm.AddState(new SpecializationCheck {Priority = 70});
                 Fsm.AddState(new LevelupCheck {Priority = 60});
-                Fsm.AddState(new Trainers {Priority = 50});
-                Fsm.AddState(new MillingState {Priority = 40});
-                Fsm.AddState(new ProspectingState {Priority = 30});
+                Fsm.AddState(new Trainers {Priority = 59});
+                Fsm.AddState(new AutoItemCombiner {Priority = 52});
+                Fsm.AddState(new MillingState {Priority = 51});
+                Fsm.AddState(new ProspectingState {Priority = 50});
                 Fsm.AddState(new Farming {Priority = 20});
                 Fsm.AddState(new DungeonFarming {Priority = 10,});
                 Fsm.AddState(new Idle {Priority = 0});

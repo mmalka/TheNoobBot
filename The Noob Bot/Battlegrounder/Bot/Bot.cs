@@ -33,8 +33,9 @@ namespace Battlegrounder.Bot
                 Fsm.AddState(new SpecializationCheck {Priority = 100});
                 Fsm.AddState(new LevelupCheck {Priority = 90});
                 Fsm.AddState(new Trainers {Priority = 80});
-                Fsm.AddState(new MillingState {Priority = 70});
-                Fsm.AddState(new ProspectingState {Priority = 60});
+                Fsm.AddState(new AutoItemCombiner {Priority = 53});
+                Fsm.AddState(new MillingState {Priority = 52});
+                Fsm.AddState(new ProspectingState {Priority = 51});
                 Fsm.AddState(new Farming {Priority = 50});
                 Fsm.AddState(Battlegrounding);
                 Fsm.AddState(new BattlegrounderCurrentProfile {Priority = 30});

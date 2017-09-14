@@ -133,9 +133,6 @@ namespace nManager.Wow.Bot.Tasks
                                     ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                     return;
                                 Statistics.Loots++;
-                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
-                                    !ObjectManager.ObjectManager.Me.InCombat)
-                                    Elemental.AutoMakeElemental();
 
                                 if (nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                 {
