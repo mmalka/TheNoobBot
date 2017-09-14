@@ -170,11 +170,11 @@ namespace nManager.Wow.MemoryClass
             fasm.Inject(_mTrampoline);
         }
 
-        public uint InjectAndExecute(string[] asm)
+        public uint InjectAndExecute(string[] asm, bool allowOffline = false)
         {
             lock (Locker)
             {
-                if (!Helpers.Usefuls.InGame || Helpers.Usefuls.IsLoading)
+                if (!allowOffline && (!Helpers.Usefuls.InGame || Helpers.Usefuls.IsLoading))
                     return 0;
                 return (uint) Wow.Memory.WowProcess.Executor.Call(asm);
                 if (!ThreadHooked)

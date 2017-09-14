@@ -86,48 +86,8 @@ namespace nManager.Wow.Helpers
                     "retn"
                 };
 
-                if (!notInGameMode)
-                {
-                    List<string> tempsAsm = new List<string>
-                    {
-                        /*"call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                        "test eax, eax",
-                        "je @out",*/
-                        /*"call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        "test eax, eax",
-                        "je @out"*/
-                    };
-
-                    tempsAsm.AddRange(asm);
-
-                    asm = tempsAsm.ToArray();
-                }
-                else
-                {
-                    List<string> tempsAsm = new List<string>
-// ReSharper disable RedundantEmptyObjectOrCollectionInitializer
-                    {
-                        //"call " + ( Memory.WowProcess.WowModule +  (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                        //"test eax, eax",
-                        //"jne @out",
-                        //"call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        //"test eax, eax",
-                        //"jne @out",
-                        //"mov eax, [" + ( Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.isLoadingOrConnecting + "]"),
-                        //"test eax, eax",
-                        //"jne @out"
-                    };
-// ReSharper restore RedundantEmptyObjectOrCollectionInitializer
-
-                    tempsAsm.AddRange(asm);
-                    asm = tempsAsm.ToArray();
-                }
                 // Inject
-                Memory.WowMemory.InjectAndExecute(asm);
+                Memory.WowMemory.InjectAndExecute(asm, true);
                 // Free memory allocated 
                 Memory.WowMemory.Memory.FreeMemory(doStringArgCodecave);
             }
