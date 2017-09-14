@@ -455,6 +455,11 @@ namespace nManager.Wow.Bot.States
                         _travelDisabled = true; // don't forget to release travel once arrived.
                     //Start target finding based on Seller.
                     uint baseAddress = MovementManager.FindTarget(ref target, 0, !ObjectManager.ObjectManager.Me.IsMounted);
+                    if (!target.ValidPath)
+                    {
+                        Logging.WriteDebug("No valid path/travel to Npc " + target.Name + ", removing him from NpcDB.");
+                        NpcDB.DelNpc(target);
+                    }
                     if (MovementManager.InMovement)
                         return;
                     if (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= 5f)

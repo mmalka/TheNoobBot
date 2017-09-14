@@ -1684,6 +1684,7 @@ namespace nManager.Wow.Helpers
                     // Give a chance to the bot to come closer if it's far away, unless the path is really short or innexistant.
                     // PathFinder cannot always generate very long path.
                     Logging.Write("No path found for " + target.Name + ", abort FindTarget.");
+                    target.ValidPath = false;
                     return 0;
                 }
                 if (maxDist > 0 && Math.DistanceListPoint(points) > maxDist)

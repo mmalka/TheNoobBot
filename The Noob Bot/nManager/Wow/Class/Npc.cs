@@ -137,5 +137,7 @@ namespace nManager.Wow.Class
             GuildBanker,
             QuestGiver,
         }
+
+        [DefaultValue(true)] public bool ValidPath = true;
     }
 }
