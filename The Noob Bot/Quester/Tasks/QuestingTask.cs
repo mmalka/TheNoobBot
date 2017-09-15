@@ -122,6 +122,8 @@ namespace Quester.Tasks
         public static void SelectNextQuestObjective()
         {
             CurrentQuestObjective = null;
+            if (Quest.RequestResetObjectives)
+                ResetQuestObjective();
             while (true)
             {
                 _currentQuestObjectiveId++;
@@ -148,6 +150,7 @@ namespace Quester.Tasks
 
         public static void ResetQuestObjective()
         {
+            Quest.RequestResetObjectives = false;
             QuestStatus = "Reset Quest Objective";
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
@@ -182,8 +185,7 @@ namespace Quester.Tasks
             if (Quest.IsQuestFailed(currentObjectiveQuestId))
             {
                 Logging.Write("Quest " + currentObjectiveQuestId + " has failed, abandonning it.");
-                Quest.AbandonQuest(currentObjectiveQuestId);
-                ResetQuestObjective();
+                Quest.AbandonQuest(currentObjectiveQuestId, true);
                 return false;
             }
             // shortcut since we do objective one by one, for kill it can be completed before we do them all
@@ -346,8 +348,7 @@ namespace Quester.Tasks
             if (Quest.IsQuestFailed(currentObjectiveQuestId))
             {
                 Logging.Write("Quest " + currentObjectiveQuestId + " has failed, abandonning it.");
-                Quest.AbandonQuest(currentObjectiveQuestId);
-                ResetQuestObjective();
+                Quest.AbandonQuest(currentObjectiveQuestId, true);
                 return;
             }
             QuestObjectiveExecute(ref CurrentQuestObjective);

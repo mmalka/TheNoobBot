@@ -311,7 +311,8 @@ namespace nManager.Wow.Helpers
             return ret;
         }
 
-        public static void AbandonQuest(int questId)
+        public static bool RequestResetObjectives = false;
+        public static void AbandonQuest(int questId, bool forceResetObjectives = false)
         {
             if (questId == 0)
                 return;
@@ -323,6 +324,8 @@ namespace nManager.Wow.Helpers
                 Lua.LuaDoString("SelectQuestLogEntry(" + index + ") SetAbandonQuest() AbandonQuest()");
                 Thread.Sleep(Usefuls.Latency + 500);
             }
+            if (forceResetObjectives)
+                RequestResetObjectives = true;
         }
 
         public static bool GetLogQuestIsComplete(int questId) // we could also use the PlayerQuest struct from memory
