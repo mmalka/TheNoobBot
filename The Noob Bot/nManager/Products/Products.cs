@@ -207,6 +207,7 @@ namespace nManager.Products
             {
                 if (_instanceFromOtherAssembly != null)
                 {
+                    Application.DoEvents();
                     _inAutoPause = false;
                     _inManualPause = false;
                     TravelToContinentId = 9999999;
@@ -216,6 +217,7 @@ namespace nManager.Products
                     ForceTravel = false;
 
                     _instanceFromOtherAssembly.Start();
+                    Application.DoEvents();
                     if (!_instanceFromOtherAssembly.IsStarted)
                         return false;
                     EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots());
@@ -223,7 +225,7 @@ namespace nManager.Products
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
 
-
+                    Application.DoEvents();
                     Statistics.Reset();
 
                     // Fsm
@@ -233,6 +235,7 @@ namespace nManager.Products
                     Fsm.AddState(new Idle {Priority = 1});
                     Fsm.States.Sort();
                     Fsm.StartEngine(1);
+                    Application.DoEvents();
 
                     return true;
                 }
@@ -311,6 +314,7 @@ namespace nManager.Products
             try
             {
                 Fsm.StopEngine();
+                Application.DoEvents();
                 if (_instanceFromOtherAssembly != null)
                 {
                     EventsListener.UnHookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots());
@@ -318,12 +322,18 @@ namespace nManager.Products
                     EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
                     _instanceFromOtherAssembly.Stop();
+                    Application.DoEvents();
                     Thread.Sleep(500);
                     MovementManager.StopMove();
+                    Application.DoEvents();
                     Fight.StopFight();
+                    Application.DoEvents();
                     CombatClass.DisposeCombatClass();
+                    Application.DoEvents();
                     LongMove.StopLongMove();
+                    Application.DoEvents();
                     Memory.WowMemory.GameFrameUnLock();
+                    Application.DoEvents();
                     return true;
                 }
             }

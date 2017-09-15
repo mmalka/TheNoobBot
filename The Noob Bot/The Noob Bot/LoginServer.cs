@@ -48,6 +48,7 @@ namespace The_Noob_Bot
             {
                 if (HardwareKey == "")
                     HardwareKey = Others.GetRandomString(20);
+                Application.DoEvents();
                 if (login == "" || (password == "" && login.Length != 20))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.User_name_or_Password_error) + ".",
@@ -74,6 +75,7 @@ namespace The_Noob_Bot
             {
                 try
                 {
+                    Application.DoEvents();
                     _ip = GetReqWithAuthHeader(Others.GetClientIPScriptLink, Login, Password)[1];
                     List<string> resultConnectReq = GetReqWithAuthHeader(Others.GetAuthScriptLink + "?create=true&HardwareKey=" + HardwareKey, Login, Password);
                     string goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login + HardwareKey);
@@ -457,6 +459,7 @@ namespace The_Noob_Bot
 #pragma warning disable 162
 // ReSharper disable HeuristicUnreachableCode
                 string resultReq = Others.GetRequest(Others.GetUpdateScriptLink, "null=null");
+                Application.DoEvents();
                 if (resultReq != null)
                 {
                     if (resultReq.Count() < 100 && resultReq.Any())

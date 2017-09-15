@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Helpful;
 
 namespace nManager.FiniteStateMachine
@@ -211,6 +212,7 @@ namespace nManager.FiniteStateMachine
         {
             try
             {
+                Application.DoEvents();
                 if (!States.Contains(tempState))
                     States.Add(tempState);
             }

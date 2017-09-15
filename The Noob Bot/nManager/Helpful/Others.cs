@@ -558,7 +558,8 @@ namespace nManager.Helpful
                     url = url + "?" + data;
                 HttpWebRequest httpWRequest = (HttpWebRequest) WebRequest.Create(url);
                 httpWRequest.UserAgent = "TheNoobBot";
-                httpWResponse = (HttpWebResponse) httpWRequest.GetResponse();
+                httpWResponse = (HttpWebResponse)httpWRequest.GetResponse();
+                Application.DoEvents();
                 sr = new StreamReader(httpWResponse.GetResponseStream(), Encoding.GetEncoding("iso-8859-1"));
                 result = sr.ReadToEnd();
             }

@@ -22,9 +22,13 @@ namespace The_Noob_Bot
 
         public Login()
         {
+            Application.DoEvents();
             InitializeComponent();
+            Application.DoEvents();
             InitializeProgram();
+            Application.DoEvents();
             Translate();
+            Application.DoEvents();
         }
 
         private void SetToolTypeIfNeeded(Control label)
@@ -111,6 +115,7 @@ namespace The_Noob_Bot
         {
             try
             {
+                Application.DoEvents();
                 // File .exe.config
                 Process tempsProcess = Process.GetCurrentProcess();
                 bool restartBot = !Others.ExistFile(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config");
@@ -134,6 +139,7 @@ namespace The_Noob_Bot
                     tempsProcess.Kill();
                 }
 
+                Application.DoEvents();
                 LangSelection.DropDownStyle = ComboBoxStyle.DropDownList;
                 Others.GetVisualStudioRedistribuable2013();
             }
@@ -149,6 +155,7 @@ namespace The_Noob_Bot
             {
                 if (Others.ExistFile(Application.StartupPath + "\\Settings\\.login"))
                 {
+                    Application.DoEvents();
                     var strReader = new StreamReader(Application.StartupPath + "\\Settings\\.login", Encoding.Default);
                     try
                     {
@@ -350,13 +357,16 @@ namespace The_Noob_Bot
         {
             try
             {
+                Application.DoEvents();
                 RefreshButton.Enabled = false;
                 if (Process.GetProcessesByName("WoW-64").Length > 0)
                     MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.WoW_Client_64bit),
                         nManager.Translate.Get(nManager.Translate.Id.Title_WoW_Client_64bit),
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                Application.DoEvents();
                 SessionList.Items.Clear();
+                Application.DoEvents();
                 SessionList.SelectedIndex = -1;
                 var usedProcess = new List<string>();
                 var listWowProcess = new List<string> {"Wow", "WowT", "WowB", "WowTR"};
@@ -368,12 +378,14 @@ namespace The_Noob_Bot
                         Application.DoEvents();
                         if (SessionList.SelectedIndex == -1 && !Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id))
                         {
+                            Application.DoEvents();
                             SessionList.Items.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id + " - " +
                                                   Hook.PlayerName(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id));
                             SessionList.SelectedIndex = 0;
                         }
                         else
                         {
+                            Application.DoEvents();
                             string used = "";
                             if (Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id))
                                 used = " - " + nManager.Translate.Get(nManager.Translate.Id.In_use) + ".";
@@ -390,6 +402,7 @@ namespace The_Noob_Bot
                 }
                 if (SessionList.Items.Count == 0)
                     SessionList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.Please_connect_to_the_game));
+                Application.DoEvents(); 
                 RefreshButton.Enabled = true;
             }
             catch (Exception ex)
@@ -473,6 +486,7 @@ namespace The_Noob_Bot
                 RefreshButton.Enabled = false;
                 if (LoginOnServer() && AttachProcess())
                 {
+                    Application.DoEvents();
                     var formMain = new Main();
                     formMain.Show();
                     Hide();
