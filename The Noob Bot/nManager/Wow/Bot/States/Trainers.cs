@@ -329,6 +329,8 @@ namespace nManager.Wow.Bot.States
                 NpcDB.DelNpc(bestTeacher);
             else if (baseAddress > 0)
             {
+                if (bestTeacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f)
+                    return;
                 string[] skillInfo = bestTeacher.InternalData.Split(',');
                 if (skillInfo.Length == 2)
                 {
