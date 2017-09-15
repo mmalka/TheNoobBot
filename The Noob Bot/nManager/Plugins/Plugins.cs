@@ -190,30 +190,29 @@ namespace nManager.Plugins
                         _instanceFromOtherAssembly.ShowConfiguration();
                         return;
                     }
-                    if (onlyCheckVersion)
+                    if (onlyCheckVersion && !(_instanceFromOtherAssembly is State))
                     {
                         _worker = new Thread(_instanceFromOtherAssembly.CheckFields) {IsBackground = true, Name = _threadName};
                         _worker.Start();
                     }
+                    if (onlyCheckVersion)
+                        return;
+                    if (_instanceFromOtherAssembly is State)
+                    {
+                        if (Products.Products.IsStarted)
+                            return;
+                        State _statePlugin = _instanceFromOtherAssembly as State;
+                        if (_statePlugin.Priority <= 0 || _statePlugin.Priority > 199)
+                        {
+                            Logging.WriteError("The State plugin doesn't uses a valid priority, must be within 1 and 199. Path: " + PathToPluginFile);
+                            return;
+                        }
+                        Plugins.ListLoadedStatePlugins.Add(_instanceFromOtherAssembly as State);
+                    }
                     else
                     {
-                        if (_instanceFromOtherAssembly is State)
-                        {
-                            if (Products.Products.IsStarted)
-                                return;
-                            State _statePlugin = _instanceFromOtherAssembly as State;
-                            if (_statePlugin.Priority <= 0 || _statePlugin.Priority > 199)
-                            {
-                                Logging.WriteError("The State plugin doesn't uses a valid priority, must be within 1 and 199. Path: " + PathToPluginFile);
-                                return;
-                            }
-                            Plugins.ListLoadedStatePlugins.Add(_instanceFromOtherAssembly as State);
-                        }
-                        else
-                        {
-                            _worker = new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
-                            _worker.Start();
-                        }
+                        _worker = new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
+                        _worker.Start();
                     }
                 }
             }
