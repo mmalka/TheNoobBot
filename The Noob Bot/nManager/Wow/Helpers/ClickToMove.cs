@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.MemoryClass;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -41,6 +42,11 @@ namespace nManager.Wow.Helpers
                 if (cache != point)
                 {
                     Logging.WriteNavigator("MoveTo(" + point + ")");
+                    if (cache.IsValid && cache.DistanceTo(point) > 500)
+                    {
+                        Logging.WriteDebug("The two previouses CTM were very far appart from each others, logging CallStack.");
+                        Logging.WriteDebug(Hook.CurrentCallStack);
+                    }
                     cache = point;
                 }
             }
