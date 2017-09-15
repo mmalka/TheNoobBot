@@ -113,7 +113,7 @@ namespace nManager.Wow.Helpers
                             Point targetPoint = new Point();
                             if (p.IsValid && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, p, CGWorldFrameHitFlags.HitTestAllButLiquid))
                             {
-                                if ((point.DistanceTo2D(pos) <= 60 || flyingPathFinder && point.DistanceTo2D(pos) <= 110) && pTemps.Z > point.Z)
+                                if ((point.DistanceTo2D(pos) <= 60 || flyingPathFinder && point.DistanceTo2D(pos) <= 110))
                                 {
                                     float degree = 0f;
                                     bool doContinue = false;
