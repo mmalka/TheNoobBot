@@ -122,9 +122,10 @@ namespace nManager.Wow.Helpers
                                         LongMoveIsLanding = true;
                                         while (degree < 360)
                                         {
-                                            //Calculate position on a circle 15degrees at a time and check if we can go there
-                                            float x = (float) (pos.X + 50f*System.Math.Cos(Math.DegreeToRadian(degree)));
-                                            float y = (float) (pos.Y + 50f*System.Math.Sin(Math.DegreeToRadian(degree)));
+                                            var rnd = new Random();
+                                            float radius = rnd.Next(25, 50);
+                                            float x = (float) (pos.X + radius*System.Math.Cos(Math.DegreeToRadian(degree)));
+                                            float y = (float) (pos.Y + radius*System.Math.Sin(Math.DegreeToRadian(degree)));
                                             Point topPoint = new Point(x, y, pos.Z);
                                             Point bottomPoint = new Point(x, y, PathFinder.GetZPosition(x, y));
                                             if (!TraceLine.TraceLineGo(topPoint, new Point(topPoint.LerpByDistance(point, 3f)), CGWorldFrameHitFlags.HitTestAllButLiquid))
@@ -151,7 +152,9 @@ namespace nManager.Wow.Helpers
                                                     // we want to go to topPoint then dismount down to bottomPoint, then findPath to target.
                                                 }
                                             }
-                                            degree += 25;
+
+                                            float randomDegree = rnd.Next(20, 30);
+                                            degree += randomDegree;
                                             if (degree >= 360f)
                                                 failed = true;
                                         }
