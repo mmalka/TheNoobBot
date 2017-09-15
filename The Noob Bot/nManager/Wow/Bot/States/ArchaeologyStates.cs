@@ -62,12 +62,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
-                    !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
                     return false;
 
                 // It's in pause if we did TP to a random dig site

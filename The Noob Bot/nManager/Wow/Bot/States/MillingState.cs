@@ -35,14 +35,7 @@ namespace nManager.Wow.Bot.States
                     Others.Times)
                     return false;
 
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
-                    ObjectManager.ObjectManager.Me.IsMounted ||
-                    MovementManager.InMovement ||
-                    !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight || ObjectManager.ObjectManager.Me.IsMounted || MovementManager.InMovement)
                     return false;
 
 

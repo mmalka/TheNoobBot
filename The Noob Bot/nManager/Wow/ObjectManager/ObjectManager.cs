@@ -255,8 +255,8 @@ namespace nManager.Wow.ObjectManager
                             if (localPlayerGuid == objGuid)
                             {
                                 // wowplayer either not part of the list or bugged
-                                Me.UpdateBaseAddress((uint)currentObject);
-                                obj = new WoWPlayer((uint)currentObject);
+                                Me.UpdateBaseAddress((uint) currentObject);
+                                obj = new WoWPlayer((uint) currentObject);
                             }
                             switch (objType)
                             {

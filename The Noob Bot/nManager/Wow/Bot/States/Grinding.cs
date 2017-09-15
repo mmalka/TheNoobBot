@@ -40,12 +40,7 @@ namespace nManager.Wow.Bot.States
                 if (nManagerSetting.CurrentSetting.DontPullMonsters)
                     return false;
 
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
-                    !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
                     return false;
 
                 // Get unit:

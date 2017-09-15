@@ -39,8 +39,7 @@ namespace nManager.Wow.Bot.States
                 if (nManagerSetting.CurrentSetting.DontPullMonsters)
                     return false;
 
-                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions)
                     return false;
 
                 if (ObjectManager.ObjectManager.Me.InTransport && !ObjectManager.ObjectManager.Me.InCombatBlizzard)

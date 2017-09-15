@@ -81,8 +81,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoading || ObjMgr.Me.IsDeadMe || !ObjMgr.Me.IsValid ||
-                    ObjMgr.Me.InInevitableCombat || !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
                     return false;
                 // Not initialized, then run
                 if (tList == null)

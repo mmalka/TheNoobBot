@@ -79,7 +79,6 @@ namespace nManager.Wow.Helpers
                 // BOOL __thiscall CGPlayer_C__ClickToMove(WoWActivePlayer *this, CLICKTOMOVETYPE clickType, WGUID *interactGuid, WOWPOS *clickPos, float precision)
                 string[] asm = new[]
                 {
-
                     "mov edx, [" + precisionCodecave + "]",
                     "push edx",
                     "push " + posCodecave,

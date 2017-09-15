@@ -1152,5 +1152,15 @@ namespace nManager.Wow.Helpers
 
             return bestPoint;
         }
+
+        public static bool BadBottingConditions
+        {
+            get { return !Products.Products.IsStarted || !InGame || IsLoading || !ObjectManager.ObjectManager.Me.IsValid || ObjectManager.ObjectManager.Me.IsDeadMe; }
+        }
+
+        public static bool ShouldFight
+        {
+            get { return ObjectManager.ObjectManager.Me.InInevitableCombat; }
+        }
     }
 }

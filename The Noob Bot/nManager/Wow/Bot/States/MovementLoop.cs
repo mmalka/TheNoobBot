@@ -26,12 +26,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
-                    !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
                     return false;
 
                 if (MovementManager.InMovement)

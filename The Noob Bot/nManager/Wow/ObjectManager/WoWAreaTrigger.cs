@@ -122,7 +122,7 @@ namespace nManager.Wow.ObjectManager
                     return _spell;
                 if (Entry > 0)
                 {
-                    _spell = new Spell((uint)Entry);
+                    _spell = new Spell((uint) Entry);
                     return _spell;
                 }
                 return new Spell(0);

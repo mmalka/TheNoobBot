@@ -148,7 +148,7 @@ public class CaptureTheFlag
                 }
                 Main.InternalIgnoreFight = false;
                 Main.InternalDontStartFights = false;
-                if (Usefuls.InGame && !Usefuls.IsLoading && !ObjectManager.Me.IsDeadMe && ObjectManager.Me.IsValid && Products.IsStarted && Usefuls.IsInBattleground &&
+                if (!Usefuls.BadBottingConditions && Usefuls.IsInBattleground &&
                     !Battleground.IsFinishBattleground() && Battleground.BattlegroundIsStarted())
                 {
                     if (ObjectManager.Me.IsHoldingWGFlag && !ObjectManager.IsSomeoneHoldingWGFlag())
@@ -357,8 +357,7 @@ public class CaptureTheFlag
 
     private static bool CurrentInformationsHasChanged(bool ignoreFight, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag, bool isSomeoneHoldingThemFlag, bool inCombat)
     {
-        if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.Me.IsDeadMe || !ObjectManager.Me.IsValid || !Products.IsStarted || !Usefuls.IsInBattleground ||
-            Battleground.IsFinishBattleground() || !Battleground.BattlegroundIsStarted())
+        if (Usefuls.BadBottingConditions || !Usefuls.IsInBattleground || Battleground.IsFinishBattleground() || !Battleground.BattlegroundIsStarted())
         {
             Logging.Write("Current Informations Has Changed. #1");
             return true;

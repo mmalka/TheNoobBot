@@ -35,8 +35,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions)
                     return false;
                 _unit = AcquireTarger();
                 return _unit.IsValid;

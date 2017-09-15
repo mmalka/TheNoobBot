@@ -312,6 +312,7 @@ namespace nManager.Wow.Helpers
         }
 
         public static bool RequestResetObjectives = false;
+
         public static void AbandonQuest(int questId, bool forceResetObjectives = false)
         {
             if (questId == 0)

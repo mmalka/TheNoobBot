@@ -218,7 +218,7 @@
             KnownAllSpells = SpellBookNumSpells - 0x4, // found via SpellBookNumSpells - 4
             SpellBookNumSpells = 0x117F70C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0x117F758 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0x117F758 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0x117F7F4, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,

@@ -178,12 +178,7 @@ public static class MyStatePlugin
 
     public static bool NeedToRun()
     {
-        if (!Usefuls.InGame ||
-            Usefuls.IsLoading ||
-            ObjectManager.Me.IsDeadMe ||
-            !ObjectManager.Me.IsValid ||
-            ObjectManager.Me.InInevitableCombat ||
-            !Products.IsStarted)
+        if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
             return false;
 
         if (Usefuls.IsSwimming && ObjectManager.Me.BreathPercentage < 20)

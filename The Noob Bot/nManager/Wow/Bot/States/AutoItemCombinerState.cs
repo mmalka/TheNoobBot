@@ -44,7 +44,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (!nManagerSetting.CurrentSetting.MakeStackOfElementalsItems)
                     return false;
-                if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InInevitableCombat)
+                if (Usefuls.BadBottingConditions)
                     return false;
                 if (!_remakeTimer.IsReady)
                     return false;

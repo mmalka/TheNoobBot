@@ -31,8 +31,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions)
                     return false;
 
                 if (ObjectManager.ObjectManager.Me.HealthPercent < 100)

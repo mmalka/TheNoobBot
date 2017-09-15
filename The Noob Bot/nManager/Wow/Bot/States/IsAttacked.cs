@@ -53,9 +53,9 @@ namespace nManager.Wow.Bot.States
                 Thread.Sleep(1500); // no need to spam, this is supposed to be more "human", and human have brainlag anyway.
                 if (Fight.InFight)
                     continue;
-                if (!Products.Products.IsStarted || !Usefuls.InGame || Usefuls.IsLoading || !ObjectManager.ObjectManager.Me.IsValid)
+                if (Usefuls.BadBottingConditions)
                     continue;
-                if (ObjectManager.ObjectManager.Me.IsDeadMe || (ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)))
+                if ((ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)))
                     continue;
                 if (_stealthSpell.HaveBuff || _prowlSpell.HaveBuff)
                     continue;
@@ -92,16 +92,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.IsMounted &&
-                     (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) ||
-                    !Products.Products.IsStarted)
-                    return false;
-
-                if (CustomProfile.GetSetIgnoreFight || Quest.GetSetIgnoreFight || Quest.GetSetIgnoreAllFight)
+                if (Usefuls.BadBottingConditions || !Usefuls.ShouldFight)
                     return false;
 
                 /* RANDOM SECURITY CHECK */

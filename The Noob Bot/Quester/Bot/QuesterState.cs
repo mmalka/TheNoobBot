@@ -20,18 +20,7 @@ namespace Quester.Bot
 
         public override bool NeedToRun
         {
-            get
-            {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.Me.IsValid ||
-                    ObjectManager.Me.InInevitableCombat ||
-                    !Products.IsStarted)
-                    return false;
-
-                return true;
-            }
+            get { return !Usefuls.BadBottingConditions && !Usefuls.ShouldFight; }
         }
 
         public override List<State> NextStates

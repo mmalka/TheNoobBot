@@ -204,6 +204,7 @@ namespace nManager.Wow.Class
                 return false;
             }
         }
+
         /// <summary>
         /// Return the available SpellCharges using LUA.
         /// </summary>

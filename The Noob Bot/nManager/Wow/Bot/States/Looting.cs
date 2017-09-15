@@ -56,13 +56,7 @@ namespace nManager.Wow.Bot.States
                     }
                 }
 
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
-                    Usefuls.IsFlying ||
-                    !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight || Usefuls.IsFlying)
                     return false;
 
                 if (Usefuls.PlayerUsingVehicle)

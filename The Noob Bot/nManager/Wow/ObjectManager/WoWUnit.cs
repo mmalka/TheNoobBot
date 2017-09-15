@@ -2931,7 +2931,7 @@ namespace nManager.Wow.ObjectManager
                     return 100;
                 if (breathLeft < 0)
                     return 0;
-                var breath = (int)(breathLeft/180000*100);
+                var breath = (int) (breathLeft/180000*100);
                 return breath;
             }
         }

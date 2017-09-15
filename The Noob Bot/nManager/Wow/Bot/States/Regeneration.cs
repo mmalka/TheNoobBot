@@ -38,8 +38,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InCombat || Usefuls.IsFlying || !Products.Products.IsStarted)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight || Usefuls.IsFlying)
                     return false;
 
                 if (!nManagerSetting.CurrentSetting.ActivateRegenerationSystem)

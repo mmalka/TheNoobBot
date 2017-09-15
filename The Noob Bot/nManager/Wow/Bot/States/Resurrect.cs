@@ -41,13 +41,10 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading)
+                if (!Usefuls.InGame || Usefuls.IsLoading)
                     return false;
 
-                if (ObjectManager.ObjectManager.Me.IsDeadMe &&
-                    ObjectManager.ObjectManager.Me.IsValid &&
-                    Products.Products.IsStarted)
+                if (Products.Products.IsStarted && ObjectManager.ObjectManager.Me.IsDeadMe && ObjectManager.ObjectManager.Me.IsValid)
                     return true;
                 if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                     return true;

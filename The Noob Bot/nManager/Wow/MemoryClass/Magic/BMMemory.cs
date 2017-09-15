@@ -19,7 +19,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool Write<T>(uint dwAddress, T value)
         {
-            var size = Marshal.SizeOf(typeof(T));
+            var size = Marshal.SizeOf(typeof (T));
             var writePtr = Memory.WowMemory.Memory.AllocateMemory(size);
             if (writePtr <= 0)
                 return false;
@@ -27,7 +27,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 return false;
             string[] mWrite =
             {
-                "mov esi, "+ writePtr,
+                "mov esi, " + writePtr,
                 "mov edi," + dwAddress,
                 "mov ecx," + size,
                 "rep movsb",
