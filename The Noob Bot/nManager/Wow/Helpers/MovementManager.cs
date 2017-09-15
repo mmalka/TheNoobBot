@@ -1401,16 +1401,7 @@ namespace nManager.Wow.Helpers
             if (!obj.IsValid)
                 return;
             UInt128 objGuid = obj.Guid;
-            ClickToMove.CGPlayer_C__ClickToMove(0, 0, 0, objGuid, (int) ClickToMoveType.FaceTarget, 0f);
-        }
-
-
-        public static void ConstantFaceCTM(WoWObject obj, bool start = true)
-        {
-            if (!obj.IsValid)
-                return;
-            UInt128 objGuid = obj.Guid;
-            ClickToMove.CGPlayer_C__ClickToMove(0, 0, 0, objGuid, (int) (start ? ClickToMoveType.ConstantFace : ClickToMoveType.Stop_ThrowsException), 0f);
+            ClickToMove.CGPlayer_C__ClickToMove(0, 0, 0, objGuid, (int) ClickToMoveType.FaceTarget, 0f, true);
         }
 
         /// <summary>

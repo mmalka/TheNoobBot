@@ -46,13 +46,15 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, UInt128 guid, Int32 action,
-            Single precision)
+        public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, UInt128 guid, Int32 action, Single precision, bool forceCTM = false)
         {
             try
             {
-                CGPlayer_C__MoveTo(new Vector3(x, y, z));
-                return;
+                if (!forceCTM)
+                {
+                    CGPlayer_C__MoveTo(new Vector3(x, y, z));
+                    return;
+                }
                 if (!Usefuls.InGame && !Usefuls.IsLoading)
                     return;
                 Usefuls.UpdateLastHardwareAction();
@@ -77,34 +79,19 @@ namespace nManager.Wow.Helpers
                 // BOOL __thiscall CGPlayer_C__ClickToMove(WoWActivePlayer *this, CLICKTOMOVETYPE clickType, WGUID *interactGuid, WOWPOS *clickPos, float precision)
                 string[] asm = new[]
                 {
-                    /*"call " +
-                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
-                    ,
-                    "test eax, eax",
-                    "je @out",*/
-                    /*"call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                    "test eax, eax",
-                    "je @out",*/
+
                     "mov edx, [" + precisionCodecave + "]",
                     "push edx",
                     "push " + posCodecave,
                     "push " + guidCodecave,
-                    "push " + action,
-                    "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress,
-                    "call " +
-                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove),
+                    "mov esi, " + action, // move the last push into esi
+                    "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress, // get player pointer to ecx prior to call
+                    "jmp " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.PushESI), // jmp on a "push esi / call ctm"
                     "@out:",
                     "retn"
                 };
 
-                string[] asmz = new[]
-                {
-                    "mov eax, 5",
-                    "mov [" + (Memory.WowProcess.WowModule + 0x10D0824) + "], eax",
-                    "retn"
-                };
-
-                Memory.WowMemory.InjectAndExecute(asmz);
+                Memory.WowMemory.InjectAndExecute(asm);
                 Memory.WowMemory.Memory.FreeMemory(posCodecave);
                 Memory.WowMemory.Memory.FreeMemory(guidCodecave);
                 Memory.WowMemory.Memory.FreeMemory(precisionCodecave);

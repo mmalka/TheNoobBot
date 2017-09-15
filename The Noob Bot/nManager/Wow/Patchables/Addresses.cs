@@ -268,6 +268,7 @@
             Spell_C_HandleTerrainClick = 0x3F565B,
             CGUnit_C__Interact = 0x620A13,
             strlen = 0x95D6E0, // ida _strlen
+            PushESI = 0x46EDFF, // CGPlayer_C__ClickToMoveCaller+178
             // saving
             ClntObjMgrGetActivePlayerObj = 0x0,
             WowClientDB2__GetRowPointer = 0x324719,
