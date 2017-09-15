@@ -1028,6 +1028,7 @@ namespace nManager.Wow.Helpers
             {
                 _loop = false;
                 _movement = false;
+                LongMove.StopLongMove();
                 StopMoveTo();
             }
             catch (Exception exception)
@@ -1659,6 +1660,8 @@ namespace nManager.Wow.Helpers
             bool patherResult, requiresUpdate;
 
             uint baseAddress = UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
+            if (LongMove.IsLongMove)
+                return baseAddress;
             if (doMount && !InMovement && baseAddress <= 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - specialRange) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount(false, true);

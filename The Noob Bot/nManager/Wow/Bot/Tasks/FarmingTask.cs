@@ -40,6 +40,7 @@ namespace nManager.Wow.Bot.Tasks
                 nodes = nodes.OrderBy(x => x.GetDistance);
                 foreach (WoWGameObject node in nodes.Where(node => node.IsValid))
                 {
+                    MovementManager.StopMove();
                     Logging.Write("Farm " + node.Name + " (" + node.Entry + ") > " + node.Position.X + "; " + node.Position.Y + "; " + node.Position.Z);
                     float zT;
                     if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z)
