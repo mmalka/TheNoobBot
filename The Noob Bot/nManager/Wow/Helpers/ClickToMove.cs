@@ -15,6 +15,8 @@ namespace nManager.Wow.Helpers
         {
             lock (thisLock)
             {
+                MovementsAction.Ascend(false);
+                MovementsAction.Descend(false);
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     return;
                 Usefuls.UpdateLastHardwareAction();
