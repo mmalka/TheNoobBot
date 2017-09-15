@@ -1660,6 +1660,8 @@ namespace nManager.Wow.Helpers
             bool patherResult, requiresUpdate;
 
             uint baseAddress = UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
+            if (LongMove.IsLongMove && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 10f)
+                LongMove.StopLongMove();
             if (LongMove.IsLongMove)
                 return baseAddress;
             if (doMount && !InMovement && baseAddress <= 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
