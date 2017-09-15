@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Timer = nManager.Helpful.Timer;
@@ -105,8 +106,11 @@ namespace nManager.Wow.Bot.States
         {
             Logging.Write("AutoItemCombiner is now running, trying to combines all items...");
             int k = 0;
+            MountTask.DismountMount();
             for (int i = _loadedCombinables.Items.Count - 1; i > 0; i--)
             {
+                if (Usefuls.BadBottingConditions)
+                    return;
                 var combinable = _loadedCombinables.Items[i];
                 if (!_tempItemStock.ContainsKey(combinable.ItemId) || _tempItemStock[combinable.ItemId] <= combinable.PerAmount) continue;
                 int remainder;
