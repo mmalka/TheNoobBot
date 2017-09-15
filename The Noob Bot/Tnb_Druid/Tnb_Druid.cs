@@ -853,7 +853,7 @@ public class DruidBalance
         public int UseWarStompBelowPercentage = 25;
 
         /* Druid Buffs */
-        public bool UseAquaticTravelFormOOC = true;
+        public bool UseAquaticTravelFormOOC = false;
         public bool UseCatFormOOC = false;
         public bool UseMoonkinForm = true;
         //public bool UseBlessingoftheAncients  = true; //TEST THIS FIRST
@@ -1699,9 +1699,9 @@ public class DruidFeral
         public int UseWarStompBelowPercentage = 25;
 
         /* Druid Buffs */
-        public bool UseAquaticTravelFormOOC = true;
+        public bool UseAquaticTravelFormOOC = false;
         public bool UseCatForm = true;
-        public bool UseCatFormOOC = true;
+        public bool UseCatFormOOC = false;
         public bool UseSavageRoar = true;
 
         /* Druid DoTs */
@@ -2248,8 +2248,8 @@ public class DruidRestoration
         public int UseSwiftmendBelowPercentage = 40;
 
         /* Utility Cooldowns */
-        public bool UseAquaticTravelFormOOC = true;
-        public bool UseCatFormOOC = true;
+        public bool UseAquaticTravelFormOOC = false;
+        public bool UseCatFormOOC = false;
         public bool UseDash = true;
 
         /* Game Settings */
@@ -2798,9 +2798,9 @@ public class DruidGuardian
         public int UseWarStompBelowPercentage = 25;
 
         /* Druid Buffs */
-        public bool UseAquaticTravelFormOOC = true;
+        public bool UseAquaticTravelFormOOC = false;
         public bool UseBearForm = true;
-        public bool UseCatFormOOC = true;
+        public bool UseCatFormOOC = false;
 
         /* Offensive Spells */
         public bool UseMangle = true;
