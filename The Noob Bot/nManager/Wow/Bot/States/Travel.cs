@@ -777,7 +777,8 @@ namespace nManager.Wow.Bot.States
                             if (MountTask.GetMountCapacity() >= MountCapacity.Fly)
                             {
                                 MountTask.Mount(true, true);
-                                MountTask.Takeoff();
+                                if (MountTask.OnFlyMount())
+                                    MountTask.Takeoff();
                             }
                         }
                         else if (customPath.UseMount)
@@ -805,7 +806,8 @@ namespace nManager.Wow.Bot.States
                             if (MountTask.GetMountCapacity() >= MountCapacity.Fly)
                             {
                                 MountTask.Mount(true, true);
-                                MountTask.Takeoff();
+                                if (MountTask.OnFlyMount())
+                                    MountTask.Takeoff();
                             }
                         }
                         else

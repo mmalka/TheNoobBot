@@ -437,7 +437,8 @@ namespace nManager.Wow.Bot.Tasks
                     {
                         tryMounting = 0;
                         Thread.Sleep(100);
-                        Takeoff();
+                        if (OnFlyMount())
+                            Takeoff();
                     }
                 }
             }
@@ -449,6 +450,9 @@ namespace nManager.Wow.Bot.Tasks
 
         public static void Takeoff()
         {
+            if (!OnFlyMount())
+                return;
+            Thread.Sleep(200 + Usefuls.Latency);
             Logging.WriteNavigator("Take-off in progress.");
             MovementsAction.Ascend(true);
             Timer t = new Timer(950);
