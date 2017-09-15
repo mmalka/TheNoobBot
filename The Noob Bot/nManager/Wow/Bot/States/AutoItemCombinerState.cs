@@ -106,7 +106,13 @@ namespace nManager.Wow.Bot.States
         {
             Logging.Write("AutoItemCombiner is now running, trying to combines all items...");
             int k = 0;
-            MountTask.DismountMount();
+            if (Usefuls.IsFlying)
+            {
+                MountTask.DismountMount();
+                Thread.Sleep(400);
+                MountTask.DismountMount();
+                Thread.Sleep(400);
+            }
             for (int i = _loadedCombinables.Items.Count - 1; i > 0; i--)
             {
                 if (Usefuls.BadBottingConditions)
