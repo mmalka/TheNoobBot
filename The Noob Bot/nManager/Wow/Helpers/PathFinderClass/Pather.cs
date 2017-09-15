@@ -112,6 +112,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
+                UnloadAllTiles();
                 // _mesh.Dispose();
             }
             catch (Exception)
@@ -560,6 +561,23 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
+        private void UnloadAllTiles()
+        {
+            lock (_threadLocker)
+            {
+                Logging.WriteNavigator("Unloading all tiles...");
+
+                List<Tuple<int, int>> toRemove = new List<Tuple<int, int>>();
+                foreach (KeyValuePair<Tuple<int, int>, int> entry in _loadedTiles)
+                {
+                    RemoveTile(entry.Key.Item1, entry.Key.Item2);
+                    toRemove.Add(entry.Key);
+                }
+                foreach (Tuple<int, int> entry in toRemove)
+                    _loadedTiles.Remove(entry);
+            }
+        }
+
         private void CheckFailedTilesAgeAndUnload()
         {
             lock (_threadLocker)
@@ -653,7 +671,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             lock (_threadLocker)
             {
                 List<Point> path = FindPathSimple(startVec, endVec, out resultSuccess, out failpolyref);
-                if (path == null ||path.Count < 2)
+                if (path == null || path.Count < 2)
                 {
                     resultSuccess = false;
                     return new List<Point>();
@@ -712,7 +730,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     {
                         var startVec2 = startVec;
                         startVec2.Z = GetZ(new Point(startVec));
-                        var st2 = startVec2.ToRecast().ToFloatArray(); ;
+                        var st2 = startVec2.ToRecast().ToFloatArray();
                         startRef = _query.FindNearestPolygon(st2, extents, Filter);
                         if (startRef > 0)
                         {
