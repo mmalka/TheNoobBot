@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
@@ -54,6 +55,7 @@ namespace nManager.Wow.Helpers
                     int count = 0;
                     for (uint i = 0; i <= EventsCount - 1; i++)
                     {
+                        Application.DoEvents();
                         uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 0x4*i);
                         if (ptrCurrentEvent > 0)
                         {

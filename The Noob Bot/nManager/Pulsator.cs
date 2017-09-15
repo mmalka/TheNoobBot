@@ -22,11 +22,14 @@ namespace nManager
                     return;
 
                 SpellManager.SpellListManager.LoadSpellList(Application.StartupPath + "\\Data\\spell.txt");
+                Application.DoEvents();
                 Wow.Memory.WowProcess = new Process(processId);
                 Wow.Memory.WowMemory = new Hook();
                 if (Wow.Helpers.Usefuls.WowVersion() == Information.TargetWowBuild)
                 {
+                    Application.DoEvents();
                     Wow.ObjectManager.Pulsator.Initialize();
+                    Application.DoEvents();
                     //AccountSecurity.Pulse();
                 }
             }

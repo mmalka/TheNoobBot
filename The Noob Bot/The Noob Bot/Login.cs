@@ -63,6 +63,7 @@ namespace The_Noob_Bot
                 LangSelection.Items.Clear();
                 foreach (string l in Others.GetFilesDirectory(Application.StartupPath + "\\Data\\Lang\\", "*.xml"))
                 {
+                    Application.DoEvents();
                     LangSelection.Items.Add(l.Remove(l.Length - 1 - 3));
                 }
 
@@ -197,6 +198,7 @@ namespace The_Noob_Bot
                 {
                     for (int i = 0; i < SessionList.Items.Count; i++)
                     {
+                        Application.DoEvents();
                         object item = SessionList.Items[i];
                         if (item.ToString().Contains(_autoStarted + " -"))
                         {
@@ -228,6 +230,7 @@ namespace The_Noob_Bot
                 if (LoginServer.IsConnected)
                     return true;
 
+                Application.DoEvents();
                 if ((Identifier.Text.Replace(" ", "") != "" && Password.Text.Replace(" ", "") != ""))
                 {
                     if (Remember.Checked)
@@ -244,8 +247,9 @@ namespace The_Noob_Bot
                             File.Delete(fileToDelete);
                     }
 
+                    Application.DoEvents();
                     LoginServer.Connect(Identifier.Text.Trim(), Password.Text.Trim());
-
+                    Application.DoEvents();
                     while (!LoginServer.IsConnected)
                     {
                         Application.DoEvents();
@@ -272,6 +276,7 @@ namespace The_Noob_Bot
                 Process[] Updater = Process.GetProcesses();
                 for (int i = 0; i < Updater.Length; i++)
                 {
+                    Application.DoEvents();
                     Process AbortUpdate = Updater[i];
                     if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck)) continue;
                     AbortUpdate.Kill();
@@ -318,6 +323,7 @@ namespace The_Noob_Bot
                         }
                     }
 
+                    Application.DoEvents();
                     Pulsator.Pulse(idProcess, KeyNManager);
                     Logging.Write("Select game process: " + SessionList.SelectedItem);
                     if (Pulsator.IsActive)
@@ -356,8 +362,10 @@ namespace The_Noob_Bot
                 var listWowProcess = new List<string> {"Wow", "WowT", "WowB", "WowTR"};
                 foreach (string s in listWowProcess)
                 {
+                    Application.DoEvents();
                     for (int i = nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s).Length - 1; i >= 0; i--)
                     {
+                        Application.DoEvents();
                         if (SessionList.SelectedIndex == -1 && !Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id))
                         {
                             SessionList.Items.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id + " - " +
@@ -377,6 +385,7 @@ namespace The_Noob_Bot
 
                 foreach (string v in usedProcess)
                 {
+                    Application.DoEvents();
                     SessionList.Items.Add(v);
                 }
                 if (SessionList.Items.Count == 0)
