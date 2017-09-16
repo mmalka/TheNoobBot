@@ -122,11 +122,6 @@ bool dtNavMeshHeaderSwapEndian(unsigned char* data, const int dataSize);
 ///  @param[in]		dataSize	The size of the data array.
 bool dtNavMeshDataSwapEndian(unsigned char* data, const int dataSize);
 
-int createBVTree(const unsigned short* verts, const int nverts,
-	const unsigned short* polys, const int npolys, const int nvp,
-	const float cs, const float ch,
-	const int nnodes, dtBVNode* nodes);
-
 #endif // DETOURNAVMESHBUILDER_H
 
 // This section contains detailed documentation for members that don't have
