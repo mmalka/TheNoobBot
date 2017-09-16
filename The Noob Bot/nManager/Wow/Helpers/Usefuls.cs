@@ -955,6 +955,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                return GetName.GetPlayerName.GetPlayerNameByGuid(guid);
                 uint next = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PlayerNameStore.PlayerNameStorePtr + (uint) Addresses.PlayerNameStore.PlayerNameNextOffset);
                 uint ptr = next;
                 while (true)

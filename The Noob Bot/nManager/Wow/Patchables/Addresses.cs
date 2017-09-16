@@ -267,6 +267,7 @@
             CGWorldFrame__Intersect = 0x7E72ED,
             Spell_C_HandleTerrainClick = 0x3F565B,
             CGUnit_C__Interact = 0x620A13,
+            CGUnit_C__GetUnitName = 0x45B9F1,
             strlen = 0x95D6E0, // ida _strlen
             PushESI = 0x46EDFF, // CGPlayer_C__ClickToMoveCaller+178
             // saving

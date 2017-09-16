@@ -237,6 +237,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Wow\Helpers\DBReaderFactory.cs" />
+    <Compile Include="Wow\Helpers\GetName.cs" />
     <Compile Include="Wow\Helpers\IWowClientDBReader.cs" />
     <Compile Include="Wow\Helpers\Portals.cs" />
     <Compile Include="Wow\Helpers\TableDefinition.cs" />
