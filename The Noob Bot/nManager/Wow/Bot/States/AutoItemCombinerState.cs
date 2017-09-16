@@ -105,7 +105,6 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             Logging.Write("AutoItemCombiner is now running, trying to combines all items...");
-            int k = 0;
             if (Usefuls.IsFlying)
             {
                 MountTask.DismountMount();
@@ -124,6 +123,8 @@ namespace nManager.Wow.Bot.States
                 Timer t = new Timer(amountToCombine*1000);
                 while (System.Math.DivRem(ItemsManager.GetItemCount(combinable.ItemId), combinable.PerAmount, out remainder) > 0)
                 {
+                    if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
+                        return;
                     ItemsManager.UseItem(combinable.ItemId);
                     Thread.Sleep(50 + Usefuls.Latency);
                     if (t.IsReady)
