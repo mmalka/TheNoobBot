@@ -121,24 +121,31 @@ namespace nManager.Wow.MemoryClass
 
         public void Dispose()
         {
-            IntPtr l_User32 = GetModuleHandle("user32.dll");
-            IntPtr l_SetWindowLongW = GetProcAddress(l_User32,
-                "SetWindowLongW");
-
-            // Restore the original WndProc callback
-            var l_Mnemonics = new[]
+            try
             {
-                "mov eax, [" + m_OriginalWndProc + "]",
-                "push eax",
-                "push " + GWL_WNDPROC + "",
-                "push " + m_WindowHandle + "",
-                "call " + l_SetWindowLongW + "",
-                "retn"
-            };
-            m_Process.Yasm.InjectAndExecute(l_Mnemonics);
+                IntPtr l_User32 = GetModuleHandle("user32.dll");
+                IntPtr l_SetWindowLongW = GetProcAddress(l_User32,
+                    "SetWindowLongW");
 
-            if (m_Data != null)
-                m_Data.Dispose();
+                // Restore the original WndProc callback
+                var l_Mnemonics = new[]
+                {
+                    "mov eax, [" + m_OriginalWndProc + "]",
+                    "push eax",
+                    "push " + GWL_WNDPROC + "",
+                    "push " + m_WindowHandle + "",
+                    "call " + l_SetWindowLongW + "",
+                    "retn"
+                };
+                m_Process.Yasm.InjectAndExecute(l_Mnemonics);
+
+                if (m_Data != null)
+                    m_Data.Dispose();
+            }
+            catch
+            {
+                // if Wow have been closed, it wont works.
+            }
         }
 
         /// <summary>
