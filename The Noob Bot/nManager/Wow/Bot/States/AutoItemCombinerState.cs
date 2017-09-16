@@ -120,18 +120,17 @@ namespace nManager.Wow.Bot.States
                 var combinable = _loadedCombinables.Items[i];
                 if (!_tempItemStock.ContainsKey(combinable.ItemId) || _tempItemStock[combinable.ItemId] <= combinable.PerAmount) continue;
                 int remainder;
-                int amountToFold = System.Math.DivRem(_tempItemStock[combinable.ItemId], combinable.PerAmount, out remainder);
-                for (int j = 0; j < amountToFold; j++)
+                int amountToCombine = System.Math.DivRem(ItemsManager.GetItemCount(combinable.ItemId), combinable.PerAmount, out remainder);
+                Timer t = new Timer(amountToCombine*1000);
+                while (System.Math.DivRem(ItemsManager.GetItemCount(combinable.ItemId), combinable.PerAmount, out remainder) > 0)
                 {
                     ItemsManager.UseItem(combinable.ItemId);
-                    Thread.Sleep(600 + Usefuls.Latency);
-                    k++;
+                    Thread.Sleep(50 + Usefuls.Latency);
+                    if (t.IsReady)
+                        break;
                 }
             }
-            if (k > 0)
-            {
-                Logging.Write(k + " items have been combined.");
-            }
+            _remakeTimer.Reset();
         }
     }
 }
