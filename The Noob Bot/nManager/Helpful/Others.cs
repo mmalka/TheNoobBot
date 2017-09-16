@@ -417,10 +417,16 @@ namespace nManager.Helpful
                 using (StreamReader sr = new StreamReader(path))
                 {
                     string line;
-
+                    int i = 0;
                     while ((line = sr.ReadLine()) != null)
                     {
                         coll.Add(line);
+                        if (i > 100)
+                        {
+                            Application.DoEvents();
+                            i = 0;
+                        }
+                        i++;
                     }
                 }
 
@@ -558,8 +564,7 @@ namespace nManager.Helpful
                     url = url + "?" + data;
                 HttpWebRequest httpWRequest = (HttpWebRequest) WebRequest.Create(url);
                 httpWRequest.UserAgent = "TheNoobBot";
-                httpWResponse = (HttpWebResponse)httpWRequest.GetResponse();
-                Application.DoEvents();
+                httpWResponse = (HttpWebResponse) httpWRequest.GetResponse();
                 sr = new StreamReader(httpWResponse.GetResponseStream(), Encoding.GetEncoding("iso-8859-1"));
                 result = sr.ReadToEnd();
             }
@@ -881,7 +886,7 @@ namespace nManager.Helpful
                         returnText += Environment.NewLine;
                     ligne = monStreamReader.ReadLine();
                     Application.DoEvents();
-                    //Thread.Sleep(1);
+                    Thread.Sleep(1);
                 }
 
                 monStreamReader.Close();

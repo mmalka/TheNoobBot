@@ -71,8 +71,8 @@ namespace Flying_To_Ground_Profiles_Converter
                 else
                 {
                     error++;
-                    Application.DoEvents();
                 }
+                Application.DoEvents();
             }
 
             MessageBox.Show(string.Format("{0}, {1} {2}, {3} {4} ", nManager.Translate.Get(nManager.Translate.Id.Convertion_finish), success,

@@ -942,7 +942,6 @@ namespace nManager.Wow.Helpers
                         if (ListSpell == null)
                         {
                             var tListSpell = new Dictionary<uint, string>();
-                            Application.DoEvents();
                             string[] listSpellTemps = Others.ReadFileAllLines(fileName);
                             foreach (string tempsSpell in listSpellTemps)
                             {
