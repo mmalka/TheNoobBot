@@ -240,12 +240,12 @@ namespace nManager.Wow.Helpers
 
                 if (!resultSuccess && failedPolyref)
                 {
-                    Logging.WriteDebug("Reloading PathFinder...");
+                    /*Logging.WriteDebug("Reloading PathFinder...");
                     _pather.Dispose();
                     _pather = new Pather(continentNameMpq);
                     locList = ShortPath ? _pather.FindPathSimple(from, to, out resultSuccess, out failedPolyref, true) : _pather.FindPath(from, to, out resultSuccess, out failedPolyref);
                     if (addFromAndStart && resultSuccess)
-                        locList.Add(to);
+                        locList.Add(to);*/
                 }
 
                 // Clean list:

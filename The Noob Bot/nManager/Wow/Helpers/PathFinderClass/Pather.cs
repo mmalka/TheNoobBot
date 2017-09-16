@@ -112,7 +112,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                UnloadAllTiles();
+                //UnloadAllTiles();
                 // _mesh.Dispose();
             }
             catch (Exception)
