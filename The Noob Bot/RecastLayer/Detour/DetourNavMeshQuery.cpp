@@ -99,8 +99,8 @@ inline float dtQueryFilter::getCost(const float* pa, const float* pb,
 	return dtVdist(pa, pb) * m_areaCost[curPoly->getArea()];
 }
 #endif	
-// Change the original 0.999 to 1.3 to weight the A* search and then go deeper in the search tree
-static const float H_SCALE = 1.3f; // Search heuristic scale.
+// Change the original 0.999 to 2.0 to weight the A* search and then go deeper in the search tree.
+static const float H_SCALE = 2.0f; // Search heuristic scale.
 
 
 dtNavMeshQuery* dtAllocNavMeshQuery()
