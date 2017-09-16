@@ -919,13 +919,16 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         IsDungeon = true;
                     }
                     else //                       20bits 28bits
-                        status = _mesh.Initialize(150000, 512*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
+                        status = _mesh.Initialize(1048576, 1024 * Division * Division, Utility.Origin, Utility.TileSize / Division, Utility.TileSize / Division);
+                    // maxPolys = 1 << polyBits (20) = 1048576
+                    // maxTiles = is 4096 (was 2048), we have more than 4000 tiles in kalimdor, and Travel loads more than 2048 already
+                    // ending up crashing the pathfinder.
 
                     if (status.HasFailed())
                         Logging.WriteNavigator(status + " Failed to initialize the mesh");
 
                     _query = new NavMeshQuery(new PatherCallback(this));
-                    DetourStatus t = _query.Initialize(_mesh, 1048560); // old 65535
+                    DetourStatus t = _query.Initialize(_mesh, 262143); // 17bits, max value possible according to Neo2003
                     //Logging.WriteDebug("NavMeshQuery initialized with status: " + t);
                     Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
                     // Add the costs
