@@ -478,9 +478,9 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
-                if (!Memory.IsProcessOpen)
+                if (Memory == null || !Memory.IsProcessOpen)
                     return;
-                if (Wow.Memory.WowProcess.Executor != null)
+                if (Wow.Memory.WowProcess != null && Wow.Memory.WowProcess.Executor != null)
                     Wow.Memory.WowProcess.Executor.Dispose();
                 ThreadHooked = false;
                 /*
