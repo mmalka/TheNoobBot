@@ -632,6 +632,46 @@ namespace nManager.Wow.ObjectManager
             return new WoWUnit(0);
         }
 
+        public static WoWUnit GetNearestWoWUnitWithValidPathNotInList(List<int> listInt, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false,
+            List<UInt128> listGuid = null)
+        {
+            try
+            {
+                var point = Me.Position;
+                var objectReturn = new WoWUnit(0);
+                float tempDistance = 9999999.0f;
+                foreach (var a in GetWoWUnitByEntry(listInt, true))
+                {
+                    if (listGuid != null && listGuid.Contains(a.Guid))
+                        continue;
+                    if (point.DistanceTo(a.Position) > tempDistance)
+                        continue;
+                    if (!ignorenotSelectable && a.NotSelectable)
+                        continue;
+                    if (a.IsTapped)
+                        continue;
+                    if (!ignoreBlackList && nManagerSetting.IsBlackListed(a.Guid))
+                        continue;
+                    if (a.PlayerControlled && !allowPlayerControlled)
+                        continue;
+                    bool success;
+                    PathFinder.FindPath(a.Position, out success);
+                    if (!success)
+                        continue;
+                    objectReturn = a;
+                    tempDistance = point.DistanceTo(a.Position);
+                }
+                return objectReturn;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError(
+                    "public static WoWUnit GetNearestWoWUnitNotInList(List<int> listInt, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false, List<UInt128> listGuid = null): " +
+                    e);
+            }
+            return new WoWUnit(0);
+        }
+
         public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false)
         {
             try

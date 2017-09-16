@@ -428,7 +428,7 @@ namespace Quester.Tasks
                 {
                     questObjective.PathHotspots.Add(ObjectManager.Me.Position);
                     questObjective.PathHotspots.Add(ObjectManager.Me.Position);
-                    Logging.Write("There is no specific position defined for the next QuestObjective, wont move. (this is not necessarily an issue)");
+                    Logging.Write("There is no specific position defined for the next QuestObjective, wont patrol. (this is not necessarily an issue)");
                 }
             }
 
@@ -461,8 +461,9 @@ namespace Quester.Tasks
                 {
                     if (!wowUnit.IsValid)
                     {
-                        // allow to target non blacklisted corpse.
-                        wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, true), false, false, questObjective.AllowPlayerControlled);
+                        // allow blacklisted unit as long as we didn't
+                        wowUnit = ObjectManager.GetNearestWoWUnitWithValidPathNotInList(questObjective.Entry, questObjective.IgnoreNotSelectable, true, questObjective.AllowPlayerControlled,
+                            questObjective.ItemUsedListGuid);
                         if (wowUnit.IsTapped)
                             wowUnit = new WoWUnit(0);
                     }
@@ -479,6 +480,8 @@ namespace Quester.Tasks
                     if (!wowUnit.Attackable)
                         Logging.Write("Can't attack " + wowUnit.Name + ", blacklisting it."); // notify why we blacklisted it
                     nManagerSetting.AddBlackList(wowUnit.Guid, 60000);
+                    if (!questObjective.ItemUsedListGuid.Contains(wowUnit.Guid))
+                        questObjective.ItemUsedListGuid.Add(wowUnit.Guid);
                     return;
                 }
                 if (wowUnit.IsValid && wowUnit.GetDistance > questObjective.Range && !questObjective.IgnoreBlackList)
@@ -488,6 +491,8 @@ namespace Quester.Tasks
                     PathFinder.FindPath(wowUnit.Position, out pathToUnit);
                     if (!pathToUnit)
                     {
+                        if (!questObjective.ItemUsedListGuid.Contains(wowUnit.Guid))
+                            questObjective.ItemUsedListGuid.Add(wowUnit.Guid);
                         nManagerSetting.AddBlackList(wowUnit.Guid, 60000);
                         return;
                     }
@@ -502,6 +507,8 @@ namespace Quester.Tasks
                         if (deltaZ > 9f && CombatClass.GetRange < 29f || deltaZ > 15f)
                         {
                             // 9y higher than us for melee, 15y for ranger, can be tweaked, show me more cases.
+                            if (!questObjective.ItemUsedListGuid.Contains(wowUnit.Guid))
+                                questObjective.ItemUsedListGuid.Add(wowUnit.Guid);
                             Logging.Write("Creature " + wowUnit.Name + " is flying too high for us, blacklisting it for 30 seconds.");
                             nManagerSetting.AddBlackList(wowUnit.Guid, 30000); // ignore it for 30 seconds.
                             return;
@@ -526,6 +533,8 @@ namespace Quester.Tasks
                         if (!wowUnit.IsDead && unkillable != 0 && wowUnit.HealthPercent == 100.0f)
                         {
                             nManagerSetting.AddBlackList(unkillable, 3*60*1000);
+                            if (!questObjective.ItemUsedListGuid.Contains(wowUnit.Guid))
+                                questObjective.ItemUsedListGuid.Add(wowUnit.Guid); // uses that list as a secondary blacklist for UseItem
                             Logging.Write("Can't reach " + wowUnit.Name + ", blacklisting it.");
                         }
                     }
@@ -537,8 +546,7 @@ namespace Quester.Tasks
                             questObjective.CurrentCount++;
                         }
                         Thread.Sleep(50 + Usefuls.Latency);
-                        while (!ObjectManager.Me.IsMounted && ObjectManager.Me.InCombat &&
-                               ObjectManager.GetNumberAttackPlayer() <= 0)
+                        while (!ObjectManager.Me.IsMounted && ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() <= 0)
                         {
                             Thread.Sleep(Usefuls.Latency);
                         }
@@ -554,6 +562,8 @@ namespace Quester.Tasks
                                 List<Point> path = PathFinder.FindPath(wowUnit.Position, out success);
                                 if (!success)
                                 {
+                                    if (!questObjective.ItemUsedListGuid.Contains(wowUnit.Guid))
+                                        questObjective.ItemUsedListGuid.Add(wowUnit.Guid);
                                     nManagerSetting.AddBlackList(wowUnit.Guid, 3*60*1000);
                                     Logging.Write("Can't reach " + wowUnit.Name + " corpse, blacklisting it.");
                                 }
@@ -586,6 +596,8 @@ namespace Quester.Tasks
 
                             ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                             nManagerSetting.AddBlackList(wowUnit.Guid, 3*60*1000);
+                            if (!questObjective.ItemUsedListGuid.Contains(wowUnit.Guid))
+                                questObjective.ItemUsedListGuid.Add(wowUnit.Guid);
                             Thread.Sleep(200);
                             while (ObjectManager.Me.IsCasting)
                             {

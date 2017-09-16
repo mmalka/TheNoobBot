@@ -231,6 +231,7 @@ namespace Quester.Profile
         [DefaultValue(false)] public bool AllowPlayerControlled = false;
         [DefaultValue(false)] public bool IgnoreItemNotUsable = false;
         [DefaultValue(false)] public bool ForceTravelToQuestZone = false;
+        [XmlIgnore] public List<UInt128> ItemUsedListGuid = new List<UInt128>();
         [XmlIgnore] public bool TravelToQuestZone = true;
         // Use Item
         [DefaultValue(0)] public int UseItemId = 0;
