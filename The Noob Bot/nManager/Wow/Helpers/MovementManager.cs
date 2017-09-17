@@ -1650,6 +1650,8 @@ namespace nManager.Wow.Helpers
         public static uint FindTarget(ref Npc target, float specialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0, bool ignoreBlacklist = false)
         {
             bool patherResult, requiresUpdate;
+            if (specialRange > 0 && specialRange <= 3f)
+                specialRange = (float) (new Random().NextDouble()*2f + 2.5f);
 
             uint baseAddress = UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
             if (LongMove.IsLongMove)
