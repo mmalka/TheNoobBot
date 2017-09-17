@@ -232,7 +232,6 @@ namespace nManager.Products
                     Fsm.AddState(new Idle {Priority = 1});
                     Fsm.States.Sort();
                     Fsm.StartEngine(1);
-                    Application.DoEvents();
 
                     return true;
                 }
@@ -311,7 +310,6 @@ namespace nManager.Products
             try
             {
                 Fsm.StopEngine();
-                Application.DoEvents();
                 if (_instanceFromOtherAssembly != null)
                 {
                     EventsListener.UnHookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots());

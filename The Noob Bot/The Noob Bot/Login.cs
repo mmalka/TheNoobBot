@@ -182,9 +182,8 @@ namespace The_Noob_Bot
                 LoginServer.CheckServerIsOnline();
                 while (!LoginServer.IsOnlineserver)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(30);
                     Application.DoEvents();
-                    Thread.Sleep(50);
                 }
                 LoginServer.CheckUpdate();
                 LoginButton.Enabled = true;
@@ -230,7 +229,6 @@ namespace The_Noob_Bot
                 if (LoginServer.IsConnected)
                     return true;
 
-                Application.DoEvents();
                 if ((Identifier.Text.Replace(" ", "") != "" && Password.Text.Replace(" ", "") != ""))
                 {
                     if (Remember.Checked)

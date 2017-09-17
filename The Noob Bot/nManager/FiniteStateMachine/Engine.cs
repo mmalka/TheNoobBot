@@ -212,7 +212,6 @@ namespace nManager.FiniteStateMachine
         {
             try
             {
-                Application.DoEvents();
                 if (!States.Contains(tempState))
                     States.Add(tempState);
             }

@@ -421,7 +421,7 @@ namespace nManager.Helpful
                     while ((line = sr.ReadLine()) != null)
                     {
                         coll.Add(line);
-                        if (i > 100)
+                        if (i > 30)
                         {
                             Application.DoEvents();
                             i = 0;
