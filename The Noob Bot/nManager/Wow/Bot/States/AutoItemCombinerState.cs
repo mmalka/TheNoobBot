@@ -45,10 +45,11 @@ namespace nManager.Wow.Bot.States
             {
                 if (!nManagerSetting.CurrentSetting.MakeStackOfElementalsItems)
                     return false;
-                if (Usefuls.BadBottingConditions)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
                     return false;
                 if (!_remakeTimer.IsReady)
                     return false;
+
                 if (_loadedCombinables.Items.Count <= 0)
                 {
                     _loadedCombinables = XmlSerializer.Deserialize<Combinables>(Application.StartupPath + @"\Data\CombinablesDB.xml");
@@ -114,7 +115,7 @@ namespace nManager.Wow.Bot.States
             }
             for (int i = _loadedCombinables.Items.Count - 1; i > 0; i--)
             {
-                if (Usefuls.BadBottingConditions)
+                if (Usefuls.BadBottingConditions || Usefuls.ShouldFight)
                     return;
                 var combinable = _loadedCombinables.Items[i];
                 if (!_tempItemStock.ContainsKey(combinable.ItemId) || _tempItemStock[combinable.ItemId] <= combinable.PerAmount) continue;
