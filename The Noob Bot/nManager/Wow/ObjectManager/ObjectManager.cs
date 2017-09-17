@@ -632,8 +632,7 @@ namespace nManager.Wow.ObjectManager
             return new WoWUnit(0);
         }
 
-        public static WoWUnit GetNearestWoWUnitWithValidPathNotInList(List<int> listInt, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false,
-            List<UInt128> listGuid = null)
+        public static WoWUnit GetNearestWoWUnitWithValidPathNotInList(List<int> listInt, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false, List<UInt128> listGuid = null)
         {
             try
             {
@@ -647,6 +646,8 @@ namespace nManager.Wow.ObjectManager
                     if (point.DistanceTo(a.Position) > tempDistance)
                         continue;
                     if (!ignorenotSelectable && a.NotSelectable)
+                        continue;
+                    if (a.IsAlive)
                         continue;
                     if (a.IsTapped)
                         continue;
