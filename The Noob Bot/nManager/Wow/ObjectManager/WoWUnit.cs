@@ -1402,7 +1402,7 @@ namespace nManager.Wow.ObjectManager
                 var unitFlags = UnitFlags;
                 if (unitFlags.HasFlag(UnitFlags.Rename) && !IsTotem)
                 {
-                    nManagerSetting.AddBlackList(Guid, 10*1000);
+                    nManagerSetting.AddBlackList(Guid, 5*1000);
                     return true;
                 }
                 return false;

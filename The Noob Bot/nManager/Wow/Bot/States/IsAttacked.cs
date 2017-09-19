@@ -191,8 +191,12 @@ namespace nManager.Wow.Bot.States
             UInt128 unkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0 && _unit.HealthPercent == 100.0f)
             {
-                Logging.Write("Blacklisting " + _unit.Name);
-                nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes
+                if (!nManagerSetting.IsBlackListed(unkillableMob))
+                {
+                    // Don't re-blacklist it if it was temporary blacklisted for Evading.
+                    Logging.Write("Blacklisting " + _unit.Name);
+                    nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes
+                }
             }
             else if (_unit.IsDead)
             {
