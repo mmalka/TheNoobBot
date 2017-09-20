@@ -2884,12 +2884,13 @@ namespace nManager.Wow.ObjectManager
 
         private bool _totemCache;
         private bool _isTotem;
+        private bool _loadedTotemList;
 
         public bool IsTotem
         {
             get
             {
-                if (ObjectManager.TotemEntryList == null || ObjectManager.TotemEntryList.Count <= 0)
+                if (!_loadedTotemList && (ObjectManager.TotemEntryList == null || ObjectManager.TotemEntryList.Count <= 0))
                 {
                     ObjectManager.TotemEntryList = new List<int>();
                     Logging.Write("Loading TotemEntryList...");
@@ -2901,7 +2902,10 @@ namespace nManager.Wow.ObjectManager
                             ObjectManager.TotemEntryList.Add(creatureId);
                     }
                     if (ObjectManager.TotemEntryList.Count > 0)
+                    {
+                        _loadedTotemList = true;
                         Logging.Write("Loaded " + ObjectManager.TotemEntryList.Count + " entries to Totem Entry List.");
+                    }
                 }
                 if (_totemCache)
                     return _isTotem;
