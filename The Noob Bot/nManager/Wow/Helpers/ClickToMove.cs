@@ -56,7 +56,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (!forceCTM)
+                if (!forceCTM && ObjectManager.ObjectManager.Me.TransportGuid <= 0)
                 {
                     CGPlayer_C__MoveTo(new Vector3(x, y, z));
                     return;
