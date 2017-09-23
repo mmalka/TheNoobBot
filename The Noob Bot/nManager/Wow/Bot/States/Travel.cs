@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
@@ -373,7 +374,8 @@ namespace nManager.Wow.Bot.States
                     List<Point> way = PathFinder.FindPath(TravelFrom, TravelTo, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
                     if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last()) && !(oneWayTravel.Key is CustomPath)))
                     {
-                        if (travelCost > Math.DistanceListPoint(way) && !ForceTravel)
+                        float pathCost = Math.DistanceListPoint(way);
+                        if (!ForceTravel && travelCost > pathCost || ForceTravel && travelCost > (pathCost + 500f))
                         {
                             TravelToContinentId = 9999999;
                             TravelTo = new Point();
