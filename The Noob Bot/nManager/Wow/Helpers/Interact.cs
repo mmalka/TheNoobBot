@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 using nManager.Wow.ObjectManager;
@@ -10,12 +11,34 @@ namespace nManager.Wow.Helpers
 {
     public class Interact
     {
+        private static Spell _stealth;
+        private static bool _firstRun = true;
+
         public static void InteractWith(uint baseAddress, bool stopMove = false)
         {
             try
             {
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     return;
+                if (_firstRun)
+                {
+                    if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid)
+                        _stealth = new Spell("Prowl");
+                    if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Rogue)
+                        _stealth = new Spell("Stealth");
+                    _firstRun = false;
+                }
+                if (_stealth != null && _stealth.KnownSpell)
+                {
+                    foreach (var aura in ObjectManager.ObjectManager.Me.UnitAuras.Auras)
+                    {
+                        if (_stealth.Ids.Contains(aura.AuraSpellId))
+                        {
+                            aura.TryCancel();
+                            break;
+                        }
+                    }
+                }
                 Usefuls.UpdateLastHardwareAction();
                 if (baseAddress > 0)
                 {
