@@ -160,7 +160,7 @@ namespace Quester.Tasks
                 obj.IsObjectiveCompleted = false;
                 obj.TravelToQuestZone = true;
             }
-            SelectNextQuestObjective();
+            //SelectNextQuestObjective();
         }
 
         public static bool AllForcedObjectiveComplete()
