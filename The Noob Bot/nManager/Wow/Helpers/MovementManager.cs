@@ -1122,7 +1122,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                while (true)
+                while (Products.Products.IsStarted)
                 {
                     try
                     {
