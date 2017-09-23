@@ -40,15 +40,26 @@ namespace nManager.Wow.Bot.Tasks
                 nodes = nodes.OrderBy(x => x.GetDistance);
                 foreach (WoWGameObject node in nodes.Where(node => node.IsValid))
                 {
+                    WoWGameObject inode = node;
+                    if (_curNode != null && _curNode.IsValid && !nManagerSetting.IsBlackListed(_curNode.Guid))
+                        inode = _curNode;
+                    if (!inode.IsValid)
+                    {
+                        MovementManager.StopMove();
+                        nManagerSetting.AddBlackList(inode.Guid, 2*60*1000);
+                        Logging.Write("Current inode not valid, blacklist.");
+                        continue;
+                    }
+                    _curNode = inode; // we save a inode we potentially bypassed to make sure we run the list.
                     MovementManager.StopMove();
-                    Logging.Write("Farm " + node.Name + " (" + node.Entry + ") > " + node.Position.X + "; " + node.Position.Y + "; " + node.Position.Z);
+                    Logging.Write("Farm " + inode.Name + " (" + inode.Entry + ") > " + inode.Position.X + "; " + inode.Position.Y + "; " + inode.Position.Z);
                     float zT;
-                    if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z)
-                        zT = node.Position.Z + 5.5f;
+                    if (ObjectManager.ObjectManager.Me.Position.Z < inode.Position.Z)
+                        zT = inode.Position.Z + 5.5f;
                     else
-                        zT = node.Position.Z + 2.5f;
+                        zT = inode.Position.Z + 2.5f;
 
-                    Point aboveNode = new Point(node.Position);
+                    Point aboveNode = new Point(inode.Position);
                     aboveNode.Z = aboveNode.Z + 2.5f;
                     Point farAboveNode = new Point(aboveNode);
                     farAboveNode.Z = farAboveNode.Z + 80;
@@ -57,22 +68,19 @@ namespace nManager.Wow.Bot.Tasks
                         if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, aboveNode, CGWorldFrameHitFlags.HitTestAllButLiquid))
                         {
                             Logging.Write("Node stuck");
-                            nManagerSetting.AddBlackList(node.Guid, 1000*60*2);
+                            nManagerSetting.AddBlackList(inode.Guid, 1000*60*2);
                             return;
                         }
                     }
 
                     MovementManager.StopMove();
-                    MovementManager.MoveTo(node.Position.X, node.Position.Y, zT, true);
+                    MovementManager.MoveTo(inode.Position.X, inode.Position.Y, zT, true);
 
-                    Helpful.Timer timer = new Helpful.Timer((int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position)/3*1000) + 5000);
+                    Helpful.Timer timer = new Helpful.Timer((int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position)/3*1000) + 5000);
                     bool toMine = false;
                     bool landing = false;
 
-                    while (node.IsValid && Products.Products.IsStarted &&
-                           !ObjectManager.ObjectManager.Me.IsDeadMe &&
-                           !(ObjectManager.ObjectManager.Me.InInevitableCombat) &&
-                           !timer.IsReady)
+                    while (inode.IsValid && !Usefuls.BadBottingConditions && !Usefuls.ShouldFight && !timer.IsReady)
                     {
                         if (!landing)
                         {
@@ -83,19 +91,19 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 // elevate in a 45° angle instead of 90°
                                 Point direction = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                    node.Position,
-                                    (node.Position.Z + 2.5f) - ObjectManager.ObjectManager.Me.Position.Z);
+                                    inode.Position,
+                                    (inode.Position.Z + 2.5f) - ObjectManager.ObjectManager.Me.Position.Z);
                                 // if there is an obstacle, then go mostly vertical but not 90° to prevent spinning around
                                 if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position,
                                     direction,
                                     CGWorldFrameHitFlags.HitTestAllButLiquid))
                                     direction = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                        node.Position, 1.0f);
-                                MovementManager.MoveTo(direction.X, direction.Y, node.Position.Z + 5.0f);
+                                        inode.Position, 1.0f);
+                                MovementManager.MoveTo(direction.X, direction.Y, inode.Position.Z + 5.0f);
                             }
                             else
                             {
-                                MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
+                                MovementManager.MoveTo(inode.Position.X, inode.Position.Y, zT);
                             }
 
                             if (!ObjectManager.ObjectManager.Me.IsMounted)
@@ -104,26 +112,26 @@ namespace nManager.Wow.Bot.Tasks
                                 landing = true;
                         }
 
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 4.0f &&
-                            ObjectManager.ObjectManager.Me.Position.DistanceZ(node.Position) >= 5.0f && !toMine)
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(inode.Position) < 4.0f &&
+                            ObjectManager.ObjectManager.Me.Position.DistanceZ(inode.Position) >= 5.0f && !toMine)
                         {
                             toMine = true;
 
                             if (!ObjectManager.ObjectManager.Me.IsMounted)
                                 return;
-                            zT = node.Position.Z + 1.5f;
-                            MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
-                            if (node.GetDistance > 3.0f && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, node.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                            zT = inode.Position.Z + 1.5f;
+                            MovementManager.MoveTo(inode.Position.X, inode.Position.Y, zT);
+                            if (inode.GetDistance > 3.0f && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, inode.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
                             {
                                 Logging.Write("Node outside view");
-                                nManagerSetting.AddBlackList(node.Guid, 1000*120);
+                                nManagerSetting.AddBlackList(inode.Guid, 1000*120);
                                 break;
                             }
                         }
-                        else if ((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 1.1f ||
+                        else if ((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(inode.Position) < 1.1f ||
                                   (!Usefuls.IsFlying &&
-                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 3.0f)) &&
-                                 ObjectManager.ObjectManager.Me.Position.DistanceZ(node.Position) < 6)
+                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(inode.Position) < 3.0f)) &&
+                                 ObjectManager.ObjectManager.Me.Position.DistanceZ(inode.Position) < 6)
                         {
                             Thread.Sleep(150);
                             MovementManager.StopMove();
@@ -140,12 +148,12 @@ namespace nManager.Wow.Bot.Tasks
                                 Thread.Sleep(50);
                             }
                             if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) &&
-                                (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId())))
+                                (!inode.IsHerb || inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId())))
                             {
                                 if (!(SpellManager.HasSpell(169606) && Usefuls.ContinentId == 1116 || Usefuls.ContinentId == 1464)) // Passive Silver Dollar Club given by Stables.
                                     MountTask.DismountMount();
                             }
-                            else if (node.IsHerb && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.DruidMountId()))
+                            else if (inode.IsHerb && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.DruidMountId()))
                             {
                                 Logging.WriteDebug("Druid IsFlying ? " + Usefuls.IsFlying);
                                 if (Usefuls.IsFlying)
@@ -172,11 +180,11 @@ namespace nManager.Wow.Bot.Tasks
                             _wasLooted = false;
                             CountThisLoot = true;
                             NodeOrUnit = true;
-                            Interact.InteractWith(node.GetBaseAddress);
+                            Interact.InteractWith(inode.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 500);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
                             {
-                                Interact.InteractWith(node.GetBaseAddress);
+                                Interact.InteractWith(inode.GetBaseAddress);
                                 Thread.Sleep(Usefuls.Latency + 500);
                             }
                             while (ObjectManager.ObjectManager.Me.IsCast)
@@ -196,7 +204,7 @@ namespace nManager.Wow.Bot.Tasks
                                 CountThisLoot = false;
                                 return;
                             }
-                            nManagerSetting.AddBlackList(node.Guid, 1000*20);
+                            nManagerSetting.AddBlackList(inode.Guid, 1000*20);
                             return;
                         }
                         else if (!ObjectManager.ObjectManager.Me.GetMove)
@@ -204,17 +212,17 @@ namespace nManager.Wow.Bot.Tasks
                             Thread.Sleep(50);
                             if (!ObjectManager.ObjectManager.Me.IsMounted)
                                 return;
-                            MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
+                            MovementManager.MoveTo(inode.Position.X, inode.Position.Y, zT);
                         }
-                        if (States.Farming.PlayerNearest(node))
+                        if (States.Farming.PlayerNearest(inode))
                         {
-                            Logging.Write("Player near the node, farm canceled");
-                            nManagerSetting.AddBlackList(node.Guid, 15*1000);
+                            Logging.Write("Player near the inode, farm canceled");
+                            nManagerSetting.AddBlackList(inode.Guid, 15*1000);
                             return;
                         }
                     }
                     if (timer.IsReady)
-                        nManagerSetting.AddBlackList(node.Guid, 60*1000);
+                        nManagerSetting.AddBlackList(inode.Guid, 60*1000);
                     MovementManager.StopMove();
                     if (!_wasLooted)
                         Logging.Write("Farm failed #1");
@@ -239,117 +247,118 @@ namespace nManager.Wow.Bot.Tasks
                     WoWGameObject inode = node;
                     if (_curNode != null && _curNode.IsValid && !nManagerSetting.IsBlackListed(_curNode.Guid))
                         inode = _curNode;
-                    if (inode.IsValid)
+                    if (!inode.IsValid)
                     {
-                        _curNode = node; // we save a node we potentially bypassed to make sure we run the list.
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) > 5.0f)
-                        {
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
-                                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
-                                !nManagerSetting.CurrentSetting.UseGroundMount)
-                            {
-                                if (MountTask.GetMountCapacity() == MountCapacity.Fly)
-                                {
-                                    if (!MountTask.OnFlyMount())
-                                        MountTask.Mount(true, true);
-                                    else
-                                        MountTask.Takeoff();
-                                    Fly(nodes);
-                                    return;
-                                }
-                                if (MountTask.GetMountCapacity() == MountCapacity.Swimm)
-                                {
-                                    if (!MountTask.OnAquaticMount())
-                                        MountTask.Mount();
-                                    Fly(nodes);
-                                    return;
-                                }
-                            }
-                            // fallback to ground mount or feet
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
-                                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
-                                nManagerSetting.CurrentSetting.UseGroundMount)
-                            {
-                                if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
-                                    MountTask.Mount();
-                            }
-                            if (MovementManager.FindTarget(inode, 5.5f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius*4.0f) == 0)
-                            {
-                                nManagerSetting.AddBlackList(inode.Guid, 1000*20);
-                                _curNode = null;
-                                return;
-                            }
-                            if (_lastnode != inode.Guid)
-                            {
-                                _lastnode = inode.Guid;
-                                Logging.Write("Farm " + inode.Name + " > " + inode.Position);
-                            }
-                            if (inode.GetDistance < 5.5f) // max range is usually 5.8-9 yards
-                                MovementManager.StopMove();
-                            if (MovementManager.InMovement)
-                                return;
-                        }
                         MovementManager.StopMove();
-                        while (ObjectManager.ObjectManager.Me.GetMove)
+                        nManagerSetting.AddBlackList(inode.Guid, 2*60*1000);
+                        Logging.Write("Current inode not valid, blacklist.");
+                        continue;
+                    }
+                    _curNode = inode; // we save a inode we potentially bypassed to make sure we run the list.
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) > 5.0f)
+                    {
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
+                            nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
+                            !nManagerSetting.CurrentSetting.UseGroundMount)
                         {
-                            Thread.Sleep(250);
-                        }
-                        Thread.Sleep(250 + Usefuls.Latency);
-                        if (ObjectManager.ObjectManager.Me.InCombat)
-                        {
-                            if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) &&
-                                (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId())))
+                            if (MountTask.GetMountCapacity() == MountCapacity.Fly)
                             {
-                                MountTask.DismountMount(); // If we don't have druid mount or Sky Golem, dismount and fight.
+                                if (!MountTask.OnFlyMount())
+                                    MountTask.Mount(true, true);
+                                else
+                                    MountTask.Takeoff();
+                                Fly(nodes);
                                 return;
                             }
-                            // We are druid or using sky golem, let's try to loot
+                            if (MountTask.GetMountCapacity() == MountCapacity.Swimm)
+                            {
+                                if (!MountTask.OnAquaticMount())
+                                    MountTask.Mount();
+                                Fly(nodes);
+                                return;
+                            }
                         }
-                        _wasLooted = false;
-                        CountThisLoot = true;
-                        NodeOrUnit = true;
-                        Interact.InteractWith(inode.GetBaseAddress);
-                        Thread.Sleep(Usefuls.Latency + 300);
-                        if (!ObjectManager.ObjectManager.Me.IsCast)
+                        // fallback to ground mount or feet
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
+                            nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
+                            nManagerSetting.CurrentSetting.UseGroundMount)
                         {
-                            Interact.InteractWith(node.GetBaseAddress);
-                            Thread.Sleep(Usefuls.Latency + 250);
+                            if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
+                                MountTask.Mount();
                         }
-                        while (ObjectManager.ObjectManager.Me.IsCast)
+                        if (MovementManager.FindTarget(inode, 5.5f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius*4.0f) == 0)
                         {
-                            Thread.Sleep(150);
-                        }
-                        if (ObjectManager.ObjectManager.Me.InCombat &&
-                            (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) &&
-                             (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()))))
-                        {
-                            CountThisLoot = false;
-                            return;
-                        }
-                        Thread.Sleep(100 + Usefuls.Latency);
-                        if (ObjectManager.ObjectManager.Me.InCombat &&
-                            (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) &&
-                             (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()))))
-                        {
-                            CountThisLoot = false;
-                            return;
-                        }
-                        if (CountThisLoot && !ObjectManager.ObjectManager.Me.InCombat)
                             nManagerSetting.AddBlackList(inode.Guid, 1000*20);
-
-                        Thread.Sleep(1000);
-                        if (!_wasLooted)
-                        {
-                            Logging.Write("Farm failed #2");
-                            if (ObjectManager.ObjectManager.Me.InCombat &&
-                                (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()) || ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId())))
-                                MountTask.DismountMount(); // we got cancelled during farm, let's fight this out for good..
+                            _curNode = null;
+                            return;
                         }
-                        return;
+                        if (_lastnode != inode.Guid)
+                        {
+                            _lastnode = inode.Guid;
+                            Logging.Write("Farm " + inode.Name + " > " + inode.Position);
+                        }
+                        if (inode.GetDistance < 5.5f) // max range is usually 5.8-9 yards
+                            MovementManager.StopMove();
+                        if (MovementManager.InMovement)
+                            return;
                     }
                     MovementManager.StopMove();
-                    nManagerSetting.AddBlackList(inode.Guid, 2*60*1000);
-                    Logging.Write("Current node not valid, blacklist.");
+                    while (ObjectManager.ObjectManager.Me.GetMove)
+                    {
+                        Thread.Sleep(250);
+                    }
+                    Thread.Sleep(250 + Usefuls.Latency);
+                    if (ObjectManager.ObjectManager.Me.InCombat)
+                    {
+                        if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) &&
+                            (!inode.IsHerb || inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId())))
+                        {
+                            MountTask.DismountMount(); // If we don't have druid mount or Sky Golem, dismount and fight.
+                            return;
+                        }
+                        // We are druid or using sky golem, let's try to loot
+                    }
+                    _wasLooted = false;
+                    CountThisLoot = true;
+                    NodeOrUnit = true;
+                    Interact.InteractWith(inode.GetBaseAddress);
+                    Thread.Sleep(Usefuls.Latency + 300);
+                    if (!ObjectManager.ObjectManager.Me.IsCast)
+                    {
+                        Interact.InteractWith(inode.GetBaseAddress);
+                        Thread.Sleep(Usefuls.Latency + 250);
+                    }
+                    while (ObjectManager.ObjectManager.Me.IsCast)
+                    {
+                        Thread.Sleep(150);
+                    }
+                    if (ObjectManager.ObjectManager.Me.InCombat &&
+                        (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) &&
+                         (!inode.IsHerb || inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()))))
+                    {
+                        CountThisLoot = false;
+                        return;
+                    }
+                    Thread.Sleep(100 + Usefuls.Latency);
+                    if (ObjectManager.ObjectManager.Me.InCombat &&
+                        (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) &&
+                         (!inode.IsHerb || inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()))))
+                    {
+                        CountThisLoot = false;
+                        return;
+                    }
+                    if (CountThisLoot && !ObjectManager.ObjectManager.Me.InCombat)
+                        nManagerSetting.AddBlackList(inode.Guid, 1000*20);
+
+                    Thread.Sleep(1000);
+                    if (!_wasLooted)
+                    {
+                        Logging.Write("Farm failed #2");
+                        if (ObjectManager.ObjectManager.Me.InCombat &&
+                            (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()) || ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId())))
+                            MountTask.DismountMount(); // we got cancelled during farm, let's fight this out for good..
+                    }
+                    return;
                 }
             }
             catch (Exception ex)
@@ -378,7 +387,7 @@ namespace nManager.Wow.Bot.Tasks
                     // LootWindow is still open after we accepted BoP, so one item must be stuck. (Unique(X), InventoryFull, ...)
                 }
                 // We had a valid LOOT_READY anyway, with our force loot function, that would have taken < 1 sec to loot anyway.
-                // So let's blacklist node/unit !
+                // So let's blacklist inode/unit !
                 if (NodeOrUnit && _curNode != null && _curNode.IsValid)
                     nManagerSetting.AddBlackList(_curNode.Guid, 60*1000);
                 if (!NodeOrUnit && CurUnit != null && CurUnit.IsValid)
