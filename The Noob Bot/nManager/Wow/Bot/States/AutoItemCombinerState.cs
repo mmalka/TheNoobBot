@@ -49,6 +49,8 @@ namespace nManager.Wow.Bot.States
                     return false;
                 if (!_remakeTimer.IsReady)
                     return false;
+                if (Usefuls.IsFlying && Usefuls.ContinentNameMpq == "Expansion01")
+                    return false;
 
                 if (_loadedCombinables.Items.Count <= 0)
                 {
