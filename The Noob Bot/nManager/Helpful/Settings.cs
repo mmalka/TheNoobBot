@@ -57,7 +57,7 @@ namespace nManager.Helpful
 
         #endregion Load
 
-        public static string AdviserFilePathAndName(string productName)
+        public static string AdviserFilePathAndName(string productName, bool isPlugin = false)
         {
             string fileName;
             Timer checkTimer = new Timer(10000); // give up after 10 seconds
@@ -78,7 +78,7 @@ namespace nManager.Helpful
                 Logging.WriteError("AdviserFileName(string productName): " + e);
                 fileName = productName + "-null.xml";
             }
-            return Application.StartupPath + "\\Settings\\" + fileName;
+            return Application.StartupPath + "\\Settings" + (isPlugin ? "\\Plugins" : "") + "\\" + fileName;
         }
 
         #region Winform
