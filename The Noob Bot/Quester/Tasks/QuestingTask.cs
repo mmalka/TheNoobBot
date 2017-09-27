@@ -532,6 +532,8 @@ namespace Quester.Tasks
                 {
                     if (lockedTarget == null || !lockedTarget.IsValid)
                         lockedTarget = wowUnit;
+                    if (MountTask.OnGroundMount() && !Usefuls.IsFlying && wowUnit.GetDistance < 8f)
+                        Usefuls.DisMount();
                     MovementManager.FindTarget(wowUnit, CombatClass.GetAggroRange, true, 0f, wowUnit.IsDead, nManagerSetting.IsBlackListed(wowUnit.Guid));
 
                     Thread.Sleep(100);
