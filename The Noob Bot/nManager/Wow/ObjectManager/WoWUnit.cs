@@ -2014,6 +2014,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool NpcHasGossip
+        {
+            get
+            {
+                try
+                {
+                    return UnitNPCFlags.HasFlag(UnitNPCFlags.Gossip);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > NpcHasGossip: " + e);
+                    return false;
+                }
+            }
+        }
+
         public UInt128 SummonedBy
         {
             get
