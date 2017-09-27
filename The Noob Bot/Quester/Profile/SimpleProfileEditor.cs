@@ -18,6 +18,7 @@ using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 using Keybindings = nManager.Wow.Enums.Keybindings;
 using Math = System.Math;
+using MathTNB = nManager.Helpful.Math;
 using Point = nManager.Wow.Class.Point;
 using Quester.Profile;
 using Quest = Quester.Profile.Quest;
@@ -30,6 +31,7 @@ namespace Quester.Profile
         private readonly TreeNode _npcParentNode;
         private readonly TreeNode _questParentNode;
         private string _fullpath;
+        private CustomPaths _custompaths;
         private TreeNode _lastSelectedNpc;
         private TreeNode _lastSelectedObjective;
         private TreeNode _lastSelectedQuest;
@@ -415,6 +417,11 @@ namespace Quester.Profile
                             objective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
                             objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             break;
+                        case "UseRuneForge":
+                            objective.WaitMs = Others.ToInt32(TBObjCollectCount.Text);
+                            objective.Position = new Point(TBObjPosition.Text);
+                            objective.Range = Others.ToInt32(TBObjRange.Text);
+                            break;
                     }
 
 
@@ -666,6 +673,11 @@ namespace Quester.Profile
                             newObjective.Range = Others.ToInt32(TBObjRange.Text);
                             newObjective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
                             newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            break;
+                        case "UseRuneForge":
+                            newObjective.WaitMs = Others.ToInt32(TBObjCollectCount.Text);
+                            newObjective.Position = new Point(TBObjPosition.Text);
+                            newObjective.Range = Others.ToInt32(TBObjRange.Text);
                             break;
                     }
 
@@ -1618,6 +1630,15 @@ namespace Quester.Profile
                     TBObjUseItemID.Text = qObjective.UseItemId.ToString();
                     TBObjWaitMs.Text = qObjective.WaitMs.ToString();
                     break;
+                case "UseRuneForge":
+                    TBObjPosition.Enabled = true;
+                    TBObjRange.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+
+                    TBObjPosition.Text = qObjective.Position.ToString();
+                    TBObjRange.Text = qObjective.Range.ToString();
+                    TBObjWaitMs.Text = qObjective.WaitMs.ToString();
+                    break;
             }
 
             switch (qObjective.Objective.ToString())
@@ -1872,6 +1893,12 @@ namespace Quester.Profile
                 Name = "KillMob UseItem On Corpse",
                 Value = (int) Objective.KillMobUseItem
             });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Use RuneForge",
+                Value = (int) Objective.UseRuneForge
+            });
+
 
             CBObjType.DataSource = cbObjTypeList;
 
@@ -2160,6 +2187,11 @@ namespace Quester.Profile
                     TBObjUseItemID.Enabled = true;
                     TBObjWaitMs.Enabled = true;
                     break;
+                case "UseRuneForge":
+                    TBObjPosition.Enabled = true;
+                    TBObjRange.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    break;
             }
 
             switch (selectedObjectiveName)
@@ -2240,7 +2272,7 @@ namespace Quester.Profile
                     CBObjInternalQuestID.DataSource = null;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Catch Form Load triggering this Sub....and crashing
             }
@@ -2672,7 +2704,7 @@ namespace Quester.Profile
                                 {
                                     otr.BackColor = nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(questId)
                                         ? Color.Green
-                                        : nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(questId) ? Color.Yellow : Color.Red;
+                                        : nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(questId) ? (nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(questId) ? Color.Chartreuse : Color.Yellow) : Color.Red;
                                 }
                             }
                             questId = 0;
@@ -3119,17 +3151,304 @@ namespace Quester.Profile
         }
 
         #endregion
-    }
 
-    public class ComboBoxValueString
-    {
-        public string Name { get; set; }
-        public int Value { get; set; }
-    }
+        #region "Custom Paths"
 
-    public class ComboBoxValue
-    {
-        public string Name { get; set; }
-        public int Value { get; set; }
+        /*<CustomPath Id="33" Name="Dragonblight, getting around alliance camp 2" Faction="Horde" AContinentId="571" BContinentId="571">
+        * Id : Take last one
+        * Name : Name of the Custom Path
+        * Faction : Horde or alliance
+        * A and BContinentId
+        * APoint and BPoint
+        * Points
+         * AllowFar
+         * RequireAchivementId
+         * RequireQuestId
+         * ForceFlying
+         * RoundTrip
+         * UseMount
+        * */
+
+        private void LoadCustomPathList()
+        {
+            string customPathFile = Application.StartupPath + @"\Data\CustomPathsDB.xml";
+
+            if (File.Exists(customPathFile))
+            {
+                try
+                {
+                    _custompaths = XmlSerializer.Deserialize<CustomPaths>(customPathFile);
+                    RefreshCustomPathList();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("error : LoadCustomPathList()");
+                }
+            }
+        }
+
+        private void ButtonCPSave_Click(object sender, EventArgs e)
+        {
+            if (LBCPCustomPaths.SelectedIndex >= 0)
+            {
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].Name = TBCPName.Text;
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].AllowFar = CBCPAllowFar.Checked;
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].ForceFlying = CBCPForceFlying.Checked;
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].RoundTrip = CBCPRoundTrip.Checked;
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].UseMount = CBCPUseMount.Checked;
+
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].Faction = (Npc.FactionType) ComboCPFaction.SelectedValue;
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].AContinentId = (int) ComboCPContA.SelectedValue;
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].BContinentId = (int) ComboCPContB.SelectedValue;
+
+                if (_custompaths.Items[LBCPCustomPaths.SelectedIndex].Points != null)
+                {
+                    foreach (Point cpPoints in _custompaths.Items[LBCPCustomPaths.SelectedIndex].Points)
+                    {
+                        LBCPPoints.Items.Add(cpPoints);
+                    }
+                }
+
+                int lastSelectedIndex = LBCPCustomPaths.SelectedIndex;
+                RefreshCustomPathList();
+                LBCPCustomPaths.SelectedIndex = lastSelectedIndex;
+            }
+
+            string customPathFile = Application.StartupPath + @"\Data\CustomPathsDB.xml";
+
+            if (File.Exists(customPathFile))
+            {
+                XmlSerializer.Serialize(customPathFile, _custompaths);
+                return;
+            }
+        }
+
+        private void RefreshCustomPathList()
+        {
+            LBCPCustomPaths.Items.Clear();
+
+            foreach (CustomPath _cPath in _custompaths.Items)
+            {
+                LBCPCustomPaths.Items.Add(_cPath.Id + " - " + _cPath.Name);
+            }
+        }
+
+        private void SimpleProfileEditor_Load(object sender, EventArgs e)
+        {
+            LoadCustomPathList();
+            PopulateComboBoxCustomPath();
+        }
+
+        private void LBCPCustomPaths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearCustomPathForm();
+
+                if (LBCPCustomPaths.SelectedIndex >= 0)
+                {
+                    TBCPName.Text = _custompaths.Items[LBCPCustomPaths.SelectedIndex].Name;
+                    CBCPAllowFar.Checked = _custompaths.Items[LBCPCustomPaths.SelectedIndex].AllowFar;
+                    CBCPForceFlying.Checked = _custompaths.Items[LBCPCustomPaths.SelectedIndex].ForceFlying;
+                    CBCPRoundTrip.Checked = _custompaths.Items[LBCPCustomPaths.SelectedIndex].RoundTrip;
+                    CBCPUseMount.Checked = _custompaths.Items[LBCPCustomPaths.SelectedIndex].UseMount;
+
+                    ComboCPFaction.SelectedValue = (int) _custompaths.Items[LBCPCustomPaths.SelectedIndex].Faction;
+                    ComboCPContA.SelectedValue = _custompaths.Items[LBCPCustomPaths.SelectedIndex].AContinentId >= 0 ? _custompaths.Items[LBCPCustomPaths.SelectedIndex].AContinentId : (int) ContinentId.None;
+                    ComboCPContB.SelectedValue = _custompaths.Items[LBCPCustomPaths.SelectedIndex].BContinentId >= 0 ? _custompaths.Items[LBCPCustomPaths.SelectedIndex].BContinentId : (int) ContinentId.None;
+
+                    if (_custompaths.Items[LBCPCustomPaths.SelectedIndex].Points != null)
+                    {
+                        foreach (Point cpPoints in _custompaths.Items[LBCPCustomPaths.SelectedIndex].Points)
+                        {
+                            LBCPPoints.Items.Add(cpPoints);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void ClearCustomPathForm()
+        {
+            TBCPName.Text = String.Empty;
+            CBCPAllowFar.Checked = false;
+            CBCPForceFlying.Checked = false;
+            CBCPRoundTrip.Checked = false;
+            CBCPUseMount.Checked = false;
+            LBCPPoints.Items.Clear();
+        }
+
+        private void PopulateComboBoxCustomPath()
+        {
+            var factL = new List<ComboBoxValue>();
+
+            foreach (object st in Enum.GetValues(typeof(Npc.FactionType)))
+            {
+                factL.Add(new ComboBoxValue
+                {
+                    Name = st.ToString(),
+                    Value = Convert.ToInt32(st)
+                });
+            }
+
+            ComboCPFaction.DataSource = factL;
+            ComboCPFaction.ValueMember = "Value";
+            ComboCPFaction.DisplayMember = "Name";
+
+
+            var continentList = new List<ComboBoxValue>();
+
+            foreach (object st in Enum.GetValues(typeof(ContinentId)))
+            {
+                continentList.Add(new ComboBoxValue
+                {
+                    Name = st.ToString(),
+                    Value = Convert.ToInt32(st)
+                });
+            }
+
+            ComboCPContA.DataSource = continentList;
+            ComboCPContA.ValueMember = "Value";
+            ComboCPContA.DisplayMember = "Name";
+
+            var continentListCopy = new List<ComboBoxValue>(continentList); //Create a copy othewise they share the same memory address
+
+
+            ComboCPContB.DataSource = continentListCopy;
+            ComboCPContB.ValueMember = "Value";
+            ComboCPContB.DisplayMember = "Name";
+        }
+
+        private void ButtonCPAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _custompaths.Items.Add(new CustomPath() {Name = "New Custom Path", Id = _custompaths.Items[_custompaths.Items.Count - 1].Id + 1});
+                RefreshCustomPathList();
+
+                LBCPCustomPaths.SelectedIndex = _custompaths.Items.Count - 1;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void CPDeleteSelectedPoints()
+        {
+            object[] pointsToRemove = new object[LBCPPoints.SelectedItems.Count];
+
+            LBCPPoints.SelectedItems.CopyTo(pointsToRemove, 0);
+
+            foreach (object item in pointsToRemove)
+            {
+                LBCPPoints.Items.Remove(item);
+            }
+        }
+
+        private void ButtonCPDeleteSelectedPoints_Click(object sender, EventArgs e)
+        {
+            CPDeleteSelectedPoints();
+        }
+
+
+        private void LBCPPoints_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                CPDeleteSelectedPoints();
+            }
+        }
+
+        private void RefreshListBoxPoints()
+        {
+            LBCPPoints.Items.Clear();
+
+            foreach (Point vpoint in _custompaths.Items[LBCPCustomPaths.SelectedIndex].Points)
+            {
+                LBCPPoints.Items.Add(vpoint);
+            }
+        }
+
+        private void ButtonCPRecord_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_loopRecordPoint)
+                {
+                    _loopRecordPoint = false;
+                    ButtonCPRecord.Text = @"Record Custom Path";
+                }
+                else
+                {
+                    _loopRecordPoint = true;
+                    ButtonCPRecord.Text = @"Stop Recording Custom Path";
+                    LoopRecordWay();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("ButtonCPRecord_Click " +
+                                   ex);
+            }
+        }
+
+        bool _loopRecordPoint = false;
+
+        private void LoopRecordWay()
+        {
+            try
+            {
+                const float distanceZSeparator = 15.0f;
+                int lastRotation = 0;
+                _loopRecordPoint = true;
+
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].Points.Add(ObjectManager.Me.Position);
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].APoint = ObjectManager.Me.Position;
+
+                RefreshListBoxPoints();
+
+                while (_loopRecordPoint)
+                {
+                    Point lastPoint = _custompaths.Items[LBCPCustomPaths.SelectedIndex].Points[_custompaths.Items[LBCPCustomPaths.SelectedIndex].Points.Count - 1];
+                    float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
+
+                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > (double) NumUpDownDistance.Value) &&
+                         lastRotation != (int) MathTNB.RadianToDegree(ObjectManager.Me.Rotation)) ||
+                        disZTemp >= distanceZSeparator)
+                    {
+                        _custompaths.Items[LBCPCustomPaths.SelectedIndex].Points.Add(ObjectManager.Me.Position);
+                        lastRotation = (int) MathTNB.RadianToDegree(ObjectManager.Me.Rotation);
+                        RefreshListBoxPoints();
+                    }
+                    Application.DoEvents();
+                    Thread.Sleep(50);
+                }
+
+                _custompaths.Items[LBCPCustomPaths.SelectedIndex].BPoint = ObjectManager.Me.Position;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("LoopRecordWay(): " + e);
+            }
+        }
+
+        #endregion
+
+        public class ComboBoxValueString
+        {
+            public string Name { get; set; }
+            public int Value { get; set; }
+        }
+
+        public class ComboBoxValue
+        {
+            public string Name { get; set; }
+            public int Value { get; set; }
+        }
     }
 }

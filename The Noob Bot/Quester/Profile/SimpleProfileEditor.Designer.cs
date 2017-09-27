@@ -102,6 +102,7 @@ namespace Quester.Profile
             this.TBQuestMinLvl = new System.Windows.Forms.TextBox();
             this.Label16 = new System.Windows.Forms.Label();
             this.TabPageObjectives = new System.Windows.Forms.TabPage();
+            this.ButtonObjHotSpotsPlayerPosRelative = new System.Windows.Forms.Button();
             this.ButtonObjImportGPSExtraPoint = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
             this.TBObjExtraFloat = new System.Windows.Forms.TextBox();
@@ -195,13 +196,34 @@ namespace Quester.Profile
             this.ButtonBlackListSave = new System.Windows.Forms.Button();
             this.TBBlackList = new System.Windows.Forms.TextBox();
             this.ButtonBlackListAdd = new System.Windows.Forms.Button();
+            this.TabPageCustomPath = new System.Windows.Forms.TabPage();
+            this.ButtonCPAdd = new System.Windows.Forms.Button();
+            this.ButtonCPDelete = new System.Windows.Forms.Button();
+            this.ComboCPContB = new System.Windows.Forms.ComboBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.ComboCPContA = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.ComboCPFaction = new System.Windows.Forms.ComboBox();
+            this.CBCPUseMount = new System.Windows.Forms.CheckBox();
+            this.CBCPRoundTrip = new System.Windows.Forms.CheckBox();
+            this.CBCPForceFlying = new System.Windows.Forms.CheckBox();
+            this.CBCPAllowFar = new System.Windows.Forms.CheckBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.TBCPName = new System.Windows.Forms.TextBox();
+            this.LBCPCustomPaths = new System.Windows.Forms.ListBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.NumUpDownDistance = new System.Windows.Forms.NumericUpDown();
+            this.LBCPPoints = new System.Windows.Forms.ListBox();
+            this.ButtonCPSave = new System.Windows.Forms.Button();
+            this.ButtonCPRecord = new System.Windows.Forms.Button();
             this.ButtonSaveAsXML = new System.Windows.Forms.Button();
             this.ButtonNewXML = new System.Windows.Forms.Button();
             this.CBMainDisplayXML = new System.Windows.Forms.CheckBox();
             this.ButtonSaveXML = new System.Windows.Forms.Button();
             this.TNBControlMenu = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.UcXmlRichTextBox1 = new nManager.Helpful.Forms.UserControls.UCXmlRichTextBox();
-            this.ButtonObjHotSpotsPlayerPosRelative = new System.Windows.Forms.Button();
+            this.ButtonCPDeleteSelectedPoints = new System.Windows.Forms.Button();
             this.ContextMenuStrip.SuspendLayout();
             this.PanelNPC.SuspendLayout();
             this.PanelSimpleQuest.SuspendLayout();
@@ -212,6 +234,8 @@ namespace Quester.Profile
             this.PanelObjAll.SuspendLayout();
             this.PanelObjTaxi.SuspendLayout();
             this.TabPageBlackList.SuspendLayout();
+            this.TabPageCustomPath.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumUpDownDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // TreeView
@@ -449,6 +473,7 @@ namespace Quester.Profile
             this.TabControl1.Controls.Add(this.TabPageQuest);
             this.TabControl1.Controls.Add(this.TabPageObjectives);
             this.TabControl1.Controls.Add(this.TabPageBlackList);
+            this.TabControl1.Controls.Add(this.TabPageCustomPath);
             this.TabControl1.Location = new System.Drawing.Point(5, 1);
             this.TabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.TabControl1.Name = "TabControl1";
@@ -999,6 +1024,17 @@ namespace Quester.Profile
             this.TabPageObjectives.TabIndex = 1;
             this.TabPageObjectives.Text = "Objectives";
             this.TabPageObjectives.UseVisualStyleBackColor = true;
+            // 
+            // ButtonObjHotSpotsPlayerPosRelative
+            // 
+            this.ButtonObjHotSpotsPlayerPosRelative.Location = new System.Drawing.Point(247, 403);
+            this.ButtonObjHotSpotsPlayerPosRelative.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonObjHotSpotsPlayerPosRelative.Name = "ButtonObjHotSpotsPlayerPosRelative";
+            this.ButtonObjHotSpotsPlayerPosRelative.Size = new System.Drawing.Size(61, 36);
+            this.ButtonObjHotSpotsPlayerPosRelative.TabIndex = 102;
+            this.ButtonObjHotSpotsPlayerPosRelative.Text = "Add HS Me.PosAbs";
+            this.ButtonObjHotSpotsPlayerPosRelative.UseVisualStyleBackColor = true;
+            this.ButtonObjHotSpotsPlayerPosRelative.Click += new System.EventHandler(this.ButtonObjHotSpotsPlayerPosRelative_Click);
             // 
             // ButtonObjImportGPSExtraPoint
             // 
@@ -1959,6 +1995,246 @@ namespace Quester.Profile
             this.ButtonBlackListAdd.UseVisualStyleBackColor = true;
             this.ButtonBlackListAdd.Click += new System.EventHandler(this.ButtonBlackListAdd_Click);
             // 
+            // TabPageCustomPath
+            // 
+            this.TabPageCustomPath.Controls.Add(this.ButtonCPDeleteSelectedPoints);
+            this.TabPageCustomPath.Controls.Add(this.ButtonCPAdd);
+            this.TabPageCustomPath.Controls.Add(this.ButtonCPDelete);
+            this.TabPageCustomPath.Controls.Add(this.ComboCPContB);
+            this.TabPageCustomPath.Controls.Add(this.label54);
+            this.TabPageCustomPath.Controls.Add(this.label53);
+            this.TabPageCustomPath.Controls.Add(this.ComboCPContA);
+            this.TabPageCustomPath.Controls.Add(this.label52);
+            this.TabPageCustomPath.Controls.Add(this.ComboCPFaction);
+            this.TabPageCustomPath.Controls.Add(this.CBCPUseMount);
+            this.TabPageCustomPath.Controls.Add(this.CBCPRoundTrip);
+            this.TabPageCustomPath.Controls.Add(this.CBCPForceFlying);
+            this.TabPageCustomPath.Controls.Add(this.CBCPAllowFar);
+            this.TabPageCustomPath.Controls.Add(this.label51);
+            this.TabPageCustomPath.Controls.Add(this.TBCPName);
+            this.TabPageCustomPath.Controls.Add(this.LBCPCustomPaths);
+            this.TabPageCustomPath.Controls.Add(this.label50);
+            this.TabPageCustomPath.Controls.Add(this.NumUpDownDistance);
+            this.TabPageCustomPath.Controls.Add(this.LBCPPoints);
+            this.TabPageCustomPath.Controls.Add(this.ButtonCPSave);
+            this.TabPageCustomPath.Controls.Add(this.ButtonCPRecord);
+            this.TabPageCustomPath.Location = new System.Drawing.Point(4, 22);
+            this.TabPageCustomPath.Name = "TabPageCustomPath";
+            this.TabPageCustomPath.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPageCustomPath.Size = new System.Drawing.Size(375, 539);
+            this.TabPageCustomPath.TabIndex = 3;
+            this.TabPageCustomPath.Text = "Custom Paths";
+            this.TabPageCustomPath.UseVisualStyleBackColor = true;
+            // 
+            // ButtonCPAdd
+            // 
+            this.ButtonCPAdd.Location = new System.Drawing.Point(206, 451);
+            this.ButtonCPAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonCPAdd.Name = "ButtonCPAdd";
+            this.ButtonCPAdd.Size = new System.Drawing.Size(70, 34);
+            this.ButtonCPAdd.TabIndex = 105;
+            this.ButtonCPAdd.Text = "Add";
+            this.ButtonCPAdd.UseVisualStyleBackColor = true;
+            this.ButtonCPAdd.Click += new System.EventHandler(this.ButtonCPAdd_Click);
+            // 
+            // ButtonCPDelete
+            // 
+            this.ButtonCPDelete.Location = new System.Drawing.Point(280, 451);
+            this.ButtonCPDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonCPDelete.Name = "ButtonCPDelete";
+            this.ButtonCPDelete.Size = new System.Drawing.Size(70, 34);
+            this.ButtonCPDelete.TabIndex = 104;
+            this.ButtonCPDelete.Text = "Delete";
+            this.ButtonCPDelete.UseVisualStyleBackColor = true;
+            // 
+            // ComboCPContB
+            // 
+            this.ComboCPContB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboCPContB.FormattingEnabled = true;
+            this.ComboCPContB.Location = new System.Drawing.Point(94, 501);
+            this.ComboCPContB.Margin = new System.Windows.Forms.Padding(2);
+            this.ComboCPContB.Name = "ComboCPContB";
+            this.ComboCPContB.Size = new System.Drawing.Size(108, 21);
+            this.ComboCPContB.TabIndex = 103;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(16, 504);
+            this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(68, 13);
+            this.label54.TabIndex = 102;
+            this.label54.Text = "Continent B :";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(16, 479);
+            this.label53.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(68, 13);
+            this.label53.TabIndex = 101;
+            this.label53.Text = "Continent A :";
+            // 
+            // ComboCPContA
+            // 
+            this.ComboCPContA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboCPContA.FormattingEnabled = true;
+            this.ComboCPContA.Location = new System.Drawing.Point(94, 476);
+            this.ComboCPContA.Margin = new System.Windows.Forms.Padding(2);
+            this.ComboCPContA.Name = "ComboCPContA";
+            this.ComboCPContA.Size = new System.Drawing.Size(108, 21);
+            this.ComboCPContA.TabIndex = 100;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(16, 454);
+            this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(48, 13);
+            this.label52.TabIndex = 99;
+            this.label52.Text = "Faction :";
+            // 
+            // ComboCPFaction
+            // 
+            this.ComboCPFaction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboCPFaction.FormattingEnabled = true;
+            this.ComboCPFaction.Location = new System.Drawing.Point(94, 451);
+            this.ComboCPFaction.Margin = new System.Windows.Forms.Padding(2);
+            this.ComboCPFaction.Name = "ComboCPFaction";
+            this.ComboCPFaction.Size = new System.Drawing.Size(108, 21);
+            this.ComboCPFaction.TabIndex = 98;
+            // 
+            // CBCPUseMount
+            // 
+            this.CBCPUseMount.AutoSize = true;
+            this.CBCPUseMount.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBCPUseMount.Location = new System.Drawing.Point(261, 434);
+            this.CBCPUseMount.Name = "CBCPUseMount";
+            this.CBCPUseMount.Size = new System.Drawing.Size(78, 17);
+            this.CBCPUseMount.TabIndex = 97;
+            this.CBCPUseMount.Text = "Use Mount";
+            this.CBCPUseMount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CBCPUseMount.UseVisualStyleBackColor = true;
+            // 
+            // CBCPRoundTrip
+            // 
+            this.CBCPRoundTrip.AutoSize = true;
+            this.CBCPRoundTrip.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBCPRoundTrip.Location = new System.Drawing.Point(176, 434);
+            this.CBCPRoundTrip.Name = "CBCPRoundTrip";
+            this.CBCPRoundTrip.Size = new System.Drawing.Size(79, 17);
+            this.CBCPRoundTrip.TabIndex = 96;
+            this.CBCPRoundTrip.Text = "Round Trip";
+            this.CBCPRoundTrip.UseVisualStyleBackColor = true;
+            // 
+            // CBCPForceFlying
+            // 
+            this.CBCPForceFlying.AutoSize = true;
+            this.CBCPForceFlying.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBCPForceFlying.Location = new System.Drawing.Point(94, 434);
+            this.CBCPForceFlying.Name = "CBCPForceFlying";
+            this.CBCPForceFlying.Size = new System.Drawing.Size(83, 17);
+            this.CBCPForceFlying.TabIndex = 95;
+            this.CBCPForceFlying.Text = "Force Flying";
+            this.CBCPForceFlying.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CBCPForceFlying.UseVisualStyleBackColor = true;
+            // 
+            // CBCPAllowFar
+            // 
+            this.CBCPAllowFar.AutoSize = true;
+            this.CBCPAllowFar.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBCPAllowFar.Location = new System.Drawing.Point(19, 434);
+            this.CBCPAllowFar.Name = "CBCPAllowFar";
+            this.CBCPAllowFar.Size = new System.Drawing.Size(69, 17);
+            this.CBCPAllowFar.TabIndex = 94;
+            this.CBCPAllowFar.Text = "Allow Far";
+            this.CBCPAllowFar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CBCPAllowFar.UseVisualStyleBackColor = true;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(7, 409);
+            this.label51.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(41, 13);
+            this.label51.TabIndex = 93;
+            this.label51.Text = "Name :";
+            // 
+            // TBCPName
+            // 
+            this.TBCPName.Location = new System.Drawing.Point(56, 406);
+            this.TBCPName.Margin = new System.Windows.Forms.Padding(2);
+            this.TBCPName.Name = "TBCPName";
+            this.TBCPName.Size = new System.Drawing.Size(295, 20);
+            this.TBCPName.TabIndex = 92;
+            // 
+            // LBCPCustomPaths
+            // 
+            this.LBCPCustomPaths.FormattingEnabled = true;
+            this.LBCPCustomPaths.Location = new System.Drawing.Point(10, 215);
+            this.LBCPCustomPaths.Name = "LBCPCustomPaths";
+            this.LBCPCustomPaths.Size = new System.Drawing.Size(341, 186);
+            this.LBCPCustomPaths.TabIndex = 91;
+            this.LBCPCustomPaths.SelectedIndexChanged += new System.EventHandler(this.LBCPCustomPaths_SelectedIndexChanged);
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(206, 11);
+            this.label50.MaximumSize = new System.Drawing.Size(80, 30);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(61, 26);
+            this.label50.TabIndex = 90;
+            this.label50.Text = "Separation distance";
+            // 
+            // NumUpDownDistance
+            // 
+            this.NumUpDownDistance.Location = new System.Drawing.Point(290, 13);
+            this.NumUpDownDistance.Name = "NumUpDownDistance";
+            this.NumUpDownDistance.Size = new System.Drawing.Size(61, 20);
+            this.NumUpDownDistance.TabIndex = 89;
+            this.NumUpDownDistance.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            // 
+            // LBCPPoints
+            // 
+            this.LBCPPoints.FormattingEnabled = true;
+            this.LBCPPoints.Location = new System.Drawing.Point(10, 42);
+            this.LBCPPoints.Name = "LBCPPoints";
+            this.LBCPPoints.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.LBCPPoints.Size = new System.Drawing.Size(341, 147);
+            this.LBCPPoints.TabIndex = 88;
+            this.LBCPPoints.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LBCPPoints_PreviewKeyDown);
+            // 
+            // ButtonCPSave
+            // 
+            this.ButtonCPSave.Location = new System.Drawing.Point(280, 488);
+            this.ButtonCPSave.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonCPSave.Name = "ButtonCPSave";
+            this.ButtonCPSave.Size = new System.Drawing.Size(71, 34);
+            this.ButtonCPSave.TabIndex = 85;
+            this.ButtonCPSave.Text = "Save";
+            this.ButtonCPSave.UseVisualStyleBackColor = true;
+            this.ButtonCPSave.Click += new System.EventHandler(this.ButtonCPSave_Click);
+            // 
+            // ButtonCPRecord
+            // 
+            this.ButtonCPRecord.Location = new System.Drawing.Point(10, 11);
+            this.ButtonCPRecord.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonCPRecord.Name = "ButtonCPRecord";
+            this.ButtonCPRecord.Size = new System.Drawing.Size(191, 28);
+            this.ButtonCPRecord.TabIndex = 83;
+            this.ButtonCPRecord.Text = "Record Custom Path";
+            this.ButtonCPRecord.UseVisualStyleBackColor = true;
+            this.ButtonCPRecord.Click += new System.EventHandler(this.ButtonCPRecord_Click);
+            // 
             // ButtonSaveAsXML
             // 
             this.ButtonSaveAsXML.Location = new System.Drawing.Point(335, 50);
@@ -2028,16 +2304,16 @@ namespace Quester.Profile
             this.UcXmlRichTextBox1.Text = "";
             this.UcXmlRichTextBox1.Xml = "";
             // 
-            // ButtonObjHotSpotsPlayerPosRelative
+            // ButtonCPDeleteSelectedPoints
             // 
-            this.ButtonObjHotSpotsPlayerPosRelative.Location = new System.Drawing.Point(247, 403);
-            this.ButtonObjHotSpotsPlayerPosRelative.Margin = new System.Windows.Forms.Padding(2);
-            this.ButtonObjHotSpotsPlayerPosRelative.Name = "ButtonObjHotSpotsPlayerPosRelative";
-            this.ButtonObjHotSpotsPlayerPosRelative.Size = new System.Drawing.Size(61, 36);
-            this.ButtonObjHotSpotsPlayerPosRelative.TabIndex = 102;
-            this.ButtonObjHotSpotsPlayerPosRelative.Text = "Add HS Me.PosAbs";
-            this.ButtonObjHotSpotsPlayerPosRelative.UseVisualStyleBackColor = true;
-            this.ButtonObjHotSpotsPlayerPosRelative.Click += new System.EventHandler(this.ButtonObjHotSpotsPlayerPosRelative_Click);
+            this.ButtonCPDeleteSelectedPoints.Location = new System.Drawing.Point(10, 192);
+            this.ButtonCPDeleteSelectedPoints.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonCPDeleteSelectedPoints.Name = "ButtonCPDeleteSelectedPoints";
+            this.ButtonCPDeleteSelectedPoints.Size = new System.Drawing.Size(125, 20);
+            this.ButtonCPDeleteSelectedPoints.TabIndex = 106;
+            this.ButtonCPDeleteSelectedPoints.Text = "Delete Selected Points";
+            this.ButtonCPDeleteSelectedPoints.UseVisualStyleBackColor = true;
+            this.ButtonCPDeleteSelectedPoints.Click += new System.EventHandler(this.ButtonCPDeleteSelectedPoints_Click);
             // 
             // SimpleProfileEditor
             // 
@@ -2062,6 +2338,7 @@ namespace Quester.Profile
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SimpleProfileEditor";
+            this.Load += new System.EventHandler(this.SimpleProfileEditor_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SimpleProfileEditor_KeyDown);
             this.ContextMenuStrip.ResumeLayout(false);
             this.PanelNPC.ResumeLayout(false);
@@ -2079,6 +2356,9 @@ namespace Quester.Profile
             this.PanelObjTaxi.PerformLayout();
             this.TabPageBlackList.ResumeLayout(false);
             this.TabPageBlackList.PerformLayout();
+            this.TabPageCustomPath.ResumeLayout(false);
+            this.TabPageCustomPath.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumUpDownDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2254,5 +2534,27 @@ namespace Quester.Profile
         internal CheckBox CBObjIsBonusObjective;
         internal CheckBox CBObjIgnoreAllFight;
         internal Button ButtonObjHotSpotsPlayerPosRelative;
+        private TabPage TabPageCustomPath;
+        internal Button ButtonCPSave;
+        internal Button ButtonCPRecord;
+        private ListBox LBCPPoints;
+        private ListBox LBCPCustomPaths;
+        private Label label50;
+        private NumericUpDown NumUpDownDistance;
+        internal CheckBox CBCPUseMount;
+        internal CheckBox CBCPRoundTrip;
+        internal CheckBox CBCPForceFlying;
+        internal CheckBox CBCPAllowFar;
+        internal Label label51;
+        internal TextBox TBCPName;
+        internal ComboBox ComboCPContB;
+        internal Label label54;
+        internal Label label53;
+        internal ComboBox ComboCPContA;
+        internal Label label52;
+        internal ComboBox ComboCPFaction;
+        internal Button ButtonCPAdd;
+        internal Button ButtonCPDelete;
+        internal Button ButtonCPDeleteSelectedPoints;
     }
 }
