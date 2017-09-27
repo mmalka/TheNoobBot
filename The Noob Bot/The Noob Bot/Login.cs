@@ -118,7 +118,7 @@ namespace The_Noob_Bot
                 sw.WriteLine("<?xml version=\"1.0\"?>");
                 sw.WriteLine("<configuration>");
                 sw.WriteLine("  <startup>");
-                sw.WriteLine("    <supportedRuntime version=\"v4.0\"/>");
+                sw.WriteLine("    <supportedRuntime version=\"v4.0\" sku=\".NETFramework,Version=v4.5\"/>");
                 sw.WriteLine("  </startup>");
                 sw.WriteLine("  <runtime>");
                 sw.WriteLine("    <loadFromRemoteSources enabled=\"true\"/>");
