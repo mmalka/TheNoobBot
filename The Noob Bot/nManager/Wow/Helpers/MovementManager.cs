@@ -1291,7 +1291,7 @@ namespace nManager.Wow.Helpers
             {
                 if (point.IsValid)
                 {
-                    if (_workerMoveTo == null)
+                    if (_workerMoveTo == null || !_workerMoveTo.IsAlive)
                         LaunchThreadMoveTo();
 
                     _farm = farm;
