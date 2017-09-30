@@ -426,7 +426,7 @@ namespace nManager.Wow.Helpers
             if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
-            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true, 0f, ignoreBlacklist); // can pick up quest on dead NPC.
+            uint baseAddress = MovementManager.FindTarget(ref npc, 4.5f, true, true, 0f, ignoreBlacklist); // can pick up quest on dead NPC.
             if (MovementManager.InMovement)
                 return;
             _travelDisabled = false; // reset travel
@@ -448,7 +448,7 @@ namespace nManager.Wow.Helpers
                 }
             }
             //End target finding based on QuestGiver.
-            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
+            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5f)
             {
                 if (baseAddress <= 0)
                 {
@@ -569,7 +569,7 @@ namespace nManager.Wow.Helpers
             if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
                 _travelDisabled = true;
             //Start target finding based on QuestGiver.
-            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true, 0f, ignoreBlacklist);
+            uint baseAddress = MovementManager.FindTarget(ref npc, 4.5f, true, true, 0f, ignoreBlacklist);
             if (MovementManager.InMovement)
                 return;
 
@@ -592,7 +592,7 @@ namespace nManager.Wow.Helpers
             _travelDisabled = false; // reset travel
             ItemInfo equip = null;
             //End target finding based on QuestGiver.
-            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
+            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5f)
             {
                 if (Usefuls.IsFlying)
                     MountTask.Land();
