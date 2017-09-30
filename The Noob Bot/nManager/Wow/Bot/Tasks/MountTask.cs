@@ -470,6 +470,7 @@ namespace nManager.Wow.Bot.Tasks
             {
                 LongMove.LongMoveIsLanding = true;
                 Logging.WriteNavigator("Landing in progress.");
+                MovementManager.StopMove();
                 MovementsAction.Descend(true, false, useLuaToLand);
                 Timer t = new Timer(60000);
                 bool completeLanding = false;
