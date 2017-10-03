@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DetourLayer;
+using nManager.Wow.Enums;
 using RecastLayer;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -12,7 +13,7 @@ using dtPolyRef = System.UInt64;
 
 namespace nManager.Wow.Helpers.PathFinderClass
 {
-    internal class Danger
+    public class Danger
     {
         public Point Location { get; private set; }
         public float Radius { get; private set; }
@@ -152,18 +153,23 @@ namespace nManager.Wow.Helpers.PathFinderClass
             get { return _query; }
         }
 
-        public int ReportDanger(IEnumerable<Danger> dangers)
+        public int ReportDanger(IEnumerable<Danger> dangers, bool doLoad = false)
         {
             lock (_threadLocker)
             {
                 try
                 {
                     float[] extents = new[] {2.5f, 2.5f, 2.5f};
-                    return (from danger in dangers
-                        let loc = danger.Location.ToRecast().ToFloatArray()
-                        let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
-                        where polyRef != 0
-                        select Query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger)).Sum();
+                    int sum = 0;
+                    foreach (Danger danger in dangers)
+                    {
+                        if (doLoad)
+                            LoadAround(danger.Location);
+                        float[] loc = danger.Location.ToRecast().ToFloatArray();
+                        ulong polyRef = _query.FindNearestPolygon(loc, extents, Filter);
+                        if (polyRef != 0) sum += _query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger);
+                    }
+                    return sum;
                 }
                 catch (Exception exception)
                 {
@@ -466,6 +472,26 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         }
                     }
                     // loaded
+                    List<Danger> reportDanger = new List<Danger>();
+                    foreach (KeyValuePair<Danger, string> keyValuePair in DangerousArea)
+                    {
+                        if (keyValuePair.Value == Continent)
+                        {
+                            if (!reportDanger.Contains(keyValuePair.Key))
+                            {
+                                float tx;
+                                float ty;
+                                GetTileByLocation(keyValuePair.Key.Location, out tx, out ty);
+                                int x2 = (int) Math.Floor(tx);
+                                int y2 = (int) Math.Floor(ty);
+                                if (x2 == x && y2 == y)
+                                    reportDanger.Add(keyValuePair.Key);
+                                //prevent an infinite loop by only adding on new loaded tile
+                            }
+                        }
+                    }
+                    if (reportDanger.Count > 0)
+                        Logging.WriteNavigator(this.ReportDanger(reportDanger) + " dangers added.");
                     _loadedTilesString.Add(GetTileName(x, y, true));
                     if (_loadedTilesString.Count >= 10)
                     {
@@ -919,7 +945,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         IsDungeon = true;
                     }
                     else //                       20bits 28bits
-                        status = _mesh.Initialize(1048576, 1024 * Division * Division, Utility.Origin, Utility.TileSize / Division, Utility.TileSize / Division);
+                        status = _mesh.Initialize(1048576, 1024*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
                     // maxPolys = 1 << polyBits (20) = 1048576
                     // maxTiles = is 4096 (was 2048), we have more than 4000 tiles in kalimdor, and Travel loads more than 2048 already
                     // ending up crashing the pathfinder.
@@ -935,7 +961,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     Filter.SetAreaCost((int) PolyArea.Water, 4);
                     Filter.SetAreaCost((int) PolyArea.Terrain, 1);
                     Filter.SetAreaCost((int) PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
-                    Filter.SetAreaCost((int) PolyArea.Danger, 20);
+                    Filter.SetAreaCost((int) PolyArea.Danger, 100);
                 }
                 catch (Exception exception)
                 {
@@ -943,6 +969,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 }
             }
         }
+
+        public static Dictionary<Danger, string> DangerousArea = new Dictionary<Danger, string>();
 
         private static bool DefaultConnectionHandler(ConnectionData data)
         {

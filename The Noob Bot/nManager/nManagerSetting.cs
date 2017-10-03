@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
+using nManager.Wow.Helpers.PathFinderClass;
 using nManager.Wow.MemoryClass;
 using nManager.Wow.ObjectManager;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
@@ -139,12 +142,21 @@ namespace nManager
             }
         }
 
-        public static void AddBlackListZone(Point position, float radius)
+        public static void AddBlackListZone(Point position, float radius, string continent = "None")
         {
             try
             {
                 if (!_blackListZone.ContainsKey(position))
+                {
                     _blackListZone.Add(position, radius);
+                    if (continent == "None")
+                        continent = Usefuls.ContinentNameMpq;
+                    var danger = new Danger(position, radius);
+                    Pather.DangerousArea.Add(danger, continent);
+
+                    if (continent == Usefuls.ContinentNameMpq)
+                        PathFinder.AddDangerousZone(danger);
+                }
             }
             catch (Exception e)
             {
@@ -158,8 +170,7 @@ namespace nManager
             {
                 foreach (KeyValuePair<Point, float> f in listBlackZone)
                 {
-                    if (!_blackListZone.ContainsKey(f.Key))
-                        _blackListZone.Add(f.Key, f.Value);
+                    AddBlackListZone(f.Key, f.Value);
                 }
             }
             catch (Exception e)

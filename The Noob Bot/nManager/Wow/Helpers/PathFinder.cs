@@ -341,6 +341,24 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
+        public static void AddDangerousZone(Danger danger)
+        {
+            bool manualAdd = _pather != null && _pather.Continent == Usefuls.ContinentNameMpq;
+            if (_pather == null)
+                _pather = new Pather(Usefuls.ContinentNameMpq);
+            if (_pather.Continent != Usefuls.ContinentNameMpq)
+            {
+                _pather.Dispose();
+                _pather = new Pather(Usefuls.ContinentNameMpq);
+            }
+            if (manualAdd)
+            {
+                var dangers = new List<Danger>();
+                dangers.Add(danger);
+                Logging.WriteNavigator(_pather.ReportDanger(dangers, true) + " dangers added.");
+            }
+        }
+
         public static List<Point> FindPathUnstuck(Point to)
         {
             try
