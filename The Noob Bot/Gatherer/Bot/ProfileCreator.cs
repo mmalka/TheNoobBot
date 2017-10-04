@@ -253,7 +253,11 @@ namespace Gatherer.Bot
             try
             {
                 _profile.BlackListRadius.Add(new GathererBlackListRadius
-                {Position = ObjectManager.Me.Position, Radius = (float) radiusN.Value});
+                {
+                    Position = ObjectManager.Me.Position,
+                    Radius = (float) radiusN.Value,
+                    ContinentId = Usefuls.ContinentNameMpq
+                });
                 RefreshForm();
             }
             catch (Exception ex)

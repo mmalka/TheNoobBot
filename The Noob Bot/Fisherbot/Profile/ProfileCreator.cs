@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
 namespace Fisherbot.Profile
@@ -220,7 +221,11 @@ namespace Fisherbot.Profile
             try
             {
                 _profile.BlackListRadius.Add(new FisherbotBlackListRadius
-                {Position = ObjectManager.Me.Position, Radius = (float) radiusN.Value});
+                {
+                    Position = ObjectManager.Me.Position,
+                    Radius = (float) radiusN.Value,
+                    ContinentId = Usefuls.ContinentNameMpq
+                });
                 RefreshForm();
             }
             catch (Exception ex)

@@ -353,10 +353,9 @@ namespace Grinder.Profile
             {
                 _profile.GrinderZones[_idZone].BlackListRadius.Add(new GrinderBlackListRadius
                 {
-                    Position =
-                        ObjectManager.Me
-                            .Position,
-                    Radius = (float) radiusN.Value
+                    Position = ObjectManager.Me.Position,
+                    Radius = (float) radiusN.Value,
+                    ContinentId = Usefuls.ContinentNameMpq
                 });
                 RefreshForm();
             }
