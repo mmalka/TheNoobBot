@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -78,6 +79,7 @@ namespace Quester.Profile
     {
         public Point Position = new Point();
         [DefaultValue(5.0f)] public float Radius = 5.0f;
+        [DefaultValue("")] public string ContinentId = "";
     }
 
     [Serializable]
