@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Xml.Serialization;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
@@ -201,11 +203,11 @@ namespace nManager
             }
         }
 
-        public static void AddBlackListZone(Point position, float radius, string continent = "None")
+        public static void AddBlackListZone(Point position, float radius, string continent = "")
         {
             try
             {
-                if (continent == "None")
+                if (string.IsNullOrEmpty(continent))
                     continent = Usefuls.ContinentNameMpq;
                 if (IsBlackListedZone(position, continent))
                     return;
@@ -220,19 +222,27 @@ namespace nManager
             }
         }
 
-        public static void AddRangeBlackListZone(Dictionary<Point, float> listBlackZone)
+        public static void AddRangeBlackListZone(List<BlackListZone> listBlackZone)
         {
             try
             {
-                foreach (KeyValuePair<Point, float> f in listBlackZone)
+                foreach (var zone in listBlackZone)
                 {
-                    AddBlackListZone(f.Key, f.Value);
+                    AddBlackListZone(zone.Position, zone.Radius, zone.ContinentId);
                 }
             }
             catch (Exception e)
             {
-                Logging.WriteError("AddRangeBlackListZone(Dictionary<Point, float> listBlackZone): " + e);
+                Logging.WriteError("AddRangeBlackListZone(List<BlackListZone> listBlackZone): " + e);
             }
+        }
+
+        [Serializable]
+        public class BlackListZone
+        {
+            public Point Position = new Point();
+            [DefaultValue(5.0f)] public float Radius = 5.0f;
+            [DefaultValue("")] public string ContinentId = "";
         }
 
         #endregion

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using nManager;
 using nManager.Wow.Class;
 
 namespace Grinder.Profile
@@ -40,9 +41,7 @@ namespace Grinder.Profile
     }
 
     [Serializable]
-    public class GrinderBlackListRadius
+    public class GrinderBlackListRadius : nManagerSetting.BlackListZone
     {
-        public Point Position = new Point();
-        public float Radius;
     }
 }

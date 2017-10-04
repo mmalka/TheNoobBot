@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using nManager;
 using nManager.Wow.Class;
 
 namespace Battlegrounder.Profile
@@ -46,9 +47,7 @@ namespace Battlegrounder.Profile
     }
 
     [Serializable]
-    public class BattlegrounderBlackListRadius
+    public class BattlegrounderBlackListRadius : nManagerSetting.BlackListZone
     {
-        public Point Position = new Point();
-        public float Radius;
     }
 }

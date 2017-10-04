@@ -75,11 +75,8 @@ namespace Quester.Profile
     }
 
     [Serializable]
-    public class QuesterBlacklistRadius
+    public class QuesterBlacklistRadius : nManagerSetting.BlackListZone
     {
-        public Point Position = new Point();
-        [DefaultValue(5.0f)] public float Radius = 5.0f;
-        [DefaultValue("")] public string ContinentId = "";
     }
 
     [Serializable]

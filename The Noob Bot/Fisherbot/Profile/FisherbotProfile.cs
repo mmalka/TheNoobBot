@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using nManager;
 using nManager.Wow.Class;
 
 namespace Fisherbot.Profile
@@ -13,9 +14,7 @@ namespace Fisherbot.Profile
     }
 
     [Serializable]
-    public class FisherbotBlackListRadius
+    public class FisherbotBlackListRadius : nManagerSetting.BlackListZone
     {
-        public Point Position = new Point();
-        public float Radius;
     }
 }

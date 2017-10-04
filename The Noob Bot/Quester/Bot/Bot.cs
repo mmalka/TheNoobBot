@@ -159,18 +159,7 @@ namespace Quester.Bot
                     return false;
 
                 // Black List:
-                Dictionary<Point, float> blackListDic = new Dictionary<Point, float>();
-                foreach (QuesterBlacklistRadius b in Profile.Blackspots)
-                {
-                    if (blackListDic.ContainsKey(b.Position))
-                    {
-                        if (blackListDic[b.Position] <= b.Radius)
-                            blackListDic[b.Position] = b.Radius;
-                        continue;
-                    }
-                    blackListDic.Add(b.Position, b.Radius);
-                }
-                nManagerSetting.AddRangeBlackListZone(blackListDic);
+                nManagerSetting.AddRangeBlackListZone(new List<nManagerSetting.BlackListZone>(Profile.Blackspots));
 
                 // Load CC:
                 CombatClass.LoadCombatClass();

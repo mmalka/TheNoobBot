@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Fisherbot.Profile;
+using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Plugins;
@@ -44,8 +45,7 @@ namespace Fisherbot.Bot
                 }
 
                 // Black List:
-                Dictionary<Point, float> blackListDic = Profile.BlackListRadius.ToDictionary(b => b.Position, b => b.Radius);
-                nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);
+                nManagerSetting.AddRangeBlackListZone(new List<nManagerSetting.BlackListZone>(Profile.BlackListRadius));
 
                 // Load CC:
                 CombatClass.LoadCombatClass();

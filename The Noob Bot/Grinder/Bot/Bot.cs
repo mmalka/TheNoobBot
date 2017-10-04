@@ -53,16 +53,10 @@ namespace Grinder.Bot
 
 
                 // Black List:
-                Dictionary<Point, float> blackListDic = new Dictionary<Point, float>();
                 foreach (GrinderZone zone in Profile.GrinderZones)
                 {
-                    foreach (GrinderBlackListRadius b in zone.BlackListRadius)
-                    {
-                        if (!blackListDic.ContainsKey(b.Position))
-                            blackListDic.Add(b.Position, b.Radius);
-                    }
+                    nManagerSetting.AddRangeBlackListZone(new List<nManagerSetting.BlackListZone>(zone.BlackListRadius));
                 }
-                nManagerSetting.AddRangeBlackListZone(blackListDic);
 
                 // Add Npc
                 foreach (GrinderZone zone in Profile.GrinderZones)

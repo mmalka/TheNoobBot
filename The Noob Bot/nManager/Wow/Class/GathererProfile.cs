@@ -24,9 +24,7 @@ namespace nManager.Wow.Class
     }
 
     [Serializable]
-    public class GathererBlackListRadius
+    public class GathererBlackListRadius : nManagerSetting.BlackListZone
     {
-        public Point Position = new Point();
-        public float Radius;
     }
 }

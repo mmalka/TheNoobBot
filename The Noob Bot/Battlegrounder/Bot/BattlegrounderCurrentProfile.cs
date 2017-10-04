@@ -520,10 +520,7 @@ namespace Battlegrounder.Bot
                 if (Bot.MovementLoop.PathLoop != null && Bot.MovementLoop.PathLoop.Count > 0)
                     Bot.MovementLoop.PathLoop.Clear();
                 SelectZone();
-                Dictionary<Point, float> blackListDic =
-                    _currentProfile.BattlegrounderZones.SelectMany(zone => zone.BlackListRadius)
-                        .ToDictionary(b => b.Position, b => b.Radius);
-                nManagerSetting.AddRangeBlackListZone(blackListDic);
+                nManagerSetting.AddRangeBlackListZone(new List<nManagerSetting.BlackListZone>(_currentProfile.BattlegrounderZones.SelectMany(zone => zone.BlackListRadius)));
             }
             else if (_afkSomewhere)
             {
