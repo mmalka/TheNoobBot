@@ -306,6 +306,20 @@ namespace nManager.Wow.Helpers
             return _pather.GetClosestPointOnTile(position, out success);
         }
 
+        public static void GetTileByPosition(Point position, out float x, out float y, string continentId = "")
+        {
+            if (string.IsNullOrEmpty(continentId))
+                continentId = Usefuls.ContinentNameMpq;
+            if (_pather == null)
+                _pather = new Pather(continentId);
+            if (_pather.Continent != continentId)
+            {
+                _pather.Dispose();
+                _pather = new Pather(continentId);
+            }
+            _pather.GetTileByLocation(position, out x, out y);
+        }
+
         public static float GetZPosition(float x, float y, float z, bool strict = false)
         {
             return GetZPosition(new Point(x, y, z), strict);
@@ -341,7 +355,7 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static void AddDangerousZone(Danger danger)
+        public static void AddDangerousZone(nManagerSetting.DangerousZone danger)
         {
             bool manualAdd = _pather != null && _pather.Continent == Usefuls.ContinentNameMpq;
             if (_pather == null)
@@ -353,8 +367,7 @@ namespace nManager.Wow.Helpers
             }
             if (manualAdd)
             {
-                var dangers = new List<Danger>();
-                dangers.Add(danger);
+                var dangers = new List<nManagerSetting.DangerousZone> {danger};
                 Logging.WriteNavigator(_pather.ReportDanger(dangers, true) + " dangers added.");
             }
         }

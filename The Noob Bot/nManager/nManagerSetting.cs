@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using nManager.Helpful;
+using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -107,17 +108,88 @@ namespace nManager
 
         #endregion
 
-        #region BlackListZone
+        #region AvoidZone
 
-        private static readonly Dictionary<Point, float> _blackListZone = new Dictionary<Point, float>();
+        public class DangerousZone
+        {
+            protected bool Equals(DangerousZone other)
+            {
+                return Equals(Position, other.Position) && string.Equals(ContinentId, other.ContinentId);
+            }
 
-        public static bool IsBlackListedZone(Point position)
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    int hashCode = (Position != null ? Position.GetHashCode() : 0);
+                    hashCode = (hashCode*397) ^ Radius.GetHashCode();
+                    hashCode = (hashCode*397) ^ (ContinentId != null ? ContinentId.GetHashCode() : 0);
+                    hashCode = (hashCode*397) ^ TileX.GetHashCode();
+                    hashCode = (hashCode*397) ^ TileY.GetHashCode();
+                    return hashCode;
+                }
+            }
+
+            public Point Position { get; private set; }
+            public float Radius { get; private set; }
+            public string ContinentId { get; private set; }
+            public float TileX { get; private set; }
+            public float TileY { get; private set; }
+
+            public DangerousZone(WoWUnit dangerousUnit)
+            {
+                try
+                {
+                    if (dangerousUnit == null || !dangerousUnit.IsValid || !dangerousUnit.IsAlive)
+                        return;
+                    Position = dangerousUnit.Position;
+                    Radius = dangerousUnit.AggroDistance;
+                    ContinentId = Usefuls.ContinentNameMpq;
+                    float x, y;
+                    PathFinder.GetTileByPosition(Position, out x, out y, ContinentId);
+                    TileX = x;
+                    TileY = y;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("public DangerousZone(WoWUnit dangerousUnit): " + exception);
+                }
+            }
+
+            public DangerousZone(Point position, float radius, string cId = "")
+            {
+                try
+                {
+                    Position = position;
+                    Radius = radius;
+                    if (string.IsNullOrEmpty(cId))
+                        cId = Usefuls.ContinentNameMpq;
+                    ContinentId = cId;
+                    float x, y;
+                    PathFinder.GetTileByPosition(Position, out x, out y, ContinentId);
+                    TileX = x;
+                    TileY = y;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("public DangerousZone(Point position, float radius, string cId = \"\"): " + exception);
+                }
+            }
+        }
+
+        public static List<DangerousZone> DangerousZones = new List<DangerousZone>();
+
+        public static bool IsBlackListedZone(Point position, string cId = "")
         {
             try
             {
-                foreach (KeyValuePair<Point, float> f in _blackListZone)
+                if (string.IsNullOrEmpty(cId))
+                    cId = Usefuls.ContinentNameMpq;
+                foreach (var zone in DangerousZones)
                 {
-                    if (f.Key.DistanceTo(position) <= f.Value)
+                    if (zone.ContinentId != cId)
+                        continue;
+                    if (position.DistanceTo(zone.Position) <= zone.Radius)
                         return true;
                 }
                 return false;
@@ -129,34 +201,18 @@ namespace nManager
             }
         }
 
-        public static Dictionary<Point, float> GetListZoneBlackListed()
-        {
-            try
-            {
-                return _blackListZone;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetListZoneBlackListed(): " + e);
-                return new Dictionary<Point, float>();
-            }
-        }
-
         public static void AddBlackListZone(Point position, float radius, string continent = "None")
         {
             try
             {
-                if (!_blackListZone.ContainsKey(position))
-                {
-                    _blackListZone.Add(position, radius);
-                    if (continent == "None")
-                        continent = Usefuls.ContinentNameMpq;
-                    var danger = new Danger(position, radius);
-                    Pather.DangerousArea.Add(danger, continent);
-
-                    if (continent == Usefuls.ContinentNameMpq)
-                        PathFinder.AddDangerousZone(danger);
-                }
+                if (continent == "None")
+                    continent = Usefuls.ContinentNameMpq;
+                if (IsBlackListedZone(position, continent))
+                    return;
+                var danger = new DangerousZone(position, radius, continent);
+                DangerousZones.Add(danger);
+                if (continent == Usefuls.ContinentNameMpq)
+                    PathFinder.AddDangerousZone(danger);
             }
             catch (Exception e)
             {

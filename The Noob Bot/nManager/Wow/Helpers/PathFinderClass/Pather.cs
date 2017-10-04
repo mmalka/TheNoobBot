@@ -13,41 +13,6 @@ using dtPolyRef = System.UInt64;
 
 namespace nManager.Wow.Helpers.PathFinderClass
 {
-    public class Danger
-    {
-        public Point Location { get; private set; }
-        public float Radius { get; private set; }
-
-        public Danger(Point loc, float rad)
-        {
-            try
-            {
-                Location = loc;
-                Radius = rad;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("Danger(Point loc, float rad): " + exception);
-            }
-        }
-
-        public Danger(Point loc, int levelDifference, float factor = 1.0f)
-        {
-            try
-            {
-                Location = loc;
-                Radius = levelDifference*3.5f + 10;
-                Radius *= factor;
-                if (levelDifference < 0)
-                    Radius = -Radius;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("Danger(Point loc, int levelDifference, float factor = 1.0f): " + exception);
-            }
-        }
-    }
-
     internal class NavMeshException : Exception
     {
         public DetourStatus Status { get; private set; }
@@ -153,7 +118,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             get { return _query; }
         }
 
-        public int ReportDanger(IEnumerable<Danger> dangers, bool doLoad = false)
+        public int ReportDanger(List<nManagerSetting.DangerousZone> dangers, bool doLoad = false)
         {
             lock (_threadLocker)
             {
@@ -161,11 +126,15 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 {
                     float[] extents = new[] {2.5f, 2.5f, 2.5f};
                     int sum = 0;
-                    foreach (Danger danger in dangers)
+                    foreach (var danger in dangers)
                     {
+                        if (danger.ContinentId != Continent)
+                            continue;
+                        if (danger.ContinentId != Usefuls.ContinentNameMpq)
+                            continue; // only load blacklist for the actual continent, even if pather is checking remotely.
                         if (doLoad)
-                            LoadAround(danger.Location);
-                        float[] loc = danger.Location.ToRecast().ToFloatArray();
+                            LoadAround(danger.Position, false);
+                        float[] loc = danger.Position.ToRecast().ToFloatArray();
                         ulong polyRef = _query.FindNearestPolygon(loc, extents, Filter);
                         if (polyRef != 0) sum += _query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger);
                     }
@@ -319,7 +288,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        public void LoadAround(Point loc)
+        public void LoadAround(Point loc, bool applyDanger = true)
         {
             lock (_threadLocker)
             {
@@ -356,7 +325,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     {
                         for (int i = -1; i < 2; i++)
                             for (int j = -1; j < 2; j++)
-                                LoadTile(x + i, y + j);
+                                LoadTile(x + i, y + j, applyDanger);
                     }
 #pragma warning restore 162
                 }
@@ -420,7 +389,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         private readonly List<string> _loadedTilesString = new List<string>();
 
-        public bool LoadTile(int x, int y)
+        public bool LoadTile(int x, int y, bool applyDanger = true)
         {
             lock (_threadLocker)
             {
@@ -472,26 +441,20 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         }
                     }
                     // loaded
-                    List<Danger> reportDanger = new List<Danger>();
-                    foreach (KeyValuePair<Danger, string> keyValuePair in DangerousArea)
+                    if (applyDanger)
                     {
-                        if (keyValuePair.Value == Continent)
+                        var dangers = new List<nManagerSetting.DangerousZone>();
+                        foreach (var zone in nManagerSetting.DangerousZones)
                         {
-                            if (!reportDanger.Contains(keyValuePair.Key))
-                            {
-                                float tx;
-                                float ty;
-                                GetTileByLocation(keyValuePair.Key.Location, out tx, out ty);
-                                int x2 = (int) Math.Floor(tx);
-                                int y2 = (int) Math.Floor(ty);
-                                if (x2 == x && y2 == y)
-                                    reportDanger.Add(keyValuePair.Key);
-                                //prevent an infinite loop by only adding on new loaded tile
-                            }
+                            if (Continent != zone.ContinentId)
+                                continue;
+                            if ((int) Math.Floor(zone.TileX) != x || (int) Math.Floor(zone.TileY) != y)
+                                continue;
+                            dangers.Add(zone);
                         }
+                        if (dangers.Count > 0)
+                            Logging.WriteNavigator(ReportDanger(dangers) + " dangers added.");
                     }
-                    if (reportDanger.Count > 0)
-                        Logging.WriteNavigator(this.ReportDanger(reportDanger) + " dangers added.");
                     _loadedTilesString.Add(GetTileName(x, y, true));
                     if (_loadedTilesString.Count >= 10)
                     {
@@ -962,6 +925,10 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     Filter.SetAreaCost((int) PolyArea.Terrain, 1);
                     Filter.SetAreaCost((int) PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
                     Filter.SetAreaCost((int) PolyArea.Danger, 100);
+                    if (nManagerSetting.DangerousZones.Count > 0)
+                    {
+                        ReportDanger(nManagerSetting.DangerousZones, true);
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -969,8 +936,6 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 }
             }
         }
-
-        public static Dictionary<Danger, string> DangerousArea = new Dictionary<Danger, string>();
 
         private static bool DefaultConnectionHandler(ConnectionData data)
         {
