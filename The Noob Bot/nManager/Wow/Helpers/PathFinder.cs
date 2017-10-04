@@ -368,7 +368,9 @@ namespace nManager.Wow.Helpers
             if (manualAdd)
             {
                 var dangers = new List<nManagerSetting.DangerousZone> {danger};
-                Logging.WriteNavigator(_pather.ReportDanger(dangers, true) + " dangers added.");
+                int addedDangers = _pather.ReportDanger(dangers, true);
+                if (addedDangers > 0)
+                    Logging.WriteNavigator(addedDangers + " dangers added.");
             }
         }
 

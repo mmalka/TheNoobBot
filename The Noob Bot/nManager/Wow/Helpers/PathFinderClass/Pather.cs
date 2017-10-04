@@ -453,7 +453,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
                             dangers.Add(zone);
                         }
                         if (dangers.Count > 0)
-                            Logging.WriteNavigator(ReportDanger(dangers) + " dangers added.");
+                        {
+                            int addedDangers = ReportDanger(dangers);
+                            if (addedDangers > 0)
+                                Logging.WriteNavigator(addedDangers + " dangers added.");
+                        }
                     }
                     _loadedTilesString.Add(GetTileName(x, y, true));
                     if (_loadedTilesString.Count >= 10)
@@ -927,7 +931,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     Filter.SetAreaCost((int) PolyArea.Danger, 100);
                     if (nManagerSetting.DangerousZones.Count > 0)
                     {
-                        ReportDanger(nManagerSetting.DangerousZones, true);
+                        int addedDangers = ReportDanger(nManagerSetting.DangerousZones, true);
+                        if (addedDangers > 0)
+                            Logging.WriteNavigator(addedDangers + " dangers added.");
                     }
                 }
                 catch (Exception exception)
