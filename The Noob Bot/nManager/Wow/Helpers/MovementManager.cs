@@ -584,6 +584,7 @@ namespace nManager.Wow.Helpers
                 if (ObjectManager.ObjectManager.Me.IsCast)
                     return;
                 IsUnStuck = true;
+                nManagerSetting.AddBlackListZone(ObjectManager.ObjectManager.Me.Position, 5f, Usefuls.ContinentNameMpq);
                 Logging.WriteDebug("UnStuck() started.");
                 MovementsAction.Ascend(false);
                 MovementsAction.Descend(false);
