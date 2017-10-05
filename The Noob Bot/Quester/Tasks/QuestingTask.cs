@@ -1646,6 +1646,14 @@ namespace Quester.Tasks
                 };
 
                 Point me = ObjectManager.Me.Position;
+                if (_travelLocation != null && _travelLocation.DistanceTo(me) > 0.1f)
+                {
+                    if (Products.TravelRegenerated && Products.TravelFrom.IsValid)
+                    {
+                        _travelLocation = Products.TravelFrom;
+                        Products.TravelRegenerated = false;
+                    }
+                }
                 if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                 {
                     MovementManager.StopMove();
@@ -1653,10 +1661,10 @@ namespace Quester.Tasks
                     Products.TravelToContinentId = Usefuls.ContinentId; // todo find a way to define continent via profile for WQ
                     Products.TravelTo = npc.Position;
                     Products.TravelFromContinentId = Usefuls.ContinentId;
-                    Products.TravelFrom = ObjectManager.Me.Position;
+                    Products.TravelFrom = me;
                     // Pass the check for valid destination as a lambda
                     Products.TargetValidationFct = IsNearWQ;
-                    _travelLocation = me;
+                    _travelLocation = Products.TravelFrom;
                     return;
                 }
                 if (_travelLocation.DistanceTo(me) <= 0.1f)

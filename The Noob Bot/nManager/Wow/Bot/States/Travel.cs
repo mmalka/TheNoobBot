@@ -64,6 +64,12 @@ namespace nManager.Wow.Bot.States
             set { Products.Products.TravelToContinentId = value; }
         }
 
+        private bool TravelRegenerated
+        {
+            get { return Products.Products.TravelRegenerated; }
+            set { Products.Products.TravelRegenerated = value; }
+        }
+
         public Func<Point, bool> TargetValidationFct
         {
             get { return Products.Products.TargetValidationFct; }
@@ -467,6 +473,8 @@ namespace nManager.Wow.Bot.States
                 if (restartTravel)
                 {
                     // Our travel ended because we didn't have the taxi we wanted, regenerate now that the list of known taxi is updated.
+                    TravelFrom = ObjectManager.ObjectManager.Me.Position;
+                    TravelRegenerated = true;
                     _generatedRoutePath = GenerateRoutePath;
                     if (!CombatClass.IsAliveCombatClass)
                         CombatClass.LoadCombatClass();

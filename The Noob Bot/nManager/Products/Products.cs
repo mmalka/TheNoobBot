@@ -87,6 +87,7 @@ namespace nManager.Products
         public static int TravelToContinentId { get; set; }
         public static int TravelFromContinentId { get; set; }
         public static bool ForceTravel { get; set; }
+        public static bool TravelRegenerated { get; set; }
         public static Func<Point, bool> TargetValidationFct { get; set; }
 
         public static void LoadProducts(string nameDll)
@@ -211,6 +212,7 @@ namespace nManager.Products
                     _inManualPause = false;
                     TravelToContinentId = 9999999;
                     TravelFromContinentId = 9999999;
+                    TravelRegenerated = false;
                     TravelTo = new Point();
                     TravelFrom = new Point();
                     ForceTravel = false;
@@ -253,6 +255,7 @@ namespace nManager.Products
                     _inManualPause = false;
                     TravelToContinentId = 9999999;
                     TravelFromContinentId = 9999999;
+                    TravelRegenerated = false;
                     TravelTo = new Point();
                     TravelFrom = new Point();
                     ForceTravel = false;

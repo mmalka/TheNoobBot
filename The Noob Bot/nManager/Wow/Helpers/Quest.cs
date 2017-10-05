@@ -409,6 +409,14 @@ namespace nManager.Wow.Helpers
                 bypassTravel = true;
             else if (Usefuls.IsFlying)
                 MountTask.DismountMount();
+            if (_travelLocation != null && _travelLocation.DistanceTo(me) > 0.1f)
+            {
+                if (Products.Products.TravelRegenerated && Products.Products.TravelFrom.IsValid)
+                {
+                    _travelLocation = Products.Products.TravelFrom;
+                    Products.Products.TravelRegenerated = false;
+                }
+            }
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
@@ -416,11 +424,11 @@ namespace nManager.Wow.Helpers
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;
-                Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
+                Products.Products.TravelFrom = me;
                 Products.Products.ForceTravel = forceTravel;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
-                _travelLocation = me;
+                _travelLocation = Products.Products.TravelFrom;
                 return;
             }
             if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
@@ -552,6 +560,14 @@ namespace nManager.Wow.Helpers
                 bypassTravel = true;
             else if (Usefuls.IsFlying)
                 MountTask.DismountMount();
+            if (_travelLocation != null && _travelLocation.DistanceTo(me) > 0.1f)
+            {
+                if (Products.Products.TravelRegenerated && Products.Products.TravelFrom.IsValid)
+                {
+                    _travelLocation = Products.Products.TravelFrom;
+                    Products.Products.TravelRegenerated = false;
+                }
+            }
             if (!bypassTravel && (_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
@@ -559,11 +575,11 @@ namespace nManager.Wow.Helpers
                 Products.Products.TravelToContinentId = npc.ContinentIdInt;
                 Products.Products.TravelTo = npc.Position;
                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;
-                Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
+                Products.Products.TravelFrom = me;
                 Products.Products.ForceTravel = forceTravel;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = IsNearQuestGiver;
-                _travelLocation = me;
+                _travelLocation = Products.Products.TravelFrom;
                 return;
             }
             if (_travelLocation != null && _travelLocation.DistanceTo(me) <= 0.1f)
@@ -890,6 +906,14 @@ namespace nManager.Wow.Helpers
             }
             if (!travelToQuestZone && !forceTravel)
                 doTravel = false;
+            if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f)
+            {
+                if (Products.Products.TravelRegenerated && Products.Products.TravelFrom.IsValid)
+                {
+                    _travelLocation = Products.Products.TravelFrom;
+                    Products.Products.TravelRegenerated = false;
+                }
+            }
             if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled)
             {
                 MovementManager.StopMove();
@@ -902,7 +926,7 @@ namespace nManager.Wow.Helpers
                 Products.Products.ForceTravel = forceTravel;
                 // Pass the check for valid destination as a lambda
                 Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
-                _travelLocation = ObjectManager.ObjectManager.Me.Position;
+                _travelLocation = Products.Products.TravelFrom;
                 return true;
             }
             if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 0.1f)

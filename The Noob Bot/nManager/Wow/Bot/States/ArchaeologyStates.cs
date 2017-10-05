@@ -288,6 +288,14 @@ namespace nManager.Wow.Bot.States
                             }
                             Logging.Write("Not inside, then go to Digsite " + digsitesZone.name);
                             Point me = ObjectManager.ObjectManager.Me.Position;
+                            if (_travelLocation != null && _travelLocation.DistanceTo(me) > 0.1f)
+                            {
+                                if (Products.Products.TravelRegenerated && Products.Products.TravelFrom.IsValid)
+                                {
+                                    _travelLocation = Products.Products.TravelFrom;
+                                    Products.Products.TravelRegenerated = false;
+                                }
+                            }
                             if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                             {
                                 MovementManager.StopMove();
@@ -295,10 +303,10 @@ namespace nManager.Wow.Bot.States
                                 Products.Products.TravelToContinentId = Usefuls.ContinentId;
                                 Products.Products.TravelTo = qPOI.Center;
                                 Products.Products.TravelFromContinentId = Usefuls.ContinentId;
-                                Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
+                                Products.Products.TravelFrom = me;
                                 // Pass the check for valid destination as a lambda
                                 Products.Products.TargetValidationFct = qPOI.IsInside;
-                                _travelLocation = me;
+                                _travelLocation = Products.Products.TravelFrom;
                                 return;
                             }
                             if (_travelLocation.DistanceTo(me) <= 0.1f)

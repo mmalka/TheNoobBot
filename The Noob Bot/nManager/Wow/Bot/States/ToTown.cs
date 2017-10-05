@@ -424,6 +424,15 @@ namespace nManager.Wow.Bot.States
                             doTravel = true;
                     }
                     //Start travel
+
+                    if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f)
+                    {
+                        if (Products.Products.TravelRegenerated && Products.Products.TravelFrom.IsValid)
+                        {
+                            _travelLocation = Products.Products.TravelFrom;
+                            Products.Products.TravelRegenerated = false;
+                        }
+                    }
                     if (doTravel && (_travelLocation == null || _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 0.1f) && !_travelDisabled && !Usefuls.IsFlying)
                     {
                         MovementManager.StopMove();
@@ -448,7 +457,7 @@ namespace nManager.Wow.Bot.States
                         Products.Products.TravelFrom = ObjectManager.ObjectManager.Me.Position;
                         // Pass the check for valid destination as a lambda
                         Products.Products.TargetValidationFct = Quest.IsNearQuestGiver; // compare me.Pos to dest.Pos
-                        _travelLocation = ObjectManager.ObjectManager.Me.Position;
+                        _travelLocation = Products.Products.TravelFrom;
                         return;
                     }
                     if (_travelLocation != null && _travelLocation.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 0.1f)
