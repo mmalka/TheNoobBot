@@ -921,7 +921,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         Logging.WriteNavigator(status + " Failed to initialize the mesh");
 
                     _query = new NavMeshQuery(new PatherCallback(this));
-                    DetourStatus t = _query.Initialize(_mesh, 262143); // 17bits, max value possible according to Neo2003
+                    DetourStatus t = _query.Initialize(_mesh, 524287); // 20bits - 1
                     //Logging.WriteDebug("NavMeshQuery initialized with status: " + t);
                     Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
                     // Add the costs
