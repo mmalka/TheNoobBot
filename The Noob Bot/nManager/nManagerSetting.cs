@@ -343,7 +343,7 @@ namespace nManager
         public bool ActivateAutoRepairFeature = true;
         public bool ActivateAutoSellingFeature = true;
         public bool SellGray = true;
-        public bool SellWhite;
+        public bool SellWhite = true;
         public bool SellGreen;
         public bool SellBlue;
         public bool SellPurple;
@@ -375,8 +375,8 @@ namespace nManager
         public bool AutoConfirmOnBoPItems = true;
         public bool ActivateAlwaysOnTopFeature;
         public int RepairWhenDurabilityIsUnderPercent = 35;
-        public int SendMailWhenLessThanXSlotLeft = 2;
-        public int SellItemsWhenLessThanXSlotLeft = 2;
+        public int SendMailWhenLessThanXSlotLeft = 4;
+        public int SellItemsWhenLessThanXSlotLeft = 4;
         public bool UseHearthstone;
         public bool ActiveStopTNBAfterXLevelup;
         public bool ActiveStopTNBAfterXMinutes;
