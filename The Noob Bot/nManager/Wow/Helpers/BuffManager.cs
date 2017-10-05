@@ -51,7 +51,6 @@ namespace nManager.Wow.Helpers
                         return buff.AuraCount;
                     if (buff.Flags.HasFlag(UnitAuraFlags.Duration) || buff.Flags.HasFlag(UnitAuraFlags.BasePoints))
                         return buff.AuraCount;
-                    return -1;
                 }
             }
             return -1;

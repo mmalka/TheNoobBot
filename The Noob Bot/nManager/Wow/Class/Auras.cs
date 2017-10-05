@@ -67,7 +67,7 @@ namespace nManager.Wow.Class
 
             public uint AuraUnk2
             {
-                get { return Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk2); }
+                get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint)Addresses.UnitBaseGetUnitAura.AuraStructUnk2); }
             }
 
             public int AuraTimeLeftInMs

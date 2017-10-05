@@ -218,7 +218,7 @@
             KnownAllSpells = SpellBookNumSpells - 0x4, // found via SpellBookNumSpells - 4
             SpellBookNumSpells = 0x118771C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0x1187768 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0x1187768 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0x1187804, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
@@ -361,14 +361,15 @@
             AuraStructCreatorGuid = 0x48, // read 16 bytes (GUID)
             AuraStructUnkwnonGuid = AuraStructCreatorGuid + 16, // read 16 bytes (GUID)
             AuraStructSpellId = AuraStructUnkwnonGuid + 16, // read 4 bytes (UINT)
-            AuraStructFlag = AuraStructSpellId + 4, // read 1 byte
-            AuraStructMask = AuraStructFlag + 1, // read 4 bytes
+            AuraStructUnk2 = AuraStructSpellId + 4, // read 1 byte
+            AuraStructMask = AuraStructUnk2 + 1, // read 4 bytes
             AuraStructCount = AuraStructMask + 4, // read 1 byte
             AuraStructCasterLevel = AuraStructCount + 1, // read 1 byte
             AuraStructUnk1 = AuraStructCasterLevel + 1, // read 1 byte, what is this ?
             AuraStructDuration = AuraStructUnk1 + 1, // read 4 bytes
             AuraStructSpellEndTime = AuraStructDuration + 4, // read 4 bytes
-            AuraStructUnk2 = AuraStructSpellEndTime + 4, // read 4 byte
+            AuraStructFlag = AuraStructSpellEndTime + 4, // read 1 byte
+            // 3 more byte
         }
 
         /// <summary>
