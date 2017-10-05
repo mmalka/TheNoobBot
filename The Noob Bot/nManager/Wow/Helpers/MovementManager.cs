@@ -1653,6 +1653,8 @@ namespace nManager.Wow.Helpers
 
         public static uint FindTarget(ref Npc target, float specialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0, bool ignoreBlacklist = false)
         {
+            if (MountTask.OnGroundMount() && !Usefuls.IsFlying && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5f)
+                Usefuls.DisMount();
             bool patherResult, requiresUpdate;
             if (specialRange > 0 && specialRange <= 3f)
                 specialRange = (float) (new Random().NextDouble()*2f + 2.5f);
