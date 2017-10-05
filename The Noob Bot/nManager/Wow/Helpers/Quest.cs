@@ -456,7 +456,7 @@ namespace nManager.Wow.Helpers
                 }
             }
             //End target finding based on QuestGiver.
-            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5f)
+            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 4.5f)
             {
                 if (baseAddress <= 0)
                 {
@@ -608,7 +608,7 @@ namespace nManager.Wow.Helpers
             _travelDisabled = false; // reset travel
             ItemInfo equip = null;
             //End target finding based on QuestGiver.
-            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5f)
+            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 4.5f)
             {
                 if (Usefuls.IsFlying)
                     MountTask.Land();
