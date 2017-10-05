@@ -344,8 +344,11 @@ namespace nManager.Wow.Helpers
                                 if (_points[idPoint].Type.ToLower() == "swimming")
                                     return;
                                 // GoTo next Point
-                                if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f && ObjectManager.ObjectManager.Me.IsMounted) ||
-                                      ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f) && ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) && _movement)
+                                if (_movement &&
+                                    ((MountTask.OnFlyMount() && ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) <= 8f) ||
+                                     (ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f &&
+                                      (ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 5.0f ||
+                                       ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f))))
                                 {
                                     idPoint++;
                                     if (idPoint > _points.Count - 1)
@@ -543,7 +546,7 @@ namespace nManager.Wow.Helpers
                             MovementsAction.Ascend(false);
                         }
 
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 7 && _movement)
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 15 && _movement)
                         {
                             idPoint++;
                             if (idPoint > _points.Count - 1)
