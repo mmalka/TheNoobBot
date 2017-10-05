@@ -72,7 +72,7 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        public static MountCapacity GetMountCapacity()
+        public static MountCapacity GetMountCapacity(bool ignoreDeactivatedFlyMount = false)
         {
             if (!AllowMounting || Usefuls.PlayerUsingVehicle || ObjectManager.ObjectManager.Me.IsDead)
                 return MountCapacity.Feet;
@@ -168,7 +168,7 @@ namespace nManager.Wow.Bot.Tasks
                     return MountCapacity.Feet; // Tannan Jungle Intro to leave to the docks.
 
                 if ((ObjectManager.ObjectManager.Me.Level >= 60 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 58)) && _flyMount != string.Empty &&
-                    Usefuls.IsFlyableArea && !nManagerSetting.CurrentSetting.DeactivateFlyingMount)
+                    Usefuls.IsFlyableArea && (!nManagerSetting.CurrentSetting.DeactivateFlyingMount || ignoreDeactivatedFlyMount))
                 {
                     ContinentId cont = (ContinentId) Usefuls.ContinentId;
 
@@ -226,11 +226,11 @@ namespace nManager.Wow.Bot.Tasks
 
         private static readonly object MountLocker = new object();
 
-        public static void Mount(bool stopMove = true, bool bypassForcedGround = false)
+        public static void Mount(bool stopMove = true, bool bypassForcedGround = false, bool ignoreDeactivatedFlyMount = false)
         {
             lock (MountLocker)
             {
-                switch (GetMountCapacity())
+                switch (GetMountCapacity(ignoreDeactivatedFlyMount))
                 {
                     case MountCapacity.Fly:
                         if (!bypassForcedGround && nManagerSetting.CurrentSetting.UseGroundMount)

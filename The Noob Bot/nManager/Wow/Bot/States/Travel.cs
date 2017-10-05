@@ -785,9 +785,9 @@ namespace nManager.Wow.Bot.States
                         if (customPath.UseMount && (customPath.ForceFlying || ((PathFinder.GetZPosition(firstPoint) + 20) < firstPoint.Z)))
                         {
                             // fly path?
-                            if (MountTask.GetMountCapacity() >= MountCapacity.Fly)
+                            if (MountTask.GetMountCapacity(true) >= MountCapacity.Fly)
                             {
-                                MountTask.Mount(true, true);
+                                MountTask.Mount(true, true, true);
                                 if (MountTask.OnFlyMount())
                                     MountTask.Takeoff();
                             }
@@ -814,9 +814,9 @@ namespace nManager.Wow.Bot.States
                     {
                         if (!MountTask.OnFlyMount())
                         {
-                            if (MountTask.GetMountCapacity() >= MountCapacity.Fly)
+                            if (MountTask.GetMountCapacity(true) >= MountCapacity.Fly)
                             {
-                                MountTask.Mount(true, true);
+                                MountTask.Mount(true, true, true);
                                 if (MountTask.OnFlyMount())
                                     MountTask.Takeoff();
                             }
