@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -961,6 +962,12 @@ namespace nManager.Wow.Bot.States
                             return false;
                         }
                         memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id));
+                        if (!memoryTaxi.IsValid && taxi.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 20.0f)
+                        {
+                            Logging.Write("Current taxi (" + taxi.Name + " - " + taxi.Id + ") is not available yet, blacklist it and restart travel.");
+                            _unknownTaxis.Add(taxi);
+                            return true;
+                        }
                     }
                 }
             }
