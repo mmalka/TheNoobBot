@@ -1302,6 +1302,12 @@ namespace Quester.Tasks
                 {
                     if (questObjective.IgnoreFight)
                         Quest.GetSetIgnoreFight = true;
+                    if (questObjective.Position.IsValid)
+                    {
+                        MovementManager.GoToLocationFindTarget(questObjective.Position, questObjective.Range > 5f ? questObjective.Range : 0);
+                        if (MovementManager.InMovement)
+                            return;
+                    }
                     if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
                         return;
                     ItemsManager.UseItem(questObjective.UseItemId, questObjective.Position);
