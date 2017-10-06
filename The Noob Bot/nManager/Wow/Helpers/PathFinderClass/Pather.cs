@@ -57,9 +57,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         #region Memory Management
 
-        public int MemoryPressure { get; private set; }
+        public long MemoryPressure { get; private set; }
 
-        private void AddMemoryPressure(int bytes)
+        private void AddMemoryPressure(long bytes)
         {
             try
             {
