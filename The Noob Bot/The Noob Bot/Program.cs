@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
@@ -13,6 +14,11 @@ namespace The_Noob_Bot
         [STAThread]
         private static void Main(string[] args)
         {
+            if (!Process.GetCurrentProcess().ProcessName.Contains("vshost") && (Process.GetCurrentProcess().ProcessName.Contains("Bot") || Process.GetCurrentProcess().ProcessName.Contains("Noob")))
+            {
+                MessageBox.Show("You must rename " + Process.GetCurrentProcess().ProcessName + ".exe to something else prior to launch.");
+                Process.GetCurrentProcess().Kill();
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var loginForm = new Login();
