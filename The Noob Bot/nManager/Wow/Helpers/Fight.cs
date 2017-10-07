@@ -11,7 +11,7 @@ namespace nManager.Wow.Helpers
 {
     public class Fight
     {
-        public static bool InFight { get; set; }
+        public static bool InFight { get; private set; }
 
         public static UInt128 StartFight(UInt128 guid = default(UInt128))
         {
