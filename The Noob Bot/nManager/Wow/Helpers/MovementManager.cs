@@ -1151,7 +1151,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static bool MoveToLocation(Point position)
+        public static bool MoveToLocation(Point position)
         {
             try
             {
