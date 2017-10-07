@@ -72,6 +72,31 @@ namespace nManager.Products
             }
         }
 
+        public static void StartTravelFromLogText(string logText)
+        {
+            // Generating Travel from 3 ; 5 ; 7 ; None 10 to 12 ; 14 ; 16 ; None 19, Distance: 858.7853
+            if (logText.Substring(13, 1) == "-")
+                logText = logText.Substring(14).Trim();
+            logText = logText.Split(',')[0];
+            var spaceSplitted = logText.Trim().Split(' ');
+
+            Point pointFrom = new Point(Others.ToSingle(spaceSplitted[3]), Others.ToSingle(spaceSplitted[5]), Others.ToSingle(spaceSplitted[7]));
+            string continentFrom = spaceSplitted[10];
+            Point pointTo = new Point(Others.ToSingle(spaceSplitted[12]), Others.ToSingle(spaceSplitted[14]), Others.ToSingle(spaceSplitted[16]));
+            string continentTo = spaceSplitted[19];
+
+            if (!pointTo.IsValid || !pointFrom.IsValid)
+            {
+                Logging.Write("Bad parameters given to StartTravelFromLogText(string logText).");
+                Logging.Write("Format: Generating Travel from -1303.93 ; -2049.043 ; 60.04947 ; None Azeroth to -1056.824 ; -2871.306 ; 41.7498 ; None Azeroth, Distance: 858.7853");
+                return;
+            }
+            TravelToContinentId = Usefuls.ContinentIdByContinentName(continentTo);
+            TravelTo = pointTo;
+            TravelFromContinentId = Usefuls.ContinentIdByContinentName(continentFrom);
+            TravelFrom = pointFrom;
+        }
+
         public static bool InManualPause
         {
             get { return _inManualPause; }
