@@ -1503,6 +1503,7 @@
         <Z>205.8021</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Valor Calls" -->
@@ -1512,6 +1513,7 @@
         <Z>205.8318</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Valor Calls" -->
@@ -1521,6 +1523,7 @@
         <Z>216.6867</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Get Vrekt" -->
@@ -1530,6 +1533,7 @@
         <Z>3.262037</Z>
       </Position>
       <Radius>50</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Shock Absorber" -->
@@ -1539,6 +1543,7 @@
         <Z>568.6693</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Shock Absorber" -->
@@ -1548,6 +1553,7 @@
         <Z>559.7065</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

@@ -114,26 +114,20 @@ try
 		
 		Thread.Sleep(Usefuls.Latency + 250);
 		
-		while(unit.IsHostile)
+		while(unit.IsHostile || unit.GetDistance >= 5)
 		{		
 			Thread.Sleep(Usefuls.Latency + 250);
 		}
 		
-		if (node.IsValid)
+		
+		Interact.InteractWith(unit.GetBaseAddress); //Interact With Unit to Attack it
+		/* Wait for the Use Item cast to be finished, if any */
+		while (ObjectManager.Me.IsCasting)
 		{
-			nManagerSetting.AddBlackList(node.Guid, 30*1000);
+			Thread.Sleep(Usefuls.Latency);
 		}
-		else if (unit.IsValid)
-		{
-			
-			Interact.InteractWith(unit.GetBaseAddress); //Interact With Unit to Attack it
-			/* Wait for the Use Item cast to be finished, if any */
-			while (ObjectManager.Me.IsCasting)
-			{
-				Thread.Sleep(Usefuls.Latency);
-			}
-			nManagerSetting.AddBlackList(unit.Guid, 30*1000);
-		}
+		nManagerSetting.AddBlackList(unit.Guid, 30*1000);
+	
 
 		/* Wait if necessary */
 		if (questObjective.WaitMs > 0)

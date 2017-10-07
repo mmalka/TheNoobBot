@@ -54,6 +54,15 @@
           <QuestId>9817</QuestId>
         </QuestObjective>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <ScriptConditionIsComplete>=9730-CompScript.cs</ScriptConditionIsComplete>
+          <Position>
+            <X>-238.9722</X>
+            <Y>5498.345</Y>
+            <Z>25.8108</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <NpcEntry>182115</NpcEntry>
           <QuestName>Leader of the Darkcrest</QuestName>
@@ -1308,13 +1317,6 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>18018</NpcEntry>
-          <QuestName>The Biggest of Them All</QuestName>
-          <QuestId>9903</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>18018</NpcEntry>
           <QuestName>Pursuing Terrorclaw</QuestName>
           <QuestId>9904</QuestId>
         </QuestObjective>
@@ -1333,26 +1335,6 @@
           <QuestId>9847</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>9903</InternalQuestId>
-          <Count>1</Count>
-          <Entry>
-            <int>18286</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>531.5376</X>
-              <Y>7375.622</Y>
-              <Z>20.1924286</Z>
-            </Point>
-          </Hotspots>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IgnoreBlackList>true</IgnoreBlackList>
-          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>UseItem</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>9847</InternalQuestId>
@@ -1365,13 +1347,6 @@
             <Z>25.98496</Z>
           </Position>
           <WaitMs>5000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>18018</NpcEntry>
-          <QuestName>The Biggest of Them All</QuestName>
-          <QuestId>9903</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -2169,6 +2144,7 @@
         <Z>-7.992975</Z>
       </Position>
       <Radius>25</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2176,6 +2152,8 @@
         <Y>6966.677</Y>
         <Z>23.52578</Z>
       </Position>
+	  <Radius>5</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2183,6 +2161,7 @@
         <Y>7165.155</Y>
         <Z>23.90406</Z>
       </Position>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2190,6 +2169,7 @@
         <Y>8181.587</Y>
         <Z>29.38683</Z>
       </Position>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2198,6 +2178,7 @@
         <Z>10.54884</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

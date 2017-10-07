@@ -85,7 +85,7 @@ try
 		Thread.Sleep(Usefuls.Latency + 250);
 	
 		//Fake NPC for Position
-        Npc RescuePoint = new Npc();
+      /*  Npc RescuePoint = new Npc();
         RescuePoint = new Npc
         {
             Entry = 0,
@@ -101,7 +101,17 @@ try
 
            MovementManager.FindTarget(ref RescuePoint, 5);
             Thread.Sleep(500);
-        }
+        }*/
+		
+	List<Point> listeP = nManager.Wow.Helpers.PathFinder.FindPath(ObjectManager.Me.Position,questObjective.Position);
+		
+		MovementManager.Go(listeP);
+		
+		while(MovementManager.InMovement)
+		{
+			
+			Thread.Sleep(500);
+		}
 		
         MovementManager.StopMove();
 			

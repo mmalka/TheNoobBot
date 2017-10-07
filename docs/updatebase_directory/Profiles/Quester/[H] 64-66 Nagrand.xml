@@ -8,7 +8,7 @@
       <Id>9410</Id>
       <QuestLevel>62</QuestLevel>
       <MinLevel>59</MinLevel>
-      <MaxLevel>72</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>9898</int>
       </NeedQuestCompletedId>
@@ -59,7 +59,7 @@
       <Id>9406</Id>
       <QuestLevel>62</QuestLevel>
       <MinLevel>59</MinLevel>
-      <MaxLevel>72</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>9410</int>
       </NeedQuestCompletedId>
@@ -73,7 +73,7 @@
       <Id>9854</Id>
       <QuestLevel>65</QuestLevel>
       <MinLevel>62</MinLevel>
-      <MaxLevel>75</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>9406</int>
       </NeedQuestCompletedId>
@@ -272,7 +272,7 @@
       <Id>9855</Id>
       <QuestLevel>67</QuestLevel>
       <MinLevel>64</MinLevel>
-      <MaxLevel>70</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>9854</int>
       </NeedQuestCompletedId>
@@ -1447,7 +1447,7 @@
       <Id>9859</Id>
       <QuestLevel>66</QuestLevel>
       <MinLevel>64</MinLevel>
-      <MaxLevel>69</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>9855</int>
       </NeedQuestCompletedId>
@@ -2563,7 +2563,7 @@
       <Id>9852</Id>
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
-      <MaxLevel>78</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>9859</int>
       </NeedQuestCompletedId>
@@ -2818,7 +2818,7 @@
       <Id>9937</Id>
       <QuestLevel>67</QuestLevel>
       <MinLevel>64</MinLevel>
-      <MaxLevel>77</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>9852</int>
       </NeedQuestCompletedId>
@@ -2965,6 +2965,7 @@
         <Z>101.3798</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2973,6 +2974,7 @@
         <Z>32.51015</Z>
       </Position>
       <Radius>25</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2981,6 +2983,7 @@
         <Z>65.82183</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2989,6 +2992,7 @@
         <Z>117.7179</Z>
       </Position>
       <Radius>30</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2997,6 +3001,7 @@
         <Z>113.1171</Z>
       </Position>
       <Radius>25</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

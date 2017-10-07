@@ -45,7 +45,7 @@ try
 		if(unit.HaveBuff(Others.ToUInt32(questObjective.ExtraInt.ToString())))
 		{
 			MovementManager.Go(PathFinder.FindPath(ObjectManager.Me.Position, questObjective.ExtraPoint));
-			Logging.Write("BUFF");
+			//Logging.Write("BUFF");
 			while(unit.HaveBuff(Others.ToUInt32(questObjective.ExtraInt.ToString())))
 			{
 				if(ObjectManager.Me.IsDeadMe)
@@ -123,7 +123,7 @@ try
 		/* Wait for the Use Item cast to be finished, if any */
 		while (ObjectManager.Me.IsCast)
 		{
-			Logging.Write("CAST");
+			//Logging.Write("CAST");
 			if(unit.HaveBuff(Others.ToUInt32(questObjective.ExtraInt.ToString())))
 			{
 				break;
@@ -135,7 +135,7 @@ try
 		if(unit.HaveBuff(Others.ToUInt32(questObjective.ExtraInt.ToString())))
 		{
 			
-			Logging.Write("BUFF");
+			//Logging.Write("BUFF");
 			
 			Lua.LuaDoString("SpellStopCasting();");
 			Thread.Sleep(500);

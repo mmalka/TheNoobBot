@@ -1,4 +1,4 @@
-WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(1908, questObjective.IsDead));
+WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
 
 if(unit.IsValid)
 {

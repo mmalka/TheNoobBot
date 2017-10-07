@@ -1077,13 +1077,9 @@
               <Z>-1.621501</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(28345) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(28345);</ScriptConditionIsComplete>
           <WaitMs>1000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>Wait</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>30000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1277,7 +1273,7 @@
         <QuestObjective>
           <Objective>Wait</Objective>
           <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(48503, false), false, false,true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip);</ScriptConditionIsComplete>
-          <WaitMs>5000</WaitMs>
+          <WaitMs>8500</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
@@ -1292,8 +1288,8 @@
               <Z>93.22417</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>return !ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(48503, false), false, false,true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip);</ScriptConditionIsComplete>
           <AllowPlayerControlled>true</AllowPlayerControlled>
-          <WaitMs>1500</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
@@ -1312,6 +1308,7 @@
           </Hotspots>
           <WaitMs>160000</WaitMs>
           <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
         </QuestObjective>
       </Objectives>
     </Quest>

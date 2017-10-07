@@ -30,7 +30,6 @@ while (!target.IsDead && !ObjectManager.Me.IsDead)
     if (target.HaveBuff(178902))
     {
         nManagerSetting.AddBlackList(target.Guid, 10000);
-        Fight.InFight = false;
         Fight.StopFight();
         Thread.Sleep(2000);
         ObjectManager.Me.Target = queen.Guid;

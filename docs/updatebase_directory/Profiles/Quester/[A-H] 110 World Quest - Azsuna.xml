@@ -2946,6 +2946,7 @@
         <Z>107.4108</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Prevent beeing in a buggy place for "Faronaar in Ruin" -->
@@ -2955,6 +2956,7 @@
         <Z>28.18902</Z>
       </Position>
       <Radius>30</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

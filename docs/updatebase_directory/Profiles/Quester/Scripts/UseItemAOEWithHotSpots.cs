@@ -11,6 +11,9 @@ try
 		return false;
 	}
 
+	if(questObjective.Range == 0)
+		questObjective.Range = 5;
+	
 	WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 	WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
 		questObjective.AllowPlayerControlled);
@@ -40,7 +43,7 @@ try
 		}
 		Thread.Sleep(500);
 		
-	
+		Logging.Write("ICI");
 		if((node.IsValid && node.GetDistance < questObjective.Range) || (unit.IsValid && unit.GetDistance < questObjective.Range))
 		{
 			/* Target Reached */
@@ -94,7 +97,7 @@ try
 		{
 			MovementManager.Face(unit);
 		}
-		
+		Logging.Write("LA");
 		Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
 
 		/* Target Reached */

@@ -11,6 +11,9 @@ try
 		return false;
 	}
 
+	if(questObjective.Range == 0)
+		questObjective.Range = 5;
+	
 	WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 	WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
 		questObjective.AllowPlayerControlled);
@@ -27,10 +30,30 @@ try
 			nManagerSetting.AddBlackList(node.IsValid ? node.Guid : unit.Guid, 30*1000);
 			return false;
 		}
-		if (questObjective.IgnoreFight)
+		
+		if (questObjective.IgnoreFight && unit.GetDistance <= 20) //Dont ignore fight if we are too far from the mob... 
 			nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 		/* Entry found, GoTo */
 	
+		//Pre Select Target
+		if (node.IsValid && node.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != node.Guid)
+		{
+			Interact.InteractWith(node.GetBaseAddress);
+		}
+		else if (unit.IsValid && unit.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != unit.Guid)
+		{	
+			Lua.LuaDoString("ClearTarget()");
+			
+			if(questObjective.ExtraString == "InteractWith")
+			{
+				Interact.InteractWith(unit.GetBaseAddress);
+			}
+			else
+			{
+				ObjectManager.Me.Target = unit.Guid;
+			}
+		}
+		
 		if (node.IsValid)
 		{
 			unit = new WoWUnit(0);
@@ -40,13 +63,11 @@ try
 		{
 			node = new WoWGameObject(0);
 			baseAddress = MovementManager.FindTarget(unit, questObjective.Range);
-		}
-		Thread.Sleep(500);
-		
+		}	
 	
-		if((node.IsValid && node.GetDistance < questObjective.Range) || (unit.IsValid && unit.GetDistance < questObjective.Range))
+		if((node.IsValid && node.GetDistance < questObjective.Range) || (unit.IsValid && unit.GetDistance <= questObjective.Range))
 		{
-			Logging.Write("TARGET REACHED");
+			//Logging.Write("TARGET REACHED" + unit.GetDistance);
 			/* Target Reached */
 			MovementManager.StopMove();
 			MountTask.DismountMount();
@@ -70,25 +91,10 @@ try
 			}
 		}
 		
-		//Pre Select Target
-		if (node.IsValid && node.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != node.Guid)
-		{
-			Interact.InteractWith(node.GetBaseAddress);
-		}
-		else if (unit.IsValid && unit.Position.DistanceTo(ObjectManager.Me.Position) <= 60 && ObjectManager.Target.Guid != unit.Guid)
-		{	
-			Lua.LuaDoString("ClearTarget()");
-			
-			if(questObjective.ExtraString == "InteractWith")
-			{
-				Interact.InteractWith(unit.GetBaseAddress);
-			}
-			else
-			{
-				ObjectManager.Me.Target = unit.Guid;
-			}
-		}
-		
+		/* Target Reached */
+		MovementManager.StopMove();
+		MountTask.DismountMount();
+				
 		if (node.IsValid)
 		{
 			MovementManager.Face(node);
@@ -100,9 +106,7 @@ try
 		
 		Thread.Sleep(100 + Usefuls.Latency); /* ZZZzzzZZZzz */
 
-		/* Target Reached */
-		MovementManager.StopMove();
-		MountTask.DismountMount();
+		
 
 		if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
 			return false;

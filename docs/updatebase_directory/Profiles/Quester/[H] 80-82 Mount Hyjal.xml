@@ -3,6 +3,18 @@
   <Questers />
   <Quests>
     <Quest>
+      <Name>A Personal Summons</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>28790</Id>
+      <QuestLevel>80</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <AutoAccepted>true</AutoAccepted>
+      <PickUp>45244</PickUp>
+      <TurnIn>45244</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
       <Name>The Eye of the Storm</Name>
       <RaceMask>33555378</RaceMask>
       <Id>28805</Id>
@@ -784,6 +796,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>39640</NpcEntry>
           <QuestName>Gar'gol's Gotta Go</QuestName>
@@ -805,6 +818,7 @@
               <Z>1275.36584</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -939,6 +953,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>39640</NpcEntry>
           <QuestName>Gar'gol's Gotta Go</QuestName>
@@ -946,6 +961,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>39640</NpcEntry>
           <QuestName>Get Me Outta Here!</QuestName>
@@ -960,6 +976,7 @@
             <int>39797</int>
           </Entry>
           <Script>=EscortToPosition.cs</Script>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
           <AllowPlayerControlled>true</AllowPlayerControlled>
@@ -971,6 +988,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>39435</NpcEntry>
           <QuestName>Get Me Outta Here!</QuestName>
@@ -1136,6 +1154,29 @@
           <QuestId>25576</QuestId>
         </QuestObjective>
         <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25575</InternalQuestId>
+          <Entry>
+            <int>203066</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>10</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4965.97266</X>
+              <Y>-2191.999</Y>
+              <Z>1118.19409</Z>
+            </Point>
+            <Point>
+              <X>5040.34131</X>
+              <Y>-2161.69214</Y>
+              <Z>1136.22644</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
           <Entry>
             <int>40841</int>
@@ -1184,29 +1225,6 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>25575</InternalQuestId>
-          <Entry>
-            <int>203066</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>10</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>4965.97266</X>
-              <Y>-2191.999</Y>
-              <Z>1118.19409</Z>
-            </Point>
-            <Point>
-              <X>5040.34131</X>
-              <Y>-2161.69214</Y>
-              <Z>1136.22644</Z>
-            </Point>
-          </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2083,28 +2101,128 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Prepping the Soil</Name>
+      <Name>A Prayer and a Wing</Name>
       <RaceMask>33555378</RaceMask>
-      <Id>25502</Id>
+      <Id>25664</Id>
       <QuestLevel>81</QuestLevel>
       <MinLevel>78</MinLevel>
       <MaxLevel>91</MaxLevel>
       <NeedQuestCompletedId>
         <int>25665</int>
       </NeedQuestCompletedId>
-      <PickUp>40331</PickUp>
-      <TurnIn>40331</TurnIn>
+      <PickUp>41005</PickUp>
+      <TurnIn>41005</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>39858</NpcEntry>
-          <QuestName>Hell's Shells</QuestName>
-          <QuestId>25507</QuestId>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>A Bird in Hand</QuestName>
+          <QuestId>25731</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <UseItemId>55211</UseItemId>
+          <Position>
+            <X>5139.053</X>
+            <Y>-2637.521</Y>
+            <Z>1625.807</Z>
+          </Position>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>203187</int>
+          </Entry>
+          <DeactivateMount>true</DeactivateMount>
+          <ScriptConditionIsComplete> return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(41112, false), false,true,true).IsValid || (ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(41112, false), false, true, true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip)) ||  nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25731) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(25731);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <Position>
+            <X>4943.507</X>
+            <Y>-2557.31</Y>
+            <Z>1431.103</Z>
+          </Position>
+          <WaitMs>500</WaitMs>
+          <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>41112</int>
+          </Entry>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(41112, false), false, true, true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25731) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(25731);</ScriptConditionIsComplete>
+          <Position>
+            <X>4946.361</X>
+            <Y>-2558.154</Y>
+            <Z>1429.758</Z>
+          </Position>
+          <WaitMs>1500</WaitMs>
+          <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>41112</int>
+          </Entry>
+          <Script>=25731.cs</Script>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25731) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(25731);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreBlackList>true</IgnoreBlackList>
+          <WaitMs>500</WaitMs>
+          <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>A Bird in Hand</QuestName>
+          <QuestId>25731</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41005</NpcEntry>
+          <QuestName>A Prayer and a Wing</QuestName>
+          <QuestId>25664</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fact-Finding Mission</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25740</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25664</int>
+      </NeedQuestCompletedId>
+      <PickUp>40997</PickUp>
+      <TurnIn>41006</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>40331</NpcEntry>
+          <QuestName>Prepping the Soil</QuestName>
+          <QuestId>25502</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25502</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>202902</int>
@@ -2120,11 +2238,13 @@
         <QuestObjective>
           <Objective>CSharpScript</Objective>
           <InternalIndex>2</InternalIndex>
+          <InternalQuestId>25502</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>40460</int>
           </Entry>
           <Script>=DefendObject.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>4368.254</X>
             <Y>-2329.794</Y>
@@ -2132,6 +2252,241 @@
           </Position>
           <Range>0</Range>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>Fact-Finding Mission</QuestName>
+          <QuestId>25740</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Sethria's Brood</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25746</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25740</int>
+      </NeedQuestCompletedId>
+      <PickUp>41006</PickUp>
+      <TurnIn>41006</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>A Gap in Their Armor</QuestName>
+          <QuestId>25758</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>203207</NpcEntry>
+          <QuestName>The Codex of Shadows</QuestName>
+          <QuestId>25763</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25758</InternalQuestId>
+          <Entry>
+            <int>203197</int>
+            <int>203198</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4025.08765</X>
+              <Y>-2238.24536</Y>
+              <Z>1130.1593</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>12</Count>
+          <Entry>
+            <int>41030</int>
+            <int>41029</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4043.14575</X>
+              <Y>-2244.7605</Y>
+              <Z>1131.94885</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>The Codex of Shadows</QuestName>
+          <QuestId>25763</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>A Gap in Their Armor</QuestName>
+          <QuestId>25758</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>Sethria's Brood</QuestName>
+          <QuestId>25746</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Egg Hunt</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25764</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25746</int>
+      </NeedQuestCompletedId>
+      <PickUp>41006</PickUp>
+      <TurnIn>41006</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>Disassembly</QuestName>
+          <QuestId>25761</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25761</InternalQuestId>
+          <Count>3</Count>
+          <Entry>
+            <int>41031</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4043.14575</X>
+              <Y>-2244.7605</Y>
+              <Z>1131.94885</Z>
+            </Point>
+          </Hotspots>
+          <Script>=25761.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>55883</UseItemId>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>203208</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4021.75</X>
+              <Y>-2235.509</Y>
+              <Z>1131.15894</Z>
+            </Point>
+          </Hotspots>
+          <Script>=InteractWithHotSpots.cs</Script>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(41224, false), false,true,false).IsValid|| nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25764) || nManager.Wow.Helpers.Quest.GetQuestCompleted(25764);</ScriptConditionIsComplete>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>41224</int>
+          </Entry>
+          <Script>=DefendObject.cs</Script>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>Disassembly</QuestName>
+          <QuestId>25761</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>Egg Hunt</QuestName>
+          <QuestId>25764</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Sethria's Demise</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25776</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25764</int>
+      </NeedQuestCompletedId>
+      <PickUp>41006</PickUp>
+      <TurnIn>41006</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>41255</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3446.36743</X>
+              <Y>-2420.65527</Y>
+              <Z>968.324341</Z>
+            </Point>
+          </Hotspots>
+          <Script>=25776.cs</Script>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <UseItemId>56003</UseItemId>
+          <WaitMs>500</WaitMs>
+          <Range>0</Range>
+          <ExtraInt>41261</ExtraInt>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <NpcEntry>41006</NpcEntry>
+          <QuestName>Sethria's Demise</QuestName>
+          <QuestId>25776</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Return to the Shrine</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25795</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25776</int>
+      </NeedQuestCompletedId>
+      <PickUp>41006</PickUp>
+      <TurnIn>41006</TurnIn>
+      <Objectives>
         <QuestObjective>
           <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
@@ -2155,7 +2510,7 @@
           <Script>=25507.cs</Script>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>54744</UseItemId>
-          <IgnoreFight>true</IgnoreFight>
+          <Range>30</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -2169,6 +2524,51 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>40331</NpcEntry>
           <QuestName>Prepping the Soil</QuestName>
+          <QuestId>25502</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41005</NpcEntry>
+          <QuestName>Return to the Shrine</QuestName>
+          <QuestId>25795</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>An Ancient Reborn</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25807</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25795</int>
+      </NeedQuestCompletedId>
+      <PickUp>41005</PickUp>
+      <TurnIn>41005</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>41300</int>
+          </Entry>
+          <UseItemId>56016</UseItemId>
+          <Position>
+            <X>4839.751</X>
+            <Y>-2811.944</Y>
+            <Z>1444.529</Z>
+          </Position>
+          <WaitMs>2500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41308</NpcEntry>
+          <QuestName>An Ancient Reborn</QuestName>
+          <QuestId>25807</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2180,7 +2580,7 @@
       <MinLevel>78</MinLevel>
       <MaxLevel>91</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25502</int>
+        <int>25807</int>
       </NeedQuestCompletedId>
       <PickUp>39858</PickUp>
       <TurnIn>40341</TurnIn>
@@ -2287,175 +2687,179 @@
       <Objectives />
     </Quest>
     <Quest>
-      <Name>A Prayer and a Wing</Name>
+      <Name>The Last Living Lorekeeper</Name>
       <RaceMask>33555378</RaceMask>
-      <Id>25664</Id>
+      <Id>25830</Id>
       <QuestLevel>81</QuestLevel>
       <MinLevel>78</MinLevel>
       <MaxLevel>91</MaxLevel>
       <NeedQuestCompletedId>
         <int>25520</int>
       </NeedQuestCompletedId>
-      <PickUp>41005</PickUp>
-      <TurnIn>41005</TurnIn>
+      <PickUp>46998</PickUp>
+      <TurnIn>41381</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Firefight</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25842</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25830</int>
+      </NeedQuestCompletedId>
+      <PickUp>41381</PickUp>
+      <TurnIn>41381</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>41006</NpcEntry>
-          <QuestName>A Bird in Hand</QuestName>
-          <QuestId>25731</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
+          <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <Count>1</Count>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <UseItemId>55211</UseItemId>
-          <Position>
-            <X>5144.433</X>
-            <Y>-2594.431</Y>
-            <Z>1637.784</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
+          <Count>5</Count>
           <Entry>
-            <int>203187</int>
+            <int>41396</int>
           </Entry>
-          <DeactivateMount>true</DeactivateMount>
-          <ScriptConditionIsComplete> return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(41112, false), false,true,true).IsValid || (ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(41112, false), false, true, true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip)) ||  nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25731) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(25731);</ScriptConditionIsComplete>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>4943.507</X>
-            <Y>-2557.31</Y>
-            <Z>1431.103</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <IgnoreFight>true</IgnoreFight>
-          <IgnoreAllFight>true</IgnoreAllFight>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>41112</int>
-          </Entry>
-          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(41112, false), false, true, true).GetDescriptor&lt;nManager.Wow.Enums.UnitNPCFlags&gt;(nManager.Wow.Patchables.Descriptors.UnitFields.NpcFlags).HasFlag(nManager.Wow.Enums.UnitNPCFlags.Gossip) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25731) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(25731);</ScriptConditionIsComplete>
-          <Position>
-            <X>4946.361</X>
-            <Y>-2558.154</Y>
-            <Z>1429.758</Z>
-          </Position>
-          <WaitMs>1500</WaitMs>
-          <IgnoreFight>true</IgnoreFight>
-          <IgnoreAllFight>true</IgnoreAllFight>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>41112</int>
-          </Entry>
-          <Script>=25731.cs</Script>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25731) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(25731);</ScriptConditionIsComplete>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <IgnoreBlackList>true</IgnoreBlackList>
-          <WaitMs>500</WaitMs>
-          <IgnoreFight>true</IgnoreFight>
-          <IgnoreAllFight>true</IgnoreAllFight>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>41006</NpcEntry>
-          <QuestName>A Bird in Hand</QuestName>
-          <QuestId>25731</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>41005</NpcEntry>
-          <QuestName>A Prayer and a Wing</QuestName>
-          <QuestId>25664</QuestId>
+          <Hotspots>
+            <Point>
+              <X>4741.30957</X>
+              <Y>-2094.086</Y>
+              <Z>1220.69592</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Fact-Finding Mission</Name>
+      <Name>Aessina's Miracle</Name>
       <RaceMask>33555378</RaceMask>
-      <Id>25740</Id>
+      <Id>25372</Id>
       <QuestLevel>81</QuestLevel>
       <MinLevel>78</MinLevel>
       <MaxLevel>91</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25664</int>
+        <int>25842</int>
       </NeedQuestCompletedId>
-      <PickUp>40997</PickUp>
-      <TurnIn>41006</TurnIn>
+      <PickUp>41381</PickUp>
+      <TurnIn>39858</TurnIn>
       <Objectives />
     </Quest>
     <Quest>
-      <Name>Sethria's Brood</Name>
+      <Name>Tortolla's Revenge</Name>
       <RaceMask>33555378</RaceMask>
-      <Id>25746</Id>
+      <Id>25843</Id>
       <QuestLevel>81</QuestLevel>
       <MinLevel>78</MinLevel>
       <MaxLevel>91</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25740</int>
+        <int>25372</int>
       </NeedQuestCompletedId>
-      <PickUp>41006</PickUp>
-      <TurnIn>41006</TurnIn>
+      <PickUp>41480</PickUp>
+      <TurnIn>41504</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>The Hammer and the Key</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25904</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25843</int>
+      </NeedQuestCompletedId>
+      <PickUp>41504</PickUp>
+      <TurnIn>41504</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>41006</NpcEntry>
-          <QuestName>A Gap in Their Armor</QuestName>
-          <QuestId>25758</QuestId>
+          <NpcEntry>41507</NpcEntry>
+          <QuestName>Lost Wardens</QuestName>
+          <QuestId>25881</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>203207</NpcEntry>
-          <QuestName>The Codex of Shadows</QuestName>
-          <QuestId>25763</QuestId>
+          <NpcEntry>41507</NpcEntry>
+          <QuestName>Breakthrough</QuestName>
+          <QuestId>25899</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpObject</Objective>
+          <Objective>PickUpNPC</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>25758</InternalQuestId>
+          <InternalQuestId>25881</InternalQuestId>
+          <Count>8</Count>
           <Entry>
-            <int>203197</int>
-            <int>203198</int>
+            <int>41499</int>
           </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
-              <X>4025.08765</X>
-              <Y>-2238.24536</Y>
-              <Z>1130.1593</Z>
+              <X>4572.33</X>
+              <Y>-2912.13013</Y>
+              <Z>1071.84448</Z>
+            </Point>
+            <Point>
+              <X>4690.302</X>
+              <Y>-3173.736</Y>
+              <Z>1051.85315</Z>
+            </Point>
+            <Point>
+              <X>4537.92139</X>
+              <Y>-3303.21338</Y>
+              <Z>1010.33173</Z>
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>500</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <Count>12</Count>
           <Entry>
-            <int>41030</int>
-            <int>41029</int>
+            <int>41502</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4658.31055</X>
+              <Y>-3213.21655</Y>
+              <Z>1038.63928</Z>
+            </Point>
+            <Point>
+              <X>4537.17969</X>
+              <Y>-3305.44</Y>
+              <Z>1010.053</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25899</InternalQuestId>
+          <Count>10</Count>
+          <Entry>
+            <int>41500</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>4043.14575</X>
-              <Y>-2244.7605</Y>
-              <Z>1131.94885</Z>
+              <X>4534.09473</X>
+              <Y>-2935.26343</Y>
+              <Z>1060.65857</Z>
+            </Point>
+            <Point>
+              <X>4684.753</X>
+              <Y>-3170.67651</Y>
+              <Z>1050.22876</Z>
+            </Point>
+            <Point>
+              <X>4534.844</X>
+              <Y>-3314.47729</Y>
+              <Z>1009.54633</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
@@ -2464,25 +2868,1118 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>41006</NpcEntry>
-          <QuestName>The Codex of Shadows</QuestName>
-          <QuestId>25763</QuestId>
+          <NpcEntry>41504</NpcEntry>
+          <QuestName>The Hammer and the Key</QuestName>
+          <QuestId>25904</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>The Third Flamegate</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25906</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25904</int>
+      </NeedQuestCompletedId>
+      <PickUp>41504</PickUp>
+      <TurnIn>41504</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41492</NpcEntry>
+          <QuestName>Lost Wardens</QuestName>
+          <QuestId>25881</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41492</NpcEntry>
+          <QuestName>Pressing the Advantage</QuestName>
+          <QuestId>25886</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>41006</NpcEntry>
-          <QuestName>A Gap in Their Armor</QuestName>
-          <QuestId>25758</QuestId>
+          <NpcEntry>41492</NpcEntry>
+          <QuestName>Breakthrough</QuestName>
+          <QuestId>25899</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41497</NpcEntry>
+          <QuestName>Hyjal Recycling Program</QuestName>
+          <QuestId>25901</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25901</InternalQuestId>
+          <Entry>
+            <int>203310</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>15</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4572.5376</X>
+              <Y>-3312.03149</Y>
+              <Z>1009.58136</Z>
+            </Point>
+            <Point>
+              <X>4636.534</X>
+              <Y>-3395.31177</Y>
+              <Z>1017.23151</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25886</InternalQuestId>
+          <Count>4</Count>
+          <Entry>
+            <int>41502</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4535.19727</X>
+              <Y>-3312.04272</Y>
+              <Z>1009.44147</Z>
+            </Point>
+            <Point>
+              <X>4530.09131</X>
+              <Y>-3489.80249</Y>
+              <Z>1004.16113</Z>
+            </Point>
+            <Point>
+              <X>4529.685</X>
+              <Y>-3605.31079</Y>
+              <Z>980.7029</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>41006</NpcEntry>
-          <QuestName>Sethria's Brood</QuestName>
-          <QuestId>25746</QuestId>
+          <NpcEntry>41497</NpcEntry>
+          <QuestName>Hyjal Recycling Program</QuestName>
+          <QuestId>25901</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41492</NpcEntry>
+          <QuestName>Pressing the Advantage</QuestName>
+          <QuestId>25886</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
+          <NpcEntry>41498</NpcEntry>
+          <QuestName>The Third Flamegate</QuestName>
+          <QuestId>25906</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>The Time for Mercy has Passed</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25910</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25906</int>
+      </NeedQuestCompletedId>
+      <PickUp>41498</PickUp>
+      <TurnIn>41498</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41498</NpcEntry>
+          <QuestName>The Strength of Tortolla</QuestName>
+          <QuestId>25915</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25915</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>41581</int>
+          </Entry>
+          <Script>=EscortToPosition.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <AllowPlayerControlled>true</AllowPlayerControlled>
+          <Position>
+            <X>4579.244</X>
+            <Y>-3723.473</Y>
+            <Z>675.3668</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>41563</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4476.15</X>
+              <Y>-3734.95</Y>
+              <Z>660.232361</Z>
+            </Point>
+            <Point>
+              <X>4612.32568</X>
+              <Y>-3522.416</Y>
+              <Z>681.8279</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>41565</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4502.057</X>
+              <Y>-3712.6748</Y>
+              <Z>660.868958</Z>
+            </Point>
+            <Point>
+              <X>4581.778</X>
+              <Y>-3571.13257</Y>
+              <Z>683.5097</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41498</NpcEntry>
+          <QuestName>The Strength of Tortolla</QuestName>
+          <QuestId>25915</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>41498</NpcEntry>
+          <QuestName>The Time for Mercy has Passed</QuestName>
+          <QuestId>25910</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Finish Nemesis</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25923</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25910</int>
+      </NeedQuestCompletedId>
+      <PickUp>41498</PickUp>
+      <TurnIn>41498</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>41614</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4438.11426</X>
+              <Y>-3589.90356</Y>
+              <Z>639.6111</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Tortolla's Triumph</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25928</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25923</int>
+      </NeedQuestCompletedId>
+      <PickUp>41498</PickUp>
+      <TurnIn>41504</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>The Ancients are With Us</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25653</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25928</int>
+      </NeedQuestCompletedId>
+      <PickUp>41504</PickUp>
+      <TurnIn>40289</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Commander Jarod Shadowsong</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25597</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25653</int>
+      </NeedQuestCompletedId>
+      <PickUp>40289</PickUp>
+      <TurnIn>39621</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Signed in Blood</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25274</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25597</int>
+      </NeedQuestCompletedId>
+      <PickUp>39621</PickUp>
+      <TurnIn>39621</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>39619</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4482.26</X>
+              <Y>-4049.85767</Y>
+              <Z>935.894</Z>
+            </Point>
+          </Hotspots>
+          <Script>=25274.cs</Script>
+          <UseItemId>52683</UseItemId>
+          <Position>
+            <X>4545.597</X>
+            <Y>-3987.561</Y>
+            <Z>941.9589</Z>
+          </Position>
+          <Range>0</Range>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Your New Identity</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25276</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25274</int>
+      </NeedQuestCompletedId>
+      <PickUp>39621</PickUp>
+      <TurnIn>39442</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Trial By Fire</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25223</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25276</int>
+      </NeedQuestCompletedId>
+      <PickUp>39442</PickUp>
+      <TurnIn>39442</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39442</NpcEntry>
+          <QuestName>In Bloom</QuestName>
+          <QuestId>25224</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39451</NpcEntry>
+          <QuestName>Waste of Flesh</QuestName>
+          <QuestId>25330</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25330</InternalQuestId>
+          <Count>4</Count>
+          <Entry>
+            <int>39453</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4439.81445</X>
+              <Y>-4340.295</Y>
+              <Z>901.4381</Z>
+            </Point>
+            <Point>
+              <X>4371.88232</X>
+              <Y>-4471.68945</Y>
+              <Z>897.157043</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>52819</UseItemId>
+          <WaitMs>500</WaitMs>
+          <Range>3</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25224</InternalQuestId>
+          <Entry>
+            <int>202619</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>5</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4372.986</X>
+              <Y>-4268.176</Y>
+              <Z>910.001465</Z>
+            </Point>
+            <Point>
+              <X>4375.393</X>
+              <Y>-4460.164</Y>
+              <Z>896.5881</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>39344</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4389.28955</X>
+              <Y>-4451.477</Y>
+              <Z>896.815857</Z>
+            </Point>
+            <Point>
+              <X>4400.98975</X>
+              <Y>-4224.28</Y>
+              <Z>916.81665</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39451</NpcEntry>
+          <QuestName>Waste of Flesh</QuestName>
+          <QuestId>25330</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39442</NpcEntry>
+          <QuestName>In Bloom</QuestName>
+          <QuestId>25224</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39442</NpcEntry>
+          <QuestName>Trial By Fire</QuestName>
+          <QuestId>25223</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Twilight Training</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25291</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25223</int>
+      </NeedQuestCompletedId>
+      <PickUp>39442</PickUp>
+      <TurnIn>39413</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Physical Training: Forced Labor</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25509</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25291</int>
+      </NeedQuestCompletedId>
+      <PickUp>39413</PickUp>
+      <TurnIn>39413</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>202701</NpcEntry>
+          <QuestName>Gather the Intelligence</QuestName>
+          <QuestId>25296</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39406</NpcEntry>
+          <QuestName>Walking the Dog</QuestName>
+          <QuestId>25294</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25296</InternalQuestId>
+          <Entry>
+            <int>202968</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4625.65674</X>
+              <Y>-4728.46143</Y>
+              <Z>883.7273</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
+          <InternalQuestId>25296</InternalQuestId>
+          <Entry>
+            <int>202969</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4739.668</X>
+              <Y>-4836.607</Y>
+              <Z>883.260742</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>202952</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>5</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4651.02734</X>
+              <Y>-4488.658</Y>
+              <Z>891.412659</Z>
+            </Point>
+            <Point>
+              <X>4706.12939</X>
+              <Y>-4279.57031</Y>
+              <Z>900.1716</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Entry>
+            <int>39658</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>5</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4792.428</X>
+              <Y>-4661.33447</Y>
+              <Z>871.5579</Z>
+            </Point>
+            <Point>
+              <X>4583.57568</X>
+              <Y>-4592.91357</Y>
+              <Z>886.7594</Z>
+            </Point>
+          </Hotspots>
+          <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(52708) &gt;= 5) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25294) || nManager.Wow.Helpers.Quest.GetQuestCompleted(25294);</ScriptConditionIsComplete>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(39659, false), false,false,true).IsValid || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25294) || nManager.Wow.Helpers.Quest.GetQuestCompleted(25294);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>52717</UseItemId>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25294</InternalQuestId>
+          <Count>5</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>52708</UseItemId>
+          <WaitMs>500</WaitMs>
+          <Range>1</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>202701</NpcEntry>
+          <QuestName>Gather the Intelligence</QuestName>
+          <QuestId>25296</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>202701</NpcEntry>
+          <QuestName>Seeds of Discord</QuestName>
+          <QuestId>25308</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39406</NpcEntry>
+          <QuestName>Walking the Dog</QuestName>
+          <QuestId>25294</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39413</NpcEntry>
+          <QuestName>Physical Training: Forced Labor</QuestName>
+          <QuestId>25509</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>A Champion's Collar</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25494</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25509</int>
+      </NeedQuestCompletedId>
+      <PickUp>39406</PickUp>
+      <TurnIn>39406</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Hotspots>
+            <Point>
+              <X>4523.62061</X>
+              <Y>-4730.395</Y>
+              <Z>887.867737</Z>
+            </Point>
+            <Point>
+              <X>4519.965</X>
+              <Y>-4720.669</Y>
+              <Z>888.2044</Z>
+            </Point>
+            <Point>
+              <X>4521.939</X>
+              <Y>-4710.671</Y>
+              <Z>887.2689</Z>
+            </Point>
+            <Point>
+              <X>4526.843</X>
+              <Y>-4693.399</Y>
+              <Z>886.2242</Z>
+            </Point>
+            <Point>
+              <X>4541.25537</X>
+              <Y>-4683.109</Y>
+              <Z>884.6405</Z>
+            </Point>
+            <Point>
+              <X>4547.541</X>
+              <Y>-4683.19629</Y>
+              <Z>884.5805</Z>
+            </Point>
+            <Point>
+              <X>4557.249</X>
+              <Y>-4685.781</Y>
+              <Z>884.420532</Z>
+            </Point>
+            <Point>
+              <X>4569.48438</X>
+              <Y>-4688.227</Y>
+              <Z>883.031738</Z>
+            </Point>
+            <Point>
+              <X>4582.50928</X>
+              <Y>-4690.831</Y>
+              <Z>882.8285</Z>
+            </Point>
+            <Point>
+              <X>4594.111</X>
+              <Y>-4694.56348</Y>
+              <Z>882.6304</Z>
+            </Point>
+            <Point>
+              <X>4603.7085</X>
+              <Y>-4698.94141</Y>
+              <Z>882.6607</Z>
+            </Point>
+            <Point>
+              <X>4605.92871</X>
+              <Y>-4702.37549</Y>
+              <Z>882.6961</Z>
+            </Point>
+            <Point>
+              <X>4608.27246</X>
+              <Y>-4708.861</Y>
+              <Z>882.714355</Z>
+            </Point>
+            <Point>
+              <X>4607.508</X>
+              <Y>-4714.35156</Y>
+              <Z>882.759</Z>
+            </Point>
+            <Point>
+              <X>4604.36475</X>
+              <Y>-4717.129</Y>
+              <Z>882.7142</Z>
+            </Point>
+            <Point>
+              <X>4598.125</X>
+              <Y>-4720.202</Y>
+              <Z>882.9892</Z>
+            </Point>
+            <Point>
+              <X>4587.99268</X>
+              <Y>-4722.083</Y>
+              <Z>883.416748</Z>
+            </Point>
+            <Point>
+              <X>4548.22266</X>
+              <Y>-4728.4707</Y>
+              <Z>883.4355</Z>
+            </Point>
+            <Point>
+              <X>4524.902</X>
+              <Y>-4730.921</Y>
+              <Z>887.789856</Z>
+            </Point>
+          </Hotspots>
+          <Script>=25499.cs</Script>
+          <IgnoreFight>true</IgnoreFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39413</NpcEntry>
+          <QuestName>Agility Training: Run Like Hell!</QuestName>
+          <QuestId>25499</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>40403</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>4866.14551</X>
+              <Y>-4525</Y>
+              <Z>869.521057</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>55137</UseItemId>
+          <Position>
+            <X>4837.239</X>
+            <Y>-4219.183</Y>
+            <Z>894.5167</Z>
+          </Position>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>40489</int>
+          </Entry>
+          <DeactivateMount>true</DeactivateMount>
+          <Hotspots>
+            <Point>
+              <X>4806.363</X>
+              <Y>-4179.269</Y>
+              <Z>897.530762</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>10000</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25308</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>40491</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4799.59</X>
+              <Y>-4201.24951</Y>
+              <Z>898.6177</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>202701</NpcEntry>
+          <QuestName>Seeds of Discord</QuestName>
+          <QuestId>25308</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39406</NpcEntry>
+          <QuestName>A Champion's Collar</QuestName>
+          <QuestId>25494</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Grudge Match</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25496</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25494</int>
+      </NeedQuestCompletedId>
+      <PickUp>39406</PickUp>
+      <TurnIn>39406</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>40409</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4761.00049</X>
+              <Y>-4240.14</Y>
+              <Z>894.019348</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>7500</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Mental Training: Speaking the Truth to Power</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25299</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25496</int>
+      </NeedQuestCompletedId>
+      <PickUp>39413</PickUp>
+      <TurnIn>39413</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <Count>1</Count>
+          <UseItemId>52828</UseItemId>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Script>=25496.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39413</NpcEntry>
+          <QuestName>Mental Training: Speaking the Truth to Power</QuestName>
+          <QuestId>25299</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Spiritual Training: Mercy is for the Weak</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25309</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25299</int>
+      </NeedQuestCompletedId>
+      <PickUp>39413</PickUp>
+      <TurnIn>39413</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>5</Count>
+          <Entry>
+            <int>39752</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4811.28027</X>
+              <Y>-4846.106</Y>
+              <Z>882.778</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>The Greater of Two Evils</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25310</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25309</int>
+      </NeedQuestCompletedId>
+      <PickUp>39413</PickUp>
+      <TurnIn>39413</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39413</NpcEntry>
+          <QuestName>Twilight Territory</QuestName>
+          <QuestId>25311</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>39726</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4350.38525</X>
+              <Y>-3710.13916</Y>
+              <Z>1005.69537</Z>
+            </Point>
+          </Hotspots>
+          <Script>=25310.cs</Script>
+          <UseItemId>54814</UseItemId>
+          <WaitMs>1000</WaitMs>
+          <Range>35</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>25311</InternalQuestId>
+          <Count>10</Count>
+          <Entry>
+            <int>39724</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4330.487</X>
+              <Y>-3721.08179</Y>
+              <Z>1003.5144</Z>
+            </Point>
+            <Point>
+              <X>4295.18</X>
+              <Y>-4062.88</Y>
+              <Z>977.3503</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39413</NpcEntry>
+          <QuestName>Twilight Territory</QuestName>
+          <QuestId>25311</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>39413</NpcEntry>
+          <QuestName>The Greater of Two Evils</QuestName>
+          <QuestId>25310</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Speech Writing for Dummies</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25314</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25310</int>
+      </NeedQuestCompletedId>
+      <PickUp>202701</PickUp>
+      <TurnIn>202701</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>40922</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4609.782</X>
+              <Y>-4287.45</Y>
+              <Z>902.81604</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Head of the Class</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25601</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25314</int>
+      </NeedQuestCompletedId>
+      <PickUp>202701</PickUp>
+      <TurnIn>39413</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Graduation Speech</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>25315</Id>
+      <QuestLevel>81</QuestLevel>
+      <MinLevel>78</MinLevel>
+      <MaxLevel>91</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25601</int>
+      </NeedQuestCompletedId>
+      <PickUp>39413</PickUp>
+      <TurnIn>40619</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>202996</int>
+          </Entry>
+          <Position>
+            <X>4742.511</X>
+            <Y>-4972.593</Y>
+            <Z>907.4572</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Script>=25315.cs</Script>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>40619</NpcEntry>
+          <QuestName>Graduation Speech</QuestName>
+          <QuestId>25315</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
   </Quests>
+  <Blackspots>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>4611.36</X>
+        <Y>-3434.635</Y>
+        <Z>1023.379</Z>
+      </Position>
+    </QuesterBlacklistRadius>
+  </Blackspots>
 </QuesterProfile>

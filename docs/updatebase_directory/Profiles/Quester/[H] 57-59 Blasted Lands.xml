@@ -1628,6 +1628,7 @@
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=10 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25720) || nManager.Wow.Helpers.Quest.GetQuestCompleted(25720);</ScriptConditionIsComplete>
           <Position>
             <X>-12240.59</X>
             <Y>-2469.904</Y>
@@ -1640,6 +1641,7 @@
           <Entry>
             <int>0</int>
           </Entry>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(42334, false), false,true,false).IsValid &amp;&amp; !ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(42334, false), false,true,false).HaveBuff(78986) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25720) || nManager.Wow.Helpers.Quest.GetQuestCompleted(25720);</ScriptConditionIsComplete>
           <UseItemId>57185</UseItemId>
           <Position>
             <X>-12238.48</X>
@@ -1662,6 +1664,7 @@
               <Z>37.94533</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(42334, false), false,true,false).IsValid &amp;&amp; ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(42334, false), false,true,false).HaveBuff(78986) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(25720) || nManager.Wow.Helpers.Quest.GetQuestCompleted(25720);</ScriptConditionIsComplete>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>

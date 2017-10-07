@@ -69,7 +69,6 @@ if(unit.IsValid)
 	}
 	
 	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
-	nManager.Wow.Helpers.Fight.InFight = false;
 	nManager.Wow.Helpers.Fight.StopFight();
 
 	//_worker2 = null;

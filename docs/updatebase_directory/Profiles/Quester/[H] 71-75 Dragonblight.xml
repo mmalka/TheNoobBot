@@ -7,7 +7,7 @@
       <RaceMask>33555378</RaceMask>
       <Id>12206</Id>
       <QuestLevel>72</QuestLevel>
-      <MinLevel>69</MinLevel>
+      <MinLevel>71</MinLevel>
       <MaxLevel>82</MaxLevel>
       <PickUp>27248</PickUp>
       <TurnIn>27248</TurnIn>
@@ -457,6 +457,8 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>27243</NpcEntry>
+          <QuestName>No Mercy for the Captured</QuestName>
+          <QuestId>12245</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -488,28 +490,11 @@
             </Point>
           </Hotspots>
           <Script>=UseItemWithHotSpots.cs</Script>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <UseItemId>37314</UseItemId>
           <WaitMs>500</WaitMs>
           <IgnoreFight>true</IgnoreFight>
-          <Range>2</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <InternalIndex>1</InternalIndex>
-          <Count>5</Count>
-          <Entry>
-            <int>27209</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <UseItemId>37314</UseItemId>
-          <Position>
-            <X>2883.844</X>
-            <Y>-285.6555</Y>
-            <Z>106.8789</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <IgnoreFight>true</IgnoreFight>
-          <Range>2</Range>
+          <Range>7</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -665,6 +650,26 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>3447.328</X>
+            <Y>-1253.668</Y>
+            <Z>124.0678</Z>
+          </Position>
+          <IgnoreFight>true</IgnoreFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>3513.245</X>
+            <Y>-1345.323</Y>
+            <Z>105.7871</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -825,6 +830,17 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(12240) || nManager.Wow.Helpers.Quest.GetQuestCompleted(12240);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>2798.612</X>
+            <Y>-201.416</Y>
+            <Z>139.1609</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>UseItemAOE</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>12240</InternalQuestId>
@@ -840,7 +856,6 @@
             <Z>139.1611</Z>
           </Position>
           <WaitMs>500</WaitMs>
-          <Range>2</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1372,6 +1387,16 @@
       <TurnIn>26471</TurnIn>
       <Objectives>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;= 5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(12005) || nManager.Wow.Helpers.Quest.GetQuestCompleted(12005);</ScriptConditionIsComplete>
+          <Position>
+            <X>3618.631</X>
+            <Y>2201.979</Y>
+            <Z>76.02144</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Entry>
@@ -1406,6 +1431,17 @@
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;= 5;</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>3618.631</X>
+            <Y>2201.979</Y>
+            <Z>76.02144</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>26471</NpcEntry>
@@ -1435,6 +1471,16 @@
       <TurnIn>26471</TurnIn>
       <Objectives>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;= 5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(12061) || nManager.Wow.Helpers.Quest.GetQuestCompleted(12061);</ScriptConditionIsComplete>
+          <Position>
+            <X>3648.794</X>
+            <Y>2264.671</Y>
+            <Z>78.50526</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>UseItem</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>1</Count>
@@ -1454,6 +1500,17 @@
           <UseItemId>36747</UseItemId>
           <WaitMs>500</WaitMs>
           <Range>1</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;= 5;</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>3648.794</X>
+            <Y>2264.671</Y>
+            <Z>78.50526</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1587,6 +1644,60 @@
           <NpcEntry>26471</NpcEntry>
           <QuestName>The Focus on the Beach</QuestName>
           <QuestId>12066</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>1</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3339.00879</X>
+              <Y>1985.25061</Y>
+              <Z>90.83516</Z>
+            </Point>
+            <Point>
+              <X>3334.17676</X>
+              <Y>1939.38953</Y>
+              <Z>96.9406738</Z>
+            </Point>
+            <Point>
+              <X>3354.594</X>
+              <Y>1922.96167</Y>
+              <Z>91.91752</Z>
+            </Point>
+            <Point>
+              <X>3383.176</X>
+              <Y>1881.04163</Y>
+              <Z>91.875145</Z>
+            </Point>
+            <Point>
+              <X>3468.90869</X>
+              <Y>1794.55725</Y>
+              <Z>74.40945</Z>
+            </Point>
+            <Point>
+              <X>3482.31055</X>
+              <Y>1725.70923</Y>
+              <Z>74.9054642</Z>
+            </Point>
+            <Point>
+              <X>3498.657</X>
+              <Y>1672.57764</Y>
+              <Z>74.41525</Z>
+            </Point>
+            <Point>
+              <X>3516.866</X>
+              <Y>1616.23169</Y>
+              <Z>74.479866</Z>
+            </Point>
+            <Point>
+              <X>3557.54663</X>
+              <Y>1594.21912</Y>
+              <Z>70.4188461</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1731,6 +1842,9 @@
       <QuestLevel>72</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>12106</int>
+      </NeedQuestCompletedId>
       <PickUp>26873</PickUp>
       <TurnIn>26873</TurnIn>
       <Objectives>
@@ -2041,7 +2155,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(12036) || nManager.Wow.Helpers.Quest.GetQuestCompleted(12036);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -2196,7 +2309,7 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
           <AllowPlayerControlled>true</AllowPlayerControlled>
-          <UseItemId>36738</UseItemId>          
+          <UseItemId>36738</UseItemId>
           <Position>
             <X>4036.576</X>
             <Y>2244.057</Y>
@@ -2471,6 +2584,7 @@
           <Entry>
             <int>26443</int>
           </Entry>
+          <ScriptConditionIsComplete>return (new Point(3577.863f, 285.8625f, 340.8215f)).DistanceTo(ObjectManager.Me.Position) &gt;= 20 || nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(12458);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>3549.099</X>
@@ -2514,6 +2628,7 @@
           <Entry>
             <int>26949</int>
           </Entry>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &gt;= 20;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>3577.863</X>
@@ -3021,7 +3136,7 @@
             <Y>285.5114</Y>
             <Z>340.8374</Z>
           </Position>
-          <WaitMs>20000</WaitMs>
+          <WaitMs>25000</WaitMs>
           <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
@@ -3037,8 +3152,8 @@
       <Name>Defending Wyrmrest Temple</Name>
       <RaceMask>33555378</RaceMask>
       <Id>12372</Id>
-      <QuestLevel>74</QuestLevel>
-      <MinLevel>71</MinLevel>
+      <QuestLevel>1</QuestLevel>
+      <MinLevel>200</MinLevel>
       <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>12435</int>
@@ -3106,6 +3221,7 @@
         <Z>114.0349</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -3114,6 +3230,7 @@
         <Z>132.6728</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -3122,6 +3239,7 @@
         <Z>132.0874</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

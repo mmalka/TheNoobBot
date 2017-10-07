@@ -1359,6 +1359,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>CSharpScript</Objective>
+          <Count>1</Count>
           <Entry>
             <int>47733</int>
           </Entry>
@@ -1478,6 +1479,7 @@
               <Z>474.0782</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>return !ObjectManager.Me.HaveBuff(89152) ||  nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(28261) || nManager.Wow.Helpers.Quest.GetQuestCompleted(28261);</ScriptConditionIsComplete>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
@@ -1552,7 +1554,7 @@
           <Entry>
             <int>43073</int>
           </Entry>
-          <ScriptConditionIsComplete>return ObjectManager.ObjectManager.GetWoWUnitByEntry(48127).Count &gt; 0 &amp;&amp; ObjectManager.ObjectManager.GetWoWUnitByEntry(48127)[0].GetDistance &lt;= 25);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return ObjectManager.ObjectManager.GetWoWUnitByEntry(48127).Count &gt; 0 &amp;&amp; ObjectManager.ObjectManager.GetWoWUnitByEntry(48127)[0].GetDistance &lt;= 25;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>20000</WaitMs>
           <GossipOptionsInteractWith>2</GossipOptionsInteractWith>

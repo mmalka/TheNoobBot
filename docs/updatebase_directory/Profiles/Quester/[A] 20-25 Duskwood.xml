@@ -690,10 +690,14 @@
     </Quest>
     <Quest>
       <Name>Look To The Stars</Name>
+      <RaceMask>18875469</RaceMask>
       <Id>26683</Id>
       <QuestLevel>4</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>26</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26674</int>
+      </NeedQuestCompletedId>
       <PickUp>276</PickUp>
       <TurnIn>302</TurnIn>
       <Objectives />

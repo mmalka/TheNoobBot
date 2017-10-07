@@ -5,7 +5,7 @@ Npc FlagShipWaiting = new Npc();
 
 if(questObjective.ExtraObject1 is bool)
 {
-	reached = questObjective.ExtraObject1 as bool;
+	reached = (bool)questObjective.ExtraObject1; // as bool;
 }
 
 if(!reached)
@@ -23,7 +23,7 @@ if(!reached)
 	while (nManager.Wow.ObjectManager.ObjectManager.Me.Position.DistanceTo(waitFlagshipPoint) >= 5)
 	{
 
-		baseAddress = MovementManager.FindTarget(ref FlagShipWaiting, 5);
+		MovementManager.FindTarget(ref FlagShipWaiting, 5);
 		Thread.Sleep(500);
 	}
 

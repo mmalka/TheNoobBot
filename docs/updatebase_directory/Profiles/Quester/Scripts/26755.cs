@@ -20,3 +20,5 @@ Lua.LuaDoString("VehicleAimDecrement(" + angleAdjust + ")");
 Thread.Sleep(500);
 
 Lua.RunMacroText("/click OverrideActionBarButton1");
+
+Thread.Sleep(questObjective.WaitMs);

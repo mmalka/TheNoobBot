@@ -1285,6 +1285,9 @@
       <QuestLevel>67</QuestLevel>
       <MinLevel>64</MinLevel>
       <MaxLevel>70</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9922</int>
+      </NeedQuestCompletedId>
       <PickUp>18222</PickUp>
       <TurnIn>18222</TurnIn>
       <Objectives>
@@ -1443,6 +1446,9 @@
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
       <MaxLevel>76</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9874</int>
+      </NeedQuestCompletedId>
       <PickUp>18335</PickUp>
       <TurnIn>18265</TurnIn>
       <Objectives />
@@ -1454,6 +1460,9 @@
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
       <MaxLevel>76</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9913</int>
+      </NeedQuestCompletedId>
       <PickUp>18265</PickUp>
       <TurnIn>18265</TurnIn>
       <Objectives>
@@ -1628,6 +1637,9 @@
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
       <MaxLevel>78</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9882</int>
+      </NeedQuestCompletedId>
       <PickUp>18417</PickUp>
       <TurnIn>18417</TurnIn>
       <Objectives>
@@ -1654,6 +1666,9 @@
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
       <MaxLevel>78</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9991</int>
+      </NeedQuestCompletedId>
       <PickUp>18417</PickUp>
       <TurnIn>18417</TurnIn>
       <Objectives>
@@ -1754,6 +1769,9 @@
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
       <MaxLevel>78</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9999</int>
+      </NeedQuestCompletedId>
       <PickUp>18417</PickUp>
       <TurnIn>18417</TurnIn>
       <Objectives>
@@ -1783,6 +1801,9 @@
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
       <MaxLevel>76</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>10001</int>
+      </NeedQuestCompletedId>
       <PickUp>18223</PickUp>
       <TurnIn>18261</TurnIn>
       <Objectives>
@@ -1809,6 +1830,9 @@
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
       <MaxLevel>76</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>10108</int>
+      </NeedQuestCompletedId>
       <PickUp>18261</PickUp>
       <TurnIn>18261</TurnIn>
       <Objectives>
@@ -1868,6 +1892,9 @@
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
       <MaxLevel>76</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9927</int>
+      </NeedQuestCompletedId>
       <PickUp>18261</PickUp>
       <TurnIn>18261</TurnIn>
       <Objectives>
@@ -1906,6 +1933,9 @@
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
       <MaxLevel>76</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9928</int>
+      </NeedQuestCompletedId>
       <PickUp>18261</PickUp>
       <TurnIn>18261</TurnIn>
       <Objectives>

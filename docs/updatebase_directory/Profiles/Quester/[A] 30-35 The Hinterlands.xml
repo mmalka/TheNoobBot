@@ -1673,6 +1673,8 @@
         <Y>-4175.535</Y>
         <Z>139.7303</Z>
       </Position>
+	  <Radius>5</Radius>
+	  <ContinentId>Azeroth</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

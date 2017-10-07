@@ -8,7 +8,7 @@
       <Id>10928</Id>
       <QuestLevel>65</QuestLevel>
       <MinLevel>62</MinLevel>
-      <MaxLevel>75</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <PickUp>22489</PickUp>
       <TurnIn>22489</TurnIn>
       <Objectives>
@@ -54,7 +54,7 @@
       <Id>10503</Id>
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
-      <MaxLevel>76</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10928</int>
       </NeedQuestCompletedId>
@@ -406,7 +406,7 @@
       <Id>10505</Id>
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
-      <MaxLevel>76</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10503</int>
       </NeedQuestCompletedId>
@@ -762,7 +762,7 @@
       <Id>10718</Id>
       <QuestLevel>67</QuestLevel>
       <MinLevel>64</MinLevel>
-      <MaxLevel>77</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10505</int>
       </NeedQuestCompletedId>
@@ -776,7 +776,7 @@
       <Id>10614</Id>
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
-      <MaxLevel>76</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10718</int>
       </NeedQuestCompletedId>
@@ -790,7 +790,7 @@
       <Id>10565</Id>
       <QuestLevel>66</QuestLevel>
       <MinLevel>63</MinLevel>
-      <MaxLevel>76</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10614</int>
       </NeedQuestCompletedId>
@@ -965,7 +965,7 @@
       <Id>10846</Id>
       <QuestLevel>67</QuestLevel>
       <MinLevel>64</MinLevel>
-      <MaxLevel>77</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10565</int>
       </NeedQuestCompletedId>
@@ -1239,7 +1239,7 @@
       <Id>10843</Id>
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
-      <MaxLevel>78</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10846</int>
       </NeedQuestCompletedId>
@@ -1391,7 +1391,7 @@
       <Id>10845</Id>
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
-      <MaxLevel>78</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10843</int>
       </NeedQuestCompletedId>
@@ -1487,7 +1487,7 @@
       <Id>10859</Id>
       <QuestLevel>67</QuestLevel>
       <MinLevel>64</MinLevel>
-      <MaxLevel>77</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10845</int>
       </NeedQuestCompletedId>
@@ -1521,7 +1521,7 @@
       <Id>10865</Id>
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
-      <MaxLevel>78</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10859</int>
       </NeedQuestCompletedId>
@@ -1535,7 +1535,7 @@
       <Id>10867</Id>
       <QuestLevel>68</QuestLevel>
       <MinLevel>65</MinLevel>
-      <MaxLevel>78</MaxLevel>
+      <MaxLevel>68</MaxLevel>
       <NeedQuestCompletedId>
         <int>10865</int>
       </NeedQuestCompletedId>
@@ -2613,6 +2613,7 @@
         <Z>40.20636</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2621,6 +2622,7 @@
         <Z>26.75933</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2629,6 +2631,7 @@
         <Z>284.3353</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2637,6 +2640,7 @@
         <Z>293.6422</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>Outland</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

@@ -8,7 +8,7 @@
       <Id>27722</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <PickUp>206109</PickUp>
       <TurnIn>45244</TurnIn>
       <Objectives />
@@ -19,7 +19,7 @@
       <Id>27203</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27722</int>
       </NeedQuestCompletedId>
@@ -55,7 +55,7 @@
       <Id>27123</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27203</int>
       </NeedQuestCompletedId>
@@ -68,6 +68,7 @@
           <Entry>
             <int>45005</int>
           </Entry>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Usefuls.ContinentId ==  646;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>836.0104</X>
@@ -91,7 +92,7 @@
       <Id>26245</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27123</int>
       </NeedQuestCompletedId>
@@ -207,7 +208,7 @@
             <Y>393.8637</Y>
             <Z>-73.75745</Z>
           </Position>
-          <WaitMs>5000</WaitMs>
+          <WaitMs>8000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -319,6 +320,7 @@
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -344,6 +346,7 @@
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -393,7 +396,7 @@
       <Id>26247</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26245</int>
       </NeedQuestCompletedId>
@@ -409,6 +412,11 @@
           <Script>=GoToFlagShip.cs</Script>
           <ScriptConditionIsComplete>return ObjectManager.Me.InTransport;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1475.782</X>
+            <Y>-40.53578</Y>
+            <Z>476.9899</Z>
+          </Position>
           <Range>4</Range>
         </QuestObjective>
         <QuestObjective>
@@ -426,7 +434,7 @@
       <Id>26248</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26245</int>
       </NeedQuestCompletedId>
@@ -448,6 +456,13 @@
             <int>42682</int>
             <int>42681</int>
           </Entry>
+          <Hotspots>
+            <Point>
+              <X>44.1539421</X>
+              <Y>6.15159655</Y>
+              <Z>40.0829048</Z>
+            </Point>
+          </Hotspots>
           <Script>=UseItemWithHotSpots.cs</Script>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>58167</UseItemId>
@@ -457,6 +472,7 @@
             <Z>40.07978</Z>
           </Position>
           <WaitMs>6000</WaitMs>
+          <ExtraString>InteractWith</ExtraString>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -532,7 +548,7 @@
       <Id>26250</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26248</int>
       </NeedQuestCompletedId>
@@ -634,7 +650,7 @@
       <Id>26254</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26250</int>
       </NeedQuestCompletedId>
@@ -672,7 +688,7 @@
       <Id>26255</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26254</int>
       </NeedQuestCompletedId>
@@ -686,7 +702,7 @@
       <Id>26259</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26255</int>
       </NeedQuestCompletedId>
@@ -703,13 +719,19 @@
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <Count>1</Count>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(26258) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26258) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(26258);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26258) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(26258);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-            <X>833.5274</X>
-            <Y>60.22495</Y>
-            <Z>-65.60946</Z>
+            <X>823.741</X>
+            <Y>59.37194</Y>
+            <Z>-67.92645</Z>
           </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(26258) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26258) || nManager.Wow.Helpers.Quest.GetQuestCompleted(26258);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1500</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -731,12 +753,25 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(26256) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26256) || nManager.Wow.Helpers.Quest.GetQuestCompleted(26256);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpObject</Objective>
           <Entry>
             <int>205097</int>
           </Entry>
           <CollectItemId>60739</CollectItemId>
           <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>771.5713</X>
+              <Y>-150.227036</Y>
+              <Z>-41.0228</Z>
+            </Point>
+          </Hotspots>
           <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(60739) &gt;= 1) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26261) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(26261);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
@@ -788,6 +823,12 @@
           <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(26261) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26261) || nManager.Wow.Helpers.Quest.GetQuestCompleted(26261);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43065</NpcEntry>
@@ -820,6 +861,12 @@
           </Position>
         </QuestObjective>
         <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(27007) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27007) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27007);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalQuestId>27010</InternalQuestId>
           <Entry>
@@ -827,6 +874,13 @@
           </Entry>
           <CollectItemId>1</CollectItemId>
           <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>651.507</X>
+              <Y>-617.5283</Y>
+              <Z>144.636719</Z>
+            </Point>
+          </Hotspots>
           <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(60809) &gt;= 1) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27010) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27010);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
@@ -872,6 +926,12 @@
           </Position>
         </QuestObjective>
         <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(27010) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27010) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27010);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>27100</InternalQuestId>
@@ -894,6 +954,12 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(27100) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27100) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27100);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1500</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1008,6 +1074,7 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <NpcEntry>44010</NpcEntry>
           <QuestName>Big Game, Big Bait</QuestName>
           <QuestId>26766</QuestId>
@@ -1025,6 +1092,7 @@
           <InternalQuestId>26771</InternalQuestId>
           <Count>1</Count>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <UseItemId>60773</UseItemId>
           <Position>
             <X>-102.4971</X>
@@ -1060,6 +1128,7 @@
           <InternalQuestId>26861</InternalQuestId>
           <Count>1</Count>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <UseItemId>60501</UseItemId>
           <Position>
             <X>250.5264</X>
@@ -1110,6 +1179,7 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <NpcEntry>44222</NpcEntry>
           <QuestName>Block the Gates</QuestName>
           <QuestId>26861</QuestId>
@@ -1195,6 +1265,7 @@
         <int>27010</int>
         <int>27100</int>
         <int>27102</int>
+        <int>26261</int>
       </AutoComplete>
       <AutoAccept>
         <int>26256</int>
@@ -1209,7 +1280,7 @@
       <Id>26484</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26259</int>
       </NeedQuestCompletedId>
@@ -1223,7 +1294,7 @@
       <Id>27931</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26484</int>
       </NeedQuestCompletedId>
@@ -1237,7 +1308,7 @@
       <Id>27932</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27931</int>
       </NeedQuestCompletedId>
@@ -1326,7 +1397,7 @@
       <Id>27934</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27932</int>
       </NeedQuestCompletedId>
@@ -1358,7 +1429,7 @@
       <Id>27935</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27934</int>
       </NeedQuestCompletedId>
@@ -1390,7 +1461,7 @@
       <Id>26499</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27935</int>
       </NeedQuestCompletedId>
@@ -1475,7 +1546,7 @@
       <Id>26501</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26499</int>
       </NeedQuestCompletedId>
@@ -1609,7 +1680,7 @@
       <Id>26537</Id>
       <QuestLevel>82</QuestLevel>
       <MinLevel>79</MinLevel>
-      <MaxLevel>92</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26501</int>
       </NeedQuestCompletedId>
@@ -1733,7 +1804,7 @@
       <Id>26625</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26537</int>
       </NeedQuestCompletedId>
@@ -1765,7 +1836,7 @@
       <Id>27126</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26625</int>
       </NeedQuestCompletedId>
@@ -1779,7 +1850,7 @@
       <Id>26632</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27126</int>
       </NeedQuestCompletedId>
@@ -1820,7 +1891,7 @@
       <Id>26755</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26632</int>
       </NeedQuestCompletedId>
@@ -1847,6 +1918,7 @@
             <int>43954</int>
           </Entry>
           <Script>=26755.cs</Script>
+          <WaitMs>1000</WaitMs>
           <Range>0</Range>
         </QuestObjective>
       </Objectives>
@@ -1857,7 +1929,7 @@
       <Id>26762</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26755</int>
       </NeedQuestCompletedId>
@@ -1891,6 +1963,7 @@
             </Point>
           </Hotspots>
           <Script>=InteractWithHotSpots.cs</Script>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1914,6 +1987,7 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
           <NpcEntry>43898</NpcEntry>
           <QuestName>Mystic Masters</QuestName>
           <QuestId>26770</QuestId>
@@ -1933,7 +2007,7 @@
       <Id>26834</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26762</int>
       </NeedQuestCompletedId>
@@ -1947,7 +2021,7 @@
       <Id>26791</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26834</int>
       </NeedQuestCompletedId>
@@ -2046,7 +2120,7 @@
       <Id>26835</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26791</int>
       </NeedQuestCompletedId>
@@ -2060,7 +2134,7 @@
       <Id>26836</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26835</int>
       </NeedQuestCompletedId>
@@ -2082,6 +2156,7 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2091,7 +2166,7 @@
       <Id>27937</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26836</int>
       </NeedQuestCompletedId>
@@ -2105,7 +2180,7 @@
       <Id>27938</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27937</int>
       </NeedQuestCompletedId>
@@ -2134,7 +2209,7 @@
       <Id>26326</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>27938</int>
       </NeedQuestCompletedId>
@@ -2148,7 +2223,7 @@
       <Id>26314</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26326</int>
       </NeedQuestCompletedId>
@@ -2296,7 +2371,7 @@
       <Id>26315</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26314</int>
       </NeedQuestCompletedId>
@@ -2336,7 +2411,7 @@
       <Id>26328</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26315</int>
       </NeedQuestCompletedId>
@@ -2350,7 +2425,7 @@
       <Id>26376</Id>
       <QuestLevel>83</QuestLevel>
       <MinLevel>80</MinLevel>
-      <MaxLevel>93</MaxLevel>
+      <MaxLevel>84</MaxLevel>
       <NeedQuestCompletedId>
         <int>26328</int>
       </NeedQuestCompletedId>
@@ -2359,7 +2434,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
-          <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(58500) &gt;= 6) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26377) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(26377);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>42467</NpcEntry>
           <QuestName>Unsolid Ground</QuestName>
@@ -2395,7 +2469,7 @@
           </Entry>
           <CollectItemId>58500</CollectItemId>
           <CollectCount>6</CollectCount>
-          <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(58500) &gt;= 6) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26377) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(26377);</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(58500) &gt;= 6) || (nManager.Wow.Helpers.ItemsManager.GetItemCount(58783) &gt;= 1) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26377) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(26377);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
@@ -2446,6 +2520,742 @@
           <UseItemId>58254</UseItemId>
           <WaitMs>500</WaitMs>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return (nManager.Wow.Helpers.ItemsManager.GetItemCount(58783) &gt;= 1) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(26377) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(26377);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>58500</UseItemId>
+          <Position>
+            <X>1428.945</X>
+            <Y>16.05979</Y>
+            <Z>-86.44651</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26377</InternalQuestId>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>58783</UseItemId>
+          <Position>
+            <X>1428.832</X>
+            <Y>14.58237</Y>
+            <Z>-86.48916</Z>
+          </Position>
+          <WaitMs>1500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42899</NpcEntry>
+          <QuestName>Loose Stones</QuestName>
+          <QuestId>26375</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42467</NpcEntry>
+          <QuestName>Unsolid Ground</QuestName>
+          <QuestId>26377</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42467</NpcEntry>
+          <QuestName>Hatred Runs Deep</QuestName>
+          <QuestId>26376</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Violent Gale</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26426</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26376</int>
+      </NeedQuestCompletedId>
+      <PickUp>42467</PickUp>
+      <TurnIn>42467</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Position>
+            <X>1715.504</X>
+            <Y>404.4114</Y>
+            <Z>-85.33907</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1927.878</X>
+            <Y>89.21819</Y>
+            <Z>-153.5569</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+      <AutoComplete>
+        <int>26426</int>
+      </AutoComplete>
+    </Quest>
+    <Quest>
+      <Name>Depth of the Depths</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26869</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26426</int>
+      </NeedQuestCompletedId>
+      <AutoAccepted>true</AutoAccepted>
+      <PickUp>42467</PickUp>
+      <TurnIn>204959</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>A Rock Amongst Many</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26871</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26869</int>
+      </NeedQuestCompletedId>
+      <PickUp>204959</PickUp>
+      <TurnIn>42467</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Entrenched</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26436</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26871</int>
+      </NeedQuestCompletedId>
+      <PickUp>42467</PickUp>
+      <TurnIn>42469</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Intervention</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26438</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26436</int>
+      </NeedQuestCompletedId>
+      <PickUp>42469</PickUp>
+      <TurnIn>42469</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42469</NpcEntry>
+          <QuestName>Making Things Crystal Clear</QuestName>
+          <QuestId>26437</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43344</NpcEntry>
+          <QuestName>Putting the Pieces Together</QuestName>
+          <QuestId>26439</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26437</InternalQuestId>
+          <Entry>
+            <int>204296</int>
+            <int>204297</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>1572.60132</X>
+              <Y>1266.6416</Y>
+              <Z>29.0877056</Z>
+            </Point>
+            <Point>
+              <X>1292.79944</X>
+              <Y>1401.9248</Y>
+              <Z>28.9074154</Z>
+            </Point>
+            <Point>
+              <X>1053.74731</X>
+              <Y>1465.07764</Y>
+              <Z>30.2550449</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26439</InternalQuestId>
+          <Count>6</Count>
+          <Entry>
+            <int>43115</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1573.7998</X>
+              <Y>1225.75366</Y>
+              <Z>28.2960739</Z>
+            </Point>
+            <Point>
+              <X>1292.79944</X>
+              <Y>1401.9248</Y>
+              <Z>28.9074154</Z>
+            </Point>
+            <Point>
+              <X>1053.74731</X>
+              <Y>1465.07764</Y>
+              <Z>30.2550449</Z>
+            </Point>
+          </Hotspots>
+          <Script>=InteractWithHotSpots.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>12</Count>
+          <Entry>
+            <int>42524</int>
+            <int>42521</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1292.79944</X>
+              <Y>1401.9248</Y>
+              <Z>28.9074154</Z>
+            </Point>
+            <Point>
+              <X>1053.74731</X>
+              <Y>1465.07764</Y>
+              <Z>30.2550449</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43344</NpcEntry>
+          <QuestName>Putting the Pieces Together</QuestName>
+          <QuestId>26439</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42469</NpcEntry>
+          <QuestName>Making Things Crystal Clear</QuestName>
+          <QuestId>26437</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42469</NpcEntry>
+          <QuestName>Intervention</QuestName>
+          <QuestId>26438</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Pebble</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>28869</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26438</int>
+      </NeedQuestCompletedId>
+      <PickUp>42469</PickUp>
+      <TurnIn>43116</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(43116, false), false,true, true).IsValid || !nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(28869);</ScriptConditionIsComplete>
+          <WaitMs>2500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43116</NpcEntry>
+          <QuestName>Pebble</QuestName>
+          <QuestId>28869</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Clingy</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26440</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28869</int>
+      </NeedQuestCompletedId>
+      <PickUp>43116</PickUp>
+      <TurnIn>43116</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1242.681</X>
+            <Y>1526.38</Y>
+            <Z>31.7006</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>So Big, So Round...</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26441</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26440</int>
+      </NeedQuestCompletedId>
+      <PickUp>43116</PickUp>
+      <TurnIn>42469</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Rock Bottom</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26575</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>93</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26441</int>
+      </NeedQuestCompletedId>
+      <PickUp>42469</PickUp>
+      <TurnIn>42469</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42469</NpcEntry>
+          <QuestName>Petrified Delicacies</QuestName>
+          <QuestId>26507</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>43339</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1870.879</X>
+              <Y>625.2378</Y>
+              <Z>81.38336</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26507</InternalQuestId>
+          <Count>12</Count>
+          <Entry>
+            <int>43182</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1885.63</X>
+              <Y>572.382</Y>
+              <Z>74.24364</Z>
+              <Type>Flying</Type>
+            </Point>
+            <Point>
+              <X>1823.8313</X>
+              <Y>823.2073</Y>
+              <Z>87.34119</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43116</NpcEntry>
+          <QuestName>Petrified Delicacies</QuestName>
+          <QuestId>26507</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42469</NpcEntry>
+          <QuestName>Rock Bottom</QuestName>
+          <QuestId>26575</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Steady Hand</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26576</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26575</int>
+      </NeedQuestCompletedId>
+      <PickUp>42469</PickUp>
+      <TurnIn>42469</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42469</NpcEntry>
+          <QuestName>Rocky Upheaval</QuestName>
+          <QuestId>26577</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42466</NpcEntry>
+          <QuestName>Steady Hand</QuestName>
+          <QuestId>26576</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Don't. Stop. Moving.</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26656</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26576</int>
+      </NeedQuestCompletedId>
+      <PickUp>42466</PickUp>
+      <TurnIn>42466</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>42466</int>
+          </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>1500</WaitMs>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>5</Count>
+          <Position>
+            <X>2283.98</X>
+            <Y>462.2241</Y>
+            <Z>167.7146</Z>
+          </Position>
+          <IgnoreFight>true</IgnoreFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Hard Falls</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26657</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26656</int>
+      </NeedQuestCompletedId>
+      <PickUp>42466</PickUp>
+      <TurnIn>42466</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42466</NpcEntry>
+          <QuestName>Fragile Values</QuestName>
+          <QuestId>26658</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26658</InternalQuestId>
+          <Entry>
+            <int>43598</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>2025.30322</X>
+              <Y>1171.16492</Y>
+              <Z>116.711395</Z>
+            </Point>
+            <Point>
+              <X>1900.2196</X>
+              <Y>1051.69421</Y>
+              <Z>71.49423</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>42522</int>
+          </Entry>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42466</NpcEntry>
+          <QuestName>Fragile Values</QuestName>
+          <QuestId>26658</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42466</NpcEntry>
+          <QuestName>Hard Falls</QuestName>
+          <QuestId>26657</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Resonating Blow</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26659</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26657</int>
+      </NeedQuestCompletedId>
+      <PickUp>42466</PickUp>
+      <TurnIn>42466</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <UseItemId>60266</UseItemId>
+          <Position>
+            <X>1970.885</X>
+            <Y>1382.248</Y>
+            <Z>178.5668</Z>
+          </Position>
+          <WaitMs>20000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <Script>=26659.cs</Script>
+          <IgnoreAllFight>true</IgnoreAllFight>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42466</NpcEntry>
+          <QuestName>Resonating Blow</QuestName>
+          <QuestId>26659</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Rocky Upheaval</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26577</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>81</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26659</int>
+      </NeedQuestCompletedId>
+      <PickUp>42469</PickUp>
+      <TurnIn>42472</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Doomshrooms</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>26578</Id>
+      <QuestLevel>83</QuestLevel>
+      <MinLevel>80</MinLevel>
+      <MaxLevel>84</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26577</int>
+      </NeedQuestCompletedId>
+      <PickUp>42472</PickUp>
+      <TurnIn>42472</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42472</NpcEntry>
+          <QuestName>Gone Soft</QuestName>
+          <QuestId>26579</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42472</NpcEntry>
+          <QuestName>Familiar Intruders</QuestName>
+          <QuestId>26580</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43395</NpcEntry>
+          <QuestName>Familiar Intruders</QuestName>
+          <QuestId>26580</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43395</NpcEntry>
+          <QuestName>A Head Full of Wind</QuestName>
+          <QuestId>26581</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>43388</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1555.44556</X>
+              <Y>-751.019653</Y>
+              <Z>283.477264</Z>
+            </Point>
+            <Point>
+              <X>1297.52063</X>
+              <Y>-597.1213</Y>
+              <Z>276.919678</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26579</InternalQuestId>
+          <Count>8</Count>
+          <Entry>
+            <int>42475</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1342.75574</X>
+              <Y>-711.6003</Y>
+              <Z>282.704956</Z>
+            </Point>
+            <Point>
+              <X>1531.01807</X>
+              <Y>-783.6654</Y>
+              <Z>278.569336</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26581</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>43370</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1665.13464</X>
+              <Y>-752.941956</Y>
+              <Z>277.874939</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreNotSelectable>true</IgnoreNotSelectable>
+          <WaitMs>4500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43395</NpcEntry>
+          <QuestName>A Head Full of Wind</QuestName>
+          <QuestId>26581</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43395</NpcEntry>
+          <QuestName>Unnatural Causes</QuestName>
+          <QuestId>26582</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42472</NpcEntry>
+          <QuestName>Gone Soft</QuestName>
+          <QuestId>26579</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42472</NpcEntry>
+          <QuestName>Unnatural Causes</QuestName>
+          <QuestId>26582</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>42472</NpcEntry>
+          <QuestName>Doomshrooms</QuestName>
+          <QuestId>26578</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
   </Quests>
@@ -2457,6 +3267,7 @@
         <Z>-21.3827</Z>
       </Position>
       <Radius>15</Radius>
+      <ContinentId>Maelstrom</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2465,6 +3276,7 @@
         <Z>-21.9576</Z>
       </Position>
       <Radius>15</Radius>
+      <ContinentId>Maelstrom</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -2473,6 +3285,23 @@
         <Z>-33.3431</Z>
       </Position>
       <Radius>15</Radius>
+      <ContinentId>Maelstrom</ContinentId>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>1755.917</X>
+        <Y>1017.41</Y>
+        <Z>41.54195</Z>
+      </Position>
+      <ContinentId>Maelstrom</ContinentId>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>1744.836</X>
+        <Y>987.9913</Y>
+        <Z>43.43267</Z>
+      </Position>
+      <ContinentId>Maelstrom</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

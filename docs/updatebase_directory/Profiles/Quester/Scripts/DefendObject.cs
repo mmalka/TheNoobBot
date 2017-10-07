@@ -1,5 +1,7 @@
 /* Defend a fix npc
 check the flags of the mob that are attacking, you might need IgnoreBlackList */
+if(!questObjective.Position.IsValid)
+	questObjective.Position = ObjectManager.Me.Position;
 
 if(ObjectManager.Me.Position.DistanceTo(questObjective.Position) >= 5f)
 {

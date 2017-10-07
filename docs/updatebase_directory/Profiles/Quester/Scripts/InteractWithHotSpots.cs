@@ -10,6 +10,9 @@ if (questObjective.Hotspots.Count <= 0)
 if (questObjective.IgnoreFight)
 		nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 
+if(questObjective.Range == 0)
+	questObjective.Range = 5;
+	
 /* Search for Entry */
 WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList, questObjective.AllowPlayerControlled);

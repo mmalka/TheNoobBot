@@ -6,8 +6,8 @@
       <Name>Wanted: Redridge Gnolls</Name>
       <RaceMask>2098253</RaceMask>
       <Id>26504</Id>
-      <QuestLevel>10</QuestLevel>
-      <MinLevel>10</MinLevel>
+      <QuestLevel>15</QuestLevel>
+      <MinLevel>14</MinLevel>
       <MaxLevel>25</MaxLevel>
       <PickUp>204344</PickUp>
       <TurnIn>464</TurnIn>
@@ -621,24 +621,33 @@
             <Y>-2677.676</Y>
             <Z>93.4773</Z>
           </Position>
+          <DismissPet>true</DismissPet>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseLuaMacro</Objective>
+          <LuaMacro>/petstay</LuaMacro>
+          <DismissPet>true</DismissPet>
         </QuestObjective>
         <QuestObjective>
           <Objective>CSharpScript</Objective>
           <Entry>
             <int>43341</int>
           </Entry>
+          <DeactivateMount>true</DeactivateMount>
           <Script>=26587.cs</Script>
           <Position>
-            <X>-9209.699</X>
-            <Y>-2770.077</Y>
-            <Z>90.38326</Z>
+            <X>-9175.474</X>
+            <Y>-2672.521</Y>
+            <Z>94.62478</Z>
           </Position>
+          <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
           <DismissPet>true</DismissPet>
           <Range>0</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>CSharpScript</Objective>
-          <Count>1</Count>
+          <DeactivateMount>true</DeactivateMount>
           <Hotspots>
             <Point>
               <X>-9160.113</X>
@@ -656,36 +665,88 @@
               <Z>88.71474</Z>
             </Point>
           </Hotspots>
-          <Script>=FollowPath.cs</Script>
+          <Script>=ClickToMoveHotSpots.cs</Script>
           <Position>
             <X>-9164.38</X>
             <Y>-2741.091</Y>
             <Z>88.71474</Z>
           </Position>
           <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
           <DismissPet>true</DismissPet>
           <Range>0</Range>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpObject</Objective>
+          <Objective>MoveTo</Objective>
+          <DeactivateMount>true</DeactivateMount>
+          <Position>
+            <X>-9167.643</X>
+            <Y>-2742.444</Y>
+            <Z>88.67866</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
           <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>204389</int>
           </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
+          <DeactivateMount>true</DeactivateMount>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreNotSelectable>true</IgnoreNotSelectable>
+          <IgnoreItemNotUsable>true</IgnoreItemNotUsable>
+          <Position>
+            <X>-9164.63</X>
+            <Y>-2745.244</Y>
+            <Z>90.44141</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <DeactivateMount>true</DeactivateMount>
           <Hotspots>
             <Point>
-              <X>-9184</X>
-              <Y>-2728.491</Y>
-              <Z>90.20651</Z>
+              <X>-9162.976</X>
+              <Y>-2742.35522</Y>
+              <Z>88.74343</Z>
+            </Point>
+            <Point>
+              <X>-9156.607</X>
+              <Y>-2728.2688</Y>
+              <Z>88.72764</Z>
+            </Point>
+            <Point>
+              <X>-9153.736</X>
+              <Y>-2711.42017</Y>
+              <Z>88.72764</Z>
+            </Point>
+            <Point>
+              <X>-9160.83</X>
+              <Y>-2689.29785</Y>
+              <Z>88.72764</Z>
+            </Point>
+            <Point>
+              <X>-9174.387</X>
+              <Y>-2677.19678</Y>
+              <Z>93.60687</Z>
             </Point>
           </Hotspots>
+          <Script>=ClickToMoveHotSpots.cs</Script>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-9174.387</X>
+            <Y>-2677.19678</Y>
+            <Z>93.60687</Z>
+          </Position>
           <IgnoreFight>true</IgnoreFight>
+          <IgnoreAllFight>true</IgnoreAllFight>
+          <DismissPet>true</DismissPet>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <DismissPet>true</DismissPet>
           <NpcEntry>43270</NpcEntry>
           <QuestName>Breaking Out is Hard to Do</QuestName>
           <QuestId>26587</QuestId>
@@ -1107,6 +1168,7 @@
         <Z>150.0632</Z>
       </Position>
       <Radius>30</Radius>
+	  <ContinentId>Azeroth</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -1115,6 +1177,7 @@
         <Z>148.8713</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>Azeroth</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

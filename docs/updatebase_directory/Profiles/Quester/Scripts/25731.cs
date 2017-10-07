@@ -33,17 +33,18 @@ if (unit.IsValid)
 	MovementManager.Face(unit);
 	Interact.InteractWith(unit.GetBaseAddress);	
 	Logging.Write("ICI3");
+	Thread.Sleep(1250);
 	/* Do Gossip if necessary */
 		nManager.Wow.Helpers.Quest.SelectGossipOption(2);
-		Thread.Sleep(750 + Usefuls.Latency);
+		Thread.Sleep(1250 + Usefuls.Latency);
 		nManager.Wow.Helpers.Quest.SelectGossipOption(1);
-		Thread.Sleep(750 + Usefuls.Latency);
+		Thread.Sleep(1250 + Usefuls.Latency);
 		nManager.Wow.Helpers.Quest.SelectGossipOption(1);
-		Thread.Sleep(750 + Usefuls.Latency);
+		Thread.Sleep(1250 + Usefuls.Latency);
 		nManager.Wow.Helpers.Quest.SelectGossipOption(1);
-		Thread.Sleep(750 + Usefuls.Latency);
+		Thread.Sleep(1250 + Usefuls.Latency);
 		nManager.Wow.Helpers.Quest.SelectGossipOption(2);
-		Thread.Sleep(750 + Usefuls.Latency);
+		Thread.Sleep(1250 + Usefuls.Latency);
 
 	if (Others.IsFrameVisible("StaticPopup1Button1"))
 		Lua.RunMacroText("/click StaticPopup1Button1");

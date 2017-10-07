@@ -4560,6 +4560,7 @@
         <Z>45.67178</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -4568,6 +4569,7 @@
         <Z>25.33442</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -4576,6 +4578,7 @@
         <Z>-5.906623</Z>
       </Position>
       <Radius>50</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -4584,6 +4587,7 @@
         <Z>84.62101</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
   <AvoidMobs>

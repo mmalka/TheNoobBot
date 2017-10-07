@@ -1525,6 +1525,11 @@
               <Y>-452.5739</Y>
               <Z>12.09284</Z>
             </Point>
+            <Point>
+              <X>-11994.0215</X>
+              <Y>-353.562561</Y>
+              <Z>10.766017</Z>
+            </Point>
           </Hotspots>
         </QuestObjective>
       </Objectives>
@@ -1542,19 +1547,6 @@
       <PickUp>2495</PickUp>
       <TurnIn>2495</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>43042</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-12823.31</X>
-            <Y>-414.4375</Y>
-            <Z>12.9671</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
-        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
@@ -2730,6 +2722,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>2491</int>
           </Entry>
@@ -2778,7 +2771,7 @@
       <Id>26595</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
-      <MaxLevel>45</MaxLevel>
+      <MaxLevel>35</MaxLevel>
       <NeedQuestCompletedId>
         <int>26600</int>
       </NeedQuestCompletedId>

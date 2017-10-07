@@ -2,10 +2,7 @@
 <QuesterProfile Author="Several authors" DevelopmentStatus="WorkInProgress">
   <Includes>
     <Include>
-      <PathFile>[A] 1-5 Northshire - Human Starting Zone.xml</PathFile>
-    </Include>
-    <Include>
-      <PathFile>[A] 5-12 Elwin Forest.xml</PathFile>
+      <PathFile>[A] 1-10 Elwin Forest - Human Starting Zone.xml</PathFile>
     </Include>
     <Include>
       <PathFile>[A] 10-15 Westfall.xml</PathFile>

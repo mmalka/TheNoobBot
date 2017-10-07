@@ -59,7 +59,6 @@ if(unit.IsValid)
 	Thread.Sleep(500);
 	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
 	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
-	nManager.Wow.Helpers.Fight.InFight= false;
 	nManager.Wow.Helpers.Fight.StopFight();
 
 	_worker2 = null;

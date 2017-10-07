@@ -7,7 +7,7 @@
       <RaceMask>18875469</RaceMask>
       <Id>27997</Id>
       <QuestLevel>45</QuestLevel>
-      <MinLevel>44</MinLevel>
+      <MinLevel>47</MinLevel>
       <MaxLevel>55</MaxLevel>
       <PickUp>10923</PickUp>
       <TurnIn>10923</TurnIn>
@@ -1722,6 +1722,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>207104</NpcEntry>
           <QuestName>Oil and Irony</QuestName>
           <QuestId>28385</QuestId>

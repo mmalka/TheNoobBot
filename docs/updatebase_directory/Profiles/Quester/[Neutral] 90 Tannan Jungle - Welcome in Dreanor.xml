@@ -1805,6 +1805,7 @@
         <Z>-0.2059663</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>Draenor</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

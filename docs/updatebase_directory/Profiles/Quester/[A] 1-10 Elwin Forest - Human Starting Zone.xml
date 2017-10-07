@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Neo2003" DevelopmentStatus="Untested">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Beating Them Back!</Name>
@@ -513,359 +514,6 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Glyphic Letter</Name>
-      <ClassMask>128</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>3104</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28769</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>198</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Consecrated Letter</Name>
-      <ClassMask>2</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>3101</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28770</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>925</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Hallowed Letter</Name>
-      <ClassMask>16</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>3103</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28771</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>375</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Encrypted Letter</Name>
-      <ClassMask>8</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>3102</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28772</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>915</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Tainted Letter</Name>
-      <ClassMask>256</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>3105</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28773</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>459</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Simple Letter</Name>
-      <ClassMask>1</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>3100</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28774</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>911</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Calligraphed Letter</Name>
-      <ClassMask>512</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>31141</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>31140</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>63258</TurnIn>
-      <Objectives />
-    </Quest>
-    <Quest>
-      <Name>Mastering the Arcane</Name>
-      <ClassMask>128</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>26916</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>3104</int>
-      </NeedQuestCompletedId>
-      <PickUp>198</PickUp>
-      <TurnIn>198</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpellAOE</Objective>
-          <Count>2</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Position>
-            <X>-8967.869</X>
-            <Y>-153.1475</Y>
-            <Z>81.50401</Z>
-          </Position>
-          <UseSpellId>122</UseSpellId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>The Power of the Light</Name>
-      <ClassMask>2</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>26918</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>3101</int>
-      </NeedQuestCompletedId>
-      <PickUp>925</PickUp>
-      <TurnIn>925</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Count>1</Count>
-          <UseSpellId>105361</UseSpellId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-8967.869</X>
-              <Y>-153.1475</Y>
-              <Z>81.50401</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Learning the Word</Name>
-      <ClassMask>16</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>26919</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>3103</int>
-      </NeedQuestCompletedId>
-      <PickUp>375</PickUp>
-      <TurnIn>375</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Count>5</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Position>
-            <X>-8967.869</X>
-            <Y>-153.1475</Y>
-            <Z>81.50401</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-          <UseSpellId>589</UseSpellId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>The Deepest Cut</Name>
-      <ClassMask>8</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>26915</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>3102</int>
-      </NeedQuestCompletedId>
-      <PickUp>915</PickUp>
-      <TurnIn>915</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>-1</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-8967.869</X>
-              <Y>-153.1475</Y>
-              <Z>81.50401</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Immolation</Name>
-      <ClassMask>256</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>26914</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>3105</int>
-      </NeedQuestCompletedId>
-      <PickUp>459</PickUp>
-      <TurnIn>459</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Count>5</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-8967.869</X>
-              <Y>-153.1475</Y>
-              <Z>81.50401</Z>
-            </Point>
-          </Hotspots>
-          <UseSpellId>172</UseSpellId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Charging into Battle</Name>
-      <ClassMask>1</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>26913</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>3100</int>
-      </NeedQuestCompletedId>
-      <PickUp>911</PickUp>
-      <TurnIn>911</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Count>1</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-8967.869</X>
-              <Y>-153.1475</Y>
-              <Z>81.50401</Z>
-            </Point>
-          </Hotspots>
-          <UseSpellId>100</UseSpellId>
-          <Range>15</Range>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>The Hunter's Path</Name>
-      <ClassMask>4</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>26917</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>26910</int>
-      </NeedQuestCompletedId>
-      <PickUp>43278</PickUp>
-      <TurnIn>43278</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Count>5</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-8967.869</X>
-              <Y>-153.1475</Y>
-              <Z>81.50401</Z>
-            </Point>
-          </Hotspots>
-          <UseSpellId>56641</UseSpellId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Palm of the Tiger</Name>
-      <ClassMask>512</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>31142</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>31141</int>
-      </NeedQuestCompletedId>
-      <PickUp>63258</PickUp>
-      <TurnIn>63258</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <Count>-1</Count>
-          <Entry>
-            <int>44548</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-8967.869</X>
-              <Y>-153.1475</Y>
-              <Z>81.50401</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
       <Name>Join the Battle!</Name>
       <ClassMask>128</ClassMask>
       <RaceMask>1</RaceMask>
@@ -889,9 +537,9 @@
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
       <NeedQuestCompletedId>
-        <int>26918</int>
+        <int>28770</int>
       </NeedQuestCompletedId>
-      <PickUp>925</PickUp>
+      <PickUp>197</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives />
     </Quest>
@@ -998,6 +646,277 @@
       <PickUp>197</PickUp>
       <TurnIn>823</TurnIn>
       <Objectives />
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <ClassMask>128</ClassMask>
+      <RaceMask>1</RaceMask>
+      <Id>28808</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28784</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <ClassMask>2</ClassMask>
+      <RaceMask>1</RaceMask>
+      <Id>28809</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28785</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <ClassMask>16</ClassMask>
+      <RaceMask>1</RaceMask>
+      <Id>28810</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28786</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <ClassMask>8</ClassMask>
+      <RaceMask>1</RaceMask>
+      <Id>28811</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28787</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <ClassMask>256</ClassMask>
+      <RaceMask>1</RaceMask>
+      <Id>28812</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28788</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <ClassMask>1</ClassMask>
+      <RaceMask>1</RaceMask>
+      <Id>28813</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28789</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <ClassMask>4</ClassMask>
+      <RaceMask>1</RaceMask>
+      <Id>28806</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>28780</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fear No Evil</Name>
+      <RaceMask>18875466</RaceMask>
+      <Id>29082</Id>
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>29080</int>
+      </NeedQuestCompletedId>
+      <PickUp>951</PickUp>
+      <TurnIn>951</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>50047</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8743.651</X>
+              <Y>-168.511444</Y>
+              <Z>85.22824</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <UseItemId>65733</UseItemId>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
     </Quest>
     <Quest>
       <Name>They Sent Assassins</Name>
@@ -1446,6 +1365,52 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>Extinguishing Hope</Name>
+      <Id>26391</Id>
+      <QuestLevel>4</QuestLevel>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26390</int>
+        <int>28818</int>
+        <int>28819</int>
+        <int>28821</int>
+        <int>28820</int>
+        <int>28822</int>
+        <int>28823</int>
+        <int>29083</int>
+        <int>31145</int>
+      </NeedQuestCompletedId>
+      <PickUp>9296</PickUp>
+      <TurnIn>9296</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>42940</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-9093.332</X>
+              <Y>-330.8363</Y>
+              <Z>73.45008</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
+          <IgnoreNotSelectable>true</IgnoreNotSelectable>
+          <UseItemId>58362</UseItemId>
+          <Position>
+            <X>-9093.332</X>
+            <Y>-330.8363</Y>
+            <Z>73.45008</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Ending the Invasion!</Name>
       <RaceMask>16778317</RaceMask>
       <Id>26390</Id>
@@ -1496,6 +1461,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9188.98</X>
@@ -1505,6 +1471,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9353.46</X>
@@ -1518,291 +1485,6 @@
           <NpcEntry>295</NpcEntry>
           <QuestName>Rest and Relaxation</QuestName>
           <QuestId>37112</QuestId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <ClassMask>128</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>28808</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28784</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <ClassMask>2</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>28809</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28785</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <ClassMask>16</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>28810</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28786</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <ClassMask>8</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>28811</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28787</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <ClassMask>256</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>28812</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28788</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <ClassMask>1</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>28813</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28789</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <ClassMask>4</ClassMask>
-      <RaceMask>1</RaceMask>
-      <Id>28806</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28780</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Fear No Evil</Name>
-      <RaceMask>18875466</RaceMask>
-      <Id>29082</Id>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>29080</int>
-      </NeedQuestCompletedId>
-      <PickUp>951</PickUp>
-      <TurnIn>951</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <Count>4</Count>
-          <Entry>
-            <int>50047</int>
-          </Entry>
-          <UseItemId>65733</UseItemId>
-          <Position>
-            <X>-8751.833</X>
-            <Y>-154.1666</Y>
-            <Z>83.59311</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Extinguishing Hope</Name>
-      <Id>26391</Id>
-      <QuestLevel>4</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>26390</int>
-        <int>28818</int>
-        <int>28819</int>
-        <int>28821</int>
-        <int>28820</int>
-        <int>28822</int>
-        <int>28823</int>
-        <int>29083</int>
-        <int>31145</int>
-      </NeedQuestCompletedId>
-      <PickUp>9296</PickUp>
-      <TurnIn>9296</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <InternalIndex>1</InternalIndex>
-          <Count>8</Count>
-          <Entry>
-            <int>42940</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-9093.332</X>
-              <Y>-330.8363</Y>
-              <Z>73.45008</Z>
-            </Point>
-          </Hotspots>
-          <Script>=UseItemWithHotSpots.cs</Script>
-          <IgnoreNotSelectable>true</IgnoreNotSelectable>
-          <UseItemId>58362</UseItemId>
-          <Position>
-            <X>-9093.332</X>
-            <Y>-330.8363</Y>
-            <Z>73.45008</Z>
-          </Position>
-          <WaitMs>1000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1910,15 +1592,8 @@
       <TurnIn>253</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>-9706.515</X>
-            <Y>298.5369</Y>
-            <Z>45.85367</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>475</int>
             <int>40</int>
@@ -2075,6 +1750,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
           <Count>5</Count>
           <Entry>
             <int>822</int>
@@ -2139,6 +1815,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
           <Count>8</Count>
           <Entry>
             <int>1922</int>
@@ -2325,9 +2002,9 @@
           <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
-              <X>-9808.443</X>
-              <Y>-858.3017</Y>
-              <Z>39.27779</Z>
+              <X>-9776.56</X>
+              <Y>-900.269</Y>
+              <Z>39.8011932</Z>
             </Point>
           </Hotspots>
         </QuestObjective>

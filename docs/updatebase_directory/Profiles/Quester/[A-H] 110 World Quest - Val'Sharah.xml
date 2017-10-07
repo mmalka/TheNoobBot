@@ -2637,6 +2637,7 @@
         <Z>149.2142</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Rugged Wolf Hide" -->
@@ -2646,6 +2647,7 @@
         <Z>126.4219</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

@@ -18,6 +18,7 @@
           <Entry>
             <int>28160</int>
           </Entry>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &gt;= 20;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>5832.87</X>
@@ -287,25 +288,18 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Aerial Surveillance</Name>
+      <Name>Dreadsaber Mastery: Becoming a Predator</Name>
       <RaceMask>33555378</RaceMask>
-      <Id>12696</Id>
-      <QuestLevel>77</QuestLevel>
-      <MinLevel>74</MinLevel>
-      <MaxLevel>87</MaxLevel>
+      <Id>12549</Id>
+      <QuestLevel>76</QuestLevel>
+      <MinLevel>73</MinLevel>
+      <MaxLevel>86</MaxLevel>
       <NeedQuestCompletedId>
         <int>12525</int>
       </NeedQuestCompletedId>
-      <PickUp>28266</PickUp>
-      <TurnIn>28266</TurnIn>
+      <PickUp>28031</PickUp>
+      <TurnIn>28031</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>28031</NpcEntry>
-          <QuestName>Dreadsaber Mastery: Becoming a Predator</QuestName>
-          <QuestId>12549</QuestId>
-        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -420,13 +414,21 @@
           <QuestName>Dreadsaber Mastery: Becoming a Predator</QuestName>
           <QuestId>12549</QuestId>
         </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>28031</NpcEntry>
-          <QuestName>Dreadsaber Mastery: Stalking the Prey</QuestName>
-          <QuestId>12550</QuestId>
-        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Dreadsaber Mastery: Stalking the Prey</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>12550</Id>
+      <QuestLevel>76</QuestLevel>
+      <MinLevel>73</MinLevel>
+      <MaxLevel>86</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>12549</int>
+      </NeedQuestCompletedId>
+      <PickUp>28031</PickUp>
+      <TurnIn>28031</TurnIn>
+      <Objectives>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -672,77 +674,8 @@
           <Range>10</Range>
         </QuestObjective>
         <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>28746</NpcEntry>
-          <QuestName>Aerial Surveillance</QuestName>
-          <QuestId>12696</QuestId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>An Embarrassing Incident</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>12699</Id>
-      <QuestLevel>77</QuestLevel>
-      <MinLevel>74</MinLevel>
-      <MaxLevel>87</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>12696</int>
-      </NeedQuestCompletedId>
-      <PickUp>28746</PickUp>
-      <TurnIn>28746</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>28746</NpcEntry>
-          <QuestName>Force of Nature</QuestName>
-          <QuestId>12803</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <InternalIndex>1</InternalIndex>
-          <Entry>
-            <int>190778</int>
-          </Entry>
-          <CollectItemId>1</CollectItemId>
-          <CollectCount>1</CollectCount>
-          <Hotspots>
-            <Point>
-              <X>5441.63135</X>
-              <Y>4800.26367</Y>
-              <Z>-206.486649</Z>
-              <Type>Swimming</Type>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>28746</NpcEntry>
-          <QuestName>An Embarrassing Incident</QuestName>
-          <QuestId>12699</QuestId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>The Part-time Hunter</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>12654</Id>
-      <QuestLevel>76</QuestLevel>
-      <MinLevel>73</MinLevel>
-      <MaxLevel>86</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>12699</int>
-      </NeedQuestCompletedId>
-      <PickUp>28568</PickUp>
-      <TurnIn>28568</TurnIn>
-      <Objectives>
-        <QuestObjective>
           <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>12550</InternalQuestId>
           <Count>3</Count>
           <Entry>
             <int>190700</int>
@@ -775,13 +708,21 @@
           <QuestName>Dreadsaber Mastery: Stalking the Prey</QuestName>
           <QuestId>12550</QuestId>
         </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>28031</NpcEntry>
-          <QuestName>Dreadsaber Mastery: Ready to Pounce</QuestName>
-          <QuestId>12558</QuestId>
-        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Dreadsaber Mastery: Ready to Pounce</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>12558</Id>
+      <QuestLevel>76</QuestLevel>
+      <MinLevel>73</MinLevel>
+      <MaxLevel>86</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>12550</int>
+      </NeedQuestCompletedId>
+      <PickUp>28031</PickUp>
+      <TurnIn>28031</TurnIn>
+      <Objectives>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -863,7 +804,6 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>12558</InternalQuestId>
           <Entry>
             <int>28297</int>
           </Entry>
@@ -931,13 +871,6 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>28031</NpcEntry>
-          <QuestName>Dreadsaber Mastery: Ready to Pounce</QuestName>
-          <QuestId>12558</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>28032</NpcEntry>
           <QuestName>Crocolisk Mastery: The Plan</QuestName>
           <QuestId>12560</QuestId>
@@ -950,6 +883,97 @@
           <QuestId>12569</QuestId>
         </QuestObjective>
         <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>28031</NpcEntry>
+          <QuestName>Dreadsaber Mastery: Ready to Pounce</QuestName>
+          <QuestId>12558</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Aerial Surveillance</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>12696</Id>
+      <QuestLevel>77</QuestLevel>
+      <MinLevel>74</MinLevel>
+      <MaxLevel>87</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>12558</int>
+      </NeedQuestCompletedId>
+      <PickUp>28266</PickUp>
+      <TurnIn>28746</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>28746</NpcEntry>
+          <QuestName>Aerial Surveillance</QuestName>
+          <QuestId>12696</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>An Embarrassing Incident</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>12699</Id>
+      <QuestLevel>77</QuestLevel>
+      <MinLevel>74</MinLevel>
+      <MaxLevel>87</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>12696</int>
+      </NeedQuestCompletedId>
+      <PickUp>28746</PickUp>
+      <TurnIn>28746</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>28746</NpcEntry>
+          <QuestName>Force of Nature</QuestName>
+          <QuestId>12803</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>190778</int>
+            <int>190779</int>
+          </Entry>
+          <CollectItemId>1</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>5441.63135</X>
+              <Y>4800.26367</Y>
+              <Z>-206.486649</Z>
+              <Type>Swimming</Type>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>28746</NpcEntry>
+          <QuestName>An Embarrassing Incident</QuestName>
+          <QuestId>12699</QuestId>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>The Part-time Hunter</Name>
+      <RaceMask>33555378</RaceMask>
+      <Id>12654</Id>
+      <QuestLevel>76</QuestLevel>
+      <MinLevel>73</MinLevel>
+      <MaxLevel>86</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>12699</int>
+      </NeedQuestCompletedId>
+      <PickUp>28568</PickUp>
+      <TurnIn>28568</TurnIn>
+      <Objectives>
+        <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
           <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(28317, false), false,false,true).IsValid || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(12569) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(12569);</ScriptConditionIsComplete>
@@ -961,7 +985,6 @@
             <Z>-197.511</Z>
           </Position>
           <WaitMs>15000</WaitMs>
-          <Range>2</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1266,6 +1289,24 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>12531</InternalQuestId>
+          <Count>1</Count>
+          <Entry>
+            <int>28083</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4822.624</X>
+              <Y>4728.887</Y>
+              <Z>-70.83117</Z>
+            </Point>
+          </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IgnoreNotSelectable>true</IgnoreNotSelectable>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>12531</InternalQuestId>
@@ -1279,6 +1320,16 @@
               <X>4919.81055</X>
               <Y>4993.521</Y>
               <Z>-102.459923</Z>
+            </Point>
+            <Point>
+              <X>4811.892</X>
+              <Y>4706.20752</Y>
+              <Z>-69.51865</Z>
+            </Point>
+            <Point>
+              <X>4817.327</X>
+              <Y>4404.32764</Y>
+              <Z>-64.9142761</Z>
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -1568,6 +1619,15 @@
           <QuestId>12572</QuestId>
         </QuestObjective>
         <QuestObjective>
+          <Objective>UseItem</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(28120, false), false,false,true).IsValid || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(12572);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>38622</UseItemId>
+          <WaitMs>500</WaitMs>
+          <Range>2</Range>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>12572</InternalQuestId>
@@ -1587,10 +1647,11 @@
               <Z>-137.781</Z>
             </Point>
           </Hotspots>
-          <Script>=InteractWithHotSpots.cs</Script>
+          <Script>=12572.cs</Script>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <IgnoreBlackList>true</IgnoreBlackList>
           <IgnoreNotSelectable>true</IgnoreNotSelectable>
+          <UseItemId>38622</UseItemId>
           <WaitMs>3000</WaitMs>
         </QuestObjective>
         <QuestObjective>

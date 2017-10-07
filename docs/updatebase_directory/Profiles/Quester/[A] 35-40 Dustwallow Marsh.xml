@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
+  <Questers />
   <Quests>
     <Quest>
       <Name>The Call of Kalimdor</Name>
@@ -27,7 +28,6 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>16227</int>
@@ -62,24 +62,7 @@
       </NeedQuestCompletedId>
       <PickUp>23835</PickUp>
       <TurnIn>23892</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <Script>=ClickToMove.cs</Script>
-          <Position>
-            <X>-3669.105</X>
-            <Y>-4729.289</Y>
-            <Z>0.9067252</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23892</NpcEntry>
-          <QuestName>This Old Lighthouse</QuestName>
-          <QuestId>27216</QuestId>
-        </QuestObjective>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Thresher Oil</Name>
@@ -122,25 +105,6 @@
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3740.791</X>
-            <Y>-4641.203</Y>
-            <Z>11.29148</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <Script>=ClickToMove.cs</Script>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3669.105</X>
-            <Y>-4729.289</Y>
-            <Z>0.9067252</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>23892</NpcEntry>
@@ -161,27 +125,7 @@
       </NeedQuestCompletedId>
       <PickUp>23892</PickUp>
       <TurnIn>23896</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3669.123</X>
-            <Y>-4729.592</Y>
-            <Z>0.8695584</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <Script>=ClickToMove.cs</Script>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3700.713</X>
-            <Y>-4623.986</Y>
-            <Z>4.837334</Z>
-          </Position>
-        </QuestObjective>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Is it Real?</Name>
@@ -212,14 +156,8 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <InternalIndex>2</InternalIndex>
           <Count>1</Count>
           <UseItemId>33166</UseItemId>
-          <Position>
-            <X>-4142.575</X>
-            <Y>-4051.56</Y>
-            <Z>1.666456</Z>
-          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -288,74 +226,9 @@
           </Entry>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
-            <X>-3910.172</X>
-            <Y>-4636.492</Y>
-            <Z>9.043034</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>186432</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
             <X>-3841.956</X>
             <Y>-4630.473</Y>
             <Z>8.741462</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>186432</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3844.955</X>
-            <Y>-4693.551</Y>
-            <Z>9.013432</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>186432</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3910.172</X>
-            <Y>-4636.492</Y>
-            <Z>9.043034</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>186432</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3841.956</X>
-            <Y>-4630.473</Y>
-            <Z>8.741462</Z>
-          </Position>
-          <WaitMs>2000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <Entry>
-            <int>186432</int>
-          </Entry>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Position>
-            <X>-3844.955</X>
-            <Y>-4693.551</Y>
-            <Z>9.013432</Z>
           </Position>
           <WaitMs>2000</WaitMs>
         </QuestObjective>
@@ -691,6 +564,7 @@
           <Entry>
             <int>23704</int>
           </Entry>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27239) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(27239);</ScriptConditionIsComplete>
           <Position>
             <X>-3819.151</X>
             <Y>-4510.239</Y>
@@ -730,7 +604,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <InternalIndex>1</InternalIndex>
           <InternalQuestId>27240</InternalQuestId>
           <Count>1</Count>
           <Entry>
@@ -743,6 +616,7 @@
               <Z>64.94824</Z>
             </Point>
           </Hotspots>
+          <ScriptConditionIsComplete>return !ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(4968, false), false,true,false).IsValid|| nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27240) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27240);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>1000</WaitMs>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
@@ -763,8 +637,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>27241</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>2708</int>
@@ -1009,11 +881,10 @@
         <QuestObjective>
           <Objective>Wait</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>45000</WaitMs>
+          <WaitMs>50000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
             <int>23864</int>
@@ -1266,7 +1137,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
           <InternalQuestId>27287</InternalQuestId>
           <Count>1</Count>
           <Entry>
@@ -1327,6 +1197,20 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>The Black Shield</Name>
+      <RaceMask>18875469</RaceMask>
+      <Id>27285</Id>
+      <QuestLevel>38</QuestLevel>
+      <MinLevel>35</MinLevel>
+      <MaxLevel>48</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>27284</int>
+      </NeedQuestCompletedId>
+      <PickUp>4941</PickUp>
+      <TurnIn>4944</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
       <Name>A Grim Connection</Name>
       <RaceMask>18875469</RaceMask>
       <Id>27425</Id>
@@ -1334,7 +1218,7 @@
       <MinLevel>35</MinLevel>
       <MaxLevel>48</MaxLevel>
       <NeedQuestCompletedId>
-        <int>27284</int>
+        <int>27285</int>
       </NeedQuestCompletedId>
       <PickUp>4944</PickUp>
       <TurnIn>23568</TurnIn>
@@ -1391,6 +1275,7 @@
           </Entry>
           <CollectItemId>33050</CollectItemId>
           <CollectCount>4</CollectCount>
+          <ScriptConditionIsComplete> return (nManager.Wow.Helpers.ItemsManager.GetItemCount(33050) &gt;= 4) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27426) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(27426);</ScriptConditionIsComplete>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
@@ -1399,11 +1284,6 @@
           <Count>1</Count>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>33050</UseItemId>
-          <Position>
-            <X>-2411.179</X>
-            <Y>-3149.696</Y>
-            <Z>35.85865</Z>
-          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1434,6 +1314,13 @@
       <PickUp>23568</PickUp>
       <TurnIn>6546</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>4921</NpcEntry>
+          <QuestName>Tabetha's Farm</QuestName>
+          <QuestId>11212</QuestId>
+        </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -1507,7 +1394,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <InternalIndex>4</InternalIndex>
+          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>33072</UseItemId>
@@ -1544,16 +1431,16 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>6546</NpcEntry>
-          <QuestName>Raze Direhorn Post!</QuestName>
-          <QuestId>27429</QuestId>
+          <NpcEntry>23601</NpcEntry>
+          <QuestName>The Reagent Thief</QuestName>
+          <QuestId>27339</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23601</NpcEntry>
-          <QuestName>The Reagent Thief</QuestName>
-          <QuestId>27339</QuestId>
+          <NpcEntry>6546</NpcEntry>
+          <QuestName>Raze Direhorn Post!</QuestName>
+          <QuestId>27429</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1696,13 +1583,6 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>23572</NpcEntry>
-          <QuestName>Delivery for Drazzit</QuestName>
-          <QuestId>11208</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23572</NpcEntry>
           <QuestName>Mission to Mudsprocket</QuestName>
           <QuestId>27248</QuestId>
         </QuestObjective>
@@ -1712,6 +1592,13 @@
           <NpcEntry>23572</NpcEntry>
           <QuestName>Help for Mudsprocket</QuestName>
           <QuestId>11211</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>23572</NpcEntry>
+          <QuestName>Delivery for Drazzit</QuestName>
+          <QuestId>11208</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1783,13 +1670,6 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>23570</NpcEntry>
-          <QuestName>Catch a Dragon by the Tail</QuestName>
-          <QuestId>27413</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>23572</NpcEntry>
           <QuestName>WANTED: Goreclaw the Ravenous</QuestName>
           <QuestId>27412</QuestId>
@@ -1800,6 +1680,13 @@
           <NpcEntry>4944</NpcEntry>
           <QuestName>Justice for the Hyals</QuestName>
           <QuestId>27430</QuestId>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>23570</NpcEntry>
+          <QuestName>Catch a Dragon by the Tail</QuestName>
+          <QuestId>27413</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>

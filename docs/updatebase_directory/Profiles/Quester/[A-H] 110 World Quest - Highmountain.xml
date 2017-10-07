@@ -1963,6 +1963,7 @@
         <Z>812.4172</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Border Reinforcements" -->
@@ -1972,6 +1973,7 @@
         <Z>751.5049</Z>
       </Position>
       <Radius>100</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Bitestone Bazaar" -->
@@ -1981,6 +1983,7 @@
         <Z>680.7639</Z>
       </Position>
       <Radius>50</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Gunksnout Infestation" -->
@@ -1990,6 +1993,7 @@
         <Z>1169.88</Z>
       </Position>
       <Radius>30</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Mists Take You" -->
@@ -1999,6 +2003,7 @@
         <Z>1225.239</Z>
       </Position>
       <Radius>30</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Mists Take You" -->
@@ -2008,6 +2013,7 @@
         <Z>1193.306</Z>
       </Position>
       <Radius>50</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Mists Take You" -->
@@ -2017,6 +2023,7 @@
         <Z>1216.603</Z>
       </Position>
       <Radius>20</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <!-- Required by "Boilback Plague" -->
@@ -2026,6 +2033,7 @@
         <Z>771.0292</Z>
       </Position>
       <Radius>60</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

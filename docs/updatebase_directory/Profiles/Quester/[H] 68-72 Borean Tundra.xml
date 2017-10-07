@@ -496,6 +496,7 @@
             <int>187859</int>
             <int>187861</int>
             <int>187854</int>
+            <int>187867</int>
           </Entry>
           <Hotspots>
             <Point>
@@ -564,49 +565,6 @@
           <NpcEntry>25607</NpcEntry>
           <QuestName>Damned Filthy Swine</QuestName>
           <QuestId>11688</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>25607</NpcEntry>
-          <QuestName>Bring 'Em Back Alive</QuestName>
-          <QuestId>11690</QuestId>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>CSharpScript</Objective>
-          <InternalIndex>1</InternalIndex>
-          <InternalQuestId>11690</InternalQuestId>
-          <Count>8</Count>
-          <Entry>
-            <int>25596</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>2995.82153</X>
-              <Y>6415.11572</Y>
-              <Z>89.10795</Z>
-            </Point>
-            <Point>
-              <X>2950.43848</X>
-              <Y>6501.587</Y>
-              <Z>76.69538</Z>
-            </Point>
-          </Hotspots>
-          <Script>=11690.cs</Script>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <UseItemId>34954</UseItemId>
-          <Position>
-            <X>2879.266</X>
-            <Y>6374.06</Y>
-            <Z>95.42457</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>25607</NpcEntry>
-          <QuestName>Bring 'Em Back Alive</QuestName>
-          <QuestId>11690</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1006,21 +964,7 @@
       </NeedQuestCompletedId>
       <PickUp>25329</PickUp>
       <TurnIn>25475</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <InternalIndex>1</InternalIndex>
-          <Count>1</Count>
-          <UseItemId>34669</UseItemId>
-          <Position>
-            <X>4118.566</X>
-            <Y>6267.94</Y>
-            <Z>27.95202</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>0</Range>
-        </QuestObjective>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Mobu's Pneumatic Tank Transjigamarig</Name>
@@ -1531,8 +1475,8 @@
       <Name>A Mission Statement</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11864</Id>
-      <QuestLevel>68</QuestLevel>
-      <MinLevel>68</MinLevel>
+      <QuestLevel>72</QuestLevel>
+      <MinLevel>70</MinLevel>
       <MaxLevel>81</MaxLevel>
       <NeedQuestCompletedId>
         <int>11625</int>
@@ -1545,7 +1489,7 @@
       <Name>Ears of Our Enemies</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11866</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -1777,7 +1721,7 @@
       <Name>Khu'nok Will Know</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11878</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -1791,7 +1735,7 @@
       <Name>Kaw the Mammoth Destroyer</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11879</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -1942,7 +1886,7 @@
       <Name>Reclaiming the Quarry</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11612</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -2057,7 +2001,7 @@
       <Name>Hampering Their Escape</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11617</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -2238,7 +2182,7 @@
       <Name>A Visit to the Curator</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11623</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -2330,7 +2274,7 @@
       <Name>Leading the Ancestors Home</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11610</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -2464,83 +2408,11 @@
           <QuestId>11587</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>25262</NpcEntry>
-          <QuestName>Abduction</QuestName>
-          <QuestId>11590</QuestId>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>25291</NpcEntry>
           <QuestName>Monitoring the Rift: Cleftcliff Anomaly</QuestName>
           <QuestId>11576</QuestId>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Monitoring the Rift: Sundered Chasm</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>11582</Id>
-      <QuestLevel>71</QuestLevel>
-      <MinLevel>68</MinLevel>
-      <MaxLevel>81</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>11576</int>
-      </NeedQuestCompletedId>
-      <PickUp>25291</PickUp>
-      <TurnIn>25291</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <InternalIndex>1</InternalIndex>
-          <Count>1</Count>
-          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
-          <UseItemId>34669</UseItemId>
-          <Position>
-            <X>3793.078</X>
-            <Y>6035.849</Y>
-            <Z>-126.5392</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>2</Range>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Monitoring the Rift: Winterfin Cavern</Name>
-      <RaceMask>33555378</RaceMask>
-      <Id>12728</Id>
-      <QuestLevel>71</QuestLevel>
-      <MinLevel>68</MinLevel>
-      <MaxLevel>81</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>11582</int>
-      </NeedQuestCompletedId>
-      <PickUp>25291</PickUp>
-      <TurnIn>25291</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>UseItem</Objective>
-          <InternalIndex>1</InternalIndex>
-          <Count>1</Count>
-          <UseItemId>34669</UseItemId>
-          <Position>
-            <X>4118.566</X>
-            <Y>6267.94</Y>
-            <Z>27.95202</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>2</Range>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <ForceTravelToQuestZone>true</ForceTravelToQuestZone>
-          <NpcEntry>25291</NpcEntry>
-          <QuestName>Monitoring the Rift: Winterfin Cavern</QuestName>
-          <QuestId>12728</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -2552,7 +2424,7 @@
       <MinLevel>68</MinLevel>
       <MaxLevel>81</MaxLevel>
       <NeedQuestCompletedId>
-        <int>12728</int>
+        <int>11576</int>
       </NeedQuestCompletedId>
       <PickUp>25314</PickUp>
       <TurnIn>25314</TurnIn>
@@ -3027,18 +2899,17 @@
             <Z>163.7012</Z>
           </Position>
           <WaitMs>500</WaitMs>
-          <IgnoreFight>true</IgnoreFight>
           <Range>500</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
           <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>3570.397</X>
             <Y>6650.404</Y>
-            <Z>195.180344</Z>
+            <Z>195.1803</Z>
           </Position>
-          <IgnoreFight>true</IgnoreFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -3174,6 +3045,15 @@
           <QuestId>11951</QuestId>
         </QuestObjective>
         <QuestObjective>
+          <Objective>UseItem</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(11957) || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11957) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11957) || ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(26206, false), false,false,false).IsValid;</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <UseItemId>35671</UseItemId>
+          <WaitMs>500</WaitMs>
+          <Range>2</Range>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>26206</NpcEntry>
@@ -3186,8 +3066,10 @@
           <Entry>
             <int>26206</int>
           </Entry>
+          <ScriptConditionIsComplete>return (new Point(4034.25f,7349.38f,635.97f)).DistanceTo(ObjectManager.Me.Position) &lt;= 5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11957) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11957);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>6000</WaitMs>
+          <IgnoreFight>true</IgnoreFight>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
@@ -3226,7 +3108,7 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <Count>1</Count>
-          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetQuestCompleted(11957) || ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(26206, false), false,false,false).IsValid;</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetQuestCompleted(11957) || ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(26206, false), false,false,false).IsValid &amp;&amp; ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(26206, false), false,false,false).Position.DistanceTo(ObjectManager.Me.Position) &lt;= 10;</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>35671</UseItemId>
           <WaitMs>500</WaitMs>
@@ -3606,11 +3488,12 @@
               <Z>12.6596708</Z>
             </Point>
           </Hotspots>
-          <Script>=11893.cs</Script>
+          <Script>=KillMobNearTotem.cs</Script>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <AllowPlayerControlled>true</AllowPlayerControlled>
           <UseItemId>35281</UseItemId>
           <WaitMs>500</WaitMs>
+          <ExtraInt>25987</ExtraInt>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -4602,6 +4485,7 @@
           <Script>=UseItemWithHotSpots.cs</Script>
           <UseItemId>34692</UseItemId>
           <WaitMs>500</WaitMs>
+          <IsDead>true</IsDead>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -4642,7 +4526,7 @@
       <Name>We Strike!</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11592</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -4701,7 +4585,7 @@
       <Name>Boiling Point</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11627</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -4940,7 +4824,7 @@
       <Name>Kaganishu</Name>
       <RaceMask>33555378</RaceMask>
       <Id>11637</Id>
-      <QuestLevel>72</QuestLevel>
+      <QuestLevel>71</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
       <NeedQuestCompletedId>
@@ -5037,6 +4921,7 @@
         <Z>65.0365</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -5045,6 +4930,7 @@
         <Z>73.43801</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -5053,6 +4939,7 @@
         <Z>0.126313</Z>
       </Position>
       <Radius>25</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -5061,6 +4948,34 @@
         <Z>57.23022</Z>
       </Position>
       <Radius>25</Radius>
+	  <ContinentId>Northrend</ContinentId>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>2711.525</X>
+        <Y>6050.176</Y>
+        <Z>40.7403</Z>
+      </Position>
+      <Radius>10</Radius>
+	  <ContinentId>Northrend</ContinentId>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>2933.725</X>
+        <Y>6492.835</Y>
+        <Z>79.08306</Z>
+      </Position>
+      <Radius>5</Radius>
+	  <ContinentId>Northrend</ContinentId>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>102763.508</X>
+        <Y>4707.832</Y>
+        <Z>2.840614</Z>
+      </Position>
+      <Radius>250</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

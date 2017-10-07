@@ -54,7 +54,7 @@
           <Objective>UseItem</Objective>
           <Count>1</Count>
           <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(23943, false), false,false,true).IsValid || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11227) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11227);</ScriptConditionIsComplete>
-          <UseItemId>33238</UseItemId>
+          <UseItemId>33221</UseItemId>
           <WaitMs>500</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -95,6 +95,30 @@
           <Range>2</Range>
         </QuestObjective>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11167) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11167);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1677.698</X>
+            <Y>-6269.189</Y>
+            <Z>0.5545269</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Count>1</Count>
+          <Script>=ClickToMove.cs</Script>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11167) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11167);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1693.486</X>
+            <Y>-6282.803</Y>
+            <Z>-0.8457552</Z>
+          </Position>
+          <Range>0</Range>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
           <Entry>
@@ -115,6 +139,30 @@
               <Z>0.462231666</Z>
             </Point>
           </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &gt;= 50 || questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 ;</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1696.591</X>
+            <Y>-6284.231</Y>
+            <Z>-0.9705299</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Count>1</Count>
+          <Script>=ClickToMove.cs</Script>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &gt;= 50 || questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;= 5;</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1676.172</X>
+            <Y>-6267.762</Y>
+            <Z>0.6606025</Z>
+          </Position>
+          <Range>0</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -216,7 +264,7 @@
           <Objective>UseItem</Objective>
           <InternalQuestId>11253</InternalQuestId>
           <Count>1</Count>
-          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(24156, false), false,true,false).IsValid|| nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11253) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11253);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>33486</UseItemId>
           <Position>
@@ -324,7 +372,7 @@
             </Point>
           </Hotspots>
           <WaitMs>500</WaitMs>
-          <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
         </QuestObjective>
         <QuestObjective>
           <Objective>CSharpScript</Objective>
@@ -866,8 +914,9 @@
           <Script>=UseItemWithHotSpots.cs</Script>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>33418</UseItemId>
-          <WaitMs>500</WaitMs>
+          <WaitMs>4000</WaitMs>
           <Range>15</Range>
+          <ExtraString>InteractWith</ExtraString>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
@@ -2330,22 +2379,36 @@
           <QuestId>11352</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <Objective>UseItem</Objective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11352) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11352);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>2097.616</X>
+            <Y>-4847.633</Y>
+            <Z>219.9326</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>11352</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>23725</int>
           </Entry>
+          <Hotspots>
+            <Point>
+              <X>2148.54932</X>
+              <Y>-5757.63428</Y>
+              <Z>221.907578</Z>
+            </Point>
+          </Hotspots>
+          <Script>=UseItemWithHotSpots.cs</Script>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <UseItemId>33796</UseItemId>
-          <Position>
-            <X>2176.038</X>
-            <Y>-5745.801</Y>
-            <Z>224.9605</Z>
-          </Position>
-          <WaitMs>500</WaitMs>
-          <Range>3</Range>
+          <WaitMs>2500</WaitMs>
+          <Range>20</Range>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -2364,6 +2427,17 @@
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || !nManager.Wow.Helpers.Quest.GetLogQuestId().Contains(11352);</ScriptConditionIsComplete>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>2097.616</X>
+            <Y>-4847.633</Y>
+            <Z>219.9326</Z>
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -2947,9 +3021,22 @@
       <QuestLevel>72</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>11264</int>
+      </NeedQuestCompletedId>
       <PickUp>24390</PickUp>
       <TurnIn>24390</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11365) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11365);</ScriptConditionIsComplete>
+          <Position>
+            <X>2097.616</X>
+            <Y>-4847.633</Y>
+            <Z>219.9326</Z>
+          </Position>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMobUseItem</Objective>
           <InternalIndex>1</InternalIndex>
@@ -2979,6 +3066,15 @@
           <WaitMs>500</WaitMs>
           <Range>2</Range>
         </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <Position>
+            <X>2097.616</X>
+            <Y>-4847.633</Y>
+            <Z>219.9326</Z>
+          </Position>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
@@ -2988,9 +3084,22 @@
       <QuestLevel>72</QuestLevel>
       <MinLevel>69</MinLevel>
       <MaxLevel>82</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>11365</int>
+      </NeedQuestCompletedId>
       <PickUp>24390</PickUp>
       <TurnIn>24390</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11366) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11366);</ScriptConditionIsComplete>
+          <Position>
+            <X>2097.616</X>
+            <Y>-4847.633</Y>
+            <Z>219.9326</Z>
+          </Position>
+        </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
           <InternalIndex>1</InternalIndex>
@@ -3003,6 +3112,16 @@
           </Position>
           <WaitMs>25000</WaitMs>
           <Range>1</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>2097.616</X>
+            <Y>-4847.633</Y>
+            <Z>219.9326</Z>
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -3020,6 +3139,16 @@
       <TurnIn>24390</TurnIn>
       <Objectives>
         <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <ScriptConditionIsComplete>return questObjective.Position.DistanceTo(ObjectManager.Me.Position) &lt;=5 || nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(11367) || nManager.Wow.Helpers.Quest.GetQuestCompleted(11367);</ScriptConditionIsComplete>
+          <Position>
+            <X>1868.704</X>
+            <Y>-5260.072</Y>
+            <Z>182.5066</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>1</Count>
@@ -3034,6 +3163,26 @@
             </Point>
           </Hotspots>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>2189.945</X>
+            <Y>-5536.103</Y>
+            <Z>238.926</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Count>1</Count>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>1868.704</X>
+            <Y>-5260.072</Y>
+            <Z>182.5066</Z>
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -3063,7 +3212,20 @@
       </NeedQuestCompletedId>
       <PickUp>24155</PickUp>
       <TurnIn>27172</TurnIn>
-      <Objectives />
+      <Objectives>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>210000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>27172</NpcEntry>
+          <QuestName>To Venomspite!</QuestName>
+          <QuestId>12182</QuestId>
+        </QuestObjective>
+      </Objectives>
     </Quest>
   </Quests>
   <Blackspots>
@@ -3074,6 +3236,7 @@
         <Z>306.5743</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -3082,6 +3245,25 @@
         <Z>316.175</Z>
       </Position>
       <Radius>15</Radius>
+	  <ContinentId>Northrend</ContinentId>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>1673.112</X>
+        <Y>-6297.487</Y>
+        <Z>6.526761</Z>
+      </Position>
+	  <ContinentId>Northrend</ContinentId>
+	  <Radius>10</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>1694.291</X>
+        <Y>-6286.377</Y>
+        <Z>-8.153186</Z>
+      </Position>
+	  <Radius>10</Radius>
+	  <ContinentId>Northrend</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

@@ -78,7 +78,7 @@ if (!MovementManager.InMovement)
         {
             ObjectManager.GetWoWUnitByEntry(questObjective.Entry, true).ForEach(delegate (WoWUnit unit)
             {
-                if (unit.IsDead && !unit.IsAlive && !unit.GetDescriptor<UnitFlags>(nManager.Wow.Patchables.Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PreventEmotes))
+                if (unit.IsDead && !unit.IsAlive && !unit.GetDescriptor<UnitFlags>(nManager.Wow.Patchables.Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Dazed))
                     availableEntries.Add(unit);
             });
 

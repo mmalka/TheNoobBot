@@ -684,6 +684,7 @@
         <Z>45.07841</Z>
       </Position>
       <Radius>30</Radius>
+	  <ContinentId>BrokenIsles</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile Author="Arasal" DevelopmentStatus="Untested">
+  <Questers />
   <Quests>
     <Quest>
       <Name>Plants of Zangarmarsh</Name>
@@ -380,6 +381,9 @@
       <QuestLevel>62</QuestLevel>
       <MinLevel>59</MinLevel>
       <MaxLevel>72</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9802</int>
+      </NeedQuestCompletedId>
       <PickUp>17956</PickUp>
       <TurnIn>17956</TurnIn>
       <Objectives>
@@ -470,7 +474,7 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <InternalQuestId>10096</InternalQuestId>
+          <InternalQuestId>9894</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>18282</int>
@@ -514,6 +518,9 @@
       <QuestLevel>63</QuestLevel>
       <MinLevel>60</MinLevel>
       <MaxLevel>73</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9788</int>
+      </NeedQuestCompletedId>
       <PickUp>17841</PickUp>
       <TurnIn>17841</TurnIn>
       <Objectives>
@@ -538,6 +545,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9718</int>
+      </NeedQuestCompletedId>
       <PickUp>17841</PickUp>
       <TurnIn>17841</TurnIn>
       <Objectives>
@@ -1121,6 +1131,7 @@
           <InternalIndex>1</InternalIndex>
           <InternalQuestId>9786</InternalQuestId>
           <Count>1</Count>
+          <ScriptConditionIsComplete>return nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(9786) || nManager.Wow.Helpers.Quest.IsQuestFlaggedCompletedLUA(9786);</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-378.5882</X>
@@ -1187,6 +1198,9 @@
       <QuestLevel>63</QuestLevel>
       <MinLevel>60</MinLevel>
       <MaxLevel>73</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9720</int>
+      </NeedQuestCompletedId>
       <PickUp>17834</PickUp>
       <TurnIn>17831</TurnIn>
       <Objectives />
@@ -1198,6 +1212,9 @@
       <QuestLevel>63</QuestLevel>
       <MinLevel>60</MinLevel>
       <MaxLevel>73</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9697</int>
+      </NeedQuestCompletedId>
       <PickUp>17831</PickUp>
       <TurnIn>17831</TurnIn>
       <Objectives>
@@ -1281,6 +1298,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9701</int>
+      </NeedQuestCompletedId>
       <PickUp>17831</PickUp>
       <TurnIn>17831</TurnIn>
       <Objectives>
@@ -1316,6 +1336,9 @@
       <QuestLevel>63</QuestLevel>
       <MinLevel>60</MinLevel>
       <MaxLevel>73</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9702</int>
+      </NeedQuestCompletedId>
       <PickUp>17831</PickUp>
       <TurnIn>17831</TurnIn>
       <Objectives>
@@ -1390,6 +1413,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9708</int>
+      </NeedQuestCompletedId>
       <PickUp>17831</PickUp>
       <TurnIn>17831</TurnIn>
       <Objectives>
@@ -1423,6 +1449,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9709</int>
+      </NeedQuestCompletedId>
       <PickUp>17923</PickUp>
       <TurnIn>17924</TurnIn>
       <Objectives />
@@ -1434,6 +1463,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9919</int>
+      </NeedQuestCompletedId>
       <PickUp>17924</PickUp>
       <TurnIn>17924</TurnIn>
       <Objectives>
@@ -1498,6 +1530,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9808</int>
+      </NeedQuestCompletedId>
       <PickUp>18003</PickUp>
       <TurnIn>18008</TurnIn>
       <Objectives />
@@ -1509,6 +1544,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9776</int>
+      </NeedQuestCompletedId>
       <PickUp>18019</PickUp>
       <TurnIn>18019</TurnIn>
       <Objectives>
@@ -1571,6 +1609,11 @@
               <X>899.5283</X>
               <Y>7748.739</Y>
               <Z>21.96139</Z>
+            </Point>
+            <Point>
+              <X>626.494446</X>
+              <Y>7822.53</Y>
+              <Z>18.2877464</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
@@ -1656,6 +1699,11 @@
               <Y>8287.437</Y>
               <Z>19.17618</Z>
             </Point>
+            <Point>
+              <X>1143.20422</X>
+              <Y>8111.84</Y>
+              <Z>20.77668</Z>
+            </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
@@ -1725,6 +1773,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9848</int>
+      </NeedQuestCompletedId>
       <PickUp>18008</PickUp>
       <TurnIn>18008</TurnIn>
       <Objectives>
@@ -1957,6 +2008,9 @@
       <QuestLevel>64</QuestLevel>
       <MinLevel>61</MinLevel>
       <MaxLevel>74</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9839</int>
+      </NeedQuestCompletedId>
       <PickUp>18010</PickUp>
       <TurnIn>18010</TurnIn>
       <Objectives>
@@ -1985,6 +2039,9 @@
       <QuestLevel>62</QuestLevel>
       <MinLevel>59</MinLevel>
       <MaxLevel>72</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>9905</int>
+      </NeedQuestCompletedId>
       <PickUp>18003</PickUp>
       <TurnIn>18003</TurnIn>
       <Objectives>

@@ -905,6 +905,7 @@
         <Z>-5498.612</Z>
       </Position>
       <Radius>50</Radius>
+	  <ContinentId>Kalimdor</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

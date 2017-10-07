@@ -1708,6 +1708,8 @@
         <Y>-3842.42</Y>
         <Z>734.4006</Z>
       </Position>
+	  <Radius>5</Radius>
+	  <ContinentId>Kalimdor</ContinentId>
     </QuesterBlacklistRadius>
     <QuesterBlacklistRadius>
       <Position>
@@ -1715,6 +1717,8 @@
         <Y>-3844.108</Y>
         <Z>699.015</Z>
       </Position>
+	  <Radius>5</Radius>
+	  <ContinentId>Kalimdor</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

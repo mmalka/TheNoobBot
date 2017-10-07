@@ -1203,6 +1203,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TravelTo</Objective>
+          <ScriptConditionIsComplete>return true;</ScriptConditionIsComplete>
           <Position>
             <X>1750.425</X>
             <Y>-5430.014</Y>
@@ -2169,7 +2170,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
-          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27526) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27526)) { return true;} else {return false;} </ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return (nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27526) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27526));</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>2999.488</X>
@@ -2179,7 +2180,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
-          <ScriptConditionIsComplete>if(nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27526) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27526)) { return true;} else {return false;} </ScriptConditionIsComplete>
+          <ScriptConditionIsComplete>return (nManager.Wow.Helpers.Quest.GetLogQuestIsComplete(27526) || nManager.Wow.Helpers.Quest.GetQuestCompleted(27526));</ScriptConditionIsComplete>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <WaitMs>60000</WaitMs>
         </QuestObjective>

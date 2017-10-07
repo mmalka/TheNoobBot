@@ -1631,6 +1631,7 @@
         <Z>22.8224</Z>
       </Position>
       <Radius>10</Radius>
+	  <ContinentId>Azeroth</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

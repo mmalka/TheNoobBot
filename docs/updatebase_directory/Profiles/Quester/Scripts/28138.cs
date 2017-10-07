@@ -42,14 +42,17 @@ if(unit.IsValid)
 
 	}
 
-	_worker2 = new System.Threading.Thread(() => nManager.Wow.Helpers.Fight.StartFight(unit.Guid));
+	if(ObjectManager.Me.WowClass == WoWClass.Mage)
+	{
+		_worker2 = new System.Threading.Thread(() => nManager.Wow.Helpers.Fight.StartFight(unit.Guid));
+		_worker2.Start();
+	}
+	else
+		Interact.InteractWith(unit.GetBaseAddress);
+	
 	Thread.Sleep(500);
-
-	_worker2.Start();
-
-	Thread.Sleep(500);
-
-	while (unit.HealthPercent >= 35)
+	
+	while (ObjectManager.Target.HealthPercent >= 35)
 	{
 		if(!ObjectManager.Me.InCombat)
 		{
@@ -57,14 +60,18 @@ if(unit.IsValid)
 		}
 		Thread.Sleep(50);
 	}
-
-	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+	
+	ObjectManager.Me.StopCast();
+	_worker2 = null;
+	Fight.StopFight();
 	Thread.Sleep(500);
+	ObjectManager.Me.StopCast();
+	
+	Thread.Sleep(1000);
+	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId)); //UseItem 2 times because sometimes wow lags and thinks that the mob still has more than 35% hp
+	Thread.Sleep(2000);
 	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
 	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
-	nManager.Wow.Helpers.Fight.InFight= false;
-	nManager.Wow.Helpers.Fight.StopFight();
-
-	_worker2 = null;
+	
 	Thread.Sleep(200);
 }

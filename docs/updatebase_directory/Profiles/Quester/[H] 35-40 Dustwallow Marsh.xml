@@ -1349,14 +1349,19 @@
           <CollectCount>5</CollectCount>
           <Hotspots>
             <Point>
-              <X>-4425.57</X>
-              <Y>-2932.096</Y>
-              <Z>40.87393</Z>
+              <X>-4455.585</X>
+              <Y>-2946.396</Y>
+              <Z>41.9316826</Z>
             </Point>
             <Point>
-              <X>-4463.706</X>
-              <Y>-2836.931</Y>
-              <Z>38.96673</Z>
+              <X>-4517.64551</X>
+              <Y>-2815.58887</Y>
+              <Z>36.21788</Z>
+            </Point>
+            <Point>
+              <X>-4339.419</X>
+              <Y>-2726.84448</Y>
+              <Z>45.09739</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
@@ -1403,14 +1408,13 @@
               <Z>27.96265</Z>
             </Point>
           </Hotspots>
-          <Script>=27409.cs</Script>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <UseItemId>33088</UseItemId>
           <Position>
             <X>-4314.731</X>
             <Y>-3031.237</Y>
             <Z>28.5221</Z>
           </Position>
-          <IgnoreFight>true</IgnoreFight>
           <Range>10</Range>
         </QuestObjective>
         <QuestObjective>

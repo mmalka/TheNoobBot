@@ -1170,6 +1170,17 @@
         <Y>-4175.535</Y>
         <Z>139.7303</Z>
       </Position>
+	  <Radius>5</Radius>
+	  <ContinentId>Azeroth</ContinentId>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>355.1318</X>
+        <Y>-3764.748</Y>
+        <Z>107.196</Z>
+      </Position>
+	  <Radius>5</Radius>
+	  <ContinentId>Azeroth</ContinentId>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

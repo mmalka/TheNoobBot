@@ -26,17 +26,21 @@ nManager.Wow.ObjectManager.WoWUnit unit = nManager.Wow.ObjectManager.ObjectManag
 
 if(unit.IsValid)
 {
-	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
+	
 
-	while(ObjectManager.Me.Position.DistanceTo(unit.Position) >= 5)
+	while(unit.GetDistance >= 10)
 	{
 		if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted) || ObjectManager.Me.InInevitableCombat)
 		{
 			return false;
 		}
+		if(unit.GetDistance <= 35 && ObjectManager.Me.IsMounted)
+			MountTask.DismountMount(); //Dismount before arriving to kill the mobs that are aggro
 		MovementManager.FindTarget(unit, 5);
 		Thread.Sleep(500);
 	}
+	
+	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = true;
 	
 	MountTask.DismountMount();
 	//_worker2 = new System.Threading.Thread(() => nManager.Wow.Helpers.Fight.StartFight(unit.Guid));
@@ -61,7 +65,6 @@ if(unit.IsValid)
 	Thread.Sleep(500);
 	ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
 	nManager.Wow.Helpers.Quest.GetSetIgnoreFight = false;
-	nManager.Wow.Helpers.Fight.InFight = false;
 	nManager.Wow.Helpers.Fight.StopFight();
 
 	//_worker2 = null;
