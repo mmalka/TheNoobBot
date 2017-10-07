@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -45,13 +46,8 @@ namespace Quester.Tasks
 
                 CodeDomProvider cc = new CSharpCodeProvider();
                 var cp = new CompilerParameters();
-                cp.ReferencedAssemblies.Add("System.dll");
-                cp.ReferencedAssemblies.Add("System.Numerics.dll");
-                cp.ReferencedAssemblies.Add("System.Linq.dll");
-                cp.ReferencedAssemblies.Add("System.Xml.dll");
-                cp.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-                cp.ReferencedAssemblies.Add("nManager.dll");
-                cp.ReferencedAssemblies.Add("Products\\Quester.dll");
+                IEnumerable<string> assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe"))).Select(a => a.Location);
+                cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                 string toCompile =
                     "using System; " + Environment.NewLine +
                     "using System.Threading; " + Environment.NewLine +
