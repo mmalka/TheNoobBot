@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 
@@ -14,9 +15,12 @@ namespace The_Noob_Bot
         [STAThread]
         private static void Main(string[] args)
         {
-            if (!Process.GetCurrentProcess().ProcessName.Contains("vshost") && (Process.GetCurrentProcess().ProcessName.Contains("Bot") || Process.GetCurrentProcess().ProcessName.Contains("Noob")))
+            var processName = Process.GetCurrentProcess().ProcessName.ToLower();
+            if (!processName.Contains("vshost") && (processName.Contains("bot") || processName.Contains("noob") || processName.Contains("tnb")))
             {
-                MessageBox.Show("You must rename " + Process.GetCurrentProcess().ProcessName + ".exe to something else prior to launch.");
+                MessageBox.Show(
+                    "You must rename " + Process.GetCurrentProcess().ProcessName + ".exe to something else prior to launch." + Environment.NewLine +
+                    "The new name should not contains the words: \"bot, noob, tnb\"", "Security Warning - Follow instructions to avoid automatic detections.");
                 Process.GetCurrentProcess().Kill();
             }
             Application.EnableVisualStyles();
