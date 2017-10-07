@@ -174,6 +174,9 @@ namespace nManager.Wow.Helpers
         private static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
             bool addFromAndStart, bool loadAllTile, bool ShortPath, bool hideMe = false)
         {
+            // Prevent Z modified with "GetZ" to be passed as reference to original points/lists.
+            from = new Point(from);
+            to = new Point(to);
             if (!hideMe)
             {
                 // should be run only from the function that allow pathfinder patchwerk, nowhere else
