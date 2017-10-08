@@ -1684,6 +1684,16 @@ namespace nManager.Wow.Helpers
                 }
                 if (!patherResult && (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 300 || points.Count < 2))
                 {
+                    if (MountTask.GetMountCapacity(true) == MountCapacity.Fly)
+                    {
+                        if (!Usefuls.IsFlying)
+                            MountTask.DismountMount();
+                        Thread.Sleep(200);
+                        MountTask.Mount(true, true, true);
+                        Thread.Sleep(200);
+                        MountTask.Takeoff();
+                        return 0;
+                    }
                     // Give a chance to the bot to come closer if it's far away, unless the path is really short or innexistant.
                     // PathFinder cannot always generate very long path.
                     Logging.Write("No path found for " + target.Name + ", abort FindTarget.");
