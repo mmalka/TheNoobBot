@@ -63,8 +63,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                GC.AddMemoryPressure(bytes);
-                MemoryPressure += bytes;
+                if (bytes > 0)
+                {
+                    GC.AddMemoryPressure(bytes);
+                    MemoryPressure += bytes;
+                }
             }
             catch (Exception exception)
             {
@@ -93,7 +96,10 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
             try
             {
-                GC.RemoveMemoryPressure(MemoryPressure);
+                if (MemoryPressure > 0)
+                {
+                    GC.RemoveMemoryPressure(MemoryPressure);
+                }
                 MemoryPressure = 0;
             }
             catch (Exception exception)
@@ -357,7 +363,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         Logging.WriteNavigator("This mesh tile is corrupted.");
                         return false;
                     }
-                    AddMemoryPressure(data.Length);
+                    AddMemoryPressure(data.LongLength);
                     // HandleConnections(tile);
                     return true;
                 }
@@ -908,7 +914,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                             downloadTile(dungeonPath);
                         byte[] data = File.ReadAllBytes(_meshPath + "\\" + dungeonPath);
                         status = _mesh.Initialize(data);
-                        AddMemoryPressure(data.Length);
+                        AddMemoryPressure(data.LongLength);
                         IsDungeon = true;
                     }
                     else //                       20bits 28bits
