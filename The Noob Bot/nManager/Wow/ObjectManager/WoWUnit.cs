@@ -2600,12 +2600,20 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 if (UnitClassification == UnitClassification.WorldBoss)
+                {
+                    nManagerSetting.AddBlackListZone(this);
                     return false;
+                }
                 uint unitLevel = Level;
                 uint playerLevel = ObjectManager.Me.Level;
 
                 var levelAboveUnit = (int) (playerLevel - unitLevel);
 
+                if (levelAboveUnit <= -1 && IsElite || levelAboveUnit <= -4)
+                {
+                    nManagerSetting.AddBlackListZone(this);
+                    return false;
+                }
                 if (levelAboveUnit <= 0)
                     return false;
                 if (levelAboveUnit <= 2 && IsElite)

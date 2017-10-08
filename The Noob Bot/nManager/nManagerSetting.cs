@@ -222,6 +222,23 @@ namespace nManager
             }
         }
 
+        public static void AddBlackListZone(WoWUnit unit)
+        {
+            try
+            {
+                var danger = new DangerousZone(unit);
+                if (IsBlackListedZone(danger.Position, danger.ContinentId))
+                    return;
+                DangerousZones.Add(danger);
+                if (danger.ContinentId == Usefuls.ContinentNameMpq)
+                    PathFinder.AddDangerousZone(danger);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("AddBlackListZone(WoWUnit unit): " + e);
+            }
+        }
+
         public static void AddRangeBlackListZone(List<BlackListZone> listBlackZone)
         {
             try

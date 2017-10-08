@@ -986,8 +986,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     if (IsDungeon)
                         return;
 
-                    float[] point = best.ToWoW();
-                    LoadAround(new Point(point[0], point[1], point[2]));
+                    LoadAround(new Point(best.ToWoW()));
 
                     /*float tx, ty;
                 GetTileByLocation(best, out tx, out ty);
