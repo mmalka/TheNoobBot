@@ -42,6 +42,7 @@
             MovementFlags = 0x40,
             CurrentVelocity = 0x8C,
             GroundVelocity = 0x94,
+            SwimmingVelocity = 0x9C,
             FlyingVelocity = 0xA4
         }
 

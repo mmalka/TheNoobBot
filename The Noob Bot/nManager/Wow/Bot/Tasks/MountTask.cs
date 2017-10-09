@@ -32,6 +32,7 @@ namespace nManager.Wow.Bot.Tasks
         private static Spell _spellAquaMount = new Spell(0);
         private static Spell _spellGroundMount = new Spell(0);
         private static Spell _spellFlyMount = new Spell(0);
+        private static Spell _spellTravelForm = new Spell(0);
         private static string _aquaMount;
         private static string _groundMount;
         private static string _flyMount;
@@ -88,6 +89,7 @@ namespace nManager.Wow.Bot.Tasks
                     _spellGroundMount = new Spell(_groundMount);
                 if (!string.IsNullOrEmpty(_flyMount.Trim()))
                     _spellFlyMount = new Spell(_flyMount);
+                _spellTravelForm = new Spell("Travel Form");
 
                 if (ObjectManager.ObjectManager.Me.Level >= 16 && _groundMount != string.Empty && nManagerSetting.CurrentSetting.UseGroundMount && !_spellGroundMount.KnownSpell)
                 {
@@ -216,12 +218,28 @@ namespace nManager.Wow.Bot.Tasks
 
         public static bool OnFlyMount()
         {
-            return _spellFlyMount.HaveBuff;
+            if (!_spellFlyMount.HaveBuff)
+                return false;
+            if (_spellTravelForm.HaveBuff)
+            {
+                return ObjectManager.ObjectManager.Me.FlyingVelocity > 17f || ObjectManager.ObjectManager.Me.SwimmingVelocity > 9;
+                // 7*2.5 = 17.5 = 150% boost speed
+                // 7*1.35 = 9.45 = 35% boost speed (aquatic form which auto translate to flying upon flying)
+            }
+            return true;
         }
 
         public static bool OnAquaticMount()
         {
-            return _spellAquaMount.HaveBuff;
+            if (!_spellAquaMount.HaveBuff)
+                return false;
+            if (_spellTravelForm.HaveBuff)
+            {
+                return ObjectManager.ObjectManager.Me.FlyingVelocity > 17f || ObjectManager.ObjectManager.Me.SwimmingVelocity > 9;
+                // 7*2.5 = 17.5 = 150% boost speed (flight form which auto translate to swimming upon swimming)
+                // 7*1.35 = 9.45 = 35% boost speed
+            }
+            return true;
         }
 
         private static readonly object MountLocker = new object();

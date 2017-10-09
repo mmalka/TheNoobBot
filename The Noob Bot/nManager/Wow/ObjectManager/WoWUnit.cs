@@ -96,6 +96,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public float SwimmingVelocity
+        {
+            get
+            {
+                return Memory.WowMemory.Memory.ReadFloat(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.MovementFlagsOffsets.MovementPointer) + (uint) Addresses.MovementFlagsOffsets.SwimmingVelocity);
+            }
+        }
+
+        public void DumpVelocity()
+        {
+            Logging.Write("Ground Velocity: " + GroundVelocity);
+            Logging.Write("Flying Velocity: " + FlyingVelocity);
+            Logging.Write("Swimming Velocity: " + SwimmingVelocity);
+            Logging.Write("Actual Velocity: " + Velocity);
+        }
+
         public override Point Position
         {
             get
