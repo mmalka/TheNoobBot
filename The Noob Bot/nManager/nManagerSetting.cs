@@ -191,7 +191,7 @@ namespace nManager
                 {
                     if (zone.ContinentId != cId)
                         continue;
-                    if (position.DistanceTo(zone.Position) <= zone.Radius)
+                    if (position.DistanceTo(zone.Position) <= zone.Radius && position.DistanceTo(ObjectManager.Me.Position) > 6f)
                         return true;
                 }
                 return false;
