@@ -632,7 +632,8 @@ namespace nManager.Wow.ObjectManager
             return new WoWUnit(0);
         }
 
-        public static WoWUnit GetNearestWoWUnitWithValidPathNotInList(List<int> listInt, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false, List<UInt128> listGuid = null)
+        public static WoWUnit GetNearestWoWUnitWithValidPathNotInList(List<int> listInt, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false,
+            List<UInt128> listGuid = null)
         {
             try
             {
@@ -1581,6 +1582,8 @@ namespace nManager.Wow.ObjectManager
                 Memory.WowMemory.GameFrameLock();
                 foreach (WoWUnit unit in unitsList)
                 {
+                    if (nManagerSetting.IsBlackListed(unit.Guid))
+                        continue;
                     if (unit.IsHostile && unit.InCombat && unit.Attackable)
                         outputList.Add(unit);
                 }
