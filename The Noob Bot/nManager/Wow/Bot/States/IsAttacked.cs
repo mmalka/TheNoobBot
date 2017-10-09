@@ -64,7 +64,7 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.GetDurability <= nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent)
                     continue;
                 WoWUnit unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
-                if (unit == null || !unit.IsValid || unit.IsDead || nManagerSetting.IsBlackListedZone(unit.Position))
+                if (unit == null || !unit.IsValid || unit.IsDead || nManagerSetting.IsBlackListedZone(unit.Position) && unit.GetDistance > 10f)
                     continue;
                 if (unit.InCombat || unit.IsTrivial)
                     continue;

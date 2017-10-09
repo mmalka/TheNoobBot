@@ -486,7 +486,7 @@ namespace Quester.Tasks
                     if (wowUnit.GetDistance > lockedTarget.GetDistance)
                         wowUnit = lockedTarget;
                 }
-                if (!questObjective.IgnoreBlackList && wowUnit.IsValid && ((!wowUnit.Attackable && !wowUnit.IsDead) || IsInAvoidMobsList(wowUnit) || nManagerSetting.IsBlackListedZone(wowUnit.Position)))
+                if (!questObjective.IgnoreBlackList && wowUnit.IsValid && ((!wowUnit.Attackable && !wowUnit.IsDead) || IsInAvoidMobsList(wowUnit) || nManagerSetting.IsBlackListedZone(wowUnit.Position) && wowUnit.GetDistance > 10f))
                 {
                     if (!wowUnit.Attackable)
                         Logging.Write("Can't attack " + wowUnit.Name + ", blacklisting it."); // notify why we blacklisted it
@@ -655,7 +655,7 @@ namespace Quester.Tasks
                 if (questObjective.CurrentCount >= questObjective.CollectCount && questObjective.CollectCount > 0)
                     return;
                 WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                if (!nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
+                if ((!nManagerSetting.IsBlackListedZone(node.Position) || node.GetDistance < 8f) && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
                     FarmingTask.Pulse(new List<WoWGameObject> {node});
