@@ -249,6 +249,11 @@ namespace nManager.Wow.Bot.States
             return bLift;
         }
 
+        private bool ShouldAbortGenerateRoutePath()
+        {
+            return ObjectManager.ObjectManager.Me.HealthPercent < 40f && Usefuls.ShouldFight && ObjectManager.ObjectManager.Me.IsAlive;
+        }
+
         private List<Transport> GenerateRoutePath
         {
             get
@@ -277,6 +282,11 @@ namespace nManager.Wow.Bot.States
                     Logging.Write("Generating Travel from " + TravelFrom + " " + Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId) + " to " + TravelTo + " " +
                                   Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ".");
                 KeyValuePair<Transport, float> oneWayTravel = GetBestDirectWayTransport(TravelFrom, TravelTo, TravelFromContinentId, travelToContinentId);
+                if (ShouldAbortGenerateRoutePath())
+                {
+                    Logging.Write("Travel: We're going to die if we don't abort travel generation right now. Exiting.");
+                    return new List<Transport>();
+                }
                 List<Transport> travelPlan = new List<Transport>();
                 float travelCost = 0f;
 
@@ -1251,6 +1261,8 @@ namespace nManager.Wow.Bot.States
             var listTransport = new List<Transport>();
             foreach (Transport transport in _availableTransports.Items)
             {
+                if (ShouldAbortGenerateRoutePath())
+                    return new List<Transport>();
                 Thread.Sleep(5);
                 if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                     continue;
@@ -1482,6 +1494,8 @@ namespace nManager.Wow.Bot.States
             var listPortal = new List<Portal>();
             foreach (Portal portal in _availablePortals.Items)
             {
+                if (ShouldAbortGenerateRoutePath())
+                    return new List<Portal>();
                 Thread.Sleep(5);
                 if (portal.BContinentId != travelToContinentId)
                     continue;
@@ -1508,6 +1522,8 @@ namespace nManager.Wow.Bot.States
             List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
             foreach (Portal portal in portals)
             {
+                if (ShouldAbortGenerateRoutePath())
+                    return new List<Portal>();
                 Thread.Sleep(5);
                 if (portal.AContinentId != travelFromContinentId)
                     continue;
@@ -1526,6 +1542,8 @@ namespace nManager.Wow.Bot.States
             var listCustomPath = new List<CustomPath>();
             foreach (CustomPath customPath in _availableCustomPaths.Items)
             {
+                if (ShouldAbortGenerateRoutePath())
+                    return new List<CustomPath>();
                 Thread.Sleep(5);
                 if (customPath.Faction != Npc.FactionType.Neutral && customPath.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                     continue;
@@ -1606,6 +1624,8 @@ namespace nManager.Wow.Bot.States
             List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId, travelFrom, travelFromContinentId);
             foreach (CustomPath customPath in customPaths)
             {
+                if (ShouldAbortGenerateRoutePath())
+                    return new List<CustomPath>();
                 Thread.Sleep(5);
                 if (customPath.ArrivalIsA)
                 {
@@ -1639,6 +1659,8 @@ namespace nManager.Wow.Bot.States
             List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
             foreach (Transport transport in transports)
             {
+                if (ShouldAbortGenerateRoutePath())
+                    return new List<Transport>();
                 Thread.Sleep(5);
                 if (transport.ArrivalIsA)
                 {
@@ -1761,6 +1783,8 @@ namespace nManager.Wow.Bot.States
             List<Transport> allTransports = GetAllTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             foreach (Transport transport in allTransports)
             {
+                if (ShouldAbortGenerateRoutePath())
+                    return new KeyValuePair<Transport, float>();
                 Thread.Sleep(5);
                 float currentTransportDistance = 0f;
                 uint currentId = 0;
