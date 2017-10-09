@@ -369,18 +369,6 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static MovementFlags GetAllMovementStatus
-        {
-            get
-            {
-                return
-                    (MovementFlags)
-                        Memory.WowMemory.Memory.ReadInt(
-                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + (uint) Addresses.MovementFlagsOffsets.Offset1) +
-                            (uint) Addresses.MovementFlagsOffsets.Offset2);
-            }
-        }
-
         public static bool IsFalling
         {
             get { return ObjectManager.ObjectManager.Me.IsFalling; }

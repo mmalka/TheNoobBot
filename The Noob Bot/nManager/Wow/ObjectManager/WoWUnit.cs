@@ -72,6 +72,30 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public float Velocity
+        {
+            get
+            {
+                return Memory.WowMemory.Memory.ReadFloat(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.MovementFlagsOffsets.MovementPointer) + (uint) Addresses.MovementFlagsOffsets.CurrentVelocity);
+            }
+        }
+
+        public float GroundVelocity
+        {
+            get
+            {
+                return Memory.WowMemory.Memory.ReadFloat(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.MovementFlagsOffsets.MovementPointer) + (uint) Addresses.MovementFlagsOffsets.GroundVelocity);
+            }
+        }
+
+        public float FlyingVelocity
+        {
+            get
+            {
+                return Memory.WowMemory.Memory.ReadFloat(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.MovementFlagsOffsets.MovementPointer) + (uint) Addresses.MovementFlagsOffsets.FlyingVelocity);
+            }
+        }
+
         public override Point Position
         {
             get
@@ -2990,7 +3014,8 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     return
-                        (MovementFlags) Memory.WowMemory.Memory.ReadInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.MovementFlagsOffsets.Offset1) + (uint) Addresses.MovementFlagsOffsets.Offset2);
+                        (MovementFlags)
+                            Memory.WowMemory.Memory.ReadInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.MovementFlagsOffsets.MovementPointer) + (uint) Addresses.MovementFlagsOffsets.MovementFlags);
                 }
                 catch (Exception e)
                 {

@@ -38,8 +38,11 @@
         /// [[base+offset1]+offset2]
         public enum MovementFlagsOffsets
         {
-            Offset1 = 0x124, // near any movement flag.
-            Offset2 = 0x40,
+            MovementPointer = 0x124, // near any movement flag.
+            MovementFlags = 0x40,
+            CurrentVelocity = 0x8C,
+            GroundVelocity = 0x94,
+            FlyingVelocity = 0xA4
         }
 
         public enum Party
