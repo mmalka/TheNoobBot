@@ -655,6 +655,8 @@ namespace nManager.Wow.Bot.States
             int i = 0;
             while (loop)
             {
+                if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                    return;
                 if (Usefuls.IsFlying)
                     MountTask.DismountMount();
                 if (memoryTransport.IsValid)
@@ -697,6 +699,8 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
+                    if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                        return false;
                     if (Usefuls.IsFlying)
                         MountTask.DismountMount();
                     if (memoryPortal.IsValid)
@@ -763,6 +767,8 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
+                    if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                        return false;
                     if ((customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint).DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
                     {
                         bool validArrivalPath;
@@ -862,6 +868,8 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
+                    if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                        return false;
                     if (Usefuls.IsFlying)
                         MountTask.DismountMount();
                     if (memoryTaxi.IsValid)

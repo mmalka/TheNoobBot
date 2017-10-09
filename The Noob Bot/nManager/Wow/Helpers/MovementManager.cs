@@ -295,6 +295,8 @@ namespace nManager.Wow.Helpers
                             Thread.Sleep(100);
                             while (LongMove.IsLongMove && _movement)
                             {
+                                if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                                    return;
                                 Thread.Sleep(50);
                             }
                             LongMove.StopLongMove();

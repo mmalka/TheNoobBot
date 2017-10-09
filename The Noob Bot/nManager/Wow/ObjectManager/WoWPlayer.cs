@@ -404,7 +404,7 @@ namespace nManager.Wow.ObjectManager
 
         public new bool IsCast
         {
-            get { return IsCasting; }
+            get { return IsCasting && IsAlive; }
         }
 
         public bool IsMainHandTemporaryEnchanted

@@ -218,7 +218,7 @@ namespace nManager.Wow.Bot.States
                         while (MovementManager.InMovement && !timer.IsReady && t.GetDistance > 3.5f)
                         {
                             Thread.Sleep(100);
-                            if (ObjectManager.ObjectManager.Me.InInevitableCombat)
+                            if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDeadMe)
                             {
                                 return;
                             }
@@ -644,6 +644,8 @@ namespace nManager.Wow.Bot.States
                             LongMove.StopLongMove();
                             while (MovementManager.IsUnStuck)
                             {
+                                if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                                    return;
                                 Thread.Sleep(100);
                                 LongMove.StopLongMove();
                             }
@@ -729,6 +731,8 @@ namespace nManager.Wow.Bot.States
                             MovementManager.StopMove();
                             while (MovementManager.IsUnStuck)
                             {
+                                if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                                    return;
                                 Thread.Sleep(100);
                                 MovementManager.StopMove();
                             }

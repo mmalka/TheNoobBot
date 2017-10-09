@@ -486,7 +486,8 @@ namespace Quester.Tasks
                     if (wowUnit.GetDistance > lockedTarget.GetDistance)
                         wowUnit = lockedTarget;
                 }
-                if (!questObjective.IgnoreBlackList && wowUnit.IsValid && ((!wowUnit.Attackable && !wowUnit.IsDead) || IsInAvoidMobsList(wowUnit) || nManagerSetting.IsBlackListedZone(wowUnit.Position) && wowUnit.GetDistance > 10f))
+                if (!questObjective.IgnoreBlackList && wowUnit.IsValid &&
+                    ((!wowUnit.Attackable && !wowUnit.IsDead) || IsInAvoidMobsList(wowUnit) || nManagerSetting.IsBlackListedZone(wowUnit.Position) && wowUnit.GetDistance > 10f))
                 {
                     if (!wowUnit.Attackable)
                         Logging.Write("Can't attack " + wowUnit.Name + ", blacklisting it."); // notify why we blacklisted it
@@ -618,6 +619,8 @@ namespace Quester.Tasks
                             Thread.Sleep(200);
                             while (ObjectManager.Me.IsCasting)
                             {
+                                if (ObjectManager.Me.IsDeadMe)
+                                    return;
                                 Thread.Sleep(200);
                             }
                             if (questObjective.Count > 0)
@@ -1500,6 +1503,8 @@ namespace Quester.Tasks
                         Lua.LuaDoString("StaticPopup1:Hide()"); // hide popup (ReplaceEnchant bypass it)
                         while (ObjectManager.Me.IsCasting)
                         {
+                            if (ObjectManager.Me.IsDeadMe)
+                                return;
                             Thread.Sleep(100);
                         }
                         Lua.RunMacroText("/script CharacterFrame:Hide()");

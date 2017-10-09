@@ -208,6 +208,8 @@ namespace nManager.Wow.Helpers
                     {
                         if (!MovementManager.IsUnStuck)
                         {
+                            if (ObjectManager.ObjectManager.Me.IsDeadMe)
+                                return;
                             const int checkInFront = 130; // was 100
                             const int checkCollision = 60; // was 40
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(point) > 15)
