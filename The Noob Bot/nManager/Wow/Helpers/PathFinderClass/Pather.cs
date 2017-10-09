@@ -918,10 +918,10 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         IsDungeon = true;
                     }
                     else //                       20bits 28bits
-                        status = _mesh.Initialize(1048576, 1024*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
+                        status = _mesh.Initialize(1048576, 2048*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
                     // maxPolys = 1 << polyBits (20) = 1048576
-                    // maxTiles = is 4096 (was 2048), we have more than 4000 tiles in kalimdor, and Travel loads more than 2048 already
-                    // ending up crashing the pathfinder.
+                    // maxTiles = is 8192 (was 4096), Travel loads tons of tile in quester.
+                    // I have logs with over 6000 .tile files loaded.
 
                     if (status.HasFailed())
                         Logging.WriteNavigator(status + " Failed to initialize the mesh");
