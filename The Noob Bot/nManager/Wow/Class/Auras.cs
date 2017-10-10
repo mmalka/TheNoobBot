@@ -23,10 +23,10 @@ namespace nManager.Wow.Class
                 get { return Memory.WowMemory.Memory.ReadUInt128(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCreatorGuid); }
             }
 
-            public UInt128 AuraUnknownGUID
+            /*public UInt128 AuraUnknownGUID
             {
                 get { return Memory.WowMemory.Memory.ReadUInt128(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnkwnonGuid); }
-            }
+            }*/
 
             public uint AuraSpellId { get; set; }
 
@@ -45,7 +45,7 @@ namespace nManager.Wow.Class
                 get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructFlag); }
             }
 
-            public uint AuraMask
+            /*public uint AuraMask
             {
                 get { return Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructMask); }
             }
@@ -53,7 +53,7 @@ namespace nManager.Wow.Class
             public byte AuraUnk1
             {
                 get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk1); }
-            }
+            }*/
 
             public int AuraDuration
             {
@@ -65,10 +65,10 @@ namespace nManager.Wow.Class
                 get { return Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime); }
             }
 
-            public uint AuraUnk2
+            /*public uint AuraUnk2
             {
                 get { return Memory.WowMemory.Memory.ReadByte(BaseAddress + (uint)Addresses.UnitBaseGetUnitAura.AuraStructUnk2); }
-            }
+            }*/
 
             public int AuraTimeLeftInMs
             {
@@ -126,9 +126,9 @@ namespace nManager.Wow.Class
                     "AuraMask: {11}{0}" +
                     "AuraUnk1: {12}{0}" +
                     "AuraUnk2: {13}{0}",
-                    Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraUnknownGUID,
+                    Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, -1,
                     AuraDuration, AuraFlag, AuraSpellEndTime, AuraSpellId, new Spell(AuraSpellId).NameInGame,
-                    AuraTimeLeftInMs, AuraMask.ToString("X8"), AuraUnk1, AuraUnk2);
+                    AuraTimeLeftInMs, -1, -1, -1);
             }
         }
 

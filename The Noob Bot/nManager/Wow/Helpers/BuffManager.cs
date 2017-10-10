@@ -51,12 +51,12 @@ namespace nManager.Wow.Helpers
                         return buff.AuraCount;
                     if (buff.Flags.HasFlag(UnitAuraFlags.Duration) || buff.Flags.HasFlag(UnitAuraFlags.BasePoints))
                         return buff.AuraCount;
-                    if (buff.Flags.HasFlag(UnitAuraFlags.Passive))
+                    /*if (buff.Flags.HasFlag(UnitAuraFlags.Passive))
                     {
                         UnitAuraFlags t = (UnitAuraFlags)buff.AuraUnk2;
                         if (t.HasFlag(UnitAuraFlags.Cancelable))
                             return buff.AuraCount;
-                    }
+                    }*/
                 }
             }
             return -1;

@@ -363,17 +363,44 @@
             AuraSize = 0x98, // useful size 0x68 § v2 = 136 * a2;
 
             AuraStructCreatorGuid = 0x48, // read 16 bytes (GUID)
-            AuraStructUnkwnonGuid = AuraStructCreatorGuid + 16, // read 16 bytes (GUID)
-            AuraStructSpellId = AuraStructUnkwnonGuid + 16, // read 4 bytes (UINT)
-            AuraStructUnk2 = AuraStructSpellId + 4, // read 1 byte
-            AuraStructMask = AuraStructUnk2 + 1, // read 4 bytes
-            AuraStructCount = AuraStructMask + 4, // read 1 byte
-            AuraStructCasterLevel = AuraStructCount + 1, // read 1 byte
-            AuraStructUnk1 = AuraStructCasterLevel + 1, // read 1 byte, what is this ?
-            AuraStructDuration = AuraStructUnk1 + 1, // read 4 bytes
+            AuraStructSpellId = AuraStructCreatorGuid + 16 + 4 + 4 + 4 + 4, // read 16 bytes (GUID)
+            AuraStructFlag = AuraStructSpellId + 4 + 4, // read 1 byte
+            AuraStructCount = AuraStructFlag + 1, // read 1 byte
+            AuraStructCasterLevel = AuraStructCount + 1, // read 2 bytes
+            AuraStructDuration = AuraStructCasterLevel + 2, // read 4 bytes
             AuraStructSpellEndTime = AuraStructDuration + 4, // read 4 bytes
-            AuraStructFlag = AuraStructSpellEndTime + 4, // read 1 byte
-            // 3 more byte
+            /*
+                public unsafe fixed int struct646_0[8];
+                public int int_0;
+                private uint uint_0;
+                private uint uint_1;
+                private uint uint_2;
+                private uint uint_3;
+                private uint uint_4;
+                private uint uint_5;
+                private uint uint_6;
+                private uint uint_7;
+                private uint uint_8;
+                public WoWGuid woWGuid_0;
+                private uint uint_9;
+                private uint uint_10;
+                private uint uint_11;
+                private uint uint_12;
+                public uint SpellId;
+                private uint uint_14;
+                public byte Flags;
+                public byte StackCount;
+                public ushort Level;
+                public uint Duration;
+                public uint EndTime;
+                private uint uint_17;
+                private uint uint_18;
+                private uint uint_19;
+                private uint uint_20;
+                private uint uint_21;
+                private uint uint_22;
+                private uint uint_23;
+             */
         }
 
         /// <summary>
