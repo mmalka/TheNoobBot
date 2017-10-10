@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
 using nManager.Plugins;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Enums;
+using nManager.Wow.ObjectManager;
 using Quester.Profile;
 using nManager;
 using nManager.FiniteStateMachine;
@@ -13,6 +15,7 @@ using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 using nManager.Wow.Class;
 using Quester.Tasks;
+using ObjectManager = nManager.Wow.ObjectManager.ObjectManager;
 using Quest = nManager.Wow.Helpers.Quest;
 
 namespace Quester.Bot
@@ -253,12 +256,25 @@ namespace Quester.Bot
 
         public static Npc FindNearestQuesterById(int entry)
         {
-            if (!ImportedQuesters)
+            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(entry, true), ObjectManager.Me.Position, false, false, true);
+            if (unit.IsValid && unit.GetDistance <= 60f && unit.IsNpcQuestGiver && (unit.CanTurnIn || unit.HasQuests))
             {
-                if (Profile.Questers.Count > 0)
-                    QuestersDB.AddNpcRange(Profile.Questers);
-                ImportedQuesters = true;
+                var npc = new Npc
+                {
+                    Entry = unit.Entry,
+                    Name = unit.Name,
+                    ContinentId = Usefuls.ContinentNameMpq,
+                    Position = unit.Position,
+                    Type = Npc.NpcType.QuestGiver,
+                    Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance
+                };
+                return npc;
             }
+            if (ImportedQuesters)
+                return QuestersDB.GetNpcNearbyByEntry(entry);
+            if (Profile.Questers.Count > 0)
+                QuestersDB.AddNpcRange(Profile.Questers);
+            ImportedQuesters = true;
             return QuestersDB.GetNpcNearbyByEntry(entry);
         }
     }

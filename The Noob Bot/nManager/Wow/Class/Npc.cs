@@ -71,6 +71,24 @@ namespace nManager.Wow.Class
             set { ContinentIdInt = Usefuls.ContinentIdByContinentName(value); }
         }
 
+        public void Ignore(int miliseconds)
+        {
+            _ignoreStartTime = Environment.TickCount + miliseconds;
+        }
+
+        public bool CurrentlyIgnored()
+        {
+            if (_ignoreStartTime > 0 && Environment.TickCount < _ignoreStartTime)
+            {
+                return true;
+            }
+            if (_ignoreStartTime > 0)
+                _ignoreStartTime = 0;
+            return false;
+        }
+
+        [XmlIgnore] private int _ignoreStartTime = 0;
+
         [XmlIgnore]
         public int ContinentIdInt
         {

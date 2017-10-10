@@ -462,6 +462,8 @@ namespace nManager.Wow.Helpers
                 {
                     cancelPickUp = true; // We are there but no NPC waiting for us.
                     // This code is there for Mimesis and I'm not currently working on Quester, so I'm not going to "return;" there as quester will be even more lost.
+                    npc.Ignore(120000);
+                    return;
                 }
                 if (Usefuls.IsFlying)
                     MountTask.Land();
@@ -610,6 +612,11 @@ namespace nManager.Wow.Helpers
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 4.5f)
             {
+                if (baseAddress <= 0)
+                {
+                    npc.Ignore(120000);
+                    return;
+                }
                 if (Usefuls.IsFlying)
                     MountTask.Land();
                 InteractTarget(ref npc, baseAddress);
