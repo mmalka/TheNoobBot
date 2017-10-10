@@ -128,36 +128,6 @@ namespace nManager.Wow.Helpers
                 return new List<Point>();
             }
             List<Point> path = FindPath(from, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
-            if (!resultSuccess)
-            {
-                if (path.Count <= 300 || from.DistanceTo(to) <= 8000f)
-                {
-                    // Incomplete path are oftens a minimum of 160 points found, that mean that path ended up in a wall.
-                    // Only huge path are truly incomplete tho, over 300 incomplete, perhaps 400 or 500 points.
-
-                    // Also, if from/to are really close, there is no much way they'll need that.
-                    return path;
-                }
-
-                Point secondFrom = path[path.Count - 2];
-
-                /*
-                 * THE FOLLOWING CODE NEEDS IMPROVEMENTS IN CODING STYLE
-                 */
-
-
-                List<Point> secondPath = FindPath(secondFrom, to, continentNameMpq, out resultSuccess, addFromAndStart, loadAllTile, ShortPath, true);
-                if (resultSuccess)
-                {
-                    // this is juicy fella, we made a complete path to destination, now fix it together...
-                    path.RemoveAt(path.Count - 1); // remove the 2 last entries as we ignored them when calculating second path.
-                    path.RemoveAt(path.Count - 1);
-                    path.RemoveAt(path.Count - 1); // remove the 3rd last entry as this one is already included as the beginning point of secondPath
-                    path.AddRange(secondPath);
-                    Logging.WriteDebug("PathFinder magic was done here... #1");
-                    return path;
-                }
-            }
             return path;
         }
 
