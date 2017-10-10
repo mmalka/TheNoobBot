@@ -1217,6 +1217,8 @@ dtStatus dtNavMeshQuery::getPathToNode(dtNode* endNode, dtPolyRef* path, int* pa
 	int length = 0;
 	do
 	{
+		if (length > maxPath * 10)
+			break;
 		length++;
 		curNode = m_nodePool->getNodeAtIdx(curNode->pidx);
 	} while (curNode);
