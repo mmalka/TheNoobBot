@@ -16,6 +16,7 @@ namespace Grinder.Profile
 {
     public partial class ProfileCreator : Form
     {
+        private static readonly object Locker = new object();
         private int _idZone;
         private bool _loopRecordPoint;
         private GrinderProfile _profile = new GrinderProfile();
@@ -133,7 +134,7 @@ namespace Grinder.Profile
 
         private void RefreshListZones()
         {
-            lock (typeof (ProfileCreator))
+            lock (Locker)
             {
                 try
                 {
@@ -165,7 +166,7 @@ namespace Grinder.Profile
 
         private void RefreshForm()
         {
-            lock (typeof (ProfileCreator))
+            lock (Locker)
             {
                 try
                 {
@@ -535,7 +536,7 @@ namespace Grinder.Profile
 
         private void Level_ValueChanged(object sender, EventArgs e)
         {
-            lock (typeof (ProfileCreator))
+            lock (Locker)
             {
                 try
                 {
@@ -562,7 +563,7 @@ namespace Grinder.Profile
         {
             try
             {
-                lock (typeof (ProfileCreator))
+                lock (Locker)
                 {
                     if (ObjectManager.Target.IsValid)
                     {
@@ -585,7 +586,7 @@ namespace Grinder.Profile
             try
             {
                 string text = listEntryTb.Text;
-                lock (typeof (ProfileCreator))
+                lock (Locker)
                 {
                     if (text.Replace(" ", "").Replace(";", "").Length > 0)
                     {

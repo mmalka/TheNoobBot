@@ -13,6 +13,7 @@ namespace Battlegrounder.Profile
 {
     public partial class ProfileCreator : Form
     {
+        private static readonly object Locker = new object();
         private int _idZone;
         private bool _loopRecordPoint;
         private BattlegrounderProfile _profile = new BattlegrounderProfile();
@@ -112,7 +113,7 @@ namespace Battlegrounder.Profile
 
         private void RefreshListZones()
         {
-            lock (typeof (ProfileCreator))
+            lock (Locker)
             {
                 try
                 {
@@ -142,7 +143,7 @@ namespace Battlegrounder.Profile
 
         private void RefreshForm()
         {
-            lock (typeof (ProfileCreator))
+            lock (Locker)
             {
                 try
                 {

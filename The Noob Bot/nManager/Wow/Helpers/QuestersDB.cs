@@ -10,6 +10,7 @@ namespace nManager.Wow.Helpers
 {
     public class QuestersDB
     {
+        private static readonly object Locker = new object();
         private static List<Npc> _listNpc;
 
         public static List<Npc> ListNpc
@@ -45,7 +46,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof (QuestersDB))
+                lock (Locker)
                 {
                     if (_listNpc == null)
                         _listNpc = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
@@ -75,7 +76,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof (QuestersDB))
+                lock (Locker)
                 {
                     foreach (Npc npc1 in ListNpc)
                     {
@@ -99,7 +100,7 @@ namespace nManager.Wow.Helpers
             {
                 int count = 0;
                 LoadList();
-                lock (typeof (QuestersDB))
+                lock (Locker)
                 {
                     for (int i = 0; i < npcList.Count; i++)
                     {
@@ -159,7 +160,7 @@ namespace nManager.Wow.Helpers
             {
                 File.Delete(Application.StartupPath + "\\Data\\QuestersDB.xml");
                 ListNpc.Clear();
-                lock (typeof (QuestersDB))
+                lock (Locker)
                 {
                     foreach (Npc npc in npcList)
                     {
@@ -235,7 +236,16 @@ namespace nManager.Wow.Helpers
                     if (npc.Entry != entry)
                         continue;
                     if (npcTemp.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) || !npcTemp.Position.IsValid)
+                    {
+                        if (npcTemp.Position.IsValid && npc.CurrentlyIgnored())
+                            continue;
+                        if (!npcTemp.Position.IsValid && npc.CurrentlyIgnored())
+                        {
+                            if (ListNpc.FindAll(npc1 => npc1.Entry == entry && !npc1.CurrentlyIgnored()).Count > 0)
+                                continue;
+                        }
                         npcTemp = npc;
+                    }
                 }
                 return npcTemp;
             }

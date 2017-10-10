@@ -10,6 +10,7 @@ namespace nManager.Wow.Helpers
 {
     public class NpcDB
     {
+        private static readonly object Locker = new object();
         private static List<Npc> _listNpc;
 
         public static List<Npc> ListNpc
@@ -45,7 +46,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof (NpcDB))
+                lock (Locker)
                 {
                     if (_listNpc == null)
                         _listNpc = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\NpcDB.xml");
@@ -75,7 +76,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof (NpcDB))
+                lock (Locker)
                 {
                     foreach (Npc npc1 in ListNpc)
                     {
@@ -107,7 +108,7 @@ namespace nManager.Wow.Helpers
             {
                 int count = 0;
                 LoadList();
-                lock (typeof (NpcDB))
+                lock (Locker)
                 {
                     for (int i = 0; i < npcList.Count; i++)
                     {
@@ -175,7 +176,7 @@ namespace nManager.Wow.Helpers
             {
                 File.Delete(Application.StartupPath + "\\Data\\NpcDB.xml");
                 ListNpc.Clear();
-                lock (typeof (NpcDB))
+                lock (Locker)
                 {
                     foreach (Npc npc in npcList)
                     {

@@ -10,6 +10,7 @@ namespace nManager
 {
     public class Pulsator
     {
+        private static readonly object Locker = new object();
         private const string MD5Key = "5c9c3ef2f438f88b0aeea7dd152833b4";
         private static string _tempSecretKey = "";
 
@@ -42,7 +43,7 @@ namespace nManager
         {
             try
             {
-                lock (typeof (Pulsator))
+                lock (Locker)
                 {
                     Thread thread = new Thread(() => ThreadDispose(closePocess)) {Name = "Thread Dispose nManager."};
                     _isDisposed = false;

@@ -8,6 +8,7 @@ namespace nManager.Wow.Helpers
 {
     public static class Keybindings
     {
+        private static readonly object Locker = new object();
         private static List<KeybindingsStruct> _keybindingsList = new List<KeybindingsStruct>();
 
         public static string GetKeyByAction(Enums.Keybindings action, bool autoAssignKeyIfNull = true)
@@ -187,7 +188,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof (Keybindings))
+                lock (Locker)
                 {
                     _keybindingsList = new List<KeybindingsStruct>();
                 }

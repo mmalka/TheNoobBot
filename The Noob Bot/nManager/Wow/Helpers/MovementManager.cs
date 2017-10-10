@@ -19,6 +19,8 @@ namespace nManager.Wow.Helpers
     /// </summary>
     public static class MovementManager
     {
+        private static readonly object Locker = new object();
+
         #region MovementManager
 
         // Movement Manager:
@@ -191,7 +193,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof (MovementManager))
+                lock (Locker)
                 {
                     if (_worker == null)
                     {
@@ -212,7 +214,7 @@ namespace nManager.Wow.Helpers
             {
                 while (true)
                 {
-                    lock (typeof (MovementManager))
+                    lock (Locker)
                     {
                         while ((_loop || _first) && !Usefuls.IsLoading && Usefuls.InGame)
                         {
@@ -957,7 +959,7 @@ namespace nManager.Wow.Helpers
                 {
                     _loop = false;
                     _movement = false;
-                    lock (typeof (MovementManager))
+                    lock (Locker)
                     {
                         if (_worker == null)
                         {
@@ -999,7 +1001,7 @@ namespace nManager.Wow.Helpers
                 {
                     _loop = false;
                     _movement = false;
-                    lock (typeof (MovementManager))
+                    lock (Locker)
                     {
                         if (_worker == null)
                             LaunchThreadMovementManager();

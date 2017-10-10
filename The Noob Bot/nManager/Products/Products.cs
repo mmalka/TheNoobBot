@@ -16,6 +16,8 @@ namespace nManager.Products
 {
     public class Products
     {
+        private static readonly object Locker = new object();
+
         public delegate void IsAliveProductChangeEventHandler(IsAliveProductChangeEventArgs e);
 
         public delegate void IsStartedChangeEventHandler(IsStartedChangeEventArgs e);
@@ -119,7 +121,7 @@ namespace nManager.Products
         {
             try
             {
-                lock (typeof (Products))
+                lock (Locker)
                 {
                     if (_threadEventChangeProduct == null)
                     {
@@ -173,7 +175,7 @@ namespace nManager.Products
         {
             try
             {
-                lock (typeof (Products))
+                lock (Locker)
                 {
                     var thread = new Thread(ThreadDisposeProduct) {Name = "Thread Dispose Product."};
                     _isDisposed = false;

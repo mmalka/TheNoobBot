@@ -13,6 +13,7 @@ namespace nManager.Wow.Helpers
 {
     public class SpellManager
     {
+        private static readonly object Locker = new object();
         private static readonly List<uint> DruidMountIdList = new List<uint>();
         private static readonly List<uint> HerbsInteractMountIdList = new List<uint>();
         private static readonly List<uint> AllInteractMountIdList = new List<uint>();
@@ -347,7 +348,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof (SpellManager))
+                lock (Locker)
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult +

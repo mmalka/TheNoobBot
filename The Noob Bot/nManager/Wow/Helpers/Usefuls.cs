@@ -21,6 +21,7 @@ namespace nManager.Wow.Helpers
 {
     public class Usefuls
     {
+        private static readonly object Locker = new object();
         private static int _lastContainerNumFreeSlots;
         private static Timer _timerContainerNumFreeSlots = new Timer(0);
 
@@ -76,7 +77,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof (Usefuls))
+                lock (Usefuls.Locker)
                 {
                     try
                     {
@@ -97,7 +98,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof (Usefuls))
+                lock (Usefuls.Locker)
                 {
                     try
                     {
@@ -123,7 +124,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof (Usefuls))
+                lock (Usefuls.Locker)
                 {
                     try
                     {
@@ -146,7 +147,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    lock (typeof (Usefuls))
+                    lock (Usefuls.Locker)
                     {
                         if (!_timerContainerNumFreeSlots.IsReady)
                             return _lastContainerNumFreeSlots;
@@ -222,7 +223,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof (Usefuls))
+                lock (Usefuls.Locker)
                 {
                     try
                     {
@@ -265,7 +266,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof (Usefuls))
+                lock (Usefuls.Locker)
                 {
                     try
                     {

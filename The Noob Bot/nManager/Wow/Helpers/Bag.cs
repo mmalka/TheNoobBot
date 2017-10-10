@@ -9,6 +9,8 @@ namespace nManager.Wow.Helpers
 {
     public class Bag
     {
+        private static readonly object Locker = new object();
+
         public static List<WoWItem> GetBagItem()
         {
             try
@@ -33,7 +35,7 @@ namespace nManager.Wow.Helpers
 
                 string listLinkItem;
 
-                lock (typeof (Bag))
+                lock (Locker)
                 {
                     Lua.LuaDoString(luaCommand);
 
@@ -120,7 +122,7 @@ namespace nManager.Wow.Helpers
                 scriptLua = scriptLua + "end ";
 
 
-                lock (typeof (Bag))
+                lock (Locker)
                 {
                     Lua.LuaDoString(scriptLua);
                     return Lua.GetLocalizedText(randomString) == "True";

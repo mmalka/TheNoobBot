@@ -12,6 +12,7 @@ namespace nManager.Wow.Helpers
 {
     public class Archaeology
     {
+        private static readonly object Locker = new object();
         private static List<Digsite> _allDigsiteZone = new List<Digsite>();
         private static string _CrateRestoredArtifactSpellName;
 
@@ -232,7 +233,7 @@ namespace nManager.Wow.Helpers
                 luaCommand = luaCommand + "end ";
 
                 string resultLua;
-                lock (typeof (Archaeology))
+                lock (Locker)
                 {
                     Lua.LuaDoString(luaCommand);
                     resultLua = Lua.GetLocalizedText(randomString);

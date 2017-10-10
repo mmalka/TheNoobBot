@@ -11,6 +11,8 @@ namespace nManager.Wow.Helpers
 {
     public class ItemsManager
     {
+        private static readonly object Locker = new object();
+
         public static int GetItemCount(string name)
         {
             return GetItemCount(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
@@ -18,7 +20,7 @@ namespace nManager.Wow.Helpers
 
         public static int GetItemCount(int entry)
         {
-            lock (typeof (ItemsManager))
+            lock (Locker)
             {
                 try
                 {
@@ -110,7 +112,7 @@ namespace nManager.Wow.Helpers
             {
                 if (ItemNameCache.ContainsKey(entry))
                     return ItemNameCache[entry];
-                lock (typeof (ItemsManager))
+                lock (Locker)
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomString + ",_,_,_,_,_,_,_,_,_,_ = GetItemInfo(" + entry + ")");
@@ -137,7 +139,7 @@ namespace nManager.Wow.Helpers
             {
                 if (ItemIdCache.ContainsKey(name))
                     return ItemIdCache[name];
-                lock (typeof (ItemsManager))
+                lock (Locker)
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(

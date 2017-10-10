@@ -11,6 +11,7 @@ namespace nManager.Helpful
 {
     public class Logging
     {
+        private static readonly object Locker = new object();
         private static List<Log> _log = new List<Log>();
         private static string _logFileName = "";
 
@@ -132,7 +133,7 @@ namespace nManager.Helpful
             {
                 LogQueue.Add(log);
 
-                lock (typeof (Logging))
+                lock (Locker)
                 {
                     if (_worker == null)
                     {

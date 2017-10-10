@@ -11,6 +11,7 @@ namespace nManager.Wow.Bot.Tasks
 {
     public class FishingTask
     {
+        private static readonly object Locker = new object();
         private static bool _fishBotLaunched;
         private static Thread _worker2;
 
@@ -41,7 +42,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                lock (typeof (FishingTask))
+                lock (Locker)
                 {
                     _guidNode = 0;
                     _lastSuccessfullFishing = 0;
@@ -68,7 +69,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                lock (typeof (FishingTask))
+                lock (Locker)
                 {
                     _guidNode = guidNode;
                     _precision = precision;
