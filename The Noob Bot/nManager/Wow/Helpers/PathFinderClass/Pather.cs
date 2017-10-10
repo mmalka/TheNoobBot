@@ -934,7 +934,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     Filter.SetAreaCost((int) PolyArea.Water, 4);
                     Filter.SetAreaCost((int) PolyArea.Terrain, 1);
                     Filter.SetAreaCost((int) PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
-                    Filter.SetAreaCost((int) PolyArea.Danger, 100);
+                    Filter.SetAreaCost((int) PolyArea.Danger, 25);
                     if (nManagerSetting.DangerousZones.Count > 0)
                     {
                         int addedDangers = ReportDanger(nManagerSetting.DangerousZones, true);
