@@ -212,6 +212,15 @@ namespace The_Noob_Bot
                         LoginButton_Click(new object(), new EventArgs());
                     }
                 }
+                /*DialogResult resulMb = MessageBox.Show("It seems that there is a serious dynamic detection running in the WoW client as we speak, do you wanna close the bot (Yes) or take the risk (No) ?",
+                    @"WARNING / ATTENTION / ARTUNG / внимание / 注意",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (resulMb == DialogResult.Yes)
+                {
+                    Process.Start("https://goo.gl/TtMsEh");
+                    Process.GetCurrentProcess().Kill();
+                }
+                Process.Start("https://goo.gl/TtMsEh");*/
                 //else
                 //    MessageBox.Show(@"Blizzard is currently very active in the Anti-Bot fight and it may not be wise to use the bot at that very moment in time.", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
                 /* End AutoStart code */
