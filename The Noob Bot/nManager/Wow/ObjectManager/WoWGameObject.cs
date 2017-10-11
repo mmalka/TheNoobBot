@@ -679,11 +679,15 @@ namespace nManager.Wow.ObjectManager
                 if (nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Count > 0)
                 {
                     int entryid = 0;
-                    if (
-                        nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Where(
-                            entry => int.TryParse(entry.Trim(), out entryid)).Any(entry => Entry == entryid))
+                    foreach (var entry in nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects)
                     {
-                        return false;
+                        if (int.TryParse(entry.Trim(), out entryid))
+                        {
+                            if (Entry == entryid)
+                            {
+                                return false;
+                            }
+                        }
                     }
                 }
                 if (LockEntry != 0 && LockEntry != 2608) // 2608 special for Ancient Mana Chest.
