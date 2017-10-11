@@ -297,7 +297,7 @@ namespace nManager.Wow.Helpers
                     if (!_timerLatency.IsReady)
                         return _lastLatency;
 
-                    _timerLatency = new Timer(30*1000);
+                    _timerLatency = new Timer(30 * 1000);
                     string luaResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString("_,_,_,worldLag=GetNetStats() " + luaResult + "=worldLag");
                     _lastLatency = Others.ToInt32(Lua.GetLocalizedText(luaResult));
@@ -347,7 +347,7 @@ namespace nManager.Wow.Helpers
             while (SpellManager.IsOnGlobalCooldown)
             {
                 if (i < 100)
-                    Thread.Sleep(300/i);
+                    Thread.Sleep(300 / i);
                 else
                     Thread.Sleep(5);
                 i++;
@@ -637,6 +637,22 @@ namespace nManager.Wow.Helpers
                 catch (Exception e)
                 {
                     Logging.WriteError("AreaId: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public static int HearthstoneSubAreaId
+        {
+            get
+            {
+                try
+                {
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.HearthstoneSubAreaId);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("HearthstoneSubAreaId: " + e);
                     return 0;
                 }
             }
@@ -1113,8 +1129,8 @@ namespace nManager.Wow.Helpers
             while (degree < 360) //Search for safe rez point, if no safe point found, just rez and get killed again!
             {
                 //Calculate position on a circle 15degrees at a time and check if we can go there
-                float x = (float) (posCorpse.X + 30f*System.Math.Cos(Helpful.Math.DegreeToRadian(degree)));
-                float y = (float) (posCorpse.Y + 30f*System.Math.Sin(Helpful.Math.DegreeToRadian(degree)));
+                float x = (float) (posCorpse.X + 30f * System.Math.Cos(Helpful.Math.DegreeToRadian(degree)));
+                float y = (float) (posCorpse.Y + 30f * System.Math.Sin(Helpful.Math.DegreeToRadian(degree)));
                 rezPos = new Point(x, y, PathFinder.GetZPosition(x, y));
 
                 if (ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(rezPos) < 36.0f && !nManagerSetting.IsBlackListedZone(rezPos))

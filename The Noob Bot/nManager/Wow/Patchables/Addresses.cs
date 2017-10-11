@@ -92,6 +92,7 @@
             gameState = 0x118671C, // Script_IsPlayerInWorld
             isLoading = 0xF4EBA8, //isLoadingFOUND
             AreaId = 0xEDB210, //?CF6FE8, // AreaIdFOUND - AreaIdFOUNDCall // to review changes
+            HearthstoneSubAreaId = 0x10B0684, // HearthstoneIDFound called from Script_GetBindLocation 
             SubAreaId = AreaId + 4, // AreaId + 4 bytes
             MapTextureId = 0xEE4478, //MapTextureIdFOUND
             zoneMap = 0x11858F0, // Script_GetZoneText
@@ -118,6 +119,7 @@
             petGUID = 0x119C3F8, // petGUIDFOUND
             playerName = 0x120B950, // GetPlayerName 
             RetrieveCorpseWindow = 0x1186604, // RetrieveCorpseWindowFOUND
+
             // Some offsets to refine descriptor
             SkillValue = 0x200,
             SkillMaxValue = 0x400,
@@ -190,7 +192,7 @@
             CachedCastBarCaption = 0xC,
             CachedName = 0xB4, // CGGameObject_C__GetName_2
             CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
-            CachedSize = CachedData0 + (0x04*33), // just after the 32 data uint32 + 1 unknown value
+            CachedSize = CachedData0 + (0x04 * 33), // just after the 32 data uint32 + 1 unknown value
             CachedQuestItem1 = CachedSize + 0x04, // just after the size float
         }
 
@@ -222,7 +224,7 @@
             KnownAllSpells = SpellBookNumSpells - 0x4, // found via SpellBookNumSpells - 4
             SpellBookNumSpells = 0x118771C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0x1187768 + 0x4*0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0x1187768 + 0x4 * 0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0x1187804, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
@@ -274,6 +276,7 @@
             CGUnit_C__GetUnitName = 0x46987B,
             strlen = 0x967050, // ida _strlen
             PushESI = 0x47CF10, // CGPlayer_C__ClickToMoveCaller+178
+
             // saving
             ClntObjMgrGetActivePlayerObj = 0x0,
             WowClientDB2__GetRowPointer = 0x324719,
@@ -284,11 +287,13 @@
             CTMChecker = 0x334789,
             CTMChecker2 = 0x61D6E4,
             RetFromFunctionBelow = 0x1A8C84,
+
             // mov [D16250+E48], [D16250+E44]
             // new = D87F40
             SpellChecker = Hooking.DX_DEVICE, // IsSpellKnown
             SpellCheckerOff1 = 0xE60,
             SpellCheckerOff2 = 0xE64,
+
             //SpellFixer = 0x10E2C3, // IsSpellKnown
             // E38EF0 vs EC3450
             IsOutdoors = 0x0,
