@@ -22,7 +22,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (Usefuls.IsFlying)
+                if (Usefuls.IsFlying || Usefuls.IsSwimming)
                     Fly(nodes);
                 else
                     Ground(nodes);
@@ -46,7 +46,7 @@ namespace nManager.Wow.Bot.Tasks
                     if (!inode.IsValid)
                     {
                         MovementManager.StopMove();
-                        nManagerSetting.AddBlackList(inode.Guid, 2*60*1000);
+                        nManagerSetting.AddBlackList(inode.Guid, 2 * 60 * 1000);
                         Logging.Write("Current inode not valid, blacklist.");
                         continue;
                     }
@@ -68,7 +68,7 @@ namespace nManager.Wow.Bot.Tasks
                         if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, aboveNode, CGWorldFrameHitFlags.HitTestAllButLiquid))
                         {
                             Logging.Write("Node stuck");
-                            nManagerSetting.AddBlackList(inode.Guid, 1000*60*2);
+                            nManagerSetting.AddBlackList(inode.Guid, 1000 * 60 * 2);
                             return;
                         }
                     }
@@ -76,7 +76,7 @@ namespace nManager.Wow.Bot.Tasks
                     MovementManager.StopMove();
                     MovementManager.MoveTo(inode.Position.X, inode.Position.Y, zT, true);
 
-                    Helpful.Timer timer = new Helpful.Timer((int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position)/3*1000) + 5000);
+                    Helpful.Timer timer = new Helpful.Timer((int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) / 3 * 1000) + 5000);
                     bool toMine = false;
                     bool landing = false;
 
@@ -124,7 +124,7 @@ namespace nManager.Wow.Bot.Tasks
                             if (inode.GetDistance > 3.0f && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, inode.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
                             {
                                 Logging.Write("Node outside view");
-                                nManagerSetting.AddBlackList(inode.Guid, 1000*120);
+                                nManagerSetting.AddBlackList(inode.Guid, 1000 * 120);
                                 break;
                             }
                         }
@@ -204,7 +204,7 @@ namespace nManager.Wow.Bot.Tasks
                                 CountThisLoot = false;
                                 return;
                             }
-                            nManagerSetting.AddBlackList(inode.Guid, 1000*20);
+                            nManagerSetting.AddBlackList(inode.Guid, 1000 * 20);
                             return;
                         }
                         else if (!ObjectManager.ObjectManager.Me.GetMove)
@@ -217,12 +217,12 @@ namespace nManager.Wow.Bot.Tasks
                         if (States.Farming.PlayerNearest(inode))
                         {
                             Logging.Write("Player near the inode, farm canceled");
-                            nManagerSetting.AddBlackList(inode.Guid, 15*1000);
+                            nManagerSetting.AddBlackList(inode.Guid, 15 * 1000);
                             return;
                         }
                     }
                     if (timer.IsReady)
-                        nManagerSetting.AddBlackList(inode.Guid, 60*1000);
+                        nManagerSetting.AddBlackList(inode.Guid, 60 * 1000);
                     MovementManager.StopMove();
                     if (!_wasLooted)
                         Logging.Write("Farm failed #1");
@@ -250,7 +250,7 @@ namespace nManager.Wow.Bot.Tasks
                     if (!inode.IsValid)
                     {
                         MovementManager.StopMove();
-                        nManagerSetting.AddBlackList(inode.Guid, 2*60*1000);
+                        nManagerSetting.AddBlackList(inode.Guid, 2 * 60 * 1000);
                         Logging.Write("Current inode not valid, blacklist.");
                         continue;
                     }
@@ -261,18 +261,21 @@ namespace nManager.Wow.Bot.Tasks
                             nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
                             !nManagerSetting.CurrentSetting.UseGroundMount)
                         {
-                            if (MountTask.GetMountCapacity() == MountCapacity.Fly)
+                            if (MountTask.GetMountCapacity() == MountCapacity.Fly || Usefuls.IsFlying)
                             {
-                                if (!MountTask.OnFlyMount())
-                                    MountTask.Mount(true, true);
-                                else
-                                    MountTask.Takeoff();
+                                if (!Usefuls.IsFlying)
+                                {
+                                    if (!MountTask.OnFlyMount())
+                                        MountTask.Mount(true, true);
+                                    else
+                                        MountTask.Takeoff();
+                                }
                                 Fly(nodes);
                                 return;
                             }
-                            if (MountTask.GetMountCapacity() == MountCapacity.Swimm)
+                            if (Usefuls.IsSwimming)
                             {
-                                if (!MountTask.OnAquaticMount())
+                                if (MountTask.GetMountCapacity() == MountCapacity.Swimm && !MountTask.OnAquaticMount())
                                     MountTask.Mount();
                                 Fly(nodes);
                                 return;
@@ -286,9 +289,9 @@ namespace nManager.Wow.Bot.Tasks
                             if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
                                 MountTask.Mount();
                         }
-                        if (MovementManager.FindTarget(inode, 5.5f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius*4.0f) == 0)
+                        if (MovementManager.FindTarget(inode, 5.5f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius * 4.0f) == 0)
                         {
-                            nManagerSetting.AddBlackList(inode.Guid, 1000*20);
+                            nManagerSetting.AddBlackList(inode.Guid, 1000 * 20);
                             _curNode = null;
                             return;
                         }
@@ -348,7 +351,7 @@ namespace nManager.Wow.Bot.Tasks
                         return;
                     }
                     if (CountThisLoot && !ObjectManager.ObjectManager.Me.InCombat)
-                        nManagerSetting.AddBlackList(inode.Guid, 1000*20);
+                        nManagerSetting.AddBlackList(inode.Guid, 1000 * 20);
 
                     Thread.Sleep(1000);
                     if (!_wasLooted)
@@ -389,9 +392,9 @@ namespace nManager.Wow.Bot.Tasks
                 // We had a valid LOOT_READY anyway, with our force loot function, that would have taken < 1 sec to loot anyway.
                 // So let's blacklist inode/unit !
                 if (NodeOrUnit && _curNode != null && _curNode.IsValid)
-                    nManagerSetting.AddBlackList(_curNode.Guid, 60*1000);
+                    nManagerSetting.AddBlackList(_curNode.Guid, 60 * 1000);
                 if (!NodeOrUnit && CurUnit != null && CurUnit.IsValid)
-                    nManagerSetting.AddBlackList(CurUnit.Guid, 60*1000);
+                    nManagerSetting.AddBlackList(CurUnit.Guid, 60 * 1000);
                 _curNode = null;
                 CurUnit = null;
             }

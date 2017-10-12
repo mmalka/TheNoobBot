@@ -25,6 +25,7 @@ namespace nManager.Wow.Helpers
 
         // Movement Manager:
         private static Thread _worker;
+
         private static bool _movement;
         private static bool _loop;
         private static bool _chasing;
@@ -159,7 +160,7 @@ namespace nManager.Wow.Helpers
                     }
                     outputPoints.AddRange(tempPoints);
                 }
-                decimal failPercent = failCounter/inputPoints.Count*100;
+                decimal failPercent = failCounter / inputPoints.Count * 100;
                 if (failPercent > 0)
                 {
                     failPercent = CSharpMath.Round(failPercent, 0);
@@ -431,7 +432,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (_movement && _points.Count > 0)
+                if (_movement && _points.Count > 0 && _points.Count > firstIdPoint)
                 {
                     if (!Usefuls.IsFlying && !Usefuls.IsSwimming && !ObjectManager.ObjectManager.Me.InCombatBlizzard && MountTask.GetMountCapacity() < MountCapacity.Fly)
                         Logging.Write("This profile needs you to be able to fly.");
@@ -507,6 +508,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
+
         private static void AquaticMovementManager(int firstIdPoint)
         {
             try
@@ -518,7 +520,20 @@ namespace nManager.Wow.Helpers
                         MountTask.Mount(false);
                     if (!_movement)
                         return;
-                    if (_points[idPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 30)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) > 200 ||
+                        _points.Count == 1)
+                    {
+                        Logging.WriteNavigator("Long Move distance: " +
+                                               ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]));
+                        LongMove.LongMoveByNewThread(_points[idPoint]);
+                        Thread.Sleep(100);
+                        while (LongMove.IsLongMove && _movement)
+                        {
+                            Thread.Sleep(50);
+                        }
+                        LongMove.StopLongMove();
+                    }
+                    if (!Usefuls.IsSwimming && _points[idPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 30)
                     {
                         bool result;
                         List<Point> path = PathFinder.FindPath(_points[idPoint], out result);
@@ -537,17 +552,24 @@ namespace nManager.Wow.Helpers
                     bool end = false;
                     while ((_movement && !end) && !Usefuls.IsLoading && Usefuls.InGame)
                     {
-                        if (_points[idPoint].Type.ToLower() != "swimming")
+                        if (_points[idPoint].Type.ToLower() != "swimming" && _points[idPoint].Type.ToLower() != "flying")
                         {
                             return;
                         }
 
-                        while (!Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted && MountTask.GetMountCapacity() == MountCapacity.Fly)
+
+                        int druidCombatCheck = 0;
+
+                        while (MountTask.OnFlyMount() && !Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted && MountTask.GetMountCapacity() == MountCapacity.Fly)
                         {
                             // Can also check if we are currently using a flying mount.
                             MovementsAction.Ascend(true);
                             Thread.Sleep(200);
                             MovementsAction.Ascend(false);
+                            if (ObjectManager.ObjectManager.Me.InCombatBlizzard && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.DruidMountId()))
+                                druidCombatCheck++;
+                            if (druidCombatCheck > 8)
+                                break;
                         }
 
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 15 && _movement)
@@ -565,7 +587,8 @@ namespace nManager.Wow.Helpers
                                     idPoint = 0;
                                 }
                             }
-                            _currentTargetedPoint = idPoint;
+                            if (_loop)
+                                _currentTargetedPoint = idPoint;
                             MoveTo(_points[idPoint]);
                         }
                         MoveTo(_points[idPoint]);
@@ -580,6 +603,7 @@ namespace nManager.Wow.Helpers
                 StopMove();
             }
         }
+
 
         /// <summary>
         ///     UnStuck the player.
@@ -621,8 +645,8 @@ namespace nManager.Wow.Helpers
                 // Simply try to jump over or dismount if needed
                 if (_distmountAttempt.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3)
                 {
-                    float dx = 1.0f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
-                    float dy = 1.0f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
+                    float dx = 1.0f * (float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
+                    float dy = 1.0f * (float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
                     var inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
                         ObjectManager.ObjectManager.Me.Position.Z + 2.5f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
@@ -1070,6 +1094,7 @@ namespace nManager.Wow.Helpers
 
         // Move To:
         private static Thread _workerMoveTo;
+
         private static Point _pointTo = new Point();
         private static bool _loopMoveTo;
         private static bool _lastMoveToResult = true;
@@ -1193,17 +1218,17 @@ namespace nManager.Wow.Helpers
                         MountCheckTimer.Reset(); // Only reset if we did not fail because canRemount is activated as it would increase the remounting time overall.
                 }
 
-                var timer = new Timer(1*1000*1);
-                var timerWaypoint = new Timer(1*1000*(30/3));
+                var timer = new Timer(1 * 1000 * 1);
+                var timerWaypoint = new Timer(1 * 1000 * (30 / 3));
                 double distance = (double) position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
                 if (distance > 45)
-                    timerWaypoint = new Timer(1*1000*(distance/3));
+                    timerWaypoint = new Timer(1 * 1000 * (distance / 3));
                 else if (distance > 40)
-                    timerWaypoint = new Timer(1*1000*(45/3));
+                    timerWaypoint = new Timer(1 * 1000 * (45 / 3));
                 else if (distance > 35)
-                    timerWaypoint = new Timer(1*1000*(40/3));
+                    timerWaypoint = new Timer(1 * 1000 * (40 / 3));
                 else if (distance > 30)
-                    timerWaypoint = new Timer(1*1000*(35/3));
+                    timerWaypoint = new Timer(1 * 1000 * (35 / 3));
 
                 Point oldPos = ObjectManager.ObjectManager.Me.Position;
                 bool alerted = false;
@@ -1425,12 +1450,12 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
-                                (obj.Position.X - localPlayerPosition.X)));
+                        CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                            (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= CSharpMath.PI/4)
+                if (dif <= CSharpMath.PI / 4)
                     return;
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
                 if (doMove)
@@ -1455,12 +1480,12 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
-                                (obj.Position.X - localPlayerPosition.X)));
+                        CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                            (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= CSharpMath.PI/4)
+                if (dif <= CSharpMath.PI / 4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1486,12 +1511,12 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
-                                (obj.Position.X - localPlayerPosition.X)));
+                        CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                            (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= CSharpMath.PI/4 && obj.GOType != WoWGameObjectType.FishingHole)
+                if (dif <= CSharpMath.PI / 4 && obj.GOType != WoWGameObjectType.FishingHole)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1517,11 +1542,11 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            CSharpMath.Atan2((position.Y - localPlayerPosition.Y), (position.X - localPlayerPosition.X)));
+                        CSharpMath.Atan2((position.Y - localPlayerPosition.Y), (position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= CSharpMath.PI/4)
+                if (dif <= CSharpMath.PI / 4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1560,7 +1585,7 @@ namespace nManager.Wow.Helpers
                 //if the turning angle is negative
                 if (angle < 0)
                     //add the maximum possible angle (PI x 2) to normalize the negative angle
-                    angle += (float) (CSharpMath.PI*2);
+                    angle += (float) (CSharpMath.PI * 2);
                 return angle;
             }
             catch (Exception exception)
@@ -1661,7 +1686,7 @@ namespace nManager.Wow.Helpers
                 Usefuls.DisMount();
             bool patherResult, requiresUpdate;
             if (specialRange > 0 && specialRange <= 3f)
-                specialRange = (float) (new Random().NextDouble()*2f + 2.5f);
+                specialRange = (float) (new Random().NextDouble() * 2f + 2.5f);
 
             uint baseAddress = UpdateTarget(ref target, out requiresUpdate, isDead, ignoreBlacklist);
             if (LongMove.IsLongMove)
@@ -1675,7 +1700,7 @@ namespace nManager.Wow.Helpers
 
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
             WoWObject tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(target.Guid);
-            if (!InMovement && (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (specialRange > 0 ? specialRange : new Random().NextDouble()*2f + 2.5f) ||
+            if (!InMovement && (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (specialRange > 0 ? specialRange : new Random().NextDouble() * 2f + 2.5f) ||
                                 target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
                                 TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, target.Position, CGWorldFrameHitFlags.HitTestLOS)))
             {
@@ -1711,7 +1736,7 @@ namespace nManager.Wow.Helpers
                 float groundDistance = Math.DistanceListPoint(points);
                 _cacheTargetAddress = baseAddress;
                 _updatePathSpecialTimer = new Timer(2000);
-                _maxTimerForStuckDetection = new Timer((int) (groundDistance/3*1000) + 4000);
+                _maxTimerForStuckDetection = new Timer((int) (groundDistance / 3 * 1000) + 4000);
                 Go(points);
                 return baseAddress;
             }
@@ -1720,7 +1745,7 @@ namespace nManager.Wow.Helpers
             {
                 tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(target.Guid);
                 // Out of range of the position
-                if (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (specialRange > 0 ? specialRange : new Random().NextDouble()*2f + 2.5f) ||
+                if (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (specialRange > 0 ? specialRange : new Random().NextDouble() * 2f + 2.5f) ||
                     target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
                     TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, target.Position, CGWorldFrameHitFlags.HitTestLOS))
                 {
@@ -1751,7 +1776,7 @@ namespace nManager.Wow.Helpers
                         List<Point> points = PathFinder.FindPath(target.Position, out patherResult);
                         if (!patherResult)
                             points.Add(target.Position);
-                        _maxTimerForStuckDetection = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 4000);
+                        _maxTimerForStuckDetection = new Timer((int) (Math.DistanceListPoint(points) / 3 * 1000) + 4000);
                         Go(points);
                         return baseAddress;
                     }
