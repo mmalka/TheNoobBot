@@ -51,8 +51,11 @@ namespace nManager.Wow.Bot.Tasks
                         continue;
                     }
                     _curNode = inode; // we save a inode we potentially bypassed to make sure we run the list.
-                    MovementManager.StopMove();
-                    Logging.Write("Farm " + inode.Name + " (" + inode.Entry + ") > " + inode.Position.X + "; " + inode.Position.Y + "; " + inode.Position.Z);
+                    if (!inode.CanOpen)
+                    {
+                        nManagerSetting.AddBlackList(inode.Guid, 5000);
+                        return;
+                    }
                     float zT;
                     if (ObjectManager.ObjectManager.Me.Position.Z < inode.Position.Z)
                         zT = inode.Position.Z + 5.5f;
@@ -62,9 +65,10 @@ namespace nManager.Wow.Bot.Tasks
                     Point aboveNode = new Point(inode.Position);
                     aboveNode.Z = aboveNode.Z + 2.5f;
                     Point farAboveNode = new Point(aboveNode);
-                    farAboveNode.Z = farAboveNode.Z + 80;
+                    farAboveNode.Z = farAboveNode.Z + 50;
                     if (TraceLine.TraceLineGo(farAboveNode, aboveNode, CGWorldFrameHitFlags.HitTestAllButLiquid))
                     {
+                        MovementManager.StopMove();
                         if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, aboveNode, CGWorldFrameHitFlags.HitTestAllButLiquid))
                         {
                             Logging.Write("Node stuck");
@@ -72,8 +76,13 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                     }
-
-                    MovementManager.StopMove();
+                    else
+                        MovementManager.StopMove();
+                    if (_lastnode != inode.Guid)
+                    {
+                        _lastnode = inode.Guid;
+                        Logging.Write("Farm " + inode.Name + " (" + inode.Entry + ") > " + inode.Position);
+                    }
                     MovementManager.MoveTo(inode.Position.X, inode.Position.Y, zT, true);
 
                     Helpful.Timer timer = new Helpful.Timer((int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) / 3 * 1000) + 5000);
@@ -255,6 +264,11 @@ namespace nManager.Wow.Bot.Tasks
                         continue;
                     }
                     _curNode = inode; // we save a inode we potentially bypassed to make sure we run the list.
+                    if (!inode.CanOpen)
+                    {
+                        nManagerSetting.AddBlackList(inode.Guid, 5000);
+                        return;
+                    }
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) > 5.0f)
                     {
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
@@ -298,7 +312,7 @@ namespace nManager.Wow.Bot.Tasks
                         if (_lastnode != inode.Guid)
                         {
                             _lastnode = inode.Guid;
-                            Logging.Write("Farm " + inode.Name + " > " + inode.Position);
+                            Logging.Write("Ground Farm " + inode.Name + " (" + inode.Entry + ") > " + inode.Position);
                         }
                         if (inode.GetDistance < 5.5f) // max range is usually 5.8-9 yards
                             MovementManager.StopMove();
