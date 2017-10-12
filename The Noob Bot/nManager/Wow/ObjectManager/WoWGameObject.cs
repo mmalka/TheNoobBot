@@ -210,8 +210,8 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     Quaternion q = Rotations;
-                    float angle = (float) System.Math.Atan2(0.0 + (q.X*q.Y + q.Z*q.W)*2.0, 1.0 - (q.Y*q.Y + q.Z*q.Z)*2.0);
-                    return (angle < 0.0f ? angle + (float) (2*System.Math.PI) : angle);
+                    float angle = (float) System.Math.Atan2(0.0 + (q.X * q.Y + q.Z * q.W) * 2.0, 1.0 - (q.Y * q.Y + q.Z * q.Z) * 2.0);
+                    return (angle < 0.0f ? angle + (float) (2 * System.Math.PI) : angle);
                 }
                 catch (Exception e)
                 {
@@ -287,6 +287,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+                    if (Scale > 4 && Scale < 30)
+                        return Position.DistanceTo(ObjectManager.Me.Position) - Scale;
                     return Position.DistanceTo(ObjectManager.Me.Position);
                 }
                 catch (Exception e)
@@ -327,13 +329,13 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                Matrix4.MatrixColumn _x = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixColumn _x = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice, typeof(Matrix4.MatrixColumn));
                 Matrix4.MatrixX X = new Matrix4.MatrixX(_x.m1, _x.m2, _x.m3, _x.m4);
-                Matrix4.MatrixColumn _y = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x10, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixColumn _y = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x10, typeof(Matrix4.MatrixColumn));
                 Matrix4.MatrixY Y = new Matrix4.MatrixY(_y.m1, _y.m2, _y.m3, _y.m4);
-                Matrix4.MatrixColumn _z = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x20, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixColumn _z = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x20, typeof(Matrix4.MatrixColumn));
                 Matrix4.MatrixZ Z = new Matrix4.MatrixZ(_z.m1, _z.m2, _z.m3, _z.m4);
-                Matrix4.MatrixColumn _w = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x30, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixColumn _w = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x30, typeof(Matrix4.MatrixColumn));
                 Matrix4.MatrixW W = new Matrix4.MatrixW(_w.m1, _w.m2, _w.m3, _w.m4);
                 return new Matrix4(X, Y, Z, W);
             }
@@ -367,7 +369,7 @@ namespace nManager.Wow.ObjectManager
                 return
                     Memory.WowMemory.Memory.ReadUInt(
                         Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
-                        (uint) Addresses.GameObject.CachedQuestItem1 + (0x04*offset));
+                        (uint) Addresses.GameObject.CachedQuestItem1 + (0x04 * offset));
             }
             catch (Exception e)
             {
@@ -405,7 +407,7 @@ namespace nManager.Wow.ObjectManager
                 return
                     Memory.WowMemory.Memory.ReadUInt(
                         Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
-                        (uint) Addresses.GameObject.CachedData0 + (0x04*offset));
+                        (uint) Addresses.GameObject.CachedData0 + (0x04 * offset));
             }
             catch (Exception e)
             {
@@ -659,8 +661,8 @@ namespace nManager.Wow.ObjectManager
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_TINKERING: // 12
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING: // 13
                     return SkillLine.None;
-                    //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
-                    //    return SkillLine.Lockpicking;
+                //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
+                //    return SkillLine.Lockpicking;
             }
             return SkillLine.None;
         }
@@ -756,7 +758,7 @@ namespace nManager.Wow.ObjectManager
                                 if (skill == SkillLine.Lockpicking)
                                 {
                                     Spell lockpick = new Spell(1804); // Pick lock
-                                    if (lockpick.KnownSpell && ObjectManager.Me.Level*5 >= reqSkillValue)
+                                    if (lockpick.KnownSpell && ObjectManager.Me.Level * 5 >= reqSkillValue)
                                         return true;
                                     return false;
                                 }

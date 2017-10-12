@@ -1700,6 +1700,21 @@ namespace nManager.Wow.Helpers
 
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
             WoWObject tmpNpc = ObjectManager.ObjectManager.GetObjectByGuid(target.Guid);
+            if (tmpNpc is WoWGameObject && tmpNpc.Position.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 5f && tmpNpc.Position.DistanceZ(ObjectManager.ObjectManager.Me.Position) < 6f)
+            {
+                if (!TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, tmpNpc.Position, 2.0f),
+                    CGWorldFrameHitFlags.HitTestLOS))
+                {
+                    return baseAddress;
+                }
+            }
+            if (tmpNpc is WoWGameObject && tmpNpc.GetDistance < 20)
+            {
+                var tmpObj = tmpNpc as WoWGameObject;
+                if (tmpObj.GetDistance <= specialRange)
+                    return baseAddress;
+            }
+
             if (!InMovement && (target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (specialRange > 0 ? specialRange : new Random().NextDouble() * 2f + 2.5f) ||
                                 target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f && tmpNpc is WoWUnit &&
                                 TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, target.Position, CGWorldFrameHitFlags.HitTestLOS)))

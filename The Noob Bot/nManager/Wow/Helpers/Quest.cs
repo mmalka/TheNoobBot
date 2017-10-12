@@ -282,13 +282,13 @@ namespace nManager.Wow.Helpers
                 uint descriptorsArray =
                     Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
                                                      Descriptors.StartDescriptors);
-                uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
+                uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog * Descriptors.Multiplicator);
 
                 var list = new List<int>();
                 for (int index = 0; index < 50; ++index)
                 {
-                    var pointer = (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index));
-                    var playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject(pointer, typeof (PlayerQuest));
+                    var pointer = (uint) (addressQL + (Marshal.SizeOf(typeof(PlayerQuest)) * index));
+                    var playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject(pointer, typeof(PlayerQuest));
                     if (playerQuest.ID > 0)
                     {
                         list.Add(playerQuest.ID);
@@ -456,7 +456,8 @@ namespace nManager.Wow.Helpers
                 }
             }
             //End target finding based on QuestGiver.
-            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 4.5f)
+            if (mObj.IsValid && mObj.GetDistance <= 4.5f || npc.Position.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 4.5f && npc.Position.DistanceZ(ObjectManager.ObjectManager.Me.Position) < 6f ||
+                npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 4.5f)
             {
                 if (baseAddress <= 0)
                 {
@@ -610,7 +611,8 @@ namespace nManager.Wow.Helpers
             _travelDisabled = false; // reset travel
             ItemInfo equip = null;
             //End target finding based on QuestGiver.
-            if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 4.5f)
+            if (mObj.IsValid && mObj.GetDistance <= 4.5f || npc.Position.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 4.5f && npc.Position.DistanceZ(ObjectManager.ObjectManager.Me.Position) < 6f ||
+                npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 4.5f)
             {
                 if (baseAddress <= 0)
                 {
@@ -735,10 +737,10 @@ namespace nManager.Wow.Helpers
         {
             Logging.Write("Dumping current InternalIndexes for QuestId: " + questId);
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.StartDescriptors);
-            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
+            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog * Descriptors.Multiplicator);
             for (int index = 0; index < 50; ++index)
             {
-                var playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject((uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)), typeof (PlayerQuest));
+                var playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject((uint) (addressQL + (Marshal.SizeOf(typeof(PlayerQuest)) * index)), typeof(PlayerQuest));
                 if (playerQuest.ID == questId)
                 {
                     for (int i = 0; i <= playerQuest.ObjectiveRequiredCounts.Length - 1; i++)
@@ -755,14 +757,14 @@ namespace nManager.Wow.Helpers
             uint descriptorsArray =
                 Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
                                                  Descriptors.StartDescriptors);
-            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
+            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog * Descriptors.Multiplicator);
             for (int index = 0; index < 50; ++index)
             {
                 var playerQuest =
                     (PlayerQuest)
-                        Memory.WowMemory.Memory.ReadObject(
-                            (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
-                            typeof (PlayerQuest));
+                    Memory.WowMemory.Memory.ReadObject(
+                        (uint) (addressQL + (Marshal.SizeOf(typeof(PlayerQuest)) * index)),
+                        typeof(PlayerQuest));
                 if (playerQuest.ID == questId)
                     return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] >= count;
             }
@@ -774,14 +776,14 @@ namespace nManager.Wow.Helpers
             uint descriptorsArray =
                 Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
                                                  Descriptors.StartDescriptors);
-            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
+            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog * Descriptors.Multiplicator);
             for (int index = 0; index < 50; ++index)
             {
                 var playerQuest =
                     (PlayerQuest)
-                        Memory.WowMemory.Memory.ReadObject(
-                            (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
-                            typeof (PlayerQuest));
+                    Memory.WowMemory.Memory.ReadObject(
+                        (uint) (addressQL + (Marshal.SizeOf(typeof(PlayerQuest)) * index)),
+                        typeof(PlayerQuest));
                 if (playerQuest.ID == questId)
                     return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1];
             }
@@ -793,10 +795,10 @@ namespace nManager.Wow.Helpers
             uint descriptorsArray =
                 Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
                                                  Descriptors.StartDescriptors);
-            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
+            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog * Descriptors.Multiplicator);
             for (int index = 0; index < 50; ++index)
             {
-                var playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject((uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)), typeof (PlayerQuest));
+                var playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject((uint) (addressQL + (Marshal.SizeOf(typeof(PlayerQuest)) * index)), typeof(PlayerQuest));
                 if (playerQuest.ID == questId)
                 {
                     return playerQuest.State == PlayerQuest.StateFlag.Failed;

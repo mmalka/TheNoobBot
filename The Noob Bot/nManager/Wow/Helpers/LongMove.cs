@@ -124,8 +124,8 @@ namespace nManager.Wow.Helpers
                                         {
                                             var rnd = new Random();
                                             float radius = rnd.Next(25, 50);
-                                            float x = (float) (pos.X + radius*System.Math.Cos(Math.DegreeToRadian(degree)));
-                                            float y = (float) (pos.Y + radius*System.Math.Sin(Math.DegreeToRadian(degree)));
+                                            float x = (float) (pos.X + radius * System.Math.Cos(Math.DegreeToRadian(degree)));
+                                            float y = (float) (pos.Y + radius * System.Math.Sin(Math.DegreeToRadian(degree)));
                                             Point topPoint = new Point(x, y, pos.Z);
                                             Point bottomPoint = new Point(x, y, PathFinder.GetZPosition(x, y));
                                             if (!TraceLine.TraceLineGo(topPoint, new Point(topPoint.LerpByDistance(point, 3f)), CGWorldFrameHitFlags.HitTestAllButLiquid))
@@ -194,7 +194,7 @@ namespace nManager.Wow.Helpers
                     {
                         if (RegenPath.IsReady && ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f)
                         {
-                            RegenPath = new Timer(1000*60);
+                            RegenPath = new Timer(1000 * 60);
                             List<Point> getFullPath = PathFinder.FindPath(point);
                             MovementManager.Go(getFullPath);
                             RegenPath.Reset();
