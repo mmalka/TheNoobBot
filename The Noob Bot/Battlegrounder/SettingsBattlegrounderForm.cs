@@ -59,7 +59,7 @@ namespace Battlegrounder
             RequeueAfterXMinutesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.RequeueAfterXMinutes);
             SaveButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Settings_Battlegrounder) + " - " + Information.MainTitle;
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
         }
 
         private void SaveButtonClick(object sender,

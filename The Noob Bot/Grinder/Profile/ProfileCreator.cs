@@ -71,7 +71,7 @@ namespace Grinder.Profile
             addTargetEntryB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Target);
             labelX8.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Ids);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
         }
 
         private void saveB_Click(object sender, EventArgs ex)

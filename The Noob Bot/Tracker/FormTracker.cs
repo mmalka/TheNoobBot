@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using nManager;
+using nManager.Helpful;
 using nManager.Products;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
@@ -26,7 +27,7 @@ namespace Tracker
             TrackByObjectTypeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Object_type) + ":";
             TrackByCreatureTypeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Creature_type) + ":";
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Tracker);
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
         }
 
         private void ConfigForm()

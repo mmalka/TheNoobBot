@@ -33,7 +33,7 @@ namespace Grinder.Bot
             SelectProfileLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Profile) + ":";
             ProfileCreatorButton.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Load_Profile) + " Grinder";
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
         }
 
         private void RefreshProfileList()

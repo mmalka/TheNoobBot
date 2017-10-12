@@ -41,7 +41,7 @@ namespace nManager.Helpful.Forms
         private void Translate()
         {
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Developer_Tools) + @" - " + Information.MainTitle;
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
             LuaExecButton.Text = nManager.Translate.Get(nManager.Translate.Id.LuaExecButton);
             GpsButton.Text = nManager.Translate.Get(nManager.Translate.Id.GpsButton);
             TargetInfoButton.Text = nManager.Translate.Get(nManager.Translate.Id.TargetInfoButton);

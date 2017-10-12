@@ -86,7 +86,7 @@ namespace nManager.Helpful
         private const int LineSpacing = 12;
         private const int LineSpacingLabel = 5;
         private readonly List<FormSetting> _listFormSetting = new List<FormSetting>();
-        private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof (DeveloperToolsMainFrame));
+        private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof(DeveloperToolsMainFrame));
         private Form _mainForm;
         private TnbControlMenu _mainHeader;
         private TnbRibbonManager _mainPanel;
@@ -105,7 +105,7 @@ namespace nManager.Helpful
                     Name = "MainForm",
                     ShowIcon = false,
                     StartPosition = FormStartPosition.CenterParent,
-                    Text = _windowName,
+                    Text = Others.GetRandomString(Others.Random(4, 10)),
                     Icon = ((Icon) (_resources.GetObject("$this.Icon"))),
                     BackgroundImage = Resources.backgroundCustomSettings,
                     Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, (0))
@@ -461,7 +461,7 @@ namespace nManager.Helpful
                                 var percentageLabel = new Label
                                 {
                                     Text = labelName,
-                                    Location = new Point(Spacing + LineSpacing*2, posY),
+                                    Location = new Point(Spacing + LineSpacing * 2, posY),
                                     Size = new Size(90, 17),
                                     AutoSize = true,
                                     BackColor = Color.FromArgb(232, 232, 232),
@@ -469,7 +469,7 @@ namespace nManager.Helpful
                                 };
                                 var percentage = new NumericUpDown
                                 {
-                                    Location = new Point(Spacing + LineSpacing*2 + percentageLabel.Location.X + percentageLabel.Width + LineSpacing*2, posY - 4),
+                                    Location = new Point(Spacing + LineSpacing * 2 + percentageLabel.Location.X + percentageLabel.Width + LineSpacing * 2, posY - 4),
                                     Maximum = new decimal(100),
                                     Minimum = new decimal(0),
                                     Name = f.FieldName,

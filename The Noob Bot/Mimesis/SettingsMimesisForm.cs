@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms;
 using Mimesis.Bot;
 using nManager;
+using nManager.Helpful;
 
 namespace Mimesis
 {
@@ -25,7 +26,7 @@ namespace Mimesis
             ActivatePartyModeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ActivatePartyMode);
             SaveAndCloseButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Settings_Mimesis);
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
             ActivatePartyMode.OnText = onText;
             ActivatePartyMode.OffText = offText;
         }

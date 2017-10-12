@@ -44,7 +44,7 @@ namespace Battlegrounder.Profile
             DeleteButtonBlackListRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             AddToBlackList.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
         }
 
         private void SaveButton_Click(object sender,

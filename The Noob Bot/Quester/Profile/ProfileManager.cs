@@ -27,7 +27,7 @@ namespace Quester.Profile
         private void Translate()
         {
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileManagementSystem) + Information.MainTitle;
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
 
             ProfileManagerGroupedLabel.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager);
             ProfileManagerSimpleLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager);

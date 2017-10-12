@@ -292,7 +292,7 @@ namespace nManager.Helpful.Forms
             MakeStackOfElementalsItemsLabel.Text = Translate.Get(Translate.Id.Auto_Make_Elemental);
             SetToolTypeIfNeeded(MakeStackOfElementalsItemsLabel);
             MainHeader.TitleText = Translate.Get(Translate.Id.General_Settings) + " - " + Information.MainTitle;
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
             AllowTNBToSetYourMaxFpsLabel.Text = Translate.Get(Translate.Id.Uncap_MaxFPS);
             SetToolTypeIfNeeded(AllowTNBToSetYourMaxFpsLabel);
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);

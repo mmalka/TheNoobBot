@@ -41,7 +41,7 @@ namespace Quester.Profile
         private void Translate()
         {
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager) + " - " + Information.MainTitle;
-            this.Text = MainHeader.TitleText;
+            this.Text = Others.GetRandomString(Others.Random(4, 10));
             AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles).ToUpper();
             CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles).ToUpper();
             if (toolTip == null)
