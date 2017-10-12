@@ -265,6 +265,11 @@ namespace nManager.Wow.Bot.States
                 {
                     if (TravelFrom.DistanceTo(TravelTo) < 6f)
                     {
+                        TravelToContinentId = 9999999;
+                        TravelTo = new Point();
+                        TravelFrom = new Point();
+                        ForceTravel = false;
+                        TargetValidationFct = null;
                         Logging.Write("Cancel Travel, too close.");
                         return new List<Transport>();
                     }
@@ -557,6 +562,12 @@ namespace nManager.Wow.Bot.States
             else if (selectedTransport is CustomPath)
             {
                 var customPath = selectedTransport as CustomPath;
+                if (customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)].DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5)
+                {
+                    MovementManager.MoveToLocation(customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)]);
+                    Thread.Sleep(1000);
+                    return;
+                }
                 if (!failed)
                     Logging.Write("Going to CustomPath " + customPath.Name + " (" + customPath.Id + ") to travel.");
                 List<Point> pathToCustomPath = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint);
@@ -573,7 +584,8 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(100);
                 }
                 MovementManager.StopMove();
-                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint) >= 2.0f)
+                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint) >= 2.0f &&
+                    customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                     GoToDepartureQuayOrPortal(selectedTransport, true);
             }
             else if (selectedTransport is Taxi)
@@ -774,22 +786,32 @@ namespace nManager.Wow.Bot.States
                 {
                     if (ObjectManager.ObjectManager.Me.IsDeadMe)
                         return false;
-                    if ((customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint).DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
+                    if ((customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint).DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f &&
+                        Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position) > 4.0f)
                     {
-                        bool validArrivalPath;
-                        bool validEntrancePath;
-                        var pathToArrival = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.APoint : customPath.BPoint, out validArrivalPath);
-                        var pathToEntrance = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint, out validEntrancePath);
-                        if (validArrivalPath)
+                        var nearestPoint = Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position);
+                        if (customPath.Points[nearestPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 10 && !TraceLine.TraceLineGo(customPath.Points[nearestPoint]))
                         {
-                            if (!validEntrancePath)
-                                return false;
-                            if (Math.DistanceListPoint(pathToArrival) <= Math.DistanceListPoint(pathToEntrance))
-                                return false; // we are closer to arrival, return instead of going back to entrance.
+                            MovementManager.MoveToLocation(customPath.Points[nearestPoint]);
+                            Thread.Sleep(2000);
                         }
-                        GoToDepartureQuayOrPortal(selectedTransport);
-                        EnterTransportOrTakePortal(selectedTransport);
-                        return false;
+                        else
+                        {
+                            bool validArrivalPath;
+                            bool validEntrancePath;
+                            var pathToArrival = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.APoint : customPath.BPoint, out validArrivalPath);
+                            var pathToEntrance = PathFinder.FindPath(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint, out validEntrancePath);
+                            if (validArrivalPath)
+                            {
+                                if (!validEntrancePath)
+                                    return false;
+                                if (Math.DistanceListPoint(pathToArrival) <= Math.DistanceListPoint(pathToEntrance))
+                                    return false; // we are closer to arrival, return instead of going back to entrance.
+                            }
+                            GoToDepartureQuayOrPortal(selectedTransport);
+                            EnterTransportOrTakePortal(selectedTransport);
+                            return false;
+                        }
                     }
                     // We are at the beginning of the path.
                     List<Point> path = customPath.Points;
