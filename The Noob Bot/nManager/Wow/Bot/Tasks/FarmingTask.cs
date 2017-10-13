@@ -18,14 +18,14 @@ namespace nManager.Wow.Bot.Tasks
         public static bool CountThisLoot;
         public static bool NodeOrUnit; // true = node / false = unit
 
-        public static void Pulse(IEnumerable<WoWGameObject> nodes)
+        public static void Pulse(IEnumerable<WoWGameObject> nodes, bool ignoreCanOpen = false)
         {
             try
             {
                 if (Usefuls.IsFlying || Usefuls.IsSwimming)
-                    Fly(nodes);
+                    Fly(nodes, ignoreCanOpen);
                 else
-                    Ground(nodes);
+                    Ground(nodes, ignoreCanOpen);
             }
             catch (Exception ex)
             {
@@ -33,7 +33,7 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        private static void Fly(IEnumerable<WoWGameObject> nodes)
+        private static void Fly(IEnumerable<WoWGameObject> nodes, bool ignoreCanOpen = false)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace nManager.Wow.Bot.Tasks
                         continue;
                     }
                     _curNode = inode; // we save a inode we potentially bypassed to make sure we run the list.
-                    if (!inode.CanOpen)
+                    if (!inode.CanOpen && !ignoreCanOpen)
                     {
                         nManagerSetting.AddBlackList(inode.Guid, 5000);
                         return;
@@ -246,7 +246,7 @@ namespace nManager.Wow.Bot.Tasks
         private static WoWGameObject _curNode;
         public static WoWUnit CurUnit;
 
-        private static void Ground(IEnumerable<WoWGameObject> nodes)
+        private static void Ground(IEnumerable<WoWGameObject> nodes, bool ignoreCanOpen = false)
         {
             try
             {
@@ -264,7 +264,7 @@ namespace nManager.Wow.Bot.Tasks
                         continue;
                     }
                     _curNode = inode; // we save a inode we potentially bypassed to make sure we run the list.
-                    if (!inode.CanOpen)
+                    if (!inode.CanOpen && !ignoreCanOpen)
                     {
                         nManagerSetting.AddBlackList(inode.Guid, 5000);
                         return;
