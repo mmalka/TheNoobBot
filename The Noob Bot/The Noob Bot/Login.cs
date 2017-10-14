@@ -39,14 +39,17 @@ namespace The_Noob_Bot
             }
         }
 
-        public void AutoStart(int sessId, string productName, string profileName, string battleNet, string wowEmail, string wowPassword, string realmName, string character, bool loginInfoProvided)
+        public void AutoStart(int sessId, string productName, string profileName, string battleNet, string wowEmail, string wowPassword, string realmName, string character,
+            bool loginInfoProvided)
         {
             _autoStarted = sessId;
             nManagerSetting.AutoStartLoggingInfoProvided = loginInfoProvided;
-            if (string.IsNullOrEmpty(productName)) return;
+            if (string.IsNullOrEmpty(productName))
+                return;
             nManagerSetting.AutoStartProduct = true;
             nManagerSetting.AutoStartProductName = productName;
-            if (string.IsNullOrEmpty(profileName)) return;
+            if (string.IsNullOrEmpty(profileName))
+                return;
             // following is facultative
             nManagerSetting.AutoStartProfileName = profileName;
             nManagerSetting.AutoStartBattleNet = battleNet;
@@ -212,15 +215,7 @@ namespace The_Noob_Bot
                         LoginButton_Click(new object(), new EventArgs());
                     }
                 }
-                /*DialogResult resulMb = MessageBox.Show("It seems that there is a serious dynamic detection running in the WoW client as we speak, do you wanna close the bot (Yes) or take the risk (No) ?",
-                    @"WARNING / ATTENTION / ARTUNG / внимание / 注意",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                if (resulMb == DialogResult.Yes)
-                {
-                    Process.Start("https://goo.gl/TtMsEh");
-                    Process.GetCurrentProcess().Kill();
-                }
-                Process.Start("https://goo.gl/TtMsEh");*/
+                /*Process.Start("https://goo.gl/TtMsEh");*/
                 //else
                 //    MessageBox.Show(@"Blizzard is currently very active in the Anti-Bot fight and it may not be wise to use the bot at that very moment in time.", @"WARNING / ATTENTION / ARTUNG / внимание / 注意");
                 /* End AutoStart code */
@@ -283,7 +278,8 @@ namespace The_Noob_Bot
                 {
                     Application.DoEvents();
                     Process AbortUpdate = Updater[i];
-                    if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck)) continue;
+                    if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck))
+                        continue;
                     AbortUpdate.Kill();
                     break;
                 }
@@ -411,7 +407,8 @@ namespace The_Noob_Bot
         private void Identifier_Enter(object sender, EventArgs e)
         {
             FormFocusLogin.Visible = true;
-            if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier) || Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormKey))
+            if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier) ||
+                Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormKey))
             {
                 Identifier.Text = "";
                 Identifier.ForeColor = Color.FromArgb(118, 118, 118);

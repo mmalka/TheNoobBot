@@ -23,6 +23,21 @@ namespace The_Noob_Bot
                     "The new name should not contains the words: \"bot, noob, tnb\"", "Security Warning - Follow instructions to avoid automatic detections.");
                 Process.GetCurrentProcess().Kill();
             }
+            if (!processName.Contains("vshost"))
+            {
+                DialogResult resulMb = MessageBox.Show(
+                    "World of Warcraft 7.3 is able to detect any hacks or bots, including passives tools. (pixels bot, etc) " +
+                    Environment.NewLine +
+                    "Do you want to ignore this warning and run the bot anyway ?",
+                    @"WARNING / ATTENTION / ARTUNG / внимание / 注意",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (resulMb != DialogResult.Yes)
+                {
+                    MessageBox.Show("You probably made the right decision. We'll notify you if we find a way to effectively protect the bot against detections.");
+                    Process.GetCurrentProcess().Kill();
+                }
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var loginForm = new Login();
@@ -40,7 +55,8 @@ namespace The_Noob_Bot
                 string character = Others.DecryptString(ExtractArgs(args, "character"));
                 bool loginInfoProvided = false;
                 Logging.Write("TheNoobBot started automatically. WoW Session Id = " + sId);
-                if (!string.IsNullOrEmpty(battleNet) && !string.IsNullOrEmpty(wowEmail) && !string.IsNullOrEmpty(wowPassword) && !string.IsNullOrEmpty(realmName) && !string.IsNullOrEmpty(character))
+                if (!string.IsNullOrEmpty(battleNet) && !string.IsNullOrEmpty(wowEmail) && !string.IsNullOrEmpty(wowPassword) && !string.IsNullOrEmpty(realmName) &&
+                    !string.IsNullOrEmpty(character))
                 {
                     Logging.Write("The game will be connected automatically with player " + character + " if not yet connected.");
 
