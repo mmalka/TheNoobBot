@@ -14,6 +14,8 @@ using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.MemoryClass
 {
+    using System.Collections.Generic;
+
     /// <summary>
     ///     Hook endscene for injection
     /// </summary>
@@ -131,6 +133,34 @@ namespace nManager.Wow.MemoryClass
             fasm.Inject((uint) (_mTrampolineDX + D3D.OriginalBytesDX.Length));
         }
 
+        /// <summary>
+        /// Get Random ASM line.
+        /// </summary>
+        /// <returns></returns>
+        internal static string ProtectHook()
+        {
+            List<string> asm = new List<string> {"mov edx, edx", "mov edi, edi", "xchg ebp, ebp", "mov esp, esp", "xchg esp, esp", "xchg edx, edx", "mov edi, edi"};
+
+
+            // asm.Add("nop");
+
+            // asm.Add( "mov eax, eax");
+
+            //   asm.Add("xchg eax, eax");
+
+            try
+            {
+                int n = Others.Random(0, asm.Count - 1);
+                return asm[n];
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("ProtectHook(): " + e);
+
+                return "mov eax, eax";
+            }
+        }
+
         private void CreateTrampoline()
         {
             _mTrampoline = Memory.AllocateMemory(0x1000);
@@ -176,7 +206,20 @@ namespace nManager.Wow.MemoryClass
             {
                 if (!allowOffline && (!Helpers.Usefuls.InGame || Helpers.Usefuls.IsLoading))
                     return 0;
-                return (uint) Wow.Memory.WowProcess.Executor.Call(asm);
+                List<string> asmCode = new List<string>();
+                foreach (string s in asm)
+                {
+                    asmCode.Add(s);
+                    if (Others.Random(0, 100) > 50)
+                    {
+                        int nR = Others.Random(1, 3);
+                        for (int i = nR; i >= 1; i--)
+                        {
+                            asmCode.Add(ProtectHook());
+                        }
+                    }
+                }
+                return (uint) Wow.Memory.WowProcess.Executor.Call(asmCode.ToArray());
                 if (!ThreadHooked)
                     return 0;
                 var fasm = new ManagedFasm(Memory.ProcessHandle);
@@ -328,8 +371,7 @@ namespace nManager.Wow.MemoryClass
                                 // Offsets seems to have changed.
                                 MessageBox.Show(
                                     Translate.Get(Translate.Id.UpdateRequiredCases) + Environment.NewLine + Environment.NewLine + Translate.Get(Translate.Id.UpdateRequiredCase1) +
-                                    Environment.NewLine + Translate.Get(Translate.Id.UpdateRequiredCase2),
-                                    Translate.Get(Translate.Id.UpdateRequiredCasesTitle));
+                                    Environment.NewLine + Translate.Get(Translate.Id.UpdateRequiredCase2), Translate.Get(Translate.Id.UpdateRequiredCasesTitle));
                                 return;
                             }
                             // Offsets has not changed, but may have a function offsets changes. We may need to create a integrated function offsets pattern finder in that case.
@@ -337,17 +379,17 @@ namespace nManager.Wow.MemoryClass
                             {
                                 MessageBox.Show(
                                     Translate.Get(Translate.Id.UpdateRequireOlderTheNoobBot) + Information.TargetWowVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) +
-                                    Information.TargetWowBuild +
-                                    Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) + Environment.NewLine +
-                                    Environment.NewLine + Translate.Get(Translate.Id.PleaseDownloadOlder), Translate.Get(Translate.Id.UpdateRequireOlderTheNoobBotTitle));
+                                    Information.TargetWowBuild + Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) +
+                                    Environment.NewLine + Environment.NewLine + Translate.Get(Translate.Id.PleaseDownloadOlder),
+                                    Translate.Get(Translate.Id.UpdateRequireOlderTheNoobBotTitle));
                             }
                             if (Information.TargetWowBuild < wowBuildVersion)
                             {
                                 MessageBox.Show(
                                     Translate.Get(Translate.Id.UpdateRequireNewerTheNoobBot) + Information.TargetWowVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) +
-                                    Information.TargetWowBuild +
-                                    Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) + Environment.NewLine +
-                                    Environment.NewLine + Translate.Get(Translate.Id.PleaseDownloadNewer), Translate.Get(Translate.Id.UpdateRequireNewerTheNoobBotTitle));
+                                    Information.TargetWowBuild + Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) +
+                                    Environment.NewLine + Environment.NewLine + Translate.Get(Translate.Id.PleaseDownloadNewer),
+                                    Translate.Get(Translate.Id.UpdateRequireNewerTheNoobBotTitle));
                             }
                             return;
                         }
@@ -584,7 +626,9 @@ namespace nManager.Wow.MemoryClass
                 // 
                 System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(processId);
                 uint baseModule = 0;
-                foreach (ProcessModule v in from ProcessModule v in memory.Modules where String.Equals(v.ModuleName, (processById.ProcessName + ".exe"), StringComparison.CurrentCultureIgnoreCase) select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules
+                    where String.Equals(v.ModuleName, (processById.ProcessName + ".exe"), StringComparison.CurrentCultureIgnoreCase)
+                    select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }
@@ -610,12 +654,13 @@ namespace nManager.Wow.MemoryClass
                 // 
                 System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(processId);
                 uint baseModule = 0;
-                foreach (ProcessModule v in from ProcessModule v in memory.Modules where String.Equals(v.ModuleName, (processById.ProcessName + ".exe"), StringComparison.CurrentCultureIgnoreCase) select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules
+                    where String.Equals(v.ModuleName, (processById.ProcessName + ".exe"), StringComparison.CurrentCultureIgnoreCase)
+                    select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }
-                return (memory.ReadInt(baseModule + (uint) Addresses.GameInfo.isLoading) == 0) &&
-                       (memory.ReadByte(baseModule + (uint) Addresses.GameInfo.gameState) > 0);
+                return (memory.ReadInt(baseModule + (uint) Addresses.GameInfo.isLoading) == 0) && (memory.ReadByte(baseModule + (uint) Addresses.GameInfo.gameState) > 0);
             }
             catch (Exception e)
             {
