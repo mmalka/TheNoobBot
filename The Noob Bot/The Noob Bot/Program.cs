@@ -7,9 +7,6 @@ using nManager.Wow.Helpers;
 
 namespace The_Noob_Bot
 {
-    using System.IO;
-    using System.Threading;
-
     internal static class Program
     {
         /// <summary>
@@ -19,56 +16,6 @@ namespace The_Noob_Bot
         private static void Main(string[] args)
         {
             var processName = Process.GetCurrentProcess().ProcessName.ToLower();
-            /*if (!processName.Contains("vshost"))
-            {
-                bool doConfuse = false;
-                if (File.Exists(Application.StartupPath + "\\Settings\\security.txt"))
-                {
-                    string res = Others.ReadFile(Application.StartupPath + "\\Settings\\security.txt");
-                    var newProc = Process.GetCurrentProcess().ProcessName + ".exe";
-                    if (res.ToLower() != newProc.ToLower())
-                    {
-                        doConfuse = true;
-                    }
-                }
-                else
-                    doConfuse = true;
-                if (doConfuse)
-                {
-                    Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
-                    int random = Others.Random(10, 1000);
-                    string tnbExe = Process.GetCurrentProcess().ProcessName + random + ".exe";
-                    File.Copy(Process.GetCurrentProcess().ProcessName + ".exe", tnbExe, true);
-                    Thread.Sleep(50);
-                    var sw = new StreamWriter(Application.StartupPath + "\\Settings\\security.crproj");
-                    sw.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-                    sw.WriteLine("<project outputDir=\"" + Application.StartupPath + "\\\" snKey=\"\" preset=\"minimum\" xmlns=\"http://confuser.codeplex.com\">");
-                    sw.WriteLine("  <assembly path=\"" + Application.StartupPath + "\\" + tnbExe + "\" />");
-                    sw.WriteLine("</project>");
-                    sw.Close();
-
-                    sw = new StreamWriter(Application.StartupPath + "\\Settings\\security.txt");
-                    sw.WriteLine(tnbExe);
-                    sw.Close();
-                    Thread.Sleep(50);
-                    Process process = new Process();
-                    ProcessStartInfo startInfo = new ProcessStartInfo
-                    {
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        FileName = Application.StartupPath + "\\bin\\Confuser.Console.exe ",
-                        Arguments = Application.StartupPath + "\\Settings\\security.crproj"
-                    };
-                    process.StartInfo = startInfo;
-                    process.Start();
-                    Thread.Sleep(50);
-
-                    Process.Start(Application.StartupPath + "\\" + tnbExe);
-                    Thread.Sleep(50);
-                    File.Move(Process.GetCurrentProcess().ProcessName + ".exe", "./bin/old");
-                    Process.GetCurrentProcess().Kill();
-                }
-            }*/
-
             if (!processName.Contains("vshost") && (processName.Contains("bot") || processName.Contains("noob") || processName.Contains("tnb")))
             {
                 MessageBox.Show(
@@ -93,8 +40,7 @@ namespace The_Noob_Bot
                 string character = Others.DecryptString(ExtractArgs(args, "character"));
                 bool loginInfoProvided = false;
                 Logging.Write("TheNoobBot started automatically. WoW Session Id = " + sId);
-                if (!string.IsNullOrEmpty(battleNet) && !string.IsNullOrEmpty(wowEmail) && !string.IsNullOrEmpty(wowPassword) && !string.IsNullOrEmpty(realmName) &&
-                    !string.IsNullOrEmpty(character))
+                if (!string.IsNullOrEmpty(battleNet) && !string.IsNullOrEmpty(wowEmail) && !string.IsNullOrEmpty(wowPassword) && !string.IsNullOrEmpty(realmName) && !string.IsNullOrEmpty(character))
                 {
                     Logging.Write("The game will be connected automatically with player " + character + " if not yet connected.");
 

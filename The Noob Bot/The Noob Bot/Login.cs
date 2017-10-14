@@ -39,17 +39,14 @@ namespace The_Noob_Bot
             }
         }
 
-        public void AutoStart(int sessId, string productName, string profileName, string battleNet, string wowEmail, string wowPassword, string realmName, string character,
-            bool loginInfoProvided)
+        public void AutoStart(int sessId, string productName, string profileName, string battleNet, string wowEmail, string wowPassword, string realmName, string character, bool loginInfoProvided)
         {
             _autoStarted = sessId;
             nManagerSetting.AutoStartLoggingInfoProvided = loginInfoProvided;
-            if (string.IsNullOrEmpty(productName))
-                return;
+            if (string.IsNullOrEmpty(productName)) return;
             nManagerSetting.AutoStartProduct = true;
             nManagerSetting.AutoStartProductName = productName;
-            if (string.IsNullOrEmpty(profileName))
-                return;
+            if (string.IsNullOrEmpty(profileName)) return;
             // following is facultative
             nManagerSetting.AutoStartProfileName = profileName;
             nManagerSetting.AutoStartBattleNet = battleNet;
@@ -127,7 +124,6 @@ namespace The_Noob_Bot
                 sw.WriteLine("    <loadFromRemoteSources enabled=\"true\"/>");
                 sw.WriteLine("    <assemblyBinding xmlns=\"urn:schemas-microsoft-com:asm.v1\">");
                 sw.WriteLine("    <probing privatePath=\"products\"/>");
-                sw.WriteLine("    <probing privatePath=\"bin\"/>");
                 sw.WriteLine("  </assemblyBinding>");
                 sw.WriteLine("  </runtime>");
                 sw.WriteLine("</configuration>");
@@ -136,15 +132,6 @@ namespace The_Noob_Bot
                 {
                     Process.Start(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe");
                     tempsProcess.Kill();
-                }
-
-                if (!tempsProcess.ProcessName.Contains("vshost"))
-                {
-                    string random = Others.GetRandomString(Others.Random(4, 10));
-                    string tnbExe = random + ".exe";
-                    File.Copy(Process.GetCurrentProcess().ProcessName + ".exe", tnbExe, true);
-                    File.Move(Process.GetCurrentProcess().ProcessName + ".exe", "old");
-                    File.Move(Process.GetCurrentProcess().ProcessName + ".exe.config", tnbExe + ".config");
                 }
 
                 LangSelection.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -296,8 +283,7 @@ namespace The_Noob_Bot
                 {
                     Application.DoEvents();
                     Process AbortUpdate = Updater[i];
-                    if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck))
-                        continue;
+                    if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck)) continue;
                     AbortUpdate.Kill();
                     break;
                 }
@@ -425,8 +411,7 @@ namespace The_Noob_Bot
         private void Identifier_Enter(object sender, EventArgs e)
         {
             FormFocusLogin.Visible = true;
-            if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier) ||
-                Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormKey))
+            if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier) || Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormKey))
             {
                 Identifier.Text = "";
                 Identifier.ForeColor = Color.FromArgb(118, 118, 118);
