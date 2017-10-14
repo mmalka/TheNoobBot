@@ -10,6 +10,8 @@ using nManager.Helpful;
 
 namespace nManager.Wow.MemoryClass
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Class that allow calling code by the message handler thread in a remote process
     /// </summary>
@@ -74,7 +76,6 @@ namespace nManager.Wow.MemoryClass
                 "mov eax, [esp+0x8]", // Get the message code from the stack
                 "cmp eax, " + m_CustomMessageCode + "", // Check if the message code is our custom one
                 "jne @call_original", // Otherwise simply call the original WndProc
-                
                 "mov eax, [esp+0xC]", // Function pointer
                 "mov edx, [esp+0x10]", // Result pointer
                 "push edx", // Save result pointer
@@ -124,8 +125,7 @@ namespace nManager.Wow.MemoryClass
             try
             {
                 IntPtr l_User32 = GetModuleHandle("user32.dll");
-                IntPtr l_SetWindowLongW = GetProcAddress(l_User32,
-                    "SetWindowLongW");
+                IntPtr l_SetWindowLongW = GetProcAddress(l_User32, "SetWindowLongW");
 
                 // Restore the original WndProc callback
                 var l_Mnemonics = new[]
@@ -137,7 +137,20 @@ namespace nManager.Wow.MemoryClass
                     "call " + l_SetWindowLongW + "",
                     "retn"
                 };
-                m_Process.Yasm.InjectAndExecute(l_Mnemonics);
+                List<string> asmCode = new List<string>();
+                foreach (string s in l_Mnemonics)
+                {
+                    asmCode.Add(s);
+                    if (Others.Random(0, 100) > 50)
+                    {
+                        int nR = Others.Random(1, 3);
+                        for (int i = nR; i >= 1; i--)
+                        {
+                            asmCode.Add(Hook.ProtectHook());
+                        }
+                    }
+                }
+                m_Process.Yasm.InjectAndExecute(asmCode.ToArray());
 
                 if (m_Data != null)
                     m_Data.Dispose();
@@ -156,6 +169,20 @@ namespace nManager.Wow.MemoryClass
         /// <returns></returns>
         public IntPtr Call(string[] p_Mnemonics, uint p_BufferSize = 0x1000)
         {
+            List<string> asmCode = new List<string>();
+            foreach (string s in p_Mnemonics)
+            {
+                asmCode.Add(s);
+                if (Others.Random(0, 100) > 50)
+                {
+                    int nR = Others.Random(1, 3);
+                    for (int i = nR; i >= 1; i--)
+                    {
+                        asmCode.Add(Hook.ProtectHook());
+                    }
+                }
+            }
+            p_Mnemonics = asmCode.ToArray();
             using (var l_Buffer = m_Process.MemoryManager.AllocateMemory(p_BufferSize))
             {
                 m_Process.Yasm.Inject(p_Mnemonics, l_Buffer.Pointer);
