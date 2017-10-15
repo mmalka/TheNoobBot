@@ -73,6 +73,8 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
+        public static Point LastKnownFlyablePoint = new Point();
+
         public static MountCapacity GetMountCapacity(bool ignoreDeactivatedFlyMount = false)
         {
             if (!AllowMounting || Usefuls.PlayerUsingVehicle || ObjectManager.ObjectManager.Me.IsDead)
@@ -126,7 +128,8 @@ namespace nManager.Wow.Bot.Tasks
                 return MountCapacity.Feet;
             if (_groundMount == string.Empty && _flyMount == string.Empty && _aquaMount == string.Empty)
             {
-                if (((ObjectManager.ObjectManager.Me.Level >= 20 && Skill.GetValue(SkillLine.Riding) > 0) || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16)) &&
+                if (((ObjectManager.ObjectManager.Me.Level >= 20 && Skill.GetValue(SkillLine.Riding) > 0) ||
+                     (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16)) &&
                     _noMountsInSettings != 1)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.No_mounts_in_settings));
@@ -142,7 +145,8 @@ namespace nManager.Wow.Bot.Tasks
                 return MountCapacity.Feet; // mount later if we don't have enough space at the moment.
 
             // Wherever we are if we have an aquatic mount and are swimming
-            if (((ObjectManager.ObjectManager.Me.Level >= 20 && Skill.GetValue(SkillLine.Riding) > 0) || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 18)) &&
+            if (((ObjectManager.ObjectManager.Me.Level >= 20 && Skill.GetValue(SkillLine.Riding) > 0) ||
+                 (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 18)) &&
                 Usefuls.IsSwimming &&
                 _aquaMount != string.Empty)
             {
@@ -169,42 +173,49 @@ namespace nManager.Wow.Bot.Tasks
                 if (ObjectManager.ObjectManager.Me.HaveBuff(178256)) // Panicked Rush
                     return MountCapacity.Feet; // Tannan Jungle Intro to leave to the docks.
 
-                if ((ObjectManager.ObjectManager.Me.Level >= 60 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 58)) && _flyMount != string.Empty &&
+                if ((ObjectManager.ObjectManager.Me.Level >= 60 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 58)) &&
+                    _flyMount != string.Empty &&
                     Usefuls.IsFlyableArea && (!nManagerSetting.CurrentSetting.DeactivateFlyingMount || ignoreDeactivatedFlyMount))
                 {
                     ContinentId cont = (ContinentId) Usefuls.ContinentId;
-
-                    if (_brokenIslesFly && cont == ContinentId.BrokenIsles)
-                        return MountCapacity.Fly;
+                    bool canFly = _brokenIslesFly && cont == ContinentId.BrokenIsles;
 
                     // We are in Draenor and we have the achievement
-                    if (_dreaneorFly && (cont == ContinentId.Draenor || Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) == "TanaanJungle"))
-                        return MountCapacity.Fly;
+                    if (!canFly && _dreaneorFly && (cont == ContinentId.Draenor || Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) == "TanaanJungle"))
+                        canFly = true;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
-                    if (_wisdom4Winds && cont == ContinentId.Pandaria)
-                        return MountCapacity.Fly;
+                    if (!canFly && _wisdom4Winds && cont == ContinentId.Pandaria)
+                        canFly = true;
 
                     // We are in Northfend with "Cold Weather Flying" aura
-                    if (_coldWeather && cont == ContinentId.Northrend)
-                        return MountCapacity.Fly;
+                    if (!canFly && _coldWeather && cont == ContinentId.Northrend)
+                        canFly = true;
 
                     // We are in Azeroth/Kalimdor/Deptholm with "Flight Master's License" aura
-                    if (_flightMasterLicense &&
+                    if (!canFly && _flightMasterLicense &&
                         (cont == ContinentId.Azeroth || cont == ContinentId.Kalimdor || cont == ContinentId.Maelstrom || cont == ContinentId.AllianceGunship))
-                        return MountCapacity.Fly;
+                        canFly = true;
 
                     // We are in Outland and Expert Flying or better
                     Spell expertRider = new Spell(34090);
                     Spell artisanRider = new Spell(34091);
                     Spell masterRider = new Spell(90265);
-                    if (cont == ContinentId.Outland &&
+                    if (!canFly && cont == ContinentId.Outland &&
                         (expertRider.KnownSpell || artisanRider.KnownSpell || masterRider.KnownSpell))
+                        canFly = true;
+
+                    if (canFly)
+                    {
+                        if (!Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsAlive)
+                            LastKnownFlyablePoint = ObjectManager.ObjectManager.Me.Position;
                         return MountCapacity.Fly;
+                    }
 
                     // More work to be done with spell 130487 = "Cloud Serpent Riding"
                 }
-                if (((ObjectManager.ObjectManager.Me.Level >= 20 && Skill.GetValue(SkillLine.Riding) > 0) || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16) ||
+                if (((ObjectManager.ObjectManager.Me.Level >= 20 && Skill.GetValue(SkillLine.Riding) > 0) ||
+                     (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16) ||
                      _spellGroundMount.KnownSpell && _spellGroundMount.Id == 179245 || _spellGroundMount.Id == 179244) && _groundMount != string.Empty)
                     return MountCapacity.Ground;
             }
@@ -218,6 +229,8 @@ namespace nManager.Wow.Bot.Tasks
 
         public static bool OnFlyMount()
         {
+            if (ObjectManager.ObjectManager.Me.IsDead && ObjectManager.ObjectManager.Me.FlyingVelocity > 17f)
+                return true;
             if (!_spellFlyMount.HaveBuff)
                 return false;
             if (_spellTravelForm.HaveBuff)
