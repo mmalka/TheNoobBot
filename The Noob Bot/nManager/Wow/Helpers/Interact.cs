@@ -20,8 +20,13 @@ namespace nManager.Wow.Helpers
             {
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     return;
+                Helpful.Timer timer = new Helpful.Timer(2000);
                 while (ObjectManager.ObjectManager.Me.GetBaseAddress == 0)
                 {
+                    if (timer.IsReady)
+                    {
+                        return;
+                    }
                     Thread.Sleep(200);
                 }
                 if (_firstRun)

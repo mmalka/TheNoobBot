@@ -109,8 +109,13 @@ namespace nManager.Wow.Helpers
                 }
                 if (!Usefuls.InGame && !Usefuls.IsLoading)
                     return "NOT_CONNECTED";
+                Helpful.Timer timer = new Helpful.Timer(5000);
                 while (ObjectManager.ObjectManager.Me.GetBaseAddress == 0)
                 {
+                    if (timer.IsReady)
+                    {
+                        return "NOT_CONNECTED";
+                    }
                     Thread.Sleep(200);
                 }
                 // Command to send using LUA
