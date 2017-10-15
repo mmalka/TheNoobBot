@@ -6,12 +6,15 @@ using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {
+    using ObjectManager;
+    using Tasks;
+    using ObjectManager = ObjectManager.ObjectManager;
+
     public class Resurrect : State
     {
         public override string DisplayName
@@ -44,9 +47,9 @@ namespace nManager.Wow.Bot.States
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     return false;
 
-                if (Products.Products.IsStarted && ObjectManager.ObjectManager.Me.IsDeadMe && ObjectManager.ObjectManager.Me.IsValid)
+                if (Products.Products.IsStarted && ObjectManager.Me.IsDeadMe && ObjectManager.Me.IsValid)
                     return true;
-                if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
+                if (ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                     return true;
 
                 return false;
@@ -59,10 +62,10 @@ namespace nManager.Wow.Bot.States
         {
             MovementManager.StopMove();
             MovementManager.StopMoveTo();
-            if (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
+            if (ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
             {
                 Logging.Write("Resurrection Sickness detected, we will now wait its full duration to avoid dying in chain.");
-                while (ObjectManager.ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
+                while (ObjectManager.Me.HaveBuff(ResurrectionSicknessId))
                 {
                     Thread.Sleep(1000);
                     // We don't need to return if we get in combat, we would die quickly anyway, and we will ressurect from our body this time.
@@ -73,12 +76,12 @@ namespace nManager.Wow.Bot.States
 
             #region Reincarnation
 
-            if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Shaman && _shamanReincarnation.KnownSpell && _shamanReincarnation.IsSpellUsable)
+            if (ObjectManager.Me.WowClass == WoWClass.Shaman && _shamanReincarnation.KnownSpell && _shamanReincarnation.IsSpellUsable)
             {
                 Thread.Sleep(3500); // Let our killers reset.
                 Lua.RunMacroText("/click StaticPopup1Button2");
                 Thread.Sleep(1000);
-                if (!ObjectManager.ObjectManager.Me.IsDeadMe)
+                if (!ObjectManager.Me.IsDeadMe)
                 {
                     _failed = false;
                     Logging.Write("The player have been resurrected using Shaman Reincarnation.");
@@ -91,16 +94,16 @@ namespace nManager.Wow.Bot.States
 
             #region Soulstone
 
-            if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Warlock && _warlockSoulstone.KnownSpell && _warlockSoulstone.HaveBuff ||
-                ObjectManager.ObjectManager.Me.HaveBuff(6203))
+            if (ObjectManager.Me.WowClass == WoWClass.Warlock && _warlockSoulstone.KnownSpell && _warlockSoulstone.HaveBuff ||
+                ObjectManager.Me.HaveBuff(6203))
             {
                 Thread.Sleep(3500); // Let our killers reset.
                 Lua.RunMacroText("/click StaticPopup1Button2");
                 Thread.Sleep(1000);
-                if (!ObjectManager.ObjectManager.Me.IsDeadMe)
+                if (!ObjectManager.Me.IsDeadMe)
                 {
                     _failed = false;
-                    Logging.Write(ObjectManager.ObjectManager.Me.WowClass == WoWClass.Warlock
+                    Logging.Write(ObjectManager.Me.WowClass == WoWClass.Warlock
                         ? "The player have been resurrected using his Soulstone."
                         : "The player have been resurrected using a Soulstone offered by a Warlock.");
                     Statistics.Deaths++;
@@ -112,7 +115,7 @@ namespace nManager.Wow.Bot.States
 
             Interact.Repop();
             Thread.Sleep(1000);
-            while (!ObjectManager.ObjectManager.Me.PositionCorpse.IsValid && ObjectManager.ObjectManager.Me.Health <= 0 && Products.Products.IsStarted && Usefuls.InGame)
+            while (!ObjectManager.Me.PositionCorpse.IsValid && ObjectManager.Me.Health <= 0 && Products.Products.IsStarted && Usefuls.InGame)
             {
                 Interact.Repop();
                 Thread.Sleep(1000);
@@ -131,8 +134,8 @@ namespace nManager.Wow.Bot.States
                 Thread.Sleep(4000);
                 /*var factionBattlegroundSpiritHealer =
                     new WoWUnit(
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByName(ObjectManager.ObjectManager.Me.PlayerFaction +
+                        ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.GetWoWUnitByName(ObjectManager.Me.PlayerFaction +
                                                                          " Spirit Guide")).GetBaseAddress);
                 if (!factionBattlegroundSpiritHealer.IsValid)
                 {
@@ -147,7 +150,7 @@ namespace nManager.Wow.Bot.States
                         Interact.TeleportToSpiritHealer();
                         Thread.Sleep(5000);
                     }*/
-                while (ObjectManager.ObjectManager.Me.IsDeadMe)
+                while (ObjectManager.Me.IsDeadMe)
                 {
                     if (_battlegroundResurrect.IsReady)
                     {
@@ -169,12 +172,12 @@ namespace nManager.Wow.Bot.States
 
             #region Go To Corpse resurrection
 
-            if (ObjectManager.ObjectManager.Me.Level <= 10)
+            if (ObjectManager.Me.Level <= 10)
             {
                 _forceSpiritHealer = true;
                 Logging.Write("We have no penalty for using Spirit Healer, so let's use it.");
             }
-            else if (ObjectManager.ObjectManager.Me.PositionCorpse.IsValid && !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
+            else if (ObjectManager.Me.PositionCorpse.IsValid && !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
             {
                 while (Usefuls.IsLoading && Products.Products.IsStarted && Usefuls.InGame)
                 {
@@ -182,18 +185,16 @@ namespace nManager.Wow.Bot.States
                 }
                 Thread.Sleep(1000);
                 Point tPointCorps;
-                if (ObjectManager.ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsMounted || MountTask.OnFlyMount())
                 {
-                    MovementsAction.Ascend(true);
-                    Thread.Sleep(500);
-                    MovementsAction.Ascend(false);
-                    tPointCorps = ObjectManager.ObjectManager.Me.PositionCorpse;
-                    tPointCorps.Z = tPointCorps.Z + 10;
+                    MountTask.Takeoff();
+                    tPointCorps = ObjectManager.Me.PositionCorpse;
+                    tPointCorps.Z = tPointCorps.Z + 15;
                     LongMove.LongMoveByNewThread(tPointCorps);
                 }
                 else
                 {
-                    tPointCorps = ObjectManager.ObjectManager.Me.PositionCorpse;
+                    tPointCorps = ObjectManager.Me.PositionCorpse;
                     bool success;
                     tPointCorps.Z = PathFinder.GetZPosition(tPointCorps); // make sure to get the right Z in case we died in the air/surface of water.
                     List<Point> points = PathFinder.FindPath(tPointCorps, out success);
@@ -207,11 +208,11 @@ namespace nManager.Wow.Bot.States
                     if (points.Count > 1 || (points.Count <= 1 && !nManagerSetting.CurrentSetting.UseSpiritHealer))
                         MovementManager.Go(points);
                 }
-                while ((MovementManager.InMovement || LongMove.IsLongMove) && Products.Products.IsStarted && Usefuls.InGame && ObjectManager.ObjectManager.Me.IsDeadMe)
+                while ((MovementManager.InMovement || LongMove.IsLongMove) && Products.Products.IsStarted && Usefuls.InGame && ObjectManager.Me.IsDeadMe)
                 {
-                    if ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 25 && !_failed) ||
+                    if ((tPointCorps.DistanceTo(ObjectManager.Me.Position) < 25 && !_failed) ||
                         (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0 && !_failed) ||
-                        ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5)
+                        ObjectManager.Me.PositionCorpse.DistanceTo(ObjectManager.Me.Position) < 5)
                     {
                         LongMove.StopLongMove();
                         MovementManager.StopMove();
@@ -240,11 +241,11 @@ namespace nManager.Wow.Bot.States
                         return;
                     MovementManager.Go(points);
                     Timer distanceTimer = null;
-                    while (safeResPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
+                    while (safeResPoint.DistanceTo(ObjectManager.Me.Position) > 5)
                     {
                         if (!MovementManager.InMovement)
                             MovementManager.Go(points);
-                        if (distanceTimer == null && tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 39.0f)
+                        if (distanceTimer == null && tPointCorps.DistanceTo(ObjectManager.Me.Position) <= 39.0f)
                             distanceTimer = new Timer(10000); // start a 10sec timer when we are in range of our corpse.
                         if (distanceTimer != null && distanceTimer.IsReady)
                             break; // Sometimes we cannot join the desired destination because of a wall, or water level.
@@ -252,8 +253,9 @@ namespace nManager.Wow.Bot.States
                     }
 
                     MovementManager.StopMove();
-                    while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 39.0f || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) &&
-                           ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted && Usefuls.InGame)
+                    while ((tPointCorps.DistanceTo(ObjectManager.Me.Position) <= 39.0f ||
+                            Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) &&
+                           ObjectManager.Me.IsDeadMe && Products.Products.IsStarted && Usefuls.InGame)
                     {
                         Interact.RetrieveCorpse();
                         Thread.Sleep(1000);
@@ -261,10 +263,11 @@ namespace nManager.Wow.Bot.States
                 }
                 else
                 {
-                    if (tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 30.0f || Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0)
+                    if (tPointCorps.DistanceTo(ObjectManager.Me.Position) <= 30.0f ||
+                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0)
                     {
-                        while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 30.0f ||
-                                Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) && ObjectManager.ObjectManager.Me.IsDeadMe &&
+                        while ((tPointCorps.DistanceTo(ObjectManager.Me.Position) <= 30.0f ||
+                                Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.RetrieveCorpseWindow) > 0) && ObjectManager.Me.IsDeadMe &&
                                Products.Products.IsStarted && Usefuls.InGame)
                         {
                             Interact.RetrieveCorpse();
@@ -273,7 +276,7 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
-            if (!ObjectManager.ObjectManager.Me.IsDeadMe)
+            if (!ObjectManager.Me.IsDeadMe)
             {
                 _failed = false;
                 Logging.Write("The player have been resurrected when retrieving his corpse.");
@@ -285,10 +288,10 @@ namespace nManager.Wow.Bot.States
 
             #region Spirit Healer resurrection
 
-            if (nManagerSetting.CurrentSetting.UseSpiritHealer || _forceSpiritHealer || ObjectManager.ObjectManager.Me.HaveBuff(15007))
+            if (nManagerSetting.CurrentSetting.UseSpiritHealer || _forceSpiritHealer || ObjectManager.Me.HaveBuff(15007))
             {
                 Thread.Sleep(4000);
-                WoWUnit objectSpiritHealer = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);
+                WoWUnit objectSpiritHealer = new WoWUnit(ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);
                 int stuckTemps = 5;
 
                 if (!objectSpiritHealer.IsValid)
@@ -308,7 +311,7 @@ namespace nManager.Wow.Bot.States
                     while (objectSpiritHealer.GetDistance > 5 && Products.Products.IsStarted && stuckTemps >= 0 && Usefuls.InGame)
                     {
                         Thread.Sleep(300);
-                        if (!ObjectManager.ObjectManager.Me.GetMove && objectSpiritHealer.GetDistance > 5)
+                        if (!ObjectManager.Me.GetMove && objectSpiritHealer.GetDistance > 5)
                         {
                             MovementManager.MoveTo(objectSpiritHealer.Position);
                             stuckTemps--;
@@ -318,7 +321,7 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(2000);
                     Interact.SpiritHealerAccept();
                     Thread.Sleep(1000);
-                    if (!ObjectManager.ObjectManager.Me.IsDeadMe)
+                    if (!ObjectManager.Me.IsDeadMe)
                     {
                         _forceSpiritHealer = false;
                         Logging.Write("The player have been resurrected by the Spirit Healer.");

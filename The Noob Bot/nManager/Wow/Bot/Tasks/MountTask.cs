@@ -229,14 +229,14 @@ namespace nManager.Wow.Bot.Tasks
 
         public static bool OnFlyMount()
         {
-            if (ObjectManager.ObjectManager.Me.IsDead && ObjectManager.ObjectManager.Me.FlyingVelocity > 17f)
+            if (ObjectManager.ObjectManager.Me.FlyingVelocity > 17f)
                 return true;
             if (!_spellFlyMount.HaveBuff)
                 return false;
             if (_spellTravelForm.HaveBuff)
             {
-                return ObjectManager.ObjectManager.Me.FlyingVelocity > 17f || ObjectManager.ObjectManager.Me.SwimmingVelocity > 9;
-                // 7*2.5 = 17.5 = 150% boost speed
+                return ObjectManager.ObjectManager.Me.SwimmingVelocity > 9;
+                // 7*2.5 = 17.5 = 150% boost speed (checked above already)
                 // 7*1.35 = 9.45 = 35% boost speed (aquatic form which auto translate to flying upon flying)
             }
             return true;
