@@ -7,6 +7,8 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
+    using System.Threading;
+
     public class ClickToMove
     {
         private static Vector3 cache = new Vector3();
@@ -20,6 +22,11 @@ namespace nManager.Wow.Helpers
                 MovementsAction.Descend(false);
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     return;
+
+                while (ObjectManager.ObjectManager.Me.GetBaseAddress == 0)
+                {
+                    Thread.Sleep(200);
+                }
                 Usefuls.UpdateLastHardwareAction();
                 if (!point.IsValid)
                     return;
@@ -63,6 +70,11 @@ namespace nManager.Wow.Helpers
                 }
                 if (!Usefuls.InGame && !Usefuls.IsLoading)
                     return;
+
+                while (ObjectManager.ObjectManager.Me.GetBaseAddress == 0)
+                {
+                    Thread.Sleep(200);
+                }
                 Usefuls.UpdateLastHardwareAction();
                 if (x == 0 && y == 0 && z == 0 && guid == 0)
                     return;

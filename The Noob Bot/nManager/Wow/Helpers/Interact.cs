@@ -20,6 +20,10 @@ namespace nManager.Wow.Helpers
             {
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     return;
+                while (ObjectManager.ObjectManager.Me.GetBaseAddress == 0)
+                {
+                    Thread.Sleep(200);
+                }
                 if (_firstRun)
                 {
                     if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid)
