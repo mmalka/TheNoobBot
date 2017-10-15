@@ -21,6 +21,8 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Helpful
 {
+    using System.Security.AccessControl;
+
     public static class Others
     {
         /// <summary>
@@ -298,6 +300,59 @@ namespace nManager.Helpful
         {
             Memory.WowMemory.GameFrameUnLock();
             Thread.Sleep(sleepMs);
+        }
+
+
+        // https://msdn.microsoft.com/en-us/library/system.io.file.setaccesscontrol(v=vs.110).aspx
+        // Adds an ACL entry on the specified file for the specified account.
+        public static void AddFileSecurity(string fileName, string account, FileSystemRights rights, AccessControlType controlType)
+        {
+            // Get a FileSecurity object that represents the
+            // current security settings.
+            FileSecurity fSecurity = File.GetAccessControl(fileName);
+
+            // Add the FileSystemAccessRule to the security settings.
+            fSecurity.AddAccessRule(new FileSystemAccessRule(account,
+                rights, controlType));
+
+            // Set the new access settings.
+            File.SetAccessControl(fileName, fSecurity);
+
+        }
+
+        // Removes an ACL entry on the specified file for the specified account.
+        public static void RemoveFileSecurity(string fileName, string account, FileSystemRights rights, AccessControlType controlType)
+        {
+            // Get a FileSecurity object that represents the
+            // current security settings.
+            FileSecurity fSecurity = File.GetAccessControl(fileName);
+
+            // Remove the FileSystemAccessRule from the security settings.
+            fSecurity.RemoveAccessRule(new FileSystemAccessRule(account,
+                rights, controlType));
+
+            // Set the new access settings.
+            File.SetAccessControl(fileName, fSecurity);
+        }
+
+        public static string GetProcessOwner(int processId)
+        {
+            string query = "Select * From Win32_Process Where ProcessID = " + processId;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+            ManagementObjectCollection processList = searcher.Get();
+
+            foreach (ManagementObject obj in processList)
+            {
+                string[] argList = new string[] { string.Empty, string.Empty };
+                int returnVal = Convert.ToInt32(obj.InvokeMethod("GetOwner", argList));
+                if (returnVal == 0)
+                {
+                    // return DOMAIN\user
+                    return argList[1] + "\\" + argList[0];
+                }
+            }
+
+            return "NO OWNER";
         }
 
         public static string GetRandomString(int maxSize)

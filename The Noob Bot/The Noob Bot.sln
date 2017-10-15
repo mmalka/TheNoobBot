@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Noob Bot", "The Noob Bot\The Noob Bot.csproj", "{18E3D1BE-0EFC-4E04-9BDD-20BF8A60B53D}"
@@ -150,6 +150,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TnbDemonHunterRotations", "Tnb_DemonHunter\TnbDemonHunterRotations.csproj", "{8F6D35B4-E5E1-4A8F-BDEF-6E1B484098D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TnbDruidRotations", "Tnb_Druid\TnbDruidRotations.csproj", "{B659556F-0E93-4EEC-B404-0CAAF3436F03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launcher.csproj", "{2C66B40B-00DA-47AD-9D2A-1CBD690BD24D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -329,6 +331,10 @@ Global
 		{B659556F-0E93-4EEC-B404-0CAAF3436F03}.Debug|x86.Build.0 = Debug|x86
 		{B659556F-0E93-4EEC-B404-0CAAF3436F03}.Release|x86.ActiveCfg = Release|x86
 		{B659556F-0E93-4EEC-B404-0CAAF3436F03}.Release|x86.Build.0 = Release|x86
+		{2C66B40B-00DA-47AD-9D2A-1CBD690BD24D}.Debug|x86.ActiveCfg = Debug|x86
+		{2C66B40B-00DA-47AD-9D2A-1CBD690BD24D}.Debug|x86.Build.0 = Debug|x86
+		{2C66B40B-00DA-47AD-9D2A-1CBD690BD24D}.Release|x86.ActiveCfg = Release|x86
+		{2C66B40B-00DA-47AD-9D2A-1CBD690BD24D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

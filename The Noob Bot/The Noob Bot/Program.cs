@@ -7,6 +7,8 @@ using nManager.Wow.Helpers;
 
 namespace The_Noob_Bot
 {
+    using System.Security.AccessControl;
+
     internal static class Program
     {
         /// <summary>
@@ -25,6 +27,9 @@ namespace The_Noob_Bot
             }
             if (!processName.Contains("vshost"))
             {
+                var account = Others.GetProcessOwner(Process.GetCurrentProcess().Id);
+                Others.RemoveFileSecurity(Process.GetCurrentProcess().ProcessName + ".exe", account, FileSystemRights.ReadData, AccessControlType.Allow);
+                Others.AddFileSecurity(Process.GetCurrentProcess().ProcessName + ".exe", account, FileSystemRights.ReadData, AccessControlType.Deny);
                 DialogResult resulMb = MessageBox.Show(
                     "World of Warcraft 7.3 is able to detect any hacks or bots, including passives tools. (pixels bot, etc) " +
                     Environment.NewLine +
