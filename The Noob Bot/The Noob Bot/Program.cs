@@ -33,6 +33,8 @@ namespace The_Noob_Bot
                 DialogResult resulMb = MessageBox.Show(
                     "World of Warcraft 7.3 is able to detect any hacks or bots, including passives tools. (pixels bot, etc) " +
                     Environment.NewLine +
+                    "At the moment, TheNoobBot does not seems to be a target." +
+                    Environment.NewLine +
                     "Do you want to ignore this warning and run the bot anyway ?",
                     @"WARNING / ATTENTION / ARTUNG / внимание / 注意",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
