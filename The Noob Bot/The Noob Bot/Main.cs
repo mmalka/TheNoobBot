@@ -134,7 +134,7 @@ namespace The_Noob_Bot
                 MainHeader.TitleText = (nManagerSetting.CurrentSetting.HideCharacterNameFromTitle ? "Anonymous" : ObjectManager.Me.Name) + " - " + Information.MainTitle;
                 if (LoginServer.IsFreeVersion)
                     MainHeader.TitleText += " - Trial";
-                Text = MainHeader.TitleText;
+                this.Text = Others.GetRandomString(Others.Random(4, 10));
 
                 if (nManagerSetting.AutoStartProduct)
                 {
