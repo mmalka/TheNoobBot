@@ -491,7 +491,7 @@ namespace nManager.Wow.Bot.Tasks
             {
                 Thread.Sleep(50);
             }
-            Thread.Sleep(150);
+            Thread.Sleep(50);
             MovementsAction.Ascend(false);
         }
 
