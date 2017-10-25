@@ -42,7 +42,7 @@ namespace Quester.Profile
         {
             InitializeComponent();
             TNBControlMenu.TitleText = "Quest Profile Editor - Profile not yet saved";
-            Text = TNBControlMenu.TitleText;
+            this.Text = TNBControlMenu.TitleText;
             /*TODO Auto Create Taxi
             Wow.Enums.WoWEventsType.ENABLE_TAXI_BENCHMARK
             Wow.Enums.WoWEventsType.DISABLE_TAXI_BENCHMARK
