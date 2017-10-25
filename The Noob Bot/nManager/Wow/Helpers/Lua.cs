@@ -78,8 +78,7 @@ namespace nManager.Wow.Helpers
                     "push eax",
                     "push eax",
                     "mov eax, " +
-                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.FrameScript_ExecuteBuffer)
-                    , // Lua_DoString
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.FrameScript_ExecuteBuffer), // Lua_DoString
                     "call eax",
                     "add esp, 0xC",
                     "@out:",
