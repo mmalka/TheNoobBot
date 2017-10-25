@@ -206,7 +206,7 @@ namespace nManager.Wow.MemoryClass
             {
                 if (!allowOffline && (!Helpers.Usefuls.InGame || Helpers.Usefuls.IsLoading))
                     return 0;
-                List<string> asmCode = new List<string>();
+                /*List<string> asmCode = new List<string>();
                 foreach (string s in asm)
                 {
                     asmCode.Add(s);
@@ -219,7 +219,7 @@ namespace nManager.Wow.MemoryClass
                         }
                     }
                 }
-                return (uint) Wow.Memory.WowProcess.Executor.Call(asmCode.ToArray());
+                return (uint) Wow.Memory.WowProcess.Executor.Call(asmCode.ToArray());*/
                 if (!ThreadHooked)
                     return 0;
                 var fasm = new ManagedFasm(Memory.ProcessHandle);
@@ -307,7 +307,7 @@ namespace nManager.Wow.MemoryClass
         {
             get
             {
-                return false;
+                //return false;
                 return Memory.ReadByte(_mLocked) == 1;
             }
         }
@@ -316,7 +316,7 @@ namespace nManager.Wow.MemoryClass
 
         public void GameFrameUnLock()
         {
-            return;
+            //return;
             lock (Locker)
             {
                 if (_lockRequests > 0)
@@ -332,7 +332,7 @@ namespace nManager.Wow.MemoryClass
 
         public void GameFrameLock()
         {
-            return;
+            //return;
             lock (Locker)
             {
                 if (!nManagerSetting.CurrentSetting.UseFrameLock)
@@ -394,14 +394,14 @@ namespace nManager.Wow.MemoryClass
                             return;
                         }
 
-                        if (Wow.Memory.WowProcess.Executor != null)
+                        /*if (Wow.Memory.WowProcess.Executor != null)
                         {
                             Wow.Memory.WowProcess.Executor.Dispose();
                         }
 
                         RemoteProcess m_Process = new RemoteProcess((uint) Wow.Memory.WowProcess.ProcessId);
                         Wow.Memory.WowProcess.Executor = new WndProcExecutor2(m_Process, (IntPtr) Wow.Memory.WowProcess.MainWindowHandle);
-                        /*
+                        */
                         // Get address of EndScene
                         JumpAddress = GetJumpAdresse();
                         JumpAddressDX = GetJumpAdresseDX();
@@ -460,11 +460,10 @@ namespace nManager.Wow.MemoryClass
                             return;
                         }
                     }
-                    */
+                    
                     }
                     ThreadHooked = true;
                     AllowReHook = false;
-                }
             }
             catch (Exception e)
             {
@@ -598,7 +597,7 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
-                return false;
+                //return false;
                 uint pJump = 0;
                 if (D3D.IsD3D11(processId))
                     pJump = D3D.D3D11Adresse();
