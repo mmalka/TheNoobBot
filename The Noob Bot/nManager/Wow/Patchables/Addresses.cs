@@ -11,7 +11,7 @@
         public class ObjectManagerClass
         {
             public static uint clientConnection = 0x0; // dropped usage, kept only for online script not crashing for older versions.
-            public static uint sCurMgr = 0x1138BE0; // 1138BE0 CCommand_ObjUsage
+            public static uint sCurMgr = 0x0; // 1138BE0 CCommand_ObjUsage
         }
 
         public enum ObjectManager
@@ -276,14 +276,15 @@
             CGUnit_C__GetUnitName = 0x5A4361,
             strlen = 0xAA87D0, // ida _strlen
             PushESI = 0x5B823C, // CGPlayer_C__ClickToMoveCaller+178
+            WoWTextCaller = 0xA27F9F, // WoWCallingMule, "call edx, rt" address.
+            CGPlayer_C__ClickToMove = 0x5A7557, // alias CGUnit_C__InitializeTrackingState // to match...
+            
 
             // saving
             ClntObjMgrGetActivePlayerObj = 0x0,
             WowClientDB2__GetRowPointer = 0x324719,
-            CGPlayer_C__ClickToMove = 0x5A7557, // alias CGUnit_C__InitializeTrackingState // to match...
             GetTargetInfo = 0x2C60F5, // our hook address in ida: RenderingMessage
             ReturnFunc = 0x3B5E43, // the function call of our hook: OnHookFunction
-            WoWTextCaller = 0x73F487, // WoWCallingMule, "call edx, rt" address.
             CTMChecker = 0x334789,
             CTMChecker2 = 0x61D6E4,
             RetFromFunctionBelow = 0x1A8C84,

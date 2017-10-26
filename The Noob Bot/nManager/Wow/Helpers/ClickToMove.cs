@@ -105,7 +105,7 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x8, z);
 
                 // BOOL __thiscall CGPlayer_C__ClickToMove(WoWActivePlayer *this, CLICKTOMOVETYPE clickType, WGUID *interactGuid, WOWPOS *clickPos, float precision)
-                string[] asm = new[]
+                /*string[] asm = new[]
                 {
                     "mov edx, [" + precisionCodecave + "]",
                     "push edx",
@@ -116,8 +116,20 @@ namespace nManager.Wow.Helpers
                     "jmp " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.PushESI), // jmp on a "push esi / call ctm"
                     "@out:",
                     "retn"
+                };*/
+                string[] asm = new[]
+                {
+                    "mov edx, [" + precisionCodecave + "]",
+                    "push edx",
+                    "push " + posCodecave,
+                    "push " + guidCodecave,
+                    "push " + action, // move the last push into esi
+                    "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress, // get player pointer to ecx prior to call
+                    "mov eax, " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove), // get player pointer to ecx prior to call
+                    "jmp " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.WoWTextCaller), // jmp on a "push esi / call ctm"
+                    "@out:",
+                    "retn"
                 };
-
                 Memory.WowMemory.InjectAndExecute(asm);
                 Memory.WowMemory.Memory.FreeMemory(posCodecave);
                 Memory.WowMemory.Memory.FreeMemory(guidCodecave);
