@@ -662,6 +662,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                textBuild = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWoWVersionString);
+                return Others.ToUInt32(textBuild);
                 // "World of WarCraft: Retail Build (build 18966)"
                 if (textBuild == "")
                     textBuild = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWoWVersionString);
