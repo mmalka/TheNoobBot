@@ -88,7 +88,7 @@
         public enum GameInfo
         {
             GetTime = 0x10B54F8, //FrameTime__GetCurTimeMs
-            buildWoWVersionString = 0x00DDB3B0, // Script_GetBuildInfo_0
+            buildWoWVersionString = 0xDDB3B0, // Script_GetBuildInfo_0
             gameState = 0x12E0AF3, // Script_IsPlayerInWorld
             isLoading = 0x10A7F84, //isLoadingFOUND
             AreaId = 0x1034260, //?CF6FE8, // AreaIdFOUND - AreaIdFOUNDCall // to review changes
