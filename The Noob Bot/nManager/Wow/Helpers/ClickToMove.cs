@@ -125,7 +125,7 @@ namespace nManager.Wow.Helpers
                     "push " + guidCodecave,
                     "push " + action, // move the last push into esi
                     "mov ecx, " + ObjectManager.ObjectManager.Me.GetBaseAddress, // get player pointer to ecx prior to call
-                    "mov eax, " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove), // get player pointer to ecx prior to call
+                    "mov edx, " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove), // get player pointer to ecx prior to call
                     "jmp " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.WoWTextCaller), // jmp on a "push esi / call ctm"
                     "@out:",
                     "retn"
