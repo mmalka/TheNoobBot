@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 25480
+    ///   Offset and Pointer for Wow 25497
     /// </summary>
     public static class Addresses
     {
@@ -11,7 +11,7 @@
         public class ObjectManagerClass
         {
             public static uint clientConnection = 0x0; // dropped usage, kept only for online script not crashing for older versions.
-            public static uint sCurMgr = 0x0; // 114CD30 CCommand_ObjUsage
+            public static uint sCurMgr = 0x0; // 1149D74 CCommand_ObjUsage
         }
 
         public enum ObjectManager
@@ -29,7 +29,7 @@
         /// </summary>
         public enum Hooking
         {
-            DX_DEVICE = 0x10C83AC, //Script_ShowCursor, first offset
+            DX_DEVICE = 0x10C53BC, //Script_ShowCursor, first offset
             DX_DEVICE_IDX = 0x2574, // DX9_DEVICE_IDX_FOUND
             ENDSCENE_IDX = 0xA8,
         }
@@ -48,7 +48,7 @@
 
         public enum Party
         {
-            PartyOffset = 0x12E4308, // Script_SendChatMessage First offset/4th block
+            PartyOffset = 0x12E1324, // Script_SendChatMessage First offset/4th block
             NumOfPlayers = 0xC8, // Script_GetNumGroupMembers
             NumOfPlayersSuBGroup = 0xCC, // NumOFPlayers+4
             PlayerGuid = 0x10,
@@ -59,7 +59,7 @@
         /// </summary>
         public enum PetBattle
         {
-            IsInBattle = 0x1036040, // aC_petbattles ; "C_PetBattles"
+            IsInBattle = 0x1033010, // aC_petbattles ; "C_PetBattles"
             // Findable under offset aC_petbattles.
         }
 
@@ -87,16 +87,16 @@
         /// </summary>
         public enum GameInfo
         {
-            GetTime = 0x10B54F8, //FrameTime__GetCurTimeMs
-            buildWoWVersionString = 0xDDB3B0, // Script_GetBuildInfo_0
-            gameState = 0x12E0AF3, // Script_IsPlayerInWorld
-            isLoading = 0x10A7F84, //isLoadingFOUND
-            AreaId = 0x1034260, //?CF6FE8, // AreaIdFOUND - AreaIdFOUNDCall // to review changes
-            HearthstoneSubAreaId = 0x120A27C, // HearthstoneIDFound called from Script_GetBindLocation 
+            GetTime = 0x10B2510, //FrameTime__GetCurTimeMs
+            buildWoWVersionString = 0xDCF330, // Script_GetBuildInfo_0
+            gameState = 0x12DDB03, // Script_IsPlayerInWorld
+            isLoading = 0x10A4F80, //isLoadingFOUND
+            AreaId = 0x1031260, //?CF6FE8, // AreaIdFOUND - AreaIdFOUNDCall // to review changes
+            HearthstoneSubAreaId = 0x1207294, // HearthstoneIDFound called from Script_GetBindLocation 
             SubAreaId = AreaId + 4, // AreaId + 4 bytes
-            MapTextureId = 0x103D488, //MapTextureIdFOUND
-            zoneMap = 0x12DFCD8, // Script_GetZoneText
-            subZoneMap = 0x12DFCEC, // Script_GetSubZoneText 
+            MapTextureId = 0x103A488, //MapTextureIdFOUND
+            zoneMap = 0x12DCCF8, // Script_GetZoneText
+            subZoneMap = 0x12DCD04, // Script_GetSubZoneText 
 
             // saving
             TextBoxActivated = 0xBBE9AC, // ?// 18414
@@ -105,7 +105,7 @@
 
         public enum TargetSystem
         {
-            PtrToVMT = 0x103C5AC, // Script_TargetNearest or any target related script
+            PtrToVMT = 0x10395A4, // Script_TargetNearest or any target related script
             Focus = 0x80, // to find manually
             Target = 0x28,
             //TargetTarget = 0x0,
@@ -116,14 +116,14 @@
         /// </summary>
         public enum Player
         {
-            petGUID = 0x12F67E8, // petGUIDFOUND
-            playerName = 0x1365F30, // GetPlayerName 
-            RetrieveCorpseWindow = 0x12E09EC, // RetrieveCorpseWindowFOUND
+            petGUID = 0x12F37F8, // petGUIDFOUND
+            playerName = 0x1362F40, // GetPlayerName 
+            RetrieveCorpseWindow = 0x12DD9C4, // RetrieveCorpseWindowFOUND
 
             // Some offsets to refine descriptor
             SkillValue = 0x200,
             SkillMaxValue = 0x400,
-            LocalPlayerSpellsOnCooldown = 0x1139A40, // LocalPlayerSpellsOnCooldownFOUND
+            LocalPlayerSpellsOnCooldown = 0x1136A58, // LocalPlayerSpellsOnCooldownFOUND
 
             // saving
             RuneStartCooldown = 0xF18AA8, // Script_GetRuneCount
@@ -134,7 +134,7 @@
         /// </summary>
         public enum EventsListener
         {
-            EventsCount = 0x10B5800, // EventSystem2 in EventSystem
+            EventsCount = 0x10B2818, // EventSystem2 in EventSystem
             BaseEvents = EventsCount + 0x4,
             EventOffsetName = 0x18,
             EventOffsetCount = 0x48,
@@ -201,9 +201,9 @@
         /// </summary>
         public enum Battleground
         {
-            StatPvp = 0x103D774, // StatPvpFOUND inside first call in Script_InActiveBattlefield
-            PvpExitWindow = 0x12F3748, // Script_GetBattlefieldWinner
-            MaxBattlegroundId = 0x12F35C8, // Script_GetMaxBattlefieldID
+            StatPvp = 0x103A774, // StatPvpFOUND inside first call in Script_InActiveBattlefield
+            PvpExitWindow = 0x12EFFC8, // Script_GetBattlefieldWinner
+            MaxBattlegroundId = 0x12EFE48, // Script_GetMaxBattlefieldID
         }
 
         /// <summary>
@@ -222,11 +222,11 @@
             SpellDBCMaxIndex = 200000,
 
             KnownAllSpells = SpellBookNumSpells - 0x4, // found via SpellBookNumSpells - 4
-            SpellBookNumSpells = 0x12E1B04, // CGSpellBook__MakeKnownSpellModelsLocal
+            SpellBookNumSpells = 0x12DEB1C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0x12E1B50 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0x12DEB68 + 0x4 * 0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
-            FirstTalentBookPtr = 0x12E1BEC, // FirstTalentBookFOUND
+            FirstTalentBookPtr = 0x12DEC04, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
             TalentBookSpellId = 0x14,
             TalentBookOverrideSpellId = 0x1C,
@@ -237,10 +237,10 @@
         /// </summary>
         public enum Chat
         {
-            chatBufferStart = 0x1283780,
+            chatBufferStart = 0x1280790,
             NextMessage = 0x17E8,
             msgFormatedChat = 0x65,
-            chatBufferPos = 0x12DD1E0,
+            chatBufferPos = 0x12DA1F0,
         }
 
         /// <summary>
@@ -248,7 +248,7 @@
         /// </summary>
         public enum ClickToMove
         {
-            CTM = 0x12093E4, // CGUnit_C__IsAutoTracking / CGPlayer_C__ClickToMove
+            CTM = 0x12063FC, // CGUnit_C__IsAutoTracking / CGPlayer_C__ClickToMove
             CTM_X = CTM + 0x28,
             CTM_Y = CTM_X + 0x4,
             CTM_Z = CTM_Y + 0x4,
@@ -267,16 +267,16 @@
         /// </summary>
         public enum FunctionWow
         {
-            FrameScript_ExecuteBuffer = 0x2C71E6,
-            CGPlayer_C__MoveTo = 0x5BFB92,
-            FrameScript__GetLocalizedText = 0x5A90A3,
-            CGWorldFrame__Intersect = 0x94240F,
-            Spell_C_HandleTerrainClick = 0x54302E,
-            CGUnit_C__Interact = 0x7759DD,
-            CGUnit_C__GetUnitName = 0x5ABEF0,
-            strlen = 0xAB95C0, // ida _strlen
-            WoWTextCaller = 0xA38DF7, // WoWCallingMule, "call edx, rt" address.
-            CGPlayer_C__ClickToMove = 0x5AF290, // alias CGUnit_C__InitializeTrackingState // to match...
+            FrameScript_ExecuteBuffer = 0x2C59C0,
+            CGPlayer_C__MoveTo = 0x5B99DE,
+            FrameScript__GetLocalizedText = 0x5A303A,
+            CGWorldFrame__Intersect = 0x937265,
+            Spell_C_HandleTerrainClick = 0x53BFBA,
+            CGUnit_C__Interact = 0x769565,
+            CGUnit_C__GetUnitName = 0x5A5E7F,
+            strlen = 0xAAE440, // ida _strlen
+            WoWTextCaller = 0xA2DBE7, // WoWCallingMule, "call edx, rt" address.
+            CGPlayer_C__ClickToMove = 0x5A90D7, // alias CGUnit_C__InitializeTrackingState // to match...
             
 
             // saving
@@ -306,7 +306,7 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0x12E0B38 + 0x3C, // RetrieveCorpseWindowFOUND //to check
+            X = 0x12DDB48 + 0x3C, // RetrieveCorpseWindowFOUND //to check
             Y = X + 0x4,
             Z = X + 0x8,
         }
@@ -316,7 +316,7 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            PlayerNameStorePtr = 0x1115AB0, // CGUnit_C__GetUnitName + 0x62 // Script_ResurrectGetOfferer
+            PlayerNameStorePtr = 0x1112AC8, // CGUnit_C__GetUnitName + 0x62 // Script_ResurrectGetOfferer
             PlayerNameNextOffset = 0x14,
             PlayerNameStringOffset = 0x11,
         }
@@ -327,7 +327,7 @@
         public enum Login
         {
             // Script_SelectedRealmName
-            realmName = 0x136571C, // SelectedRealmName_DWORD - ClientServices__Initialize end
+            realmName = 0x13627AC, // SelectedRealmName_DWORD - ClientServices__Initialize end
             realmNameOffset = 0x39C, // SelectedRealmName_Offset
         }
 
@@ -336,10 +336,10 @@
         /// </summary>
         public enum ActivateSettings
         {
-            AutoInteract_Activate_Pointer = 0x12DFB04, // CGUnit_C__CanAutoInteract
-            AutoDismount_Activate_Pointer = 0x12DFB0C, // CVar+b7
-            AutoLoot_Activate_Pointer = 0x12DFB24, // CGGameUI__IsAutoLooting
-            AutoSelfCast_Activate_Pointer = 0x12DFB30, // CVar+294
+            AutoInteract_Activate_Pointer = 0x12DCB24, // CGUnit_C__CanAutoInteract
+            AutoDismount_Activate_Pointer = 0x12DCB2C, // CVar+b7
+            AutoLoot_Activate_Pointer = 0x12DCB44, // CGGameUI__IsAutoLooting
+            AutoSelfCast_Activate_Pointer = 0x12DCB50, // CVar+295
             Activate_Offset = 0x34,
         }
 
@@ -350,7 +350,7 @@
         {
             QuestGiverStatus = 0xEC, //overlooked with cheat engine with baseaddress of 3 NPCs.
             FlightMasterStatus = 0xF0,
-            QuestId = 0x13194C0, // Script_GetQuestID
+            QuestId = 0x131216C, // Script_GetQuestID
             // TODO Retrieve unknown Quests offsets
             /*ActiveQuests = 0x0,
             SelectedQuestId = 0x0,
@@ -414,7 +414,7 @@
         /// </summary>
         public enum PowerIndex
         {
-            PowerIndexArrays = 0x120942C, // PowerTypePointer
+            PowerIndexArrays = 0x1206444, // PowerTypePointer
             Multiplicator = 0x13 - 1,
         }
     }

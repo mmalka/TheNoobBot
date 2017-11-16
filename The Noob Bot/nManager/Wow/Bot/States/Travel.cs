@@ -205,7 +205,8 @@ namespace nManager.Wow.Bot.States
                     if (!transport.UseBLift)
                         return new Transport();
                     var bLift = GetTransportByTransportId(transport.BLift);
-                    PathFinder.FindPath(TravelFrom, (bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+                    PathFinder.FindPath(TravelFrom, (bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId),
+                        out success);
                     if (!success)
                         bLift.ArrivalIsA = true;
                     // calculate the "IsArrivalIsA" then return the bLift;
@@ -215,7 +216,8 @@ namespace nManager.Wow.Bot.States
             if (!transport.UseALift)
                 return new Transport();
             var aLift = GetTransportByTransportId(transport.ALift);
-            PathFinder.FindPath(TravelFrom, (aLift is CustomPath) || (aLift is Portal) ? aLift.APoint : aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
+            PathFinder.FindPath(TravelFrom, (aLift is CustomPath) || (aLift is Portal) ? aLift.APoint : aLift.AOutsidePoint,
+                Usefuls.ContinentNameMpqByContinentId(TravelFromContinentId), out success);
             if (!success && (!(aLift is Portal) && !(aLift is CustomPath) || (aLift is CustomPath) && (aLift as CustomPath).RoundTrip))
                 aLift.ArrivalIsA = true;
             // calculate the "IsArrivalIsA" then return the aLift;
@@ -232,7 +234,8 @@ namespace nManager.Wow.Bot.States
                     if (!transport.UseALift)
                         return new Transport();
                     var aLift = GetTransportByTransportId(transport.ALift);
-                    PathFinder.FindPath(TravelTo, (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+                    PathFinder.FindPath(TravelTo, (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId),
+                        out success);
                     if (!success)
                         aLift.ArrivalIsA = true;
                     // calculate the "IsArrivalIsA" then return the aLift;
@@ -242,7 +245,8 @@ namespace nManager.Wow.Bot.States
             if (!transport.UseBLift)
                 return new Transport();
             var bLift = GetTransportByTransportId(transport.BLift);
-            PathFinder.FindPath(TravelTo, (bLift is CustomPath) || (bLift is Portal) ? bLift.BPoint : bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
+            PathFinder.FindPath(TravelTo, (bLift is CustomPath) || (bLift is Portal) ? bLift.BPoint : bLift.BOutsidePoint,
+                Usefuls.ContinentNameMpqByContinentId(TravelToContinentId), out success);
             if (!success && (!(bLift is Portal) && !(bLift is CustomPath) || (bLift is CustomPath) && (bLift as CustomPath).RoundTrip))
                 bLift.ArrivalIsA = true;
             // calculate the "IsArrivalIsA" then return the bLift;
@@ -562,7 +566,8 @@ namespace nManager.Wow.Bot.States
             else if (selectedTransport is CustomPath)
             {
                 var customPath = selectedTransport as CustomPath;
-                if (customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)].DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5)
+                if (customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)]
+                        .DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5)
                 {
                     MovementManager.MoveToLocation(customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)]);
                     Thread.Sleep(1000);
@@ -585,7 +590,8 @@ namespace nManager.Wow.Bot.States
                 }
                 MovementManager.StopMove();
                 if (ObjectManager.ObjectManager.Me.Position.DistanceTo(customPath.ArrivalIsA ? customPath.BPoint : customPath.APoint) >= 2.0f &&
-                    customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
+                    customPath.Points[Math.NearestPointOfListPoints(customPath.Points, ObjectManager.ObjectManager.Me.Position)]
+                        .DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                     GoToDepartureQuayOrPortal(selectedTransport, true);
             }
             else if (selectedTransport is Taxi)
@@ -599,7 +605,8 @@ namespace nManager.Wow.Bot.States
                     // We want to uses the item Flight Master's Wistle as much as possible.
                     // We are in Broken Isles, not in Dalaran, outdoor, we should be able to uses it.
                     const int flightMasterWistleId = 141605;
-                    if (ItemsManager.GetItemCount(flightMasterWistleId) > 0 && ItemsManager.IsItemUsable(flightMasterWistleId) && !ItemsManager.IsItemOnCooldown(flightMasterWistleId))
+                    if (ItemsManager.GetItemCount(flightMasterWistleId) > 0 && ItemsManager.IsItemUsable(flightMasterWistleId) &&
+                        !ItemsManager.IsItemOnCooldown(flightMasterWistleId))
                     {
                         ItemsManager.UseItem(flightMasterWistleId);
                         Thread.Sleep(250);
@@ -641,7 +648,9 @@ namespace nManager.Wow.Bot.States
             }
             else
             {
-                List<Point> pathToDepartureQuay = selectedTransport.ArrivalIsA ? PathFinder.FindPath(selectedTransport.BOutsidePoint) : PathFinder.FindPath(selectedTransport.AOutsidePoint);
+                List<Point> pathToDepartureQuay = selectedTransport.ArrivalIsA
+                    ? PathFinder.FindPath(selectedTransport.BOutsidePoint)
+                    : PathFinder.FindPath(selectedTransport.AOutsidePoint);
                 MovementManager.Go(pathToDepartureQuay);
                 if (!failed)
                     Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ") to travel.");
@@ -694,7 +703,8 @@ namespace nManager.Wow.Bot.States
                 }
                 else
                 {
-                    memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id), ObjectManager.ObjectManager.Me.Position);
+                    memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
+                        ObjectManager.ObjectManager.Me.Position);
                 }
             }
         }
@@ -712,7 +722,8 @@ namespace nManager.Wow.Bot.States
             if (selectedTransport is Portal)
             {
                 var portal = selectedTransport as Portal;
-                WoWGameObject memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id), ObjectManager.ObjectManager.Me.Position);
+                WoWGameObject memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id),
+                    ObjectManager.ObjectManager.Me.Position);
                 bool loop = true;
                 while (loop)
                 {
@@ -748,7 +759,8 @@ namespace nManager.Wow.Bot.States
                     }
                     else
                     {
-                        memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id), ObjectManager.ObjectManager.Me.Position);
+                        memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id),
+                            ObjectManager.ObjectManager.Me.Position);
 
                         if (portal.AContinentId == portal.BContinentId)
                         {
@@ -1293,6 +1305,7 @@ namespace nManager.Wow.Bot.States
 
         private List<Transport> GetTransportsThatGoesToDestination(Point travelTo, int travelToContinentId)
         {
+            Logging.Write("Looking for transports that goes to destination...");
             var listTransport = new List<Transport>();
             foreach (Transport transport in _availableTransports.Items)
             {
@@ -1322,14 +1335,16 @@ namespace nManager.Wow.Bot.States
                     transport.UseALift = true;
                     if (!(aLift is Portal) && (!(aLift is CustomPath) || (aLift as CustomPath).RoundTrip))
                     {
-                        PathFinder.FindPath((aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                        PathFinder.FindPath((aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
+                            out success);
                         if (success)
                         {
                             listTransport.Add(transport);
                             continue;
                         }
                     }
-                    PathFinder.FindPath((aLift is CustomPath) || (aLift is Portal) ? aLift.BPoint : aLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    PathFinder.FindPath((aLift is CustomPath) || (aLift is Portal) ? aLift.BPoint : aLift.BOutsidePoint, travelTo,
+                        Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                     if (success)
                     {
                         listTransport.Add(transport);
@@ -1354,14 +1369,16 @@ namespace nManager.Wow.Bot.States
                     transport.UseBLift = true;
                     if (!(bLift is Portal) && (!(bLift is CustomPath) || (bLift as CustomPath).RoundTrip))
                     {
-                        PathFinder.FindPath((bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                        PathFinder.FindPath((bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
+                            out success);
                         if (success)
                         {
                             listTransport.Add(transport);
                             continue;
                         }
                     }
-                    PathFinder.FindPath((bLift is CustomPath) || (bLift is Portal) ? bLift.BPoint : bLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    PathFinder.FindPath((bLift is CustomPath) || (bLift is Portal) ? bLift.BPoint : bLift.BOutsidePoint, travelTo,
+                        Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                     if (success)
                     {
                         listTransport.Add(transport);
@@ -1385,18 +1402,21 @@ namespace nManager.Wow.Bot.States
                         else if (transport.ALift > 0)
                         {
                             var aLift = GetTransportByTransportId(transport.ALift);
-                            if (aLift.Id <= 0) continue;
+                            if (aLift.Id <= 0)
+                                continue;
                             transport.UseALift = true;
                             if (!(aLift is Portal) && (!(aLift is CustomPath) || (aLift as CustomPath).RoundTrip))
                             {
-                                PathFinder.FindPath((aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                PathFinder.FindPath((aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, travelTo,
+                                    Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (success)
                                 {
                                     listTransport.Add(transport);
                                     continue;
                                 }
                             }
-                            PathFinder.FindPath((aLift is CustomPath) || (aLift is Portal) ? aLift.BPoint : aLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            PathFinder.FindPath((aLift is CustomPath) || (aLift is Portal) ? aLift.BPoint : aLift.BOutsidePoint, travelTo,
+                                Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                             if (success)
                             {
                                 listTransport.Add(transport);
@@ -1418,18 +1438,21 @@ namespace nManager.Wow.Bot.States
                         else if (transport.BLift > 0)
                         {
                             var bLift = GetTransportByTransportId(transport.BLift);
-                            if (bLift.Id <= 0) continue;
+                            if (bLift.Id <= 0)
+                                continue;
                             transport.UseBLift = true;
                             if (!(bLift is Portal) && (!(bLift is CustomPath) || (bLift as CustomPath).RoundTrip))
                             {
-                                PathFinder.FindPath((bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                                PathFinder.FindPath((bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, travelTo,
+                                    Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                                 if (success)
                                 {
                                     listTransport.Add(transport);
                                     continue;
                                 }
                             }
-                            PathFinder.FindPath((bLift is CustomPath) || (bLift is Portal) ? bLift.BPoint : bLift.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            PathFinder.FindPath((bLift is CustomPath) || (bLift is Portal) ? bLift.BPoint : bLift.BOutsidePoint, travelTo,
+                                Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                             if (success)
                             {
                                 listTransport.Add(transport);
@@ -1439,6 +1462,8 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
+
+            Logging.Write(listTransport.Count + " transports that goes to the destination found.");
             return listTransport;
         }
 
@@ -1526,6 +1551,7 @@ namespace nManager.Wow.Bot.States
 
         private List<Portal> GetPortalsThatGoesToDestination(Point travelTo, int travelToContinentId)
         {
+            Logging.Write("Looking for portals that goes to destination...");
             var listPortal = new List<Portal>();
             foreach (Portal portal in _availablePortals.Items)
             {
@@ -1548,11 +1574,13 @@ namespace nManager.Wow.Bot.States
                     listPortal.Add(portal);
                 }
             }
+            Logging.Write(listPortal.Count + " portals that goes to the destination found.");
             return listPortal;
         }
 
         private List<Portal> GetPortalsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
         {
+            Logging.Write("Looking for transports that directly goes to destination...");
             var listPortal = new List<Portal>();
             List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
             foreach (Portal portal in portals)
@@ -1569,11 +1597,13 @@ namespace nManager.Wow.Bot.States
                     listPortal.Add(portal);
                 }
             }
+            Logging.Write(listPortal.Count + " portals that directly goes to the destination found.");
             return listPortal;
         }
 
         private List<CustomPath> GetCustomPathsThatGoesToDestination(Point travelTo, int travelToContinentId, Point travelFrom, int travelFromContinentId)
         {
+            Logging.Write("Looking for CustomPath that goes to destination...");
             var listCustomPath = new List<CustomPath>();
             foreach (CustomPath customPath in _availableCustomPaths.Items)
             {
@@ -1599,7 +1629,8 @@ namespace nManager.Wow.Bot.States
                 // if we are on the same continent, don't even generate a path if it's way farther than us.
                 bool success;
                 // Check for continent switch first (rare but faster than a distance to anyway).
-                if (customPath.AContinentId == travelToContinentId && customPath.BContinentId == travelFromContinentId && customPath.APoint.DistanceTo(travelTo) < customPath.BPoint.DistanceTo(travelTo))
+                if (customPath.AContinentId == travelToContinentId && customPath.BContinentId == travelFromContinentId &&
+                    customPath.APoint.DistanceTo(travelTo) < customPath.BPoint.DistanceTo(travelTo))
                 {
                     if (customPath.AContinentId == customPath.BContinentId && travelTo.DistanceTo(customPath.APoint) > distanceToTravel + 1000f)
                         continue;
@@ -1650,11 +1681,13 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
+            Logging.Write(listCustomPath.Count + " CustomPath that goes to the destination found.");
             return listCustomPath;
         }
 
         private List<CustomPath> GetCustomPathsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
         {
+            Logging.Write("Looking for CustomPath that directly goes to destination...");
             var listCustomPath = new List<CustomPath>();
             List<CustomPath> customPaths = GetCustomPathsThatGoesToDestination(travelTo, travelToContinentId, travelFrom, travelFromContinentId);
             foreach (CustomPath customPath in customPaths)
@@ -1685,11 +1718,13 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
+            Logging.Write(listCustomPath.Count + " CustomPath that goes to the destination found.");
             return listCustomPath;
         }
 
         private List<Transport> GetTransportsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
         {
+            Logging.Write("Looking for transports that directly goes to destination...");
             var listTransport = new List<Transport>();
             List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
             foreach (Transport transport in transports)
@@ -1715,7 +1750,8 @@ namespace nManager.Wow.Bot.States
                         Transport bLift = GetTransportByTransportId(transport.BLift);
                         if (bLift.AContinentId == travelFromContinentId)
                         {
-                            PathFinder.FindPath((bLift is CustomPath) || (bLift is Portal) ? bLift.APoint : bLift.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
+                            PathFinder.FindPath((bLift is CustomPath) || (bLift is Portal) ? bLift.APoint : bLift.AOutsidePoint, travelFrom,
+                                Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
                                 out success);
                             if (success)
                             {
@@ -1727,7 +1763,8 @@ namespace nManager.Wow.Bot.States
                             continue;
                         if (bLift.BContinentId == travelFromContinentId)
                         {
-                            PathFinder.FindPath((bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            PathFinder.FindPath((bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint, travelFrom,
+                                Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                             if (success)
                             {
                                 listTransport.Add(transport);
@@ -1754,7 +1791,8 @@ namespace nManager.Wow.Bot.States
                         Transport aLift = GetTransportByTransportId(transport.ALift);
                         if (aLift.AContinentId == travelFromContinentId)
                         {
-                            PathFinder.FindPath((aLift is CustomPath) || (aLift is Portal) ? aLift.APoint : aLift.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
+                            PathFinder.FindPath((aLift is CustomPath) || (aLift is Portal) ? aLift.APoint : aLift.AOutsidePoint, travelFrom,
+                                Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
                                 out success);
                             if (success)
                             {
@@ -1766,7 +1804,8 @@ namespace nManager.Wow.Bot.States
                             continue;
                         if (aLift.BContinentId == travelFromContinentId)
                         {
-                            PathFinder.FindPath((aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            PathFinder.FindPath((aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint, travelFrom,
+                                Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                             if (success)
                             {
                                 listTransport.Add(transport);
@@ -1776,11 +1815,13 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
+            Logging.Write(listTransport.Count + " transports that directly goes to the destination found.");
             return listTransport;
         }
 
         private List<Transport> GetAllTransportsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
         {
+            Logging.Write("Looking for all kind of transports that directly goes to the destination...");
             var allTransports = new List<Transport>();
             List<Transport> transports = GetTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             List<Portal> portals = GetPortalsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
@@ -1791,6 +1832,7 @@ namespace nManager.Wow.Bot.States
             allTransports.AddRange(portals);
             if (taxi != null)
                 allTransports.Add(taxi);
+            Logging.Write(allTransports.Count + " transports that goes to the destination found.");
             return allTransports;
         }
 
@@ -1801,15 +1843,19 @@ namespace nManager.Wow.Bot.States
             if (taxi == null)
                 return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
             List<Point> wayIn = PathFinder.FindPath(travelFrom, taxi.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
-            if (!success) return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+            if (!success)
+                return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
             List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-            if (!success) return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+            if (!success)
+                return new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
             float bestTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
             if (travelFromContinentId == travelToContinentId)
-                bestTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint) / 2.5f);
+                bestTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/2.5f);
             Transport bestTransport = taxi;
             bestTransport.Id = taxi.Id;
-            return bestTransport.Id != 0 ? new KeyValuePair<Transport, float>(bestTransport, bestTransportDistance) : new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+            return bestTransport.Id != 0
+                ? new KeyValuePair<Transport, float>(bestTransport, bestTransportDistance)
+                : new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
         }
 
         private KeyValuePair<Transport, float> GetBestDirectWayTransport(Point travelFrom, Point travelTo, int travelFromContinentId, int travelToContinentId)
@@ -1832,7 +1878,7 @@ namespace nManager.Wow.Bot.States
                     List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
                     currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
                     if (travelFromContinentId == travelToContinentId)
-                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint) / 2.5f);
+                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/2.5f);
                     currentId = taxi.Id;
                 }
                 else
@@ -1845,7 +1891,8 @@ namespace nManager.Wow.Bot.States
                     {
                         if (!transport.UseBLift)
                         {
-                            wayIn = PathFinder.FindPath(travelFrom, (transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                            wayIn = PathFinder.FindPath(travelFrom, (transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint,
+                                Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
                             if (!success)
                                 continue;
                         }
@@ -1853,12 +1900,14 @@ namespace nManager.Wow.Bot.States
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
                             Transport bLift = GetTransportByTransportId(transport.BLift);
-                            wayIn = PathFinder.FindPath(travelFrom, (bLift is Portal) || (bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
+                            wayIn = PathFinder.FindPath(travelFrom, (bLift is Portal) || (bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint,
+                                Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
                                 out success);
                             if (success && !(bLift is Portal) && (!(bLift is CustomPath) || (bLift as CustomPath).RoundTrip))
                             {
                                 // bLift IsArrivalIsA=true
-                                wayInLift = PathFinder.FindPath((transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint, (bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint,
+                                wayInLift = PathFinder.FindPath((transport is CustomPath) ? transport.BPoint : transport.BOutsidePoint,
+                                    (bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint,
                                     Usefuls.ContinentNameMpqByContinentId(transport.BContinentId), out success);
                                 if (!success)
                                     continue;
@@ -1866,7 +1915,8 @@ namespace nManager.Wow.Bot.States
                             else
                             {
                                 // bLift IsArrivalIsA=false
-                                wayIn = PathFinder.FindPath(travelFrom, (bLift is Portal) || (bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
+                                wayIn = PathFinder.FindPath(travelFrom, (bLift is Portal) || (bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint,
+                                    Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
                                     out success);
                                 if (!success)
                                     continue;
@@ -1880,7 +1930,8 @@ namespace nManager.Wow.Bot.States
                         }
                         if (!transport.UseALift)
                         {
-                            wayOff = PathFinder.FindPath(travelTo, (transport is CustomPath) ? transport.APoint : transport.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                            wayOff = PathFinder.FindPath(travelTo, (transport is CustomPath) ? transport.APoint : transport.AOutsidePoint,
+                                Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
                             if (!success)
                                 continue;
                         }
@@ -1888,12 +1939,14 @@ namespace nManager.Wow.Bot.States
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
                             Transport aLift = GetTransportByTransportId(transport.ALift);
-                            wayOff = PathFinder.FindPath(travelTo, (aLift is Portal) || (aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
+                            wayOff = PathFinder.FindPath(travelTo, (aLift is Portal) || (aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint,
+                                Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
                                 out success);
                             if (success && !(aLift is Portal) && (!(aLift is CustomPath) || (aLift as CustomPath).RoundTrip))
                             {
                                 // aLift IsArrivalIsA=true
-                                wayOffLift = PathFinder.FindPath((transport is CustomPath) ? transport.APoint : transport.AOutsidePoint, (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint,
+                                wayOffLift = PathFinder.FindPath((transport is CustomPath) ? transport.APoint : transport.AOutsidePoint,
+                                    (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint,
                                     Usefuls.ContinentNameMpqByContinentId(transport.AContinentId), out success);
                                 if (!success)
                                     continue;
@@ -1901,7 +1954,8 @@ namespace nManager.Wow.Bot.States
                             else
                             {
                                 // aLift IsArrivalIsA=false
-                                wayOff = PathFinder.FindPath(travelTo, (aLift is Portal) || (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
+                                wayOff = PathFinder.FindPath(travelTo, (aLift is Portal) || (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint,
+                                    Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
                                     out success);
                                 if (!success)
                                     continue;
@@ -1928,7 +1982,8 @@ namespace nManager.Wow.Bot.States
                         {
                             // we need to find the right "ArrivalIsA" for that elevator.
                             Transport aLift = GetTransportByTransportId(transport.ALift);
-                            wayIn = PathFinder.FindPath(travelFrom, (aLift is Portal) || (aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
+                            wayIn = PathFinder.FindPath(travelFrom, (aLift is Portal) || (aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint,
+                                Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
                                 out success);
                             if (success && !(aLift is Portal) && (!(aLift is CustomPath) || (aLift as CustomPath).RoundTrip))
                             {
@@ -1941,12 +1996,14 @@ namespace nManager.Wow.Bot.States
                             else
                             {
                                 // aLift IsArrivalIsA=false
-                                wayIn = PathFinder.FindPath(travelFrom, (aLift is Portal) || (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
+                                wayIn = PathFinder.FindPath(travelFrom, (aLift is Portal) || (aLift is CustomPath) ? aLift.BPoint : aLift.BOutsidePoint,
+                                    Usefuls.ContinentNameMpqByContinentId(travelFromContinentId),
                                     out success);
                                 if (!success)
                                     continue;
                                 wayInLift = PathFinder.FindPath((transport is CustomPath) || (transport is Portal) ? transport.APoint : transport.AOutsidePoint,
-                                    (aLift is Portal) || (aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.AContinentId), out success);
+                                    (aLift is Portal) || (aLift is CustomPath) ? aLift.APoint : aLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.AContinentId),
+                                    out success);
                                 if (!success)
                                     continue;
                             }
@@ -1980,12 +2037,14 @@ namespace nManager.Wow.Bot.States
                             else
                             {
                                 // bLift IsArrivalIsA=false
-                                wayOff = PathFinder.FindPath(travelTo, (bLift is Portal) || (bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
+                                wayOff = PathFinder.FindPath(travelTo, (bLift is Portal) || (bLift is CustomPath) ? bLift.BPoint : bLift.BOutsidePoint,
+                                    Usefuls.ContinentNameMpqByContinentId(travelToContinentId),
                                     out success);
                                 if (!success)
                                     continue;
                                 wayOffLift = PathFinder.FindPath((transport is CustomPath) || (transport is Portal) ? transport.BPoint : transport.BOutsidePoint,
-                                    (bLift is Portal) || (bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.BContinentId), out success);
+                                    (bLift is Portal) || (bLift is CustomPath) ? bLift.APoint : bLift.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(transport.BContinentId),
+                                    out success);
                                 if (!success)
                                     continue;
                             }
@@ -1995,19 +2054,24 @@ namespace nManager.Wow.Bot.States
                     float extraDistance = 0f;
                     if (transport.Id == 190549)
                         extraDistance =
-                            ((transport is CustomPath) || (transport is Portal) ? transport.APoint : transport.AOutsidePoint).DistanceTo2D((transport is CustomPath) || (transport is Portal)
-                                ? transport.BPoint
-                                : transport.BOutsidePoint);
-                    currentTransportDistance = extraDistance + Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayInLift) + Math.DistanceListPoint(wayOff) + Math.DistanceListPoint(wayOffLift);
+                            ((transport is CustomPath) || (transport is Portal) ? transport.APoint : transport.AOutsidePoint).DistanceTo2D(
+                                (transport is CustomPath) || (transport is Portal)
+                                    ? transport.BPoint
+                                    : transport.BOutsidePoint);
+                    currentTransportDistance = extraDistance + Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayInLift) + Math.DistanceListPoint(wayOff) +
+                                               Math.DistanceListPoint(wayOffLift);
                     currentId = transport.Id;
                 }
 
-                if (!(currentTransportDistance < bestTransportDistance)) continue;
+                if (!(currentTransportDistance < bestTransportDistance))
+                    continue;
                 bestTransport = transport;
                 bestTransport.Id = currentId;
                 bestTransportDistance = currentTransportDistance;
             }
-            return bestTransport.Id != 0 ? new KeyValuePair<Transport, float>(bestTransport, bestTransportDistance) : new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+            return bestTransport.Id != 0
+                ? new KeyValuePair<Transport, float>(bestTransport, bestTransportDistance)
+                : new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
         }
     }
 }
