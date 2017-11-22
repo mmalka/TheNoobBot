@@ -406,7 +406,7 @@ namespace nManager.Wow.MemoryClass
                         JumpAddress = GetJumpAdresse();
                         JumpAddressDX = GetJumpAdresseDX();
 
-                        if (/*Memory.ReadByte(JumpAddress) == 0xE9 ||*/ Memory.ReadByte(JumpAddressDX) == 0xE9)
+                        if ( /*Memory.ReadByte(JumpAddress) == 0xE9 ||*/ Memory.ReadByte(JumpAddressDX) == 0xE9)
                         {
                             DisposeHooking();
                         }
@@ -460,10 +460,9 @@ namespace nManager.Wow.MemoryClass
                             return;
                         }
                     }
-                    
-                    }
-                    ThreadHooked = true;
-                    AllowReHook = false;
+                }
+                ThreadHooked = true;
+                AllowReHook = false;
             }
             catch (Exception e)
             {
@@ -524,7 +523,7 @@ namespace nManager.Wow.MemoryClass
                 /*if (Wow.Memory.WowProcess != null && Wow.Memory.WowProcess.Executor != null)
                     Wow.Memory.WowProcess.Executor.Dispose();*/
                 ThreadHooked = false;
-                
+
                 // Get address of EndScene:
                 JumpAddress = GetJumpAdresse();
                 JumpAddressDX = GetJumpAdresseDX();
@@ -556,7 +555,7 @@ namespace nManager.Wow.MemoryClass
                                 D3D.OriginalBytesDX = new byte[] {85, 139, 236, 139, 69, 8}; // Some graphic drivers
                             else if (getBytes[5] == 144 && getBytes[6] == 144)
                                 D3D.OriginalBytesDX = new byte[] {106, 20, 184, 12, 154, 68, 115}; // Win8
-                                // the 2 lasts bytes of the Win8 way seems to be differents on differents computers.
+                            // the 2 lasts bytes of the Win8 way seems to be differents on differents computers.
                             else
                             {
                                 string bytes = "";
@@ -616,6 +615,10 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
+                if (!CheckVersion(processId))
+                {
+                    return "This version of the bot is for WoW " + Information.TargetWowBuild + " only.";
+                }
                 if (!IsInGame(processId))
                     return Translate.Get(Translate.Id.Please_connect_to_the_game);
 
@@ -665,6 +668,22 @@ namespace nManager.Wow.MemoryClass
                 Logging.WriteError("IsInGame(int processId): " + e);
             }
             return false;
+        }
+
+        public static bool CheckVersion(int processId)
+        {
+            var memory = new BlackMagic(processId);
+            System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(processId);
+            uint baseModule = 0;
+            foreach (ProcessModule v in from ProcessModule v in memory.Modules
+                where String.Equals(v.ModuleName, (processById.ProcessName + ".exe"), StringComparison.CurrentCultureIgnoreCase)
+                select v)
+            {
+                baseModule = (uint) v.BaseAddress;
+            }
+            string textBuild = memory.ReadUTF8String(baseModule + (uint) Addresses.GameInfo.buildWoWVersionString);
+            uint wowBuildVersion = Helpers.Usefuls.WowVersion(textBuild);
+            return wowBuildVersion == Information.TargetWowBuild;
         }
     }
 }
