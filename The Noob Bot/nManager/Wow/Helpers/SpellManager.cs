@@ -8,6 +8,7 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.MemoryClass.Magic;
 using nManager.Wow.Patchables;
+using System.Threading.Tasks;
 
 namespace nManager.Wow.Helpers
 {
@@ -577,10 +578,11 @@ namespace nManager.Wow.Helpers
 
                     Logging.Write("Character's SpellBook is currently being fully updated. May take few seconds...");
                     Memory.WowMemory.GameFrameLock();
-                    foreach (Spell o in _spellBookSpell)
-                    {
-                        o.Update();
-                    }
+
+                    Parallel.ForEach(_spellBookSpell, (spell, loopState) =>
+                        {
+                            spell.Update();
+                        });
                     Memory.WowMemory.GameFrameUnLock();
 
                     if (CombatClass.IsAliveCombatClass)
