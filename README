@@ -1,20 +1,19 @@
-TheNoobBot is a software that intend to reproduce real players movements in the World of Warcraft environment.
+TheNoobBot is a software that intend to reproduce real players movements in the World of Warcraft game 3D environment.
 
-The bot do uses Injection of ASM for Click To Move, Interact, Lua Executions.
-The bot do read the WoW memory by retrieving the offsets addresses of the usefuls value from the executable file.
+The bot do uses injection of ASM for several actions such as Click To Move, Interact, Lua Executions.
+The bot do read the WoW memory, after retrieving the offsets addresses of the usefuls value from the executable file.
 
-TheNoobBot project have been public since 17 february 2012, for the WoW version 4.3.3 and the project is still active as of expansion Legion.
+TheNoobBot project have been public since 17 february 2012, for the WoW version 4.3.3 and the project was active until Legion.
 
+TheNoobBot has been closed for sale on 31 december 2017, and the source code is now available as of 31 august 2018.
 
-To do :
+This source code is now mainly legacy, the project started back in 2011, before it even had a Git.
 
-FailOver auth server : Working solution, but we can't afford another server.
+I've greatly learned about differents aspect of C# along the years, there is alot of code that could be easily improved or rewritten, we're all in constant evolution after all.
 
-Send informations to servers about the items looted every 55 seconds. (every statistic pulse)
-ItemId mostly and maybe a basic ItemType as well.
+Thanks to all our former custommers for this journey !
 
-Work on as much questing profiles as possible. Priority over Draenor.
+You can find me on linked in @ https://www.linkedin.com/in/marcmalka/
 
-Implement Battle Pet system.
-
-Implement DungeonBot. (either just solo farm old dungeon or tag and follow the tank in random dungeon queue)
+Regards,
+Marc M. MALKA
